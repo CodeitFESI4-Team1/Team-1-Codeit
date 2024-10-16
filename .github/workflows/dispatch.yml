@@ -2,7 +2,7 @@ name: Trigger Fork Repo Action
 on:
   push:
     branches:
-      - master
+      - main
 jobs:
   trigger-fork:
     if: github.repository_owner == 'CodeitFESI4-Team1'
