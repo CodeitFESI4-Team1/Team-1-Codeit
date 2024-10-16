@@ -1,0 +1,23 @@
+name: Trigger Sync
+
+on:
+  repository_dispatch:
+    types: [main_updated]
+
+jobs:
+  trigger-sync:
+    if: github.repository == 'yulrang/Team-1-Codeit-youl'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Git user
+        run: |
+          git config --global user.email "yulrang@gmail.com"
+          git config --global user.name "yulrang"
+      - name: Sync fork
+        run: |
+          git remote add upstream https://github.com/CodeitFESI4-Team1/Team-1-Codeit.git
+          git fetch upstream
+          git checkout main
+          git merge -X theirs upstream/main --allow-unrelated-histories || echo "Merge conflicts occurred"
+          git push origin main
