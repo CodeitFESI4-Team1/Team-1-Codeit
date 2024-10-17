@@ -20,12 +20,14 @@
     "@mantine/modals": "^7.13.2",
     "@mantine/notifications": "^7.13.2",
     "@storybook/test": "^8.3.5",
+    "@tabler/icons-react": "^3.19.0",
     "dayjs": "^1.11.13",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "next": "14.2.15",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "uuid": "^10.0.0"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^1.9.0",
@@ -43,6 +45,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/uuid": "^10.0.0",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
     "eslint": "^8.57.1",
