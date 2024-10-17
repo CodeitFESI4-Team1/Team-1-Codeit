@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import { ComboboxItem } from '@mantine/core';
+import { action } from '@storybook/addon-actions';
 import type { Meta, StoryFn } from '@storybook/react';
 
 import DropDown, { DropDownProps } from './DropDown';
@@ -20,7 +21,10 @@ const Template: StoryFn<DropDownProps> = function DropDownStory(args: DropDownPr
     <DropDown
       {...args}
       value={value ? value.value : null}
-      onChange={(_value, option) => setValue(option)}
+      onChange={(newValue, option) => {
+        setValue(option);
+        action('onChange')(newValue, option); // 액션 로그
+      }}
     />
   );
 };
