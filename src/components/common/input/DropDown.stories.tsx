@@ -31,6 +31,7 @@ const Template: StoryFn<DropDownProps> = function DropDownStory(args: DropDownPr
 
 export const Region = Template.bind({});
 Region.args = {
+  variant: 'region',
   data: ['Option 1', 'Option 2', 'Option 3'],
   placeholder: '지역 전체',
   value: null,
@@ -39,8 +40,18 @@ Region.args = {
 
 export const Category = Template.bind({});
 Category.args = {
+  variant: 'category',
   data: ['Option 1', 'Option 2', 'Option 3'],
   placeholder: '카테고리 전체',
   value: null,
   className: 'w-full',
+};
+
+export const Sort = Template.bind({});
+Sort.args = {
+  variant: 'sort',
+  data: ['마감 임박', '참여 인원'],
+  placeholder: '마감 임박',
+  value: null,
+  className: 'w-[110px]',
 };
