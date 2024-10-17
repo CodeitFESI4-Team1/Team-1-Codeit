@@ -62,6 +62,7 @@ export function Profile({
           type="button"
           className="absolute -right-1 bottom-2 z-20 h-5 w-5 rounded-full"
           onClick={(e) => {
+            // 추후 수정예정
             e.stopPropagation();
             if (onEdit) onEdit();
           }}
