@@ -6,6 +6,8 @@ import { DARK_MODE_EVENT_NAME } from 'storybook-dark-mode';
 import '@/src/styles/globals.css';
 import '../src/styles/globals.css';
 
+import '../src/styles/globals.css';
+
 const channel = addons.getChannel();
 
 function ColorSchemeWrapper({ children }: { children: React.ReactNode }) {
