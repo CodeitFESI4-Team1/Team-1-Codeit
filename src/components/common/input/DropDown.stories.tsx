@@ -8,6 +8,7 @@ import DropDown, { DropDownProps } from './DropDown';
 const meta: Meta = {
   title: 'Components/DropDown',
   component: DropDown,
+  tags: ['autodocs'],
 };
 
 export default meta;
