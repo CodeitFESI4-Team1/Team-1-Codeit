@@ -32,6 +32,9 @@ const config: Config = {
           950: '#030712',
         },
       },
+      boxShadow: {
+        xl: '0 10px 10px -5px rgba(0,0,0,0.04)',
+      },
     },
   },
   plugins: [],
