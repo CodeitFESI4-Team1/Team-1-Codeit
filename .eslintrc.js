@@ -15,9 +15,27 @@ module.exports = {
     node: true,
     es6: true,
   },
-  extends: ['eslint:recommended', 'plugin:react/recommended', 'plugin:react-hooks/recommended', 'plugin:@typescript-eslint/recommended', 'airbnb', 'airbnb/hooks', 'airbnb-typescript', 'plugin:jsx-a11y/recommended', 'next/core-web-vitals', 'plugin:prettier/recommended', 'plugin:storybook/recommended'],
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'airbnb',
+    'airbnb/hooks',
+    'airbnb-typescript',
+    'plugin:jsx-a11y/recommended',
+    'next/core-web-vitals',
+    'plugin:prettier/recommended',
+    'plugin:storybook/recommended',
+  ],
   plugins: ['react', 'react-hooks', '@typescript-eslint', 'jsx-a11y', 'import', 'prettier'],
   rules: {
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: ['**/*.test.js', '**/*.stories.js', '**/storybook/**'],
+      },
+    ],
     'prettier/prettier': [
       'error',
       {
@@ -61,5 +79,5 @@ module.exports = {
       },
     },
   ],
-  ignorePatterns: ['next.config.mjs', 'postcss.config.mjs'],
+  ignorePatterns: ['next.config.mjs', 'postcss.config.mjs', '.eslintrc.js'],
 };
