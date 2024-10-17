@@ -10,6 +10,7 @@ module.exports = {
 
   importOrder: [
     '^react',
+    '^next',
     '<THIRD_PARTY_MODULES>',
     '^@/src/apis/(.*)$',
     '^@/src/hooks/(.*)$',

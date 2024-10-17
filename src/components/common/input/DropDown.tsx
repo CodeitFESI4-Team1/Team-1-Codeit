@@ -1,7 +1,8 @@
+import Image from 'next/image';
+
 import IcoArrowDown from '@/public/assets/icon/ic-arrow-down.svg';
 import IcoSort from '@/public/assets/icon/ic-sort.svg';
 import { ComboboxItem, Select } from '@mantine/core';
-import Image from 'next/image';
 
 export interface DropDownProps {
   variant: 'region' | 'category' | 'sort';
