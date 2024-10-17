@@ -4,7 +4,7 @@ import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import '@mantine/core/styles.css';
 import type { Metadata } from 'next';
 
-import './globals.css';
+import '../styles/globals.css';
 import { theme } from './theme';
 
 export const metadata: Metadata = {
