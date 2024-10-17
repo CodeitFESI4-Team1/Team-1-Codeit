@@ -1,5 +1,6 @@
 import { Button } from '@mantine/core';
 
+// NOTE : 스토리북 예시 컴포넌트
 export interface ButtonProps {
   primary?: boolean;
   backgroundColor?: string;
