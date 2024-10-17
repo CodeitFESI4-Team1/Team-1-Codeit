@@ -26,9 +26,16 @@ module.exports = {
     'plugin:jsx-a11y/recommended',
     'next/core-web-vitals',
     'plugin:prettier/recommended',
+    'plugin:storybook/recommended',
   ],
   plugins: ['react', 'react-hooks', '@typescript-eslint', 'jsx-a11y', 'import', 'prettier'],
   rules: {
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: ['**/*.test.js', '**/*.stories.js', '**/storybook/**'],
+      },
+    ],
     'prettier/prettier': [
       'error',
       {
@@ -72,5 +79,5 @@ module.exports = {
       },
     },
   ],
-  ignorePatterns: ['next.config.mjs', 'postcss.config.mjs'],
+  ignorePatterns: ['next.config.mjs', 'postcss.config.mjs', '.eslintrc.js'],
 };
