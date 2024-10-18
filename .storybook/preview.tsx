@@ -5,7 +5,7 @@ import '@mantine/core/styles.css';
 import { addons } from '@storybook/preview-api';
 import { DARK_MODE_EVENT_NAME } from 'storybook-dark-mode';
 
-import '../src/styles/globals.css';
+import '@/src/app/globals.css';
 
 const channel = addons.getChannel();
 
