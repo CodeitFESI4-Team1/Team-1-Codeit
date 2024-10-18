@@ -5,6 +5,7 @@ import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 // All packages except `@mantine/hooks` require styles imports
 import '@mantine/core/styles.css';
 
+// import GNB from '@/src/components/common/gnb/containter';
 import './globals.css';
 import { theme } from './theme';
 
@@ -24,7 +25,11 @@ export default function RootLayout({
         <ColorSchemeScript />
       </head>
       <body>
-        <MantineProvider theme={theme}>{children}</MantineProvider>
+        <MantineProvider theme={theme}>
+          {/* GNB 컴포넌트 위치 */}
+          {/* <GNB /> */}
+          {children}
+        </MantineProvider>
       </body>
     </html>
   );
