@@ -2,9 +2,9 @@
 
 import { useState } from 'react';
 
-import GNBPresenter from './Presenter';
+import GNBPresenter from '@/src/components/common/gnb/presenter';
 
-export default function GNBContainer() {
+export default function GNB() {
   const [hasCookie, setHasCookie] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
