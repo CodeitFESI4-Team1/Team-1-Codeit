@@ -39,7 +39,7 @@ module.exports = {
     'prettier/prettier': [
       'error',
       {
-        endOfLine: 'lf',
+        endOfLine: 'auto',
       },
     ],
     'jsx-a11y/label-has-associated-control': [
