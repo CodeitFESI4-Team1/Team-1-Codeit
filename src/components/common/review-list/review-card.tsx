@@ -5,6 +5,7 @@ export interface ReviewUser {
 }
 
 export interface ReviewCardProps {
+  id?: number;
   score: number;
   comment: string;
   createdAt: Date;
@@ -16,7 +17,7 @@ function MockScore({ score }: { score: number }) {
 }
 
 // 상위 컴포넌트(리뷰 카드 리스트)에서 리뷰 정보를 받아 렌더
-export default function ReviewCard({ score, comment, createdAt, user }: ReviewCardProps) {
+export default function ReviewCard({ id, score, comment, createdAt, user }: ReviewCardProps) {
   const formatDate = (date: Date) => {
     const yyyy = date.getFullYear();
     const mm = String(date.getMonth() + 1).padStart(2, '0');
@@ -28,9 +29,10 @@ export default function ReviewCard({ score, comment, createdAt, user }: ReviewCa
   const reviewDate = formatDate(createdAt);
 
   return (
-    <div>
+    <div className="w-full border-[2px] border-gray-400">
       <MockScore score={score} />
       <p>{comment}</p>
+      <span>{id}</span>
       <div>
         <span>
           <img src={user.image} alt={user.name} />
