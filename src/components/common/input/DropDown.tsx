@@ -3,6 +3,15 @@ import { ComboboxItem, Select } from '@mantine/core';
 import IcoArrowDown from '@/public/assets/icon/ic-arrow-down.svg';
 import IcoSort from '@/public/assets/icon/ic-sort.svg';
 
+/**
+ * DropDown Component
+ *
+ * @param {Object} props - Profile 컴포넌트의 props
+ * @param {"region" | "category" | "sort"} [props.variant] : Dropdown 종류
+ * @param {string} [props.className] : Dropdown wrapper 클래스명
+ * @returns {JSX.Element} : DropDown component
+ */
+
 export interface DropDownProps {
   variant: 'region' | 'category' | 'sort';
   data: string[];

@@ -8,6 +8,30 @@ const meta: Meta = {
   title: 'Components/DropDown',
   component: DropDown,
   tags: ['autodocs'],
+  argTypes: {
+    className: {
+      description: '컴포넌트 wrapper에 추가하는 클래스명',
+    },
+    value: {
+      description: '선택된 값',
+    },
+    data: {
+      description: '옵션 데이터 배열',
+    },
+    variant: {
+      description: '`region` | `category` | `sort`',
+      control: {
+        type: 'radio',
+        option: ['region', 'category', 'sort'],
+      },
+    },
+    placeholder: {
+      description: '선택된 값이 없을 때 표시하는 문자열',
+    },
+    onChange: {
+      description: '값이 변경될 때 실행하는 함수',
+    },
+  },
 };
 
 export default meta;
