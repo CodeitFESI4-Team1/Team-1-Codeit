@@ -13,6 +13,7 @@ module.exports = {
     '^react',
     '^@mantine/(.*)$',
     '^[a-zA-Z]',
+    '^@/src/apis/(.*)$',
     '^@/src/hooks/(.*)$',
     '^@/src/app/(.*)$',
     '^@/src/components/(.*)$',
