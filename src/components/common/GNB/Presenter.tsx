@@ -32,7 +32,7 @@ export default function GNBPresenter({
         {hasCookie ? (
           <li className="relative">
             <button type="button" onClick={handleDropdown}>
-              {/* profileImageUrl */}
+              {/* profileImageUrl 컴포넌트 추후 추가 */}
               프로필이미지
             </button>
             {isDropdownOpen && (
