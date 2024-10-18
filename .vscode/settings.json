@@ -61,5 +61,15 @@
       ]
     }
   },
-  "cSpell.words": ["tailwindcss"]
+  "cSpell.words": ["tailwindcss"],
+  "editor.formatOnSave": true, // 저장 시 포맷팅 활성화
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode" // Prettier 포맷터 사용
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode" // TypeScript에서도 Prettier 사용
+  }
 }
