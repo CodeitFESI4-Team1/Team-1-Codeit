@@ -5,7 +5,7 @@ import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 // All packages except `@mantine/hooks` require styles imports
 import '@mantine/core/styles.css';
 
-import '../styles/globals.css';
+import './globals.css';
 import { theme } from './theme';
 
 export const metadata: Metadata = {
