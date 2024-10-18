@@ -4,6 +4,7 @@ const config: Config = {
   content: [
     './src/**/*.{js,jsx,ts,tsx}', // 컴포넌트 경로
     './.storybook/**/*.{js,jsx,ts,tsx}', // Storybook 설정 경로
+    './stories/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {
