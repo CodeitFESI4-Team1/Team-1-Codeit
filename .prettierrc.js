@@ -9,7 +9,6 @@ module.exports = {
   useTabs: false,
 
   importOrder: [
-    '^next',
     '^react',
     '<THIRD_PARTY_MODULES>',
     '^@/src/apis/(.*)$',
