@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ComboboxItem } from '@mantine/core';
 import { action } from '@storybook/addon-actions';
 import type { Meta, StoryFn } from '@storybook/react';
-import DropDown, { DropDownProps } from './drop-down';
+import DropDown, { DropDownProps } from './DropDown';
 
 const meta: Meta = {
   title: 'Components/DropDown',
