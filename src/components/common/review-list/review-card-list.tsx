@@ -1,4 +1,4 @@
-import { ReviewCardProps } from './ReviewCard';
+import { ReviewCardProps } from './review-card';
 
 interface ReviewCardListProps {
   reviewList: ReviewCardProps[];
