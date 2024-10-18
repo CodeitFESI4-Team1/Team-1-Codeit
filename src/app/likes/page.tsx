@@ -1,10 +1,8 @@
 import ReviewCardList, {
-  ReviewCardListProps,
-} from '@/components/common/review-list/review-card-list';
+  ReviewCardProps,
+} from '@/src/components/common/review-list/review-card-list';
 
-import cat from './cat.jpg';
-
-const mockDataList: ReviewCardListProps = [
+const mockDataList: ReviewCardProps[] = [
   {
     id: 1,
     score: 5.5,
@@ -13,7 +11,7 @@ const mockDataList: ReviewCardListProps = [
     user: {
       id: 1,
       name: '샘플유저',
-      image: cat,
+      image: './cat.jpg',
     },
   },
   {
@@ -24,7 +22,7 @@ const mockDataList: ReviewCardListProps = [
     user: {
       id: 2,
       name: '샘플유저',
-      image: cat,
+      image: './cat.jpg',
     },
   },
 ];
