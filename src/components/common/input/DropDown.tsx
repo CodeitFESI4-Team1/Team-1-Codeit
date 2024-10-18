@@ -1,6 +1,8 @@
-import IcoArrowDown from '@/public/assets/icon/ic-arrow-down.svg';
-import { ComboboxItem, Select } from '@mantine/core';
 import Image from 'next/image';
+
+import { ComboboxItem, Select } from '@mantine/core';
+
+import IcoArrowDown from '@/public/assets/icon/ic-arrow-down.svg';
 
 export interface DropDownProps {
   data: string[];
