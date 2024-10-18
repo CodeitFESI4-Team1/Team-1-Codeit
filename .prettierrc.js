@@ -10,18 +10,17 @@ module.exports = {
 
   importOrder: [
     '^react',
+    '^next',
     '<THIRD_PARTY_MODULES>',
     '^@/src/apis/(.*)$',
     '^@/src/hooks/(.*)$',
     '^@/src/app/(.*)$',
     '^@/src/components/(.*)$',
     '^@/src/styles/(.*)$',
-    '^@core/(.*)$',
-    '^@server/(.*)$',
-    '^@ui/(.*)$',
     '^[./]',
+    '^@/public/(.*)$',
   ],
-  importOrderSeparation: true,
+  importOrderSeparation: false,
   importOrderSortSpecifiers: true,
 
   plugins: ['@trivago/prettier-plugin-sort-imports', 'prettier-plugin-tailwindcss'],
