@@ -11,8 +11,7 @@ module.exports = {
   importOrder: [
     '^next',
     '^react',
-    '^@mantine/(.*)$',
-    '^[a-zA-Z]',
+    '<THIRD_PARTY_MODULES>',
     '^@/src/apis/(.*)$',
     '^@/src/hooks/(.*)$',
     '^@/src/app/(.*)$',
