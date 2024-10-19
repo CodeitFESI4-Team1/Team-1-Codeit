@@ -1,26 +1,19 @@
-'use client';
-
-import { useState } from 'react';
-
-import { ComboboxItem } from '@mantine/core';
-
-import CustomButton from '@/src/components/common/input/CustomButton';
-import DropDown from '@/src/components/common/input/DropDown';
+import InternalCategory from '../components/common/tab/internal-category';
 
 export default function Home() {
-  const [value, setValue] = useState<ComboboxItem | null>(null);
-
+  const category = [
+    {
+      title: '스포츠',
+      items: ['배드민턴', '탁구', '테니스', '축구'],
+    },
+    {
+      title: '근력운동',
+      items: ['헬스', '크로스핏'],
+    },
+  ];
   return (
     <div className="container">
-      CREW CREW
-      <CustomButton label="CustomButton" />
-      <DropDown
-        data={['React', 'Angular', 'Svelte', 'Vue']}
-        placeholder="지역 전체"
-        value={value ? value.value : null}
-        onChange={(_value, option) => setValue(option)}
-        className="w-[150px]"
-      />
+      <InternalCategory items={category[0].items} />
     </div>
   );
 }
