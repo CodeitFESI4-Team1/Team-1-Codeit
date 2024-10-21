@@ -13,6 +13,7 @@ module.exports = {
     '^next',
     '<THIRD_PARTY_MODULES>',
     '^@/src/apis/(.*)$',
+    '^@/src/data/(.*)$',
     '^@/src/hooks/(.*)$',
     '^@/src/app/(.*)$',
     '^@/src/components/(.*)$',

@@ -1,0 +1,31 @@
+[
+  {
+    "title": "스포츠",
+    "items": [
+      { "label": "배드민턴1", "href": "/a" },
+      { "label": "탁구2", "href": "/b" },
+      { "label": "테니스3", "href": "/c" },
+      { "label": "축구4", "href": "/d" },
+      { "label": "배드민턴5", "href": "/e" },
+      { "label": "탁구6", "href": "/f" },
+      { "label": "테니스7", "href": "/g" },
+      { "label": "축구8", "href": "/h" },
+      { "label": "배드민턴9", "href": "/i" },
+      { "label": "탁구10", "href": "/j" },
+      { "label": "테니스11", "href": "/k" },
+      { "label": "축구12", "href": "/l" }
+    ]
+  },
+  {
+    "title": "근력운동",
+    "items": [
+      { "label": "배드민턴", "href": "/a" },
+      { "label": "탁구", "href": "/b" },
+      { "label": "테니스", "href": "/c" },
+      { "label": "축구", "href": "/d" },
+      { "label": "배드민턴", "href": "/e" },
+      { "label": "탁구", "href": "/f" },
+      { "label": "테니스", "href": "/g" }
+    ]
+  }
+]
