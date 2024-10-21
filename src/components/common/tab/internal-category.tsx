@@ -1,10 +1,11 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Carousel } from '@mantine/carousel';
-import { useMantineTheme } from '@mantine/core';
+import { useMantineTheme, useMatches } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import IcoLeft from '@/public/assets/icon/ic-left.svg';
 import IcoRight from '@/public/assets/icon/ic-right.svg';
@@ -21,28 +22,27 @@ export interface CategoryItem {
 export default function InternalCategory({ items }: InternalCategoryProps) {
   const pathname = usePathname();
   const theme = useMantineTheme();
-  const mobile = useMediaQuery(
-    `(max-width: ${theme.breakpoints.md}) and (min-width: ${theme.breakpoints.sm})`,
-  );
+  const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.md}) `, false);
   const tablet = useMediaQuery(
-    `(max-width: ${theme.breakpoints.lg}) and (min-width: ${theme.breakpoints.md})`,
+    `(min-width: ${theme.breakpoints.md}) and (max-width: ${theme.breakpoints.lg})`,
+    false,
   );
-  const desktop = useMediaQuery(`(min-width: ${theme.breakpoints.lg})`);
+  const desktop = useMediaQuery(`(min-width: ${theme.breakpoints.lg})`, false);
 
-  const getSlidesToScroll = () => {
-    // eslint-disable-next-line no-nested-ternary
-    return mobile ? 4 : tablet ? 6 : 9;
-  };
+  const [numToScroll, setNumToScroll] = useState(9);
 
   const getIsArrowHidden = () => {
-    // eslint-disable-next-line no-nested-ternary
     if (mobile && items.length <= 4) return 'hidden';
-
     if (tablet && items.length <= 6) return 'hidden';
-
     if (desktop && items.length <= 9) return 'hidden';
     return '';
   };
+
+  useEffect(() => {
+    if (mobile) setNumToScroll(4);
+    if (tablet) setNumToScroll(6);
+    if (desktop) setNumToScroll(9);
+  }, [mobile, tablet, desktop]);
 
   return (
     <Carousel
@@ -51,7 +51,7 @@ export default function InternalCategory({ items }: InternalCategoryProps) {
       slideSize={{ base: '25%', md: '16.666666%', lg: '11.1111%' }} // 여전히 9개씩 나오도록 설정
       slideGap="md"
       align="start"
-      slidesToScroll={getSlidesToScroll()}
+      slidesToScroll={numToScroll}
       previousControlIcon={<Image src={IcoLeft} width={12} height={24} alt="이전" />}
       nextControlIcon={<Image src={IcoRight} width={12} height={24} alt="이후" />}
       classNames={{
