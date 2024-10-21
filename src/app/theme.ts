@@ -1,7 +1,7 @@
 // src/theme.ts
-import { createTheme } from '@mantine/core';
+import { DEFAULT_THEME, createTheme, mergeMantineTheme } from '@mantine/core';
 
-export const theme = createTheme({
+const themeOverride = createTheme({
   fontFamily: 'Pretendard',
   // ... other theme override properties
   breakpoints: {
@@ -10,3 +10,5 @@ export const theme = createTheme({
     lg: '1200px',
   },
 });
+
+export const theme = mergeMantineTheme(DEFAULT_THEME, themeOverride);
