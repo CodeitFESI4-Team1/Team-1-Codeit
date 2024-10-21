@@ -91,7 +91,7 @@ const config: Config = {
           '.typo-2xl-medium': {
             fontSize: '1.5rem',
             lineHeight: '2rem',
-            fontWeight: 500,
+            fontWeight: 'medium',
           },
           '.typo-2xl-normal': {
             fontSize: '1.5rem',

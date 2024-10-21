@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Carousel } from '@mantine/carousel';
-import { useMantineTheme, useMatches } from '@mantine/core';
+import { useMantineTheme } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import IcoLeft from '@/public/assets/icon/ic-left.svg';
 import IcoRight from '@/public/assets/icon/ic-right.svg';
