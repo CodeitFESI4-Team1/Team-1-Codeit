@@ -65,7 +65,7 @@ const config: Config = {
           '.typo-3xl-medium': {
             fontSize: '1.875rem',
             lineHeight: '2.25rem',
-            fontWeight: 500,
+            fontWeight: 'medium',
           },
           '.typo-3xl-normal': {
             fontSize: '1.875rem',
@@ -117,7 +117,7 @@ const config: Config = {
           '.typo-xl-medium': {
             fontSize: '1.25rem',
             lineHeight: '1.75rem',
-            fontWeight: 500,
+            fontWeight: 'medium',
           },
           '.typo-xl-normal': {
             fontSize: '1.25rem',
@@ -143,7 +143,7 @@ const config: Config = {
           '.typo-lg-medium': {
             fontSize: '1.125rem',
             lineHeight: '1.75rem',
-            fontWeight: 500,
+            fontWeight: 'medium',
           },
           '.typo-lg-normal': {
             fontSize: '1.125rem',
@@ -169,7 +169,7 @@ const config: Config = {
           '.typo-base-medium': {
             fontSize: '1rem',
             lineHeight: '1.5rem',
-            fontWeight: 500,
+            fontWeight: 'medium',
           },
           '.typo-base-normal': {
             fontSize: '1rem',
@@ -195,7 +195,7 @@ const config: Config = {
           '.typo-sm-medium': {
             fontSize: '0.875rem',
             lineHeight: '1.25rem',
-            fontWeight: 500,
+            fontWeight: 'medium',
           },
           '.typo-sm-normal': {
             fontSize: '0.875rem',
@@ -221,7 +221,7 @@ const config: Config = {
           '.typo-xs-medium': {
             fontSize: '0.75rem',
             lineHeight: '1rem',
-            fontWeight: 500,
+            fontWeight: 'medium',
           },
           '.typo-xs-normal': {
             fontSize: '0.75rem',
