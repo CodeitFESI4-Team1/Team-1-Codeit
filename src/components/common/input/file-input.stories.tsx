@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import { Meta, StoryFn } from '@storybook/react';
 import FileInput, { FileInputProps } from './file-input';
 import { FileValueType } from './file-input-container';
 
 const meta: Meta = {
-  title: 'Components/input/FileInput',
+  title: 'Components/input/file-input',
   component: FileInput,
   tags: ['autodocs'],
   argTypes: {
@@ -29,22 +29,32 @@ const Template: StoryFn<FileInputProps> = function FileInputStory(
   args: FileInputProps = { isBlur: false, value: null, onChange: () => {} },
 ) {
   const [fileValue, setFileValue] = useState<FileValueType>({ image: null });
+  const [isBlur, setIsBlur] = useState(false);
 
   return (
-    <FileInput
-      value={fileValue.image}
-      onChange={(newValue) => {
-        action('onChange')({ image: newValue });
-        setFileValue({ image: args.value });
-      }}
-      isBlur={args.isBlur} // 기본값이 설정된 args에서 isBlur 값을 받아서 UI에 반영
-    />
+    <div>
+      <FileInput
+        value={fileValue.image}
+        onChange={(newValue) => {
+          action('onChange')({ image: newValue });
+          setFileValue({ image: newValue });
+        }}
+        isBlur={isBlur} // 기본값이 설정된 args에서 isBlur 값을 받아서 UI에 반영
+      />
+      <button
+        type="button"
+        onClick={() => setIsBlur((prev) => !prev)}
+        style={{ marginTop: '16px', padding: '8px 16px', backgroundColor: 'lightgrey' }}
+      >
+        블러 토글
+      </button>
+    </div>
   );
 };
 
 // 스타일이나 UI가 동적으로 변경되는 스토리
-export const WithDynamicStyle = Template.bind({});
-WithDynamicStyle.args = {
+export const FileInput01 = Template.bind({});
+FileInput01.args = {
   value: null,
   isBlur: false,
   onChange: (newValue: File | null) => {
