@@ -9,7 +9,6 @@ module.exports = {
   useTabs: false,
 
   importOrder: [
-    '^next',
     '^react',
     '^next',
     '<THIRD_PARTY_MODULES>',
@@ -18,8 +17,11 @@ module.exports = {
     '^@/src/app/(.*)$',
     '^@/src/components/(.*)$',
     '^@/src/styles/(.*)$',
-    '^[./]',
+    '^@core/(.*)$',
+    '^@server/(.*)$',
+    '^@ui/(.*)$',
     '^@/public/(.*)$',
+    '^[./]',
   ],
   importOrderSeparation: false,
   importOrderSortSpecifiers: true,
