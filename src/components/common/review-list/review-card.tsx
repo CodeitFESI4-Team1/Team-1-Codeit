@@ -1,22 +1,24 @@
+import { User } from '@/src/types/ReviewList';
 import Heart from '@/public/assets/icon/ic-heart';
 
-export interface ReviewUser {
-  id: number;
-  name: string;
-  image: string;
-}
+/**
+ * ReviewCard 컴포넌트
+ *
+ * @param {number} [props.score] - 평점
+ * @param {string} [props.comment] - 리뷰 내용
+ * @param {Date} [props.createdAt] - 게시 일시
+ * @param {User} [props.user] - 게시인
+ * @returns {JSX.Element} - ReviewCard
+ */
 
-export interface ReviewCardProps {
+interface ReviewCardProps {
   score: number;
   comment: string;
   createdAt: Date;
-  user: ReviewUser;
+  user: User;
 }
 
-export interface ReviewCardListProps {
-  reviewList: ReviewCardProps[];
-}
-
+// NOTE: 추후 reviewHeart 컴포넌트로 교체
 function MockScore({ score }: { score: number }) {
   const filledHearts = Math.ceil((score / 100) * 5);
 
@@ -29,7 +31,6 @@ function MockScore({ score }: { score: number }) {
   );
 }
 
-// 상위 컴포넌트(리뷰 카드 리스트)에서 리뷰 정보를 받아 렌더
 export default function ReviewCard({ score, comment, createdAt, user }: ReviewCardProps) {
   const formatDate = (date: Date) => {
     const yyyy = date.getFullYear();
