@@ -2,20 +2,19 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-
 import { Menu } from '@mantine/core';
 
-interface GNBPresenterProps {
+interface HeaderPresenterProps {
   hasCookie: boolean;
   // profileImageUrl: string;
   handleLogout: () => void;
 }
 
-export default function GNBPresenter({
+export default function HeaderPresenter({
   hasCookie,
   // profileImageUrl,
   handleLogout,
-}: GNBPresenterProps) {
+}: HeaderPresenterProps) {
   const pathname = usePathname();
   return (
     <nav className="w-full bg-purple-400 px-6 py-4">
