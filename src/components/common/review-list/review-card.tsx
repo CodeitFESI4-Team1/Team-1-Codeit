@@ -1,3 +1,5 @@
+import Heart from '@/public/assets/icon/ic-heart';
+
 export interface ReviewUser {
   id: number;
   name: string;
@@ -5,7 +7,6 @@ export interface ReviewUser {
 }
 
 export interface ReviewCardProps {
-  id?: number;
   score: number;
   comment: string;
   createdAt: Date;
@@ -17,11 +18,19 @@ export interface ReviewCardListProps {
 }
 
 function MockScore({ score }: { score: number }) {
-  return <p>{score}</p>;
+  const filledHearts = Math.ceil((score / 100) * 5);
+
+  return (
+    <div className="flex gap-2">
+      {Array.from({ length: 5 }).map((_, index) => (
+        <Heart key={`${score - index}`} fill={index < filledHearts ? '#EA580C' : '#E5E7EB'} />
+      ))}
+    </div>
+  );
 }
 
 // 상위 컴포넌트(리뷰 카드 리스트)에서 리뷰 정보를 받아 렌더
-export default function ReviewCard({ id, score, comment, createdAt, user }: ReviewCardProps) {
+export default function ReviewCard({ score, comment, createdAt, user }: ReviewCardProps) {
   const formatDate = (date: Date) => {
     const yyyy = date.getFullYear();
     const mm = String(date.getMonth() + 1).padStart(2, '0');
@@ -33,7 +42,7 @@ export default function ReviewCard({ id, score, comment, createdAt, user }: Revi
   const reviewDate = formatDate(createdAt);
 
   return (
-    <div className="flex w-full flex-col items-start border-[2px] border-gray-400 py-4">
+    <div className="flex w-full flex-col items-start border-[2px] border-gray-400 px-[60px] py-4">
       <MockScore score={score} />
       <p className="mb-2 mt-2.5 text-sm font-medium">{comment}</p>
       <div className="flex items-center text-xs">

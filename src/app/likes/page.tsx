@@ -1,11 +1,9 @@
-import ReviewCardList, {
-  ReviewCardProps,
-} from '@/src/components/common/review-list/review-card-list';
+import { ReviewCardProps } from '@/src/components/common/review-list/review-card';
+import ReviewCardList from '@/src/components/common/review-list/review-card-list';
 
 const mockDataList: ReviewCardProps[] = [
   {
-    id: 1,
-    score: 5.5,
+    score: 40,
     comment: '완벽해요',
     createdAt: new Date(),
     user: {
@@ -15,8 +13,7 @@ const mockDataList: ReviewCardProps[] = [
     },
   },
   {
-    id: 2,
-    score: 8,
+    score: 60,
     comment: '별로',
     createdAt: new Date(),
     user: {
