@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu } from '@mantine/core';
 
-interface HeaderPresenterProps {
+export interface HeaderPresenterProps {
   hasCookie: boolean;
   // profileImageUrl: string;
   handleLogout: () => void;
@@ -28,17 +28,31 @@ export default function HeaderPresenter({
             >
               모임 찾기
             </Link>
+
             {hasCookie ? (
-              <Link
-                href="/likes"
-                className={`${pathname === '/likes' ? 'text-black' : 'text-white'} ml-4 font-bold`}
-              >
-                찜한 모임
-              </Link>
+              <>
+                <Link
+                  href="/my-crew"
+                  className={`${pathname === '/my-crew' ? 'text-black' : 'text-white'} ml-4 font-bold`}
+                >
+                  나의 크루
+                </Link>
+                <Link
+                  href="/my-gathering"
+                  className={`${pathname === '/my-gathering' ? 'text-black' : 'text-white'} ml-4 font-bold`}
+                >
+                  나의 모임
+                </Link>
+              </>
             ) : (
-              <Link href="/login" className="ml-4 font-bold text-white">
-                찜한 모임
-              </Link>
+              <>
+                <Link href="/login" className="ml-4 font-bold text-white">
+                  나의 크루
+                </Link>
+                <Link href="/login" className="ml-4 font-bold text-white">
+                  나의 모임
+                </Link>
+              </>
             )}
           </div>
         </div>
