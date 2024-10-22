@@ -100,3 +100,22 @@ WithToggleCookie.parameters = {
     },
   },
 };
+
+// 5. 로그인 페이지 (/login) 경로
+export const LoginPage: StoryFn = Template.bind({});
+LoginPage.args = {
+  hasCookie: false,
+};
+LoginPage.parameters = {
+  nextjs: {
+    navigation: {
+      pathname: '/login',
+      query: {},
+    },
+  },
+  docs: {
+    description: {
+      story: '로그인 페이지에서는 모든 링크가 하얀색으로 보입니다.',
+    },
+  },
+};
