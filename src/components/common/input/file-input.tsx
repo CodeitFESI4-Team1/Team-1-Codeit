@@ -3,7 +3,7 @@ import Image from 'next/image';
 import icoPlus from '@/public/assets/icon/ic-plus.svg';
 import icoX from '@/public/assets/icon/ic-x.svg';
 
-interface FileInputProps {
+export interface FileInputProps {
   value: File | null;
   onChange: (value: File | null) => void;
   isBlur: boolean;

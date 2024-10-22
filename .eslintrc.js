@@ -45,7 +45,7 @@ module.exports = {
     'import/no-extraneous-dependencies': [
       'error',
       {
-        devDependencies: ['**/*.test.js', '**/*.stories.js', '**/storybook/**'],
+        devDependencies: ['**/*.test.js', '**/*.stories.js', '**/*.stories.tsx', '**/storybook/**'],
       },
     ],
     'prettier/prettier': [
