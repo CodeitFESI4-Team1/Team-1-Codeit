@@ -15,6 +15,14 @@ const meta: Meta<typeof InputWithLabel> = {
     placeholder: {
       control: { type: 'text' },
     },
+    requirement: {
+      re: {
+        control: { type: 'text' },
+      },
+      errorMessage: {
+        control: { type: 'text' },
+      },
+    },
   },
 };
 
@@ -24,7 +32,8 @@ type Story = StoryObj<typeof InputWithLabel>;
 export const Primary: Story = {
   args: {
     type: 'text',
-    label: 'Your Name',
-    placeholder: 'Enter your name',
+    label: '이름',
+    placeholder: '이름을 입력해주세요.',
+    requirement: { re: /.{1,}/.source, errorMessage: '이름을 입력해주세요.' },
   },
 };
