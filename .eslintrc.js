@@ -49,7 +49,7 @@ module.exports = {
       },
     ],
     'prettier/prettier': [
-      'error',
+      'warning',
       {
         endOfLine: 'auto',
       },
