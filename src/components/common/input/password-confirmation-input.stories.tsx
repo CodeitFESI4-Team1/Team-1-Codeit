@@ -1,5 +1,4 @@
 import { Meta, StoryObj } from '@storybook/react';
-
 import PasswordConfirmationInput from './password-confirmation-input';
 
 const meta: Meta<typeof PasswordConfirmationInput> = {

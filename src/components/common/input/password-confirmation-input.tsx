@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-
 import { PasswordInput } from '@mantine/core';
 
 interface PasswordConfirmationInputProps {
