@@ -1,4 +1,6 @@
 import type { Config } from 'tailwindcss';
+import plugin from 'tailwindcss/plugin';
+import { CSSRuleObject } from 'tailwindcss/types/config';
 
 const config: Config = {
   content: [
@@ -37,6 +39,200 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(
+      ({
+        addComponents,
+      }: {
+        addComponents: (components: CSSRuleObject | CSSRuleObject[]) => void;
+      }) => {
+        addComponents({
+          // main text -  pretendard
+          // 3xl
+          '.typo-3xl-bold': {
+            fontSize: '1.875rem',
+            lineHeight: '2.25rem',
+            fontWeight: 'bold',
+          },
+          '.typo-3xl-semibold': {
+            fontSize: '1.875rem',
+            lineHeight: '2.25rem',
+            fontWeight: 'semibold',
+          },
+          '.typo-3xl-medium': {
+            fontSize: '1.875rem',
+            lineHeight: '2.25rem',
+            fontWeight: 'medium',
+          },
+          '.typo-3xl-normal': {
+            fontSize: '1.875rem',
+            lineHeight: '2.25rem',
+            fontWeight: 'normal',
+          },
+          '.typo-3xl-light': {
+            fontSize: '1.875rem',
+            lineHeight: '2.25rem',
+            fontWeight: 'light',
+          },
+          // 2xl
+          '.typo-2xl-bold': {
+            fontSize: '1.5rem',
+            lineHeight: '2rem',
+            fontWeight: 'bold',
+          },
+          '.typo-2xl-semibold': {
+            fontSize: '1.5rem',
+            lineHeight: '2rem',
+            fontWeight: 'semibold',
+          },
+          '.typo-2xl-medium': {
+            fontSize: '1.5rem',
+            lineHeight: '2rem',
+            fontWeight: 'medium',
+          },
+          '.typo-2xl-normal': {
+            fontSize: '1.5rem',
+            lineHeight: '2rem',
+            fontWeight: 'normal',
+          },
+          '.typo-2xl-light': {
+            fontSize: '1.5rem',
+            lineHeight: '2rem',
+            fontWeight: 'light',
+          },
+          // xl
+          '.typo-xl-bold': {
+            fontSize: '1.25rem',
+            lineHeight: '1.75rem',
+            fontWeight: 'bold',
+          },
+          '.typo-xl-semibold': {
+            fontSize: '1.25rem',
+            lineHeight: '1.75rem',
+            fontWeight: 'semibold',
+          },
+          '.typo-xl-medium': {
+            fontSize: '1.25rem',
+            lineHeight: '1.75rem',
+            fontWeight: 'medium',
+          },
+          '.typo-xl-normal': {
+            fontSize: '1.25rem',
+            lineHeight: '1.75rem',
+            fontWeight: 'normal',
+          },
+          '.typo-xl-light': {
+            fontSize: '1.25rem',
+            lineHeight: '1.75rem',
+            fontWeight: 'light',
+          },
+          // lg
+          '.typo-lg-bold': {
+            fontSize: '1.125rem',
+            lineHeight: '1.75rem',
+            fontWeight: 'bold',
+          },
+          '.typo-lg-semibold': {
+            fontSize: '1.125rem',
+            lineHeight: '1.75rem',
+            fontWeight: 'semibold',
+          },
+          '.typo-lg-medium': {
+            fontSize: '1.125rem',
+            lineHeight: '1.75rem',
+            fontWeight: 'medium',
+          },
+          '.typo-lg-normal': {
+            fontSize: '1.125rem',
+            lineHeight: '1.75rem',
+            fontWeight: 'normal',
+          },
+          '.typo-lg-light': {
+            fontSize: '1.125rem',
+            lineHeight: '1.75rem',
+            fontWeight: 'light',
+          },
+          // base
+          '.typo-base-bold': {
+            fontSize: '1rem',
+            lineHeight: '1.5rem',
+            fontWeight: 'bold',
+          },
+          '.typo-base-semibold': {
+            fontSize: '1rem',
+            lineHeight: '1.5rem',
+            fontWeight: 'semibold',
+          },
+          '.typo-base-medium': {
+            fontSize: '1rem',
+            lineHeight: '1.5rem',
+            fontWeight: 'medium',
+          },
+          '.typo-base-normal': {
+            fontSize: '1rem',
+            lineHeight: '1.5rem',
+            fontWeight: 'normal',
+          },
+          '.typo-base-light': {
+            fontSize: '1rem',
+            lineHeight: '1.5rem',
+            fontWeight: 'light',
+          },
+          // sm
+          '.typo-sm-bold': {
+            fontSize: '0.875rem',
+            lineHeight: '1.25rem',
+            fontWeight: 'bold',
+          },
+          '.typo-sm-semibold': {
+            fontSize: '0.875rem',
+            lineHeight: '1.25rem',
+            fontWeight: 'semibold',
+          },
+          '.typo-sm-medium': {
+            fontSize: '0.875rem',
+            lineHeight: '1.25rem',
+            fontWeight: 'medium',
+          },
+          '.typo-sm-normal': {
+            fontSize: '0.875rem',
+            lineHeight: '1.25rem',
+            fontWeight: 'normal',
+          },
+          '.typo-sm-light': {
+            fontSize: '0.875rem',
+            lineHeight: '1.25rem',
+            fontWeight: 'light',
+          },
+          // xs
+          '.typo-xs-bold': {
+            fontSize: '0.75rem',
+            lineHeight: '1rem',
+            fontWeight: 'bold',
+          },
+          '.typo-xs-semibold': {
+            fontSize: '0.75rem',
+            lineHeight: '1rem',
+            fontWeight: 'semibold',
+          },
+          '.typo-xs-medium': {
+            fontSize: '0.75rem',
+            lineHeight: '1rem',
+            fontWeight: 'medium',
+          },
+          '.typo-xs-normal': {
+            fontSize: '0.75rem',
+            lineHeight: '1rem',
+            fontWeight: 'normal',
+          },
+          '.typo-xs-light': {
+            fontSize: '0.75rem',
+            lineHeight: '1rem',
+            fontWeight: 'light',
+          },
+        });
+      },
+    ),
+  ],
 };
 export default config;

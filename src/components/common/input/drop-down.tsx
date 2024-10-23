@@ -86,10 +86,10 @@ export default function DropDown({
       placeholder={placeholder}
       classNames={{
         wrapper: `${className}`,
-        input: `focus:bg-black focus:placeholder:text-white focus:text-white peer rounded-xl border-0 py-2 px-3 placeholder-gray-800 ${variant === 'sort' && 'pl-9'}`,
+        input: `focus:bg-black focus:placeholder:text-white focus:text-white typo-base-medium rounded-xl border-0 py-2 px-3 placeholder-gray-800 ${variant === 'sort' && 'pl-9'}`,
         section: `end-1 ${variant === 'sort' && 'data-[position=right]:hidden start-1'}`,
         dropdown: 'rounded-xl shadow-xl p-0 border-0 mt-2',
-        option: `py-2.5 m-1 px-3 rounded-xl text-gray-800 hover:bg-blue-100 ${variant === 'sort' && 'justify-center'}`,
+        option: `py-1 m-1 px-2 mr-0 rounded-xl text-gray-800 typo-base-medium hover:bg-blue-100 ${variant === 'sort' && 'justify-center'}`,
       }}
       comboboxProps={{ position: 'bottom', middlewares: { flip: false, shift: false }, offset: 0 }}
     />
