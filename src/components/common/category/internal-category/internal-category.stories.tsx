@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
 import category from '@/src/data/category.json';
-import InternalCategory, { InternalCategoryProps } from './internal-category';
+import InternalCategory, { InternalCategoryProps } from '.';
 
 const meta: Meta = {
   title: 'Components/category/internal-category',

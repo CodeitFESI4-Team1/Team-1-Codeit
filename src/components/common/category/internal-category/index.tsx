@@ -8,8 +8,8 @@ import { Carousel } from '@mantine/carousel';
 import { useMediaQuery } from '@mantine/hooks';
 import { theme } from '@/src/app/theme';
 import { CategoryItem } from '@/src/types/category';
-import IcoLeft from '@/public/assets/icon/ic-left.svg';
-import IcoRight from '@/public/assets/icon/ic-right.svg';
+import IcoLeft from '@/public/assets/icons/ic-left.svg';
+import IcoRight from '@/public/assets/icons/ic-right.svg';
 
 export interface InternalCategoryProps {
   items: CategoryItem[];
