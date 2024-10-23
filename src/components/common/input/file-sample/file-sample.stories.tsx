@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import { Meta, StoryFn } from '@storybook/react';
-import FileSample, { FileSampleProps } from './file-sample';
+import FileSample, { FileSampleProps } from '.';
 
 const meta: Meta = {
   title: 'Components/input/file-sample',

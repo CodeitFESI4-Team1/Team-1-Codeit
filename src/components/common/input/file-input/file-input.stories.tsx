@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import { Meta, StoryFn } from '@storybook/react';
-import FileInput, { FileInputProps } from './file-input';
-import { FileValueType } from './file-input-container';
+import FileInput, { FileInputProps } from '.';
+import { FileValueType } from '../file-input-wrap';
 
 const meta: Meta = {
   title: 'Components/input/file-input',

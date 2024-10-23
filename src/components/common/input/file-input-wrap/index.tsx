@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import FileInput from './file-input';
-import FileSample from './file-sample';
+import FileInput from '../file-input';
+import FileSample from '../file-sample';
 
 export interface FileInputProps {
   value: FileValueType;
@@ -12,7 +12,7 @@ export interface FileValueType {
   image: File | null;
 }
 
-export default function FileInputContainer({ value }: FileInputProps) {
+export default function FileInputWrap({ value }: FileInputProps) {
   const [fileValue, setFileValue] = useState<FileValueType>({ image: null });
   const [isOtherSelected, setIsOtherSelected] = useState(false);
   const [isSampleSelected, setIsSampleSelected] = useState(false);

@@ -1,10 +1,10 @@
-import FileInputContainer from '../components/common/input/file-input-container';
+import FileInputWrap from '@/src/components/common/input/file-input-wrap';
 
 export default function Home() {
   return (
     <div className="">
       CREW CREW
-      <FileInputContainer value={{ image: null }} />
+      <FileInputWrap value={{ image: null }} />
     </div>
   );
 }
