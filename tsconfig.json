@@ -23,6 +23,7 @@
       "@/src/data/*": ["./src/data/*"],
       "@/src/app/*": ["./src/app/*"],
       "@/src/components/*": ["./src/components/*"],
+      "@/src/types/*": ["./src/types/*"],
       "@/src/styles/*": ["./src/styles/*"],
       "@/public/(.*)": ["./public/*"]
     }

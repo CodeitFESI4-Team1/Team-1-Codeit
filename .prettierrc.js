@@ -17,6 +17,7 @@ module.exports = {
     '^@/src/hooks/(.*)$',
     '^@/src/app/(.*)$',
     '^@/src/components/(.*)$',
+    '^@/src/types/(.*)$',
     '^@/src/styles/(.*)$',
     '^[./]',
     '^@/public/(.*)$',
