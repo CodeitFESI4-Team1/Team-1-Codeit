@@ -69,7 +69,7 @@ export default function InternalCategory({ items }: InternalCategoryProps) {
         <Carousel.Slide key={item.label}>
           <Link
             href={`/${item.href}`}
-            className={`${pathname?.includes(item.href) && 'bg-purple-400'} typo-lg-medium flex w-full items-center justify-center rounded-xl bg-[#F0E8FC] p-2 text-[#737373]`}
+            className={`${pathname?.includes(item.href) && 'bg-gray-900 text-white'} typo-base-medium md:typo-lg-medium flex w-full items-center justify-center rounded-xl bg-gray-100 p-2 text-gray-400`}
           >
             {item.label}
           </Link>
