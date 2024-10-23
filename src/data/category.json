@@ -1,7 +1,6 @@
 [
   {
-    "title": 
-      { "label": "근력운동", "href": "/a" },
+    "title": { "label": "근력운동", "href": "/a" },
     "items": [
       { "label": "배드민턴1", "href": "/a" },
       { "label": "탁구2", "href": "/b" },
@@ -18,8 +17,7 @@
     ]
   },
   {
-    "title": 
-      { "label": "유산소 운동", "href": "/a" },
+    "title": { "label": "유산소 운동", "href": "/a" },
     "items": [
       { "label": "배드민턴", "href": "/a" },
       { "label": "탁구", "href": "/b" },
@@ -31,8 +29,7 @@
     ]
   },
   {
-    "title": 
-      { "label": "유연성 운동", "href": "/a" },
+    "title": { "label": "유연성 운동", "href": "/a" },
     "items": [
       { "label": "배드민턴", "href": "/a" },
       { "label": "탁구", "href": "/b" },
@@ -44,8 +41,7 @@
     ]
   },
   {
-    "title": 
-      { "label": "지구력 운동", "href": "/a" },
+    "title": { "label": "지구력 운동", "href": "/a" },
     "items": [
       { "label": "배드민턴", "href": "/a" },
       { "label": "탁구", "href": "/b" },
@@ -57,8 +53,7 @@
     ]
   },
   {
-    "title": 
-      { "label": "팀 스포츠", "href": "/a" },
+    "title": { "label": "팀 스포츠", "href": "/a" },
     "items": [
       { "label": "배드민턴", "href": "/a" },
       { "label": "탁구", "href": "/b" },
@@ -70,8 +65,7 @@
     ]
   },
   {
-    "title": 
-      { "label": "개인 스포츠", "href": "/a" },
+    "title": { "label": "개인 스포츠", "href": "/a" },
     "items": [
       { "label": "배드민턴", "href": "/a" },
       { "label": "탁구", "href": "/b" },
