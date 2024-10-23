@@ -1,9 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { Button, Menu } from '@mantine/core';
 import Heart from '@/public/assets/icons/ic-heart';
+import menu from '@/public/assets/icons/ic-menu.svg';
 
 export type Gathering = {
   teamId: number;
@@ -92,13 +94,18 @@ export default function ReviewCard({
   const CREWPAGE = `/detail/${gathering.id}`;
   const router = useRouter();
 
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
     if (clickable) router.push(CREWPAGE);
   };
 
   const handlePrefetch = () => {
     if (clickable && !prefetched.has(CREWPAGE)) router.prefetch(CREWPAGE);
     setPrefetched(new Set(prefetched).add(CREWPAGE));
+  };
+
+  const handleDelete = (e: React.MouseEvent) => {
+    e.stopPropagation();
   };
 
   // NOTE: Date를 YYYY.MM.DD 형식으로 변환
@@ -131,14 +138,44 @@ export default function ReviewCard({
           <MockScore score={score} />
           <p className="mb-2 mt-2.5 text-sm font-medium">{comment}</p>
         </div>
-        <div className="flex items-center text-xs">
-          <span className="relative h-6 w-6 rounded-full bg-red-500 overflow-hidden">
-            <Image src={user.image} alt={user.name} fill objectFit="cover" />
-          </span>
-          <span className="relative block w-fit px-2 after:absolute after:right-0 after:content-['|']">
-            {user.name}
-          </span>
-          <span className="ml-3 text-gray-500">{reviewDate}</span>
+        <div className="flex justify-between w-full">
+          <div className="flex items-center text-xs w-fit flex-shrink-0">
+            {!isMine && (
+              <>
+                <span className="relative h-6 w-6 rounded-full overflow-hidden">
+                  <Image src={user.image} alt={user.name} fill objectFit="cover" />
+                </span>
+                <span className="relative block w-fit px-2 after:absolute after:right-0 after:content-['|'] mr-3">
+                  {user.name}
+                </span>
+              </>
+            )}
+            <span className="text-gray-500">{reviewDate}</span>
+          </div>
+          {isMine && (
+            <>
+              <Menu position="top" offset={2}>
+                <Menu.Target>
+                  <Image
+                    src={menu}
+                    alt="더보기메뉴"
+                    className="block md:hidden rounded-full border-[1px] border-[#DBDBDB]"
+                    width={25}
+                    height={25}
+                    onClick={(e: React.MouseEvent) => {
+                      e.stopPropagation();
+                    }}
+                  />
+                </Menu.Target>
+                <Menu.Dropdown>
+                  <Menu.Item onClick={handleDelete}>리뷰 삭제하기</Menu.Item>
+                </Menu.Dropdown>
+              </Menu>
+              <Button onClick={handleDelete} className="hidden md:block">
+                리뷰 삭제하기
+              </Button>
+            </>
+          )}
         </div>
       </div>
     </div>
