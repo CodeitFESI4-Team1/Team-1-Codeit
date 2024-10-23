@@ -19,6 +19,7 @@ module.exports = {
     '^@/src/styles/(.*)$',
     '^[./]',
     '^@/public/(.*)$',
+    '^@/src/mock/(.*)$',
   ],
   importOrderSeparation: false,
   importOrderSortSpecifiers: true,
