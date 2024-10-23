@@ -41,15 +41,6 @@ const config: Config = {
       minWidth: {
         ic: 'calc(11.11111% - 7.1111px)',
       },
-      minWidth: {
-        ic: 'calc(11.11111% - 7.1111px)',
-      },
-      minWidth: {
-        ic: 'calc(11.11111% - 7.1111px)',
-      },
-      minWidth: {
-        ic: 'calc(11.11111% - 7.1111px)',
-      },
     },
   },
   plugins: [
