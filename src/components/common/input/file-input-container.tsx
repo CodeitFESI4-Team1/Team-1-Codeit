@@ -30,7 +30,7 @@ export default function FileInputContainer({ value }: FileInputProps) {
   };
 
   return (
-    <div className="flex gap-2">
+    <div className="container flex max-w-[1200px] gap-2">
       <FileSample
         imgUrl="https://images.stockcake.com/public/a/7/6/a768d87b-1f99-4b50-9286-f1583af33522_large/team-huddle-celebration-stockcake.jpg"
         onChange={handleChange}

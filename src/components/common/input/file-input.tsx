@@ -44,10 +44,10 @@ export default function FileInput({ value, isBlur, onChange }: FileInputProps) {
   }, [value, isBlur]);
 
   return (
-    <div className="relative flex gap-2">
+    <div className="min-w-1/4 relative flex aspect-square w-1/4 gap-2">
       <label
         htmlFor="item-file"
-        className="flex h-[282px] w-[282px] flex-col items-center justify-center rounded-xl bg-neutral-100"
+        className="flex h-full w-full flex-col items-center justify-center rounded-xl bg-neutral-100"
       >
         <Image width="48" height="48" src={icoPlus} alt="아이콘" aria-hidden="true" />
         <span>이미지 등록</span>

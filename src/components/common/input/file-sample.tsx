@@ -32,7 +32,7 @@ export default function FileSample({ imgUrl, isBlur, onChange }: FileSampleProps
   }, [isBlur]);
 
   return (
-    <label className="relative h-[282px] w-[282px] overflow-hidden rounded-xl">
+    <label className="min-w-1/4 relative aspect-square w-1/4 overflow-hidden rounded-xl">
       <input
         type="radio"
         onChange={handleClick}
