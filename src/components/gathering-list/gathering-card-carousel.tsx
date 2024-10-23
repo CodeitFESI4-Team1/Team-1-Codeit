@@ -40,7 +40,7 @@ export default function GatheringCardCarousel() {
         withControls={!isMobile}
         controlsOffset="sm"
       >
-        {gatheringData.map((card, index) => (
+        {gatheringData.data.map((card, index) => (
           <Carousel.Slide key={index}>
             <GatheringCard {...card} className={cardClassName} />
           </Carousel.Slide>
