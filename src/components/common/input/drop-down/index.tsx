@@ -1,8 +1,5 @@
 import { useState } from 'react';
-import Image from 'next/image';
 import { ComboboxItem, Select } from '@mantine/core';
-import IcoArrowDown from '@/public/assets/icon/ic-arrow-down.svg';
-import IcoSort from '@/public/assets/icon/ic-sort.svg';
 
 /**
  * drop-down Component
