@@ -6,6 +6,7 @@ const config: Config = {
   content: [
     './src/**/*.{js,jsx,ts,tsx}', // 컴포넌트 경로
     './.storybook/**/*.{js,jsx,ts,tsx}', // Storybook 설정 경로
+    './stories/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {
@@ -49,6 +50,9 @@ const config: Config = {
       },
       boxShadow: {
         xl: '0 10px 10px -5px rgba(0,0,0,0.04)',
+      },
+      minWidth: {
+        ic: 'calc(11.11111% - 7.1111px)',
       },
     },
   },
