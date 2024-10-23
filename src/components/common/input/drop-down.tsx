@@ -5,7 +5,7 @@ import IcoArrowDown from '@/public/assets/icon/ic-arrow-down.svg';
 import IcoSort from '@/public/assets/icon/ic-sort.svg';
 
 /**
- * DropDown Component
+ * drop-down Component
  *
  * @param {Object} props - Profile 컴포넌트의 props
  * @param {"region" | "category" | "sort"} [props.variant] : Dropdown 종류
