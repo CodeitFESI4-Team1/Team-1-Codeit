@@ -1,7 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['images.stockcake.com'], // 허용할 이미지 도메인 추가
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**', // 모든 도메인 허용
+      },
+    ],
   },
 };
 
