@@ -5,10 +5,9 @@
       { "label": "헬스", "href": "/strength-training/gym", "value": "gym" },
       { "label": "크로스핏", "href": "/strength-training/crossfit", "value": "crossfit" },
       { "label": "파워리프팅", "href": "/strength-training/powerlifting", "value": "powerlifting" },
-      { "label": "체조", "href": "/strength-training/gymnastics", "value": "gymnastics" },
       { "label": "케틀벨", "href": "/strength-training/kettlebell", "value": "kettlebell" },
       { "label": "덤벨 운동", "href": "/strength-training/dumbbell", "value": "dumbbell" },
-      { "label": "머신 웨이트", "href": "/strength-training/machine-weight", "value": "machine_weight" },
+      { "label": "바벨 운동", "href": "/strength-training/barbell", "value": "barbell" },
       { "label": "플랭크", "href": "/strength-training/plank", "value": "plank" }
     ]
   },
@@ -73,7 +72,11 @@
       { "label": "수영", "href": "/individual-sports/swimming", "value": "swimming" },
       { "label": "클라이밍", "href": "/individual-sports/climbing", "value": "climbing" },
       { "label": "사격", "href": "/individual-sports/shooting", "value": "shooting" },
-      { "label": "스케이트보드", "href": "/individual-sports/skateboarding", "value": "skateboarding" },
+      {
+        "label": "스케이트보드",
+        "href": "/individual-sports/skateboarding",
+        "value": "skateboarding"
+      },
       { "label": "서핑", "href": "/individual-sports/surfing", "value": "surfing" },
       { "label": "다이빙", "href": "/individual-sports/diving", "value": "diving" },
       { "label": "스키", "href": "/individual-sports/skiing", "value": "skiing" }
