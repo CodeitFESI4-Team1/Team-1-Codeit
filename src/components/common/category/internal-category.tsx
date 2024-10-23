@@ -7,16 +7,12 @@ import { usePathname } from 'next/navigation';
 import { Carousel } from '@mantine/carousel';
 import { useMediaQuery } from '@mantine/hooks';
 import { theme } from '@/src/app/theme';
+import { CategoryItem } from '@/src/types/category';
 import IcoLeft from '@/public/assets/icon/ic-left.svg';
 import IcoRight from '@/public/assets/icon/ic-right.svg';
 
 export interface InternalCategoryProps {
   items: CategoryItem[];
-}
-
-export interface CategoryItem {
-  href: string;
-  label: string;
 }
 
 export default function InternalCategory({ items }: InternalCategoryProps) {
@@ -69,7 +65,7 @@ export default function InternalCategory({ items }: InternalCategoryProps) {
         <Carousel.Slide key={item.label}>
           <Link
             href={`/${item.href}`}
-            className={`${pathname?.includes(item.href) && 'bg-gray-900 text-white'} typo-base-medium md:typo-lg-medium flex w-full items-center justify-center rounded-xl bg-gray-100 p-2 text-gray-400`}
+            className={`${pathname?.includes(item.href) && 'bg-gray-900 text-white'} transition-colors hover:bg-gray-900 hover:text-white typo-base-medium md:typo-lg-medium flex w-full items-center justify-center rounded-xl bg-gray-100 p-2 text-gray-400`}
           >
             {item.label}
           </Link>
