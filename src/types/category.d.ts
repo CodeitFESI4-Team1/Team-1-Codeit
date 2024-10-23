@@ -6,4 +6,5 @@ export interface MainCategoryItem {
 export interface CategoryItem {
   href: string;
   label: string;
+  value: string;
 }

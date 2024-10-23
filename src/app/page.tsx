@@ -1,10 +1,9 @@
-import category from '@/src/data/category.json';
-import MainCategory from '../components/main-category';
+import CategoryWrap from '@/src/components/common/category/category-wrap';
 
 export default function Home() {
   return (
     <div className="max-w-[1200px]">
-      <MainCategory data={category} />
+      <CategoryWrap />
     </div>
   );
 }

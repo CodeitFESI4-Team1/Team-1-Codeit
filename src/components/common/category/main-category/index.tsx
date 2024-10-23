@@ -8,9 +8,10 @@ import ImgMainCategory from '@/public/category';
 
 export interface MainCategoryProps {
   data: MainCategoryItem[];
+  onHover: (index: number) => void;
 }
 
-export default function MainCategory({ data }: MainCategoryProps) {
+export default function MainCategory({ data, onHover }: MainCategoryProps) {
   const pathname = usePathname();
 
   return (
@@ -20,7 +21,7 @@ export default function MainCategory({ data }: MainCategoryProps) {
       </h2>
       <ul className="flex gap-2 md:gap-10 lg:gap-[45px]">
         {data.map((item, index) => (
-          <li key={item.title.href}>
+          <li key={item.title.href} data-index={index} onMouseEnter={() => onHover(index)}>
             <Link
               href={item.title.href}
               className={`${pathname?.includes(item.title.href) && 'bg-blue-500 '} hover:text-blue-500 flex flex-col typo-sm-semibold md:typo-xl-semibold text-gray-600 text-center`}
