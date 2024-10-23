@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import Heart from '@/public/assets/icon/ic-heart.svg';
+import Heart from '@/public/assets/icons/ic-heart';
 
 export type Gathering = {
   teamId: number;
@@ -117,19 +117,23 @@ export default function ReviewCard({
       role="presentation"
       onClick={handleClick}
       onMouseEnter={handlePrefetch}
-      className={`flex border-[2px] border-gray-400 ${clickable ? 'cursor-pointer' : 'cursor-default'}`}
+      className={`flex gap-[15px] lg:gap-[40px] border-b-[2px] h-full border-b-[#e6e6e6] ${clickable ? 'cursor-pointer' : 'cursor-default'}`}
     >
       {imageAvailable && (
-        <div className="relative h-full w-[50px] flex-shrink-0 bg-black">
-          {/* <Image src={gatheringImage} alt={gatheringName} fill /> */}
+        <div className="relative w-[120px] h-[120px] lg:h-[200px] md:h-[180px] md:w-[180px] lg:w-[200px] flex-shrink-0 bg-red-500">
+          <Image src={gathering.image} alt={gathering.name} fill objectFit="cover" />
         </div>
       )}
-      <div className="flex-start flex w-full flex-col items-start bg-green-200 py-4 pl-[15px] pr-[20px] lg:pl-[60px] lg:pr-[80px]">
-        <MockScore score={score} />
-        <p className="mb-2 mt-2.5 text-sm font-medium">{comment}</p>
+      <div
+        className={`flex-start flex w-full flex-col items-start py-4 pr-[20px] lg:pr-[40px] ${imageAvailable ? 'justify-between' : 'pl-[20px] lg:pl-[40px]'}`}
+      >
+        <div className="flex flex-start flex-col">
+          <MockScore score={score} />
+          <p className="mb-2 mt-2.5 text-sm font-medium">{comment}</p>
+        </div>
         <div className="flex items-center text-xs">
-          <span className="relative h-6 w-6 rounded-full bg-red-500">
-            <Image src={user.image} alt={user.name} fill />
+          <span className="relative h-6 w-6 rounded-full bg-red-500 overflow-hidden">
+            <Image src={user.image} alt={user.name} fill objectFit="cover" />
           </span>
           <span className="relative block w-fit px-2 after:absolute after:right-0 after:content-['|']">
             {user.name}

@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import ReviewCardList, { Gathering, ReviewList, User } from './review-card-list';
+import { Gathering, ReviewList, User } from './review-card';
+import ReviewCardList from './review-card-list';
 
 const mockUser: User = {
   id: 1,
@@ -65,5 +66,13 @@ export const NoneOfThem: Story = {
   args: {
     clickable: false,
     imageAvailable: false,
+  },
+};
+
+export const MyReviews: Story = {
+  args: {
+    clickable: true,
+    imageAvailable: true,
+    isMine: true,
   },
 };
