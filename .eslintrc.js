@@ -74,6 +74,7 @@ module.exports = {
     'react/jsx-no-useless-fragment': 'warn',
     'react-hooks/exhaustive-deps': 'off',
     'import/prefer-default-export': 'off',
+    'import/no-extraneous-dependencies': 'off',
   },
   settings: {
     react: {
