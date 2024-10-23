@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import { Meta, StoryFn } from '@storybook/react';
+import { FileValueType } from '@/src/components/common/input/file-input-wrap';
 import FileInput, { FileInputProps } from '.';
-import { FileValueType } from '../file-input-wrap';
 
 const meta: Meta = {
   title: 'Components/input/file-input',
@@ -25,9 +25,7 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: StoryFn<FileInputProps> = function FileInputStory(
-  args: FileInputProps = { isBlur: false, value: null, onChange: () => {} },
-) {
+const Template: StoryFn<FileInputProps> = function FileInputStory() {
   const [fileValue, setFileValue] = useState<FileValueType>({ image: null });
   const [isBlur, setIsBlur] = useState(false);
 
