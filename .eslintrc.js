@@ -30,6 +30,7 @@ module.exports = {
   ],
   plugins: ['react', 'react-hooks', '@typescript-eslint', 'jsx-a11y', 'import', 'prettier'],
   rules: {
+    'import/no-extraneous-dependencies': 'off',
     'import/order': [
       'error',
       {

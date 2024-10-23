@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import Heart from '@/public/assets/icon/ic-heart';
+import Heart from '@/public/assets/icon/ic-heart.svg';
 
 export type Gathering = {
   teamId: number;
