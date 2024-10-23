@@ -1,9 +1,11 @@
+import { useState } from 'react';
 import type { Metadata } from 'next';
 import '@mantine/carousel/styles.css';
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 // Import styles of packages that you've installed.
 // All packages except `@mantine/hooks` require styles imports
 import '@mantine/core/styles.css';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import '@/src/styles/globals.css';
 import { theme } from './theme';
 
@@ -17,13 +19,17 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [queryClient] = useState(() => new QueryClient());
+
   return (
     <html lang="en">
       <head>
         <ColorSchemeScript />
       </head>
       <body>
-        <MantineProvider theme={theme}>{children}</MantineProvider>
+        <QueryClientProvider client={queryClient}>
+          <MantineProvider theme={theme}>{children}</MantineProvider>
+        </QueryClientProvider>
       </body>
     </html>
   );
