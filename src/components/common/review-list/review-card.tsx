@@ -43,8 +43,16 @@ export type ReviewList = Review[];
  * @param {User} [props.user] - 게시인
  * @param {boolean} [props.imageAvailable] - 썸네일 이미지 유무, 기본값 'false'
  * @param {boolean} [props.clickable] - 클릭 가능한지, 기본값 'false'
+ * @param {boolean}[props.isMine] - 내가 작성한 리뷰인지, 기본값 'false'
+ * @param {GatheringInform} [props.gathering] - 크루 관련 정보
  * @returns {JSX.Element} - ReviewCard
  */
+
+export interface GatheringInform {
+  id: number;
+  image: string;
+  name: string;
+}
 
 interface ReviewCardProps {
   score: number;
@@ -53,7 +61,8 @@ interface ReviewCardProps {
   user: User;
   imageAvailable?: boolean;
   clickable?: boolean;
-  gatheringId: number;
+  isMine?: boolean;
+  gathering: GatheringInform;
 }
 
 // NOTE: 추후 reviewHeart 컴포넌트로 교체
@@ -76,10 +85,11 @@ export default function ReviewCard({
   user,
   imageAvailable = false,
   clickable = false,
-  gatheringId,
+  isMine = false,
+  gathering,
 }: ReviewCardProps) {
   const [prefetched, setPrefetched] = useState(new Set());
-  const CREWPAGE = `/detail/${gatheringId}`;
+  const CREWPAGE = `/detail/${gathering.id}`;
   const router = useRouter();
 
   const handleClick = () => {
@@ -107,18 +117,25 @@ export default function ReviewCard({
       role="presentation"
       onClick={handleClick}
       onMouseEnter={handlePrefetch}
-      className={`flex w-full flex-col items-start border-[2px] border-gray-400 px-[60px] py-4 ${clickable ? 'cursor-pointer' : 'cursor-default'}`}
+      className={`flex border-[2px] border-gray-400 ${clickable ? 'cursor-pointer' : 'cursor-default'}`}
     >
-      <MockScore score={score} />
-      <p className="mb-2 mt-2.5 text-sm font-medium">{comment}</p>
-      <div className="flex items-center text-xs">
-        <span className="relative h-6 w-6 rounded-full bg-red-500">
-          <Image src={user.image} alt={user.name} fill />
-        </span>
-        <span className="relative block w-fit px-2 after:absolute after:right-0 after:content-['|']">
-          {user.name}
-        </span>
-        <span className="ml-3 text-gray-500">{reviewDate}</span>
+      {imageAvailable && (
+        <div className="relative h-full w-[50px] flex-shrink-0 bg-black">
+          {/* <Image src={gatheringImage} alt={gatheringName} fill /> */}
+        </div>
+      )}
+      <div className="flex-start flex w-full flex-col items-start bg-green-200 py-4 pl-[15px] pr-[20px] lg:pl-[60px] lg:pr-[80px]">
+        <MockScore score={score} />
+        <p className="mb-2 mt-2.5 text-sm font-medium">{comment}</p>
+        <div className="flex items-center text-xs">
+          <span className="relative h-6 w-6 rounded-full bg-red-500">
+            <Image src={user.image} alt={user.name} fill />
+          </span>
+          <span className="relative block w-fit px-2 after:absolute after:right-0 after:content-['|']">
+            {user.name}
+          </span>
+          <span className="ml-3 text-gray-500">{reviewDate}</span>
+        </div>
       </div>
     </div>
   );

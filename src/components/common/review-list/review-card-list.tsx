@@ -1,4 +1,4 @@
-import ReviewCard, { ReviewList } from './review-card';
+import ReviewCard, { Gathering, GatheringInform, ReviewList } from './review-card';
 
 /**
  * ReviewCardList 컴포넌트
@@ -32,7 +32,11 @@ export default function ReviewCardList({
             user={review.user}
             imageAvailable={imageAvailable}
             clickable={clickable}
-            gatheringId={review.gathering.id}
+            gathering={{
+              id: review.gathering.id,
+              image: review.gathering.image,
+              name: review.gathering.name,
+            }}
           />
         </li>
       ))}
