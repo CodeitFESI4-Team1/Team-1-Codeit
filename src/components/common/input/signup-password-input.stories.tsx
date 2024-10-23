@@ -1,5 +1,4 @@
 import { Meta, StoryObj } from '@storybook/react';
-
 import SignupPasswordInput from './signup-password-input';
 
 const meta: Meta<typeof SignupPasswordInput> = {

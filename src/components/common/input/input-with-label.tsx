@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-
 import { TextInput } from '@mantine/core';
 import { useInputState } from '@mantine/hooks';
 
