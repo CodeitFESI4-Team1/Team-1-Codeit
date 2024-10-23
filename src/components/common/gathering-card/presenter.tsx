@@ -13,6 +13,7 @@ export interface GatheringCardPresenterProps {
   onLikeToggle: () => void;
   onClick: () => void;
   isPast: boolean;
+  className?: string;
 }
 
 export default function GatheringCardPresenter({
@@ -26,6 +27,7 @@ export default function GatheringCardPresenter({
   onLikeToggle,
   onClick,
   isPast,
+  className,
 }: GatheringCardPresenterProps) {
   const formattedDate = formatDate(date);
 
@@ -39,7 +41,7 @@ export default function GatheringCardPresenter({
           onClick();
         }
       }}
-      className={`relative w-full max-w-xs overflow-hidden rounded-lg border-white bg-white ${isPast ? 'pointer-events-none' : ''} ${isPast ? 'cursor-default' : 'cursor-pointer'}`}
+      className={` ${className} relative w-full overflow-hidden rounded-lg border-white bg-white ${isPast ? 'pointer-events-none' : ''} ${isPast ? 'cursor-default' : 'cursor-pointer'}`}
     >
       <div className="relative h-40 w-full">
         <Image

@@ -12,6 +12,7 @@ interface GatheringCardContainerProps {
   imageUrl: string;
   isLiked: boolean;
   // onLikeToggle: () => void;
+  className?: string;
 }
 
 export default function GatheringCard({
@@ -22,6 +23,7 @@ export default function GatheringCard({
   totalCount,
   imageUrl,
   isLiked: initialIsLiked,
+  className,
 }: GatheringCardContainerProps) {
   // 날짜 비교
   const gatheringDate = new Date(date);
@@ -48,6 +50,7 @@ export default function GatheringCard({
       isLiked={isLiked}
       onLikeToggle={handleLikeToggle}
       onClick={() => alert('카드클릭!')}
+      className={className}
     />
   );
 }
