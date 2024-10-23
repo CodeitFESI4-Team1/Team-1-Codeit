@@ -17,11 +17,11 @@ export default function HeaderPresenter({
 }: HeaderPresenterProps) {
   const pathname = usePathname();
   return (
-    <nav className="w-full bg-purple-400 px-6 py-4">
+    <header className="w-full bg-purple-400 px-6 py-4 sticky top-0 z-10">
       <div className="mx-auto flex w-full max-w-screen-lg items-center justify-between">
         <div className="flex space-x-3 md:space-x-5 lg:space-x-5">
-          <span className="font-bold text-white">LOGO</span>
-          <div className="flex items-center space-x-3 md:space-x-6 lg:space-x-6">
+          <h1 className="font-bold text-white">LOGO</h1>
+          <nav className="flex items-center space-x-3 md:space-x-6 lg:space-x-6">
             <Link
               href="/"
               className={`${pathname === '/' ? 'text-black' : 'text-white'} ml-4 font-bold`}
@@ -54,7 +54,7 @@ export default function HeaderPresenter({
                 </Link>
               </>
             )}
-          </div>
+          </nav>
         </div>
 
         {hasCookie ? (
@@ -82,6 +82,6 @@ export default function HeaderPresenter({
           </Link>
         )}
       </div>
-    </nav>
+    </header>
   );
 }
