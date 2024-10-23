@@ -52,11 +52,13 @@ export default function GatheringCardPresenter({
       </div>
 
       {/* 카드 내용 */}
-      <div className="p-4">
-        <h3 className="mb-2 text-lg font-semibold text-gray-900">{title}</h3>
+      <div className="px-3 py-4">
+        <h3 className="mb-2 overflow-hidden text-ellipsis whitespace-nowrap text-lg font-semibold text-gray-900">
+          {title}
+        </h3>
         <div className="flex items-center space-x-1 text-sm text-gray-500">
           <p className="whitespace-nowrap tracking-tighter">{formattedDate}</p>
-          <span className="text-gray-300">|</span>
+          <span className="tracking-tighter text-gray-300">|</span>
           <p className="overflow-hidden text-ellipsis whitespace-nowrap">{location}</p>
         </div>
         <p className="mt-2 flex items-center text-sm text-gray-700">
