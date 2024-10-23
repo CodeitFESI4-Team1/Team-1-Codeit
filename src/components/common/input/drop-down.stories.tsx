@@ -72,8 +72,8 @@ Category.args = {
 export const Sort = Template.bind({});
 Sort.args = {
   variant: 'sort',
-  data: ['마감 임박', '참여 인원'],
-  placeholder: '마감 임박',
+  data: ['최신순', '인기순'],
+  placeholder: '최신순',
   value: null,
   className: 'w-[110px]',
 };
