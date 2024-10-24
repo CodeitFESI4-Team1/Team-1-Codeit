@@ -1,4 +1,4 @@
-import { useCallback, useRef } from 'react';
+import { useInView } from 'react-intersection-observer';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
 export const useInfiniteScroll = <TData>({
@@ -10,8 +10,6 @@ export const useInfiniteScroll = <TData>({
   queryFn: ({ pageParam }: { pageParam?: number }) => Promise<TData>;
   getNextPageParam: (lastPage: TData, pages: TData[]) => number | undefined;
 }) => {
-  const observerRef = useRef<IntersectionObserver | null>(null);
-
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useInfiniteQuery({
     queryKey,
     queryFn,
@@ -19,21 +17,13 @@ export const useInfiniteScroll = <TData>({
     initialPageParam: 0,
   });
 
-  const observe = useCallback(
-    (node: HTMLDivElement) => {
-      if (observerRef.current) observerRef.current.disconnect();
-      observerRef.current = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting && hasNextPage && !isFetchingNextPage) {
-            fetchNextPage();
-          }
-        },
-        { threshold: 1 },
-      );
-      if (node) observerRef.current.observe(node);
-    },
-    [fetchNextPage, hasNextPage, isFetchingNextPage],
-  );
+  const { ref, inView } = useInView({
+    threshold: 1,
+  });
 
-  return { data, observe, isFetchingNextPage };
+  if (inView && hasNextPage && !isFetchingNextPage) {
+    fetchNextPage();
+  }
+
+  return { data, ref, isFetchingNextPage };
 };
