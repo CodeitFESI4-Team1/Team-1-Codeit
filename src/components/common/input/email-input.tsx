@@ -1,6 +1,6 @@
 'use client';
 
-import { ChangeEvent, FocusEvent, useEffect, useMemo, useState } from 'react';
+import { ChangeEvent, useMemo } from 'react';
 import { Loader, TextInput, TextInputProps } from '@mantine/core';
 import { useInputState } from '@mantine/hooks';
 import { useDebounce } from '@/src/hooks/useDebounce';

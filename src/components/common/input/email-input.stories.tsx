@@ -17,14 +17,14 @@ const meta: Meta<typeof EmailInput> = {
     placeholder: {
       control: { type: 'text' },
     },
-    requirement: {
-      re: {
-        control: { type: 'text' },
-      },
-      errorMessage: {
-        control: { type: 'text' },
-      },
-    },
+    // requirement: {
+    //   re: {
+    //     control: { type: 'text' },
+    //   },
+    //   errorMessage: {
+    //     control: { type: 'text' },
+    //   },
+    // },
   },
 };
 
@@ -37,7 +37,7 @@ export const SigninEmailInput: Story = {
     type: 'text',
     label: '이메일',
     placeholder: '이메일을 입력해주세요.',
-    requirement: { re: /.{1,}/.source, errorMessage: '존재하지 않는 아이디입니다.' },
+    // requirement: { re: /.{1,}/.source, errorMessage: '존재하지 않는 아이디입니다.' },
   },
 };
 export const SignupEmailInput: Story = {
@@ -46,6 +46,6 @@ export const SignupEmailInput: Story = {
     type: 'text',
     label: '이메일',
     placeholder: '이메일을 입력해주세요.',
-    requirement: { re: /.{1,}/.source, errorMessage: '중복된 이메일입니다.' },
+    // requirement: { re: /.{1,}/.source, errorMessage: '중복된 이메일입니다.' },
   },
 };

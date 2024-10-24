@@ -19,11 +19,9 @@ export function useValidateEmail() {
 
   const validateEmail = useCallback(async (email: string) => {
     try {
-      console.log(email);
       setIsValidating(true);
       const isValidEmail = await isEmail(email);
       setIsValid(isValidEmail);
-      console.log(isValidEmail);
     } catch {
       setIsValid(false);
     } finally {
