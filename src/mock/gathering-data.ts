@@ -1,6 +1,7 @@
 export const gatheringData = {
   data: [
     {
+      id: 1,
       title: '가나다라마가나다라마가나다라마가',
       date: '2024-12-15T07:30',
       location: '서울, 한강공원',
@@ -11,6 +12,7 @@ export const gatheringData = {
       isLiked: true,
     },
     {
+      id: 2,
       title: '등산 모임',
       date: '2024-11-12T09:00',
       location: '서울, 한강공원 길어질 경우 처리리리리리',
@@ -21,16 +23,7 @@ export const gatheringData = {
       isLiked: false,
     },
     {
-      title: '가나다라 모임',
-      date: '2024-10-15T07:30',
-      location: '서울, 한강공원',
-      currentCount: 8,
-      totalCount: 12,
-      imageUrl:
-        'https://images.unsplash.com/photo-1516978101789-720eacb59e79?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjV8fGNhdHxlbnwwfHwwfHx8Mg%3D%3D',
-      isLiked: true,
-    },
-    {
+      id: 3,
       title: '조깅 모임',
       date: '2024-12-15T07:30',
       location: '서울, 한강공원',
@@ -41,6 +34,7 @@ export const gatheringData = {
       isLiked: false,
     },
     {
+      id: 4,
       title: '조깅 모임',
       date: '2024-12-15T07:30',
       location: '서울, 한강공원',
@@ -51,6 +45,7 @@ export const gatheringData = {
       isLiked: true,
     },
     {
+      id: 5,
       title: '등산 모임',
       date: '2024-11-12T09:00',
       location: '서울, 북한산',
@@ -61,6 +56,7 @@ export const gatheringData = {
       isLiked: false,
     },
     {
+      id: 6,
       title: '가나다라 모임',
       date: '2024-10-15T07:30',
       location: '서울, 한강공원',
@@ -71,6 +67,7 @@ export const gatheringData = {
       isLiked: true,
     },
     {
+      id: 7,
       title: '조깅 모임',
       date: '2024-12-15T07:30',
       location: '서울, 한강공원',
@@ -81,6 +78,7 @@ export const gatheringData = {
       isLiked: false,
     },
     {
+      id: 8,
       title: '조깅 모임',
       date: '2024-12-15T07:30',
       location: '서울, 한강공원',
@@ -91,6 +89,7 @@ export const gatheringData = {
       isLiked: true,
     },
     {
+      id: 9,
       title: '등산 모임',
       date: '2024-11-12T09:00',
       location: '서울, 북한산',
@@ -101,6 +100,7 @@ export const gatheringData = {
       isLiked: false,
     },
     {
+      id: 10,
       title: '가나다라 모임',
       date: '2024-10-15T07:30',
       location: '서울, 한강공원',
@@ -111,6 +111,7 @@ export const gatheringData = {
       isLiked: true,
     },
     {
+      id: 11,
       title: '조깅 모임',
       date: '2024-12-15T07:30',
       location: '서울, 한강공원',
@@ -121,6 +122,7 @@ export const gatheringData = {
       isLiked: false,
     },
     {
+      id: 12,
       title: '조깅 모임',
       date: '2024-12-15T07:30',
       location: '서울, 한강공원',
@@ -131,6 +133,7 @@ export const gatheringData = {
       isLiked: true,
     },
     {
+      id: 13,
       title: '등산 모임',
       date: '2024-11-12T09:00',
       location: '서울, 북한산',
@@ -141,6 +144,7 @@ export const gatheringData = {
       isLiked: false,
     },
     {
+      id: 14,
       title: '가나다라 모임',
       date: '2024-10-15T07:30',
       location: '서울, 한강공원',
@@ -151,6 +155,7 @@ export const gatheringData = {
       isLiked: true,
     },
     {
+      id: 15,
       title: '가나다라마가나다라마가나다라마가',
       date: '2024-12-15T07:30',
       location: '서울, 한강공원 길어질 경우 처리리리리리',
@@ -159,9 +164,18 @@ export const gatheringData = {
       imageUrl:
         'https://images.unsplash.com/photo-1516978101789-720eacb59e79?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjV8fGNhdHxlbnwwfHwwfHx8Mg%3D%3D',
       isLiked: false,
+    },
+    {
+      id: 16,
+      title: '가나다라 모임',
+      date: '2024-10-15T07:30',
+      location: '서울, 한강공원',
+      currentCount: 8,
+      totalCount: 12,
+      imageUrl:
+        'https://images.unsplash.com/photo-1516978101789-720eacb59e79?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjV8fGNhdHxlbnwwfHwwfHx8Mg%3D%3D',
+      isLiked: true,
     },
   ],
-  totalCount: 16,
-  page: 1,
-  limit: 6,
+  pagination: { totalCount: 16, page: 1, limit: 6 },
 };
