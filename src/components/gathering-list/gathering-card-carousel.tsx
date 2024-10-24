@@ -18,11 +18,11 @@ export default function GatheringCardCarousel() {
   const carouselWidth = () => {
     if (isMobile) {
       return 340;
-    } else if (isTablet) {
-      return 360 * 2 + 16;
-    } else {
-      return 380 * 3 + 32;
     }
+    if (isTablet) {
+      return 360 * 2 + 16;
+    }
+    return 380 * 3 + 32;
   };
 
   return (
