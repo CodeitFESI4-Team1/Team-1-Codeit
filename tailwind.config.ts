@@ -34,6 +34,19 @@ const config: Config = {
           900: '#111827',
           950: '#030712',
         },
+        blue: {
+          50: '#EFF6FF',
+          100: '#DBEAFE',
+          200: '#BFDBFE',
+          300: '#93C5FD',
+          400: '#60A5FA',
+          500: '#3388FF',
+          600: '#2563EB',
+          700: '#1D4ED8',
+          800: '#1E40AF',
+          900: '#1E3A8A',
+          950: '#172554',
+        },
       },
       boxShadow: {
         xl: '0 4px 4px 0 rgba(0,0,0,0.25)',
@@ -52,6 +65,12 @@ const config: Config = {
       }) => {
         addComponents({
           // main text -  pretendard
+          // 4xl
+          '.typo-4xl-semibold': {
+            fontSize: '2.5rem',
+            lineHeight: '3.25rem',
+            fontWeight: 'semibold',
+          },
           // 3xl
           '.typo-3xl-bold': {
             fontSize: '1.875rem',
