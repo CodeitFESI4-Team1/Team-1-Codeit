@@ -6,28 +6,32 @@ import GatheringCard from '@/src/components/common/gathering-card/container';
 import { gatheringData } from '@/src/mock/gathering-data';
 
 /* eslint-disable no-nested-ternary */
-
 /* eslint-disable react/no-array-index-key */
 
 export default function GatheringCardCarousel() {
   // 반응형 구간 체크
   const isMobile = useMediaQuery('(max-width: 744px)');
-  const isTablet = useMediaQuery('(min-width: 744px) and (max-width: 1200px)');
+  const isTablet = useMediaQuery('(min-width: 745px) and (max-width: 1200px)');
 
-  const cardClassName = `
-  sm:w-[360px] 
-  md:w-[364px] 
-  lg:w-[380px]
-  mb-10
-`;
+  const cardClassName = isMobile ? 'w-[340px]' : isTablet ? 'w-[360px]' : 'w-[380px]';
+
+  const carouselWidth = () => {
+    if (isMobile) {
+      return 340;
+    } else if (isTablet) {
+      return 360 * 2 + 16;
+    } else {
+      return 380 * 3 + 32;
+    }
+  };
 
   return (
-    <div className="mx-auto w-full max-w-[1172px]">
+    <div className="mx-auto" style={{ maxWidth: `${carouselWidth()}px` }}>
       <Carousel
         withIndicators
         height="auto"
         slideGap="16px"
-        slideSize={isMobile ? '360px' : isTablet ? '364px' : '380px'}
+        slideSize={isMobile ? '100%' : isTablet ? '50%' : '33.33%'}
         slidesToScroll={isMobile ? 1 : isTablet ? 2 : 3}
         loop={false}
         align="start"
@@ -37,12 +41,11 @@ export default function GatheringCardCarousel() {
           control: 'gathering-carousel-control',
         }}
         controlSize={32}
-        withControls={!isMobile}
-        controlsOffset="sm"
+        withControls
       >
         {gatheringData.data.map((card, index) => (
           <Carousel.Slide key={index}>
-            <GatheringCard {...card} className={cardClassName} />
+            <GatheringCard {...card} className={`mb-10 ${cardClassName}`} />
           </Carousel.Slide>
         ))}
       </Carousel>
