@@ -61,11 +61,11 @@ export default function DateTimePicker({ fullDate, onChange }: CalendarFilterPro
           }}
           renderDay={(date) => {
             const day = date.getDate();
-            return <div className="typo-base-medium lg:typo-xl-medium">{day}</div>;
+            return <div className="typo-base-medium lg:typo-lg-medium">{day}</div>;
           }}
         />
       </div>
-      <div className="flex w-[595px] border border-gray-200 rounded-xl items-center p-5 gap-2">
+      <div className="flex w-full md:w-[595px] border border-gray-200 rounded-xl justify-between items-center p-5 gap-2">
         <DropDown
           variant="default"
           // prettier-ignore
@@ -88,7 +88,7 @@ export default function DateTimePicker({ fullDate, onChange }: CalendarFilterPro
           type="button"
           onClick={handleTime}
           disabled={hour === '시' || minute === '분'}
-          className="h-11 w-[110px] disabled:bg-gray-400 rounded-xl disabled:text-gray-50 typo-base-semibold"
+          className="flex h-11 min-w-[100px] justify-center flex-0 basis-[110px] disabled:bg-gray-400 rounded-xl disabled:text-gray-50 typo-base-semibold"
         >
           시간 선택
         </Button>
