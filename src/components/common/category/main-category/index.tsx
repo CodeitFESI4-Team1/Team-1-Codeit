@@ -24,7 +24,7 @@ export default function MainCategory({ data, onHover }: MainCategoryProps) {
           <li key={item.title.href} data-index={index} onMouseEnter={() => onHover(index)}>
             <Link
               href={item.title.href}
-              className={`${pathname?.includes(item.title.href) && 'bg-blue-500 '} hover:text-blue-500 flex flex-col typo-sm-semibold md:typo-xl-semibold text-gray-600 text-center`}
+              className={`${pathname?.includes(item.title.href) && 'bg-blue-500 '} hover:text-blue-500 flex flex-col typo-sm-semibold md:typo-lg-semibold lg:typo-xl-semibold text-gray-600 text-center`}
             >
               <Image src={ImgMainCategory[index]} width={153} height={145} alt={item.title.label} />
               <h3>{item.title.label}</h3>
