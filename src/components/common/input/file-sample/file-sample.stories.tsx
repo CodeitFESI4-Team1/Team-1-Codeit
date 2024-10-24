@@ -47,6 +47,7 @@ const Template: StoryFn<FileSampleProps> = function FileInputStory(
       >
         블러 토글
       </button>
+      {!isBlur && <p>{selectedFile?.name}</p>}
     </div>
   );
 };

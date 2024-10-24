@@ -66,6 +66,9 @@ export default function FileInput({ value, isBlur, onChange }: FileInputProps) {
       if (fileReader) {
         fileReader.abort(); // 진행 중이던 파일 읽기 중단
       }
+      if (preview) {
+        URL.revokeObjectURL(preview);
+      }
       if (timerRef.current) {
         clearTimeout(timerRef.current); // 디바운스 타이머 클리어
       }

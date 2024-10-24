@@ -13,7 +13,7 @@ export interface FileValueType {
 }
 
 export default function FileInputWrap({ value }: FileInputProps) {
-  const [fileValue, setFileValue] = useState<FileValueType>({ image: null });
+  const [fileValue, setFileValue] = useState<FileValueType>(value);
   const [isOtherSelected, setIsOtherSelected] = useState(false);
   const [isSampleSelected, setIsSampleSelected] = useState(false);
 

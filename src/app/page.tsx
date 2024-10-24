@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import DropDown from '@/src/components/common/input/drop-down';
 import FileInputWrap from '@/src/components/common/input/file-input-wrap';
-      
+
 export default function Home() {
   const [sort, setSort] = useState<string | null>('latest');
 
