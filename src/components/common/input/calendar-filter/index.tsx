@@ -28,13 +28,21 @@ export default function CalendarFilter({ value, toDoDates, onChange }: CalendarF
       settings={{ locale: 'ko', firstDayOfWeek: 0, weekendDays: [0], timezone: 'UTC' }}
     >
       <Calendar
+        size="xl"
         getDayProps={(date) => ({
           selected: selected && dayjs(date).isSame(selected, 'date'),
           onClick: () => handleSelect(date),
         })}
         firstDayOfWeek={0}
         classNames={{
-          day: 'text-gray-800 data-[selected=true]:text-white',
+          day: 'w-full h-full text-gray-800 data-[selected=true]:text-white flex',
+          monthCell:
+            'w-[calc(14.285vw-5.714px)] h-[calc(14.285vw-5.714px)] md:w-[calc(7.143vw-5.714px)] md:h-[calc(7.143vw-5.714px)] lg:w-[82.857px] lg:h-[82.857px]',
+          monthsListCell:
+            'w-[calc(33.333vw-13.333px)] h-[10vw] md:w-[calc(16.666vw-13.333px)] md:h-[6.428vw] lg:w-[193.333px] lg:h-[77px] text-gray-800',
+          monthsListControl: 'w-full h-full',
+          yearsListCell:
+            'w-[calc(33.333vw-13.333px)] h-[10vw] md:w-[calc(16.666vw-13.333px)] md:h-[6.428vw] lg:w-[193.333px] lg:h-[77px] text-gray-800',
         }}
         weekendDays={[]}
         previousIcon={<IconArrow direction="left" color="#1F2937" />}
@@ -53,7 +61,7 @@ export default function CalendarFilter({ value, toDoDates, onChange }: CalendarF
                 (todoDate) => todoDate.toDateString() !== date.toDateString(),
               )}
             >
-              <div className="typo-base-medium">{day}</div>
+              <div className="typo-base-medium lg:typo-xl-medium">{day}</div>
             </Indicator>
           );
         }}
