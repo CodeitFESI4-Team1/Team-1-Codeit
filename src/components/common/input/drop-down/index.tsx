@@ -11,7 +11,7 @@ import { ComboboxData, ComboboxItem, Select } from '@mantine/core';
  */
 
 export interface DropDownProps {
-  variant: 'region' | 'category' | 'sort';
+  variant: 'default' | 'sort';
   data: ComboboxData | undefined;
   placeholder: string;
   value: string | null;
@@ -87,6 +87,9 @@ export default function DropDown({
         section: `end-1 ${variant === 'sort' && 'data-[position=right]:hidden start-1'}`,
         dropdown: 'rounded-xl shadow-xl p-0 border-0 mt-2',
         option: `py-1 m-1 px-2 mr-0 rounded-xl text-gray-800 typo-base-medium hover:bg-blue-100 ${variant === 'sort' && 'justify-center'}`,
+      }}
+      styles={{
+        root: { '--mantine-spacing-md': 0 },
       }}
       comboboxProps={{ position: 'bottom', middlewares: { flip: false, shift: false }, offset: 0 }}
     />
