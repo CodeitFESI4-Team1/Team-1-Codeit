@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { ComboboxItem } from '@mantine/core';
 import { action } from '@storybook/addon-actions';
 import type { Meta, StoryFn } from '@storybook/react';
-import DropDown, { DropDownProps } from './drop-down';
+import DropDown, { DropDownProps } from '.';
 
 const meta: Meta = {
-  title: 'Components/DropDown',
+  title: 'Components/input/drop-down',
   component: DropDown,
   tags: ['autodocs'],
   argTypes: {
@@ -37,14 +37,14 @@ const meta: Meta = {
 export default meta;
 
 const Template: StoryFn<DropDownProps> = function DropDownStory(args: DropDownProps) {
-  const [value, setValue] = useState<ComboboxItem | null>(null);
+  const [value, setValue] = useState<string | null>(null);
 
   return (
     <DropDown
       {...args}
-      value={value ? value.value : null}
+      value={value}
       onChange={(newValue, option) => {
-        setValue(option);
+        setValue(newValue);
         action('onChange')(newValue, option); // 액션 로그
       }}
     />
@@ -54,7 +54,10 @@ const Template: StoryFn<DropDownProps> = function DropDownStory(args: DropDownPr
 export const Region = Template.bind({});
 Region.args = {
   variant: 'region',
-  data: ['Option 1', 'Option 2', 'Option 3'],
+  data: [
+    { value: 'option 1', label: '옵션 1' },
+    { value: 'option 2', label: '옵션 2' },
+  ],
   placeholder: '지역 전체',
   value: null,
   className: 'w-[110px]',
@@ -63,7 +66,10 @@ Region.args = {
 export const Category = Template.bind({});
 Category.args = {
   variant: 'category',
-  data: ['Option 1', 'Option 2', 'Option 3'],
+  data: [
+    { value: 'option 1', label: '옵션 1' },
+    { value: 'option 2', label: '옵션 2' },
+  ],
   placeholder: '카테고리 전체',
   value: null,
   className: 'w-full',
@@ -72,8 +78,11 @@ Category.args = {
 export const Sort = Template.bind({});
 Sort.args = {
   variant: 'sort',
-  data: ['마감 임박', '참여 인원'],
-  placeholder: '마감 임박',
+  data: [
+    { value: 'latest', label: '최신순' },
+    { value: 'best', label: '인기순' },
+  ],
+  placeholder: '최신순',
   value: null,
   className: 'w-[110px]',
 };
