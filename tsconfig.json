@@ -24,6 +24,7 @@
       "@/src/app/*": ["./src/app/*"],
       "@/src/components/*": ["./src/components/*"],
       "@/src/utils/*": ["./src/utils/*"],
+      "@/src/hooks/*": ["./src/hooks/*"],
       "@/src/types/*": ["./src/types/*"],
       "@/src/styles/*": ["./src/styles/*"],
       "@/src/mock/*": ["./src/mock/*"],
