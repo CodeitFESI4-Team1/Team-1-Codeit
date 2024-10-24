@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import CategoryWrap from '@/src/components/common/category/category-wrap';
 import CalendarFilter from '@/src/components/common/input/calendar-filter';
 import DropDown from '@/src/components/common/input/drop-down';
 
