@@ -11,7 +11,8 @@ export default function Home() {
   const [date, setDate] = useState<Date>(new Date());
 
   return (
-    <div className="container">
+    <div className="container max-w-[1200px] mx-auto my-0">
+      <CategoryWrap />
       <DropDown
         variant="sort"
         data={[
