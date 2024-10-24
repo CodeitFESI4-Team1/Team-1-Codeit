@@ -16,18 +16,20 @@ export default function InputWithLabel({
   error,
   register,
   type = 'text',
+  ...rest
 }: InputWithLabelProps) {
   return (
     <TextInput
       label={label}
       placeholder={error ? '' : placeholder}
       type={type}
-      {...register}
       labelProps={{ className: 'mb-2' }}
       error={error}
       errorProps={{ className: 'mt-2 text-sm' }}
       classNames={{ input: `bg-gray-100 ${error ? 'border-2' : 'border-0'} ` }}
       radius="md"
+      {...register}
+      {...rest}
     />
   );
 }
