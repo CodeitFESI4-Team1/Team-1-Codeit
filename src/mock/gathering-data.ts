@@ -164,5 +164,4 @@ export const gatheringData = {
   totalCount: 16,
   page: 1,
   limit: 6,
-  hasNextPage: true,
 };
