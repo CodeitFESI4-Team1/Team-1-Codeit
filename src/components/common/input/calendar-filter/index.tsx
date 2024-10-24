@@ -3,9 +3,10 @@ import { Indicator } from '@mantine/core';
 import { Calendar, DatesProvider } from '@mantine/dates';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
+import '@/src/styles/calendar-filter.css';
 import IconArrow from '@/public/assets/icons/ic-arrow';
 
-interface CalendarFilterProps {
+export interface CalendarFilterProps {
   value: Date;
   toDoDates: Date[];
   onChange: (date: Date) => void;
