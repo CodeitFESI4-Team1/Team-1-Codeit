@@ -64,7 +64,7 @@ export default function InternalCategory({ items }: InternalCategoryProps) {
       {items.map((item: CategoryItem) => (
         <Carousel.Slide key={item.label}>
           <Link
-            href={`/${item.href}`}
+            href={item.href}
             className={`${pathname?.includes(item.href) && 'bg-gray-900 text-white'} transition-colors hover:bg-gray-900 hover:text-white typo-base-medium md:typo-lg-medium flex w-full items-center justify-center rounded-xl bg-gray-100 p-2 text-gray-400`}
           >
             {item.label}
