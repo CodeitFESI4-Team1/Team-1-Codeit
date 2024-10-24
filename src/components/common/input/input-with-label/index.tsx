@@ -8,6 +8,7 @@ export interface InputWithLabelProps extends TextInputProps {
   error?: string | null;
   register: UseFormRegisterReturn;
   type?: string;
+  inputClassNames?: string;
 }
 
 export default function InputWithLabel({
@@ -16,6 +17,7 @@ export default function InputWithLabel({
   error,
   register,
   type = 'text',
+  inputClassNames = 'bg-gray-100',
   ...rest
 }: InputWithLabelProps) {
   return (
@@ -26,7 +28,7 @@ export default function InputWithLabel({
       labelProps={{ className: 'mb-2' }}
       error={error}
       errorProps={{ className: 'mt-2 text-sm' }}
-      classNames={{ input: `bg-gray-100 ${error ? 'border-2' : 'border-0'} ` }}
+      classNames={{ input: `${inputClassNames} ${error ? 'border-2' : 'border-0'} ` }}
       radius="md"
       {...register}
       {...rest}
