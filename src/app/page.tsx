@@ -1,10 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-import DropDown from '../components/common/input/drop-down';
+import CalendarFilter from '@/src/components/common/input/calendar-filter';
+import DropDown from '@/src/components/common/input/drop-down';
+
+const toDoDates = [new Date('2024-10-12'), new Date('2024-10-15')];
 
 export default function Home() {
   const [sort, setSort] = useState<string | null>('latest');
+  const [date, setDate] = useState<Date>(new Date());
 
   return (
     <div className="container">
@@ -19,6 +23,7 @@ export default function Home() {
         className="w-[110px]"
         onChange={setSort}
       />
+      <CalendarFilter value={date} toDoDates={toDoDates} onChange={setDate} />
     </div>
   );
 }

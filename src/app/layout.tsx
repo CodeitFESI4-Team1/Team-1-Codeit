@@ -3,6 +3,7 @@ import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 // Import styles of packages that you've installed.
 // All packages except `@mantine/hooks` require styles imports
 import '@mantine/core/styles.css';
+import '@/src/styles/calendar-filter.css';
 import '@/src/styles/globals.css';
 import { theme } from './theme';
 
