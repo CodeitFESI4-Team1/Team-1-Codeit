@@ -1,110 +1,61 @@
 'use client';
 
-import { ChangeEvent, useEffect, useRef, useState } from 'react';
-import { Loader, TextInput } from '@mantine/core';
+import { ChangeEvent, FocusEvent, useEffect, useMemo, useState } from 'react';
+import { Loader, TextInput, TextInputProps } from '@mantine/core';
 import { useInputState } from '@mantine/hooks';
+import { useDebounce } from '@/src/hooks/useDebounce';
+import { useValidateEmail } from '@/src/hooks/useValidateEmail';
 
-export interface EmailInputProps {
+export interface EmailInputProps extends Omit<TextInputProps, 'value'> {
   mode: 'sign-in' | 'sign-up';
-  type: string;
-  label: string;
-  placeholder: string;
-  requirement: { re: string; errorMessage: string };
+  value?: string;
 }
 
 export default function EmailInput({
+  value: valueProps,
+  onChange: onChangeProps,
   mode,
-  type,
-  label,
-  placeholder,
-  requirement,
+  ...props
 }: EmailInputProps) {
-  const regex = new RegExp(requirement.re);
-  const timeoutRef = useRef<number | null>(null);
+  const [innerValue, setInnerValue] = useInputState('');
 
-  const [value, setValue] = useInputState('');
-  const [isTouched, setIsTouched] = useState(false);
-  const [ischeckingEmail, setCheckingEmail] = useState(false);
-  const [isValid, setIsValid] = useState(true);
-  const [isDebouncing, setIsDebouncing] = useState(false);
-
-  // debounce 처리
-  useEffect(() => {
-    if (value && isTouched) {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-      setIsDebouncing(true);
-      timeoutRef.current = window.setTimeout(async () => {
-        await validateEmail();
-        setIsDebouncing(false);
-      }, 1000);
-    }
-  }, [value]);
-
-  const isError = () => isTouched && !isValid;
+  const value = useMemo(() => valueProps || innerValue, [valueProps, innerValue]);
+  const { isValidating, isValid, validateEmail } = useValidateEmail();
+  const { isDebouncing } = useDebounce(value, () => validateEmail(value));
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setIsTouched(true);
-    setValue(event.target.value);
-  };
-
-  const handleBlur = async () => {
-    setIsTouched(true);
-    if (isDebouncing) {
-      return;
-    }
-    await validateEmail();
-  };
-
-  const validateEmail = async () => {
-    // console.log(value);
-    if (regex.test(value)) {
-      setCheckingEmail(true);
-      const isExists = await checkEmailExists(value);
-      setCheckingEmail(false);
-
-      if (mode === 'sign-in') {
-        setIsValid(isExists);
-      }
-      if (mode === 'sign-up') {
-        setIsValid(!isExists);
-      }
+    if (onChangeProps) {
+      onChangeProps(event);
     } else {
-      setIsValid(false);
+      setInnerValue(event.target.value);
     }
-    // console.log(isError());
+
+    if (isDebouncing) return;
+    validateEmail(event.target.value);
   };
 
-  // 이메일이 'test@example.com'이면 이미 존재하는 것으로 처리
-  const checkEmailExists = async (email: string): Promise<boolean> => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        if (email === 'test@example.com') {
-          resolve(true);
-        } else {
-          resolve(false);
-        }
-      }, 1000);
-    });
+  const handleBlur = (event: ChangeEvent<HTMLInputElement>) => {
+    if (isDebouncing || isValidating) return;
+    validateEmail(event.target.value);
   };
+
+  const errorMessage =
+    mode === 'sign-in' ? '존재하지 않는 아이디입니다.' : '유효하지 않은 이메일입니다.';
 
   return (
     <TextInput
+      {...props}
       value={value}
       onChange={handleChange}
       onBlur={handleBlur}
-      type={type}
-      placeholder={placeholder}
-      label={label}
       labelProps={{ className: 'mb-2' }}
-      error={isError() ? requirement.errorMessage : ''}
+      error={!isValid ? errorMessage : ''}
       errorProps={{ className: 'mt-2 text-sm' }}
       classNames={{
-        input: `bg-gray-100 ${isError() ? 'border-2' : 'border-0'} `,
+        input: `bg-gray-100 ${!isValid ? 'border-2' : 'border-0'} `,
       }}
       radius="md"
-      rightSection={ischeckingEmail ? <Loader size="1rem" /> : null}
+      rightSection={isValidating ? <Loader size="1rem" /> : null}
     />
   );
 }

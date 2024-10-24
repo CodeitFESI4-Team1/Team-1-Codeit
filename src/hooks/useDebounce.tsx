@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 
-export function useDebounce(callback: () => Promise<void>, timeout = 1000) {
+export function useDebounce(value: string, callback: () => Promise<void>, timeout = 1000) {
   const [isDebouncing, setIsDebouncing] = useState(false);
   useEffect(() => {
     let tid: number | null = null;
+    setIsDebouncing(true);
 
     tid = window.setTimeout(async () => {
       try {
@@ -18,6 +19,6 @@ export function useDebounce(callback: () => Promise<void>, timeout = 1000) {
         window.clearTimeout(tid);
       }
     };
-  }, []);
+  }, [value]);
   return { isDebouncing };
 }
