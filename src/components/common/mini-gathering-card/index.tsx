@@ -32,9 +32,8 @@ export default function MiniGatheringCard({
   onClick,
 }: MiniGatheringCardProps) {
   return (
-    // max-w 추후 디자인에 맞게 수정
     <div
-      className="flex w-full max-w-lg items-center space-x-4 border border-gray-300 p-4 cursor-pointer"
+      className="flex w-full max-w-full overflow-hidden items-center space-x-3 border border-gray-200 p-3 cursor-pointer"
       role="button"
       tabIndex={0}
       onClick={onClick}
