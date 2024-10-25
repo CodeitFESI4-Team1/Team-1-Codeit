@@ -8,7 +8,7 @@ export default function Home() {
   const [sort, setSort] = useState<string | null>('latest');
 
   return (
-    <div className="container max-w-[1200px] mx-auto my-0">
+    <div className="container mx-auto my-0 max-w-pc">
       <CategoryWrap />
       <DropDown
         variant="sort"
