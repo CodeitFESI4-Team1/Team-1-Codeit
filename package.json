@@ -6,27 +6,30 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint --fix --no-cache src/**/*.{ts,tsx,js,jsx}",
+    "lint": "eslint --fix --no-cache \"src/**/*.{ts,tsx,js,jsx}\"",
     "format": "prettier --write .",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "prepare": "husky"
   },
   "dependencies": {
-    "@mantine/core": "^7.13.2",
-    "@mantine/dates": "^7.13.2",
-    "@mantine/form": "^7.13.2",
-    "@mantine/hooks": "^7.13.2",
-    "@mantine/modals": "^7.13.2",
-    "@mantine/notifications": "^7.13.2",
+    "@mantine/carousel": "^7.13.3",
+    "@mantine/core": "^7.13.3",
+    "@mantine/dates": "^7.13.3",
+    "@mantine/form": "^7.13.3",
+    "@mantine/hooks": "^7.13.3",
+    "@mantine/modals": "^7.13.3",
+    "@mantine/notifications": "^7.13.3",
     "@storybook/addon-actions": "^8.3.5",
     "@storybook/test": "^8.3.5",
     "dayjs": "^1.11.13",
+    "embla-carousel-react": "^7.1.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "next": "14.2.15",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "uuid": "^10.0.0"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^1.9.0",
@@ -65,5 +68,9 @@
     "storybook-dark-mode": "^4.0.2",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
-  }
+  },
+  "description": "",
+  "main": ".eslintrc.js",
+  "author": "",
+  "license": "ISC"
 }
