@@ -45,7 +45,7 @@ export default function GatheringList({ gatheringData }: GatheringListProps) {
 
   return (
     <div className="mx-auto max-w-[1200px] px-4">
-      <div className="justify-items-center grid grid-cols-1 md:grid-cols-2 md:max-w-[1016px] lg:grid-cols-3 gap-4 mx-auto">
+      <div className="mx-auto grid grid-cols-1 justify-items-center gap-4 md:max-w-[1016px] md:grid-cols-2 lg:grid-cols-3">
         {currentPageData.map((card, id) => (
           <GatheringCard key={id} {...card} className={cardClassName} />
         ))}
@@ -54,21 +54,21 @@ export default function GatheringList({ gatheringData }: GatheringListProps) {
         {isDesktop &&
           totalCards < 4 &&
           Array.from({ length: 4 - totalCards }).map((_, index) => (
-            <div key={index} className="w-[380px] h-[280px] bg-transparent" />
+            <div key={index} className="h-[280px] w-[380px] bg-transparent" />
           ))}
         {isTablet &&
           totalCards < 3 &&
           Array.from({ length: 3 - totalCards }).map((_, index) => (
-            <div key={index} className="w-[360px] h-[280px] bg-transparent" />
+            <div key={index} className="h-[280px] w-[360px] bg-transparent" />
           ))}
         {isTablet &&
           totalCards >= 3 &&
           totalCards < 5 &&
           Array.from({ length: 5 - totalCards }).map((_, index) => (
-            <div key={index} className="w-[360px] h-[280px] bg-transparent" />
+            <div key={index} className="h-[280px] w-[360px] bg-transparent" />
           ))}
       </div>
-      <div className="flex justify-center mt-8">
+      <div className="mt-8 flex justify-center">
         <Pagination
           total={Math.ceil(pagination.totalCount / limit)}
           value={page}
