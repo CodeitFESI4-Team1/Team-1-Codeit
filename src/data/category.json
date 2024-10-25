@@ -1,85 +1,46 @@
 [
   {
-    "title": { "label": "근력운동", "href": "/strength-training", "value": "strength_training" },
+    "title": { "label": "유산소/근력", "href": "/cardio-strength", "value": "cardio_strength" },
     "items": [
-      { "label": "헬스", "href": "/strength-training/gym", "value": "gym" },
-      { "label": "크로스핏", "href": "/strength-training/crossfit", "value": "crossfit" },
-      { "label": "파워리프팅", "href": "/strength-training/powerlifting", "value": "powerlifting" },
-      { "label": "케틀벨", "href": "/strength-training/kettlebell", "value": "kettlebell" },
-      { "label": "덤벨 운동", "href": "/strength-training/dumbbell", "value": "dumbbell" },
-      { "label": "바벨 운동", "href": "/strength-training/barbell", "value": "barbell" },
-      { "label": "플랭크", "href": "/strength-training/plank", "value": "plank" }
+      { "label": "러닝", "href": "/cardio-strength/running", "value": "running" },
+      { "label": "자전거", "href": "/cardio-strength/cycling", "value": "cycling" },
+      { "label": "등산", "href": "/cardio-strength/hiking", "value": "hiking" },
+      { "label": "수영", "href": "/cardio-strength/swimming", "value": "swimming" },
+      { "label": "헬스", "href": "/cardio-strength/gym", "value": "gym" },
+      { "label": "클라이밍", "href": "/cardio-strength/climbing", "value": "climbing" }
     ]
   },
   {
-    "title": { "label": "유산소 운동", "href": "/cardio", "value": "cardio" },
-    "items": [
-      { "label": "달리기", "href": "/cardio/running", "value": "running" },
-      { "label": "자전거 타기", "href": "/cardio/cycling", "value": "cycling" },
-      { "label": "조깅", "href": "/cardio/jogging", "value": "jogging" },
-      { "label": "줄넘기", "href": "/cardio/jumprope", "value": "jumprope" },
-      { "label": "수영", "href": "/cardio/swimming", "value": "swimming" },
-      { "label": "하이킹", "href": "/cardio/hiking", "value": "hiking" },
-      { "label": "에어로빅", "href": "/cardio/aerobics", "value": "aerobics" },
-      { "label": "댄스 피트니스", "href": "/cardio/dance-fitness", "value": "dance_fitness" },
-      { "label": "킥복싱", "href": "/cardio/kickboxing", "value": "kickboxing" }
-    ]
-  },
-  {
-    "title": { "label": "유연성 운동", "href": "/flexibility", "value": "flexibility" },
+    "title": { "label": "유연성", "href": "/flexibility", "value": "flexibility" },
     "items": [
       { "label": "요가", "href": "/flexibility/yoga", "value": "yoga" },
       { "label": "필라테스", "href": "/flexibility/pilates", "value": "pilates" },
-      { "label": "스트레칭", "href": "/flexibility/stretching", "value": "stretching" },
-      { "label": "태극권", "href": "/flexibility/tai-chi", "value": "tai_chi" },
-      { "label": "플로우 운동", "href": "/flexibility/flow-exercises", "value": "flow_exercises" },
-      { "label": "발레", "href": "/flexibility/ballet", "value": "ballet" },
-      { "label": "스트랩 요가", "href": "/flexibility/strap-yoga", "value": "strap_yoga" }
+      { "label": "폴댄스", "href": "/flexibility/pole-dance", "value": "pole_dance" },
+      { "label": "발레", "href": "/flexibility/ballet", "value": "ballet" }
     ]
   },
   {
-    "title": { "label": "지구력 운동", "href": "/endurance", "value": "endurance" },
+    "title": { "label": "구기 종목", "href": "/ball-sports", "value": "ball_sports" },
     "items": [
-      { "label": "마라톤", "href": "/endurance/marathon", "value": "marathon" },
-      { "label": "트레일 러닝", "href": "/endurance/trail-running", "value": "trail_running" },
-      { "label": "철인 3종 경기", "href": "/endurance/triathlon", "value": "triathlon" },
-      { "label": "하이킹", "href": "/endurance/hiking", "value": "hiking" },
-      { "label": "스피드 워킹", "href": "/endurance/speed-walking", "value": "speed_walking" },
-      { "label": "계단 오르기", "href": "/endurance/stair-running", "value": "stair_running" },
-      { "label": "노르딕 워킹", "href": "/endurance/nordic-walking", "value": "nordic_walking" },
-      { "label": "오리엔티어링", "href": "/endurance/orienteering", "value": "orienteering" }
+      { "label": "축구", "href": "/ball-sports/soccer", "value": "soccer" },
+      { "label": "테니스", "href": "/ball-sports/tennis", "value": "tennis" },
+      { "label": "배드민턴", "href": "/ball-sports/badminton", "value": "badminton" },
+      { "label": "볼링", "href": "/ball-sports/bowling", "value": "bowling" },
+      { "label": "탁구", "href": "/ball-sports/table-tennis", "value": "table_tennis" },
+      { "label": "농구", "href": "/ball-sports/basketball", "value": "basketball" },
+      { "label": "야구", "href": "/ball-sports/baseball", "value": "baseball" },
+      { "label": "배구", "href": "/ball-sports/volleyball", "value": "volleyball" },
+      { "label": "골프", "href": "/ball-sports/golf", "value": "golf" }
     ]
   },
   {
-    "title": { "label": "팀 스포츠", "href": "/team-sports", "value": "team_sports" },
+    "title": { "label": "기타", "href": "/other-sports", "value": "other_sports" },
     "items": [
-      { "label": "축구", "href": "/team-sports/soccer", "value": "soccer" },
-      { "label": "농구", "href": "/team-sports/basketball", "value": "basketball" },
-      { "label": "배구", "href": "/team-sports/volleyball", "value": "volleyball" },
-      { "label": "야구", "href": "/team-sports/baseball", "value": "baseball" },
-      { "label": "핸드볼", "href": "/team-sports/handball", "value": "handball" },
-      { "label": "탁구", "href": "/team-sports/table-tennis", "value": "table_tennis" },
-      { "label": "배드민턴", "href": "/team-sports/badminton", "value": "badminton" },
-      { "label": "테니스", "href": "/team-sports/tennis", "value": "tennis" },
-      { "label": "스쿼시", "href": "/team-sports/squash", "value": "squash" }
-    ]
-  },
-  {
-    "title": { "label": "개인 스포츠", "href": "/individual-sports", "value": "individual_sports" },
-    "items": [
-      { "label": "골프", "href": "/individual-sports/golf", "value": "golf" },
-      { "label": "역도", "href": "/individual-sports/weightlifting", "value": "weightlifting" },
-      { "label": "수영", "href": "/individual-sports/swimming", "value": "swimming" },
-      { "label": "클라이밍", "href": "/individual-sports/climbing", "value": "climbing" },
-      { "label": "사격", "href": "/individual-sports/shooting", "value": "shooting" },
-      {
-        "label": "스케이트보드",
-        "href": "/individual-sports/skateboarding",
-        "value": "skateboarding"
-      },
-      { "label": "서핑", "href": "/individual-sports/surfing", "value": "surfing" },
-      { "label": "다이빙", "href": "/individual-sports/diving", "value": "diving" },
-      { "label": "스키", "href": "/individual-sports/skiing", "value": "skiing" }
+      { "label": "서핑", "href": "/other-sports/surfing", "value": "surfing" },
+      { "label": "스키", "href": "/other-sports/skiing", "value": "skiing" },
+      { "label": "스노보드", "href": "/other-sports/snowboarding", "value": "snowboarding" },
+      { "label": "스쿠버다이빙", "href": "/other-sports/scuba-diving", "value": "scuba_diving" },
+      { "label": "아이스스케이트", "href": "/other-sports/ice-skating", "value": "ice_skating" }
     ]
   }
 ]
