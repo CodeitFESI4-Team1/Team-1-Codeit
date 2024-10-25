@@ -36,7 +36,7 @@ export default function LikeBtn({ id, isLiked, onLikeToggle, size = 64 }: LikeBu
   return (
     <motion.div
       role="button"
-      className="relative flex cursor-pointer items-center justify-center rounded-full border-gray-300"
+      className="relative flex cursor-pointer items-center justify-center rounded-full border-2"
       onClick={handleClick}
       style={{ width: size, height: size }}
       animate={{
