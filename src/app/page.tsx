@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import CategoryWrap from '@/src/components/common/category/category-wrap';
-import DropDown from '../components/common/input/drop-down';
+import DropDown from '../components/common/input/drop-down/index';
 
 export default function Home() {
   const [sort, setSort] = useState<string | null>('latest');
