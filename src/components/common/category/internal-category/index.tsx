@@ -27,16 +27,16 @@ export default function InternalCategory({ items }: InternalCategoryProps) {
   const [numToScroll, setNumToScroll] = useState(9);
 
   const getIsArrowHidden = () => {
-    if (mobile && items.length <= 4) return 'hidden';
-    if (tablet && items.length <= 6) return 'hidden';
-    if (desktop && items.length <= 9) return 'hidden';
+    if (mobile && items.length <= 3) return 'hidden';
+    if (tablet && items.length <= 5) return 'hidden';
+    if (desktop && items.length <= 6) return 'hidden';
     return '';
   };
 
   useEffect(() => {
-    if (mobile) setNumToScroll(4);
-    if (tablet) setNumToScroll(6);
-    if (desktop) setNumToScroll(9);
+    if (mobile) setNumToScroll(3);
+    if (tablet) setNumToScroll(5);
+    if (desktop) setNumToScroll(6);
   }, [mobile, tablet, desktop]);
 
   return (
