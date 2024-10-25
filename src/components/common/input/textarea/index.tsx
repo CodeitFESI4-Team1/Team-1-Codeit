@@ -7,14 +7,23 @@ export interface TextareaProps extends MantineTextareaProps {
   register?: UseFormRegisterReturn;
 }
 
-export default function Textarea({ inputClassNames, register, ...rest }: TextareaProps) {
+export default function Textarea({
+  placeholder,
+  error,
+  inputClassNames,
+  register,
+  ...rest
+}: TextareaProps) {
   return (
     <MantineTextarea
+      error={error}
+      placeholder={error ? '' : placeholder}
       labelProps={{ className: 'mb-2' }}
-      classNames={{ input: `${inputClassNames}` }}
+      errorProps={{ className: 'mt-2 text-sm' }}
+      classNames={{ input: `${inputClassNames} ${error ? 'border-2' : 'border-0'} ` }}
+      radius="md"
       {...register}
       {...rest}
-      radius="md"
     />
   );
 }
