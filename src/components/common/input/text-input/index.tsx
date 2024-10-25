@@ -1,32 +1,27 @@
 import React from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
-import { TextInput, TextInputProps } from '@mantine/core';
+import {
+  TextInput as MantineTextInput,
+  TextInputProps as MantineTextInputProps,
+} from '@mantine/core';
 
-export interface InputWithLabelProps extends TextInputProps {
-  label: string;
-  placeholder: string;
-  error?: string | null;
+export interface TextInputProps extends MantineTextInputProps {
   register: UseFormRegisterReturn;
-  type?: string;
   inputClassNames?: string;
 }
 
-export default function InputWithLabel({
-  label,
+export default function TextInput({
   placeholder,
   error,
   register,
-  type = 'text',
-  inputClassNames = 'bg-gray-100',
+  inputClassNames,
   ...rest
-}: InputWithLabelProps) {
+}: TextInputProps) {
   return (
-    <TextInput
-      label={label}
-      placeholder={error ? '' : placeholder}
-      type={type}
-      labelProps={{ className: 'mb-2' }}
+    <MantineTextInput
       error={error}
+      placeholder={error ? '' : placeholder}
+      labelProps={{ className: 'mb-2' }}
       errorProps={{ className: 'mt-2 text-sm' }}
       classNames={{ input: `${inputClassNames} ${error ? 'border-2' : 'border-0'} ` }}
       radius="md"
