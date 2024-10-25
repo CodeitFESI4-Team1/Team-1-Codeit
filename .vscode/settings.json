@@ -62,6 +62,7 @@
     }
   },
   "cSpell.words": ["crewcrew", "mantine", "tailwindcss"],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true, // 저장 시 포맷팅 활성화
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
