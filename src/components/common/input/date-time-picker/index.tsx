@@ -1,6 +1,6 @@
-import { useRef, useState } from 'react';
-import { Button, Popover } from '@mantine/core';
-import { Calendar, TimeInput } from '@mantine/dates';
+import { useState } from 'react';
+import { Button } from '@mantine/core';
+import { Calendar } from '@mantine/dates';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
 import DropDown from '@/src/components/common/input/drop-down';
@@ -19,6 +19,7 @@ export default function DateTimePicker({ fullDate, onChange }: DateTimePickerPro
 
   const handleSelect = (date: Date) => {
     const isSelected = selected;
+
     if (isSelected) {
       setSelected(date);
       onChange(date);
@@ -59,7 +60,11 @@ export default function DateTimePicker({ fullDate, onChange }: DateTimePickerPro
           }}
           renderDay={(date) => {
             const day = date.getDate();
-            return <div className="typo-base-medium lg:typo-lg-medium">{day}</div>;
+            return (
+              <div data-testid="day" className="typo-base-medium lg:typo-lg-medium">
+                {day}
+              </div>
+            );
           }}
         />
       </div>
@@ -71,6 +76,7 @@ export default function DateTimePicker({ fullDate, onChange }: DateTimePickerPro
           }
           placeholder="시"
           value={hour}
+          data-testid="time"
           className="flex-1"
           onChange={setHour}
         />
@@ -79,6 +85,7 @@ export default function DateTimePicker({ fullDate, onChange }: DateTimePickerPro
           data={['00', '05', '10', '15', '20', '25', '30', '35', '40', '45', '50', '55']}
           placeholder="분"
           value={minute}
+          data-testid="minute"
           className="flex-1"
           onChange={setMinute}
         />

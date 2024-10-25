@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ComboboxData, ComboboxItem, Select } from '@mantine/core';
+import { ComboboxData, ComboboxItem, Select, SelectProps } from '@mantine/core';
 
 /**
  * drop-down Component
@@ -26,8 +26,13 @@ export default function DropDown({
   onChange,
   placeholder,
   className,
+  ...args
 }: DropDownProps) {
   const [theme, setTheme] = useState('white');
+
+  const renderSelectOption: SelectProps['renderOption'] = ({ option }) => (
+    <div data-testid="dropDownOption">{option.label}</div>
+  );
 
   return (
     <Select
@@ -92,6 +97,8 @@ export default function DropDown({
         root: { '--mantine-spacing-md': 0 },
       }}
       comboboxProps={{ position: 'bottom', middlewares: { flip: false, shift: false }, offset: 0 }}
+      {...args}
+      renderOption={renderSelectOption}
     />
   );
 }
