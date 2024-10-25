@@ -43,6 +43,13 @@ export default function GatheringList({ gatheringData }: GatheringListProps) {
   // 페이지네이션을 위한 동적 여백 설정
   const totalCards = currentPageData.length;
 
+  // 빈 카드를 추가하여 페이지네이션 위치 고정
+  const renderEmptyCards = (numEmptyCards: number, width: string) => {
+    return Array.from({ length: numEmptyCards }).map((_, index) => (
+      <div key={index} className={`h-[280px] ${width} bg-transparent`} />
+    ));
+  };
+
   return (
     <div className="mx-auto max-w-[1200px] px-4">
       <div className="mx-auto grid grid-cols-1 justify-items-center gap-4 md:max-w-[1016px] md:grid-cols-2 lg:grid-cols-3">
@@ -51,22 +58,12 @@ export default function GatheringList({ gatheringData }: GatheringListProps) {
         ))}
 
         {/* 빈 카드를 추가하여 페이지네이션 위치를 고정 */}
-        {isDesktop &&
-          totalCards < 4 &&
-          Array.from({ length: 4 - totalCards }).map((_, index) => (
-            <div key={index} className="h-[280px] w-[380px] bg-transparent" />
-          ))}
-        {isTablet &&
-          totalCards < 3 &&
-          Array.from({ length: 3 - totalCards }).map((_, index) => (
-            <div key={index} className="h-[280px] w-[360px] bg-transparent" />
-          ))}
+        {isDesktop && totalCards < 4 && renderEmptyCards(4 - totalCards, 'w-[380px]')}
+        {isTablet && totalCards < 3 && renderEmptyCards(3 - totalCards, 'w-[360px]')}
         {isTablet &&
           totalCards >= 3 &&
           totalCards < 5 &&
-          Array.from({ length: 5 - totalCards }).map((_, index) => (
-            <div key={index} className="h-[280px] w-[360px] bg-transparent" />
-          ))}
+          renderEmptyCards(5 - totalCards, 'w-[360px]')}
       </div>
       <div className="mt-8 flex justify-center">
         <Pagination
