@@ -7,17 +7,15 @@ import DropDown from '@/src/components/common/input/drop-down';
 import '@/src/styles/calendar-filter.css';
 import IconArrow from '@/public/assets/icons/ic-arrow';
 
-export interface CalendarFilterProps {
+export interface DateTimePickerProps {
   fullDate: Date;
   onChange: (date: Date) => void;
 }
 
-export default function DateTimePicker({ fullDate, onChange }: CalendarFilterProps) {
+export default function DateTimePicker({ fullDate, onChange }: DateTimePickerProps) {
   const [selected, setSelected] = useState<Date>(fullDate);
   const [hour, setHour] = useState<string | null>('시');
   const [minute, setMinute] = useState<string | null>('분');
-  const [theme, setTheme] = useState('white');
-  const ref = useRef<HTMLInputElement>(null);
 
   const handleSelect = (date: Date) => {
     const isSelected = selected;
