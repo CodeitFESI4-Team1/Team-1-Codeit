@@ -19,14 +19,19 @@ export default function MainCategory({ data, onHover }: MainCategoryProps) {
       <h2 className="typo-2xl-semibold mb-2 text-center md:typo-4xl-semibold md:mb-4">
         크루를 만들고 싶은 운동 선택
       </h2>
-      <ul className="flex gap-2 md:gap-10 lg:gap-[45px]">
+      <ul className="space-between mx-6 flex">
         {data.map((item, index) => (
-          <li key={item.title.href} data-index={index} onMouseEnter={() => onHover(index)}>
+          <li
+            key={item.title.href}
+            data-index={index}
+            onMouseEnter={() => onHover(index)}
+            className="flex flex-1 justify-center"
+          >
             <Link
               href={item.title.href}
-              className={`${pathname?.includes(item.title.href) && 'bg-blue-500'} typo-sm-semibold flex flex-col text-center text-gray-600 md:typo-lg-semibold lg:typo-xl-semibold hover:text-blue-500`}
+              className={`${pathname?.includes(item.title.href) && 'bg-blue-500'} typo-sm-semibold flex flex-col items-center text-gray-600 md:typo-lg-semibold lg:typo-xl-semibold hover:text-blue-500 md:flex-row`}
             >
-              <Image src={ImgMainCategory[index]} width={153} height={145} alt={item.title.label} />
+              <Image src={ImgMainCategory[index]} width={53} height={45} alt={item.title.label} />
               <h3>{item.title.label}</h3>
             </Link>
           </li>
