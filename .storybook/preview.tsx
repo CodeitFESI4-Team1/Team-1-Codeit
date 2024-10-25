@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import '@mantine/carousel/styles.css';
 import { MantineProvider, useMantineColorScheme } from '@mantine/core';
 import '@mantine/core/styles.css';
 import { addons } from '@storybook/preview-api';

@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .gathering-carousel-indicator {
+    width: 8px;
+    height: 4px;
+    background-color: rgb(191, 191, 191);
+    transition: width 250ms ease;
+    &[data-active] {
+      width: 20px;
+      background-color: rgb(114, 114, 255);
+    }
+  }
+
+  .gathering-carousel-control {
+    background-color: white;
+    &[data-inactive] {
+      visibility: hidden;
+    }
+  }
+}
