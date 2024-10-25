@@ -23,7 +23,11 @@ export default function RootLayout({
         <ColorSchemeScript />
       </head>
       <body>
-        <MantineProvider theme={theme}>{children}</MantineProvider>
+        <MantineProvider theme={theme}>
+          {/* 헤더 컴포넌트 위치 */}
+          {/* <Header /> */}
+          {children}
+        </MantineProvider>
       </body>
     </html>
   );

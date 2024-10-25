@@ -30,7 +30,6 @@ module.exports = {
   importOrderSeparation: false,
   importOrderSortSpecifiers: true,
 
-  plugins: ['prettier-plugin-tailwindcss', '@trivago/prettier-plugin-sort-imports'],
-
+  plugins: ['@trivago/prettier-plugin-sort-imports', 'prettier-plugin-tailwindcss'],
   tailwindConfig: './tailwind.config.ts',
 };
