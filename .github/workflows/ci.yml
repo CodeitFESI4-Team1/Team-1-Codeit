@@ -1,4 +1,4 @@
-name: Continuous Integration
+name: 🚀 Continuous Integration
 
 on:
   workflow_dispatch:
@@ -12,18 +12,18 @@ on:
       - hotfix/*
 jobs:
   build:
-    name: Build
+    name: 🚧 Build
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: 🛎️ Checkout
         uses: actions/checkout@v3
 
-      - name: Setup Node.js
+      - name: 🛠️ Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20.14.0'
 
-      - name: Cache dependencies
+      - name: 📦 Cache dependencies
         id: cache
         uses: actions/cache@v3
         with:
@@ -32,9 +32,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: Install Dependencies
+      - name: 📥 Install Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
 
-      - name: Build test
+      - name: ✅ Build test
         run: npm run build
