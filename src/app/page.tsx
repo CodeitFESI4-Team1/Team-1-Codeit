@@ -2,13 +2,13 @@
 
 import { useState } from 'react';
 import CategoryWrap from '@/src/components/common/category/category-wrap';
-import DropDown from '../components/common/input/drop-down';
+import DropDown from '@/src/components/common/input/drop-down';
 
 export default function Home() {
   const [sort, setSort] = useState<string | null>('latest');
 
   return (
-    <div className="max-w-pc container mx-auto my-0">
+    <div className="container mx-auto my-0 max-w-pc">
       <CategoryWrap />
       <DropDown
         variant="sort"

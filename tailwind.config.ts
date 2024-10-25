@@ -20,6 +20,24 @@ const config: Config = {
         lg: '1200px',
         // => @media (min-width: 1200px) { ... }
       },
+      maxWidth: {
+        pc: '1200px',
+      },
+      minWidth: {
+        ic: 'calc(11.11111% - 7.1111px)',
+      },
+      width: {
+        7.5: '30px',
+        12.5: '50px',
+      },
+      padding: {
+        7.5: '30px',
+        12.5: '50px',
+      },
+      margin: {
+        7.5: '30px',
+        12.5: '50px',
+      },
       colors: {
         gray: {
           50: '#F9FAFB',
@@ -50,24 +68,6 @@ const config: Config = {
       },
       boxShadow: {
         xl: '0 4px 4px 0 rgba(0,0,0,0.25)',
-      },
-      maxWidth: {
-        pc: '1200px',
-      },
-      minWidth: {
-        ic: 'calc(11.11111% - 7.1111px)',
-      },
-      width: {
-        7.5: '30px',
-        12.5: '50px',
-      },
-      padding: {
-        7.5: '30px',
-        12.5: '50px',
-      },
-      margin: {
-        7.5: '30px',
-        12.5: '50px',
       },
     },
   },
