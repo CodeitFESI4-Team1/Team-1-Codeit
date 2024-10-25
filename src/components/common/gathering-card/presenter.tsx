@@ -41,7 +41,7 @@ export default function GatheringCardPresenter({
           onClick();
         }
       }}
-      className={` ${className} relative w-full h-[280px] overflow-hidden rounded-lg border-white bg-white ${isPast ? 'pointer-events-none' : ''} ${isPast ? 'cursor-default' : 'cursor-pointer'}`}
+      className={` ${className} relative h-[280px] w-full overflow-hidden rounded-lg border-white bg-white ${isPast ? 'pointer-events-none' : ''} ${isPast ? 'cursor-default' : 'cursor-pointer'}`}
     >
       <div className="relative h-40 w-full">
         <Image
