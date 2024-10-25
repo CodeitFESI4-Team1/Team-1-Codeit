@@ -35,7 +35,7 @@ export default function DateTimePicker({ fullDate, onChange }: CalendarFilterPro
 
   return (
     <div className="flex flex-col items-center gap-5">
-      <div className="border border-gray-200 rounded-xl">
+      <div className="rounded-xl border border-gray-200">
         <Calendar
           size="xl"
           getDayProps={(date) => ({
@@ -65,7 +65,7 @@ export default function DateTimePicker({ fullDate, onChange }: CalendarFilterPro
           }}
         />
       </div>
-      <div className="flex w-full md:w-[595px] border border-gray-200 rounded-xl justify-between items-center p-5 gap-2">
+      <div className="flex w-full items-center justify-between gap-2 rounded-xl border border-gray-200 p-5 md:w-[595px]">
         <DropDown
           variant="default"
           // prettier-ignore
@@ -88,7 +88,7 @@ export default function DateTimePicker({ fullDate, onChange }: CalendarFilterPro
           type="button"
           onClick={handleTime}
           disabled={hour === '시' || minute === '분'}
-          className="flex h-11 min-w-[100px] justify-center flex-0 basis-[110px] disabled:bg-gray-400 rounded-xl disabled:text-gray-50 typo-base-semibold"
+          className="flex-0 typo-base-semibold flex h-11 min-w-[100px] basis-[110px] justify-center rounded-xl disabled:bg-gray-400 disabled:text-gray-50"
         >
           시간 선택
         </Button>
