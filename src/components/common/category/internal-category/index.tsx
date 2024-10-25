@@ -43,7 +43,7 @@ export default function InternalCategory({ items }: InternalCategoryProps) {
     <Carousel
       withIndicators
       height={44}
-      slideSize={{ base: '25%', md: '16.666666%', lg: '11.1111%' }} // 여전히 9개씩 나오도록 설정
+      slideSize={{ base: '33.333%', md: '20%', lg: '16.666%' }} // 여전히 9개씩 나오도록 설정
       slideGap="md"
       align="start"
       slidesToScroll={numToScroll}
@@ -53,7 +53,7 @@ export default function InternalCategory({ items }: InternalCategoryProps) {
         root: 'relative mx-[24px]',
         container: 'flex gap-2',
         slide:
-          'min-w-[calc(25%-6px)] md:min-w-[calc(16.6666%-6.666px)] lg:min-w-[calc(11.1111%-7.111px)]', // 슬라이드의 정확한 크기 강제
+          'min-w-[calc(33.333%-6px)] md:min-w-[calc(20%-6.666px)] lg:min-w-[calc(16.666%-7.111px)]', // 슬라이드의 정확한 크기 강제
         viewport: 'overflow-hidden relative z-10',
         indicators: 'absolute inset-0 z-0',
         controls: `${getIsArrowHidden()} absolute inset-0 flex items-center`,
