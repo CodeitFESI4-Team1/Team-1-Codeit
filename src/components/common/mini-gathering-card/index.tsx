@@ -33,21 +33,17 @@ export default function MiniGatheringCard({
 }: MiniGatheringCardProps) {
   return (
     <div
-      className="flex w-full max-w-full overflow-hidden items-center space-x-3 border border-gray-200 p-3 cursor-pointer"
+      className="flex w-full max-w-full cursor-pointer items-center space-x-3 overflow-hidden border border-gray-200 p-3"
       role="button"
       tabIndex={0}
       onClick={onClick}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          onClick?.();
-        }
-      }}
+      onKeyDown={(e) => ['Enter', ' '].includes(e.key) && onClick?.()}
     >
-      <div className="relative w-16 h-16 rounded-lg overflow-hidden">
+      <div className="relative h-16 w-16 overflow-hidden rounded-lg">
         <Image src={imageUrl} alt={title} fill className="object-cover" />
       </div>
-      <div className="flex-1 min-w-0">
-        <h4 className="text-sm font-bold overflow-hidden text-ellipsis whitespace-nowrap">
+      <div className="min-w-0 flex-1">
+        <h4 className="overflow-hidden text-ellipsis whitespace-nowrap text-sm font-bold">
           {title}
         </h4>
         <div className="flex items-center space-x-1 text-sm text-gray-500">
