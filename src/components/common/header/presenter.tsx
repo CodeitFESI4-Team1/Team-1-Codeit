@@ -17,7 +17,7 @@ export default function HeaderPresenter({
 }: HeaderPresenterProps) {
   const pathname = usePathname();
   return (
-    <header className="w-full bg-purple-400 px-6 py-4 sticky top-0 z-10">
+    <header className="sticky top-0 z-10 w-full bg-purple-400 px-6 py-4">
       <div className="mx-auto flex w-full max-w-screen-lg items-center justify-between">
         <div className="flex space-x-3 md:space-x-5 lg:space-x-5">
           <h1 className="font-bold text-white">LOGO</h1>
