@@ -1,4 +1,8 @@
+'use client';
+
+import { useState } from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { Button } from '@mantine/core';
 import Check from '@/public/assets/icons/ic-check.svg';
 import Person from '@/public/assets/icons/ic-person.svg';
@@ -27,6 +31,7 @@ export type CrewCardInform = {
 
 /**
  * CrewCard 컴포넌트
+ * @param {number} id - 크루 id
  * @param {string} name - 크루 이름
  * @param {string} location - 크루 지역
  * @param {number} participantCount - 현재 참여 인원
@@ -38,6 +43,7 @@ export type CrewCardInform = {
  */
 
 interface CrewCardProps {
+  id: number;
   name: string;
   location: string;
   participantCount: number;
@@ -48,6 +54,7 @@ interface CrewCardProps {
 }
 
 export default function CrewCard({
+  id,
   name,
   location,
   participantCount,
@@ -56,16 +63,28 @@ export default function CrewCard({
   thumbnail,
   canceledDate = undefined,
 }: CrewCardProps) {
+  const [prefetched, setPrefetched] = useState(new Set());
+  const CREWPAGE = `/detail/${id}`;
+
+  const router = useRouter();
+  const handleButtonClick = () => {
+    router.push(CREWPAGE);
+  };
+  const handleButtonMouseUp = () => {
+    if (!prefetched.has(CREWPAGE)) router.prefetch(CREWPAGE);
+    setPrefetched(new Set(prefetched).add(CREWPAGE));
+  };
+
   return (
-    <div className="relative flex h-fit w-full flex-col overflow-hidden rounded-[14px] md:h-[204px] md:flex-row">
+    <div className="shadow-section relative flex h-fit w-full flex-col overflow-hidden rounded-[14px] bg-white md:h-[204px] md:flex-row">
       <span className="relative h-[156px] w-full flex-shrink-0 md:h-full md:w-[280px]">
         <Image fill objectFit="cover" alt={name} src={thumbnail} />
       </span>
-      <div className="flex w-full flex-col justify-between gap-8 p-4 md:justify-normal md:gap-0">
+      <div className="flex w-full flex-col justify-normal gap-8 p-4 md:justify-between md:gap-0">
         <div className="flex items-center gap-2">
           <span className="typo-xl-semibold">{name}</span>
           <span>|</span>
-          <span className="text-base">{location}</span>
+          <span className="typo-base-medium">{location}</span>
         </div>
         <div className="flex w-full gap-8">
           <div className="flex flex-grow flex-col items-start gap-2">
@@ -89,12 +108,18 @@ export default function CrewCard({
               current={participantCount}
             />
           </div>
-          <Button className="flex-shrink-0">크루 페이지로</Button>
+          <Button
+            onClick={handleButtonClick}
+            onMouseEnter={handleButtonMouseUp}
+            className="typo-sm-semibold flex-shrink-0 bg-blue-500 p-[6px_14px] lg:typo-base-semibold"
+          >
+            크루 페이지로
+          </Button>
         </div>
       </div>
       {canceledDate && (
-        <div className="absolute flex h-full w-full items-center justify-center bg-black bg-opacity-60 text-white">
-          취소된 모임이에요.
+        <div className="absolute flex h-full w-full items-center justify-center bg-black bg-opacity-60 text-center text-white">
+          취소된 모임이에요.🥲 <br /> 다음 기회에 만나요!
         </div>
       )}
     </div>

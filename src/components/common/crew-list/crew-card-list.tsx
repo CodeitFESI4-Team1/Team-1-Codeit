@@ -6,10 +6,11 @@ interface CrewCardListProps {
 
 export default function CrewCardList({ CrewCardInforms }: CrewCardListProps) {
   return (
-    <ul className="flex flex-col gap-8 mx-auto w-[343px] md:w-[744px] lg:w-[1107px]">
+    <ul className="mx-auto flex w-[343px] flex-col gap-8 md:w-[744px] lg:w-[1107px]">
       {CrewCardInforms.map((inform) => (
         <li key={inform.crewId}>
           <CrewCard
+            id={inform.crewId}
             capacity={inform.capacity}
             isConfirmed={inform.isConfirmed}
             location={inform.location}
