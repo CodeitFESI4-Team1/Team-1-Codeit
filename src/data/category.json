@@ -1,79 +1,46 @@
 [
   {
-    "title": { "label": "근력운동", "href": "/a" },
+    "title": { "label": "유산소/근력", "href": "/cardio-strength", "value": "cardio_strength" },
     "items": [
-      { "label": "배드민턴1", "href": "/a" },
-      { "label": "탁구2", "href": "/b" },
-      { "label": "테니스3", "href": "/c" },
-      { "label": "축구4", "href": "/d" },
-      { "label": "배드민턴5", "href": "/e" },
-      { "label": "탁구6", "href": "/f" },
-      { "label": "테니스7", "href": "/g" },
-      { "label": "축구8", "href": "/h" },
-      { "label": "배드민턴9", "href": "/i" },
-      { "label": "탁구10", "href": "/j" },
-      { "label": "테니스11", "href": "/k" },
-      { "label": "축구12", "href": "/l" }
+      { "label": "러닝", "href": "/cardio-strength/running", "value": "running" },
+      { "label": "자전거", "href": "/cardio-strength/cycling", "value": "cycling" },
+      { "label": "등산", "href": "/cardio-strength/hiking", "value": "hiking" },
+      { "label": "수영", "href": "/cardio-strength/swimming", "value": "swimming" },
+      { "label": "헬스", "href": "/cardio-strength/gym", "value": "gym" },
+      { "label": "클라이밍", "href": "/cardio-strength/climbing", "value": "climbing" }
     ]
   },
   {
-    "title": { "label": "유산소 운동", "href": "/a" },
+    "title": { "label": "유연성", "href": "/flexibility", "value": "flexibility" },
     "items": [
-      { "label": "배드민턴", "href": "/a" },
-      { "label": "탁구", "href": "/b" },
-      { "label": "테니스", "href": "/c" },
-      { "label": "축구", "href": "/d" },
-      { "label": "배드민턴", "href": "/e" },
-      { "label": "탁구", "href": "/f" },
-      { "label": "테니스", "href": "/g" }
+      { "label": "요가", "href": "/flexibility/yoga", "value": "yoga" },
+      { "label": "필라테스", "href": "/flexibility/pilates", "value": "pilates" },
+      { "label": "폴댄스", "href": "/flexibility/pole-dance", "value": "pole_dance" },
+      { "label": "발레", "href": "/flexibility/ballet", "value": "ballet" }
     ]
   },
   {
-    "title": { "label": "유연성 운동", "href": "/a" },
+    "title": { "label": "구기 종목", "href": "/ball-sports", "value": "ball_sports" },
     "items": [
-      { "label": "배드민턴", "href": "/a" },
-      { "label": "탁구", "href": "/b" },
-      { "label": "테니스", "href": "/c" },
-      { "label": "축구", "href": "/d" },
-      { "label": "배드민턴", "href": "/e" },
-      { "label": "탁구", "href": "/f" },
-      { "label": "테니스", "href": "/g" }
+      { "label": "축구", "href": "/ball-sports/soccer", "value": "soccer" },
+      { "label": "테니스", "href": "/ball-sports/tennis", "value": "tennis" },
+      { "label": "배드민턴", "href": "/ball-sports/badminton", "value": "badminton" },
+      { "label": "볼링", "href": "/ball-sports/bowling", "value": "bowling" },
+      { "label": "탁구", "href": "/ball-sports/table-tennis", "value": "table_tennis" },
+      { "label": "농구", "href": "/ball-sports/basketball", "value": "basketball" },
+      { "label": "야구", "href": "/ball-sports/baseball", "value": "baseball" },
+      { "label": "배구", "href": "/ball-sports/volleyball", "value": "volleyball" },
+      { "label": "골프", "href": "/ball-sports/golf", "value": "golf" }
     ]
   },
   {
-    "title": { "label": "지구력 운동", "href": "/a" },
+    "title": { "label": "기타", "href": "/other-sports", "value": "other_sports" },
     "items": [
-      { "label": "배드민턴", "href": "/a" },
-      { "label": "탁구", "href": "/b" },
-      { "label": "테니스", "href": "/c" },
-      { "label": "축구", "href": "/d" },
-      { "label": "배드민턴", "href": "/e" },
-      { "label": "탁구", "href": "/f" },
-      { "label": "테니스", "href": "/g" }
-    ]
-  },
-  {
-    "title": { "label": "팀 스포츠", "href": "/a" },
-    "items": [
-      { "label": "배드민턴", "href": "/a" },
-      { "label": "탁구", "href": "/b" },
-      { "label": "테니스", "href": "/c" },
-      { "label": "축구", "href": "/d" },
-      { "label": "배드민턴", "href": "/e" },
-      { "label": "탁구", "href": "/f" },
-      { "label": "테니스", "href": "/g" }
-    ]
-  },
-  {
-    "title": { "label": "개인 스포츠", "href": "/a" },
-    "items": [
-      { "label": "배드민턴", "href": "/a" },
-      { "label": "탁구", "href": "/b" },
-      { "label": "테니스", "href": "/c" },
-      { "label": "축구", "href": "/d" },
-      { "label": "배드민턴", "href": "/e" },
-      { "label": "탁구", "href": "/f" },
-      { "label": "테니스", "href": "/g" }
+      { "label": "서핑", "href": "/other-sports/surfing", "value": "surfing" },
+      { "label": "스키", "href": "/other-sports/skiing", "value": "skiing" },
+      { "label": "스노보드", "href": "/other-sports/snowboarding", "value": "snowboarding" },
+      { "label": "스쿠버다이빙", "href": "/other-sports/scuba-diving", "value": "scuba_diving" },
+      { "label": "아이스스케이트", "href": "/other-sports/ice-skating", "value": "ice_skating" }
     ]
   }
 ]
