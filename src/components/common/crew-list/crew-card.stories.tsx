@@ -1,19 +1,3 @@
-// {
-//   crewId: 1,
-//   type: '유산소',
-//   subType: '수영',
-//   name: '같이 물장구칠사람 구함',
-//   location: '충청',
-//   detailedLocation: '어디구 어디로',
-//   participantCount: 20,
-//   capacity: 24,
-//   images: [],
-//   createdBy: 1,
-//   createdDate: new Date('2024-11-04'),
-//   updatedDate: new Date('2024-11-05'),
-//   canceledAt: new Date('2024-12-01'),
-//   isConfirmed: false,
-// },
 import type { Meta, StoryObj } from '@storybook/react';
 import CrewCard from './crew-card';
 
