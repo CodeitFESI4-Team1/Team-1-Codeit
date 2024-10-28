@@ -38,6 +38,16 @@ const mockData: ReviewList = [
     gathering: mockGathering,
     user: mockUser,
   },
+  {
+    teamId: 3,
+    id: 4,
+    score: 60,
+    comment:
+      '긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용',
+    createdAt: new Date('2024-10-21'),
+    gathering: mockGathering,
+    user: mockUser,
+  },
 ];
 
 const meta: Meta<typeof ReviewCardList> = {

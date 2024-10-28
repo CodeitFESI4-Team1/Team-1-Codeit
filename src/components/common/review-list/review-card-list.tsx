@@ -24,7 +24,7 @@ export default function ReviewCardList({
   isMine = false,
 }: ReviewCardListProps) {
   return (
-    <ul className="mx-auto w-[343px] md:w-[820px] lg:w-[1200px] h-full">
+    <ul className="mx-auto h-full w-[343px] md:w-[820px] lg:w-[1200px]">
       {reviewList.map((review, index) => (
         <li key={`${review.score - index}`} className="h-auto min-h-[112px]">
           <ReviewCard
