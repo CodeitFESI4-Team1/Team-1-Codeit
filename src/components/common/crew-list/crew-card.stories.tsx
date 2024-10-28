@@ -25,6 +25,7 @@ const meta: Meta = {
   },
   tags: ['autodocs'],
   args: {
+    id: 0,
     name: '같이 물장구칠사람',
     location: '충청',
     thumbnail: 'https://i.pinimg.com/564x/f8/8d/c5/f88dc5b857caf6c303ae5ef9dd12e7fb.jpg',
