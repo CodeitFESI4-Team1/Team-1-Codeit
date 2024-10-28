@@ -20,7 +20,6 @@ export interface PasswordInputProps extends MantinePasswordInputProps {
   register: UseFormRegisterReturn;
 }
 export default function PasswordInput({
-  label,
   placeholder,
   error,
   register,
