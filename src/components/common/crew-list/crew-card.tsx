@@ -1,5 +1,7 @@
 import Image from 'next/image';
 import { Button } from '@mantine/core';
+import Check from '@/public/assets/icons/ic-check.svg';
+import Person from '@/public/assets/icons/ic-person.svg';
 import ProgressBar from '../progress-bar';
 
 export type ImageList = {
@@ -55,29 +57,43 @@ export default function CrewCard({
   canceledDate = undefined,
 }: CrewCardProps) {
   return (
-    <div className="relative flex w-full flex-col h-fit md:flex-row md:h-[204px] rounded-[14px] overflow-hidden">
-      <span className="relative h-[156px] md:h-full w-full md:w-[280px] flex-shrink-0">
+    <div className="relative flex h-fit w-full flex-col overflow-hidden rounded-[14px] md:h-[204px] md:flex-row">
+      <span className="relative h-[156px] w-full flex-shrink-0 md:h-full md:w-[280px]">
         <Image fill objectFit="cover" alt={name} src={thumbnail} />
       </span>
-      <div className="p-4 w-full flex flex-col justify-between">
-        <div className="flex gap-2">
-          <span>{name}</span>
+      <div className="flex w-full flex-col justify-between gap-8 p-4 md:justify-normal md:gap-0">
+        <div className="flex items-center gap-2">
+          <span className="typo-xl-semibold">{name}</span>
           <span>|</span>
-          <span>{location}</span>
+          <span className="text-base">{location}</span>
         </div>
-        <div className="flex gap-8 w-full">
-          <div className="flex-grow">
-            <span>
-              {participantCount}/{capacity}
+        <div className="flex w-full gap-8">
+          <div className="flex flex-grow flex-col items-start gap-2">
+            <span className="typo-sm-medium flex items-center gap-2">
+              <span className="flex">
+                <Image src={Person} alt="모임 인원" width={20} height={20} />
+                <span>
+                  {participantCount}/{capacity}
+                </span>
+              </span>
+              {isConfirmed && (
+                <span className="flex items-center gap-[2px] text-blue-600">
+                  <Image src={Check} alt="확인" width={24} height={24} /> <span> 개설 확정</span>
+                </span>
+              )}
             </span>
-            {isConfirmed && <span>개설 확정</span>}
-            <ProgressBar total={capacity} current={participantCount} />
+            <ProgressBar
+              mainBarColor="bg-blue-50"
+              progressBarColor="bg-blue-400"
+              total={capacity}
+              current={participantCount}
+            />
           </div>
           <Button className="flex-shrink-0">크루 페이지로</Button>
         </div>
       </div>
       {canceledDate && (
-        <div className="absolute bg-black bg-opacity-60 w-full h-full flex items-center justify-center text-white">
+        <div className="absolute flex h-full w-full items-center justify-center bg-black bg-opacity-60 text-white">
           취소된 모임이에요.
         </div>
       )}
