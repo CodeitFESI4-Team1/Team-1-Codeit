@@ -76,7 +76,7 @@ export default function CrewCard({
   };
 
   return (
-    <div className="shadow-section relative flex h-fit w-full flex-col overflow-hidden rounded-[14px] bg-white md:h-[204px] md:flex-row">
+    <div className="relative flex h-fit w-full flex-col overflow-hidden rounded-[14px] bg-white shadow-section md:h-[204px] md:flex-row">
       <span className="relative h-[156px] w-full flex-shrink-0 md:h-full md:w-[280px]">
         <Image fill objectFit="cover" alt={name} src={thumbnail} />
       </span>
