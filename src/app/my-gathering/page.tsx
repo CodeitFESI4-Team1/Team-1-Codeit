@@ -9,7 +9,7 @@ export default function MyGatheringPage() {
   const [date, setDate] = useState<Date>(new Date());
 
   return (
-    <div className="container max-w-[1200px] mx-auto my-0 px-5 lg:px-0">
+    <div className="container mx-auto my-0 max-w-pc px-5 lg:px-0">
       <CalendarFilter value={date} toDoDates={toDoDates} onChange={setDate} />
     </div>
   );
