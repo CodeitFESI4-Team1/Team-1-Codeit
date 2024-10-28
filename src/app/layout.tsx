@@ -17,11 +17,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="">
       <head>
         <ColorSchemeScript />
       </head>
-      <body>
+      <body className="bg-gray-50">
         <MantineProvider theme={theme}>
           {/* 헤더 컴포넌트 위치 */}
           {/* <Header /> */}

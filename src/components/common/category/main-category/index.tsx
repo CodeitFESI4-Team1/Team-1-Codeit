@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { MainCategoryItem } from '@/src/types/category';
-import ImgMainCategory from '@/public/category';
+import IcoDown from '@/public/assets/icons/ic-down.svg';
 
 export interface MainCategoryProps {
   data: MainCategoryItem[];
@@ -16,23 +16,28 @@ export default function MainCategory({ data, onHover }: MainCategoryProps) {
 
   return (
     <div>
-      <h2 className="typo-2xl-semibold mb-2 text-center md:typo-4xl-semibold md:mb-4">
-        크루를 만들고 싶은 운동 선택
-      </h2>
-      <ul className="space-between mx-6 flex">
+      <ul className="flex gap-6">
         {data.map((item, index) => (
           <li
             key={item.title.href}
             data-index={index}
             onMouseEnter={() => onHover(index)}
-            className="flex flex-1 justify-center"
+            className="py-3 md:py-2"
           >
             <Link
               href={item.title.href}
-              className={`${pathname?.includes(item.title.href) && 'bg-blue-500'} typo-sm-semibold flex flex-col items-center text-gray-600 md:typo-lg-semibold lg:typo-xl-semibold hover:text-blue-500 md:flex-row`}
+              className={`${pathname?.includes(item.title.href) && 'bg-blue-500'} group typo-base-semibold flex flex-col items-center text-gray-400 md:typo-lg-semibold lg:typo-xl-semibold hover:text-blue-500 md:flex-row`}
             >
-              <Image src={ImgMainCategory[index]} width={53} height={45} alt={item.title.label} />
-              <h3>{item.title.label}</h3>
+              <h3 className="flex items-center gap-1 lg:gap-2">
+                <span className="flex py-2.5 md:py-2">{item.title.label}</span>
+                <Image
+                  src={IcoDown}
+                  width={40}
+                  height={36}
+                  alt="보기"
+                  className={`${pathname?.includes(item.title.href) ? 'flex' : 'hidden'} scale-75 group-hover:flex lg:scale-100`}
+                />
+              </h3>
             </Link>
           </li>
         ))}

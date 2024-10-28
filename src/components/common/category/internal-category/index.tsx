@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -23,6 +23,10 @@ export default function InternalCategory({ items }: InternalCategoryProps) {
     false,
   );
   const desktop = useMediaQuery(`(min-width: ${theme.breakpoints.lg})`, false);
+  const [isDown, setIsDown] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
+  const slider = useRef<HTMLUListElement>(null);
 
   const [numToScroll, setNumToScroll] = useState(9);
 
@@ -33,6 +37,30 @@ export default function InternalCategory({ items }: InternalCategoryProps) {
     return '';
   };
 
+  const handleMouseDown = (e) => {
+    setIsDown(true);
+    if (slider.current) {
+      setStartX(e.pageX - slider.current.offsetLeft);
+      setScrollLeft(slider.current.scrollLeft);
+    }
+  };
+  const handleMouseLeave = () => {
+    setIsDown(false);
+  };
+  const handleMouseUp = () => {
+    setIsDown(false);
+  };
+  const handleMouseMove = (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    if (slider.current) {
+      const x = e.pageX - slider.current.offsetLeft;
+      const walk = x - startX;
+
+      slider.current.scrollLeft = scrollLeft - walk;
+    }
+  };
+
   useEffect(() => {
     if (mobile) setNumToScroll(3);
     if (tablet) setNumToScroll(5);
@@ -40,37 +68,25 @@ export default function InternalCategory({ items }: InternalCategoryProps) {
   }, [mobile, tablet, desktop]);
 
   return (
-    <Carousel
-      withIndicators
-      height={44}
-      slideSize={{ base: '33.333%', md: '20%', lg: '16.666%' }} // 여전히 9개씩 나오도록 설정
-      slideGap="md"
-      align="start"
-      slidesToScroll={numToScroll}
-      previousControlIcon={<Image src={IcoLeft} width={12} height={24} alt="이전" />}
-      nextControlIcon={<Image src={IcoRight} width={12} height={24} alt="이후" />}
-      classNames={{
-        root: 'relative mx-[24px]',
-        container: 'flex gap-2',
-        slide:
-          'min-w-[calc(33.333%-6px)] md:min-w-[calc(20%-6.666px)] lg:min-w-[calc(16.666%-7.111px)]', // 슬라이드의 정확한 크기 강제
-        viewport: 'overflow-hidden relative z-10',
-        indicators: 'absolute inset-0 z-0',
-        controls: `${getIsArrowHidden()} absolute inset-0 flex items-center`,
-        control:
-          'absolute w-[24px] h-full first:left-0 first:-translate-x-full last:right-0 last:translate-x-full flex justify-center items-center',
-      }}
+    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
+    <ul
+      ref={slider}
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="scrollbar-hide flex select-none snap-x flex-nowrap gap-3.5 overflow-scroll scroll-smooth"
     >
       {items.map((item: CategoryItem) => (
-        <Carousel.Slide key={item.label}>
+        <li key={item.label} className="snap-align-start flex">
           <Link
             href={item.href}
-            className={`${pathname?.includes(item.href) && 'bg-gray-900 text-white'} typo-base-bold flex w-full items-center justify-center rounded-xl bg-gray-100 p-2 text-gray-400 transition-colors md:typo-lg-bold hover:bg-gray-900 hover:text-white`}
+            className={`${pathname?.includes(item.href) && 'bg-gray-900 text-white'} typo-base-bold flex w-full min-w-28 items-center justify-center rounded-xl bg-gray-100 px-6 py-2 text-gray-400 transition-colors md:typo-lg-bold hover:bg-gray-900 hover:text-white`}
           >
             {item.label}
           </Link>
-        </Carousel.Slide>
+        </li>
       ))}
-    </Carousel>
+    </ul>
   );
 }

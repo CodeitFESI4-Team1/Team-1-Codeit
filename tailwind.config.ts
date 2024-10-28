@@ -38,6 +38,10 @@ const config: Config = {
         7.5: '30px',
         12.5: '50px',
       },
+      gap: {
+        7.5: '30px',
+        12.5: '50px',
+      },
       colors: {
         gray: {
           50: '#F9FAFB',
@@ -68,6 +72,7 @@ const config: Config = {
       },
       boxShadow: {
         xl: '0 4px 4px 0 rgba(0,0,0,0.25)',
+        bg: '0 4px 30px 1px rgba(0,122,255,0.04)',
       },
     },
   },
@@ -82,8 +87,8 @@ const config: Config = {
           // main text -  pretendard
           // 4xl
           '.typo-4xl-semibold': {
-            fontSize: '2.5rem',
-            lineHeight: '3.25rem',
+            fontSize: '2rem',
+            lineHeight: '3rem',
             fontWeight: 'semibold',
           },
           // 3xl
@@ -267,6 +272,13 @@ const config: Config = {
             fontSize: '0.75rem',
             lineHeight: '1rem',
             fontWeight: '300',
+          },
+          '.scrollbar-hide': {
+            '-ms-overflow-style': 'none',
+            scrollbarWidth: 'none',
+          },
+          '.snap-align-start': {
+            'scroll-snap-align': 'start',
           },
         });
       },
