@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { Button, Menu } from '@mantine/core';
+import { Menu } from '@mantine/core';
 import formatDate from '@/src/utils/format-date';
 import Heart from '@/public/assets/icons/ic-heart';
 import menu from '@/public/assets/icons/ic-menu.svg';
@@ -119,7 +119,7 @@ export default function ReviewCard({
       className={`flex h-full gap-[15px] border-b-[2px] border-b-[#e6e6e6] lg:gap-[40px] ${clickable ? 'cursor-pointer' : 'cursor-default'}`}
     >
       {imageAvailable && (
-        <div className="relative h-[120px] w-[120px] flex-shrink-0 bg-red-500 md:h-[180px] md:w-[180px] lg:h-[200px] lg:w-[200px]">
+        <div className="relative min-h-[120px] w-[120px] flex-shrink-0 md:min-h-[180px] md:w-[180px] lg:h-[200px] lg:w-[200px]">
           <Image src={gathering.image} alt={gathering.name} fill objectFit="cover" />
         </div>
       )}
@@ -145,28 +145,23 @@ export default function ReviewCard({
             <span className="text-gray-500">{reviewDate}</span>
           </div>
           {isMine && (
-            <>
-              <Menu position="top" offset={2}>
-                <Menu.Target>
-                  <Image
-                    src={menu}
-                    alt="더보기메뉴"
-                    className="block rounded-full border-[1px] border-[#DBDBDB] md:hidden"
-                    width={25}
-                    height={25}
-                    onClick={(e: React.MouseEvent) => {
-                      e.stopPropagation();
-                    }}
-                  />
-                </Menu.Target>
-                <Menu.Dropdown>
-                  <Menu.Item onClick={handleDelete}>리뷰 삭제하기</Menu.Item>
-                </Menu.Dropdown>
-              </Menu>
-              <Button onClick={handleDelete} className="hidden md:block">
-                리뷰 삭제하기
-              </Button>
-            </>
+            <Menu position="top" offset={2}>
+              <Menu.Target>
+                <Image
+                  src={menu}
+                  alt="더보기메뉴"
+                  className="block rounded-full hover:bg-[#f2f2f2]"
+                  width={25}
+                  height={25}
+                  onClick={(e: React.MouseEvent) => {
+                    e.stopPropagation();
+                  }}
+                />
+              </Menu.Target>
+              <Menu.Dropdown>
+                <Menu.Item onClick={handleDelete}>삭제하기</Menu.Item>
+              </Menu.Dropdown>
+            </Menu>
           )}
         </div>
       </div>
