@@ -1,15 +1,9 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import Image from 'next/image';
+import { useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Carousel } from '@mantine/carousel';
-import { useMediaQuery } from '@mantine/hooks';
-import { theme } from '@/src/app/theme';
 import { CategoryItem } from '@/src/types/category';
-import IcoLeft from '@/public/assets/icons/ic-left.svg';
-import IcoRight from '@/public/assets/icons/ic-right.svg';
 
 export interface InternalCategoryProps {
   items: CategoryItem[];
@@ -17,25 +11,10 @@ export interface InternalCategoryProps {
 
 export default function InternalCategory({ items }: InternalCategoryProps) {
   const pathname = usePathname();
-  const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.md}) `, false);
-  const tablet = useMediaQuery(
-    `(min-width: ${theme.breakpoints.md}) and (max-width: ${theme.breakpoints.lg})`,
-    false,
-  );
-  const desktop = useMediaQuery(`(min-width: ${theme.breakpoints.lg})`, false);
   const [isDown, setIsDown] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
   const slider = useRef<HTMLUListElement>(null);
-
-  const [numToScroll, setNumToScroll] = useState(9);
-
-  const getIsArrowHidden = () => {
-    if (mobile && items.length <= 3) return 'hidden';
-    if (tablet && items.length <= 5) return 'hidden';
-    if (desktop && items.length <= 6) return 'hidden';
-    return '';
-  };
 
   const handleMouseDown = (e) => {
     setIsDown(true);
@@ -60,12 +39,6 @@ export default function InternalCategory({ items }: InternalCategoryProps) {
       slider.current.scrollLeft = scrollLeft - walk;
     }
   };
-
-  useEffect(() => {
-    if (mobile) setNumToScroll(3);
-    if (tablet) setNumToScroll(5);
-    if (desktop) setNumToScroll(6);
-  }, [mobile, tablet, desktop]);
 
   return (
     // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
