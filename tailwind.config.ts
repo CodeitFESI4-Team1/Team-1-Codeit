@@ -68,8 +68,6 @@ const config: Config = {
       },
       boxShadow: {
         xl: '0 4px 4px 0 rgba(0,0,0,0.25)',
-      },
-      dropShadow: {
         section: '0 4px 30px 1px rgba(0,122,255,0.04)',
       },
     },
