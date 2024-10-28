@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import FileInput from '../file-input';
-import FileSample from '../file-sample';
+import FileInput from './file-input';
+import FileSample from './file-sample';
 
 export interface FileInputProps {
   value: FileValueType;
