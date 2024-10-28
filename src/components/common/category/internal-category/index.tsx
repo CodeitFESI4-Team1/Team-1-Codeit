@@ -16,7 +16,7 @@ export default function InternalCategory({ items }: InternalCategoryProps) {
   const [scrollLeft, setScrollLeft] = useState(0);
   const slider = useRef<HTMLUListElement>(null);
 
-  const handleMouseDown = (e) => {
+  const handleMouseDown = (e: React.MouseEvent<HTMLUListElement>) => {
     setIsDown(true);
     if (slider.current) {
       setStartX(e.pageX - slider.current.offsetLeft);
@@ -29,7 +29,7 @@ export default function InternalCategory({ items }: InternalCategoryProps) {
   const handleMouseUp = () => {
     setIsDown(false);
   };
-  const handleMouseMove = (e) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLUListElement>) => {
     if (!isDown) return;
     e.preventDefault();
     if (slider.current) {
@@ -48,7 +48,7 @@ export default function InternalCategory({ items }: InternalCategoryProps) {
       onMouseUp={handleMouseUp}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="scrollbar-hide flex select-none snap-x flex-nowrap gap-3.5 overflow-scroll scroll-smooth"
+      className="scrollbar-hide flex select-none snap-x flex-nowrap gap-2 overflow-scroll scroll-smooth md:gap-3.5"
     >
       {items.map((item: CategoryItem) => (
         <li key={item.label} className="snap-align-start flex">

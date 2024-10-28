@@ -5,13 +5,13 @@ import { ComboboxData, ComboboxItem, Select } from '@mantine/core';
  * drop-down Component
  *
  * @param {Object} props - Profile 컴포넌트의 props
- * @param {"region" | "category" | "sort"} [props.variant] : Dropdown 종류
+ * @param {"dropdown" | "sort"} [props.variant] : Dropdown 종류
  * @param {string} [props.className] : Dropdown wrapper 클래스명
  * @returns {JSX.Element} : DropDown component
  */
 
 export interface DropDownProps {
-  variant: 'region' | 'category' | 'sort';
+  variant: 'dropdown' | 'sort';
   data: ComboboxData | undefined;
   placeholder: string;
   value: string | null;
@@ -89,6 +89,9 @@ export default function DropDown({
         option: `py-1 m-1 px-2 mr-0 rounded-xl text-gray-800 typo-base-medium hover:bg-blue-100 ${variant === 'sort' && 'justify-center'}`,
       }}
       comboboxProps={{ position: 'bottom', middlewares: { flip: false, shift: false }, offset: 0 }}
+      styles={{
+        root: { 'margin-top': 0 },
+      }}
     />
   );
 }

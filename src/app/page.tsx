@@ -10,13 +10,13 @@ export default function Home() {
   const [sort, setSort] = useState<string | null>('latest');
 
   return (
-    <div className="lg:px-8.5 container mx-auto my-0 min-h-screen max-w-pc bg-gray-50 px-3 py-11 shadow-bg md:px-8">
+    <div className="lg:px-8.5 shadow-bg container mx-auto my-0 min-h-screen max-w-pc bg-gray-50 px-3 py-11 md:px-8">
       <HeroCrew />
       <CategoryWrap />
       <Divider my={24} size={2} color="#E5E7EB" />
       <div className="flex justify-between">
         <DropDown
-          variant="region"
+          variant="dropdown"
           data={[
             { value: 'latest', label: '최신순' },
             { value: 'best', label: '인기순' },
