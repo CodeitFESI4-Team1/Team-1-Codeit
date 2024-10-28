@@ -46,7 +46,7 @@ export default function MainCategory({ data, onHover }: MainCategoryProps) {
       <Button
         component={Link}
         href="/create-crew"
-        className="-translate-y-17 typo-sm-semibold absolute right-0 flex h-9 items-center rounded-xl bg-blue-500 py-2 md:typo-lg-bold md:h-11 md:translate-y-0"
+        className="typo-sm-semibold absolute right-0 flex h-9 -translate-y-17 items-center rounded-xl bg-blue-500 py-2 md:typo-lg-bold md:h-11 md:translate-y-0"
       >
         크루 만들기
       </Button>

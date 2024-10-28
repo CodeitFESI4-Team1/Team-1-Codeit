@@ -9,7 +9,7 @@ export default function CategoryWrap() {
   const [categoryIndex, setCategoryIndex] = useState(0);
 
   return (
-    <div className="md:gap-7.5 flex flex-col gap-2">
+    <div className="flex flex-col gap-2 md:gap-7.5">
       <MainCategory data={category} onHover={setCategoryIndex} />
       <InternalCategory items={category[categoryIndex].items} />
     </div>

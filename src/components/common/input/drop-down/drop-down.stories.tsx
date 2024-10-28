@@ -50,9 +50,9 @@ const Template: StoryFn<DropDownProps> = function DropDownStory(args: DropDownPr
   );
 };
 
-export const Region = Template.bind({});
-Region.args = {
-  variant: 'region',
+export const Dropdown = Template.bind({});
+Dropdown.args = {
+  variant: 'dropdown',
   data: [
     { value: 'option 1', label: '옵션 1' },
     { value: 'option 2', label: '옵션 2' },
@@ -60,18 +60,6 @@ Region.args = {
   placeholder: '지역 전체',
   value: null,
   className: 'w-[110px]',
-};
-
-export const Category = Template.bind({});
-Category.args = {
-  variant: 'category',
-  data: [
-    { value: 'option 1', label: '옵션 1' },
-    { value: 'option 2', label: '옵션 2' },
-  ],
-  placeholder: '카테고리 전체',
-  value: null,
-  className: 'w-full',
 };
 
 export const Sort = Template.bind({});
