@@ -25,6 +25,7 @@
       "@/src/components/*": ["./src/components/*"],
       "@/src/types/*": ["./src/types/*"],
       "@/src/styles/*": ["./src/styles/*"],
+      "@/src/utils/*": ["./src/utils/*"],
       "@/public/(.*)": ["./public/*"]
     }
   },

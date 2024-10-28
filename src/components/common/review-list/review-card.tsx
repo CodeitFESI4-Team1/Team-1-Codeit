@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { Button, Menu } from '@mantine/core';
+import formatDate from '@/src/utils/format-date';
 import Heart from '@/public/assets/icons/ic-heart';
 import menu from '@/public/assets/icons/ic-menu.svg';
 
@@ -108,15 +109,6 @@ export default function ReviewCard({
     e.stopPropagation();
   };
 
-  // NOTE: Date를 YYYY.MM.DD 형식으로 변환
-  const formatDate = (date: Date) => {
-    const yyyy = date.getFullYear();
-    const mm = String(date.getMonth() + 1).padStart(2, '0');
-    const dd = String(date.getDate()).padStart(2, '0');
-
-    return `${yyyy}.${mm}.${dd}`;
-  };
-
   const reviewDate = formatDate(createdAt);
 
   return (
@@ -124,28 +116,28 @@ export default function ReviewCard({
       role="presentation"
       onClick={handleClick}
       onMouseEnter={handlePrefetch}
-      className={`flex gap-[15px] lg:gap-[40px] border-b-[2px] h-full border-b-[#e6e6e6] ${clickable ? 'cursor-pointer' : 'cursor-default'}`}
+      className={`flex h-full gap-[15px] border-b-[2px] border-b-[#e6e6e6] lg:gap-[40px] ${clickable ? 'cursor-pointer' : 'cursor-default'}`}
     >
       {imageAvailable && (
-        <div className="relative w-[120px] h-[120px] lg:h-[200px] md:h-[180px] md:w-[180px] lg:w-[200px] flex-shrink-0 bg-red-500">
+        <div className="relative h-[120px] w-[120px] flex-shrink-0 bg-red-500 md:h-[180px] md:w-[180px] lg:h-[200px] lg:w-[200px]">
           <Image src={gathering.image} alt={gathering.name} fill objectFit="cover" />
         </div>
       )}
       <div
         className={`flex-start flex w-full flex-col items-start py-4 pr-[20px] lg:pr-[40px] ${imageAvailable ? 'justify-between' : 'pl-[20px] lg:pl-[40px]'}`}
       >
-        <div className="flex flex-start flex-col">
+        <div className="flex-start flex flex-col">
           <MockScore score={score} />
           <p className="mb-2 mt-2.5 text-sm font-medium">{comment}</p>
         </div>
-        <div className="flex justify-between w-full">
-          <div className="flex items-center text-xs w-fit flex-shrink-0">
+        <div className="flex w-full justify-between">
+          <div className="flex w-fit flex-shrink-0 items-center text-xs">
             {!isMine && (
               <>
-                <span className="relative h-6 w-6 rounded-full overflow-hidden">
+                <span className="relative h-6 w-6 overflow-hidden rounded-full">
                   <Image src={user.image} alt={user.name} fill objectFit="cover" />
                 </span>
-                <span className="relative block w-fit px-2 after:absolute after:right-0 after:content-['|'] mr-3">
+                <span className="relative mr-3 block w-fit px-2 after:absolute after:right-0 after:content-['|']">
                   {user.name}
                 </span>
               </>
@@ -159,7 +151,7 @@ export default function ReviewCard({
                   <Image
                     src={menu}
                     alt="더보기메뉴"
-                    className="block md:hidden rounded-full border-[1px] border-[#DBDBDB]"
+                    className="block rounded-full border-[1px] border-[#DBDBDB] md:hidden"
                     width={25}
                     height={25}
                     onClick={(e: React.MouseEvent) => {
