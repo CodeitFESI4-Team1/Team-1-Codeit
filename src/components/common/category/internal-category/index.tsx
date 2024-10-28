@@ -54,7 +54,7 @@ export default function InternalCategory({ items }: InternalCategoryProps) {
         <li key={item.label} className="snap-align-start flex">
           <Link
             href={item.href}
-            className={`${pathname?.includes(item.href) && 'bg-gray-900 text-white'} typo-base-bold flex w-full min-w-28 items-center justify-center rounded-xl bg-gray-100 px-6 py-2 text-gray-400 transition-colors md:typo-lg-bold hover:bg-gray-900 hover:text-white`}
+            className={`${pathname?.includes(item.href) && 'bg-gray-900 font-bold text-white'} typo-sm-medium flex min-w-28 items-center justify-center rounded-xl bg-gray-100 px-3 py-2 text-gray-400 transition-colors md:typo-lg-medium hover:bg-gray-900 hover:font-bold hover:text-white md:min-w-40 md:px-6`}
           >
             {item.label}
           </Link>

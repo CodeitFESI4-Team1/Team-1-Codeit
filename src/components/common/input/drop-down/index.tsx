@@ -82,7 +82,7 @@ export default function DropDown({
       }
       placeholder={placeholder}
       classNames={{
-        wrapper: `${className}`,
+        wrapper: `${className} -mt-4`,
         input: `focus:bg-black focus:placeholder:text-white focus:text-white typo-base-medium rounded-xl border-0 h-11 py-2.5 px-3 placeholder-gray-800 ${variant === 'sort' && 'pl-9'}`,
         section: `end-1 ${variant === 'sort' && 'data-[position=right]:hidden start-1'}`,
         dropdown: 'rounded-xl shadow-xl p-0 border-0 mt-2',
@@ -90,7 +90,7 @@ export default function DropDown({
       }}
       comboboxProps={{ position: 'bottom', middlewares: { flip: false, shift: false }, offset: 0 }}
       styles={{
-        root: { 'margin-top': 0 },
+        root: { 'margin-top': 0, '--maintine-spacing-md': 0 },
       }}
     />
   );

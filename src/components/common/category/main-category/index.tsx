@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { Button } from '@mantine/core';
 import { MainCategoryItem } from '@/src/types/category';
 import IcoDown from '@/public/assets/icons/ic-down.svg';
 
@@ -15,7 +16,7 @@ export default function MainCategory({ data, onHover }: MainCategoryProps) {
   const pathname = usePathname();
 
   return (
-    <div>
+    <div className="relative flex items-center justify-between">
       <ul className="flex gap-6">
         {data.map((item, index) => (
           <li
@@ -42,6 +43,13 @@ export default function MainCategory({ data, onHover }: MainCategoryProps) {
           </li>
         ))}
       </ul>
+      <Button
+        component={Link}
+        href="/create-crew"
+        className="-translate-y-17 typo-sm-semibold absolute right-0 flex h-9 items-center rounded-xl bg-blue-500 py-2 md:typo-lg-bold md:h-11 md:translate-y-0"
+      >
+        크루 만들기
+      </Button>
     </div>
   );
 }
