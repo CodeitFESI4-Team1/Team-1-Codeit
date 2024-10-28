@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ComboboxData, ComboboxItem, Select } from '@mantine/core';
+import IconArrow from '@/public/assets/icons/ic-arrow';
 
 /**
  * drop-down Component
@@ -40,28 +41,7 @@ export default function DropDown({
       withCheckIcon={false}
       leftSection={
         variant === 'sort' && (
-          <svg
-            width="24"
-            height="24"
-            aria-hidden="true"
-            className="group-focus:fill-white"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M3 11L7 7M7 7L11 11M7 7V17"
-              stroke={`${theme === 'dark' ? '#ffffff' : '#D1D5DB'}`}
-              stroke-width="1.8"
-              stroke-linecap="round"
-            />
-            <path
-              d="M21 13L17 17M17 17L13 13M17 17V7"
-              stroke={`${theme === 'dark' ? '#ffffff' : '#D1D5DB'}`}
-              stroke-width="1.8"
-              stroke-linecap="round"
-            />
-          </svg>
+          <IconArrow direction="down" color={`${theme === 'dark' ? '#ffffff' : '#D1D5DB'}`} />
         )
       }
       rightSection={
