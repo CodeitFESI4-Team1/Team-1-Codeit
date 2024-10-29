@@ -24,7 +24,7 @@ export default function Home() {
         <div className="flex justify-between">
           <div className="flex items-center justify-between gap-2">
             <DropDown
-              variant="dropdown"
+              variant="default"
               data={regionData}
               placeholder="전체"
               value={region}
