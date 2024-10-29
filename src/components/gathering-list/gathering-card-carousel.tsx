@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Carousel } from '@mantine/carousel';
 import { useMediaQuery } from '@mantine/hooks';
@@ -16,28 +17,40 @@ export default function GatheringCardCarousel() {
   const isMobile = useMediaQuery('(max-width: 744px)');
   const isTablet = useMediaQuery('(min-width: 745px) and (max-width: 1200px)');
 
+  // 상태 변수 초기화
+  const [slideSize, setSlideSize] = useState('100%');
+  const [slidesToScroll, setSlidesToScroll] = useState(1);
+  const [maxWidth, setMaxWidth] = useState(340);
+
+  // 화면 크기 변화에 따른 캐러셀 설정 업데이트
+  useEffect(() => {
+    if (isMobile) {
+      setSlideSize('100%');
+      setSlidesToScroll(1);
+      setMaxWidth(340);
+    } else if (isTablet) {
+      setSlideSize('50%');
+      setSlidesToScroll(2);
+      setMaxWidth(360 * 2 + 16);
+    } else {
+      setSlideSize('33.33%');
+      setSlidesToScroll(3);
+      setMaxWidth(380 * 3 + 32);
+    }
+  }, [isMobile, isTablet]);
+
   const cardClassName = isMobile ? 'w-[340px]' : isTablet ? 'w-[360px]' : 'w-[380px]';
 
-  const carouselWidth = () => {
-    if (isMobile) {
-      return 340;
-    }
-    if (isTablet) {
-      return 360 * 2 + 16;
-    }
-    return 380 * 3 + 32;
-  };
-
   return (
-    <div className="mx-auto" style={{ maxWidth: `${carouselWidth()}px` }}>
+    <div className="mx-auto" style={{ maxWidth: `${maxWidth}px` }}>
       <Carousel
         nextControlIcon={<Image src={IcoRight} alt="right icon" width={8} height={8} />}
-        previousControlIcon={<Image src={IcoLeft} alt="right icon" width={8} height={8} />}
+        previousControlIcon={<Image src={IcoLeft} alt="left icon" width={8} height={8} />}
         withIndicators
         height="auto"
         slideGap="16px"
-        slideSize={isMobile ? '100%' : isTablet ? '50%' : '33.33%'}
-        slidesToScroll={isMobile ? 1 : isTablet ? 2 : 3}
+        slideSize={slideSize}
+        slidesToScroll={slidesToScroll}
         loop={false}
         align="start"
         dragFree
