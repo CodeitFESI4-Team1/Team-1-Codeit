@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { Button } from '@mantine/core';
+import { useMediaQuery } from '@mantine/hooks';
 import Check from '@/public/assets/icons/ic-check.svg';
 import Person from '@/public/assets/icons/ic-person.svg';
 import ProgressBar from '../progress-bar';
@@ -68,16 +69,6 @@ export default function CrewCard({
   isWide,
 }: CrewCardProps) {
   const [prefetched, setPrefetched] = useState(new Set());
-  const [maxLength, setMaxLength] = useState(getMaxLength(window.innerWidth));
-  // NOTE : 반응형에 따른 제목 text 자르기 위한 useEffect
-  useEffect(() => {
-    const handleResize = () => {
-      setMaxLength(12);
-    };
-    window.addEventListener('resize', handleResize);
-
-    return () => window.removeEventListener('resize', handleResize);
-  });
 
   const CREWPAGE = `/detail/${id}`;
 
@@ -90,17 +81,22 @@ export default function CrewCard({
     setPrefetched(new Set(prefetched).add(CREWPAGE));
   };
 
-  // NOTE: textLength에 따라 ... 로 줄이는 함수
-  function truncatedText({ text, textLength }: { text: string; textLength: number }) {
-    const truncated = text.length > textLength ? `${text.slice(0, textLength)}...` : text;
+  // NOTE: maxLength에 따라 ... 로 줄이는 함수
+  function truncatedText({ text, maxLength }: { text: string; maxLength: number }) {
+    const truncated = text.length > maxLength ? `${text.slice(0, maxLength)}...` : text;
     return truncated;
   }
 
-  // NOTE: 반응형에 따른 제목 최대 길이 변경
-  function getMaxLength(width: number) {
-    if (width > 1200) return 20;
-    if (width > 744) return 12;
-    return 11;
+  const isTablet = useMediaQuery('(min-width: 745px) and (max-width: 1200px)');
+  const isDesktop = useMediaQuery('(min-width:1201px)');
+  let textLength;
+
+  if (isTablet) {
+    textLength = 12;
+  } else if (isDesktop) {
+    textLength = 20;
+  } else {
+    textLength = 11;
   }
 
   return (
@@ -120,7 +116,7 @@ export default function CrewCard({
           className={`flex flex-col items-start gap-2 ${!isWide ? 'lg:flex-col lg:items-start' : 'md:flex-row md:items-center'}`}
         >
           <span className="typo-xl-semibold">
-            {truncatedText({ text: name, textLength: maxLength })}
+            {truncatedText({ text: name, maxLength: textLength })}
           </span>
           <span className="typo-base-medium">| {location}</span>
         </div>
