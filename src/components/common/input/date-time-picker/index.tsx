@@ -61,7 +61,7 @@ export default function DateTimePicker({ fullDate, onChange }: DateTimePickerPro
           renderDay={(date) => {
             const day = date.getDate();
             return (
-              <div data-testid="day" className="typo-base-medium lg:typo-lg-medium">
+              <div data-testid="day" className="text-base font-medium lg:text-lg">
                 {day}
               </div>
             );
@@ -93,7 +93,7 @@ export default function DateTimePicker({ fullDate, onChange }: DateTimePickerPro
           type="button"
           onClick={handleTime}
           disabled={hour === '시' || minute === '분'}
-          className="flex-0 typo-base-semibold flex h-11 min-w-[100px] basis-[110px] justify-center rounded-xl disabled:bg-gray-400 disabled:text-gray-50"
+          className="flex-0 flex h-11 min-w-[100px] basis-[110px] justify-center rounded-xl text-base font-semibold disabled:bg-gray-400 disabled:text-gray-50"
         >
           시간 선택
         </Button>

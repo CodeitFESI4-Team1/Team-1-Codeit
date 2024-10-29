@@ -8,7 +8,7 @@ import IconArrow from '@/public/assets/icons/ic-arrow';
 
 export interface CalendarFilterProps {
   value: Date;
-  toDoDates: Date[];
+  toDoDates: Date[] | null;
   onChange: (date: Date) => void;
 }
 
@@ -61,7 +61,7 @@ export default function CalendarFilter({ value, toDoDates, onChange }: CalendarF
                 (todoDate) => todoDate.toDateString() !== date.toDateString(),
               )}
             >
-              <div data-testid="day" className="typo-base-medium lg:typo-xl-medium">
+              <div data-testid="day" className="text-base font-medium lg:text-xl">
                 {day}
               </div>
             </Indicator>
