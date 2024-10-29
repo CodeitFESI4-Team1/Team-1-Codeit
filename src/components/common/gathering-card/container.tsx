@@ -5,7 +5,7 @@ import GatheringCardPresenter from './presenter';
 
 interface GatheringCardContainerProps {
   title: string;
-  date: string;
+  dateTime: string;
   location: string;
   currentCount: number;
   totalCount: number;
@@ -17,7 +17,7 @@ interface GatheringCardContainerProps {
 
 export default function GatheringCard({
   title,
-  date,
+  dateTime,
   location,
   currentCount,
   totalCount,
@@ -26,9 +26,16 @@ export default function GatheringCard({
   className,
 }: GatheringCardContainerProps) {
   // 날짜 비교
-  const gatheringDate = new Date(date);
+  const gatheringDate = new Date(dateTime);
   const today = new Date();
   const isPast = gatheringDate < today;
+
+  // 24시간 이내인지 확인
+  const timeDifference = gatheringDate.getTime() - today.getTime();
+  const isWithin24Hours = timeDifference > 0 && timeDifference <= 24 * 60 * 60 * 1000;
+
+  // 마감 시간 문자열 생성
+  const deadlineMessage = `오늘 ${gatheringDate.getHours()}시 마감`;
 
   // 임시 찜하기
   const [isLiked, setIsLiked] = useState(initialIsLiked);
@@ -41,8 +48,10 @@ export default function GatheringCard({
   return (
     <GatheringCardPresenter
       isPast={isPast}
+      deadlineMessage={deadlineMessage}
+      isWithin24Hours={isWithin24Hours}
       title={title}
-      date={date}
+      dateTime={dateTime}
       location={location}
       currentCount={currentCount}
       totalCount={totalCount}

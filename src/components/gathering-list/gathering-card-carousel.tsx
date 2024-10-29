@@ -1,9 +1,12 @@
 'use client';
 
+import Image from 'next/image';
 import { Carousel } from '@mantine/carousel';
 import { useMediaQuery } from '@mantine/hooks';
 import GatheringCard from '@/src/components/common/gathering-card/container';
 import { gatheringData } from '@/src/mock/gathering-data';
+import IcoLeft from '@/public/assets/icons/ic-left.svg';
+import IcoRight from '@/public/assets/icons/ic-right.svg';
 
 /* eslint-disable no-nested-ternary */
 /* eslint-disable react/no-array-index-key */
@@ -28,6 +31,8 @@ export default function GatheringCardCarousel() {
   return (
     <div className="mx-auto" style={{ maxWidth: `${carouselWidth()}px` }}>
       <Carousel
+        nextControlIcon={<Image src={IcoRight} alt="right icon" width={8} height={8} />}
+        previousControlIcon={<Image src={IcoLeft} alt="right icon" width={8} height={8} />}
         withIndicators
         height="auto"
         slideGap="16px"
