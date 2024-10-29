@@ -52,6 +52,9 @@ const config: Config = {
       translate: {
         17: '68px',
       },
+      fontFamily: {
+        pretendard: ['var(--font-pretendard)', 'sans-serif'],
+      },
       fontSize: {
         '4xl': ['2.5rem', { lineHeight: '3.25rem' }],
         '3xl': ['1.875rem', { lineHeight: '2.25rem' }],
