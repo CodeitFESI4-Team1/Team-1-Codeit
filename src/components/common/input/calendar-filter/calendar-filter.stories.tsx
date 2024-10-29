@@ -31,7 +31,7 @@ const meta: Meta = {
 export default meta;
 
 const Template: StoryFn<CalendarFilterProps> = function CalendarFilterStory() {
-  const [date, setDate] = useState<Date | undefined>(new Date());
+  const [date, setDate] = useState<Date>(new Date());
 
   return <CalendarFilter value={date} toDoDates={mockData} onChange={setDate} />;
 };
