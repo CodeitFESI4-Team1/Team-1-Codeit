@@ -3,7 +3,7 @@ export const gatheringData = {
     {
       id: 1,
       title: '가나다라마가나다라마가나다라마가',
-      date: '2024-12-15T07:30',
+      dateTime: '2024-12-15T07:30',
       location: '서울, 한강공원',
       currentCount: 8,
       totalCount: 12,
@@ -14,7 +14,7 @@ export const gatheringData = {
     {
       id: 2,
       title: '등산 모임',
-      date: '2024-11-12T09:00',
+      dateTime: '2024-11-12T09:00',
       location: '서울, 한강공원 길어질 경우 처리리리리리',
       currentCount: 5,
       totalCount: 10,
@@ -25,7 +25,7 @@ export const gatheringData = {
     {
       id: 3,
       title: '조깅 모임',
-      date: '2024-12-15T07:30',
+      dateTime: '2024-12-15T07:30',
       location: '서울, 한강공원',
       currentCount: 8,
       totalCount: 12,
@@ -36,7 +36,7 @@ export const gatheringData = {
     {
       id: 4,
       title: '조깅 모임',
-      date: '2024-12-15T07:30',
+      dateTime: '2024-12-15T07:30',
       location: '서울, 한강공원',
       currentCount: 8,
       totalCount: 12,
@@ -47,7 +47,7 @@ export const gatheringData = {
     {
       id: 5,
       title: '등산 모임',
-      date: '2024-11-12T09:00',
+      dateTime: '2024-11-12T09:00',
       location: '서울, 북한산',
       currentCount: 5,
       totalCount: 10,
@@ -58,7 +58,7 @@ export const gatheringData = {
     {
       id: 6,
       title: '가나다라 모임',
-      date: '2024-10-15T07:30',
+      dateTime: '2024-10-15T07:30',
       location: '서울, 한강공원',
       currentCount: 8,
       totalCount: 12,
@@ -69,7 +69,7 @@ export const gatheringData = {
     {
       id: 7,
       title: '조깅 모임',
-      date: '2024-12-15T07:30',
+      dateTime: '2024-12-15T07:30',
       location: '서울, 한강공원',
       currentCount: 8,
       totalCount: 12,
@@ -80,7 +80,7 @@ export const gatheringData = {
     {
       id: 8,
       title: '조깅 모임',
-      date: '2024-12-15T07:30',
+      dateTime: '2024-12-15T07:30',
       location: '서울, 한강공원',
       currentCount: 8,
       totalCount: 12,
@@ -91,7 +91,7 @@ export const gatheringData = {
     {
       id: 9,
       title: '등산 모임',
-      date: '2024-11-12T09:00',
+      dateTime: '2024-11-12T09:00',
       location: '서울, 북한산',
       currentCount: 5,
       totalCount: 10,
@@ -102,7 +102,7 @@ export const gatheringData = {
     {
       id: 10,
       title: '가나다라 모임',
-      date: '2024-10-15T07:30',
+      dateTime: '2024-10-15T07:30',
       location: '서울, 한강공원',
       currentCount: 8,
       totalCount: 12,
@@ -113,7 +113,7 @@ export const gatheringData = {
     {
       id: 11,
       title: '조깅 모임',
-      date: '2024-12-15T07:30',
+      dateTime: '2024-12-15T07:30',
       location: '서울, 한강공원',
       currentCount: 8,
       totalCount: 12,
@@ -124,7 +124,7 @@ export const gatheringData = {
     {
       id: 12,
       title: '조깅 모임',
-      date: '2024-12-15T07:30',
+      dateTime: '2024-12-15T07:30',
       location: '서울, 한강공원',
       currentCount: 8,
       totalCount: 12,
@@ -135,7 +135,7 @@ export const gatheringData = {
     {
       id: 13,
       title: '등산 모임',
-      date: '2024-11-12T09:00',
+      dateTime: '2024-11-12T09:00',
       location: '서울, 북한산',
       currentCount: 5,
       totalCount: 10,
@@ -146,7 +146,7 @@ export const gatheringData = {
     {
       id: 14,
       title: '가나다라 모임',
-      date: '2024-10-15T07:30',
+      dateTime: '2024-10-15T07:30',
       location: '서울, 한강공원',
       currentCount: 8,
       totalCount: 12,
@@ -157,7 +157,7 @@ export const gatheringData = {
     {
       id: 15,
       title: '가나다라마가나다라마가나다라마가',
-      date: '2024-12-15T07:30',
+      dateTime: '2024-12-15T07:30',
       location: '서울, 한강공원 길어질 경우 처리리리리리',
       currentCount: 8,
       totalCount: 12,
@@ -168,7 +168,7 @@ export const gatheringData = {
     {
       id: 16,
       title: '가나다라 모임',
-      date: '2024-10-15T07:30',
+      dateTime: '2024-10-15T07:30',
       location: '서울, 한강공원',
       currentCount: 8,
       totalCount: 12,
