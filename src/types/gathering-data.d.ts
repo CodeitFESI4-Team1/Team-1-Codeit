@@ -1,7 +1,7 @@
 export interface GatheringType {
   id: number;
   title: string;
-  date: string;
+  dateTime: string;
   location: string;
   currentCount: number;
   totalCount: number;
