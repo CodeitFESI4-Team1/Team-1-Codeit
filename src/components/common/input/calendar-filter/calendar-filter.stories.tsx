@@ -4,7 +4,12 @@ import type { Meta, StoryFn } from '@storybook/react';
 import { userEvent, within } from '@storybook/test';
 import CalendarFilter, { CalendarFilterProps } from '.';
 
-const mockData = [new Date('2024-10-12'), new Date('2024-10-15')];
+const mockData = [
+  new Date('2024-10-01'),
+  new Date('2024-10-05'),
+  new Date('2024-10-12'),
+  new Date('2024-10-15'),
+];
 
 const meta: Meta = {
   title: 'Components/input/calendar-filter',
