@@ -3,7 +3,7 @@ import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 // Import styles of packages that you've installed.
 // All packages except `@mantine/hooks` require styles imports
 import '@mantine/core/styles.css';
-import ClientProvider from '@/src/components/common/client-provider';
+import ClientProvider from '@/src/components/client-provider';
 import '@/src/styles/globals.css';
 import { theme } from './theme';
 
