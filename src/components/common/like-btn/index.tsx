@@ -39,6 +39,9 @@ export default function LikeBtn({ id, isLiked, onLikeToggle, size = 64 }: LikeBu
       className="relative flex cursor-pointer items-center justify-center rounded-full border-2"
       onClick={handleClick}
       style={{ width: size, height: size, borderColor: liked ? 'transparent' : '#F3F4F6' }}
+      initial={{
+        backgroundColor: liked ? 'rgb(239 246 255)' : 'rgb(255 255 255)', // 초기 배경색 설정
+      }}
       animate={{
         backgroundColor: liked ? 'rgb(239 246 255)' : 'rgb(255 255 255)',
       }}
