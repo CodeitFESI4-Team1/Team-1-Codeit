@@ -2,26 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
-  .gathering-carousel-indicator {
-    width: 8px;
-    height: 4px;
-    background-color: rgb(191, 191, 191);
-    transition: width 250ms ease;
-    &[data-active] {
-      width: 20px;
-      background-color: rgb(114, 114, 255);
-    }
-  }
-
-  .gathering-carousel-control {
-    background-color: white;
-    &[data-inactive] {
-      visibility: hidden;
-    }
-  }
-}
-
 @layer base {
   @font-face {
     font-family: 'Pretendard';
@@ -111,5 +91,33 @@
       local('Pretendard Thin'),
       url(./fonts/pretendard/woff2/Pretendard-Thin.woff2) format('woff2'),
       url(./fonts/pretendard/woff/Pretendard-Thin.woff) format('woff');
+  }
+}
+
+@layer components {
+  .gathering-carousel-indicator {
+    width: 6px;
+    height: 4px;
+    background-color: #dbeafe;
+    transition: width 250ms ease;
+    &[data-active] {
+      width: 20px;
+      background-color: #3b82f6;
+    }
+  }
+
+  .gathering-carousel-control {
+    background-color: white;
+    &[data-inactive] {
+      visibility: hidden;
+    }
+  }
+
+  .gathering-badge {
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
   }
 }

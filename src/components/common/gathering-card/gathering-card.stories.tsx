@@ -10,7 +10,7 @@ const meta: Meta<typeof GatheringCard> = {
   tags: ['autodocs'],
   argTypes: {
     title: { control: 'text' },
-    date: { control: 'date' },
+    dateTime: { control: 'date' },
     location: { control: 'text' },
     currentCount: { control: 'number' },
     totalCount: { control: 'number' },
@@ -27,7 +27,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     title: '가나다라마가나다라마가나다라마가',
-    date: '2024-12-15T07:30',
+    dateTime: '2024-10-30T00:30',
     location: '서울, 한강공원',
     currentCount: 8,
     totalCount: 12,
@@ -41,7 +41,7 @@ export const Default: Story = {
 export const NotLiked: Story = {
   args: {
     title: '등산 모임',
-    date: '2024-11-12T09:00',
+    dateTime: '2024-11-12T09:00',
     location: '서울, 한강공원',
     currentCount: 5,
     totalCount: 10,
@@ -55,7 +55,7 @@ export const NotLiked: Story = {
 export const PastEvent: Story = {
   args: {
     title: '마감된 모임입니다',
-    date: '2024-10-15T07:30',
+    dateTime: '2024-10-15T07:30',
     location: '서울, 한강공원',
     currentCount: 12,
     totalCount: 12,
@@ -69,7 +69,7 @@ export const PastEvent: Story = {
 export const LikedEvent: Story = {
   args: {
     title: '조깅 모임',
-    date: '2024-12-15T07:30',
+    dateTime: '2024-12-15T07:30',
     location: '서울, 한강공원',
     currentCount: 8,
     totalCount: 12,

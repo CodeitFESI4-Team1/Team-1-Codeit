@@ -1,11 +1,13 @@
 import Image from 'next/image';
+import { Badge } from '@mantine/core';
 import { formatDate } from '@/src/utils/format-date';
 import IcoPerson from '@/public/assets/icons/person.svg';
+import IcoTimer from '@/public/assets/icons/timer.svg';
 
 export interface GatheringCardPresenterProps {
   imageUrl: string;
   title: string;
-  date: string;
+  dateTime: string;
   location: string;
   currentCount: number;
   totalCount: number;
@@ -13,13 +15,15 @@ export interface GatheringCardPresenterProps {
   onLikeToggle: () => void;
   onClick: () => void;
   isPast: boolean;
+  isWithin24Hours?: boolean;
+  deadlineMessage?: string;
   className?: string;
 }
 
 export default function GatheringCardPresenter({
   imageUrl,
   title,
-  date,
+  dateTime,
   location,
   currentCount,
   totalCount,
@@ -27,9 +31,11 @@ export default function GatheringCardPresenter({
   onLikeToggle,
   onClick,
   isPast,
+  isWithin24Hours,
+  deadlineMessage,
   className,
 }: GatheringCardPresenterProps) {
-  const formattedDate = formatDate(date);
+  const { date, time } = formatDate(dateTime);
 
   return (
     <div
@@ -41,7 +47,7 @@ export default function GatheringCardPresenter({
           onClick();
         }
       }}
-      className={` ${className} relative h-[280px] w-full overflow-hidden rounded-lg border-white bg-white ${isPast ? 'pointer-events-none' : ''} ${isPast ? 'cursor-default' : 'cursor-pointer'}`}
+      className={` ${className} relative h-[310px] w-full overflow-hidden rounded-lg border-white bg-white shadow-sm ${isPast ? 'pointer-events-none' : ''} ${isPast ? 'cursor-default' : 'cursor-pointer'}`}
     >
       <div className="relative h-40 w-full">
         <Image
@@ -53,17 +59,45 @@ export default function GatheringCardPresenter({
         />
       </div>
 
+      {isWithin24Hours && (
+        <div className="absolute right-0 top-0 flex items-center space-x-1 bg-blue-600 px-4 py-2 text-white">
+          <Image src={IcoTimer} alt="timer icon" width={16} height={16} />
+          <p className="typo-base-medium">{deadlineMessage}</p>
+        </div>
+      )}
+
       {/* 카드 내용 */}
-      <div className="px-3 py-4">
-        <h3 className="mb-2 overflow-hidden text-ellipsis whitespace-nowrap text-lg font-semibold text-gray-900">
+      <div className="p-4">
+        <h3 className="typo-xl-semibold overflow-hidden text-ellipsis whitespace-nowrap text-gray-800">
           {title}
         </h3>
-        <div className="flex items-center space-x-1 text-sm text-gray-500">
-          <p className="whitespace-nowrap tracking-tighter">{formattedDate}</p>
-          <span className="tracking-tighter text-gray-300">|</span>
+        <div className="typo-base-medium mb-2 flex items-center space-x-1 text-gray-700">
+          <span className="-translate-y-[2px] leading-none tracking-tighter">|</span>
           <p className="overflow-hidden text-ellipsis whitespace-nowrap">{location}</p>
         </div>
-        <p className="mt-2 flex items-center text-sm text-gray-700">
+        <div className="space-x-2">
+          <Badge
+            size="lg"
+            color="#111827"
+            radius="md"
+            classNames={{
+              label: 'gathering-badge',
+            }}
+          >
+            {date}
+          </Badge>
+          <Badge
+            size="lg"
+            color="#111827"
+            radius="md"
+            classNames={{
+              label: 'gathering-badge',
+            }}
+          >
+            {time}
+          </Badge>
+        </div>
+        <p className="typo-base-medium mt-2 flex items-center text-gray-700">
           <Image src={IcoPerson} alt="person icon" width={16} height={16} />
           참여인원 {currentCount}/{totalCount}
         </p>
@@ -71,7 +105,7 @@ export default function GatheringCardPresenter({
 
       <button
         type="button"
-        className="absolute right-2 top-2"
+        className="absolute bottom-2 right-2"
         onClick={(e) => {
           e.stopPropagation();
           onLikeToggle();
