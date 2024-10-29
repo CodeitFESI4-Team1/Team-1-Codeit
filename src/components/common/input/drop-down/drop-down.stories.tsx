@@ -62,18 +62,6 @@ Region.args = {
   className: 'w-[110px]',
 };
 
-export const Category = Template.bind({});
-Category.args = {
-  variant: 'category',
-  data: [
-    { value: 'option 1', label: '옵션 1' },
-    { value: 'option 2', label: '옵션 2' },
-  ],
-  placeholder: '카테고리 전체',
-  value: null,
-  className: 'w-full',
-};
-
 export const Sort = Template.bind({});
 Sort.args = {
   variant: 'sort',

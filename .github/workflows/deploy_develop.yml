@@ -5,14 +5,14 @@ on:
     types: [develop_updated]
 
 jobs:
-  trigger-sync:
+  trigger-sync-develop:
     if: github.repository == 'yulrang/Team-1-Codeit-youl'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Set up Git user
         run: |
-          git config --global user.email "yulrang@gmail.com"
+          git config --global user.email "2yulrang@gmail.com"
           git config --global user.name "yulrang"
       - name: Sync fork
         run: |
