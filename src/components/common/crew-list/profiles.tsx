@@ -5,6 +5,7 @@
  * @returns {JSX.Element}
  */
 import Image from 'next/image';
+import defaultProfile from '@/public/assets/icons/default-profile.svg';
 
 interface ProfilesProps {
   id: 1 | 2 | 3;
@@ -32,7 +33,7 @@ const mockProfiles: ParticipantsProps[] = [
   {
     userId: 3,
     userName: '닉네임3',
-    userImage: 'https://i.pinimg.com/564x/c2/60/f8/c260f8ddd541a9febcb5aae5eaf27045.jpg',
+    userImage: '',
   },
   {
     userId: 4,
@@ -62,8 +63,13 @@ export default function Profiles({ id, shows = 4 }: ProfilesProps) {
     <ul className="flex items-center gap-0">
       {showProfiles.map((profile) => (
         <li key={profile.userId}>
-          <span className="relative ml-[-10px] block h-[29px] w-[29px] overflow-hidden rounded-full bg-red-100">
-            <Image src={profile.userImage} alt={profile.userName} fill objectFit="cover" />
+          <span className="relative ml-[-10px] block h-[29px] w-[29px] overflow-hidden rounded-full">
+            <Image
+              src={profile.userImage ? profile.userImage : defaultProfile}
+              alt={profile.userName}
+              fill
+              objectFit="cover"
+            />
             {profile.userName}
           </span>
         </li>
