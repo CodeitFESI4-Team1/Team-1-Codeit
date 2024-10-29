@@ -61,7 +61,9 @@ export default function CalendarFilter({ value, toDoDates, onChange }: CalendarF
                 (todoDate) => todoDate.toDateString() !== date.toDateString(),
               )}
             >
-              <div className="typo-base-medium lg:typo-xl-medium">{day}</div>
+              <div data-testid="day" className="typo-base-medium lg:typo-xl-medium">
+                {day}
+              </div>
             </Indicator>
           );
         }}

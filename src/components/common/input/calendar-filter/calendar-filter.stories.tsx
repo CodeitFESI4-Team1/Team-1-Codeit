@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import type { Meta, StoryFn } from '@storybook/react';
+import { userEvent, within } from '@storybook/test';
 import CalendarFilter, { CalendarFilterProps } from '.';
 
 const mockData = [new Date('2024-10-12'), new Date('2024-10-15')];
@@ -40,4 +41,23 @@ CalendarFilter01.args = {
   value: new Date(),
   toDoDates: mockData,
   onChange: action('onChange'),
+};
+
+export const CalendarFilterWithPlay = Template.bind({});
+CalendarFilterWithPlay.args = {
+  value: new Date(),
+};
+
+// play 함수 정의
+CalendarFilterWithPlay.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+
+  // 예: 달력에서 특정 날짜 선택
+  const dateButtons = await canvas.findAllByTestId('day');
+  const targetButton = dateButtons.find((button) => button.textContent === '15');
+  if (targetButton) {
+    await userEvent.click(targetButton, { delay: 500 });
+  } else {
+    throw new Error('Day "15" not found');
+  }
 };
