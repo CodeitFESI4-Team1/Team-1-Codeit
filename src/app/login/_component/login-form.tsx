@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Button } from '@mantine/core';
 import { useDebouncedCallback } from '@mantine/hooks';
@@ -17,11 +17,7 @@ export default function LoginForm() {
     formState: { errors, isValid },
   } = useForm<LoginFormValues>({});
 
-  const onSubmit = (data: LoginFormValues) => {
-    if (isValid) {
-      console.log('call api');
-    }
-  };
+  const onSubmit = (data: LoginFormValues) => {};
 
   const debouncedTrigger = useDebouncedCallback(async (field: keyof LoginFormValues) => {
     await trigger(field);

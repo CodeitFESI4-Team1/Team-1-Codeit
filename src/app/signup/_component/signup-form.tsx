@@ -21,11 +21,7 @@ export default function SignupForm() {
     watch,
   } = useForm<SignupFormValues>({});
 
-  const onSubmit = (data: SignupFormValues) => {
-    if (isValid) {
-      console.log('call api');
-    }
-  };
+  const onSubmit = (data: SignupFormValues) => {};
 
   const debouncedTrigger = useDebouncedCallback(async (field: keyof SignupFormValues) => {
     await trigger(field);
