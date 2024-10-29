@@ -8,7 +8,7 @@ const meta: Meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
-};
+} satisfies Meta<typeof Profiles>;
 
 export default meta;
 
