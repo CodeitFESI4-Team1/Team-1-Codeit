@@ -21,6 +21,7 @@ export default function Home() {
         className="w-[110px]"
         onChange={setSort}
       />
+      <span>test</span>
     </div>
   );
 }
