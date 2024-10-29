@@ -16,9 +16,12 @@ export default function MainCategory({ category, onHover }: MainCategoryProps) {
   const pathname = usePathname();
 
   return (
-    <div className="relative flex items-center justify-between">
-      <ul className="flex gap-6">
-        {category?.map((item, index) => (
+    <div>
+      <h2 className="mb-2 text-center text-2xl font-semibold md:mb-4 md:text-4xl">
+        크루를 만들고 싶은 운동 선택
+      </h2>
+      <ul className="space-between mx-6 flex">
+        {data.map((item, index) => (
           <li
             key={item.title.href}
             data-index={index}
@@ -27,7 +30,7 @@ export default function MainCategory({ category, onHover }: MainCategoryProps) {
           >
             <Link
               href={item.title.href}
-              className={`${pathname?.includes(item.title.href) && 'bg-blue-500'} group typo-base-semibold flex flex-col items-center text-gray-400 md:typo-lg-semibold lg:typo-xl-semibold hover:text-blue-500 md:flex-row`}
+              className={`${pathname?.includes(item.title.href) && 'bg-blue-500'} flex flex-col items-center text-sm font-semibold text-gray-600 hover:text-blue-500 md:flex-row md:text-lg lg:text-xl lg:font-semibold`}
             >
               <h3 className="flex items-center gap-1 lg:gap-2">
                 <span className="flex py-2.5 md:py-2">{item.title.label}</span>

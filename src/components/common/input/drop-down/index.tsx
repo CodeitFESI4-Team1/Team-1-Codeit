@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { ComboboxData, ComboboxItem, Select } from '@mantine/core';
-import IconArrow from '@/public/assets/icons/ic-arrow';
 
 /**
  * drop-down Component
@@ -12,8 +11,8 @@ import IconArrow from '@/public/assets/icons/ic-arrow';
  */
 
 export interface DropDownProps {
-  variant: 'dropdown' | 'sort';
-  data: ComboboxData;
+  variant: 'region' | 'category' | 'sort';
+  data: ComboboxData | undefined;
   placeholder: string;
   value: string | null;
   onChange: (newValue: string | null, option: ComboboxItem) => void;
@@ -27,8 +26,9 @@ export default function DropDown({
   onChange,
   placeholder,
   className,
+  ...args
 }: DropDownProps) {
-  const [isFocused, setIsFocused] = useState(false);
+  const [theme, setTheme] = useState('white');
 
   return (
     <Select
@@ -47,16 +47,16 @@ export default function DropDown({
       }
       placeholder={placeholder}
       classNames={{
-        wrapper: `${className} -mt-4`,
-        input: `${variant === 'sort' && (isFocused === false ? 'sort-bg pl-10' : 'sort-bg-on pl-10')} focus:bg-black focus:placeholder:text-white focus:text-white typo-base-medium rounded-xl border-0 h-10 md:h-11 py-2.5 px-3 placeholder-gray-800`,
+        wrapper: `${className}`,
+        input: `focus:bg-black focus:placeholder:text-white focus:text-white typo-base-medium rounded-xl border-0 h-11 py-2.5 px-3 placeholder-gray-800 ${variant === 'sort' && 'pl-9'}`,
         section: `end-1 ${variant === 'sort' && 'data-[position=right]:hidden start-1'}`,
         dropdown: 'rounded-xl shadow-xl p-0 border-0 mt-2',
-        option: `py-1 m-1 px-2 mr-0 rounded-xl text-gray-800 typo-base-medium hover:bg-blue-100 ${variant === 'sort' && 'justify-center'}`,
+        option: `py-1 m-1 px-2 mr-0 rounded-xl text-gray-800 text-base font-medium hover:bg-blue-100 ${variant === 'sort' && 'justify-center'}`,
+      }}
+      styles={{
+        root: { '--mantine-spacing-md': 0 },
       }}
       comboboxProps={{ position: 'bottom', middlewares: { flip: false, shift: false }, offset: 0 }}
-      styles={{
-        root: { 'margin-top': 0, '--maintine-spacing-md': 0 },
-      }}
     />
   );
 }

@@ -63,7 +63,7 @@ export default function CalendarFilter({ value, toDoDates, onChange }: CalendarF
                 toDoDates === null
               }
             >
-              <div data-testid="day" className="typo-base-medium">
+              <div data-testid="day" className="text-base font-medium lg:text-xl">
                 {day}
               </div>
             </Indicator>

@@ -18,10 +18,10 @@ const meta: Meta = {
       description: '옵션 데이터 배열',
     },
     variant: {
-      description: '`region` | `category` | `sort`',
+      description: '`default` | `sort`',
       control: {
         type: 'radio',
-        option: ['region', 'category', 'sort'],
+        option: ['default', 'sort'],
       },
     },
     placeholder: {
@@ -50,9 +50,9 @@ const Template: StoryFn<DropDownProps> = function DropDownStory(args: DropDownPr
   );
 };
 
-export const Dropdown = Template.bind({});
-Dropdown.args = {
-  variant: 'dropdown',
+export const Region = Template.bind({});
+Region.args = {
+  variant: 'default',
   data: [
     { value: 'option 1', label: '옵션 1' },
     { value: 'option 2', label: '옵션 2' },
