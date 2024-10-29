@@ -2,7 +2,7 @@ name: Trigger Sync
 
 on:
   repository_dispatch:
-    types: [main_updated]
+    types: [main_updated, develop_updated]
 
 jobs:
   trigger-sync:
@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Set up Git user
         run: |
-          git config --global user.email "2yulrang@gmail.com"
+          git config --global user.email "yulrang@gmail.com"
           git config --global user.name "yulrang"
       - name: Sync fork
         run: |
@@ -21,3 +21,6 @@ jobs:
           git checkout main
           git merge -X theirs upstream/main --allow-unrelated-histories || echo "Merge conflicts occurred"
           git push origin main
+          git checkout develop
+          git merge -X theirs upstream/develop --allow-unrelated-histories || echo "Merge conflicts occurred"
+          git push origin develop
