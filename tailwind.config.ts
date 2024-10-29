@@ -22,13 +22,20 @@ const config: Config = {
       },
       maxWidth: {
         pc: '1200px',
+        7.5: '30px',
+        12.5: '50px',
+        27.5: '110px',
       },
       minWidth: {
         ic: 'calc(11.11111% - 7.1111px)',
+        7.5: '30px',
+        12.5: '50px',
+        27.5: '110px',
       },
       width: {
         7.5: '30px',
         12.5: '50px',
+        27.5: '110px',
       },
       padding: {
         7.5: '30px',

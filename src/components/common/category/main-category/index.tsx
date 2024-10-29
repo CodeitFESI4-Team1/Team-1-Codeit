@@ -3,7 +3,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Button } from '@mantine/core';
 import { MainCategoryItem } from '@/src/types/category';
 import IcoDown from '@/public/assets/icons/ic-down.svg';
 
@@ -17,10 +16,7 @@ export default function MainCategory({ category, onHover }: MainCategoryProps) {
 
   return (
     <div>
-      <h2 className="mb-2 text-center text-2xl font-semibold md:mb-4 md:text-4xl">
-        크루를 만들고 싶은 운동 선택
-      </h2>
-      <ul className="space-between mx-6 flex">
+      <ul className="space-between flex gap-6">
         {category.map((item, index) => (
           <li
             key={item.title.href}
@@ -46,13 +42,6 @@ export default function MainCategory({ category, onHover }: MainCategoryProps) {
           </li>
         ))}
       </ul>
-      <Button
-        component={Link}
-        href="/create-crew"
-        className="absolute right-0 flex h-9 -translate-y-17 items-center rounded-xl bg-blue-500 py-2 text-sm font-semibold md:h-11 md:translate-y-0 md:text-lg md:font-bold"
-      >
-        크루 만들기
-      </Button>
     </div>
   );
 }

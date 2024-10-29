@@ -48,13 +48,14 @@ export default function InternalCategory({ category }: InternalCategoryProps) {
       onMouseUp={handleMouseUp}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="scrollbar-hide flex select-none snap-x flex-nowrap gap-2 overflow-scroll scroll-smooth md:gap-3.5"
+      className="scrollbar-hide flex snap-x flex-nowrap gap-2 overflow-scroll scroll-smooth md:gap-3.5"
     >
       {category?.map((item: CategoryItem) => (
         <li key={item.label} className="snap-align-start flex">
           <Link
             href={item.href}
-            className={`${pathname?.includes(item.href) && 'bg-gray-900 text-white'} flex w-full items-center justify-center rounded-xl bg-gray-100 p-2 text-base font-bold text-gray-400 transition-colors hover:bg-gray-900 hover:text-white md:text-lg`}
+            draggable={false}
+            className={`${pathname?.includes(item.href) && 'bg-gray-900 text-white'} min-w-27.5 items-center justify-center text-nowrap rounded-xl bg-gray-100 px-4 py-2 text-center text-base font-bold text-gray-400 transition-colors hover:bg-gray-900 hover:text-white md:text-lg`}
           >
             {item.label}
           </Link>
