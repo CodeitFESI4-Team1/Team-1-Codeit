@@ -1,3 +1,6 @@
+// TODO: 추후 API URL 수정
+const API_BASE_URL = 'http://localhost:3009';
+
 export class ApiError extends Error {
   constructor(
     public status: number,
@@ -42,7 +45,7 @@ export async function fetchApi<T>(
   }
 
   try {
-    const response = await fetch(url, fetchOptions); // API 요청 실행
+    const response = await fetch(`${API_BASE_URL}${url}`, fetchOptions);
 
     if (!response.ok) {
       let errorMessage;
