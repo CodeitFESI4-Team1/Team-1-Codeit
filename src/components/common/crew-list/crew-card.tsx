@@ -39,6 +39,7 @@ export type CrewCardInform = {
  * @param {boolean} isConfirmed - 개설확정여부
  * @param {string} thumbnail - 메인 이미지
  * @param {Date} canceledDate - 취소날짜
+ * @param {boolean} isWide - wide된 상태에서 달라지는 ui 적용
  * @returns {JSX.Element}
  */
 
@@ -51,6 +52,7 @@ interface CrewCardProps {
   isConfirmed: boolean;
   thumbnail: string;
   canceledDate?: Date;
+  isWide: boolean;
 }
 
 export default function CrewCard({
@@ -62,6 +64,7 @@ export default function CrewCard({
   isConfirmed,
   thumbnail,
   canceledDate = undefined,
+  isWide,
 }: CrewCardProps) {
   const [prefetched, setPrefetched] = useState(new Set());
   const CREWPAGE = `/detail/${id}`;
@@ -77,18 +80,21 @@ export default function CrewCard({
 
   return (
     <div className="relative flex h-fit w-full flex-col overflow-hidden rounded-[14px] bg-white shadow-section md:h-[204px] md:flex-row">
-      <span className="relative h-[156px] w-full flex-shrink-0 md:h-full md:w-[280px]">
+      <span
+        className={`relative h-[156px] w-full flex-shrink-0 md:h-full md:w-1/2 ${!isWide ? 'lg:w-[203px]' : ''}`}
+      >
         <Image fill objectFit="cover" alt={name} src={thumbnail} />
       </span>
       <div className="flex w-full flex-col justify-normal gap-8 p-4 md:justify-between md:gap-0">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 lg:flex-col lg:items-start">
           <span className="typo-xl-semibold">{name}</span>
-          <span>|</span>
-          <span className="typo-base-medium">{location}</span>
+          <span className="typo-base-medium">| {location}</span>
         </div>
-        <div className="flex w-full gap-8">
+        <div
+          className={`flex w-full gap-8 border-t-[2px] border-t-[#E5E7EB] pt-[31px] ${!isWide ? 'lg:gap-4' : ''}`}
+        >
           <div className="flex flex-grow flex-col items-start gap-2">
-            <span className="typo-sm-medium flex items-center gap-2">
+            <span className="typo-sm-medium flex w-full items-center justify-between">
               <span className="flex">
                 <Image src={Person} alt="모임 인원" width={20} height={20} />
                 <span>
@@ -113,12 +119,12 @@ export default function CrewCard({
             onMouseEnter={handleButtonMouseUp}
             className="typo-sm-semibold flex-shrink-0 bg-blue-500 p-[6px_14px] lg:typo-base-semibold"
           >
-            크루 페이지로
+            크루
           </Button>
         </div>
       </div>
       {canceledDate && (
-        <div className="absolute flex h-full w-full items-center justify-center bg-black bg-opacity-60 text-center text-white">
+        <div className="absolute flex h-full w-full cursor-default items-center justify-center bg-black bg-opacity-60 text-center text-white">
           취소된 모임이에요.🥲 <br /> 다음 기회에 만나요!
         </div>
       )}
