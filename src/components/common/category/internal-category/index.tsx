@@ -55,7 +55,7 @@ export default function InternalCategory({ category }: InternalCategoryProps) {
           <Link
             href={item.href}
             draggable={false}
-            className={`${pathname?.includes(item.href) && 'bg-gray-900 text-white'} h-10 min-w-27.5 items-center justify-center text-nowrap rounded-xl bg-gray-100 px-4 py-2 text-center text-sm font-bold text-gray-400 transition-colors hover:bg-gray-900 hover:text-white md:h-11 md:text-lg`}
+            className={`${pathname?.includes(item.href) && 'bg-gray-900 text-white'} h-10 min-w-28 items-center justify-center text-nowrap rounded-xl bg-gray-100 px-5 py-2 text-center text-sm font-bold text-gray-400 transition-colors hover:bg-gray-900 hover:text-white md:h-11 md:text-lg`}
           >
             {item.label}
           </Link>
