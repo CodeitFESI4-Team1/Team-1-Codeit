@@ -63,7 +63,7 @@ export default function CalendarFilter({ value, toDoDates, onChange }: CalendarF
                 toDoDates === null
               }
             >
-              <div data-testid="day" className="text-base font-medium lg:text-xl">
+              <div data-testid="day" className="text-base font-medium">
                 {day}
               </div>
             </Indicator>
