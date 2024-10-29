@@ -3,8 +3,18 @@ import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 // Import styles of packages that you've installed.
 // All packages except `@mantine/hooks` require styles imports
 import '@mantine/core/styles.css';
+import { worker } from '@/src/apis/mocks/browser';
+import { server } from '@/src/apis/mocks/server';
 import '@/src/styles/globals.css';
 import { theme } from './theme';
+
+if (process.env.NODE_ENV === 'development') {
+  if (typeof window === 'undefined') {
+    server.listen();
+  } else {
+    worker.start();
+  }
+}
 
 export const metadata: Metadata = {
   title: 'CrewCrew',

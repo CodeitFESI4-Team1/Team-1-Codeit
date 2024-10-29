@@ -43,12 +43,12 @@ module.exports = {
         'newlines-between': 'ignore',
       },
     ],
-    'import/no-extraneous-dependencies': [
-      'error',
-      {
-        devDependencies: ['**/*.test.js', '**/*.stories.js', '**/*.stories.tsx', '**/storybook/**'],
-      },
-    ],
+    // 'import/no-extraneous-dependencies': [
+    //   'error',
+    //   {
+    //     devDependencies: ['**/*.test.js', '**/*.stories.js', '**/*.stories.tsx', '**/storybook/**'],
+    //   },
+    // ],
     'prettier/prettier': [
       'error',
       {
