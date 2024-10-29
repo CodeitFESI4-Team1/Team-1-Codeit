@@ -7,10 +7,10 @@ export default function HeroCrew() {
       <div className="flex items-center gap-9">
         <Image src={ImgHeroCrew} width={130} height={110} alt="이미지" className="hidden md:flex" />
         <p className="flex flex-col md:gap-0.5">
-          <strong className="typo-sm-medium text-gray-700 md:typo-base-medium">
+          <strong className="text-sm font-medium text-gray-700 md:text-base">
             함께할 사람이 없나요?
           </strong>
-          <strong className="typo-2xl-semibold text-gray-900 md:typo-4xl-semibold">
+          <strong className="text-2xl font-semibold text-gray-900 md:text-4xl">
             지금 크루에 참여해보세요.
           </strong>
         </p>

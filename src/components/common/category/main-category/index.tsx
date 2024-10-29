@@ -21,7 +21,7 @@ export default function MainCategory({ category, onHover }: MainCategoryProps) {
         크루를 만들고 싶은 운동 선택
       </h2>
       <ul className="space-between mx-6 flex">
-        {data.map((item, index) => (
+        {category.map((item, index) => (
           <li
             key={item.title.href}
             data-index={index}
@@ -49,7 +49,7 @@ export default function MainCategory({ category, onHover }: MainCategoryProps) {
       <Button
         component={Link}
         href="/create-crew"
-        className="typo-sm-semibold absolute right-0 flex h-9 -translate-y-17 items-center rounded-xl bg-blue-500 py-2 md:typo-lg-bold md:h-11 md:translate-y-0"
+        className="absolute right-0 flex h-9 -translate-y-17 items-center rounded-xl bg-blue-500 py-2 text-sm font-semibold md:h-11 md:translate-y-0 md:text-lg md:font-bold"
       >
         크루 만들기
       </Button>
