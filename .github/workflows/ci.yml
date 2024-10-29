@@ -12,6 +12,7 @@ on:
       - hotfix/*
 jobs:
   storybook:
+    permissions: write-all
     runs-on: ubuntu-20.04
     outputs:
       status: ${{ job.status }}
