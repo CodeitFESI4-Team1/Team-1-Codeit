@@ -5,7 +5,7 @@ on:
     types: [develop_updated]
 
 jobs:
-  trigger-sync:
+  trigger-sync-develop:
     if: github.repository == 'yulrang/Team-1-Codeit-youl'
     runs-on: ubuntu-latest
     steps:
