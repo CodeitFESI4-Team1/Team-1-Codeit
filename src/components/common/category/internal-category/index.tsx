@@ -6,10 +6,10 @@ import { usePathname } from 'next/navigation';
 import { CategoryItem } from '@/src/types/category';
 
 export interface InternalCategoryProps {
-  items: CategoryItem[];
+  category: CategoryItem[];
 }
 
-export default function InternalCategory({ items }: InternalCategoryProps) {
+export default function InternalCategory({ category }: InternalCategoryProps) {
   const pathname = usePathname();
   const [isDown, setIsDown] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -50,10 +50,11 @@ export default function InternalCategory({ items }: InternalCategoryProps) {
       onMouseLeave={handleMouseLeave}
       className="scrollbar-hide flex select-none snap-x flex-nowrap gap-2 overflow-scroll scroll-smooth md:gap-3.5"
     >
-      {items.map((item: CategoryItem) => (
+      {category?.map((item: CategoryItem) => (
         <li key={item.label} className="snap-align-start flex">
           <Link
             href={item.href}
+            draggable={false}
             className={`${pathname?.includes(item.href) && 'bg-gray-900 font-bold text-white'} typo-sm-medium flex h-10 min-w-28 items-center justify-center rounded-xl bg-gray-100 px-3 py-2 text-gray-400 transition-colors md:typo-lg-medium hover:bg-gray-900 hover:font-bold hover:text-white md:h-11 md:px-6`}
           >
             {item.label}

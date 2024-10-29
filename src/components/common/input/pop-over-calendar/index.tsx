@@ -6,14 +6,14 @@ import CalendarFilter from '@/src/components/common/input/calendar-filter';
 import IconArrow from '@/public/assets/icons/ic-arrow';
 
 export interface PopOverProps {
-  value: Date | undefined;
-  onChange: (date: Date | undefined) => void;
+  value: Date;
+  onChange: (date: Date) => void;
 }
 
 export default function PopOverCalendar({ value, onChange }: PopOverProps) {
   const [opened, { close, open }] = useDisclosure(false);
   const [inputTheme, setInputTheme] = useState('white');
-  const [date, setDate] = useState<Date | undefined>(value);
+  const [date, setDate] = useState<Date>(value);
   const isMobile = useMediaQuery(`(max-width: ${theme.breakpoints.md})`);
 
   const handleClear = () => {
@@ -47,7 +47,7 @@ export default function PopOverCalendar({ value, onChange }: PopOverProps) {
       </Popover.Target>
       <Popover.Dropdown w={336} h={386} px={43} py={24} className="rounded-xl shadow-xl">
         <div className="flex flex-col gap-4">
-          <CalendarFilter value={date} toDoDates={undefined} onChange={setDate} />
+          <CalendarFilter value={date} toDoDates={null} onChange={setDate} />
           <div className="flex justify-between gap-3">
             <Button
               type="button"

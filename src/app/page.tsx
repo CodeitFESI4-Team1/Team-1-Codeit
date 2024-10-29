@@ -11,7 +11,7 @@ import PopOverCalendar from '../components/common/input/pop-over-calendar';
 export default function Home() {
   const [sort, setSort] = useState<string | null>('latest');
   const [region, setRegion] = useState<string | null>('all');
-  const [date, setDate] = useState<Date | undefined>(new Date());
+  const [date, setDate] = useState<Date>(new Date());
 
   return (
     <div className="container mx-auto my-0 min-h-screen max-w-pc bg-gray-50 py-11 shadow-bg">

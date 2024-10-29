@@ -7,15 +7,15 @@ import '@/src/styles/calendar-filter.css';
 import IconArrow from '@/public/assets/icons/ic-arrow';
 
 export interface CalendarFilterProps {
-  value: Date | undefined;
-  toDoDates: Date[] | undefined;
-  onChange: (date: Date | undefined) => void;
+  value: Date;
+  toDoDates: Date[] | null;
+  onChange: (date: Date) => void;
 }
 
 export default function CalendarFilter({ value, toDoDates, onChange }: CalendarFilterProps) {
-  const [selected, setSelected] = useState<Date | undefined>(value);
+  const [selected, setSelected] = useState<Date>(value);
 
-  const handleSelect = (date: Date | undefined) => {
+  const handleSelect = (date: Date) => {
     const isSelected = selected;
     if (isSelected) {
       setSelected(date);
@@ -60,7 +60,7 @@ export default function CalendarFilter({ value, toDoDates, onChange }: CalendarF
               offset={-2}
               disabled={
                 toDoDates?.every((todoDate) => todoDate.toDateString() !== date.toDateString()) ||
-                toDoDates === undefined
+                toDoDates === null
               }
             >
               <div data-testid="day" className="typo-base-medium">

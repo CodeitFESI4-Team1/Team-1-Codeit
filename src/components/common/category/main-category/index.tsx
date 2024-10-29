@@ -8,17 +8,17 @@ import { MainCategoryItem } from '@/src/types/category';
 import IcoDown from '@/public/assets/icons/ic-down.svg';
 
 export interface MainCategoryProps {
-  data: MainCategoryItem[];
+  category: MainCategoryItem[];
   onHover: (index: number) => void;
 }
 
-export default function MainCategory({ data, onHover }: MainCategoryProps) {
+export default function MainCategory({ category, onHover }: MainCategoryProps) {
   const pathname = usePathname();
 
   return (
     <div className="relative flex items-center justify-between">
       <ul className="flex gap-6">
-        {data.map((item, index) => (
+        {category?.map((item, index) => (
           <li
             key={item.title.href}
             data-index={index}

@@ -10,8 +10,8 @@ export default function CategoryWrap() {
 
   return (
     <div className="flex flex-col gap-2 md:gap-7.5">
-      <MainCategory data={category} onHover={setCategoryIndex} />
-      <InternalCategory items={category[categoryIndex].items} />
+      <MainCategory category={category} onHover={setCategoryIndex} />
+      <InternalCategory category={category[categoryIndex].items} />
     </div>
   );
 }
