@@ -68,6 +68,7 @@ Category.args = {
   data: [
     { value: 'option 1', label: '옵션 1' },
     { value: 'option 2', label: '옵션 2' },
+    { value: 'option 3', label: '옵션 3' },
   ],
   placeholder: '카테고리 전체',
   value: null,
