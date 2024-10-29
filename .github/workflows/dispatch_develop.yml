@@ -4,7 +4,7 @@ on:
     branches:
       - develop
 jobs:
-  trigger-fork:
+  trigger-fork-develop:
     if: github.repository_owner == 'CodeitFESI4-Team1'
     runs-on: ubuntu-latest
     steps:
