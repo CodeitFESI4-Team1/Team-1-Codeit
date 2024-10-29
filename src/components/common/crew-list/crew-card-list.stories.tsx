@@ -7,7 +7,7 @@ const mockData: CrewCardInform[] = [
     crewId: 1,
     type: '유산소',
     subType: '수영',
-    name: '같이 물장구칠사람 구함',
+    name: '엄청긴크루이름엄청긴크루이름엄청긴크루이름엄청긴크루이름',
     location: '경기도',
     detailedLocation: '어디구 어디로',
     participantCount: 20,
