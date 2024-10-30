@@ -46,7 +46,7 @@ export function Profile({
         onClick={onClick}
       >
         <div
-          className={`relative h-full w-full rounded-full ${imageUrl ? 'border-4 border-gray-200' : ''}`}
+          className={`relative h-full w-full rounded-full ${imageUrl ? 'border-2 border-blue-100' : ''}`}
         >
           <Image
             src={imageUrl || defaultImage}
