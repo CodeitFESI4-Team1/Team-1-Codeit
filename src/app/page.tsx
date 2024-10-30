@@ -6,7 +6,7 @@ import regionData from '@/src/data/region.json';
 import CategoryWrap from '@/src/components/common/category/category-wrap';
 import HeroCrew from '@/src/components/common/hero/hero-crew';
 import DropDown from '@/src/components/common/input/drop-down';
-import PopOverCalendar from '../components/common/input/pop-over-calendar';
+import PopOverCalendar from '@/src/components/common/input/pop-over-calendar';
 
 export default function Home() {
   const [sort, setSort] = useState<string | null>('latest');
