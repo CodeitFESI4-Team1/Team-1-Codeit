@@ -1,3 +1,6 @@
+// TODO: 추후 API URL 수정
+const API_BASE_URL = 'http://localhost:3009';
+
 export class ApiError extends Error {
   constructor(
     public status: number,
@@ -37,12 +40,8 @@ export async function fetchApi<T>(
     credentials: 'include',
   };
 
-  if (options.body && !(options.body instanceof FormData)) {
-    fetchOptions.body = JSON.stringify(options.body);
-  }
-
   try {
-    const response = await fetch(url, fetchOptions); // API 요청 실행
+    const response = await fetch(`${API_BASE_URL}${url}`, fetchOptions); // API 요청 실행
 
     if (!response.ok) {
       let errorMessage;
@@ -55,7 +54,7 @@ export async function fetchApi<T>(
 
       if (response.status >= 500 && retries > 0) {
         await delay(1000); // 1초 대기
-        return await fetchApi(url, options, timeout, retries - 1); // return await 추가
+        return await fetchApi(`${API_BASE_URL}${url}`, options, timeout, retries - 1); // return await 추가
       }
 
       throw new ApiError(response.status, errorMessage);
