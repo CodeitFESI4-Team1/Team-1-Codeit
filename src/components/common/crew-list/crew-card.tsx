@@ -80,7 +80,7 @@ export default function CrewCard({
     router.push(CREWPAGE);
   };
   const handleCardMouseUp = () => {
-    if (!prefetched.has(CREWPAGE)) router.prefetch(CREWPAGE);
+    if (!prefetched.has(CREWPAGE) && !canceledDate) router.prefetch(CREWPAGE);
     setPrefetched(new Set(prefetched).add(CREWPAGE));
   };
 
