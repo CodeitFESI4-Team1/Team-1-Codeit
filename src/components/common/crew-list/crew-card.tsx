@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { Button } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
+import { useApiQuery } from '@/src/hooks/useApi';
 import Check from '@/public/assets/icons/ic-check.svg';
 import Person from '@/public/assets/icons/ic-person.svg';
 import ProgressBar from '../progress-bar';
@@ -99,6 +100,9 @@ export default function CrewCard({
     textLength = 11;
   }
 
+  // NOTE: 모임 목록 API 받아오기
+  const gatheringList = ['gathering1', 'gathering2'];
+
   return (
     <div
       role="presentation"
@@ -112,13 +116,18 @@ export default function CrewCard({
         <Image fill objectFit="cover" alt={name} src={thumbnail} />
       </span>
       <div className="flex w-full flex-col justify-normal gap-8 p-4 md:justify-between md:gap-0">
-        <div
-          className={`flex flex-col items-start gap-2 ${!isWide ? 'lg:flex-col lg:items-start' : 'md:flex-row md:items-center'}`}
-        >
-          <span className="typo-xl-semibold">
-            {truncatedText({ text: name, maxLength: textLength })}
+        <div>
+          <div
+            className={`flex flex-col items-start gap-2 ${!isWide ? 'lg:flex-col lg:items-start' : 'md:flex-row md:items-center'}`}
+          >
+            <span className="typo-xl-semibold">
+              {truncatedText({ text: name, maxLength: textLength })}
+            </span>
+            <span className="typo-base-medium">| {location}</span>
+          </div>
+          <span className="typo-sm-semibold text-blue-600">
+            {`현재 ${gatheringList.length}개의 약속이 개설되어 있습니다.`}
           </span>
-          <span className="typo-base-medium">| {location}</span>
         </div>
         <div
           className={`flex w-full gap-8 border-t-[2px] border-t-[#E5E7EB] pt-[31px] ${!isWide ? 'lg:gap-4' : ''}`}
