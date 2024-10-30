@@ -43,6 +43,7 @@ export type CrewCardInform = {
  * @param {string} thumbnail - 메인 이미지
  * @param {Date} canceledDate - 취소날짜
  * @param {boolean} isWide - wide된 상태에서 달라지는 ui 적용
+ * @param {boolean} isAlone - 리스트에 속하지 않고 혼자 쓰이는 카드인지
  * @returns {JSX.Element}
  */
 
@@ -56,6 +57,7 @@ interface CrewCardProps {
   thumbnail: string;
   canceledDate?: Date;
   isWide: boolean;
+  isAlone?: boolean;
 }
 
 export default function CrewCard({
@@ -67,13 +69,13 @@ export default function CrewCard({
   isConfirmed,
   thumbnail,
   canceledDate = undefined,
-  isWide,
+  isAlone = false,
+  isWide = !!isAlone,
 }: CrewCardProps) {
   const [prefetched, setPrefetched] = useState(new Set());
-
   const CREWPAGE = `/detail/${id}`;
-
   const router = useRouter();
+
   const handleCardClick = () => {
     router.push(CREWPAGE);
   };
@@ -108,10 +110,10 @@ export default function CrewCard({
       role="presentation"
       onClick={handleCardClick}
       onMouseEnter={handleCardMouseUp}
-      className="relative flex h-fit w-full cursor-pointer flex-col overflow-hidden rounded-[14px] bg-white shadow-section md:h-[204px] md:flex-row"
+      className={`relative flex h-fit cursor-pointer flex-col overflow-hidden rounded-[14px] bg-white shadow-section md:flex-row ${isAlone ? 'w-[369px] md:h-[270px] md:w-[770px] lg:w-[1108px]' : 'w-full md:h-[203px]'}`}
     >
       <span
-        className={`relative h-[156px] w-full flex-shrink-0 md:h-full md:w-1/2 ${!isWide ? 'lg:w-[203px]' : ''}`}
+        className={`relative w-full flex-shrink-0 md:w-1/2 ${!isWide ? 'lg:w-[203px]' : ''} ${isAlone ? 'h-[270px]' : 'h-[167px] md:h-full'}`}
       >
         <Image fill objectFit="cover" alt={name} src={thumbnail} />
       </span>
