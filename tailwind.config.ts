@@ -270,13 +270,22 @@ const config: Config = {
           },
           //button style
           '.btn-filled': {
-            backgroundColor: '#38F',
+            backgroundColor: '#3B82F6',
             color: '#ffffff',
+            transition: 'background-color 0.3s ease',
+            '&:hover, &:active': {
+              backgroundColor: '#2563EB',
+            },
           },
           '.btn-outlined': {
-            border: '1px solid #38F',
+            border: '1px solid #3B82F6',
             backgroundColor: '#ffffff',
-            color: '#38f',
+            color: '#3B82F6',
+            transition: 'color 0.3s ease border-color 0.3s ease',
+            '&:hover, &:active': {
+              border: '1px solid #2563EB',
+              color: '#2563EB',
+            },
           },
           '.btn-disabled': {
             backgroundColor: '#6B7280',
