@@ -13,6 +13,8 @@ const mockData = {
   imageUrl:
     'https://www.dabur.com/Blogs/Doshas/Importance%20and%20Benefits%20of%20Yoga%201020x450.jpg',
   isLiked: false,
+  isMine: false,
+  isParticipant: true,
   participants: [
     {
       id: 1,

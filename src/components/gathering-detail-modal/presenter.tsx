@@ -1,7 +1,9 @@
 import Image from 'next/image';
 import { Button, Modal, ScrollArea } from '@mantine/core';
 import { formatDate } from '@/src/utils/format-date';
+import isTimeOvered from '@/src/utils/is-time-overed';
 import { GatheringDetailType } from '@/src/types/gathering-data';
+import IcoClock from '@/public/assets/icons/ic-clock.svg';
 import IcoUser from '@/public/assets/icons/ic-user.svg';
 
 export interface GatheringDetailModalProps {
@@ -36,13 +38,19 @@ export default function GatheringDetailModalPresenter({
       }}
     >
       <div>
-        <figure className="relative aspect-video w-full">
+        <figure className="relative aspect-video w-full overflow-hidden">
           <Image
             src={data.imageUrl}
             alt="모임 이미지"
             fill
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           />
+          {isTimeOvered(data.dateTime) && (
+            <strong className="absolute right-0 top-0 flex items-center gap-2 bg-blue-600 px-4 py-2 text-base font-medium text-white">
+              <Image src={IcoClock} width={15} height={13} alt="아이콘" />
+              <span>오늘 {new Date(data.dateTime).getHours()}시 마감</span>
+            </strong>
+          )}
         </figure>
         <div className="flex flex-col gap-8 p-6">
           <section>
@@ -106,32 +114,38 @@ export default function GatheringDetailModalPresenter({
               h={44}
               className="rounded-xl border-blue-500 text-base font-medium text-blue-500"
             >
-              취소
+              닫기
             </Button>
-            <Button
-              onClick={onJoin}
-              w={118}
-              h={44}
-              className="rounded-xl bg-blue-500 text-base font-medium"
-            >
-              참여
-            </Button>
-            <Button
-              onClick={onExit}
-              w={118}
-              h={44}
-              className="rounded-xl bg-blue-500 text-base font-medium"
-            >
-              탈퇴
-            </Button>
-            <Button
-              onClick={onDelete}
-              w={118}
-              h={44}
-              className="rounded-xl bg-blue-500 text-base font-medium"
-            >
-              삭제
-            </Button>
+            {!data.isParticipant && (
+              <Button
+                onClick={onJoin}
+                w={118}
+                h={44}
+                className="rounded-xl bg-blue-500 text-base font-medium"
+              >
+                참여하기
+              </Button>
+            )}
+            {data.isParticipant && (
+              <Button
+                onClick={onExit}
+                w={118}
+                h={44}
+                className="rounded-xl bg-blue-500 text-base font-medium"
+              >
+                탈퇴하기
+              </Button>
+            )}
+            {data.isMine && (
+              <Button
+                onClick={onDelete}
+                w={118}
+                h={44}
+                className="rounded-xl bg-blue-500 text-base font-medium"
+              >
+                삭제하기
+              </Button>
+            )}
           </footer>
         </div>
       </div>
