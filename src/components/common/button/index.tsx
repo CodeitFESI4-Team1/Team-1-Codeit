@@ -25,7 +25,7 @@ export default function Button({
   return (
     <button
       // eslint-disable-next-line react/button-has-type
-      type={type ?? 'button'}
+      type={type}
       className={`typo-lg-semibold flex items-center justify-center rounded-md py-2 ${className}`}
       onClick={onClick}
     >
