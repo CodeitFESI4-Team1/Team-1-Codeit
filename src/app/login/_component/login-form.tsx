@@ -1,9 +1,12 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
 import { Button } from '@mantine/core';
 import { useDebouncedCallback } from '@mantine/hooks';
+import { useApiMutation } from '@/src/hooks/useApi';
 import PasswordInput from '@/src/components/common/input/password-input';
 import TextInput from '@/src/components/common/input/text-input';
+import { ApiError } from '@/src/utils/api';
 
 interface LoginFormValues {
   email: string;
@@ -14,10 +17,35 @@ export default function LoginForm() {
     register,
     handleSubmit,
     trigger,
+    setError,
     formState: { errors, isValid },
   } = useForm<LoginFormValues>({});
 
-  const onSubmit = (data: LoginFormValues) => {};
+  const router = useRouter();
+
+  const { mutate: loginAPI } = useApiMutation<void, LoginFormValues>('/login', 'POST', {
+    onSuccess: () => {
+      // TODO: 로그인처리, token
+      router.push('/');
+    },
+    onError: (error: ApiError) => {
+      if (error.status === 404) {
+        setError('email', {
+          type: 'manual',
+          message: '이메일 계정이 존재하지 않습니다',
+        });
+      } else if (error.status === 401) {
+        setError('password', {
+          type: 'manual',
+          message: '잘못된 비밀번호입니다',
+        });
+      }
+    },
+  });
+
+  const onSubmit = (data: LoginFormValues) => {
+    loginAPI(data);
+  };
 
   const debouncedTrigger = useDebouncedCallback(async (field: keyof LoginFormValues) => {
     await trigger(field);
@@ -63,6 +91,7 @@ export default function LoginForm() {
       />
 
       <div className="mt-10">
+        {/* TODO: Button 바꾸기 */}
         <Button disabled={!isValid} type="submit" fullWidth>
           로그인
         </Button>

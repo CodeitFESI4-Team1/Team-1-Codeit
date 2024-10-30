@@ -18,5 +18,27 @@
       "password": "asdfasdf",
       "id": 7
     }
+  ],
+  "login": [
+    {
+      "id": 1,
+      "email": "asdf@gmail.com",
+      "password": "asdfasdf"
+    },
+    {
+      "email": "asdf@gmail.com",
+      "password": "asdfasdf",
+      "id": 2
+    },
+    {
+      "email": "asdf@gmail.com",
+      "password": "asdfasdf",
+      "id": 3
+    },
+    {
+      "email": "asdf@gmail.com",
+      "password": "asdfasdf",
+      "id": 4
+    }
   ]
 }
