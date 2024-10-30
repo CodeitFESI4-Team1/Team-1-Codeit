@@ -10,10 +10,13 @@ on:
       - develop
       - feat/*
       - hotfix/*
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   storybook:
     permissions: write-all
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     outputs:
       status: ${{ job.status }}
     steps:
