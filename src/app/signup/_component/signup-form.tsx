@@ -30,7 +30,7 @@ export default function SignupForm() {
 
   const router = useRouter();
 
-  const { mutate: signupAPI } = useApiMutation<void, SignupRequest>('/users', 'POST', {
+  const { mutate: signupAPI } = useApiMutation<void, SignupRequest>('/signup', 'POST', {
     onSuccess: () => {
       // TODO: 회원가입이 완료되었습니다 modal
       // TODO: 로그인처리
