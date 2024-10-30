@@ -1,6 +1,7 @@
 import React from 'react';
+import { useForm } from 'react-hook-form';
 import { Meta, StoryFn } from '@storybook/react';
-import LoginForm from './login-form';
+import LoginForm, { LoginFormValues } from './login-form';
 
 const meta: Meta = {
   title: 'Components/auth/LoginForm',
@@ -10,7 +11,8 @@ const meta: Meta = {
 export default meta;
 
 const Template: StoryFn = function LoginFormStory() {
-  return <LoginForm />;
+  const formMethods = useForm<LoginFormValues>();
+  return <LoginForm formMethods={formMethods} onSubmit={() => {}} />;
 };
 
 export const Default = Template.bind({});
