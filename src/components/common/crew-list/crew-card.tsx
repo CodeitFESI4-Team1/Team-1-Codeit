@@ -2,35 +2,12 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
-import { Button } from '@mantine/core';
+import { useRouter } from 'next/navigation';
 import { useMediaQuery } from '@mantine/hooks';
-import { useApiQuery } from '@/src/hooks/useApi';
 import Check from '@/public/assets/icons/ic-check.svg';
 import Person from '@/public/assets/icons/ic-person.svg';
 import ProgressBar from '../progress-bar';
 import Profiles from './profiles';
-
-export type ImageList = {
-  imagePath: string;
-}[];
-
-export type CrewCardInform = {
-  crewId: number;
-  type: string;
-  subType: string;
-  name: string;
-  location: string;
-  detailedLocation: string;
-  participantCount: number;
-  capacity: number;
-  images: ImageList;
-  createdBy: number;
-  createdDate: Date;
-  updatedDate: Date;
-  canceledAt?: Date;
-  isConfirmed: boolean;
-};
 
 /**
  * CrewCard 컴포넌트

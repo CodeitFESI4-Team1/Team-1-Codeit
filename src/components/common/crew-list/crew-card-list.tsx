@@ -1,37 +1,46 @@
-import CrewCard, { CrewCardInform } from './crew-card';
-
-/**
- * CrewCard 컴포넌트
- * @param {CrewCardInform[]} CrewCardInforms - 크루 data
- * @param {boolean} isWide - 카드 리스트 정렬 방법 (true일 시 1열, false일 시 2열)
- * @returns {JSX.Element}
- */
+import React, { forwardRef } from 'react';
+import { InfiniteData } from '@tanstack/react-query';
+import { CrewCardInformResponse } from '@/src/types/crew-card';
+import CrewCard from './crew-card';
 
 interface CrewCardListProps {
-  CrewCardInforms: CrewCardInform[];
+  data: InfiniteData<CrewCardInformResponse> | undefined;
+  isFetchingNextPage: boolean;
   isWide?: boolean;
 }
 
-export default function CrewCardList({ CrewCardInforms, isWide = false }: CrewCardListProps) {
+function CrewCardList(
+  { data, isFetchingNextPage, isWide = false }: CrewCardListProps,
+  ref: React.Ref<HTMLDivElement>,
+) {
+  const crewDataList = data?.pages.flatMap((page) => page.data) ?? [];
+
+  if (!crewDataList) return <p>loading...</p>;
+
   return (
-    <ul
-      className={`mx-auto flex w-[343px] flex-col gap-8 md:w-[744px] lg:w-[1107px] ${!isWide ? 'lg:grid lg:grid-cols-2 lg:gap-x-4 lg:gap-y-8' : ''}`}
-    >
-      {CrewCardInforms.map((inform) => (
-        <li key={inform.crewId}>
-          <CrewCard
-            id={inform.crewId}
-            capacity={inform.capacity}
-            isConfirmed={inform.isConfirmed}
-            location={inform.location}
-            name={inform.name}
-            thumbnail={inform.images[0].imagePath}
-            canceledDate={inform.canceledAt}
-            participantCount={inform.participantCount}
-            isWide={isWide}
-          />
-        </li>
-      ))}
-    </ul>
+    <>
+      <ul
+        className={`mx-auto mb-8 flex w-[343px] flex-col gap-8 md:w-[744px] lg:w-[1107px] ${!isWide ? 'lg:grid lg:grid-cols-2 lg:gap-x-4 lg:gap-y-8' : ''}`}
+      >
+        {crewDataList.map((inform) => (
+          <li key={inform.crewId}>
+            <CrewCard
+              id={inform.crewId}
+              capacity={inform.capacity}
+              isConfirmed={inform.isConfirmed}
+              location={inform.location}
+              name={inform.name}
+              thumbnail={inform.images[0].imagePath}
+              canceledDate={inform.canceledAt}
+              participantCount={inform.participantCount}
+              isWide={isWide}
+            />
+          </li>
+        ))}
+      </ul>
+      {isFetchingNextPage ? <p>loading...</p> : <div ref={ref} className="h-[1px]" />}
+    </>
   );
 }
+
+export default forwardRef(CrewCardList);
