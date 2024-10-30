@@ -16,7 +16,7 @@ import editImage from '@/public/assets/icons/profile-edit.svg';
  */
 
 interface ProfileProps {
-  size?: 'small' | 'medium' | 'large';
+  size?: 'small' | 'header' | 'large';
   imageUrl?: string;
   editable?: boolean;
   onClick?: () => void;
@@ -32,9 +32,10 @@ export function Profile({
 }: ProfileProps) {
   const finalSize = editable ? 'large' : size;
 
+  // 추후 디자인에 따라 수정
   const sizeClasses = {
     small: 'w-6 h-6',
-    medium: 'w-[40px] h-[40px]',
+    header: 'sm:w-7 sm:h-7 md:w-[40px] md:h-[40px] lg:w-[40px] lg:w-[40px]',
     large: 'w-14 h-14',
   };
 
