@@ -9,7 +9,7 @@ import { ReactNode } from 'react';
  * @param type - 버튼 타입 ('button', 'submit', 'reset' 중 하나로 기본값은 'button')
  */
 
-interface ButtonProps {
+export interface ButtonProps {
   children: ReactNode;
   className?: string;
   onClick?: () => void;
