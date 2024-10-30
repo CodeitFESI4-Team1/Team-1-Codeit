@@ -268,6 +268,22 @@ const config: Config = {
             lineHeight: '1rem',
             fontWeight: '300',
           },
+          //button style
+          '.btn-filled': {
+            backgroundColor: '#38F',
+            color: '#ffffff',
+          },
+          '.btn-outlined': {
+            border: '1px solid #38F',
+            backgroundColor: '#ffffff',
+            color: '#38f',
+          },
+          '.btn-disabled': {
+            backgroundColor: '#6B7280',
+            color: '#ffffff',
+            cursor: 'not-allowed',
+            opacity: '0.8',
+          },
         });
       },
     ),
