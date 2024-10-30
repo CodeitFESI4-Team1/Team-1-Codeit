@@ -5,7 +5,7 @@ import FileInput from './file-input';
 import FileSample from './file-sample';
 
 export interface FileInputProps {
-  value: FileValueType;
+  value: FileValueType | null;
 }
 
 export interface FileValueType {
@@ -13,7 +13,7 @@ export interface FileValueType {
 }
 
 export default function FileInputWrap({ value }: FileInputProps) {
-  const [fileValue, setFileValue] = useState<FileValueType>(value);
+  const [fileValue, setFileValue] = useState<FileValueType | null>(value);
   const [isOtherSelected, setIsOtherSelected] = useState(false);
   const [isSampleSelected, setIsSampleSelected] = useState(false);
 
@@ -30,7 +30,7 @@ export default function FileInputWrap({ value }: FileInputProps) {
   };
 
   return (
-    <div className="container flex max-w-[1200px] gap-2">
+    <div className="container flex max-w-[1200px] gap-4">
       <FileSample
         imgUrl="https://images.stockcake.com/public/a/7/6/a768d87b-1f99-4b50-9286-f1583af33522_large/team-huddle-celebration-stockcake.jpg"
         onChange={handleChange}
@@ -46,7 +46,11 @@ export default function FileInputWrap({ value }: FileInputProps) {
         onChange={handleChange}
         isBlur={isOtherSelected}
       />
-      <FileInput value={fileValue.image} onChange={handleFileInput} isBlur={isSampleSelected} />
+      <FileInput
+        value={fileValue?.image || null}
+        onChange={handleFileInput}
+        isBlur={isSampleSelected}
+      />
     </div>
   );
 }
