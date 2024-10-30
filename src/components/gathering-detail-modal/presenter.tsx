@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import { Button, Modal, ScrollArea } from '@mantine/core';
 import { formatDate } from '@/src/utils/format-date';
+import isToday from '@/src/utils/is-today';
 import { GatheringDetailType } from '@/src/types/gathering-data';
 import IcoClock from '@/public/assets/icons/ic-clock.svg';
 import IcoUser from '@/public/assets/icons/ic-user.svg';
-import isToday from '@/src/utils/is-today';
 
 export interface GatheringDetailModalProps {
   opened: boolean;
