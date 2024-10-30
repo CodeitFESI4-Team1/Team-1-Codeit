@@ -3,21 +3,22 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu } from '@mantine/core';
+import { Profile } from '../profile';
 
 export interface HeaderPresenterProps {
   hasCookie: boolean;
-  // profileImageUrl: string;
+  profileImageUrl?: string;
   handleLogout: () => void;
 }
 
 export default function HeaderPresenter({
   hasCookie,
-  // profileImageUrl,
+  profileImageUrl,
   handleLogout,
 }: HeaderPresenterProps) {
   const pathname = usePathname();
   return (
-    <header className="sticky top-0 z-10 w-full bg-purple-400 px-6 py-4">
+    <header className="sticky top-0 z-10 w-full bg-purple-400 px-6 py-1">
       <div className="mx-auto flex w-full max-w-screen-lg items-center justify-between">
         <div className="flex space-x-3 md:space-x-5 lg:space-x-5">
           <h1 className="font-bold text-white">LOGO</h1>
@@ -61,10 +62,9 @@ export default function HeaderPresenter({
           <div className="relative">
             <Menu trigger="hover" openDelay={100} closeDelay={400}>
               <Menu.Target>
-                <button type="button" className="flex items-center text-white">
-                  {/* 프로필 이미지 컴포넌트 추후 추가 */}
-                  프로필
-                </button>
+                <div className="mt-1">
+                  <Profile imageUrl={profileImageUrl} size="header" />
+                </div>
               </Menu.Target>
               <Menu.Dropdown>
                 <Menu.Item component="a" href="/profile">
