@@ -48,21 +48,18 @@ const Template: StoryFn<TabsProps> = function TabsStory({ activeTab, tabs, ...ar
   );
 };
 
-// AppointmentTabs 스토리
 export const AppointmentTabs = Template.bind({});
 AppointmentTabs.args = {
   tabs: tabData.appointmentTabs,
   activeTab: tabData.appointmentTabs[0].id,
 };
 
-// CrewTabs 스토리
 export const CrewTabs = Template.bind({});
 CrewTabs.args = {
   tabs: tabData.crewTabs,
   activeTab: tabData.crewTabs[0].id,
 };
 
-// ReviewTab 스토리
 export const ReviewTabs = Template.bind({});
 ReviewTabs.args = {
   tabs: tabData.reviewTabs,
