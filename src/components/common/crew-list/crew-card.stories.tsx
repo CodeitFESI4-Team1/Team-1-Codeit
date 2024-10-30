@@ -6,6 +6,9 @@ const meta: Meta = {
   component: CrewCard,
   parameters: {
     layout: 'centered',
+    nextjs: {
+      appDirectory: true,
+    },
   },
   tags: ['autodocs'],
   args: {

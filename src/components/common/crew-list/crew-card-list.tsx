@@ -3,7 +3,7 @@ import { InfiniteData } from '@tanstack/react-query';
 import { CrewCardInformResponse } from '@/src/types/crew-card';
 import CrewCard from './crew-card';
 
-interface CrewCardListProps {
+export interface CrewCardListProps {
   data: InfiniteData<CrewCardInformResponse> | undefined;
   isFetchingNextPage: boolean;
   isWide?: boolean;
