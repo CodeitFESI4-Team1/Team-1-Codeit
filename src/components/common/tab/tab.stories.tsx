@@ -20,6 +20,13 @@ const meta: Meta = {
     onTabClick: {
       description: '탭 클릭 시 호출되는 함수',
     },
+    variant: {
+      description: '탭 스타일 유형 ("default" | "review")',
+      control: {
+        type: 'radio',
+        options: ['default', 'review'],
+      },
+    },
   },
 };
 
@@ -53,4 +60,12 @@ export const CrewTabs = Template.bind({});
 CrewTabs.args = {
   tabs: tabData.crewTabs,
   activeTab: tabData.crewTabs[0].id,
+};
+
+// ReviewTab 스토리
+export const ReviewTabs = Template.bind({});
+ReviewTabs.args = {
+  tabs: tabData.reviewTabs,
+  activeTab: tabData.reviewTabs[0].id,
+  variant: 'review',
 };
