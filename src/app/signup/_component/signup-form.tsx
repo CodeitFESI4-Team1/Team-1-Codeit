@@ -1,14 +1,20 @@
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
 import { Button } from '@mantine/core';
 import { useDebouncedCallback } from '@mantine/hooks';
+import { useApiMutation } from '@/src/hooks/useApi';
 import PasswordInput from '@/src/components/common/input/password-input';
 import TextInput from '@/src/components/common/input/text-input';
+import { ApiError } from '@/src/utils/api';
 
-interface SignupFormValues {
+interface SignupRequest {
   nickname: string;
   email: string;
   password: string;
+}
+
+interface SignupFormValues extends SignupRequest {
   confirmPassword: string;
 }
 
@@ -19,9 +25,31 @@ export default function SignupForm() {
     trigger,
     formState: { errors, isValid },
     watch,
+    setError,
   } = useForm<SignupFormValues>({});
 
-  const onSubmit = (data: SignupFormValues) => {};
+  const router = useRouter();
+
+  const { mutate: signupAPI } = useApiMutation<void, SignupRequest>('/users', 'POST', {
+    onSuccess: () => {
+      // TODO: 회원가입이 완료되었습니다 modal
+      // TODO: 로그인처리
+      router.push('/');
+    },
+    onError: (error: ApiError) => {
+      if (error.status === 409) {
+        setError('email', {
+          type: 'manual',
+          message: '이미 사용 중인 아이디입니다.',
+        });
+      }
+    },
+  });
+
+  const onSubmit = async (data: SignupFormValues) => {
+    const { confirmPassword, ...dataToSend } = data;
+    signupAPI(dataToSend);
+  };
 
   const debouncedTrigger = useDebouncedCallback(async (field: keyof SignupFormValues) => {
     await trigger(field);
@@ -106,6 +134,7 @@ export default function SignupForm() {
       />
 
       <div className="mt-10">
+        {/* //TODO: button 바꾸기 */}
         <Button disabled={!isValid} type="submit" fullWidth>
           회원가입
         </Button>

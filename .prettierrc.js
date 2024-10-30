@@ -19,6 +19,7 @@ module.exports = {
     '^@/src/components/(.*)$',
     '^@/src/types/(.*)$',
     '^@/src/styles/(.*)$',
+    '^@/src/utils/(.*)$',
     '^@core/(.*)$',
     '^@server/(.*)$',
     '^@ui/(.*)$',
