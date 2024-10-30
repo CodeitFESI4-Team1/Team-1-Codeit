@@ -40,10 +40,6 @@ export async function fetchApi<T>(
     credentials: 'include',
   };
 
-  if (options.body && !(options.body instanceof FormData)) {
-    fetchOptions.body = JSON.stringify(options.body);
-  }
-
   try {
     const response = await fetch(`${API_BASE_URL}${url}`, fetchOptions);
 
@@ -58,7 +54,7 @@ export async function fetchApi<T>(
 
       if (response.status >= 500 && retries > 0) {
         await delay(1000); // 1초 대기
-        return await fetchApi(url, options, timeout, retries - 1); // return await 추가
+        return await fetchApi(`${API_BASE_URL}${url}`, options, timeout, retries - 1); // return await 추가
       }
 
       throw new ApiError(response.status, errorMessage);
