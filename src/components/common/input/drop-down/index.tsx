@@ -14,17 +14,18 @@ import IconArrow from '@/public/assets/icons/ic-arrow';
 export interface DropDownProps {
   variant: 'default' | 'sort';
   data: ComboboxData;
+  name: string;
   placeholder: string;
   value: string | null;
   onChange: (newValue: string | null) => void;
   className?: string;
-  name: string;
   inWhere?: string;
   ref?: LegacyRef<HTMLInputElement>;
 }
 
 export default function DropDown({
   inWhere = 'default',
+  name,
   variant,
   data,
   value,
@@ -57,6 +58,7 @@ export default function DropDown({
       mt="md"
       data={data}
       value={value}
+      name={name}
       onFocus={() => setIsFocused(true)}
       onBlur={() => setIsFocused(false)}
       onChange={onChange}
