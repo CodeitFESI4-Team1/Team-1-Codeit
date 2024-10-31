@@ -16,7 +16,7 @@ export default function MainCategory({ data, onHover }: MainCategoryProps) {
 
   return (
     <div>
-      <h2 className="typo-2xl-semibold md:typo-4xl-semibold mb-2 text-center md:mb-4">
+      <h2 className="mb-2 text-center text-2xl font-semibold md:mb-4 md:text-4xl">
         크루를 만들고 싶은 운동 선택
       </h2>
       <ul className="space-between mx-6 flex">
@@ -29,7 +29,7 @@ export default function MainCategory({ data, onHover }: MainCategoryProps) {
           >
             <Link
               href={item.title.href}
-              className={`${pathname?.includes(item.title.href) && 'bg-blue-500'} typo-sm-semibold md:typo-lg-semibold lg:typo-xl-semibold flex flex-col items-center text-gray-600 hover:text-blue-500 md:flex-row`}
+              className={`${pathname?.includes(item.title.href) && 'bg-blue-500'} flex flex-col items-center text-sm font-semibold text-gray-600 hover:text-blue-500 md:flex-row md:text-lg lg:text-xl lg:font-semibold`}
             >
               <Image src={ImgMainCategory[index]} width={53} height={45} alt={item.title.label} />
               <h3>{item.title.label}</h3>
