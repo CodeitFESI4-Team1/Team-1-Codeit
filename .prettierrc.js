@@ -15,6 +15,7 @@ module.exports = {
     '^@/src/apis/(.*)$',
     '^@/src/data/(.*)$',
     '^@/src/hooks/(.*)$',
+    '^@/src/utils/(.*)$',
     '^@/src/app/(.*)$',
     '^@/src/components/(.*)$',
     '^@/src/types/(.*)$',

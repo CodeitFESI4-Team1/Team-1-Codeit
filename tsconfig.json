@@ -23,6 +23,8 @@
       "@/src/data/*": ["./src/data/*"],
       "@/src/app/*": ["./src/app/*"],
       "@/src/components/*": ["./src/components/*"],
+      "@/src/hooks/*": ["./src/hooks/*"],
+      "@/src/utils/*": ["./src/utils/*"],
       "@/src/types/*": ["./src/types/*"],
       "@/src/styles/*": ["./src/styles/*"],
       "@/src/mock/*": ["./src/mock/*"],
