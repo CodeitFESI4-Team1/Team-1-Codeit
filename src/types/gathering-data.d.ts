@@ -9,6 +9,19 @@ export interface GatheringType {
   isLiked: boolean;
 }
 
+export interface GatheringDetailType extends GatheringType {
+  introduce: string;
+  isCaptain: boolean;
+  isParticipant: boolean;
+  participants: ParticipantType[];
+}
+
+export interface ParticipantType {
+  id: number;
+  nickName: string;
+  imageUrl: string;
+}
+
 export interface GatheringData {
   data: Gathering[];
   pagination: {
