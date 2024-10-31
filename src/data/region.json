@@ -1,0 +1,74 @@
+[
+  {
+    "label": "전체",
+    "value": "All"
+  },
+  {
+    "label": "서울",
+    "value": "Seoul"
+  },
+  {
+    "label": "경기",
+    "value": "Gyeonggi"
+  },
+  {
+    "label": "인천",
+    "value": "Incheon"
+  },
+  {
+    "label": "부산",
+    "value": "Busan"
+  },
+  {
+    "label": "대구",
+    "value": "Daegu"
+  },
+  {
+    "label": "광주",
+    "value": "Gwangju"
+  },
+  {
+    "label": "대전",
+    "value": "Daejeon"
+  },
+  {
+    "label": "울산",
+    "value": "Ulsan"
+  },
+  {
+    "label": "세종",
+    "value": "Sejong"
+  },
+  {
+    "label": "강원",
+    "value": "Gangwon"
+  },
+  {
+    "label": "충북",
+    "value": "Chungbuk"
+  },
+  {
+    "label": "충남",
+    "value": "Chungnam"
+  },
+  {
+    "label": "전북",
+    "value": "Jeonbuk"
+  },
+  {
+    "label": "전남",
+    "value": "Jeonnam"
+  },
+  {
+    "label": "경북",
+    "value": "Gyeongbuk"
+  },
+  {
+    "label": "경남",
+    "value": "Gyeongnam"
+  },
+  {
+    "label": "제주",
+    "value": "Jeju"
+  }
+]
