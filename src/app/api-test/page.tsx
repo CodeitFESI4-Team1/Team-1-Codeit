@@ -1,7 +1,7 @@
 'use client';
 
-import { ApiError } from '@/src/utils/api';
 import { useApiQuery } from '@/src/hooks/useApi';
+import { ApiError } from '@/src/utils/api';
 
 interface Data {
   name: string;
