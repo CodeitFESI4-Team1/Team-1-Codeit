@@ -34,7 +34,6 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}-storybook
 
       - name: depedency install
-        if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
 
       - name: publish to chromatic
