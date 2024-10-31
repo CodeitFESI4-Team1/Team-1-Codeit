@@ -10,31 +10,34 @@ on:
       - develop
       - feat/*
       - hotfix/*
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   storybook:
-    name: 📚 Storybook Deployment
     permissions: write-all
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
     outputs:
       status: ${{ job.status }}
     steps:
-      - name: 🛎️ Checkout repository
+      - name: checkout repository
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - name: 📦 Cache dependencies
+      - name: cache dependencies
         id: cache
         uses: actions/cache@v3
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}-storybook
 
-      - name: 📥 depedency install
+      - name: depedency install
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
 
-      - name: 📸 publish to chromatic
+      - name: publish to chromatic
         id: chromatic
         uses: chromaui/action@v1
         with:
@@ -47,18 +50,19 @@ jobs:
         with:
           message: '🚀storybook: ${{ steps.chromatic.outputs.storybookUrl }}'
   build:
-    name: 🚧 Build
+    name: Build
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
-      - name: 🛎️ Checkout
+      - name: Checkout
         uses: actions/checkout@v3
 
-      - name: 🛠️ Setup Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20.14.0'
 
-      - name: 📦 Cache dependencies
+      - name: Cache dependencies
         id: cache
         uses: actions/cache@v3
         with:
@@ -67,9 +71,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: 📥 Install Dependencies
+      - name: Install Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
 
-      - name: ✅ Build test
+      - name: Build test
         run: npm run build
