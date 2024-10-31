@@ -54,15 +54,20 @@ export default function GatheringDetailModalPresenter({
         </figure>
         <div className="flex flex-col gap-8 p-6">
           <section>
-            <hgroup className="items-center gap-2 md:flex">
-              <h2 className="text-xl font-semibold text-gray-800">{data.title}</h2>
-              <i
-                className="hidden text-xl font-semibold not-italic text-gray-800 md:flex"
-                aria-hidden="true"
-              >
-                |
-              </i>
-              <h3 className="text-base font-medium text-gray-700">{data.location}</h3>
+            <hgroup>
+              <h2 className="text-xl font-semibold text-gray-800 md:mr-2 md:inline-block">
+                {data.title}
+              </h2>
+
+              <h3 className="text-base font-medium text-gray-700 md:inline-block">
+                <i
+                  className="mr-2 hidden text-xl font-semibold not-italic text-gray-800 md:inline-block"
+                  aria-hidden="true"
+                >
+                  |
+                </i>
+                <span>{data.location}</span>
+              </h3>
             </hgroup>
             <p className="mb-6 mt-2.5 flex gap-2 text-base font-semibold">
               <span className="rounded-[4px] bg-gray-900 px-2 py-0.5 text-white">
