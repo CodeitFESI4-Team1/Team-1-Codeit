@@ -27,8 +27,13 @@ export default function DropDown({
   onChange,
   placeholder,
   className,
+  ...args
 }: DropDownProps) {
   const [isFocused, setIsFocused] = useState(false);
+
+  const renderSelectOption: SelectProps['renderOption'] = ({ option }) => (
+    <div data-testid="dropDownOption">{option.label}</div>
+  );
 
   return (
     <Select
@@ -57,6 +62,8 @@ export default function DropDown({
         root: { '--mantine-spacing-md': 0 },
       }}
       comboboxProps={{ position: 'bottom', middlewares: { flip: false, shift: false }, offset: 0 }}
+      {...args}
+      renderOption={renderSelectOption}
     />
   );
 }
