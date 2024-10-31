@@ -87,7 +87,7 @@ export default function CrewCard({
       role="presentation"
       onClick={handleCardClick}
       onMouseEnter={handleCardMouseUp}
-      className={`shadow-bg relative flex h-fit cursor-pointer flex-col overflow-hidden rounded-[14px] bg-white md:flex-row ${isAlone ? 'w-[369px] md:h-[270px] md:w-[770px] lg:w-[1108px]' : 'w-full md:h-[203px]'}`}
+      className={`relative flex h-fit cursor-pointer flex-col overflow-hidden rounded-[14px] bg-white shadow-bg md:flex-row ${isAlone ? 'w-[369px] md:h-[270px] md:w-[770px] lg:w-[1108px]' : 'w-full md:h-[203px]'}`}
     >
       <span
         className={`relative w-full flex-shrink-0 md:w-1/2 ${!isWide ? 'lg:w-[203px]' : ''} ${isAlone ? 'h-[270px]' : 'h-[167px] md:h-full'}`}
