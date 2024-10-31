@@ -15,10 +15,8 @@ export default function ModalContainer({ children, openModal }: ModalProps) {
   };
 
   return (
-    <>
-      <Modal opened={opened} withCloseButton={false} onClose={close}>
-        {children}
-      </Modal>
-    </>
+    <Modal opened={opened} withCloseButton={false} onClose={close}>
+      {children}
+    </Modal>
   );
 }
