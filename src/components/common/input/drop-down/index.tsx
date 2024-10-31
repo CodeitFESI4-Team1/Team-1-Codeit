@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ComboboxData, ComboboxItem, Select } from '@mantine/core';
+import { ComboboxData, ComboboxItem, Select, SelectProps } from '@mantine/core';
 import IconArrow from '@/public/assets/icons/ic-arrow';
 
 /**
@@ -32,6 +32,10 @@ export default function DropDown({
 }: DropDownProps) {
   const [isFocused, setIsFocused] = useState(false);
 
+  const renderSelectOption: SelectProps['renderOption'] = ({ option }) => (
+    <div data-testid="dropDownOption">{option.label}</div>
+  );
+
   return (
     <Select
       mt="md"
@@ -49,16 +53,17 @@ export default function DropDown({
       }
       placeholder={placeholder}
       classNames={{
-        root: `${className}`,
+        wrapper: `${className}`,
         input: `${variant === 'sort' && (isFocused ? 'sort-bg-on pl-10' : 'sort-bg pl-10')} font-pretendard h-10 md:h-11 focus:bg-black focus:placeholder:text-white focus:text-white text-base font-medium rounded-xl border-0 py-2.5 px-3 placeholder-gray-800 `,
         section: `end-1 ${variant === 'sort' && 'data-[position=right]:hidden start-1'}`,
         dropdown: 'rounded-xl shadow-xl p-0 border-0 mt-2',
-        option: `py-1 m-1 px-2 mr-0 rounded-xl text-gray-800 text-base font-medium hover:bg-blue-100 ${variant === 'sort' && 'justify-center'}`,
+        option: `py-1 m-1 px-2 mr-0 rounded-xl font-pretendard text-gray-800 text-base font-medium hover:bg-blue-100 ${variant === 'sort' && 'justify-center'}`,
       }}
       styles={{
         root: { '--mantine-spacing-md': 0 },
       }}
       comboboxProps={{ position: 'bottom', middlewares: { flip: false, shift: false }, offset: 0 }}
+      renderOption={renderSelectOption}
       {...rest}
     />
   );

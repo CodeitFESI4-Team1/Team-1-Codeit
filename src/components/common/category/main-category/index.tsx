@@ -1,38 +1,46 @@
 'use client';
 
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { MainCategoryItem } from '@/src/types/category';
-import ImgMainCategory from '@/public/category';
+import IcoDown from '@/public/assets/icons/ic-down.svg';
 
 export interface MainCategoryProps {
-  data: MainCategoryItem[];
+  category: MainCategoryItem[];
   onHover: (index: number) => void;
 }
 
-export default function MainCategory({ data, onHover }: MainCategoryProps) {
+export default function MainCategory({ category, onHover }: MainCategoryProps) {
   const pathname = usePathname();
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+  const handleHover = (index: number) => {
+    onHover(index);
+    setActiveIndex(index);
+  };
 
   return (
     <div>
-      <h2 className="typo-2xl-semibold md:typo-4xl-semibold mb-2 text-center md:mb-4">
-        크루를 만들고 싶은 운동 선택
-      </h2>
-      <ul className="space-between mx-6 flex">
-        {data.map((item, index) => (
-          <li
-            key={item.title.href}
-            data-index={index}
-            onMouseEnter={() => onHover(index)}
-            className="flex flex-1 justify-center"
-          >
+      <ul className="space-between flex gap-6">
+        {category.map((item, index) => (
+          <li key={item.title.href} data-index={index} className="py-3 md:py-2">
             <Link
               href={item.title.href}
-              className={`${pathname?.includes(item.title.href) && 'bg-blue-500'} typo-sm-semibold md:typo-lg-semibold lg:typo-xl-semibold flex flex-col items-center text-gray-600 hover:text-blue-500 md:flex-row`}
+              onMouseEnter={() => handleHover(index)}
+              className={`${pathname?.includes(item.title.href) ? 'bg-blue-500' : ''} ${activeIndex === index ? 'text-blue-500' : 'text-gray-600'} flex flex-col items-center text-base font-semibold md:flex-row md:text-lg lg:text-xl lg:font-semibold`}
             >
-              <Image src={ImgMainCategory[index]} width={53} height={45} alt={item.title.label} />
-              <h3>{item.title.label}</h3>
+              <h3 className="flex items-center gap-1 lg:gap-2">
+                <span className="flex py-3 md:py-2">{item.title.label}</span>
+                <Image
+                  src={IcoDown}
+                  width={40}
+                  height={36}
+                  alt="보기"
+                  className={`${pathname?.includes(item.title.href) ? 'flex' : ''} ${activeIndex === index ? 'flex' : 'hidden'} scale-75 lg:scale-100`}
+                />
+              </h3>
             </Link>
           </li>
         ))}
