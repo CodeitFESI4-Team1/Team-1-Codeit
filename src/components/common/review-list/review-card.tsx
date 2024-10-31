@@ -4,7 +4,8 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { Menu } from '@mantine/core';
-import formatDate from '@/src/utils/format-date';
+// import { formatDate } from '@/src/utils/format-date';
+// import { formatDate } from '@/src/utils/format-date';
 import Heart from '@/public/assets/icons/ic-heart';
 import menu from '@/public/assets/icons/ic-menu.svg';
 
@@ -109,7 +110,7 @@ export default function ReviewCard({
     e.stopPropagation();
   };
 
-  const reviewDate = formatDate(createdAt);
+  // const reviewDate = formatDate(createdAt);
 
   return (
     <div
@@ -142,7 +143,7 @@ export default function ReviewCard({
                 </span>
               </>
             )}
-            <span className="text-gray-500">{reviewDate}</span>
+            {/* <span className="text-gray-500">{reviewDate}</span> */}
           </div>
           {isMine && (
             <Menu position="top" offset={2}>
