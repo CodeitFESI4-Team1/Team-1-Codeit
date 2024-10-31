@@ -19,7 +19,8 @@
     ],
     "paths": {
       "@/*": ["./*"],
-      "@/src/apis/*": ["./src/apis/*"],
+      "@/src/_apis/*": ["./src/_apis/*"],
+      "@/src/_queries/*": ["./src/_queries/*"],
       "@/src/data/*": ["./src/data/*"],
       "@/src/app/*": ["./src/app/*"],
       "@/src/components/*": ["./src/components/*"],
