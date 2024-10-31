@@ -23,7 +23,7 @@ export async function fetchApi<T>(
     signal,
     headers: {
       ...options.headers,
-      // TODO: 추후 쿠키 추가
+      // TODO: 추후 토큰 추가
     },
     credentials: 'include',
   };

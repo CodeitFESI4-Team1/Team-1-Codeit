@@ -1,13 +1,26 @@
 'use client';
 
 import Image from 'next/image';
-import { useQuery } from '@tanstack/react-query';
 import { getUsersQuery } from '@/src/_queries/useGetUserQuery';
+import { useQuery } from '@tanstack/react-query';
+import { ApiError } from '@/src/utils/api';
 
 // react-query 예시
 
 export default function TestPage() {
-  const { data: users } = useQuery(getUsersQuery());
+  const { data: users, error, isLoading, isError } = useQuery(getUsersQuery());
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError && error instanceof ApiError) {
+    return (
+      <div>
+        Error {error.status}: {error.message}
+      </div>
+    );
+  }
   return (
     <div>
       <h1>Users</h1>
