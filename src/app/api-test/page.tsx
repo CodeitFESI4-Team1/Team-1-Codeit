@@ -1,8 +1,8 @@
 'use client';
 
 import Image from 'next/image';
-import { getUsersQuery } from '@/src/_queries/useGetUserQuery';
 import { useQuery } from '@tanstack/react-query';
+import { getUsersQuery } from '@/src/_queries/useGetUserQuery';
 import { ApiError } from '@/src/utils/api';
 
 // react-query 예시
