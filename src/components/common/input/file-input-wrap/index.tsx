@@ -5,26 +5,25 @@ import FileInput from './file-input';
 import FileSample from './file-sample';
 
 export interface FileInputProps {
-  value: FileValueType | null;
+  value: File | null;
+  onChange: (newValue: File | null) => void;
 }
 
-export interface FileValueType {
-  image: File | null;
-}
-
-export default function FileInputWrap({ value }: FileInputProps) {
-  const [fileValue, setFileValue] = useState<FileValueType | null>(value);
+export default function FileInputWrap({ value, onChange }: FileInputProps) {
+  const [fileValue, setFileValue] = useState<File | null>(value);
   const [isOtherSelected, setIsOtherSelected] = useState(false);
   const [isSampleSelected, setIsSampleSelected] = useState(false);
 
   const handleChange = (inputValue: File | null) => {
-    setFileValue({ image: inputValue });
+    setFileValue(inputValue);
+    onChange(inputValue);
     setIsOtherSelected(false);
     setIsSampleSelected(true);
   };
 
   const handleFileInput = (inputValue: File | null) => {
-    setFileValue({ image: inputValue });
+    setFileValue(inputValue);
+    onChange(inputValue);
     setIsOtherSelected(true);
     setIsSampleSelected(false);
   };
@@ -46,11 +45,7 @@ export default function FileInputWrap({ value }: FileInputProps) {
         onChange={handleChange}
         isBlur={isOtherSelected}
       />
-      <FileInput
-        value={fileValue?.image || null}
-        onChange={handleFileInput}
-        isBlur={isSampleSelected}
-      />
+      <FileInput value={fileValue || null} onChange={handleFileInput} isBlur={isSampleSelected} />
     </div>
   );
 }

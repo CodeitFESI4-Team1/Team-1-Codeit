@@ -30,19 +30,28 @@ export default function CreateCrewForm({ data, isEdit = false }: CreateCrewFormT
     // TODO : API 연결
   };
 
+  const handleMainCategoryChange = (newValue: string | null) => {
+    setValues((prevValues) => ({
+      ...prevValues,
+      mainCategory: newValue,
+      subCategory: null,
+    }));
+  };
+
+  const handleMainLocationChange = (newValue: string | null) => {
+    setValues((prevValues) => ({
+      ...prevValues,
+      mainLocation: newValue,
+      subLocation: null,
+    }));
+  };
+
   useEffect(() => {
-    if (values.mainCategory !== '' && values.subCategory !== '') {
-      setValues((prevValues) => ({ ...prevValues, subCategory: '' }));
-    }
     setCategoryIndex(
       categoryData.findIndex((category) => category.title.value === values.mainCategory),
     );
-
-    if (values.mainLocation !== '' && values.subLocation !== '') {
-      setValues((prevValues) => ({ ...prevValues, subLocation: '' }));
-    }
     setRegionIndex(regionData.findIndex((region) => region.main.value === values.mainLocation));
-  }, [values.mainCategory, values.subCategory, values.mainLocation, values.subLocation]);
+  }, [values]);
 
   return (
     <form onSubmit={isEdit ? handleEdit : handleSubmit}>
@@ -81,9 +90,7 @@ export default function CreateCrewForm({ data, isEdit = false }: CreateCrewFormT
               placeholder="메인 카테고리"
               name="mainCategory"
               value={values.mainCategory}
-              onChange={(newValue) =>
-                setValues((prevValues) => ({ ...prevValues, mainCategory: newValue }))
-              }
+              onChange={(newValue) => handleMainCategoryChange(newValue)}
               data={categoryData.map((category) => category.title)}
               className="flex-1"
             />
@@ -106,7 +113,12 @@ export default function CreateCrewForm({ data, isEdit = false }: CreateCrewFormT
             대표이미지를 선택하거나 첨부해주세요.
           </label>
           <div className="flex">
-            <FileInputWrap value={values.imageUrl} />
+            <FileInputWrap
+              value={values.imageUrl}
+              onChange={(newValue) =>
+                setValues((prevValues) => ({ ...prevValues, imageUrl: newValue }))
+              }
+            />
           </div>
         </div>
         <div className="flex flex-col gap-3">
@@ -120,9 +132,7 @@ export default function CreateCrewForm({ data, isEdit = false }: CreateCrewFormT
               placeholder="특별시/도"
               name="mainLocation"
               value={values.mainLocation}
-              onChange={(newValue) =>
-                setValues((prevValues) => ({ ...prevValues, mainLocation: newValue }))
-              }
+              onChange={(newValue) => handleMainLocationChange(newValue)}
               data={regionData.map((region) => region.main)}
               className="flex-1"
             />

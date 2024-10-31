@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { LegacyRef, useEffect, useState } from 'react';
 import { ComboboxData, Select, SelectProps } from '@mantine/core';
 import IconArrow from '@/public/assets/icons/ic-arrow';
 
@@ -20,6 +20,7 @@ export interface DropDownProps {
   className?: string;
   name: string;
   inWhere?: string;
+  ref?: LegacyRef<HTMLInputElement>;
 }
 
 export default function DropDown({
@@ -30,6 +31,7 @@ export default function DropDown({
   onChange,
   placeholder,
   className,
+  ref,
   ...rest
 }: DropDownProps) {
   const [isFocused, setIsFocused] = useState(false);
@@ -37,6 +39,18 @@ export default function DropDown({
   const renderSelectOption: SelectProps['renderOption'] = ({ option }) => (
     <div data-testid="dropDownOption">{option.label}</div>
   );
+
+  const getColor = () => {
+    if (isFocused) return '#ffffff';
+    if (inWhere === 'form') return '#1F2937';
+    return '#D1D5DB';
+  };
+
+  useEffect(() => {
+    if (value === null) {
+      onChange(null);
+    }
+  }, [value]);
 
   return (
     <Select
@@ -46,17 +60,13 @@ export default function DropDown({
       onFocus={() => setIsFocused(true)}
       onBlur={() => setIsFocused(false)}
       onChange={onChange}
-      withCheckIcon={false}
+      color={getColor()}
       leftSection=""
-      rightSection={
-        variant !== 'sort' && (
-          <IconArrow direction="down" color={`${isFocused ? '#ffffff' : (inWhere === "form" ? '#1F2937' : '#D1D5DB')}`} />
-        )
-      }
+      rightSection={variant !== 'sort' && <IconArrow direction="down" color={getColor()} />}
       placeholder={placeholder}
       classNames={{
         root: `${className}`,
-        input: `${variant === 'sort' && (isFocused ? 'sort-bg-on pl-10' : 'sort-bg pl-10')} ${inWhere === "form" ? 'bg-gray-100 placeholder-gray-400' : 'bg-white placeholder-gray-800'} font-pretendard h-10 md:h-11 focus:bg-black focus:placeholder:text-white focus:text-white text-base font-medium rounded-xl border-0 py-2.5 px-3`,
+        input: `${variant === 'sort' && (isFocused ? 'sort-bg-on pl-10' : 'sort-bg pl-10')} ${inWhere === 'form' ? 'bg-gray-100 placeholder-gray-400' : 'bg-white placeholder-gray-800'} font-pretendard h-10 md:h-11 focus:bg-black focus:placeholder:text-white focus:text-white text-base font-medium rounded-xl border-0 py-2.5 px-3`,
         section: `end-1 ${variant === 'sort' && 'data-[position=right]:hidden start-1'}`,
         dropdown: 'rounded-xl shadow-xl p-0 border-0 mt-2',
         option: `py-1 m-1 px-2 mr-0 rounded-xl font-pretendard text-gray-800 text-base font-medium hover:bg-blue-100 ${variant === 'sort' && 'justify-center'}`,
@@ -66,6 +76,7 @@ export default function DropDown({
       }}
       comboboxProps={{ position: 'bottom', middlewares: { flip: false, shift: false }, offset: 0 }}
       renderOption={renderSelectOption}
+      ref={ref as LegacyRef<HTMLInputElement>}
       {...rest}
     />
   );

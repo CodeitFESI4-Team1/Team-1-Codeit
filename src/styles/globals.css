@@ -3,7 +3,8 @@
 @tailwind utilities;
 
 @layer base {
-  input, button {
+  input,
+  button {
     font-family: var(--font-pretendard);
   }
 }
