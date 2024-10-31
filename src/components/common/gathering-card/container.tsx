@@ -58,6 +58,7 @@ export default function GatheringCard({
       imageUrl={imageUrl}
       isLiked={isLiked}
       onLikeToggle={handleLikeToggle}
+      // eslint-disable-next-line no-alert
       onClick={() => alert('카드클릭!')}
       className={className}
     />
