@@ -87,8 +87,15 @@ export default function FileInput({ value, isBlur, onChange }: FileInputProps) {
         htmlFor="item-file"
         className="flex h-full w-full cursor-pointer flex-col items-center justify-center rounded-xl bg-neutral-100"
       >
-        <Image width="48" height="48" src={IcoPlus} alt="이미지 추가" />
-        <span>이미지 등록</span>
+        <figure className="relative flex h-3.5 w-3.5 md:h-5 md:w-5">
+          <Image
+            fill
+            src={IcoPlus}
+            alt="이미지 추가"
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          />
+        </figure>
+        <span className="text-xs font-medium text-gray-400 md:text-lg">이미지 등록</span>
       </label>
       <input
         type="file"

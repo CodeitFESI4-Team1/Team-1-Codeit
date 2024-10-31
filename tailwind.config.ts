@@ -40,10 +40,12 @@ const config: Config = {
       padding: {
         7.5: '30px',
         12.5: '50px',
+        18: '72px',
       },
       margin: {
         7.5: '30px',
         12.5: '50px',
+        18: '72px',
       },
       gap: {
         7.5: '30px',
