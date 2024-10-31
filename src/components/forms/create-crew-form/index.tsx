@@ -171,7 +171,7 @@ export default function CreateCrewForm({ data, isEdit = false }: CreateCrewFormT
             }}
           />
         </div>
-        <div className="flex justify-between gap-4">
+        <div className="flex justify-between gap-4 pt-18">
           <Button
             type="submit"
             h={44}
