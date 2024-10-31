@@ -1,4 +1,4 @@
-name: 🔔 Trigger Sync
+name: Trigger Sync - main
 
 on:
   repository_dispatch:
