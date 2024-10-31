@@ -1,27 +1,23 @@
 import { NextResponse } from 'next/server';
 
-export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
-  const status = searchParams.get('status');
+export async function GET() {
+  const users = [
+    {
+      id: 1,
+      name: 'A',
+      profile_url: 'https://i.pinimg.com/736x/e4/4a/09/e44a09cd9a4890667a6d04912055a430.jpg',
+    },
+    {
+      id: 2,
+      name: 'B',
+      profile_url: 'https://i.pinimg.com/736x/e4/4a/09/e44a09cd9a4890667a6d04912055a430.jpg',
+    },
+    {
+      id: 3,
+      name: 'C',
+      profile_url: 'https://i.pinimg.com/736x/e4/4a/09/e44a09cd9a4890667a6d04912055a430.jpg',
+    },
+  ];
 
-  if (status === 'success') {
-    const mockData = {
-      message: 'Success! API is working.',
-      data: {
-        name: 'api 연결 test',
-      },
-    };
-    return NextResponse.json(mockData);
-  }
-  if (status === 'not-found') {
-    return NextResponse.json({ message: 'Not Found: This is a test 404 error.' }, { status: 404 });
-  }
-  if (status === 'error') {
-    return NextResponse.json(
-      { message: 'Internal Server Error: Simulated failure.' },
-      { status: 500 },
-    );
-  }
-
-  return NextResponse.json({ message: 'Bad Request: Invalid status parameter.' }, { status: 400 });
+  return NextResponse.json({ data: users });
 }
