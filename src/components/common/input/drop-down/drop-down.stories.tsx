@@ -42,9 +42,9 @@ const Template: StoryFn<DropDownProps> = function DropDownStory(args: DropDownPr
     <DropDown
       {...args}
       value={value}
-      onChange={(newValue, option) => {
+      onChange={(newValue) => {
         setValue(newValue);
-        action('onChange')(newValue, option); // 액션 로그
+        action('onChange')(newValue); // 액션 로그
       }}
     />
   );
