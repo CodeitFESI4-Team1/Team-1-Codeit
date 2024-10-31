@@ -56,6 +56,9 @@ export default function ConfirmCancelModal({
       centered
       withCloseButton={false}
       size="xs"
+      styles={{
+        content: { boxShadow: '0 25px 50px -12px rgba(0,0,0,0.1)', borderRadius: '12px' },
+      }}
       overlayProps={{
         opacity: 0.5,
         blur: 2,
