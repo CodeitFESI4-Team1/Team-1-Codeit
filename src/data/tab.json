@@ -1,0 +1,15 @@
+{
+  "appointmentTabs": [
+    { "label": "내가 참여한 약속", "id": "tab1" },
+    { "label": "내가 만든 약속", "id": "tab2" },
+    { "label": "찜한 약속", "id": "tab3" }
+  ],
+  "crewTabs": [
+    { "label": "내가 참여한 크루", "id": "tab1" },
+    { "label": "내가 만든 크루", "id": "tab2" }
+  ],
+  "reviewTabs": [
+    { "label": "작성 가능한 리뷰", "id": "tab1" },
+    { "label": "작성한 리뷰", "id": "tab2" }
+  ]
+}
