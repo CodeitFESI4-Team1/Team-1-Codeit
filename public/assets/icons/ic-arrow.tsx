@@ -2,7 +2,7 @@ interface IconArrowProps {
   direction: 'left' | 'right' | 'up' | 'down';
   color: string;
 }
-export default function IconArrow({ direction = 'left', color = '#D1D5DB' }) {
+export default function IconArrow({ direction = 'left', color = '#D1D5DB' }: IconArrowProps) {
   switch (direction) {
     case 'left':
       return (
