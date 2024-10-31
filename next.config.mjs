@@ -1,15 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: '**', // 모든 도메인 허용
-      },
-    ],
-  },
-};
-module.exports = {
   webpack(config) {
     const fileLoaderRule = config.module.rules.find((rule) => rule.test?.test?.('.svg'));
 
@@ -31,6 +21,13 @@ module.exports = {
 
     return config;
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**', // 모든 도메인 허용
+      },
+    ],
+  },
 };
-
 export default nextConfig;
