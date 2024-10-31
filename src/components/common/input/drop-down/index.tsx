@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ComboboxData, ComboboxItem, Select, SelectProps } from '@mantine/core';
+import { ComboboxData, Select, SelectProps } from '@mantine/core';
 import IconArrow from '@/public/assets/icons/ic-arrow';
 
 /**
@@ -16,7 +16,7 @@ export interface DropDownProps {
   data: ComboboxData;
   placeholder: string;
   value: string | null;
-  onChange: (newValue: string | null, option: ComboboxItem) => void;
+  onChange: (newValue: string | null) => void;
   className?: string;
   name: string;
 }
@@ -53,7 +53,7 @@ export default function DropDown({
       }
       placeholder={placeholder}
       classNames={{
-        wrapper: `${className}`,
+        root: `${className}`,
         input: `${variant === 'sort' && (isFocused ? 'sort-bg-on pl-10' : 'sort-bg pl-10')} font-pretendard h-10 md:h-11 focus:bg-black focus:placeholder:text-white focus:text-white text-base font-medium rounded-xl border-0 py-2.5 px-3 placeholder-gray-800 `,
         section: `end-1 ${variant === 'sort' && 'data-[position=right]:hidden start-1'}`,
         dropdown: 'rounded-xl shadow-xl p-0 border-0 mt-2',
