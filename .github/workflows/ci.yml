@@ -10,10 +10,14 @@ on:
       - develop
       - feat/*
       - hotfix/*
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   storybook:
     permissions: write-all
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
     outputs:
       status: ${{ job.status }}
     steps:
@@ -26,11 +30,10 @@ jobs:
         id: cache
         uses: actions/cache@v3
         with:
-          path: "**/node_modules"
+          path: '**/node_modules'
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}-storybook
 
       - name: depedency install
-        if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
 
       - name: publish to chromatic
@@ -44,10 +47,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          message: "🚀storybook: ${{ steps.chromatic.outputs.storybookUrl }}"
+          message: '🚀storybook: ${{ steps.chromatic.outputs.storybookUrl }}'
   build:
     name: Build
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - name: Checkout
         uses: actions/checkout@v3
