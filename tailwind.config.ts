@@ -135,7 +135,7 @@ const config: Config = {
             'background-position': '12px center',
             'background-size': '24px 24px',
           },
-          //button style
+          // button style
           '.btn-filled': {
             backgroundColor: '#3B82F6',
             color: '#ffffff',

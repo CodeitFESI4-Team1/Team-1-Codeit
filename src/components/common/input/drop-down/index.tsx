@@ -19,9 +19,11 @@ export interface DropDownProps {
   onChange: (newValue: string | null) => void;
   className?: string;
   name: string;
+  inWhere?: string;
 }
 
 export default function DropDown({
+  inWhere = 'default',
   variant,
   data,
   value,
@@ -48,13 +50,13 @@ export default function DropDown({
       leftSection=""
       rightSection={
         variant !== 'sort' && (
-          <IconArrow direction="down" color={`${isFocused === true ? '#ffffff' : '#D1D5DB'}`} />
+          <IconArrow direction="down" color={`${isFocused ? '#ffffff' : (inWhere === "form" ? '#1F2937' : '#D1D5DB')}`} />
         )
       }
       placeholder={placeholder}
       classNames={{
         root: `${className}`,
-        input: `${variant === 'sort' && (isFocused ? 'sort-bg-on pl-10' : 'sort-bg pl-10')} font-pretendard h-10 md:h-11 focus:bg-black focus:placeholder:text-white focus:text-white text-base font-medium rounded-xl border-0 py-2.5 px-3 placeholder-gray-800 `,
+        input: `${variant === 'sort' && (isFocused ? 'sort-bg-on pl-10' : 'sort-bg pl-10')} ${inWhere === "form" ? 'bg-gray-100 placeholder-gray-400' : 'bg-white placeholder-gray-800'} font-pretendard h-10 md:h-11 focus:bg-black focus:placeholder:text-white focus:text-white text-base font-medium rounded-xl border-0 py-2.5 px-3`,
         section: `end-1 ${variant === 'sort' && 'data-[position=right]:hidden start-1'}`,
         dropdown: 'rounded-xl shadow-xl p-0 border-0 mt-2',
         option: `py-1 m-1 px-2 mr-0 rounded-xl font-pretendard text-gray-800 text-base font-medium hover:bg-blue-100 ${variant === 'sort' && 'justify-center'}`,
