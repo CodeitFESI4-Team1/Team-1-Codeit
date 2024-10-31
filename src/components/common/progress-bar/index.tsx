@@ -4,29 +4,17 @@ import { useEffect, useState } from 'react';
 
 /**
  * ProgressBar 컴포넌트
- * @param {number} total
- * @param {number} current
- * @param {string} [height='h-2'] - 프로그레스 바의 높이 (Tailwind CSS 클래스)
- * @param {string} [progressBarColor='bg-orange-500'] - 진행 중인 바의 색상 (Tailwind CSS 클래스)
- * @param {string} [mainBarColor='bg-orange-100'] - 전체 바의 색상 (Tailwind CSS 클래스)
+ * @param {number} total - 총 숫자
+ * @param {number} current - 현재 진행 중인 숫자
  * @returns {JSX.Element}
  */
 
 export interface ProgressBarProps {
   total: number;
   current: number;
-  height?: string;
-  progressBarColor?: string;
-  mainBarColor?: string;
 }
 
-export default function ProgressBar({
-  total,
-  current,
-  height = 'h-2',
-  progressBarColor = 'bg-orange-500',
-  mainBarColor = 'bg-orange-100',
-}: ProgressBarProps) {
+export default function ProgressBar({ total, current }: ProgressBarProps) {
   const [progressValue, setProgressValue] = useState(0);
 
   useEffect(() => {
@@ -37,9 +25,9 @@ export default function ProgressBar({
   }, [current, total]);
 
   return (
-    <div className={`w-full ${mainBarColor} relative ${height} rounded-md`}>
+    <div className="relative h-[6px] w-full rounded-md bg-blue-50">
       <div
-        className={`${progressBarColor} absolute left-0 top-0 ${height} rounded-md transition-all duration-1000`}
+        className="absolute left-0 top-0 h-[6px] rounded-md bg-blue-400 transition-all duration-1000"
         style={{ width: `${progressValue}%` }}
       />
     </div>
