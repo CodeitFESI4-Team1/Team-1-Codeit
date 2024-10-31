@@ -10,7 +10,7 @@ const meta: Meta = {
 export default meta;
 
 const Template: StoryFn = function SignupFormStory() {
-  return <SignupForm />;
+  return <SignupForm onSubmit={() => {}} />;
 };
 
 export const Default = Template.bind({});
