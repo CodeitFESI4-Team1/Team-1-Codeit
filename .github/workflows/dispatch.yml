@@ -1,4 +1,4 @@
-name: Trigger Fork Repo Action
+name: Trigger Fork Repo Action - main
 on:
   push:
     branches:
@@ -8,7 +8,7 @@ jobs:
     if: github.repository_owner == 'CodeitFESI4-Team1'
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger repository_dispatch
+      - name: Trigger repository_dispatch - main
         run: |
           curl -X POST \
           -H "Authorization: token ${{ secrets.PAT }}" \
