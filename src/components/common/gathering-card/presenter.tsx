@@ -125,6 +125,7 @@ export default function GatheringCardPresenter({
               className="rounded-lg bg-indigo-500 px-4 py-2 text-white"
               onClick={(e) => {
                 e.stopPropagation();
+                // eslint-disable-next-line no-alert
                 alert('모임이 종료되었습니다.');
               }}
             >
