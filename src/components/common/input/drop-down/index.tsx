@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ComboboxData, ComboboxItem, Select } from '@mantine/core';
+import { ComboboxData, ComboboxItem, Select, SelectProps } from '@mantine/core';
 import IconArrow from '@/public/assets/icons/ic-arrow';
 
 /**
