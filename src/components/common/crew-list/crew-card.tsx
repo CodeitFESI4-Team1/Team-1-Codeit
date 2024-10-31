@@ -129,12 +129,7 @@ export default function CrewCard({
                 </span>
               )}
             </span>
-            <ProgressBar
-              mainBarColor="bg-blue-50"
-              progressBarColor="bg-blue-400"
-              total={capacity}
-              current={participantCount}
-            />
+            <ProgressBar total={capacity} current={participantCount} />
           </div>
         </div>
       </div>
