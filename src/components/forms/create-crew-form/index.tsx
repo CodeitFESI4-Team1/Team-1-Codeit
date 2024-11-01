@@ -6,10 +6,10 @@ import { useRouter } from 'next/navigation';
 import { NumberInput, TextInput } from '@mantine/core';
 import categoryData from '@/src/data/category.json';
 import regionData from '@/src/data/region.json';
+import Button from '@/src/components/common/button';
 import DropDown from '@/src/components/common/input/drop-down';
 import FileInputWrap from '@/src/components/common/input/file-input-wrap';
 import { CreateCrewRequestTypes } from '@/src/types/create-crew';
-import Button from '../../common/button';
 
 export interface CreateCrewFormTypes {
   data: CreateCrewRequestTypes;
@@ -207,14 +207,14 @@ export default function CreateCrewForm({
           <Button
             type="submit"
             disabled={!isFormValid}
-            className="h-11 flex-1 rounded-xl bg-blue-500 text-base font-medium disabled:bg-gray-200"
+            className="btn-filled h-11 flex-1 text-base font-medium disabled:bg-gray-200"
           >
             {isEdit ? '수정' : '확인'}
           </Button>
           <Button
             type="button"
             onClick={() => router.back()}
-            className="w-30 h-11 flex-1 rounded-xl border-blue-500 text-base font-medium text-blue-500"
+            className="w-29.5 btn-outlined h-11 flex-1 text-base font-medium text-blue-500"
           >
             취소
           </Button>

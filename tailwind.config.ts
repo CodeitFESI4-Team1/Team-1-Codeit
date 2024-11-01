@@ -36,6 +36,7 @@ const config: Config = {
         7.5: '30px',
         12.5: '50px',
         27.5: '110px',
+        39.5: '118px',
       },
       padding: {
         7.5: '30px',
@@ -146,6 +147,10 @@ const config: Config = {
               backgroundColor: '#2563EB',
               fontWeight: '600',
             },
+            '&:disabled': {
+              backgroundColor: '#6B7280',
+              opacity: '0.8',
+            },
           },
           '.btn-outlined': {
             border: '1px solid #3B82F6',
@@ -157,12 +162,10 @@ const config: Config = {
               color: '#2563EB',
               fontWeight: '600',
             },
-          },
-          '.btn-disabled': {
-            backgroundColor: '#6B7280',
-            color: '#ffffff',
-            cursor: 'not-allowed',
-            opacity: '0.8',
+            '&:disabled': {
+              backgroundColor: '#6B7280',
+              opacity: '0.8',
+            },
           },
         });
       },
