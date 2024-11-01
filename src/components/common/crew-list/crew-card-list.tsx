@@ -31,9 +31,10 @@ function CrewCardList(
               location={inform.location}
               name={inform.name}
               thumbnail={inform.images[0].imagePath}
-              canceledDate={inform.canceledAt}
               participantCount={inform.participantCount}
               isWide={isWide}
+              isClickable
+              gatheringCount={inform.gatheringCount}
             />
           </li>
         ))}
