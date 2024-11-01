@@ -164,6 +164,17 @@ const config: Config = {
             },
             '&:disabled': {
               backgroundColor: '#6B7280',
+              color: '#ffffff',
+              opacity: '0.8',
+            },
+          },
+          '.btn-disabled': {
+            backgroundColor: '#6B7280',
+            color: '#ffffff',
+            cursor: 'not-allowed',
+            opacity: '0.8',
+            '&:disabled': {
+              backgroundColor: '#6B7280',
               opacity: '0.8',
             },
           },
