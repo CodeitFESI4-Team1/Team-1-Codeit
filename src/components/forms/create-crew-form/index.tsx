@@ -13,9 +13,16 @@ import { CreateCrewRequestTypes } from '@/src/types/create-crew';
 export interface CreateCrewFormTypes {
   data: CreateCrewRequestTypes;
   isEdit?: boolean;
+  onEdit?: (data: CreateCrewRequestTypes) => void;
+  onSubmit?: (data: CreateCrewRequestTypes) => void;
 }
 
-export default function CreateCrewForm({ data, isEdit = false }: CreateCrewFormTypes) {
+export default function CreateCrewForm({
+  isEdit = false,
+  data,
+  onEdit,
+  onSubmit,
+}: CreateCrewFormTypes) {
   const router = useRouter();
   const {
     register,
@@ -38,14 +45,6 @@ export default function CreateCrewForm({ data, isEdit = false }: CreateCrewFormT
   const isFormValid =
     requiredFields.every((field) => values[field as keyof CreateCrewRequestTypes]) &&
     Object.keys(errors).length === 0;
-
-  const handleSubmitForm = () => {
-    // TODO : API 연결
-  };
-
-  const handleEdit = () => {
-    // TODO : API 연결
-  };
 
   const handleMainCategoryChange = (newValue: string | null) => {
     setValues((prevValues) => ({
@@ -71,7 +70,7 @@ export default function CreateCrewForm({ data, isEdit = false }: CreateCrewFormT
   }, [values]);
 
   return (
-    <form onSubmit={isEdit ? handleEdit : handleSubmit(handleSubmitForm)}>
+    <form onSubmit={isEdit ? handleSubmit(onEdit()) : handleSubmit(onSubmit())}>
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-3">
           <div className="flex justify-between">

@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 import CreateCrewForm from '@/src/components/forms/create-crew-form';
 import { CreateCrewRequestTypes } from '@/src/types/create-crew';
@@ -14,6 +16,10 @@ export default function CreateCrewPage() {
     totalCount: 0,
   };
 
+  const handleSubmit = () => {
+    // TODO : POST API 연결
+  };
+
   return (
     <div className="container mx-auto my-0 min-h-screen max-w-pc bg-gray-50 py-11 shadow-bg">
       <div className="lg:px-8.5 flex flex-col gap-8 px-3 md:px-8">
@@ -28,7 +34,7 @@ export default function CreateCrewPage() {
           </figure>
           <h2 className="text-3.5xl font-bold text-gray-900">크루 만들기</h2>
         </div>
-        <CreateCrewForm data={initialValue} />
+        <CreateCrewForm data={initialValue} onSubmit={handleSubmit} />
       </div>
     </div>
   );

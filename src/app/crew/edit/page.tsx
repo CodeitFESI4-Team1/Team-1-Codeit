@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 import CreateCrewForm from '@/src/components/forms/create-crew-form';
 import { CreateCrewRequestTypes } from '@/src/types/create-crew';
@@ -15,6 +17,10 @@ export default function EditCrewPage() {
     totalCount: 0,
   };
 
+  const handleEdit = () => {
+    // TODO : PATCH API 연결
+  };
+
   return (
     <div className="container mx-auto my-0 min-h-screen max-w-pc bg-gray-50 py-11 shadow-bg">
       <div className="lg:px-8.5 lg:gap-4.5 flex flex-col gap-3 px-3 md:gap-4 md:px-8">
@@ -29,7 +35,7 @@ export default function EditCrewPage() {
           </figure>
           <h2 className="text-3.5xl font-bold text-gray-900">크루 수정하기</h2>
         </div>
-        <CreateCrewForm isEdit data={initialValue} />
+        <CreateCrewForm isEdit data={initialValue} onEdit={handleEdit} />
       </div>
     </div>
   );
