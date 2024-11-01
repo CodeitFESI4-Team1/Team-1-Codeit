@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { MainCategoryItem } from '@/src/types/category';
-import IcoDown from '@/public/assets/icons/ic-down.svg';
+import IcoDown from '@/public/assets/icons/ic-down.svg?url';
 
 export interface MainCategoryProps {
   category: MainCategoryItem[];

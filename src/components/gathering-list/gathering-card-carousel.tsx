@@ -6,8 +6,8 @@ import { Carousel } from '@mantine/carousel';
 import { useMediaQuery } from '@mantine/hooks';
 import GatheringCard from '@/src/components/common/gathering-card/container';
 import { gatheringData } from '@/src/mock/gathering-data';
-import IcoLeft from '@/public/assets/icons/ic-left.svg';
-import IcoRight from '@/public/assets/icons/ic-right.svg';
+import IcoLeft from '@/public/assets/icons/ic-left.svg?url';
+import IcoRight from '@/public/assets/icons/ic-right.svg?url';
 
 /* eslint-disable no-nested-ternary */
 /* eslint-disable react/no-array-index-key */
