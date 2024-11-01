@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@mantine/core';
-import ImgHeroCrew from '@/public/assets/icons/ic-dumbbell.svg?url';
+import ImgHeroCrew from '@/public/assets/icons/ic-dumbbell.svg';
 
 export default function HeroCrew() {
   return (

@@ -4,8 +4,8 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useMediaQuery } from '@mantine/hooks';
-import Check from '@/public/assets/icons/ic-check.svg?url';
-import Person from '@/public/assets/icons/ic-person.svg?url';
+import Check from '@/public/assets/icons/ic-check.svg';
+import Person from '@/public/assets/icons/ic-person.svg';
 import ProgressBar from '../progress-bar';
 import Profiles from './profiles';
 

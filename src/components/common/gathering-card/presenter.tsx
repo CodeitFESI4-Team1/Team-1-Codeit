@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import { Badge } from '@mantine/core';
 import { formatDate } from '@/src/utils/format-date';
-import IcoPerson from '@/public/assets/icons/person.svg?url';
-import IcoTimer from '@/public/assets/icons/timer.svg?url';
+import IcoPerson from '@/public/assets/icons/person.svg';
+import IcoTimer from '@/public/assets/icons/timer.svg';
 
 export interface GatheringCardPresenterProps {
   imageUrl: string;

@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { Menu } from '@mantine/core';
 import ReviewHearts from '@/src/components/common/review-heart/hearts';
-import menu from '@/public/assets/icons/ic-menu.svg?url';
+import menu from '@/public/assets/icons/ic-menu.svg';
 
 // import { formatDate } from '@/src/utils/format-date';
 // import { formatDate } from '@/src/utils/format-date';

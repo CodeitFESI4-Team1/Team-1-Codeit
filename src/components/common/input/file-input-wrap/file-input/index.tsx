@@ -1,7 +1,7 @@
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import IcoPlus from '@/public/assets/icons/ic-plus.svg?url';
-import IcoX from '@/public/assets/icons/ic-x.svg?url';
+import IcoPlus from '@/public/assets/icons/ic-plus.svg';
+import IcoX from '@/public/assets/icons/ic-x.svg';
 
 export interface FileInputProps {
   value: File | null;

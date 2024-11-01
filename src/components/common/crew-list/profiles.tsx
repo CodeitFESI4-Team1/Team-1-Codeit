@@ -5,7 +5,7 @@
  * @returns {JSX.Element}
  */
 import Image from 'next/image';
-import defaultProfile from '@/public/assets/icons/default-profile.svg?url';
+import defaultProfile from '@/public/assets/icons/default-profile.svg';
 
 interface ProfilesProps {
   id: 1 | 2 | 3;

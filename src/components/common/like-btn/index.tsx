@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import activeHeart from '@/public/assets/icons/active-heart.svg?url';
-import defaultHeart from '@/public/assets/icons/default-heart.svg?url';
+import activeHeart from '@/public/assets/icons/active-heart.svg';
+import defaultHeart from '@/public/assets/icons/default-heart.svg';
 
 /**
  * LikeBtn
