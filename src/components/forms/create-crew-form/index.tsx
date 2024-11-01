@@ -3,12 +3,13 @@
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
-import { NumberInput, TextInput } from '@mantine/core';
+import { NumberInput } from '@mantine/core';
 import categoryData from '@/src/data/category.json';
 import regionData from '@/src/data/region.json';
 import Button from '@/src/components/common/button';
 import DropDown from '@/src/components/common/input/drop-down';
 import FileInputWrap from '@/src/components/common/input/file-input-wrap';
+import TextInput from '@/src/components/common/input/text-input';
 import { CreateCrewRequestTypes } from '@/src/types/create-crew';
 
 export interface CreateCrewFormTypes {
@@ -86,11 +87,13 @@ export default function CreateCrewForm({
             id="crew-title"
             variant="filled"
             value={values.title}
-            {...register('title', {
-              required: '필수 입력사항입니다.',
-              pattern: /^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣|a-z|A-Z|0-9| ]{1,20}$/,
-              onBlur: () => trigger('title'),
-            })}
+            register={{
+              ...register('title', {
+                required: '필수 입력사항입니다.',
+                pattern: /^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣|a-z|A-Z|0-9| ]{1,20}$/,
+                onBlur: () => trigger('title'),
+              }),
+            }}
             error={errors.title?.message?.toString()}
             onChange={(e) => setValues((prevValues) => ({ ...prevValues, title: e.target.value }))}
             placeholder="크루명을 20자 이내로 입력해주세요."
