@@ -1,3 +1,8 @@
+export interface ReviewInformResponse {
+  data: CrewReview[] | MyReview[];
+  hasNextPage: boolean;
+}
+
 // NOTE: 크루 전체 리뷰
 export interface CrewReview {
   crewId: number;
