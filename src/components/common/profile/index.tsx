@@ -17,7 +17,7 @@ import editImage from '@/public/assets/icons/profile-edit.svg';
 
 interface ProfileProps {
   size?: 'small' | 'header' | 'large';
-  imageUrl?: string;
+  imageUrl?: string | null;
   editable?: boolean;
   onClick?: () => void;
   onEdit?: () => void;
@@ -50,7 +50,7 @@ export function Profile({
           className={`relative h-full w-full rounded-full ${imageUrl ? 'border-2 border-blue-100' : ''}`}
         >
           <Image
-            src={imageUrl || defaultImage}
+            src={imageUrl && imageUrl.trim() ? imageUrl : defaultImage}
             alt="프로필 이미지"
             layout="fill"
             objectFit="cover"
