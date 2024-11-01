@@ -1,8 +1,8 @@
 'use client';
 
 import Image from 'next/image';
-import defaultImage from '@/public/assets/icons/default-profile.svg';
-import editImage from '@/public/assets/icons/profile-edit.svg';
+import defaultImage from '@/public/assets/icons/default-profile.svg?url';
+import editImage from '@/public/assets/icons/profile-edit.svg?url';
 
 /**
  * Profile 컴포넌트

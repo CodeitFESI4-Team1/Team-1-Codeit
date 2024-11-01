@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { Menu } from '@mantine/core';
 import ReviewHearts from '@/src/components/common/review-heart/hearts';
+import menu from '@/public/assets/icons/ic-menu.svg?url';
 
 // import { formatDate } from '@/src/utils/format-date';
 // import { formatDate } from '@/src/utils/format-date';
@@ -136,7 +137,7 @@ export default function ReviewCard({
             <Menu position="top" offset={2}>
               <Menu.Target>
                 <Image
-                  src="@/public/assets/icons/ic-menu.svg"
+                  src={menu}
                   alt="더보기메뉴"
                   className="block rounded-full hover:bg-[#f2f2f2]"
                   width={25}
