@@ -12,7 +12,7 @@ export interface ProfileCardProps {
 export default function ProfileCard({ data, onEdit }: ProfileCardProps) {
   return (
     <div className="flex items-end justify-between">
-      <div className="gap-6.5 flex items-center">
+      <div className="flex items-center gap-6.5">
         <figure className="h-30 w-30">
           <Profile size="full" imageUrl={data?.profileImageUrl ?? ''} />
         </figure>
