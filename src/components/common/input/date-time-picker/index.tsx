@@ -68,7 +68,7 @@ export default function DateTimePicker({ fullDate, onChange }: DateTimePickerPro
           }}
         />
       </div>
-      <div className="flex w-full items-center justify-between gap-2 rounded-xl border border-gray-200 p-5 md:w-[595px]">
+      <div className="flex items-center justify-between gap-2 rounded-xl border border-gray-200 p-5">
         <DropDown
           name="hour"
           variant="default"
