@@ -1,8 +1,9 @@
 'use client';
 
-import { FormEvent, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
-import { Button, Input, NumberInput } from '@mantine/core';
+import { Button, NumberInput, TextInput } from '@mantine/core';
 import categoryData from '@/src/data/category.json';
 import regionData from '@/src/data/region.json';
 import DropDown from '@/src/components/common/input/drop-down';
@@ -16,17 +17,36 @@ export interface CreateCrewFormTypes {
 
 export default function CreateCrewForm({ data, isEdit = false }: CreateCrewFormTypes) {
   const router = useRouter();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    trigger,
+  } = useForm({
+    mode: 'onBlur', // blur 시점에 유효성 검사 실행
+    reValidateMode: 'onBlur', // 값이 변경된 후에도 blur 시 유효성 검사 재실행
+  });
   const [values, setValues] = useState<CreateCrewRequestTypes>(data);
   const [categoryIndex, setCategoryIndex] = useState(0);
   const [regionIndex, setRegionIndex] = useState(0);
+  const requiredFields: (keyof CreateCrewRequestTypes)[] = [
+    'title',
+    'imageUrl',
+    'mainCategory',
+    'subCategory',
+    'mainLocation',
+    'subLocation',
+    'totalCount',
+  ];
+  const isFormValid =
+    requiredFields.every((field) => values[field as keyof CreateCrewRequestTypes]) &&
+    Object.keys(errors).length === 0;
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmitForm = () => {
     // TODO : API 연결
   };
 
-  const handleEdit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleEdit = () => {
     // TODO : API 연결
   };
 
@@ -54,7 +74,7 @@ export default function CreateCrewForm({ data, isEdit = false }: CreateCrewFormT
   }, [values]);
 
   return (
-    <form onSubmit={isEdit ? handleEdit : handleSubmit}>
+    <form onSubmit={isEdit ? handleEdit : handleSubmit(handleSubmitForm)}>
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-3">
           <div className="flex justify-between">
@@ -65,17 +85,21 @@ export default function CreateCrewForm({ data, isEdit = false }: CreateCrewFormT
               <span className="text-blue-500">{values.title.length}</span>/20
             </span>
           </div>
-          <Input
+          <TextInput
             id="crew-title"
             variant="filled"
             value={values.title}
-            name="title"
+            {...register('title', {
+              required: '필수 입력사항입니다.',
+              pattern: /^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣|a-z|A-Z|0-9| ]{1,20}$/,
+            })}
+            error={errors.title?.message?.toString()}
             onChange={(e) => setValues((prevValues) => ({ ...prevValues, title: e.target.value }))}
             placeholder="크루명을 20자 이내로 입력해주세요."
             maxLength={20}
             classNames={{
               input:
-                'h-11 py-2.5 px-4 bg-gray-100 placeholder:text-gray-400 font-pretendard text-base font-medium rounded-xl',
+                'h-11 py-2.5 px-4 bg-gray-100 placeholder:text-gray-400 font-pretendard text-base font-medium rounded-xl aria-[invalid=true]:border-none',
             }}
           />
         </div>
@@ -158,6 +182,10 @@ export default function CreateCrewForm({ data, isEdit = false }: CreateCrewFormT
             id="crew-totalCount"
             variant="filled"
             value={values.totalCount}
+            {...register('totalCount', {
+              min: 4,
+              max: 20,
+            })}
             name="totalCount"
             onChange={(newValue) =>
               setValues((prevValues) => ({ ...prevValues, totalCount: Number(newValue) }))
@@ -170,12 +198,18 @@ export default function CreateCrewForm({ data, isEdit = false }: CreateCrewFormT
                 'h-11 py-2.5 px-4 bg-gray-100 placeholder:text-gray-400 font-pretendard text-base font-medium rounded-xl',
             }}
           />
+          {errors.totalCount && (
+            <p className="m_8f816625 mantine-InputWrapper-error mantine-TextInput-error">
+              4명 이상 20명 이하로 입력해주세요.
+            </p>
+          )}
         </div>
         <div className="flex justify-between gap-4 pt-18">
           <Button
             type="submit"
             h={44}
-            className="flex-1 rounded-xl bg-blue-500 text-base font-medium"
+            disabled={!isFormValid}
+            className="flex-1 rounded-xl bg-blue-500 text-base font-medium disabled:bg-gray-200"
           >
             {isEdit ? '수정' : '확인'}
           </Button>
