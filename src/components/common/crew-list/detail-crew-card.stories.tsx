@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import CrewCard from './crew-card';
+import CrewCard from './detail-crew-card';
 
 const meta: Meta = {
   title: 'Components/CrewCardList/CrewCard',
@@ -16,7 +16,6 @@ const meta: Meta = {
     name: '같이 물장구칠사람',
     location: '충청',
     thumbnail: 'https://i.pinimg.com/564x/f8/8d/c5/f88dc5b857caf6c303ae5ef9dd12e7fb.jpg',
-    isAlone: true,
   },
 } satisfies Meta<typeof CrewCard>;
 
