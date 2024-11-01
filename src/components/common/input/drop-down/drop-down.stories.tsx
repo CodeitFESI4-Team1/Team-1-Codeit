@@ -35,13 +35,14 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: StoryFn<DropDownProps> = function DropDownStory(args: DropDownProps) {
-  const [value, setValue] = useState<string | null>(null);
+const Template: StoryFn<DropDownProps> = function DropDownStory(args) {
+  const [value, setValue] = useState<string | null>('option1');
 
   return (
     <DropDown
       {...args}
       value={value}
+      className="w-[110px]"
       onChange={(newValue) => {
         setValue(newValue);
         action('onChange')(newValue); // 액션 로그
@@ -53,6 +54,7 @@ const Template: StoryFn<DropDownProps> = function DropDownStory(args: DropDownPr
 export const Default = Template.bind({});
 Default.args = {
   variant: 'default',
+  name: 'region',
   data: [
     { value: 'option1', label: '옵션 1' },
     { value: 'option2', label: '옵션 2' },
@@ -65,6 +67,7 @@ Default.args = {
 export const Sort = Template.bind({});
 Sort.args = {
   variant: 'sort',
+  name: 'sort',
   data: [
     { value: 'latest', label: '최신순' },
     { value: 'best', label: '인기순' },
