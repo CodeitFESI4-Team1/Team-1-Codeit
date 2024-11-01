@@ -1,3 +1,5 @@
+import { useAuthStore } from '@/src/store/use-auth-store';
+
 // TODO: 추후 API URL 수정
 const API_BASE_URL = 'http://localhost:3009';
 
@@ -20,13 +22,14 @@ export async function fetchApi<T>(
   const controller = new AbortController();
   const { signal } = controller;
   const id = setTimeout(() => controller.abort(), timeout);
+  const { token } = useAuthStore.getState();
 
   const fetchOptions: RequestInit = {
     ...options,
     signal,
     headers: {
       ...options.headers,
-      // TODO: 추후 토큰 추가
+      Authorization: token ? `Bearer ${token}` : '',
     },
     credentials: 'include',
   };
