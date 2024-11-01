@@ -3,12 +3,13 @@
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
-import { Button, NumberInput, TextInput } from '@mantine/core';
+import { NumberInput, TextInput } from '@mantine/core';
 import categoryData from '@/src/data/category.json';
 import regionData from '@/src/data/region.json';
 import DropDown from '@/src/components/common/input/drop-down';
 import FileInputWrap from '@/src/components/common/input/file-input-wrap';
 import { CreateCrewRequestTypes } from '@/src/types/create-crew';
+import Button from '../../common/button';
 
 export interface CreateCrewFormTypes {
   data: CreateCrewRequestTypes;
@@ -19,9 +20,9 @@ export interface CreateCrewFormTypes {
 
 export default function CreateCrewForm({
   isEdit = false,
+  onEdit = () => {},
+  onSubmit = () => {},
   data,
-  onEdit,
-  onSubmit,
 }: CreateCrewFormTypes) {
   const router = useRouter();
   const {
@@ -29,7 +30,7 @@ export default function CreateCrewForm({
     handleSubmit,
     formState: { errors },
     trigger,
-  } = useForm();
+  } = useForm<CreateCrewRequestTypes>();
   const [values, setValues] = useState<CreateCrewRequestTypes>(data);
   const [categoryIndex, setCategoryIndex] = useState(0);
   const [regionIndex, setRegionIndex] = useState(0);
@@ -70,7 +71,7 @@ export default function CreateCrewForm({
   }, [values]);
 
   return (
-    <form onSubmit={isEdit ? handleSubmit(onEdit()) : handleSubmit(onSubmit())}>
+    <form onSubmit={isEdit ? handleSubmit(onEdit) : handleSubmit(onSubmit)}>
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-3">
           <div className="flex justify-between">
@@ -205,18 +206,15 @@ export default function CreateCrewForm({
         <div className="flex justify-between gap-4 pt-18">
           <Button
             type="submit"
-            h={44}
             disabled={!isFormValid}
-            className="flex-1 rounded-xl bg-blue-500 text-base font-medium disabled:bg-gray-200"
+            className="h-11 flex-1 rounded-xl bg-blue-500 text-base font-medium disabled:bg-gray-200"
           >
             {isEdit ? '수정' : '확인'}
           </Button>
           <Button
-            variant="outline"
+            type="button"
             onClick={() => router.back()}
-            w={118}
-            h={44}
-            className="flex-1 rounded-xl border-blue-500 text-base font-medium text-blue-500"
+            className="w-30 h-11 flex-1 rounded-xl border-blue-500 text-base font-medium text-blue-500"
           >
             취소
           </Button>
