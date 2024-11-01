@@ -4,10 +4,11 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { Menu } from '@mantine/core';
-// import { formatDate } from '@/src/utils/format-date';
-// import { formatDate } from '@/src/utils/format-date';
-import Heart from '@/public/assets/icons/ic-heart';
+import ReviewHearts from '@/src/components/common/review-heart/hearts';
 import menu from '@/public/assets/icons/ic-menu.svg';
+
+// import { formatDate } from '@/src/utils/format-date';
+// import { formatDate } from '@/src/utils/format-date';
 
 export type Gathering = {
   teamId: number;
@@ -69,19 +70,6 @@ interface ReviewCardProps {
   gathering: GatheringInform;
 }
 
-// NOTE: 추후 reviewHeart 컴포넌트로 교체
-function MockScore({ score }: { score: number }) {
-  const filledHearts = Math.ceil((score / 100) * 5);
-
-  return (
-    <div className="flex gap-[5px]">
-      {Array.from({ length: 5 }).map((_, index) => (
-        <Heart key={`${score - index}`} fill={index < filledHearts ? '#3388FF' : '#E5E7EB'} />
-      ))}
-    </div>
-  );
-}
-
 export default function ReviewCard({
   score,
   comment,
@@ -128,7 +116,7 @@ export default function ReviewCard({
         className={`flex-start flex w-full flex-col items-start py-4 pr-[20px] lg:pr-[40px] ${imageAvailable ? 'justify-between' : 'pl-[20px] lg:pl-[40px]'}`}
       >
         <div className="flex-start flex flex-col">
-          <MockScore score={score} />
+          <ReviewHearts score={score} />
           <p className="mb-2 mt-2.5 text-sm font-medium">{comment}</p>
         </div>
         <div className="flex w-full justify-between">
