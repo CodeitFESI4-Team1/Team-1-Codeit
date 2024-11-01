@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import CreateCrewForm from '@/src/components/forms/create-crew-form';
+import CreateCrewForm from '@/src/app/crew/_components/create-crew-form';
 import { CreateCrewRequestTypes } from '@/src/types/create-crew';
 import IcoCreateCrew from '@/public/assets/icons/ic-create-crew.svg';
 
