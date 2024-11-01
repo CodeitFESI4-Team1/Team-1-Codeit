@@ -38,11 +38,9 @@ export default function DropDown({
 }: DropDownProps) {
   const {
     control,
+    trigger,
     formState: { errors },
-  } = useForm({
-    mode: 'onBlur', // blur 시점에 유효성 검사 실행
-    reValidateMode: 'onBlur', // 값이 변경된 후에도 blur 시 유효성 검사 재실행
-  });
+  } = useForm();
   const [isFocused, setIsFocused] = useState(false);
 
   const renderSelectOption: SelectProps['renderOption'] = ({ option }) => (
@@ -76,7 +74,7 @@ export default function DropDown({
           name={name}
           onFocus={() => setIsFocused(true)}
           onBlur={() => {
-            field.onBlur(); // react-hook-form의 onBlur 호출
+            if (inWhere === 'form') trigger(field.name); // react-hook-form의 onBlur 호출
             if (typeof field.onBlur === 'function') {
               setIsFocused(false); // 기존 Select onBlur 호출
             }
