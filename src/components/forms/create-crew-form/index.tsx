@@ -22,10 +22,7 @@ export default function CreateCrewForm({ data, isEdit = false }: CreateCrewFormT
     handleSubmit,
     formState: { errors },
     trigger,
-  } = useForm({
-    mode: 'onBlur', // blur 시점에 유효성 검사 실행
-    reValidateMode: 'onBlur', // 값이 변경된 후에도 blur 시 유효성 검사 재실행
-  });
+  } = useForm();
   const [values, setValues] = useState<CreateCrewRequestTypes>(data);
   const [categoryIndex, setCategoryIndex] = useState(0);
   const [regionIndex, setRegionIndex] = useState(0);
@@ -92,6 +89,7 @@ export default function CreateCrewForm({ data, isEdit = false }: CreateCrewFormT
             {...register('title', {
               required: '필수 입력사항입니다.',
               pattern: /^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣|a-z|A-Z|0-9| ]{1,20}$/,
+              onBlur: () => trigger('title'),
             })}
             error={errors.title?.message?.toString()}
             onChange={(e) => setValues((prevValues) => ({ ...prevValues, title: e.target.value }))}
@@ -185,13 +183,14 @@ export default function CreateCrewForm({ data, isEdit = false }: CreateCrewFormT
             {...register('totalCount', {
               min: 4,
               max: 20,
+              onBlur: () => trigger('totalCount'),
             })}
             name="totalCount"
             onChange={(newValue) =>
               setValues((prevValues) => ({ ...prevValues, totalCount: Number(newValue) }))
             }
             placeholder="자세한 모집 정원을 입력해주세요."
-            min={0}
+            min={4}
             max={20}
             classNames={{
               input:
@@ -204,7 +203,7 @@ export default function CreateCrewForm({ data, isEdit = false }: CreateCrewFormT
             </p>
           )}
         </div>
-        <div className="flex justify-between gap-4 pt-18">
+        <div className="pt-18 flex justify-between gap-4">
           <Button
             type="submit"
             h={44}
