@@ -46,12 +46,3 @@ export const Fulled: Story = {
     isConfirmed: true,
   },
 };
-
-export const Canceled: Story = {
-  args: {
-    capacity: 10,
-    participantCount: 2,
-    isConfirmed: true,
-    canceledDate: new Date('2024-10-27'),
-  },
-};
