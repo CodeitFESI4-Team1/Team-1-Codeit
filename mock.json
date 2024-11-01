@@ -24,21 +24,14 @@
       "id": 1,
       "email": "asdf@gmail.com",
       "password": "asdfasdf"
-    },
+    }
+  ],
+  "user": [
     {
-      "email": "asdf@gmail.com",
-      "password": "asdfasdf",
-      "id": 2
-    },
-    {
-      "email": "asdf@gmail.com",
-      "password": "asdfasdf",
-      "id": 3
-    },
-    {
-      "email": "asdf@gmail.com",
-      "password": "asdfasdf",
-      "id": 4
+      "id": 1,
+      "nickname": "크루크루",
+      "email": "john@example.com",
+      "profileImageUrl": "https://image.file"
     }
   ]
 }

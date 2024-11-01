@@ -1,12 +1,6 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
-
-interface User {
-  id: number;
-  nickname: string;
-  email: string;
-  profileImageUrl: string;
-}
+import { User } from '@/src/types/auth';
 
 interface AuthState {
   isAuth: boolean;
