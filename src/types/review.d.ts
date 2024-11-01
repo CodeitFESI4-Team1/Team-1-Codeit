@@ -21,9 +21,11 @@ export interface ReviewerType {
 
 // NOTE: 나의 리뷰
 export interface MyReview {
+  crewId: number;
   crewName: string;
   gatheringName: string;
   id: number; // 리뷰 id
   rate: number;
   comment: string;
+  createdAt: string;
 }

@@ -2,55 +2,11 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { Menu } from '@mantine/core';
-// import { formatDate } from '@/src/utils/format-date';
-// import { formatDate } from '@/src/utils/format-date';
+import { ReviewerType } from '@/src/types/review';
 import Heart from '@/public/assets/icons/ic-heart';
 import menu from '@/public/assets/icons/ic-menu.svg';
-
-export type Gathering = {
-  teamId: number;
-  id: number;
-  type: string;
-  name: string;
-  dateTime: Date;
-  location: string;
-  image: string;
-};
-
-export type User = {
-  teamId: number;
-  id: number;
-  name: string;
-  image: string;
-};
-
-export type Review = {
-  teamId: number;
-  id: number;
-  score: number;
-  comment: string;
-  createdAt: Date;
-  gathering: Gathering;
-  user: User;
-};
-
-export type ReviewList = Review[];
-
-/**
- * ReviewCard 컴포넌트
- *
- * @param {number} [props.score] - 평점
- * @param {string} [props.comment] - 리뷰 내용
- * @param {Date} [props.createdAt] - 게시 일시
- * @param {User} [props.user] - 게시인
- * @param {boolean} [props.imageAvailable] - 썸네일 이미지 유무, 기본값 'false'
- * @param {boolean} [props.clickable] - 클릭 가능한지, 기본값 'false'
- * @param {boolean}[props.isMine] - 내가 작성한 리뷰인지, 기본값 'false'
- * @param {GatheringInform} [props.gathering] - 크루 관련 정보
- * @returns {JSX.Element} - ReviewCard
- */
 
 export interface GatheringInform {
   id: number;
@@ -59,14 +15,17 @@ export interface GatheringInform {
 }
 
 interface ReviewCardProps {
-  score: number;
+  rate: number;
   comment: string;
-  createdAt: Date;
-  user: User;
-  imageAvailable?: boolean;
+  createdAt: string;
+  crewId: number;
   clickable?: boolean;
   isMine?: boolean;
-  gathering: GatheringInform;
+
+  crewName?: string;
+  gatheringName?: string;
+
+  reviewer?: ReviewerType;
 }
 
 // NOTE: 추후 reviewHeart 컴포넌트로 교체
@@ -83,17 +42,18 @@ function MockScore({ score }: { score: number }) {
 }
 
 export default function ReviewCard({
-  score,
+  rate,
   comment,
   createdAt,
-  user,
-  imageAvailable = false,
+  crewId,
   clickable = false,
   isMine = false,
-  gathering,
+  crewName,
+  gatheringName,
+  reviewer,
 }: ReviewCardProps) {
   const [prefetched, setPrefetched] = useState(new Set());
-  const CREWPAGE = `/detail/${gathering.id}`;
+  const CREWPAGE = `/detail/${crewId}`;
   const router = useRouter();
 
   const handleClick = (e: React.MouseEvent) => {
@@ -119,16 +79,11 @@ export default function ReviewCard({
       onMouseEnter={handlePrefetch}
       className={`flex h-full gap-[15px] border-b-[2px] border-b-[#e6e6e6] lg:gap-[40px] ${clickable ? 'cursor-pointer' : 'cursor-default'}`}
     >
-      {imageAvailable && (
-        <div className="relative min-h-[120px] w-[120px] flex-shrink-0 md:min-h-[180px] md:w-[180px] lg:h-[200px] lg:w-[200px]">
-          <Image src={gathering.image} alt={gathering.name} fill objectFit="cover" />
-        </div>
-      )}
       <div
-        className={`flex-start flex w-full flex-col items-start py-4 pr-[20px] lg:pr-[40px] ${imageAvailable ? 'justify-between' : 'pl-[20px] lg:pl-[40px]'}`}
+        className={`flex-start 'justify-between' flex w-full flex-col items-start py-4 pr-[20px] lg:pr-[40px]`}
       >
         <div className="flex-start flex flex-col">
-          <MockScore score={score} />
+          <MockScore score={rate} />
           <p className="mb-2 mt-2.5 text-sm font-medium">{comment}</p>
         </div>
         <div className="flex w-full justify-between">
@@ -136,10 +91,12 @@ export default function ReviewCard({
             {!isMine && (
               <>
                 <span className="relative h-6 w-6 overflow-hidden rounded-full">
-                  <Image src={user.image} alt={user.name} fill objectFit="cover" />
+                  {reviewer && (
+                    <Image src={reviewer.imageUrl} alt={reviewer.nickname} fill objectFit="cover" />
+                  )}
                 </span>
                 <span className="relative mr-3 block w-fit px-2 after:absolute after:right-0 after:content-['|']">
-                  {user.name}
+                  {reviewer?.nickname}
                 </span>
               </>
             )}
