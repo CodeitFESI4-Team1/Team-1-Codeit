@@ -1,7 +1,7 @@
 'use client';
 
 import { CreateGatheringRequestType } from '@/src/types/gathering-data';
-import CreateGatheringModal from './presenter';
+import CreateGatheringModalPresenter from './presenter';
 
 export interface CreateGatheringModalContainerProps {
   opened: boolean;
@@ -24,7 +24,7 @@ export default function CreateGatheringModalContainer({
   };
 
   return (
-    <CreateGatheringModal
+    <CreateGatheringModalPresenter
       data={data}
       opened={opened}
       onClose={close}

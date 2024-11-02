@@ -3,6 +3,8 @@
 import { Button } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import GatheringDetailModalContainer from '@/src/components/gathering-detail-modal/container';
+import { CreateGatheringRequestType } from '@/src/types/gathering-data';
+import CreateGatheringModalContainer from '../../_components/create-gathering-modal/container';
 
 const mockData = {
   id: 1,
@@ -71,11 +73,34 @@ const mockData = {
 
 // TODO : 임시로 작성됨. GatheringCardContainer 안쪽으로 이동 예정
 export default function CrewDetailPage() {
-  const [opened, { open, close }] = useDisclosure(false);
+  const [createModalOpened, { open: openCreateModal, close: closeCreateModal }] =
+    useDisclosure(false);
+  const [detailModalOpened, { open: openDetailModal, close: closeDetailModal }] =
+    useDisclosure(false);
+
+  const initialValue: CreateGatheringRequestType = {
+    title: '',
+    introduce: '',
+    dateTime: '',
+    location: '',
+    totalCount: 0,
+    imageUrl: null,
+  };
+
   return (
-    <>
-      <Button onClick={open}>Open modal</Button>
-      <GatheringDetailModalContainer opened={opened} close={close} data={mockData} />
-    </>
+    <div className="container mx-auto my-0 max-w-pc px-5 lg:px-0">
+      <Button onClick={openCreateModal}>약속 만들기</Button>
+      <CreateGatheringModalContainer
+        opened={createModalOpened}
+        close={closeCreateModal}
+        data={initialValue}
+      />
+      <Button onClick={openDetailModal}>Open modal</Button>
+      <GatheringDetailModalContainer
+        opened={detailModalOpened}
+        close={closeDetailModal}
+        data={mockData}
+      />
+    </div>
   );
 }

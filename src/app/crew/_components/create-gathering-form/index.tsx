@@ -19,12 +19,14 @@ export interface CreateGatheringFormTypes {
   isEdit?: boolean;
   onEdit?: (data: CreateGatheringRequestType) => void;
   onSubmit?: (data: CreateGatheringRequestType) => void;
+  onClose: () => void;
 }
 
 export default function CreateGatheringForm({
   isEdit = false,
   onEdit = () => {},
   onSubmit = () => {},
+  onClose,
   data,
 }: CreateGatheringFormTypes) {
   const router = useRouter();
@@ -41,7 +43,6 @@ export default function CreateGatheringForm({
     'location',
     'dateTime',
     'totalCount',
-    'introduce',
   ];
   const isFormValid =
     requiredFields.every((field) => values[field as keyof CreateGatheringRequestType]) &&
@@ -52,7 +53,7 @@ export default function CreateGatheringForm({
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-3">
           <div className="flex justify-between">
-            <label htmlFor="gathering-title" className="text-xl font-semibold text-gray-800">
+            <label htmlFor="gathering-title" className="text-base font-semibold text-gray-800">
               약속 이름
             </label>
             <span>
@@ -81,8 +82,8 @@ export default function CreateGatheringForm({
           />
         </div>
         <div className="flex flex-col gap-3">
-          <label htmlFor="gathering-image" className="text-xl font-semibold text-gray-800">
-            대표이미지를 선택하거나 첨부해주세요.
+          <label htmlFor="gathering-image" className="text-base font-semibold text-gray-800">
+            이미지 선택/첨부
           </label>
           <div className="flex">
             <FileInputWrap
@@ -95,11 +96,11 @@ export default function CreateGatheringForm({
         </div>
         <div className="flex flex-col gap-3">
           <div className="flex justify-between">
-            <label htmlFor="gathering-location" className="text-xl font-semibold text-gray-800">
+            <label htmlFor="gathering-location" className="text-base font-semibold text-gray-800">
               장소
             </label>
             <span>
-              <span className="text-blue-500">{values.title.length}</span>/20
+              <span className="text-blue-500">{values.location.length}</span>/20
             </span>
           </div>
           <TextInput
@@ -127,15 +128,12 @@ export default function CreateGatheringForm({
         </div>
         <div className="flex flex-col gap-3">
           <div className="flex justify-between">
-            <label htmlFor="gathering-dateTime" className="text-xl font-semibold text-gray-800">
-              장소
+            <label htmlFor="gathering-dateTime" className="text-base font-semibold text-gray-800">
+              날짜
             </label>
-            <span>
-              <span className="text-blue-500">{values.title.length}</span>/20
-            </span>
           </div>
           <DateTimePicker
-            fullDate={new Date(values.dateTime)}
+            fullDate={new Date()}
             onChange={(date: Date) =>
               setValues((prevValues) => ({
                 ...prevValues,
@@ -145,7 +143,7 @@ export default function CreateGatheringForm({
           />
         </div>
         <div className="flex flex-col gap-3">
-          <label htmlFor="gathering-totalCount" className="text-xl font-semibold text-gray-800">
+          <label htmlFor="gathering-totalCount" className="text-base font-semibold text-gray-800">
             모집 정원
           </label>
           <NumberInput
@@ -176,15 +174,21 @@ export default function CreateGatheringForm({
           )}
         </div>
         <div className="flex flex-col gap-3">
-          <label htmlFor="gathering-introduce" className="text-xl font-semibold text-gray-800">
-            모집 설명/공지
-          </label>
+          <div className="flex justify-between">
+            <label htmlFor="gathering-introduce" className="text-base font-semibold text-gray-800">
+              모집 설명/공지
+            </label>
+            <span>
+              <span className="text-blue-500">{values.introduce.length}</span>/100
+            </span>
+          </div>
           <Textarea
             placeholder="모집 설명/공지를 100자 이내로 입력해주세요."
             value={values.introduce}
             onChange={(e) =>
               setValues((prevValues) => ({ ...prevValues, introduce: e.target.value }))
             }
+            maxLength={100}
             inputClassNames="h-40 py-2.5 px-4 bg-gray-100 placeholder:text-gray-400 font-pretendard text-base font-medium rounded-xl"
           />
         </div>
@@ -198,7 +202,7 @@ export default function CreateGatheringForm({
           </Button>
           <Button
             type="button"
-            onClick={() => router.back()}
+            onClick={onClose}
             className="w-29.5 btn-outlined h-11 flex-1 text-base font-medium text-blue-500"
           >
             취소

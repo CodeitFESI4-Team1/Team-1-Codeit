@@ -1,4 +1,4 @@
-import { Modal } from '@mantine/core';
+import { Modal, ScrollArea } from '@mantine/core';
 import CreateGatheringForm from '@/src/app/crew/_components/create-gathering-form';
 import { CreateGatheringRequestType } from '@/src/types/gathering-data';
 
@@ -21,20 +21,23 @@ export default function CreateGatheringModalPresenter({
     <Modal
       opened={opened}
       onClose={onClose}
-      withCloseButton={false}
       centered
+      title="약속 잡기"
       styles={{
         root: { '--modal-size': '520px' },
         content: { boxShadow: '0 25px 50px -12px rgba(0,0,0,0.1)', borderRadius: '12px' },
       }}
       classNames={{
         body: 'p-0',
+        title: 'text-xl font-semibold text-gray-900',
       }}
     >
       <div>
-        <div className="flex flex-col gap-8 p-6">
-          <CreateGatheringForm data={data} onSubmit={onSubmit} onEdit={onEdit} />
-        </div>
+        <ScrollArea h={640}>
+          <div className="flex flex-col gap-8 p-6">
+            <CreateGatheringForm data={data} onSubmit={onSubmit} onEdit={onEdit} />
+          </div>
+        </ScrollArea>
       </div>
     </Modal>
   );
