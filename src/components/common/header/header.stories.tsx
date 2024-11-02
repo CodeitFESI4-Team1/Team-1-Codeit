@@ -52,9 +52,6 @@ function Template() {
 
 // 1. 모임 찾기 (/) 경로
 export const Home: StoryFn = Template.bind({});
-Home.args = {
-  isAuth: false,
-};
 Home.parameters = {
   nextjs: {
     navigation: {
@@ -71,9 +68,6 @@ Home.parameters = {
 
 // 2. 로그인 상태에서 나의 크루 (/my-crew) 경로
 export const MyCrew: StoryFn = Template.bind({});
-MyCrew.args = {
-  isAuth: true,
-};
 MyCrew.parameters = {
   nextjs: {
     navigation: {
@@ -90,9 +84,6 @@ MyCrew.parameters = {
 
 // 3. 로그인 상태에서 나의 모임 (/my-gathering) 경로
 export const MyGathering: StoryFn = Template.bind({});
-MyGathering.args = {
-  isAuth: true,
-};
 MyGathering.parameters = {
   nextjs: {
     navigation: {
@@ -109,10 +100,6 @@ MyGathering.parameters = {
 
 // 4. 토글 버튼으로 로그인/비로그인 상태를 변경
 export const WithToggleCookie: StoryFn = Template.bind({});
-WithToggleCookie.args = {
-  isAuth: false,
-  handleLogout: action('Logged out'),
-};
 WithToggleCookie.parameters = {
   nextjs: {
     navigation: {
@@ -129,9 +116,6 @@ WithToggleCookie.parameters = {
 
 // 5. 로그인 페이지 (/login) 경로
 export const LoginPage: StoryFn = Template.bind({});
-LoginPage.args = {
-  isAuth: false,
-};
 LoginPage.parameters = {
   nextjs: {
     navigation: {
