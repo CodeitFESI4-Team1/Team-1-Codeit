@@ -27,17 +27,25 @@ const meta: Meta<typeof ReviewCardList> = {
 export default meta;
 type Story = StoryObj<typeof ReviewCardList>;
 
-function RenderCrewReviewCardList() {
+function RenderCrewReviewCardList({ isMine = false, clickable = false }) {
   const { data, ref, isFetchingNextPage } = useInfiniteScroll<ReviewInformResponse>({
     queryKey: ['review'],
     queryFn: ({ pageParam = 0 }) => fetchCrewReviewData(pageParam, 3),
     getNextPageParam: (lastPage, allPages) =>
       lastPage.hasNextPage ? allPages.length + 1 : undefined,
   });
-  return <ReviewCardList data={data} ref={ref} isFetchingNextPage={isFetchingNextPage} />;
+  return (
+    <ReviewCardList
+      data={data}
+      ref={ref}
+      isMine={isMine}
+      clickable={clickable}
+      isFetchingNextPage={isFetchingNextPage}
+    />
+  );
 }
 
-function RenderMyReviewCardList() {
+function RenderMyReviewCardList({ isMine = true, clickable = false }) {
   const { data, ref, isFetchingNextPage } = useInfiniteScroll<ReviewInformResponse>({
     queryKey: ['review'],
     queryFn: ({ pageParam = 0 }) => fetchMyReviewData(pageParam, 3),
@@ -45,7 +53,15 @@ function RenderMyReviewCardList() {
       lastPage.hasNextPage ? allPages.length + 1 : undefined,
   });
 
-  return <ReviewCardList data={data} ref={ref} isFetchingNextPage={isFetchingNextPage} />;
+  return (
+    <ReviewCardList
+      data={data}
+      ref={ref}
+      isMine={isMine}
+      clickable={clickable}
+      isFetchingNextPage={isFetchingNextPage}
+    />
+  );
 }
 
 export const CrewReviewCardList: Story = {
@@ -54,6 +70,6 @@ export const CrewReviewCardList: Story = {
 };
 
 export const MyReviewCardList: Story = {
-  render: () => <RenderMyReviewCardList />,
+  render: () => <RenderMyReviewCardList clickable />,
   args: {},
 };

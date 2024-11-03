@@ -223,6 +223,8 @@ export const MyReviewData: { data: MyReview[] } = {
       rate: 50,
       comment: '리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰',
       createdAt: '2024-10-31T00:56',
+      crewLocation: '서울',
+      gatheringLocation: '어느동',
     },
     {
       crewId: 2,
@@ -232,6 +234,8 @@ export const MyReviewData: { data: MyReview[] } = {
       rate: 20,
       comment: '다시는 안 간다',
       createdAt: '2024-10-31T00:56',
+      crewLocation: '서울',
+      gatheringLocation: '어느동',
     },
     {
       crewId: 2,
@@ -241,6 +245,8 @@ export const MyReviewData: { data: MyReview[] } = {
       rate: 80,
       comment: '펭귄이랑 친구하고싶어요',
       createdAt: '2024-10-31T00:56',
+      crewLocation: '서울',
+      gatheringLocation: '어느동',
     },
     {
       crewId: 3,
@@ -250,6 +256,8 @@ export const MyReviewData: { data: MyReview[] } = {
       rate: 100,
       comment: '복식호흡을 할 수 있게 됐어요 감사합니다',
       createdAt: '2024-10-31T00:56',
+      crewLocation: '서울',
+      gatheringLocation: '어느동',
     },
     {
       crewId: 3,
@@ -259,6 +267,8 @@ export const MyReviewData: { data: MyReview[] } = {
       rate: 50,
       comment: '리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰',
       createdAt: '2024-10-31T00:56',
+      crewLocation: '서울',
+      gatheringLocation: '어느동',
     },
     {
       crewId: 3,
@@ -268,6 +278,8 @@ export const MyReviewData: { data: MyReview[] } = {
       rate: 20,
       comment: '다시는 안 간다',
       createdAt: '2024-10-31T00:56',
+      crewLocation: '서울',
+      gatheringLocation: '어느동',
     },
     {
       crewId: 4,
@@ -277,6 +289,8 @@ export const MyReviewData: { data: MyReview[] } = {
       rate: 80,
       comment: '펭귄이랑 친구하고싶어요',
       createdAt: '2024-10-31T00:56',
+      crewLocation: '서울',
+      gatheringLocation: '어느동',
     },
     {
       crewId: 5,
@@ -286,6 +300,8 @@ export const MyReviewData: { data: MyReview[] } = {
       rate: 100,
       comment: '복식호흡을 할 수 있게 됐어요 감사합니다',
       createdAt: '2024-10-31T00:56',
+      crewLocation: '서울',
+      gatheringLocation: '어느동',
     },
     {
       crewId: 5,
@@ -295,6 +311,8 @@ export const MyReviewData: { data: MyReview[] } = {
       rate: 50,
       comment: '리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰',
       createdAt: '2024-10-31T00:56',
+      crewLocation: '서울',
+      gatheringLocation: '어느동',
     },
     {
       crewId: 6,
@@ -304,6 +322,8 @@ export const MyReviewData: { data: MyReview[] } = {
       rate: 20,
       comment: '다시는 안 간다',
       createdAt: '2024-10-31T00:56',
+      crewLocation: '서울',
+      gatheringLocation: '어느동',
     },
     {
       crewId: 6,
@@ -313,6 +333,8 @@ export const MyReviewData: { data: MyReview[] } = {
       rate: 80,
       comment: '펭귄이랑 친구하고싶어요',
       createdAt: '2024-10-31T00:56',
+      crewLocation: '서울',
+      gatheringLocation: '어느동',
     },
     {
       crewId: 6,
@@ -322,6 +344,8 @@ export const MyReviewData: { data: MyReview[] } = {
       rate: 100,
       comment: '복식호흡을 할 수 있게 됐어요 감사합니다',
       createdAt: '2024-10-31T00:56',
+      crewLocation: '서울',
+      gatheringLocation: '어느동',
     },
   ],
 };
