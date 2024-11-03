@@ -28,4 +28,6 @@ export interface MyReview {
   rate: number;
   comment: string;
   createdAt: string;
+  crewLocation: string; // 크루 위치
+  gatheringLocation: string; // 약속 위치
 }

@@ -20,7 +20,7 @@ function ReviewCardList(
 
   return (
     <>
-      <ul className="mx-auto h-full w-[343px] md:w-[820px] lg:w-[1200px]">
+      <ul className={`mx-auto flex h-full w-full flex-col ${isMine ? 'gap-8' : ''}`}>
         {reviewDataList.map((review, index) => (
           <li key={`${review.rate - index}`} className="h-auto min-h-[112px]">
             <ReviewCard
@@ -33,6 +33,10 @@ function ReviewCardList(
               crewName={'crewName' in review ? review.crewName : undefined}
               gatheringName={'gatheringName' in review ? review.gatheringName : undefined}
               reviewer={'reviewer' in review ? review.reviewer : undefined}
+              gatheringLocation={
+                'gatheringLocation' in review ? review.gatheringLocation : undefined
+              }
+              crewLocation={'crewLocation' in review ? review.crewLocation : undefined}
             />
           </li>
         ))}

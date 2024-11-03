@@ -3,7 +3,8 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { Menu } from '@mantine/core';
+import { Button, Menu } from '@mantine/core';
+import { formatDateWithYear } from '@/src/utils/format-date';
 import { ReviewerType } from '@/src/types/review';
 import Heart from '@/public/assets/icons/ic-heart';
 import menu from '@/public/assets/icons/ic-menu.svg';
@@ -24,6 +25,8 @@ interface ReviewCardProps {
 
   crewName?: string;
   gatheringName?: string;
+  crewLocation?: string;
+  gatheringLocation?: string;
 
   reviewer?: ReviewerType;
 }
@@ -50,6 +53,8 @@ export default function ReviewCard({
   isMine = false,
   crewName,
   gatheringName,
+  crewLocation,
+  gatheringLocation,
   reviewer,
 }: ReviewCardProps) {
   const [prefetched, setPrefetched] = useState(new Set());
@@ -70,58 +75,60 @@ export default function ReviewCard({
     e.stopPropagation();
   };
 
-  // const reviewDate = formatDate(createdAt);
+  const { year, month, day } = formatDateWithYear(createdAt);
+  const reviewDate = `${year}/${month}/${day}`;
+
+  if (!isMine && !reviewer) throw new Error('나의 카드 리뷰 리스트일시 isMine이 true여야 합니다.');
 
   return (
-    <div
-      role="presentation"
-      onClick={handleClick}
-      onMouseEnter={handlePrefetch}
-      className={`flex h-full gap-[15px] border-b-[2px] border-b-[#e6e6e6] lg:gap-[40px] ${clickable ? 'cursor-pointer' : 'cursor-default'}`}
-    >
-      <div
-        className={`flex-start 'justify-between' flex w-full flex-col items-start py-4 pr-[20px] lg:pr-[40px]`}
-      >
-        <div className="flex-start flex flex-col">
-          <MockScore score={rate} />
-          <p className="mb-2 mt-2.5 text-sm font-medium">{comment}</p>
+    <div className="w-full">
+      {isMine && (
+        <div className="mb-3 flex w-fit items-center gap-2">
+          <span className="text-xl font-semibold text-gray-800">{gatheringLocation} |</span>
+          <span className="text-base font-medium text-gray-700">{crewLocation}</span>
         </div>
-        <div className="flex w-full justify-between">
-          <div className="flex w-fit flex-shrink-0 items-center text-xs">
+      )}
+      <div
+        role="presentation"
+        onClick={handleClick}
+        onMouseEnter={handlePrefetch}
+        className={`flex h-full items-end gap-[15px] ${!isMine ? 'border-b-[2px] border-b-[#e6e6e6] py-4' : 'rounded-[12px] p-6 shadow-bg'} bg-white lg:gap-[40px] ${clickable ? 'cursor-pointer' : 'cursor-default'}`}
+      >
+        <div className="flex-start flex w-full flex-col items-start justify-between pr-[20px] lg:pr-[40px]">
+          {isMine && (
+            <span className="mb-6 w-full border-b-[2px] border-b-[#E5E7EB] pb-2">{crewName}</span>
+          )}
+          <div className="flex-start flex flex-col">
+            <MockScore score={rate} />
+            <p className="mb-2 mt-2.5 text-sm font-medium">{comment}</p>
+          </div>
+          <div className={`flex w-fit flex-shrink-0 items-center text-xs ${isMine ? 'mt-4' : ''}`}>
             {!isMine && (
               <>
-                <span className="relative h-6 w-6 overflow-hidden rounded-full">
-                  {reviewer && (
+                {reviewer && (
+                  <span className="relative h-6 w-6 overflow-hidden rounded-full">
                     <Image src={reviewer.imageUrl} alt={reviewer.nickname} fill objectFit="cover" />
-                  )}
-                </span>
+                  </span>
+                )}
                 <span className="relative mr-3 block w-fit px-2 after:absolute after:right-0 after:content-['|']">
                   {reviewer?.nickname}
                 </span>
               </>
             )}
-            {/* <span className="text-gray-500">{reviewDate}</span> */}
+            <span className="text-gray-500">{reviewDate}</span>
           </div>
-          {isMine && (
-            <Menu position="top" offset={2}>
-              <Menu.Target>
-                <Image
-                  src={menu}
-                  alt="더보기메뉴"
-                  className="block rounded-full hover:bg-[#f2f2f2]"
-                  width={25}
-                  height={25}
-                  onClick={(e: React.MouseEvent) => {
-                    e.stopPropagation();
-                  }}
-                />
-              </Menu.Target>
-              <Menu.Dropdown>
-                <Menu.Item onClick={handleDelete}>삭제하기</Menu.Item>
-              </Menu.Dropdown>
-            </Menu>
-          )}
         </div>
+        {isMine && (
+          <Button
+            variant="outline"
+            className="flex-shrink-0 p-[6px_14px] text-base font-semibold"
+            onClick={(e: React.MouseEvent) => {
+              e.stopPropagation();
+            }}
+          >
+            리뷰 삭제하기
+          </Button>
+        )}
       </div>
     </div>
   );
