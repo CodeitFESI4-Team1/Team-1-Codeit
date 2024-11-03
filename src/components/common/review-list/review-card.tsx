@@ -6,8 +6,7 @@ import { useRouter } from 'next/navigation';
 import { Button, Menu } from '@mantine/core';
 import { formatDateWithYear } from '@/src/utils/format-date';
 import { ReviewerType } from '@/src/types/review';
-import Heart from '@/public/assets/icons/ic-heart';
-import menu from '@/public/assets/icons/ic-menu.svg';
+import ReviewHearts from '../review-heart/hearts';
 
 export interface GatheringInform {
   id: number;
@@ -29,19 +28,6 @@ interface ReviewCardProps {
   gatheringLocation?: string;
 
   reviewer?: ReviewerType;
-}
-
-// NOTE: 추후 reviewHeart 컴포넌트로 교체
-function MockScore({ score }: { score: number }) {
-  const filledHearts = Math.ceil((score / 100) * 5);
-
-  return (
-    <div className="flex gap-[5px]">
-      {Array.from({ length: 5 }).map((_, index) => (
-        <Heart key={`${score - index}`} fill={index < filledHearts ? '#3388FF' : '#E5E7EB'} />
-      ))}
-    </div>
-  );
 }
 
 export default function ReviewCard({
@@ -99,7 +85,7 @@ export default function ReviewCard({
             <span className="mb-6 w-full border-b-[2px] border-b-[#E5E7EB] pb-2">{crewName}</span>
           )}
           <div className="flex-start flex flex-col">
-            <MockScore score={rate} />
+            <ReviewHearts score={rate} />
             <p className="mb-2 mt-2.5 text-sm font-medium">{comment}</p>
           </div>
           <div className={`flex w-fit flex-shrink-0 items-center text-xs ${isMine ? 'mt-4' : ''}`}>
