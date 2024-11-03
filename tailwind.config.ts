@@ -134,6 +134,33 @@ const config: Config = {
             'background-position': '12px center',
             'background-size': '24px 24px',
           },
+          // button style
+          '.btn-filled': {
+            backgroundColor: '#3B82F6',
+            color: '#ffffff',
+            transition: 'background-color 0.3s ease',
+            '&:hover, &:active': {
+              backgroundColor: '#2563EB',
+              fontWeight: '600',
+            },
+          },
+          '.btn-outlined': {
+            border: '1px solid #3B82F6',
+            backgroundColor: '#ffffff',
+            color: '#3B82F6',
+            transition: 'color 0.3s ease border-color 0.3s ease',
+            '&:hover, &:active': {
+              border: '1px solid #2563EB',
+              color: '#2563EB',
+              fontWeight: '600',
+            },
+          },
+          '.btn-disabled': {
+            backgroundColor: '#6B7280',
+            color: '#ffffff',
+            cursor: 'not-allowed',
+            opacity: '0.8',
+          },
         });
       },
     ),

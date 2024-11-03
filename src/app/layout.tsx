@@ -95,7 +95,7 @@ export default function RootLayout({
       <head>
         <ColorSchemeScript />
       </head>
-      <body>
+      <body className="font-pretendard">
         <ClientProvider>
           <MantineProvider theme={theme}>
             {/* 헤더 컴포넌트 위치 */}
