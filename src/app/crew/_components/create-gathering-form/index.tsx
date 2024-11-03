@@ -1,14 +1,10 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useRouter } from 'next/navigation';
 import { NumberInput } from '@mantine/core';
-import categoryData from '@/src/data/category.json';
-import regionData from '@/src/data/region.json';
 import Button from '@/src/components/common/button';
 import DateTimePicker from '@/src/components/common/input/date-time-picker';
-import DropDown from '@/src/components/common/input/drop-down';
 import FileInputWrap from '@/src/components/common/input/file-input-wrap';
 import TextInput from '@/src/components/common/input/text-input';
 import Textarea from '@/src/components/common/input/textarea';
@@ -29,7 +25,6 @@ export default function CreateGatheringForm({
   onClose,
   data,
 }: CreateGatheringFormTypes) {
-  const router = useRouter();
   const {
     register,
     handleSubmit,

@@ -35,7 +35,12 @@ export default function CreateGatheringModalPresenter({
       <div>
         <ScrollArea h={640}>
           <div className="flex flex-col gap-8 p-6">
-            <CreateGatheringForm data={data} onSubmit={onSubmit} onEdit={onEdit} />
+            <CreateGatheringForm
+              data={data}
+              onSubmit={onSubmit}
+              onEdit={onEdit}
+              onClose={onClose}
+            />
           </div>
         </ScrollArea>
       </div>
