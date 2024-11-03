@@ -141,6 +141,7 @@ const config: Config = {
             transition: 'background-color 0.3s ease',
             '&:hover, &:active': {
               backgroundColor: '#2563EB',
+              fontWeight: '600',
             },
           },
           '.btn-outlined': {
@@ -151,6 +152,7 @@ const config: Config = {
             '&:hover, &:active': {
               border: '1px solid #2563EB',
               color: '#2563EB',
+              fontWeight: '600',
             },
           },
           '.btn-disabled': {
