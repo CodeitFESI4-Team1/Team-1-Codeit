@@ -1,11 +1,9 @@
 'use client';
 
-import { useState } from 'react';
-import Image from 'next/image';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { MainCategoryItem } from '@/src/types/category';
-import IcoDown from '@/public/assets/icons/ic-down.svg';
 
 export interface MainCategoryProps {
   category: MainCategoryItem[];
@@ -13,38 +11,78 @@ export interface MainCategoryProps {
 }
 
 export default function MainCategory({ category, onHover }: MainCategoryProps) {
+  const mainCategory = useRef<HTMLLIElement[] | null>([]);
   const pathname = usePathname();
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [width, setWidth] = useState<number>(0);
+  const [position, setPosition] = useState<number>(0);
 
   const handleHover = (index: number) => {
     onHover(index);
     setActiveIndex(index);
   };
 
+  const updateWidth = useCallback(() => {
+    if (mainCategory.current && mainCategory.current.length > activeIndex) {
+      setWidth(mainCategory.current[activeIndex]?.clientWidth);
+    }
+  }, [activeIndex]);
+
+  const updatePosition = useCallback(() => {
+    if (mainCategory.current && mainCategory.current.length > activeIndex) {
+      setPosition((mainCategory.current[activeIndex] as HTMLElement)?.offsetLeft);
+    }
+  }, [activeIndex]);
+
+  useEffect(() => {
+    updatePosition();
+    updateWidth();
+  }, []);
+
+  useEffect(() => {
+    updatePosition();
+    updateWidth();
+  }, [updateWidth, updatePosition, activeIndex]);
+
+  useEffect(() => {
+    // 윈도우 크기 조절 시 위치와 크기 업데이트
+    window.addEventListener('resize', updateWidth);
+    window.addEventListener('resize', updatePosition);
+
+    return () => {
+      window.removeEventListener('resize', updateWidth);
+      window.removeEventListener('resize', updatePosition);
+    };
+  }, [updateWidth, updatePosition]);
+
   return (
-    <div>
+    <div className="relative mb-1">
       <ul className="space-between flex gap-6">
         {category.map((item, index) => (
-          <li key={item.title.href} data-index={index} className="py-3 md:py-2">
+          <li
+            key={item.title.href}
+            ref={(el) => {
+              if (el) {
+                mainCategory.current![index] = el;
+              }
+            }}
+          >
             <Link
               href={item.title.href}
               onMouseEnter={() => handleHover(index)}
               className={`${pathname?.includes(item.title.href) ? 'bg-blue-500' : ''} ${activeIndex === index ? 'text-blue-500' : 'text-gray-600'} flex flex-col items-center text-base font-semibold md:flex-row md:text-lg lg:text-xl lg:font-semibold`}
             >
               <h3 className="flex items-center gap-1 lg:gap-2">
-                <span className="flex py-3 md:py-2">{item.title.label}</span>
-                <Image
-                  src={IcoDown}
-                  width={40}
-                  height={36}
-                  alt="보기"
-                  className={`${pathname?.includes(item.title.href) ? 'flex' : ''} ${activeIndex === index ? 'flex' : 'hidden'} scale-75 lg:scale-100`}
-                />
+                <span className="flex pb-2.5">{item.title.label}</span>
               </h3>
             </Link>
           </li>
         ))}
       </ul>
+      <div
+        className="absolute bottom-0 left-0 h-1 translate-x-0 rounded-full bg-blue-500 transition-all duration-300"
+        style={{ width: `${width}px`, transform: `translateX(${position}px)` }}
+      />
     </div>
   );
 }
