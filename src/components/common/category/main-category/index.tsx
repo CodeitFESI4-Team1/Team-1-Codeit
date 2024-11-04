@@ -1,16 +1,18 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { MainCategoryItem } from '@/src/types/category';
+import Button from '@/src/components/common/button';
+import { CategoryType, MainCategoryItem } from '@/src/types/category';
 
 export interface MainCategoryProps {
+  value: string;
   category: MainCategoryItem[];
+  onChange: (value: string) => void;
   onHover: (index: number) => void;
 }
 
-export default function MainCategory({ category, onHover }: MainCategoryProps) {
+export default function MainCategory({ value, category, onHover, onChange }: MainCategoryProps) {
   const mainCategory = useRef<HTMLLIElement[] | null>([]);
   const pathname = usePathname();
   const [activeIndex, setActiveIndex] = useState<number>(0);
@@ -67,15 +69,15 @@ export default function MainCategory({ category, onHover }: MainCategoryProps) {
               }
             }}
           >
-            <Link
-              href={item.title.href}
+            <Button
               onMouseEnter={() => handleHover(index)}
-              className={`${pathname?.includes(item.title.href) ? 'bg-blue-500' : ''} ${activeIndex === index ? 'text-blue-500' : 'text-gray-600'} flex flex-col items-center text-base font-semibold md:flex-row md:text-lg lg:text-xl lg:font-semibold`}
+              onClick={() => onChange(item.title.value)}
+              className={`${pathname?.includes(item.title.value) ? 'bg-blue-500' : ''} ${activeIndex === index ? 'text-blue-500' : 'text-gray-600'} flex flex-col items-center text-base font-semibold md:flex-row md:text-lg lg:text-xl lg:font-semibold`}
             >
               <h3 className="flex items-center gap-1 lg:gap-2">
-                <span className="flex pb-2.5">{item.title.label}</span>
+                <span className="flex">{item.title.label}</span>
               </h3>
-            </Link>
+            </Button>
           </li>
         ))}
       </ul>

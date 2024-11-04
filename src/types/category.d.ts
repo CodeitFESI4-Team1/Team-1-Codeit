@@ -1,3 +1,8 @@
+export interface CategoryType {
+  mainCategory: string;
+  subCategory: string;
+}
+
 export interface MainCategoryItem {
   title: CategoryItem;
   items: CategoryItem[];

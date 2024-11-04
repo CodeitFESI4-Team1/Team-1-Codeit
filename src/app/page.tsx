@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Divider } from '@mantine/core';
 import regionData from '@/src/data/region.json';
-import CategoryWrap from '@/src/components/common/category/category-wrap';
+import CategoryContainer from '@/src/components/common/category/category-container';
 import HeroCrew from '@/src/components/common/hero/hero-crew';
 import DropDown from '@/src/components/common/input/drop-down';
 import PopOverCalendar from '@/src/components/common/input/pop-over-calendar';
@@ -17,7 +17,7 @@ export default function Home() {
     <div className="container mx-auto my-0 min-h-screen max-w-pc bg-gray-50 py-11 shadow-bg">
       <div className="lg:px-8.5 lg:gap-4.5 flex flex-col gap-3 px-3 md:gap-4 md:px-8">
         <HeroCrew />
-        <CategoryWrap />
+        <CategoryContainer />
       </div>
       <Divider mx={{ base: 0, md: 32, lg: 34 }} my={24} size={2} color="#E5E7EB" />
       <div className="lg:px-8.5 px-3 md:px-8">

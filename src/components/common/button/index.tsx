@@ -13,6 +13,7 @@ export interface ButtonProps {
   children: ReactNode;
   className?: string;
   onClick?: () => void;
+  onMouseEnter?: () => void;
   type?: 'button' | 'submit' | 'reset';
 }
 
@@ -20,6 +21,7 @@ export default function Button({
   children,
   className = '',
   onClick,
+  onMouseEnter,
   type = 'button',
 }: ButtonProps) {
   return (
@@ -28,6 +30,7 @@ export default function Button({
       type={type}
       className={`typo-lg-semibold flex items-center justify-center rounded-xl py-2 ${className}`}
       onClick={onClick}
+      onMouseEnter={onMouseEnter}
     >
       {children}
     </button>
