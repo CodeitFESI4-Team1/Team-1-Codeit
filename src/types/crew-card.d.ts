@@ -20,6 +20,6 @@ export type CrewCardInform = {
   createdBy: number;
   createdDate: Date;
   updatedDate: Date;
-  canceledAt?: Date;
   isConfirmed: boolean;
+  gatheringCount: number;
 };
