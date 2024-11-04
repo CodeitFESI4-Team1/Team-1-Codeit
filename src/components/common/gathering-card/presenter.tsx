@@ -1,10 +1,12 @@
 import Image from 'next/image';
 import { Badge } from '@mantine/core';
 import { formatDate } from '@/src/utils/format-date';
+import LikeBtn from '@/src/components/common/button/like-btn';
 import IcoPerson from '@/public/assets/icons/person.svg';
 import IcoTimer from '@/public/assets/icons/timer.svg';
 
 export interface GatheringCardPresenterProps {
+  id: number;
   imageUrl: string;
   title: string;
   dateTime: string;
@@ -21,6 +23,7 @@ export interface GatheringCardPresenterProps {
 }
 
 export default function GatheringCardPresenter({
+  id,
   imageUrl,
   title,
   dateTime,
@@ -66,7 +69,6 @@ export default function GatheringCardPresenter({
         </div>
       )}
 
-      {/* 카드 내용 */}
       <div className="p-4">
         <h3 className="typo-xl-semibold overflow-hidden text-ellipsis whitespace-nowrap text-gray-800">
           {title}
@@ -81,7 +83,7 @@ export default function GatheringCardPresenter({
             color="#111827"
             radius="md"
             classNames={{
-              label: 'gathering-badge',
+              label: 'font-pretendard, gathering-badge',
             }}
           >
             {date}
@@ -91,7 +93,7 @@ export default function GatheringCardPresenter({
             color="#111827"
             radius="md"
             classNames={{
-              label: 'gathering-badge',
+              label: 'font-pretendard, gathering-badge',
             }}
           >
             {time}
@@ -103,16 +105,9 @@ export default function GatheringCardPresenter({
         </p>
       </div>
 
-      <button
-        type="button"
-        className="absolute bottom-2 right-2"
-        onClick={(e) => {
-          e.stopPropagation();
-          onLikeToggle();
-        }}
-      >
-        {isLiked ? '♥' : '♡'}
-      </button>
+      <div className="absolute bottom-2 right-2">
+        <LikeBtn id={id} isLiked={isLiked} onLikeToggle={onLikeToggle} size={40} />
+      </div>
 
       {isPast && (
         <div className="pointer-events-auto absolute inset-0 flex items-center justify-center rounded-md bg-black bg-opacity-70 text-white">

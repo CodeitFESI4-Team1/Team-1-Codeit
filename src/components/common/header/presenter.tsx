@@ -8,13 +8,13 @@ import { Profile } from '@/src/components/common/profile';
 import Logo from '@/public/assets/images/logo.png';
 
 export interface HeaderPresenterProps {
-  hasCookie: boolean;
+  isAuth: boolean;
   profileImageUrl?: string;
   handleLogout: () => void;
 }
 
 export default function HeaderPresenter({
-  hasCookie,
+  isAuth,
   profileImageUrl,
   handleLogout,
 }: HeaderPresenterProps) {
@@ -35,7 +35,7 @@ export default function HeaderPresenter({
               크루 찾기
             </Link>
 
-            {hasCookie ? (
+            {isAuth ? (
               <>
                 <Link
                   href="/my-crew"
@@ -63,7 +63,7 @@ export default function HeaderPresenter({
           </nav>
         </div>
 
-        {hasCookie ? (
+        {isAuth ? (
           <div className="relative">
             <Menu trigger="hover" openDelay={100} closeDelay={400}>
               <Menu.Target>
