@@ -1,3 +1,8 @@
+import { useAuthStore } from '@/src/store/use-auth-store';
+
+// TODO: 추후 API URL 수정
+const API_BASE_URL = 'http://localhost:3009';
+
 export class ApiError extends Error {
   constructor(
     public status: number,
@@ -17,20 +22,20 @@ export async function fetchApi<T>(
   const controller = new AbortController();
   const { signal } = controller;
   const id = setTimeout(() => controller.abort(), timeout);
+  const { token } = useAuthStore.getState();
 
   const fetchOptions: RequestInit = {
     ...options,
     signal,
     headers: {
       ...options.headers,
-      // TODO: 추후 토큰 추가
+      Authorization: token ? `Bearer ${token}` : '',
     },
     credentials: 'include',
   };
 
   try {
-    const response = await fetch(url, fetchOptions); // API 요청 실행
-
+    const response = await fetch(`${API_BASE_URL}${url}`, fetchOptions); // API 요청 실행
     if (!response.ok) {
       let errorMessage;
       try {

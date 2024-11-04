@@ -14,6 +14,7 @@ module.exports = {
     '<THIRD_PARTY_MODULES>',
     '^@/src/_apis/(.*)$',
     '^@/src/_queries/(.*)$',
+    '^@/src/store/(.*)$',
     '^@/src/data/(.*)$',
     '^@/src/hooks/(.*)$',
     '^@/src/utils/(.*)$',
