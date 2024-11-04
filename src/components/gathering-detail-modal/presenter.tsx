@@ -116,7 +116,7 @@ export default function GatheringDetailModalPresenter({
             <Button
               type="button"
               onClick={onClose}
-              className="w-29.5 btn-outlined h-11 text-base font-medium"
+              className="btn-outlined h-11 w-29.5 text-base font-medium"
             >
               닫기
             </Button>
@@ -124,7 +124,7 @@ export default function GatheringDetailModalPresenter({
               <Button
                 type="button"
                 onClick={onJoin}
-                className="w-29.5 btn-filled h-11 text-base font-medium"
+                className="btn-filled h-11 w-29.5 text-base font-medium"
               >
                 참여하기
               </Button>
@@ -133,7 +133,7 @@ export default function GatheringDetailModalPresenter({
               <Button
                 type="button"
                 onClick={onExit}
-                className="w-29.5 btn-filled h-11 text-base font-medium"
+                className="btn-filled h-11 w-29.5 text-base font-medium"
               >
                 탈퇴하기
               </Button>
@@ -142,7 +142,7 @@ export default function GatheringDetailModalPresenter({
               <Button
                 type="button"
                 onClick={onDelete}
-                className="w-29.5 btn-filled h-11 text-base font-medium"
+                className="btn-filled h-11 w-29.5 text-base font-medium"
               >
                 삭제하기
               </Button>
