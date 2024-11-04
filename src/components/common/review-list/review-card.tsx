@@ -108,9 +108,7 @@ export default function ReviewCard({
           <Button
             variant="outline"
             className="flex-shrink-0 p-[6px_14px] text-base font-semibold"
-            onClick={(e: React.MouseEvent) => {
-              e.stopPropagation();
-            }}
+            onClick={handleDelete}
           >
             리뷰 삭제하기
           </Button>
