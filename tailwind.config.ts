@@ -46,6 +46,7 @@ const config: Config = {
       },
       padding: {
         7.5: '30px',
+        11.5: '46px',
         12.5: '50px',
       },
       margin: {
