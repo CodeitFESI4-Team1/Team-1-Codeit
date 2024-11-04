@@ -14,6 +14,14 @@ export default function CategoryContainer() {
     setSubCategory(category[categoryIndex].items[0].value);
   }, [mainCategory]);
 
+  useEffect(() => {
+    // TODO : 메인 카테고리 필터링
+  }, [mainCategory]);
+
+  useEffect(() => {
+    // TODO : 서브 카테고리 필터링
+  }, [subCategory]);
+
   return (
     <div className="flex flex-col gap-2 md:gap-4">
       <MainCategory

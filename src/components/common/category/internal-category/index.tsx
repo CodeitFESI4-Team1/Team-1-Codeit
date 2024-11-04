@@ -3,7 +3,7 @@
 import { usePathname } from 'next/navigation';
 import { useSlider } from '@/src/hooks/useSlider';
 import Button from '@/src/components/common/button';
-import { CategoryItem, CategoryType } from '@/src/types/category';
+import { CategoryItem } from '@/src/types/category';
 
 export interface InternalCategoryProps {
   value: string;

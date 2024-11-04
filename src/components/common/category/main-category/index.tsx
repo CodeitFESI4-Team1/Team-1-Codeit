@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Button from '@/src/components/common/button';
-import { CategoryType, MainCategoryItem } from '@/src/types/category';
+import { MainCategoryItem } from '@/src/types/category';
 
 export interface MainCategoryProps {
   value: string;
