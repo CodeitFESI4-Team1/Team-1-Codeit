@@ -37,8 +37,10 @@ export default function Tabs({ tabs, activeTab, onTabClick, variant = 'default' 
   const inactiveStyle =
     variant === 'review' ? 'bg-white text-black' : 'border border-blue-500 bg-white text-blue-500';
 
+  const tabListStyle = variant === 'review' ? 'gap-2' : 'gap-4';
+
   return (
-    <div role="tablist" className="mx-auto flex max-w-[1200px] justify-center space-x-2">
+    <div role="tablist" className={`flex ${tabListStyle}`}>
       {tabs.map((tab) => {
         const isActive = activeTab === tab.id;
 
@@ -50,7 +52,7 @@ export default function Tabs({ tabs, activeTab, onTabClick, variant = 'default' 
             style={variant === 'default' ? { width: buttonWidth } : undefined}
             aria-selected={isActive}
             onClick={() => onTabClick(tab.id)}
-            className={`rounded-md ${baseStyle} ${isActive ? activeStyle : inactiveStyle}`}
+            className={`rounded-xl ${baseStyle} ${isActive ? activeStyle : inactiveStyle}`}
           >
             {tab.label}
           </button>
