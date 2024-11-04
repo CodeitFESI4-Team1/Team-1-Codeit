@@ -3,21 +3,30 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
-import { usePostLoginQuery } from '@/src/_queries/auth/auth-queries';
+import { usePostSignupQuery } from '@/src/_queries/auth/auth-queries';
 import SignupForm, { SignupFormValues } from './_component/signup-form';
 
 export default function LoginPage() {
   const router = useRouter();
   const formMethods = useForm<SignupFormValues>();
   const { setError } = formMethods;
-  const { mutate: postLogin } = usePostLoginQuery();
+  const { mutate: postSignup } = usePostSignupQuery();
 
   const handleSubmit = async (data: SignupFormValues) => {
-    postLogin(data, {
+    postSignup(data, {
       onSuccess: () => {
-        // router.push('/login');
+        router.push('/');
       },
-      onError: (error) => {},
+      onError: (error) => {
+        if (error.statusCode === 400) {
+          // TODO: parameter 처리 후 message 처리 확인
+          //   const { parameter } = error.parameter;
+          //   setError(parameter, {
+          //     type: 'manual',
+          //     message: error.message,
+          //   });
+        }
+      },
     });
   };
 
