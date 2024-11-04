@@ -20,7 +20,6 @@ export default function Home() {
   const [subCategory, setSubCategory] = useState('running');
   const [sort, setSort] = useState<string | null>('latest');
   const [region, setRegion] = useState<string | null>('all');
-  const [date, setDate] = useState<Date>(new Date());
   const [search, setSearch] = useState('');
 
   const { data, ref, isFetchingNextPage } = useInfiniteScroll<CrewCardInformResponse>({
@@ -66,7 +65,6 @@ export default function Home() {
                 className="w-[110px]"
                 onChange={setRegion}
               />
-              <PopOverCalendar value={date} onChange={setDate} />
             </div>
             <DropDown
               variant="sort"
