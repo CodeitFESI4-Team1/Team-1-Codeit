@@ -70,21 +70,24 @@ ModalWithUser.args = {
     participants: [
       {
         id: 1,
-        imageUrl:
+        profileImageUrl:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUMrcQB5OJ-ETzPc6wHnjxjC-36__MGw3JcA&s',
-        nickName: '럽윈즈올',
+        nickname: '럽윈즈올',
+        email: 'youl@email.com',
       },
       {
         id: 2,
-        imageUrl:
+        profileImageUrl:
           'https://imgcdn.stablediffusionweb.com/2024/5/13/c0541236-e690-4dff-a27e-30a0355e5ea0.jpg',
-        nickName: '모닝러너',
+        nickname: '모닝러너',
+        email: 'youl@email.com',
       },
       {
         id: 3,
-        imageUrl:
+        profileImageUrl:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUMrcQB5OJ-ETzPc6wHnjxjC-36__MGw3JcA&s',
-        nickName: '동글동글이',
+        nickname: '동글동글이',
+        email: 'youl@email.com',
       },
     ],
   },
@@ -109,21 +112,24 @@ ModalWithCaptain.args = {
     participants: [
       {
         id: 1,
-        imageUrl:
+        profileImageUrl:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUMrcQB5OJ-ETzPc6wHnjxjC-36__MGw3JcA&s',
-        nickName: '럽윈즈올',
+        nickname: '럽윈즈올',
+        email: 'youl@email.com',
       },
       {
         id: 2,
-        imageUrl:
+        profileImageUrl:
           'https://imgcdn.stablediffusionweb.com/2024/5/13/c0541236-e690-4dff-a27e-30a0355e5ea0.jpg',
-        nickName: '모닝러너',
+        nickname: '모닝러너',
+        email: 'youl@email.com',
       },
       {
         id: 3,
-        imageUrl:
+        profileImageUrl:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUMrcQB5OJ-ETzPc6wHnjxjC-36__MGw3JcA&s',
-        nickName: '동글동글이',
+        nickname: '동글동글이',
+        email: 'youl@email.com',
       },
     ],
   },
@@ -148,21 +154,24 @@ ModalWithCrew.args = {
     participants: [
       {
         id: 1,
-        imageUrl:
+        profileImageUrl:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUMrcQB5OJ-ETzPc6wHnjxjC-36__MGw3JcA&s',
-        nickName: '럽윈즈올',
+        nickname: '럽윈즈올',
+        email: 'youl@email.com',
       },
       {
         id: 2,
-        imageUrl:
+        profileImageUrl:
           'https://imgcdn.stablediffusionweb.com/2024/5/13/c0541236-e690-4dff-a27e-30a0355e5ea0.jpg',
-        nickName: '모닝러너',
+        nickname: '모닝러너',
+        email: 'youl@email.com',
       },
       {
         id: 3,
-        imageUrl:
+        profileImageUrl:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUMrcQB5OJ-ETzPc6wHnjxjC-36__MGw3JcA&s',
-        nickName: '동글동글이',
+        nickname: '동글동글이',
+        email: 'youl@email.com',
       },
     ],
   },
