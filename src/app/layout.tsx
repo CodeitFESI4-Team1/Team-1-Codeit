@@ -6,6 +6,7 @@ import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import '@mantine/core/styles.css';
 import ClientProvider from '@/src/components/client-provider';
 import '@/src/styles/globals.css';
+import Header from '../components/common/header/container';
 import { theme } from './theme';
 
 export const metadata: Metadata = {
@@ -95,12 +96,14 @@ export default function RootLayout({
       <head>
         <ColorSchemeScript />
       </head>
-      <body className="font-pretendard">
+
+      <body className="flex min-h-screen flex-col bg-gray-50 font-pretendard">
         <ClientProvider>
           <MantineProvider theme={theme}>
-            {/* 헤더 컴포넌트 위치 */}
-            {/* <Header /> */}
-            {children}
+            <Header />
+            <div className="container mx-auto flex flex-1 flex-col md:flex-row">
+              <main className="flex-1 md:shadow-bg">{children}</main>
+            </div>
           </MantineProvider>
         </ClientProvider>
       </body>
