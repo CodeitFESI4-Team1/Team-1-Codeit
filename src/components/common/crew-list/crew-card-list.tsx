@@ -18,7 +18,7 @@ function CrewCardList(
 
   return (
     <>
-      <ul className="mx-auto grid w-full grid-cols-1 gap-x-4 gap-y-6 md:grid-cols-2">
+      <ul className="mx-auto grid w-full grid-cols-1 gap-x-4 gap-y-6 lg:grid-cols-2">
         {crewDataList.map((inform) => (
           <li key={inform.crewId} className="w-full">
             <CrewCard
