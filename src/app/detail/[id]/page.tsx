@@ -1,89 +1,48 @@
-'use client';
+import CrewCard from '@/src/components/common/crew-list/crew-card';
+import DetailCrewCard from '@/src/components/common/crew-list/detail-crew-card';
 
-import { Button } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
-import GatheringDetailModalContainer from '@/src/components/gathering-detail-modal/container';
-
-const mockData = {
-  id: 1,
-  title: '아침 타임 에너지 요가',
-  introduce: '공지사항입니다. 다들 이번 약속 잊지 않으셨죠? 꼭 참여 부탁드립니다~',
-  dateTime: '2024-10-30T00:32:12.306Z',
-  location: '서울시 강남구 역삼동 오피스타워 3층',
-  currentCount: 5,
-  totalCount: 10,
-  imageUrl:
-    'https://www.dabur.com/Blogs/Doshas/Importance%20and%20Benefits%20of%20Yoga%201020x450.jpg',
-  isLiked: false,
-  isCaptain: false,
-  isParticipant: true,
-  participants: [
-    {
-      id: 1,
-      profileImageUrl:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUMrcQB5OJ-ETzPc6wHnjxjC-36__MGw3JcA&s',
-      nickname: '럽윈즈올',
-      email: 'youl@email.com',
-    },
-    {
-      id: 2,
-      profileImageUrl:
-        'https://imgcdn.stablediffusionweb.com/2024/5/13/c0541236-e690-4dff-a27e-30a0355e5ea0.jpg',
-      nickname: '모닝러너',
-      email: 'youl@email.com',
-    },
-    {
-      id: 3,
-      profileImageUrl:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUMrcQB5OJ-ETzPc6wHnjxjC-36__MGw3JcA&s',
-      nickname: '동글동글이',
-      email: 'youl@email.com',
-    },
-    {
-      id: 4,
-      profileImageUrl:
-        'https://imgcdn.stablediffusionweb.com/2024/5/13/c0541236-e690-4dff-a27e-30a0355e5ea0.jpg',
-      nickname: '해보자고',
-      email: 'youl@email.com',
-    },
-    {
-      id: 5,
-      profileImageUrl:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUMrcQB5OJ-ETzPc6wHnjxjC-36__MGw3JcA&s',
-      nickname: '두잇저스트',
-      email: 'youl@email.com',
-    },
-    {
-      id: 6,
-      profileImageUrl:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUMrcQB5OJ-ETzPc6wHnjxjC-36__MGw3JcA&s',
-      nickname: '럽윈즈올',
-      email: 'youl@email.com',
-    },
-    {
-      id: 7,
-      profileImageUrl:
-        'https://imgcdn.stablediffusionweb.com/2024/5/13/c0541236-e690-4dff-a27e-30a0355e5ea0.jpg',
-      nickname: '모닝러너',
-      email: 'youl@email.com',
-    },
-    {
-      id: 8,
-      profileImageUrl:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUMrcQB5OJ-ETzPc6wHnjxjC-36__MGw3JcA&s',
-      nickname: '동글동글이',
-      email: 'youl@email.com',
-    },
-  ],
-};
-
-// TODO : 임시로 작성됨. GatheringCardContainer 안쪽으로 이동 예정
 export default function CrewDetailPage() {
-  const [opened, { open, close }] = useDisclosure(false);
+  const crewData = {
+    id: 1,
+    name: '엄청긴크루이름엄청긴크루이름엄청긴크',
+    location: '경기도',
+    participantCount: 20,
+    capacity: 24,
+    thumbnail: 'https://i.pinimg.com/564x/f8/8d/c5/f88dc5b857caf6c303ae5ef9dd12e7fb.jpg',
+    isConfirmed: true,
+    gatheringCount: 3,
+    crewList: [
+      {
+        id: 1,
+        nickname: 'User1',
+        imageUrl: 'https://i.pinimg.com/564x/e2/25/bb/e225bb492dc7a20a549f3c0abec28eb8.jpg',
+      },
+      {
+        id: 2,
+        nickname: 'User2',
+      },
+      {
+        id: 3,
+        nickname: 'User3',
+        imageUrl: 'https://i.pinimg.com/564x/41/56/d8/4156d8253b6d76e5455d28b44bd1a1e0.jpg',
+      },
+      {
+        id: 4,
+        nickname: 'User4',
+        imageUrl: 'https://i.pinimg.com/564x/e2/e6/47/e2e64732424094c4e9e2643aaaf4389e.jpg',
+      },
+      {
+        id: 5,
+        nickname: 'User5',
+        imageUrl: 'https://i.pinimg.com/564x/17/06/45/170645a5f7b8a76f04c15b226b22cf90.jpg',
+      },
+    ],
+  };
+
   return (
-    <>
-      <Button onClick={open}>Open modal</Button>
-      <GatheringDetailModalContainer opened={opened} close={close} data={mockData} />
-    </>
+    <div className="flex max-w-[1200px] gap-4">
+      <CrewCard {...crewData} />
+      <CrewCard {...crewData} />
+    </div>
   );
 }

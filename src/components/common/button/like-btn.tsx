@@ -24,7 +24,8 @@ export default function LikeBtn({ id, isLiked, onLikeToggle, size = 64 }: LikeBu
   const [animating, setAnimating] = useState(false);
   const scaleAnimation = liked ? [1, 0] : [0, 1.3, 1];
 
-  const handleClick = () => {
+  const handleClick = (e: { stopPropagation: () => void }) => {
+    e.stopPropagation();
     setAnimating(true);
     setTimeout(() => {
       setLiked(!liked);
