@@ -16,7 +16,7 @@ import editImage from '@/public/assets/icons/profile-edit.svg';
  */
 
 interface ProfileProps {
-  size?: 'small' | 'header' | 'large';
+  size?: 'small' | 'header' | 'large' | 'full';
   imageUrl?: string;
   editable?: boolean;
   onClick?: () => void;
@@ -37,10 +37,11 @@ export function Profile({
     small: 'w-6 h-6',
     header: 'sm:w-7 sm:h-7 md:w-[40px] md:h-[40px] lg:w-[40px] lg:w-[40px]',
     large: 'w-14 h-14',
+    full: 'w-full h-full',
   };
 
   return (
-    <div className="relative inline-block">
+    <div className={`relative inline-block ${sizeClasses[finalSize]}`}>
       <button
         type="button"
         className={`relative ${sizeClasses[finalSize]} overflow-hidden rounded-full`}
@@ -50,7 +51,7 @@ export function Profile({
           className={`relative h-full w-full rounded-full ${imageUrl ? 'border-2 border-blue-100' : ''}`}
         >
           <Image
-            src={imageUrl || defaultImage}
+            src={imageUrl && imageUrl.trim() ? imageUrl : defaultImage}
             alt="프로필 이미지"
             layout="fill"
             objectFit="cover"

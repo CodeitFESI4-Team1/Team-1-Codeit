@@ -36,6 +36,13 @@ const config: Config = {
         7.5: '30px',
         12.5: '50px',
         27.5: '110px',
+        30: '120px',
+      },
+      height: {
+        7.5: '30px',
+        12.5: '50px',
+        27.5: '110px',
+        30: '120px',
       },
       padding: {
         7.5: '30px',
@@ -46,6 +53,7 @@ const config: Config = {
         12.5: '50px',
       },
       gap: {
+        6.5: '26px',
         7.5: '30px',
         12.5: '50px',
       },
@@ -134,7 +142,7 @@ const config: Config = {
             'background-position': '12px center',
             'background-size': '24px 24px',
           },
-          //button style
+          // button style
           '.btn-filled': {
             backgroundColor: '#3B82F6',
             color: '#ffffff',

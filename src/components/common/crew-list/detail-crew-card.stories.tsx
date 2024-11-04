@@ -1,5 +1,6 @@
+// CrewCard 스토리북 파일
 import type { Meta, StoryObj } from '@storybook/react';
-import CrewCard from './crew-card';
+import CrewCard from './detail-crew-card';
 
 const meta: Meta = {
   title: 'Components/CrewCardList/CrewCard',
@@ -16,7 +17,19 @@ const meta: Meta = {
     name: '같이 물장구칠사람',
     location: '충청',
     thumbnail: 'https://i.pinimg.com/564x/f8/8d/c5/f88dc5b857caf6c303ae5ef9dd12e7fb.jpg',
-    isAlone: true,
+    gatheringCount: 5, // 기본 값 추가
+    crewList: [
+      {
+        id: 1,
+        nickname: 'John',
+        imageUrl: 'https://i.pinimg.com/564x/e2/25/bb/e225bb492dc7a20a549f3c0abec28eb8.jpg',
+      },
+      {
+        id: 2,
+        nickname: 'Jane',
+        imageUrl: 'https://i.pinimg.com/564x/e2/25/bb/e225bb492dc7a20a549f3c0abec28eb8.jpg',
+      },
+    ], // 기본 프로필 리스트 추가
   },
 } satisfies Meta<typeof CrewCard>;
 
@@ -44,14 +57,5 @@ export const Fulled: Story = {
     capacity: 5,
     participantCount: 5,
     isConfirmed: true,
-  },
-};
-
-export const Canceled: Story = {
-  args: {
-    capacity: 10,
-    participantCount: 2,
-    isConfirmed: true,
-    canceledDate: new Date('2024-10-27'),
   },
 };
