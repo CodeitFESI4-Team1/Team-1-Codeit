@@ -4,6 +4,7 @@ import { useState } from 'react';
 import GatheringCardPresenter from './presenter';
 
 interface GatheringCardContainerProps {
+  id: number;
   title: string;
   dateTime: string;
   location: string;
@@ -16,6 +17,7 @@ interface GatheringCardContainerProps {
 }
 
 export default function GatheringCard({
+  id,
   title,
   dateTime,
   location,
@@ -47,6 +49,7 @@ export default function GatheringCard({
 
   return (
     <GatheringCardPresenter
+      id={id}
       isPast={isPast}
       deadlineMessage={deadlineMessage}
       isWithin24Hours={isWithin24Hours}
