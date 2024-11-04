@@ -5,21 +5,31 @@ import category from '@/src/data/category.json';
 import InternalCategory from '@/src/components/common/category/internal-category';
 import MainCategory from '@/src/components/common/category/main-category';
 
-export default function CategoryContainer() {
-  const [mainCategory, setMainCategory] = useState('cardio_strength');
-  const [subCategory, setSubCategory] = useState('running');
+export interface CategoryContainerProps {
+  mainCategory: string;
+  subCategory: string;
+  setMainCategory: (value: string) => void;
+  setSubCategory: (value: string) => void;
+}
+
+export default function CategoryContainer({
+  mainCategory,
+  subCategory,
+  setMainCategory,
+  setSubCategory,
+}: CategoryContainerProps) {
   const [categoryIndex, setCategoryIndex] = useState(0);
 
   useEffect(() => {
-    setSubCategory(category[categoryIndex].items[0].value);
-  }, [mainCategory]);
+    if (subCategory !== category[categoryIndex].items[0].value) {
+      setSubCategory(category[categoryIndex].items[0].value);
+    }
+  }, [mainCategory, categoryIndex]);
 
   useEffect(() => {
-    // TODO : 메인 카테고리 필터링
-  }, [mainCategory]);
-
-  useEffect(() => {
-    // TODO : 서브 카테고리 필터링
+    if (mainCategory !== category[categoryIndex].title.value) {
+      setMainCategory(category[categoryIndex].title.value);
+    }
   }, [subCategory]);
 
   return (
