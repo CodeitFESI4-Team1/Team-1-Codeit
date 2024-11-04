@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Button, Popover } from '@mantine/core';
 import { useDisclosure, useMediaQuery } from '@mantine/hooks';
-import { theme } from '@/src/app/theme';
 import CalendarFilter from '@/src/components/common/input/calendar-filter';
+import { theme } from '@/src/styles/theme';
 import IconArrow from '@/public/assets/icons/ic-arrow';
 
 export interface PopOverProps {
