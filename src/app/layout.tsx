@@ -2,10 +2,10 @@ import type { Metadata } from 'next';
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import '@mantine/core/styles.css';
 import ClientProvider from '@/src/components/client-provider';
+import Header from '@/src/components/common/header/container';
 import { pretendard } from '@/src/fonts/pretendard/pretendard';
 import '@/src/styles/globals.css';
-import Header from '../components/common/header/container';
-import { theme } from './theme';
+import { theme } from '@/src/styles/theme';
 
 export const metadata: Metadata = {
   title: 'CrewCrew',
