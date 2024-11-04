@@ -24,38 +24,29 @@ export default function MainCategory({ value, category, onHover, onChange }: Mai
     setActiveIndex(index);
   };
 
-  const updateWidth = useCallback(() => {
+  const updateBar = useCallback(() => {
     if (mainCategory.current && mainCategory.current.length > activeIndex) {
       setWidth(mainCategory.current[activeIndex]?.clientWidth);
-    }
-  }, [activeIndex]);
-
-  const updatePosition = useCallback(() => {
-    if (mainCategory.current && mainCategory.current.length > activeIndex) {
       setPosition((mainCategory.current[activeIndex] as HTMLElement)?.offsetLeft);
     }
   }, [activeIndex]);
 
   useEffect(() => {
-    updatePosition();
-    updateWidth();
+    updateBar();
   }, []);
 
   useEffect(() => {
-    updatePosition();
-    updateWidth();
-  }, [updateWidth, updatePosition, activeIndex]);
+    updateBar();
+  }, [updateBar, activeIndex]);
 
   useEffect(() => {
     // 윈도우 크기 조절 시 위치와 크기 업데이트
-    window.addEventListener('resize', updateWidth);
-    window.addEventListener('resize', updatePosition);
+    window.addEventListener('resize', updateBar);
 
     return () => {
-      window.removeEventListener('resize', updateWidth);
-      window.removeEventListener('resize', updatePosition);
+      window.removeEventListener('resize', updateBar);
     };
-  }, [updateWidth, updatePosition]);
+  }, [updateBar]);
 
   return (
     <div className="relative mb-1">
