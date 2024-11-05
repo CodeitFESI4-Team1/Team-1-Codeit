@@ -1,6 +1,6 @@
 'use client';
 
-import GatheringDetailModal from '@/src/components/gathering-detail-modal/presenter';
+import GatheringDetailModalPresenter from '@/src/components/gathering-detail-modal/presenter';
 import { GatheringDetailType } from '@/src/types/gathering-data';
 
 export interface GatheringDetailModalContainerProps {
@@ -28,7 +28,7 @@ export default function GatheringDetailModalContainer({
   };
 
   return (
-    <GatheringDetailModal
+    <GatheringDetailModalPresenter
       data={data}
       opened={opened}
       onClose={close}
