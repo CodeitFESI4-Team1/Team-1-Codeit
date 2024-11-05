@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import { Meta, StoryFn } from '@storybook/react';
-import { FileValueType } from '@/src/components/common/input/file-input-wrap';
 import FileInput, { FileInputProps } from '.';
 
 const meta: Meta = {
@@ -26,16 +25,16 @@ const meta: Meta = {
 export default meta;
 
 const Template: StoryFn<FileInputProps> = function FileInputStory() {
-  const [fileValue, setFileValue] = useState<FileValueType>({ image: null });
+  const [fileValue, setFileValue] = useState<File | null>(null);
   const [isBlur, setIsBlur] = useState(false);
 
   return (
     <div>
       <FileInput
-        value={fileValue.image}
+        value={fileValue}
         onChange={(newValue) => {
-          action('onChange')({ image: newValue });
-          setFileValue({ image: newValue });
+          action('onChange')(newValue);
+          setFileValue(newValue);
         }}
         isBlur={isBlur} // 기본값이 설정된 args에서 isBlur 값을 받아서 UI에 반영
       />
