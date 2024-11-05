@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
 import categoryData from '@/src/data/category.json';
 import InternalCategory, { InternalCategoryProps } from '.';
@@ -17,7 +17,15 @@ const meta: Meta = {
 export default meta;
 
 const Template: StoryFn<InternalCategoryProps> = function InternalCategoryStory() {
-  return <InternalCategory category={categoryData[0].items} />;
+  const [subCategory, setSubCategory] = useState('running');
+
+  return (
+    <InternalCategory
+      value={subCategory}
+      category={categoryData[0].items}
+      onChange={setSubCategory}
+    />
+  );
 };
 
 export const Category1 = Template.bind({});
