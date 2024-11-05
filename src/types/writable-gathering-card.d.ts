@@ -1,3 +1,8 @@
+export type WritableGatheringCardInformResponse = {
+  data: WritableGatheringCardInform[];
+  hasNextPage: boolean;
+};
+
 export type WritableGatheringCardInform = {
   id: number; // 약속 ID
   title: string; // 약속 이름
