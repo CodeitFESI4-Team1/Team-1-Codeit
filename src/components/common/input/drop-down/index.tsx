@@ -72,6 +72,7 @@ export default function DropDown({
           data={data}
           value={value}
           name={name}
+          dropdownOpened={isFocused}
           onFocus={() => setIsFocused(true)}
           onBlur={() => {
             if (inWhere === 'form') trigger(field.name); // react-hook-form의 onBlur 호출
@@ -82,6 +83,7 @@ export default function DropDown({
           onChange={(newValue) => {
             field.onChange(newValue); // react-hook-form의 onChange 호출
             onChange(newValue); // 기존 Select onChange 호출
+            setIsFocused(false);
           }}
           color={getColor()}
           leftSection=""

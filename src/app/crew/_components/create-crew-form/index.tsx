@@ -213,7 +213,7 @@ export default function CreateCrewForm({
             </p>
           )}
         </div>
-        <div className="pt-18 flex justify-between gap-4">
+        <div className="flex justify-between gap-4 pt-18">
           <Button
             type="submit"
             disabled={!isFormValid}
@@ -224,7 +224,7 @@ export default function CreateCrewForm({
           <Button
             type="button"
             onClick={() => router.back()}
-            className="w-29.5 btn-outlined h-11 flex-1 text-base font-medium text-blue-500"
+            className="btn-outlined h-11 w-29.5 flex-1 text-base font-medium text-blue-500"
           >
             취소
           </Button>
