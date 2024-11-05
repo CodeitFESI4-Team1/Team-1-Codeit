@@ -1,48 +1,48 @@
-import ReviewCard, { ReviewList } from './review-card';
-
-/**
- * ReviewCardList 컴포넌트
- *
- * @param {ReviewList} reviewList - 리뷰 리스트 데이터 배열
- * @param {boolean} [props.clickable] - 클릭가능여부, 클릭 시 해당 모임이 포함된 크루 페이지로 이동, 기본값 'false'
- * @param {boolean} [props.imageAvailable] - 썸네일 이미지 유무, 기본값 'false'
- * @param {boolean} [props.isMine] - 내 리뷰인지? 기본값 'false'
- * @returns {JSX.Element} : ReviewCardList
- */
+import { forwardRef } from 'react';
+import { InfiniteData } from '@tanstack/react-query';
+import { ReviewInformResponse } from '@/src/types/review';
+import ReviewCard from './review-card';
 
 interface ReviewCardListProps {
-  reviewList: ReviewList;
+  data: InfiniteData<ReviewInformResponse> | undefined;
+  isFetchingNextPage: boolean;
   clickable?: boolean;
-  imageAvailable?: boolean;
   isMine?: boolean;
 }
 
-export default function ReviewCardList({
-  reviewList,
-  clickable = false,
-  imageAvailable = false,
-  isMine = false,
-}: ReviewCardListProps) {
+function ReviewCardList(
+  { data, isFetchingNextPage, clickable = false, isMine = false }: ReviewCardListProps,
+  ref: React.Ref<HTMLDivElement>,
+) {
+  const reviewDataList = data?.pages.flatMap((page) => [...page.data]) ?? [];
+
+  if (!reviewDataList) return <p>Loading...</p>;
+
   return (
-    <ul className="mx-auto h-full w-[343px] md:w-[820px] lg:w-[1200px]">
-      {reviewList.map((review, index) => (
-        <li key={`${review.score - index}`} className="h-auto min-h-[112px]">
-          <ReviewCard
-            score={review.score}
-            comment={review.comment}
-            createdAt={review.createdAt}
-            user={review.user}
-            imageAvailable={imageAvailable}
-            clickable={clickable}
-            gathering={{
-              id: review.gathering.id,
-              image: review.gathering.image,
-              name: review.gathering.name,
-            }}
-            isMine={isMine}
-          />
-        </li>
-      ))}
-    </ul>
+    <>
+      <ul className={`mx-auto flex h-full w-full flex-col ${isMine ? 'gap-8' : ''}`}>
+        {reviewDataList.map((review, index) => (
+          <li key={`${review.rate - index}`} className="h-auto min-h-[112px]">
+            <ReviewCard
+              crewId={review.crewId}
+              comment={review.comment}
+              createdAt={review.createdAt}
+              rate={review.rate}
+              isMine={isMine}
+              clickable={clickable}
+              crewName={'crewName' in review ? review.crewName : undefined}
+              gatheringName={'gatheringName' in review ? review.gatheringName : undefined}
+              reviewer={'reviewer' in review ? review.reviewer : undefined}
+              gatheringLocation={
+                'gatheringLocation' in review ? review.gatheringLocation : undefined
+              }
+            />
+          </li>
+        ))}
+      </ul>
+      {isFetchingNextPage ? <p>loading...</p> : <div ref={ref} className="h-[1px]" />}
+    </>
   );
 }
+
+export default forwardRef(ReviewCardList);
