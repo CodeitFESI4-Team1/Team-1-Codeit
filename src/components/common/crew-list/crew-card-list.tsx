@@ -14,7 +14,7 @@ function CrewCardList(
   ref: React.Ref<HTMLDivElement>,
 ) {
   const crewDataList = data?.pages.flatMap((page) => page.data) ?? [];
-  const gridColsStyle = inWhere === 'my-crew' ? '' : 'md:grid-cols-2';
+  const gridColsStyle = inWhere === 'my-crew' ? '' : 'lg:grid-cols-2';
 
   if (!crewDataList) return <p>loading...</p>;
 
