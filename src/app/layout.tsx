@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import '@mantine/core/styles.css';
 import ClientProvider from '@/src/components/client-provider';
-import Header from '@/src/components/common/header/container';
 import { pretendard } from '@/src/fonts/pretendard/pretendard';
 import '@/src/styles/globals.css';
 import { theme } from '@/src/styles/theme';
@@ -22,15 +21,9 @@ export default function RootLayout({
       <head>
         <ColorSchemeScript />
       </head>
-
-      <body className="flex min-h-screen flex-col bg-gray-50">
+      <body>
         <ClientProvider>
-          <MantineProvider theme={theme}>
-            <Header />
-            <div className="container mx-auto flex flex-1 flex-col md:flex-row">
-              <main className="flex-1 md:shadow-bg">{children}</main>
-            </div>
-          </MantineProvider>
+          <MantineProvider theme={theme}>{children}</MantineProvider>
         </ClientProvider>
       </body>
     </html>
