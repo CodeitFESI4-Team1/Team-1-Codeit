@@ -1,7 +1,8 @@
 import Image from 'next/image';
-import { Button, Modal, ScrollArea } from '@mantine/core';
+import { Modal, ScrollArea } from '@mantine/core';
 import { formatDate } from '@/src/utils/format-date';
 import isToday from '@/src/utils/is-today';
+import Button from '@/src/components/common/button';
 import { Profile } from '@/src/components/common/profile';
 import { GatheringDetailType } from '@/src/types/gathering-data';
 import IcoClock from '@/public/assets/icons/ic-clock.svg';
@@ -109,40 +110,35 @@ export default function GatheringDetailModalPresenter({
           </section>
           <footer className="flex items-center justify-center gap-3">
             <Button
-              variant="outline"
+              type="button"
               onClick={onClose}
-              w={118}
-              h={44}
-              className="rounded-xl border-blue-500 text-base font-medium text-blue-500"
+              className="w-29.5 btn-outlined h-11 text-base font-medium"
             >
               닫기
             </Button>
             {!data?.isParticipant && (
               <Button
+                type="button"
                 onClick={onJoin}
-                w={118}
-                h={44}
-                className="rounded-xl bg-blue-500 text-base font-medium"
+                className="w-29.5 btn-filled h-11 text-base font-medium"
               >
                 참여하기
               </Button>
             )}
             {data?.isParticipant && !data?.isCaptain && (
               <Button
+                type="button"
                 onClick={onExit}
-                w={118}
-                h={44}
-                className="rounded-xl bg-blue-500 text-base font-medium"
+                className="w-29.5 btn-filled h-11 text-base font-medium"
               >
                 탈퇴하기
               </Button>
             )}
             {data?.isCaptain && (
               <Button
+                type="button"
                 onClick={onDelete}
-                w={118}
-                h={44}
-                className="rounded-xl bg-blue-500 text-base font-medium"
+                className="w-29.5 btn-filled h-11 text-base font-medium"
               >
                 삭제하기
               </Button>
