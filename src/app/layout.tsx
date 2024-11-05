@@ -5,6 +5,7 @@ import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 // All packages except `@mantine/hooks` require styles imports
 import '@mantine/core/styles.css';
 import ClientProvider from '@/src/components/client-provider';
+import Header from '@/src/components/common/header/container';
 import '@/src/styles/globals.css';
 import { theme } from './theme';
 
@@ -95,12 +96,13 @@ export default function RootLayout({
       <head>
         <ColorSchemeScript />
       </head>
-      <body className="font-pretendard">
+      <body className="bg-gray-50 font-pretendard">
         <ClientProvider>
           <MantineProvider theme={theme}>
-            {/* 헤더 컴포넌트 위치 */}
-            {/* <Header /> */}
-            {children}
+            <Header />
+            <div className="container mx-auto my-0 min-h-screen max-w-pc bg-gray-50 py-11 shadow-bg">
+              {children}
+            </div>
           </MantineProvider>
         </ClientProvider>
       </body>

@@ -31,7 +31,7 @@ export default function Home() {
   });
 
   return (
-    <div className="container mx-auto my-0 min-h-screen max-w-pc bg-gray-50 py-11 shadow-bg">
+    <>
       <div className="lg:gap-4.5 flex flex-col gap-3 px-3 md:gap-4 md:px-8 lg:px-11.5">
         <HeroCrew />
         <CategoryContainer
@@ -82,6 +82,6 @@ export default function Home() {
       <div className="mt-8 px-3 md:px-8 lg:px-11.5">
         <CrewCardList data={data} ref={ref} isFetchingNextPage={isFetchingNextPage} />
       </div>
-    </div>
+    </>
   );
 }

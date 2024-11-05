@@ -33,7 +33,11 @@ export default function Header() {
 
       {/* 쿠키 버튼 추가 */}
       {/* 추후 삭제 */}
-      <button type="button" onClick={toggleCookie} className="mb-4 mt-5 bg-blue-500 p-2 text-white">
+      <button
+        type="button"
+        onClick={toggleCookie}
+        className="absolute mb-4 mt-5 bg-blue-500 p-2 text-white"
+      >
         테스트용
       </button>
     </div>
