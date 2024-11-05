@@ -36,7 +36,6 @@ function ReviewCardList(
               gatheringLocation={
                 'gatheringLocation' in review ? review.gatheringLocation : undefined
               }
-              crewLocation={'crewLocation' in review ? review.crewLocation : undefined}
             />
           </li>
         ))}

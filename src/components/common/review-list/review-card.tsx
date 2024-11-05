@@ -24,8 +24,8 @@ interface ReviewCardProps {
   isMine?: boolean;
 
   crewName?: string;
-  crewLocation?: string;
   gatheringLocation?: string;
+  gatheringName?: string;
 
   reviewer?: ReviewerType;
 }
@@ -38,7 +38,7 @@ export default function ReviewCard({
   clickable = false,
   isMine = false,
   crewName,
-  crewLocation,
+  gatheringName,
   gatheringLocation,
   reviewer,
 }: ReviewCardProps) {
@@ -69,8 +69,8 @@ export default function ReviewCard({
     <div className="w-full">
       {isMine && (
         <div className="mb-3 flex w-fit items-center gap-2">
-          <span className="text-xl font-semibold text-gray-800">{gatheringLocation} |</span>
-          <span className="text-base font-medium text-gray-700">{crewLocation}</span>
+          <span className="text-xl font-semibold text-gray-800">{gatheringName} |</span>
+          <span className="text-base font-medium text-gray-700">{gatheringLocation}</span>
         </div>
       )}
       <div
