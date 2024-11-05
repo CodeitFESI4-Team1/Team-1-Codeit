@@ -17,7 +17,7 @@ import {
  */
 
 export interface TextInputProps extends MantineTextInputProps {
-  register: UseFormRegisterReturn;
+  register?: UseFormRegisterReturn;
   inputClassNames?: string;
 }
 
