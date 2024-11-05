@@ -21,5 +21,6 @@ function Template(args: FloatingButtonProps) {
 }
 
 export function Default() {
+  // eslint-disable-next-line no-alert
   return <Template onClick={() => alert('참가 버튼 클릭')} />;
 }
