@@ -1,32 +1,45 @@
-import React from 'react';
-import type { Meta, StoryFn } from '@storybook/react';
-import Toast, { ToastProps } from '.';
+import { Meta, StoryObj } from '@storybook/react';
+import Toast from './index';
 
-const meta: Meta = {
-  title: 'Components/toast',
+const meta: Meta<typeof Toast> = {
+  title: 'Components/Toast',
   component: Toast,
-};
+  parameters: {
+    layout: 'centered',
+  },
+  tags: ['autodocs'],
+  argTypes: {
+    type: {
+      control: { type: 'select' },
+      options: ['success', 'error', 'warning'],
+    },
+    message: { control: 'text' },
+  },
+} satisfies Meta<typeof Toast>;
 
 export default meta;
-const Template: StoryFn<ToastProps> = function ToastStory(args: ToastProps) {
-  return <Toast {...args} />;
+type Story = StoryObj<typeof meta>;
+
+// Success Toast
+export const SuccessToast: Story = {
+  args: {
+    message: '성공..!',
+    type: 'success',
+  },
 };
 
-export const Default = Template.bind({});
-Default.args = {
-  title: '제목',
-  className: 'w-60',
+// Error Toast
+export const ErrorToast: Story = {
+  args: {
+    message: '에러...!',
+    type: 'error',
+  },
 };
 
-export const WithChildren = Template.bind({});
-WithChildren.args = {
-  title: '제목',
-  children: '내용입니다.',
-};
-
-export const WithIcon = Template.bind({});
-WithIcon.args = {
-  title: '제목',
-  children: '내용입니다.',
-  icon: 'i',
+// Warning Toast
+export const WarningToast: Story = {
+  args: {
+    message: '문제가 있음',
+    type: 'warning',
+  },
 };
