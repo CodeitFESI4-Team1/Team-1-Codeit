@@ -15,7 +15,7 @@ export default function CrewReviewSection() {
 
   return (
     <div className="space-y-6 rounded-lg bg-white">
-      <div className="flex justify-center py-11">
+      <div className="mx-4 flex justify-center py-11">
         <RatingDisplay reviewRateInfo={exampleReviewRateInfo} />
       </div>
       {/* 리뷰 리스트 페이지네이션 */}
