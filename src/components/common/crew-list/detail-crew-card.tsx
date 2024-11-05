@@ -2,7 +2,9 @@
 
 import Image from 'next/image';
 import { Menu } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
 import Profiles from '@/src/components/common/crew-list/profiles';
+import ConfirmCancelModal from '@/src/components/common/modal/confirm-cancel-modal';
 import ProgressBar from '@/src/components/common/progress-bar/index';
 import Check from '@/public/assets/icons/ic-check.svg';
 import KebabIcon from '@/public/assets/icons/kebab-btn.svg';
@@ -42,12 +44,27 @@ export default function DetailCrewCard({
   isCaptain,
   isCrew,
 }: DetailCrewCardProps) {
+  const [confirmCancelOpened, { open: openConfirmCancel, close: closeConfirmCancel }] =
+    useDisclosure();
+  const [leaveCrewModalOpened, { open: openLeaveCrewModal, close: closeLeaveCrewModal }] =
+    useDisclosure();
+
   const handleDelete = () => {
-    // 삭제 로직
+    openConfirmCancel();
   };
 
   const handleLeaveCrew = () => {
-    // 탈퇴 로직
+    openLeaveCrewModal();
+  };
+
+  const handleConfirmDelete = () => {
+    // TODO : 삭제 로직
+    closeConfirmCancel();
+  };
+
+  const handleConfirmLeaveCrew = () => {
+    // TODO : 탈퇴 로직
+    closeLeaveCrewModal();
   };
 
   return (
@@ -61,7 +78,7 @@ export default function DetailCrewCard({
             </div>
           </Menu.Target>
           <Menu.Dropdown>
-            <Menu.Item component="a" href="" className="font-pretendard">
+            <Menu.Item component="a" href="/crew/edit" className="font-pretendard">
               크루 수정하기
             </Menu.Item>
             <Menu.Item
@@ -137,6 +154,24 @@ export default function DetailCrewCard({
           </div>
         </div>
       </div>
+
+      {/* 삭제 확인 모달 */}
+      <ConfirmCancelModal
+        opened={confirmCancelOpened}
+        onClose={closeConfirmCancel}
+        onConfirm={handleConfirmDelete}
+      >
+        <p>정말로 크루를 삭제하시겠습니까?</p>
+      </ConfirmCancelModal>
+
+      {/* 탈퇴 확인 모달 */}
+      <ConfirmCancelModal
+        opened={leaveCrewModalOpened}
+        onClose={closeLeaveCrewModal}
+        onConfirm={handleConfirmLeaveCrew}
+      >
+        <p>정말로 크루에서 탈퇴하시겠습니까?</p>
+      </ConfirmCancelModal>
     </div>
   );
 }
