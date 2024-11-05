@@ -1,3 +1,5 @@
+'use client';
+
 import { Button } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import GatheringDetailModalContainer from '@/src/components/gathering-detail-modal/container';

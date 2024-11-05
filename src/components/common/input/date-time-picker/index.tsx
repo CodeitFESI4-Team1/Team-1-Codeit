@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Button } from '@mantine/core';
 import { Calendar } from '@mantine/dates';
 import dayjs from 'dayjs';
