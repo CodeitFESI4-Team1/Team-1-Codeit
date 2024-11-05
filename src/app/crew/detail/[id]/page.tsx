@@ -11,7 +11,7 @@ export default async function CrewDetailPage() {
 
   return (
     <div className="mx-auto min-h-screen w-full max-w-full overflow-x-hidden">
-      <div className="mx-3 space-y-10 md:mx-7 lg:mx-11">
+      <div className="mx-3 my-7 space-y-10 md:mx-7 md:my-11 lg:mx-11 lg:my-16">
         <section className="w-full">
           <article>
             <DetailCrewCard {...crewDetail} />
