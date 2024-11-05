@@ -27,7 +27,7 @@ export default function RootLayout({
         <ClientProvider>
           <MantineProvider theme={theme}>
             <Header />
-            <main className="container max-w-pc mx-auto py-10 md:py-16 md:shadow-b ">
+            <main className="md:shadow-b container mx-auto max-w-pc py-10 md:py-16">
               {children}
             </main>
           </MantineProvider>
