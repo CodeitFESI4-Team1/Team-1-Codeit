@@ -8,20 +8,20 @@ import { Profile } from '@/src/components/common/profile';
 import Logo from '@/public/assets/images/logo.png';
 
 export interface HeaderPresenterProps {
-  hasCookie: boolean;
+  isAuth: boolean;
   profileImageUrl?: string;
   handleLogout: () => void;
 }
 
 export default function HeaderPresenter({
-  hasCookie,
+  isAuth,
   profileImageUrl,
   handleLogout,
 }: HeaderPresenterProps) {
   const pathname = usePathname();
   return (
     <header className="sticky top-0 z-10 h-[40px] w-full bg-blue-500 px-6 md:h-[52px] lg:h-[52px]">
-      <div className="mx-auto flex h-full w-full max-w-screen-lg items-center justify-between">
+      <div className="mx-auto flex h-full w-full max-w-screen-lg items-center justify-between md:container">
         <div className="flex space-x-3 md:space-x-5 lg:space-x-5">
           <Link href="/" className="mt-1">
             <Image src={Logo} alt="crew logo" width={83} height={30} className="hidden md:block" />
@@ -35,7 +35,7 @@ export default function HeaderPresenter({
               크루 찾기
             </Link>
 
-            {hasCookie ? (
+            {isAuth ? (
               <>
                 <Link
                   href="/my-crew"
@@ -63,7 +63,7 @@ export default function HeaderPresenter({
           </nav>
         </div>
 
-        {hasCookie ? (
+        {isAuth ? (
           <div className="relative">
             <Menu trigger="hover" openDelay={100} closeDelay={400}>
               <Menu.Target>
@@ -87,6 +87,7 @@ export default function HeaderPresenter({
           </Link>
         )}
       </div>
+      {/* </div> */}
     </header>
   );
 }
