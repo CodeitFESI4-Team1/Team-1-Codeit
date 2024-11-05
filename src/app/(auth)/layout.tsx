@@ -1,24 +1,9 @@
-// // app/login/layout.tsx
-// import { ReactNode } from 'react';
-// import { MantineProvider } from '@mantine/core';
-// import { theme } from '@/src/styles/theme';
-// export default function AuthLayout({ children }: { children: ReactNode }) {
-//   return (
-//     <MantineProvider theme={theme}>
-//       <div className="flex min-h-screen items-center justify-center bg-gray-500">
-//         <div className="w-full max-w-md rounded-lg bg-white p-6 shadow-lg">{children}</div>
-//       </div>
-//     </MantineProvider>
-//   );
-// }
 import type { Metadata } from 'next';
-import { ColorSchemeScript, MantineProvider } from '@mantine/core';
+import Image from 'next/image';
 import '@mantine/core/styles.css';
-import ClientProvider from '@/src/components/client-provider';
 import Header from '@/src/components/common/header/container';
-import { pretendard } from '@/src/fonts/pretendard/pretendard';
 import '@/src/styles/globals.css';
-import { theme } from '@/src/styles/theme';
+import Auth from '@/public/assets/images/auth.png';
 
 export const metadata: Metadata = {
   title: 'CrewCrew',
@@ -31,21 +16,14 @@ export default function AuthLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={pretendard.variable}>
-      <head>
-        <ColorSchemeScript />
-      </head>
-
-      <body className="flex min-h-screen flex-col bg-gray-50">
-        <ClientProvider>
-          <MantineProvider theme={theme}>
-            <Header />
-            <div className="flex min-h-screen items-center justify-center bg-gray-500">
-              <div className="w-full max-w-md rounded-lg bg-white p-6 shadow-lg">{children}</div>
-            </div>
-          </MantineProvider>
-        </ClientProvider>
-      </body>
-    </html>
+    <div className="flex h-screen flex-col bg-gray-50">
+      <Header />
+      <div className="flex flex-1">
+        <div className="hidden h-full w-2/3 items-center md:flex">
+          <Image src={Auth} alt="auth" />
+        </div>
+        <div className="flex h-full w-full bg-white md:w-1/3 md:items-center">{children}</div>
+      </div>
+    </div>
   );
 }
