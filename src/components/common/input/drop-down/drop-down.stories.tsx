@@ -35,41 +35,44 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: StoryFn<DropDownProps> = function DropDownStory(args: DropDownProps) {
-  const [value, setValue] = useState<string | null>(null);
+const Template: StoryFn<DropDownProps> = function DropDownStory(args) {
+  const [value, setValue] = useState<string | null>('option1');
 
   return (
     <DropDown
       {...args}
       value={value}
-      onChange={(newValue, option) => {
+      className="w-[110px]"
+      onChange={(newValue) => {
         setValue(newValue);
-        action('onChange')(newValue, option); // 액션 로그
+        action('onChange')(newValue); // 액션 로그
       }}
     />
   );
 };
 
-export const Region = Template.bind({});
-Region.args = {
+export const Default = Template.bind({});
+Default.args = {
   variant: 'default',
+  name: 'region',
   data: [
-    { value: 'option 1', label: '옵션 1' },
-    { value: 'option 2', label: '옵션 2' },
+    { value: 'option1', label: '옵션 1' },
+    { value: 'option2', label: '옵션 2' },
   ],
   placeholder: '지역 전체',
-  value: null,
+  value: 'option1',
   className: 'w-[110px]',
 };
 
 export const Sort = Template.bind({});
 Sort.args = {
   variant: 'sort',
+  name: 'sort',
   data: [
     { value: 'latest', label: '최신순' },
     { value: 'best', label: '인기순' },
   ],
   placeholder: '최신순',
-  value: null,
+  value: 'latest',
   className: 'w-[110px]',
 };

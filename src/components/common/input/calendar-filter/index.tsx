@@ -35,14 +35,14 @@ export default function CalendarFilter({ value, toDoDates, onChange }: CalendarF
         })}
         firstDayOfWeek={0}
         classNames={{
-          day: 'w-full aspect-square font-pretendard text-gray-800 data-[selected=true]:text-white data-[selected=true]:bg-blue-500 flex',
+          day: 'w-full aspect-square text-gray-800 data-[selected=true]:text-white data-[selected=true]:bg-blue-500 flex',
           monthCell:
-            'w-[calc(14.285vw-5.714px)] md:w-[calc(7.143vw-5.714px)] lg:w-[82.857px] aspect-square font-pretendard',
+            'w-[calc(14.285vw-5.714px)] md:w-[calc(7.143vw-5.714px)] lg:w-[82.857px] aspect-square',
           monthsListCell:
-            'w-[calc(33.333vw-13.333px)] h-[10vw] md:w-[calc(16.666vw-13.333px)] md:h-[6.428vw] lg:w-[193.333px] lg:h-[77px] font-pretendard text-gray-800',
+            'w-[calc(33.333vw-13.333px)] h-[10vw] md:w-[calc(16.666vw-13.333px)] md:h-[6.428vw] lg:w-[193.333px] lg:h-[77px] text-gray-800',
           monthsListControl: 'w-full h-full',
           yearsListCell:
-            'w-[calc(33.333vw-13.333px)] h-[10vw] md:w-[calc(16.666vw-13.333px)] md:h-[6.428vw] lg:w-[193.333px] lg:h-[77px] font-pretendard text-gray-800',
+            'w-[calc(33.333vw-13.333px)] h-[10vw] md:w-[calc(16.666vw-13.333px)] md:h-[6.428vw] lg:w-[193.333px] lg:h-[77px] text-gray-800',
         }}
         weekendDays={[]}
         previousIcon={<IconArrow direction="left" color="#1F2937" />}

@@ -42,9 +42,10 @@ export default function FileInput({ value, isBlur, onChange }: FileInputProps) {
   const debouncedHandleFileLoad = debounce(handleFileLoad, 300);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
+    if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
       onChange(file);
+      e.target.value = '';
 
       // 디바운싱된 파일 로드 실행
       debouncedHandleFileLoad(file);
@@ -76,10 +77,10 @@ export default function FileInput({ value, isBlur, onChange }: FileInputProps) {
   }, [fileReader]);
 
   useEffect(() => {
-    if (value && isBlur) {
+    if (isBlur) {
       setPreview(null); // 블러 상태에서 미리보기 제거
     }
-  }, [value, isBlur]);
+  }, [isBlur]);
 
   return (
     <div className="min-w-1/4 relative flex aspect-square w-1/4 gap-2">
@@ -87,8 +88,15 @@ export default function FileInput({ value, isBlur, onChange }: FileInputProps) {
         htmlFor="item-file"
         className="flex h-full w-full cursor-pointer flex-col items-center justify-center rounded-xl bg-neutral-100"
       >
-        <Image width="48" height="48" src={IcoPlus} alt="이미지 추가" />
-        <span>이미지 등록</span>
+        <figure className="relative flex h-3.5 w-3.5 md:h-5 md:w-5">
+          <Image
+            fill
+            src={IcoPlus}
+            alt="이미지 추가"
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          />
+        </figure>
+        <span className="text-xs font-medium text-gray-400 md:text-lg">이미지 등록</span>
       </label>
       <input
         type="file"
