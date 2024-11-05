@@ -10,14 +10,14 @@ export default async function CrewDetailPage() {
   const gatheringList = await getGatheringList();
 
   return (
-    <div className="container mx-auto my-0 min-h-screen max-w-pc bg-gray-50 py-11 shadow-bg">
-      <div className="space-y-10">
-        <section className="lg:mx-12">
+    <div className="mx-auto min-h-screen w-full max-w-full overflow-x-hidden">
+      <div className="mx-3 space-y-10 md:mx-7 lg:mx-11">
+        <section className="w-full">
           <article>
             <DetailCrewCard {...crewDetail} />
           </article>
         </section>
-        <section className="space-y-6 md:mx-8 lg:mx-12">
+        <section className="w-full space-y-6">
           <article className="space-y-6">
             <div className="flex items-center justify-between">
               <h2 className="text-2xl font-semibold">크루 약속 잡기</h2>
@@ -25,12 +25,12 @@ export default async function CrewDetailPage() {
                 약속 만들기
               </Button>
             </div>
-            <div className="flex">
+            <div className="flex w-full">
               <GatheringCardCarousel gatheringData={gatheringList} />
             </div>
           </article>
         </section>
-        <section className="md:mx-8 lg:mx-12">
+        <section className="w-full">
           <article className="space-y-6">
             <h2 className="text-2xl font-semibold">크루 리뷰</h2>
             <CrewReviewSection />
