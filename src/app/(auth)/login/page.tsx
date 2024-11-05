@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { usePostLoginQuery } from '@/src/_queries/auth/auth-queries';
 import LoginForm, { LoginFormValues } from './_component/login-form';
@@ -38,9 +39,9 @@ export default function LoginPage() {
       <LoginForm formMethods={formMethods} onSubmit={handleSubmit} />
       <div className="mt-6 flex justify-center space-x-1 text-sm font-medium">
         <div>크루가 처음이신가요?</div>
-        <a href="/signup" className="text-blue-500 underline">
+        <Link href="/signup" className="text-blue-500 underline">
           회원가입
-        </a>
+        </Link>
       </div>
     </div>
   );
