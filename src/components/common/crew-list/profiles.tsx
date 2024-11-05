@@ -25,7 +25,9 @@ export default function Profiles({ profiles, size }: ProfilesProps) {
       ))}
       {extraCount > 0 && (
         <li className="relative ml-[-10px]">
-          <span className={`${sizeMap[size]} flex flex-shrink-0 items-center justify-center rounded-full bg-gray-100 text-sm font-semibold leading-[normal] text-gray-800`}>
+          <span
+            className={`${sizeMap[size]} flex flex-shrink-0 items-center justify-center rounded-full bg-gray-100 text-sm font-semibold leading-[normal] text-gray-800`}
+          >
             +{extraCount}
           </span>
         </li>

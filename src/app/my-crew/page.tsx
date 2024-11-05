@@ -25,7 +25,7 @@ export default function MyCrePage() {
   });
   return (
     <>
-      <div className="px-3 md:px-8 lg:px-11.5">
+      <div className="lg:px-11.5 px-3 md:px-8">
         <Tabs
           variant="default"
           tabs={myPageTabs}
@@ -35,7 +35,7 @@ export default function MyCrePage() {
           }}
         />
       </div>
-      <div className="mt-8 px-3 md:px-8 lg:px-11.5">
+      <div className="lg:px-11.5 mt-8 px-3 md:px-8">
         <CrewCardList
           inWhere="my-crew"
           data={data}
