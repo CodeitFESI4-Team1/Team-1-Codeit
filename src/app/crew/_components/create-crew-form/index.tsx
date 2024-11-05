@@ -95,7 +95,14 @@ export default function CreateCrewForm({
               }),
             }}
             error={errors.title?.message?.toString()}
-            onChange={(e) => setValues((prevValues) => ({ ...prevValues, title: e.target.value }))}
+            onChange={(e) =>
+              setValues((prevValues) => {
+                if (e.target.value.length <= 20) {
+                  return { ...prevValues, title: e.target.value };
+                }
+                return prevValues;
+              })
+            }
             placeholder="크루명을 20자 이내로 입력해주세요."
             maxLength={20}
             classNames={{
@@ -206,7 +213,7 @@ export default function CreateCrewForm({
             </p>
           )}
         </div>
-        <div className="flex justify-between gap-4 pt-18">
+        <div className="pt-18 flex justify-between gap-4">
           <Button
             type="submit"
             disabled={!isFormValid}
@@ -217,7 +224,7 @@ export default function CreateCrewForm({
           <Button
             type="button"
             onClick={() => router.back()}
-            className="btn-outlined h-11 w-29.5 flex-1 text-base font-medium text-blue-500"
+            className="w-29.5 btn-outlined h-11 flex-1 text-base font-medium text-blue-500"
           >
             취소
           </Button>
