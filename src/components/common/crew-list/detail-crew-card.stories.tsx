@@ -22,12 +22,12 @@ const meta: Meta = {
       {
         id: 1,
         nickname: 'John',
-        imageUrl: 'https://i.pinimg.com/564x/e2/25/bb/e225bb492dc7a20a549f3c0abec28eb8.jpg',
+        profileImageUrl: 'https://i.pinimg.com/564x/e2/25/bb/e225bb492dc7a20a549f3c0abec28eb8.jpg',
       },
       {
         id: 2,
         nickname: 'Jane',
-        imageUrl: 'https://i.pinimg.com/564x/e2/25/bb/e225bb492dc7a20a549f3c0abec28eb8.jpg',
+        profileImageUrl: 'https://i.pinimg.com/564x/e2/25/bb/e225bb492dc7a20a549f3c0abec28eb8.jpg',
       },
     ], // 기본 프로필 리스트 추가
   },

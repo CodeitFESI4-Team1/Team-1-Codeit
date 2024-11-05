@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { Menu } from '@mantine/core';
 import Profiles from '@/src/components/common/crew-list/profiles';
 import ProgressBar from '@/src/components/common/progress-bar/index';
+import { CrewMemberList } from '@/src/types/crew-card';
 import Check from '@/public/assets/icons/ic-check.svg';
 import KebabIcon from '@/public/assets/icons/kebab-btn.svg';
 
@@ -16,13 +17,7 @@ interface DetailCrewCardProps {
   isConfirmed: boolean;
   thumbnail: string;
   gatheringCount: number;
-  crewList: CrewInfoType[];
-}
-
-interface CrewInfoType {
-  id: number;
-  nickname: string;
-  imageUrl?: string | null;
+  crewList: CrewMemberList[];
 }
 
 export default function DetailCrewCard({
