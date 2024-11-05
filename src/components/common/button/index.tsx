@@ -24,7 +24,6 @@ export default function Button({
   onMouseEnter,
   type = 'button',
   disabled,
-  onClick,
   children,
 }: ButtonProps) {
   return (
@@ -34,6 +33,7 @@ export default function Button({
       className={`typo-lg-semibold flex items-center justify-center rounded-xl py-2 ${className}`}
       onClick={onClick}
       onMouseEnter={onMouseEnter}
+      disabled={disabled}
     >
       {children}
     </button>
