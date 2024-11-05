@@ -51,7 +51,7 @@ export default function DetailCrewCard({
   };
 
   return (
-    <div className="relative mx-[16px] flex h-[508px] max-w-full flex-col overflow-hidden rounded-[14px] bg-white shadow-bg md:mx-[32px] md:h-[270px] md:flex-row lg:mx-auto lg:h-[270px] lg:w-[1180px]">
+    <div className="relative flex h-[508px] max-w-full flex-col overflow-hidden rounded-[14px] bg-white shadow-bg md:h-[270px] md:flex-row lg:h-[270px] lg:w-[1180px]">
       {/* eslint-disable-next-line no-nested-ternary */}
       {isCaptain ? (
         <Menu trigger="click" position="bottom-end" openDelay={100} closeDelay={400}>
