@@ -8,10 +8,18 @@ import HeroCrew from '@/src/components/common/hero/hero-crew';
 import DropDown from '@/src/components/common/input/drop-down';
 import PopOverCalendar from '@/src/components/common/input/pop-over-calendar';
 
+export interface ValuesType {
+  region: string;
+  date: Date;
+  sort: string;
+}
+
 export default function Home() {
-  const [sort, setSort] = useState<string | null>('latest');
-  const [region, setRegion] = useState<string | null>('all');
-  const [date, setDate] = useState<Date>(new Date());
+  const [options, setOptions] = useState<ValuesType>({
+    region: 'all',
+    date: new Date(),
+    sort: 'latest',
+  });
 
   return (
     <div className="container mx-auto my-0 min-h-screen max-w-pc bg-gray-50 py-11 shadow-bg">
@@ -25,24 +33,33 @@ export default function Home() {
           <div className="flex items-center justify-between gap-2">
             <DropDown
               variant="default"
-              data={regionData}
+              data={regionData.map((item) => item.main)}
               placeholder="전체"
-              value={region}
+              name="region"
+              value={options.region}
               className="w-[110px]"
-              onChange={setRegion}
+              onChange={(newOption) =>
+                setOptions((prev) => ({ ...prev, region: newOption ?? 'all' }))
+              }
             />
-            <PopOverCalendar value={date} onChange={setDate} />
+            <PopOverCalendar
+              value={options.date}
+              onChange={(newOption) => setOptions((prev) => ({ ...prev, date: newOption }))}
+            />
           </div>
           <DropDown
             variant="sort"
+            name="sort"
             data={[
               { value: 'latest', label: '최신순' },
               { value: 'best', label: '인기순' },
             ]}
             placeholder="최신순"
-            value={sort}
+            value={options.sort}
             className="w-[110px]"
-            onChange={setSort}
+            onChange={(newOption) =>
+              setOptions((prev) => ({ ...prev, sort: newOption ?? 'latest' }))
+            }
           />
         </div>
       </div>

@@ -70,6 +70,7 @@ export default function DateTimePicker({ fullDate, onChange }: DateTimePickerPro
       </div>
       <div className="flex w-full items-center justify-between gap-2 rounded-xl border border-gray-200 p-5 md:w-[595px]">
         <DropDown
+          name="hour"
           variant="default"
           // prettier-ignore
           data={['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23']
@@ -81,6 +82,7 @@ export default function DateTimePicker({ fullDate, onChange }: DateTimePickerPro
           onChange={setHour}
         />
         <DropDown
+          name="minute"
           variant="default"
           data={['00', '05', '10', '15', '20', '25', '30', '35', '40', '45', '50', '55']}
           placeholder="분"

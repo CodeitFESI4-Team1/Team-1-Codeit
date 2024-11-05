@@ -2,10 +2,7 @@
 
 import { useState } from 'react';
 import { Divider } from '@mantine/core';
-import Button from '@/src/components/common/button';
-import ReviewCardList from '@/src/components/common/review-list/review-card-list';
 import Tabs from '@/src/components/common/tab';
-import GatheringDetailModalPresenter from '@/src/components/gathering-detail-modal/presenter';
 import ProfileCardContainer from '@/src/components/my-page/profile-card/container';
 
 const mockData = {
