@@ -38,7 +38,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="lg:gap-4.5 flex flex-col gap-3 px-3 md:gap-4 md:px-8 lg:px-11.5">
+      <div className="flex flex-col px-3 md:px-8 lg:px-11.5">
         <HeroCrew />
         <CategoryContainer
           mainCategory={mainCategory}
@@ -55,23 +55,23 @@ export default function Home() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               leftSectionPointerEvents="none"
-              leftSection={<Image src={IcoSearch} alt="search" width={21} height={21} />}
+              leftSection={
+                <Image src={IcoSearch} alt="search" width={21} height={21} className="-mr-4" />
+              }
               placeholder="검색어를 입력하세요"
-              inputClassNames="w-full h-11 pl-10 placeholder:text-gray-500 font-pretendard text-base font-medium text-gray-800 rounded-xl"
+              inputClassNames="w-full h-11 pl-12 placeholder:text-gray-500 font-pretendard text-base font-medium text-gray-800 rounded-xl"
             />
           </div>
-          <div className="flex flex-1 justify-between">
-            <div className="flex items-center justify-between gap-2">
-              <DropDown
-                name="region"
-                variant="default"
-                data={regionData.map((dataItem) => dataItem.main)}
-                placeholder="전체"
-                value={region}
-                className="w-[110px]"
-                onChange={setRegion}
-              />
-            </div>
+          <div className="flex-0 md:basis-57 flex justify-between gap-2 md:gap-4">
+            <DropDown
+              name="region"
+              variant="default"
+              data={regionData.map((dataItem) => dataItem.main)}
+              placeholder="전체"
+              value={region}
+              className="w-[110px]"
+              onChange={setRegion}
+            />
             <DropDown
               name="sort"
               variant="sort"
