@@ -33,5 +33,15 @@ export default function LoginPage() {
     });
   };
 
-  return <LoginForm formMethods={formMethods} onSubmit={handleSubmit} />;
+  return (
+    <div>
+      <LoginForm formMethods={formMethods} onSubmit={handleSubmit} />
+      <div className="mt-6 flex justify-center space-x-1 text-sm font-medium">
+        <div>크루가 처음이신가요?</div>
+        <a href="/signup" className="text-blue-500 underline">
+          회원가입
+        </a>
+      </div>
+    </div>
+  );
 }
