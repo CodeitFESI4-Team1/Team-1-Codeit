@@ -15,17 +15,17 @@ export default function FileInputWrap({ value, onChange }: FileInputProps) {
   const [isSampleSelected, setIsSampleSelected] = useState(false);
 
   const handleChange = (inputValue: File | null) => {
-    setFileValue(inputValue);
-    onChange(inputValue);
     setIsOtherSelected(false);
     setIsSampleSelected(true);
+    setFileValue(inputValue);
+    onChange(inputValue);
   };
 
   const handleFileInput = (inputValue: File | null) => {
-    setFileValue(inputValue);
-    onChange(inputValue);
     setIsOtherSelected(true);
     setIsSampleSelected(false);
+    setFileValue(inputValue);
+    onChange(inputValue);
   };
 
   return (
@@ -45,7 +45,7 @@ export default function FileInputWrap({ value, onChange }: FileInputProps) {
         onChange={handleChange}
         isBlur={isOtherSelected}
       />
-      <FileInput value={fileValue || null} onChange={handleFileInput} isBlur={isSampleSelected} />
+      <FileInput value={fileValue} onChange={handleFileInput} isBlur={isSampleSelected} />
     </div>
   );
 }
