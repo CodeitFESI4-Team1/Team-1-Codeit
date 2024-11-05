@@ -14,12 +14,6 @@ import TextInput from '@/src/components/common/input/text-input';
 import { CrewCardInformResponse } from '@/src/types/crew-card';
 import IcoSearch from '@/public/assets/icons/ic-search.svg';
 
-export interface ValuesType {
-  region: string;
-  date: Date;
-  sort: string;
-}
-
 export default function Home() {
   const [mainCategory, setMainCategory] = useState('cardio_strength');
   const [subCategory, setSubCategory] = useState('running');
@@ -38,7 +32,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="lg:gap-4.5 flex flex-col gap-3 px-3 md:gap-4 md:px-8 lg:px-11.5">
+      <div className="lg:gap-4.5 lg:px-11.5 flex flex-col gap-3 px-3 md:gap-4 md:px-8">
         <HeroCrew />
         <CategoryContainer
           mainCategory={mainCategory}
@@ -48,7 +42,7 @@ export default function Home() {
         />
       </div>
       <Divider mx={{ base: 0, md: 32, lg: 34 }} my={24} size={2} color="#E5E7EB" />
-      <div className="px-3 md:px-8 lg:px-11.5">
+      <div className="lg:px-11.5 px-3 md:px-8">
         <div className="flex flex-col justify-between gap-2 md:flex-row md:gap-4">
           <div className="flex-1">
             <TextInput
@@ -87,7 +81,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="mt-8 px-3 md:px-8 lg:px-11.5">
+      <div className="lg:px-11.5 mt-8 px-3 md:px-8">
         <CrewCardList data={data} ref={ref} isFetchingNextPage={isFetchingNextPage} />
       </div>
     </>
