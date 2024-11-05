@@ -10,7 +10,8 @@ import UserIco from '@/public/assets/icons/ic-user.svg';
 interface CrewCardProps {
   id: number;
   name: string;
-  location: string;
+  mainLocation: string;
+  subLocation: string;
   participantCount: number;
   capacity: number;
   isConfirmed: boolean;
@@ -21,7 +22,8 @@ interface CrewCardProps {
 export default function CrewCard({
   id,
   name,
-  location,
+  mainLocation,
+  subLocation,
   participantCount,
   capacity,
   isConfirmed,
@@ -60,7 +62,9 @@ export default function CrewCard({
             <span className="max-w-[200px] overflow-hidden text-ellipsis whitespace-nowrap pr-4 text-lg font-semibold">
               {name}
             </span>
-            <span className="text-base font-medium">| {location}</span>
+            <span className="text-base font-medium">
+              | {mainLocation} {subLocation}
+            </span>
           </div>
           <span className="text-sm font-semibold text-blue-600">
             {`현재 ${gatheringCount}개의 약속이 개설되어 있습니다.`}
