@@ -47,6 +47,7 @@ const config: Config = {
       },
       padding: {
         7.5: '30px',
+        11.5: '46px',
         12.5: '50px',
         18: '72px',
       },
@@ -54,6 +55,9 @@ const config: Config = {
         7.5: '30px',
         12.5: '50px',
         18: '72px',
+      },
+      flexBasis: {
+        57: '228px',
       },
       gap: {
         6.5: '26px',
@@ -116,6 +120,15 @@ const config: Config = {
         xl: '0 4px 4px 0 rgba(0,0,0,0.25)',
         bg: '0 4px 30px 1px rgba(0,122,255,0.04)',
         xs: '0px 2px 4px 0px rgba(0, 0, 0, 0.02)',
+      },
+      keyframes: {
+        show: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+      },
+      animation: {
+        fade: 'show 0.5s ease-in',
       },
     },
   },
