@@ -41,15 +41,15 @@ export default function GatheringDetailModalPresenter({
       <div>
         <figure className="relative aspect-video w-full overflow-hidden">
           <Image
-            src={data.imageUrl}
+            src={data?.imageUrl}
             alt="모임 이미지"
             fill
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           />
-          {isToday(data.dateTime) && (
+          {isToday(data?.dateTime) && (
             <strong className="absolute right-0 top-0 flex items-center gap-2 bg-blue-600 px-4 py-2 text-base font-medium text-white">
               <Image src={IcoClock} width={15} height={13} alt="아이콘" />
-              <span>오늘 {new Date(data.dateTime).getHours()}시 마감</span>
+              <span>오늘 {new Date(data?.dateTime).getHours()}시 마감</span>
             </strong>
           )}
         </figure>
@@ -57,7 +57,7 @@ export default function GatheringDetailModalPresenter({
           <section>
             <hgroup>
               <h2 className="text-xl font-semibold text-gray-800 md:mr-2 md:inline-block">
-                {data.title}
+                {data?.title}
               </h2>
 
               <h3 className="text-base font-medium text-gray-700 md:inline-block">
@@ -67,18 +67,18 @@ export default function GatheringDetailModalPresenter({
                 >
                   |
                 </i>
-                <span>{data.location}</span>
+                <span>{data?.location}</span>
               </h3>
             </hgroup>
             <p className="mb-6 mt-2.5 flex gap-2 text-base font-semibold">
               <span className="rounded-[4px] bg-gray-900 px-2 py-0.5 text-white">
-                {formatDate(data.dateTime).date}
+                {formatDate(data?.dateTime).date}
               </span>
               <span className="rounded-[4px] bg-gray-900 px-2 py-0.5 text-white">
-                {formatDate(data.dateTime).time}
+                {formatDate(data?.dateTime).time}
               </span>
             </p>
-            <p className="text-base font-medium text-gray-700">{data.introduce}</p>
+            <p className="text-base font-medium text-gray-700">{data?.introduce}</p>
           </section>
           <section className="text-gray-700">
             <h3 className="mb-4 flex items-center text-base font-medium">
@@ -91,22 +91,22 @@ export default function GatheringDetailModalPresenter({
                 />
               </figure>
               <span>
-                참여인원 {data.currentCount}/{data.totalCount}
+                참여인원 {data?.currentCount}/{data?.totalCount}
               </span>
             </h3>
             <ScrollArea h={152}>
               <ul className="grid grid-cols-2 gap-4">
-                {data.participants.map((participant) => (
+                {data?.participants.map((participant) => (
                   <li key={participant.id} className="flex items-center gap-2">
                     <figure className="relative h-10 w-10 overflow-hidden rounded-full">
                       <Image
-                        src={participant.imageUrl}
+                        src={participant?.profileImageUrl}
                         alt="유저 이미지"
                         fill
                         style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                       />
                     </figure>
-                    <span className="text-base font-medium">{participant.nickName}</span>
+                    <span className="text-base font-medium">{participant?.nickname}</span>
                   </li>
                 ))}
               </ul>
@@ -120,7 +120,7 @@ export default function GatheringDetailModalPresenter({
             >
               닫기
             </Button>
-            {!data.isParticipant && (
+            {!data?.isParticipant && (
               <Button
                 type="button"
                 onClick={onJoin}
@@ -129,7 +129,7 @@ export default function GatheringDetailModalPresenter({
                 참여하기
               </Button>
             )}
-            {data.isParticipant && !data.isCaptain && (
+            {data?.isParticipant && !data?.isCaptain && (
               <Button
                 type="button"
                 onClick={onExit}
@@ -138,7 +138,7 @@ export default function GatheringDetailModalPresenter({
                 탈퇴하기
               </Button>
             )}
-            {data.isCaptain && (
+            {data?.isCaptain && (
               <Button
                 type="button"
                 onClick={onDelete}

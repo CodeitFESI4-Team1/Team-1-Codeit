@@ -1,5 +1,3 @@
-'use client';
-
 import { Button } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import GatheringDetailModalContainer from '@/src/components/gathering-detail-modal/container';
@@ -17,56 +15,64 @@ const mockData = {
   imageUrl:
     'https://www.dabur.com/Blogs/Doshas/Importance%20and%20Benefits%20of%20Yoga%201020x450.jpg',
   isLiked: false,
-  isCaptain: false,
+  isGatherCaptain: false,
   isParticipant: true,
   participants: [
     {
       id: 1,
-      imageUrl:
+      profileImageUrl:
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUMrcQB5OJ-ETzPc6wHnjxjC-36__MGw3JcA&s',
-      nickName: '럽윈즈올',
+      nickname: '럽윈즈올',
+      email: 'user@email.com',
     },
     {
       id: 2,
-      imageUrl:
+      profileImageUrl:
         'https://imgcdn.stablediffusionweb.com/2024/5/13/c0541236-e690-4dff-a27e-30a0355e5ea0.jpg',
-      nickName: '모닝러너',
+      nickname: '모닝러너',
+      email: 'user@email.com',
     },
     {
       id: 3,
-      imageUrl:
+      profileImageUrl:
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUMrcQB5OJ-ETzPc6wHnjxjC-36__MGw3JcA&s',
-      nickName: '동글동글이',
+      nickname: '동글동글이',
+      email: 'user@email.com',
     },
     {
       id: 4,
-      imageUrl:
+      profileImageUrl:
         'https://imgcdn.stablediffusionweb.com/2024/5/13/c0541236-e690-4dff-a27e-30a0355e5ea0.jpg',
-      nickName: '해보자고',
+      nickname: '해보자고',
+      email: 'user@email.com',
     },
     {
       id: 5,
-      imageUrl:
+      profileImageUrl:
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUMrcQB5OJ-ETzPc6wHnjxjC-36__MGw3JcA&s',
-      nickName: '두잇저스트',
+      nickname: '두잇저스트',
+      email: 'user@email.com',
     },
     {
       id: 6,
-      imageUrl:
+      profileImageUrl:
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUMrcQB5OJ-ETzPc6wHnjxjC-36__MGw3JcA&s',
-      nickName: '럽윈즈올',
+      nickname: '럽윈즈올',
+      email: 'user@email.com',
     },
     {
       id: 7,
-      imageUrl:
+      profileImageUrl:
         'https://imgcdn.stablediffusionweb.com/2024/5/13/c0541236-e690-4dff-a27e-30a0355e5ea0.jpg',
-      nickName: '모닝러너',
+      nickname: '모닝러너',
+      email: 'user@email.com',
     },
     {
       id: 8,
-      imageUrl:
+      profileImageUrl:
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUMrcQB5OJ-ETzPc6wHnjxjC-36__MGw3JcA&s',
-      nickName: '동글동글이',
+      nickname: '동글동글이',
+      email: 'user@email.com',
     },
   ],
 };

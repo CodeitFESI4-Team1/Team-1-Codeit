@@ -18,6 +18,7 @@ export const crewData: { data: CrewCardInform[] } = {
       createdDate: new Date('2024-11-04'),
       updatedDate: new Date('2024-11-05'),
       isConfirmed: true,
+      gatheringCount: 3,
     },
     {
       crewId: 2,
@@ -35,6 +36,7 @@ export const crewData: { data: CrewCardInform[] } = {
       createdDate: new Date('2024-11-04'),
       updatedDate: new Date('2024-11-05'),
       isConfirmed: true,
+      gatheringCount: 3,
     },
     {
       crewId: 3,
@@ -52,6 +54,7 @@ export const crewData: { data: CrewCardInform[] } = {
       createdDate: new Date('2024-11-04'),
       updatedDate: new Date('2024-11-05'),
       isConfirmed: false,
+      gatheringCount: 3,
     },
     {
       crewId: 4,
@@ -68,7 +71,7 @@ export const crewData: { data: CrewCardInform[] } = {
       createdBy: 2,
       createdDate: new Date('2024-11-04'),
       updatedDate: new Date('2024-11-05'),
-      canceledAt: new Date('2024-12-01'),
+      gatheringCount: 3,
       isConfirmed: false,
     },
     {
@@ -86,8 +89,8 @@ export const crewData: { data: CrewCardInform[] } = {
       createdBy: 2,
       createdDate: new Date('2024-11-04'),
       updatedDate: new Date('2024-11-05'),
-      canceledAt: new Date('2024-12-01'),
       isConfirmed: false,
+      gatheringCount: 5,
     },
     {
       crewId: 6,
@@ -105,6 +108,7 @@ export const crewData: { data: CrewCardInform[] } = {
       createdDate: new Date('2024-11-04'),
       updatedDate: new Date('2024-11-05'),
       isConfirmed: true,
+      gatheringCount: 5,
     },
     {
       crewId: 7,
@@ -122,6 +126,7 @@ export const crewData: { data: CrewCardInform[] } = {
       createdDate: new Date('2024-11-04'),
       updatedDate: new Date('2024-11-05'),
       isConfirmed: true,
+      gatheringCount: 5,
     },
     {
       crewId: 8,
@@ -139,6 +144,7 @@ export const crewData: { data: CrewCardInform[] } = {
       createdDate: new Date('2024-11-04'),
       updatedDate: new Date('2024-11-05'),
       isConfirmed: true,
+      gatheringCount: 5,
     },
     {
       crewId: 9,
@@ -156,6 +162,7 @@ export const crewData: { data: CrewCardInform[] } = {
       createdDate: new Date('2024-11-04'),
       updatedDate: new Date('2024-11-05'),
       isConfirmed: false,
+      gatheringCount: 5,
     },
     {
       crewId: 10,
@@ -172,8 +179,8 @@ export const crewData: { data: CrewCardInform[] } = {
       createdBy: 2,
       createdDate: new Date('2024-11-04'),
       updatedDate: new Date('2024-11-05'),
-      canceledAt: new Date('2024-12-01'),
       isConfirmed: false,
+      gatheringCount: 5,
     },
     {
       crewId: 11,
@@ -190,8 +197,8 @@ export const crewData: { data: CrewCardInform[] } = {
       createdBy: 2,
       createdDate: new Date('2024-11-04'),
       updatedDate: new Date('2024-11-05'),
-      canceledAt: new Date('2024-12-01'),
       isConfirmed: false,
+      gatheringCount: 5,
     },
     {
       crewId: 12,
@@ -209,6 +216,7 @@ export const crewData: { data: CrewCardInform[] } = {
       createdDate: new Date('2024-11-04'),
       updatedDate: new Date('2024-11-05'),
       isConfirmed: true,
+      gatheringCount: 5,
     },
     {
       crewId: 13,
@@ -226,6 +234,7 @@ export const crewData: { data: CrewCardInform[] } = {
       createdDate: new Date('2024-11-04'),
       updatedDate: new Date('2024-11-05'),
       isConfirmed: true,
+      gatheringCount: 6,
     },
     {
       crewId: 14,
@@ -243,6 +252,7 @@ export const crewData: { data: CrewCardInform[] } = {
       createdDate: new Date('2024-11-04'),
       updatedDate: new Date('2024-11-05'),
       isConfirmed: true,
+      gatheringCount: 0,
     },
     {
       crewId: 15,
@@ -260,6 +270,7 @@ export const crewData: { data: CrewCardInform[] } = {
       createdDate: new Date('2024-11-04'),
       updatedDate: new Date('2024-11-05'),
       isConfirmed: false,
+      gatheringCount: 5,
     },
   ],
 };
