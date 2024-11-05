@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+import { UseFormReturn, useForm } from 'react-hook-form';
 import { Button } from '@mantine/core';
 import { useDebouncedCallback } from '@mantine/hooks';
 import PasswordInput from '@/src/components/common/input/password-input';
 import TextInput from '@/src/components/common/input/text-input';
 
-interface SignupFormValues {
+export interface SignupFormValues {
   nickname: string;
   email: string;
   password: string;
@@ -14,16 +14,17 @@ interface SignupFormValues {
 
 interface SignupFormProps {
   onSubmit: (data: SignupFormValues) => void;
+  formMethods: UseFormReturn<SignupFormValues>;
 }
 
-export default function SignupForm({ onSubmit }: SignupFormProps) {
+export default function SignupForm({ formMethods, onSubmit }: SignupFormProps) {
   const {
     register,
     handleSubmit,
     trigger,
     formState: { errors, isValid },
     watch,
-  } = useForm<SignupFormValues>({});
+  } = formMethods;
 
   const debouncedTrigger = useDebouncedCallback(async (field: keyof SignupFormValues) => {
     await trigger(field);

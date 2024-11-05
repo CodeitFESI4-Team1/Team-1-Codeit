@@ -73,6 +73,7 @@ interface ReviewCardProps {
 export default function ReviewCard({
   score,
   comment,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   createdAt,
   user,
   imageAvailable = false,

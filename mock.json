@@ -1,0 +1,37 @@
+{
+  "signup": [
+    {
+      "nickname": "asdf",
+      "email": "asdf@gmail.com",
+      "password": "asdfasdf",
+      "id": 5
+    },
+    {
+      "nickname": "asdf",
+      "email": "asdf@gmail.coms",
+      "password": "asdfasdf",
+      "id": 6
+    },
+    {
+      "nickname": "asdf",
+      "email": "asdf@gmail.coms",
+      "password": "asdfasdf",
+      "id": 7
+    }
+  ],
+  "login": [
+    {
+      "id": 1,
+      "email": "asdf@gmail.com",
+      "password": "asdfasdf"
+    }
+  ],
+  "user": [
+    {
+      "id": 1,
+      "nickname": "크루크루",
+      "email": "john@example.com",
+      "profileImageUrl": "https://image.file"
+    }
+  ]
+}
