@@ -115,6 +115,7 @@ export default function CustomGatheringCardCarousel({ gatheringData }: Gathering
       <div className="mt-4 flex justify-center space-x-2">
         {Array.from({ length: Math.ceil(totalSlides / slidesToShow) }).map((_, i) => (
           <span
+            // eslint-disable-next-line react/no-array-index-key
             key={i}
             className="h-1 rounded-sm transition-all"
             style={{
