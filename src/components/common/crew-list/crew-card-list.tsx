@@ -17,7 +17,7 @@ function CrewCardList(
   if (!crewDataList) return <p>loading...</p>;
 
   return (
-    <>
+    <div className="relative">
       <ul className="mx-auto grid w-full grid-cols-1 gap-x-4 gap-y-6 lg:grid-cols-2">
         {crewDataList.map((inform) => (
           <li key={inform.crewId} className="w-full">
@@ -34,8 +34,12 @@ function CrewCardList(
           </li>
         ))}
       </ul>
-      {isFetchingNextPage ? <p>loading...</p> : <div ref={ref} className="h-[1px]" />}
-    </>
+      {isFetchingNextPage ? (
+          <p>loading...</p>
+      ) : (
+        <div ref={ref} className="h-[1px]" />
+      )}
+    </div>
   );
 }
 

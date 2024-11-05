@@ -117,6 +117,15 @@ const config: Config = {
         xl: '0 4px 4px 0 rgba(0,0,0,0.25)',
         bg: '0 4px 30px 1px rgba(0,122,255,0.04)',
       },
+      keyframes: {
+        show: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+      },
+      animation: {
+        fade: 'show 0.5s ease-in',
+      },
     },
   },
   plugins: [
