@@ -35,8 +35,8 @@ export default function LikeBtn({ id, isLiked, onLikeToggle, size = 64 }: LikeBu
   };
 
   return (
-    <motion.div
-      role="button"
+    <motion.button
+      type="button"
       className="relative flex cursor-pointer items-center justify-center rounded-full border-2"
       onClick={handleClick}
       style={{ width: size, height: size, borderColor: liked ? 'transparent' : '#F3F4F6' }}
@@ -59,6 +59,6 @@ export default function LikeBtn({ id, isLiked, onLikeToggle, size = 64 }: LikeBu
       >
         <Image src={activeHeart} alt="red heart" width={size * 0.7} height={size * 0.7} />
       </motion.div>
-    </motion.div>
+    </motion.button>
   );
 }
