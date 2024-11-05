@@ -77,10 +77,10 @@ export default function FileInput({ value, isBlur, onChange }: FileInputProps) {
   }, [fileReader]);
 
   useEffect(() => {
-    if (isBlur) {
+    if (value && isBlur) {
       setPreview(null); // 블러 상태에서 미리보기 제거
     }
-  }, [isBlur]);
+  }, [value, isBlur]);
 
   return (
     <div className="min-w-1/4 relative flex aspect-square w-1/4 gap-2">

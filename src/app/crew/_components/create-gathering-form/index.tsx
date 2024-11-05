@@ -210,7 +210,7 @@ export default function CreateGatheringForm({
           <Button
             type="button"
             onClick={onClose}
-            className="w-29.5 btn-outlined h-11 flex-1 text-base font-medium text-blue-500"
+            className="btn-outlined h-11 w-29.5 flex-1 text-base font-medium text-blue-500"
           >
             취소
           </Button>
