@@ -5,12 +5,11 @@ import Image from 'next/image';
 import { Divider } from '@mantine/core';
 import regionData from '@/src/data/region.json';
 import { useInfiniteScroll } from '@/src/hooks/useInfiniteScroll';
-import { getCrewData } from '@/src/app/api/mock-api/crew';
+import { fetchCrewData } from '@/src/app/api/mock-api/crew';
 import CategoryContainer from '@/src/components/common/category/category-container';
 import CrewCardList from '@/src/components/common/crew-list/crew-card-list';
 import HeroCrew from '@/src/components/common/hero/hero-crew';
 import DropDown from '@/src/components/common/input/drop-down';
-import PopOverCalendar from '@/src/components/common/input/pop-over-calendar';
 import TextInput from '@/src/components/common/input/text-input';
 import { CrewCardInformResponse } from '@/src/types/crew-card';
 import IcoSearch from '@/public/assets/icons/ic-search.svg';
@@ -25,7 +24,7 @@ export default function Home() {
   const { data, ref, isFetchingNextPage } = useInfiniteScroll<CrewCardInformResponse>({
     queryKey: ['crew'],
     queryFn: ({ pageParam = 0 }) => {
-      return getCrewData(pageParam, 3);
+      return fetchCrewData(pageParam, 3);
     },
     getNextPageParam: (lastPage, allPages) =>
       lastPage.hasNextPage ? allPages.length + 1 : undefined,
