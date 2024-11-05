@@ -33,9 +33,5 @@ export default function LoginPage() {
     });
   };
 
-  return (
-    <div style={{ maxWidth: 400, margin: '0 auto', padding: '2rem' }}>
-      <LoginForm formMethods={formMethods} onSubmit={handleSubmit} />
-    </div>
-  );
+  return <LoginForm formMethods={formMethods} onSubmit={handleSubmit} />;
 }
