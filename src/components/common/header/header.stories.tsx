@@ -1,5 +1,6 @@
 import { action } from '@storybook/addon-actions';
 import type { Meta, StoryFn } from '@storybook/react';
+import { useAuthStore } from '@/src/store/use-auth-store';
 import Header from '@/src/components/common/header/container';
 
 const meta: Meta = {
@@ -21,14 +22,36 @@ const meta: Meta = {
 
 export default meta;
 function Template() {
-  return <Header />;
+  const { isAuth, login, logout } = useAuthStore();
+  const testToken = 'test token';
+  const testUser = {
+    id: 1,
+    nickname: '크루크루',
+    email: 'john@example.com',
+    profileImageUrl: 'https://image.file',
+  };
+
+  const toggleAuth = () => {
+    if (isAuth) {
+      logout();
+    } else {
+      login(testUser, testToken);
+    }
+  };
+
+  return (
+    <div>
+      <Header />
+      <button type="button" onClick={toggleAuth} className="mb-4 mt-5 bg-blue-500 p-2 text-white">
+        {'테스트용 - '}
+        {isAuth ? '로그아웃하기' : '로그인하기'}
+      </button>
+    </div>
+  );
 }
 
 // 1. 모임 찾기 (/) 경로
 export const Home: StoryFn = Template.bind({});
-Home.args = {
-  hasCookie: false,
-};
 Home.parameters = {
   nextjs: {
     navigation: {
@@ -45,9 +68,6 @@ Home.parameters = {
 
 // 2. 로그인 상태에서 나의 크루 (/my-crew) 경로
 export const MyCrew: StoryFn = Template.bind({});
-MyCrew.args = {
-  hasCookie: true,
-};
 MyCrew.parameters = {
   nextjs: {
     navigation: {
@@ -64,9 +84,6 @@ MyCrew.parameters = {
 
 // 3. 로그인 상태에서 나의 모임 (/my-gathering) 경로
 export const MyGathering: StoryFn = Template.bind({});
-MyGathering.args = {
-  hasCookie: true,
-};
 MyGathering.parameters = {
   nextjs: {
     navigation: {
@@ -83,10 +100,6 @@ MyGathering.parameters = {
 
 // 4. 토글 버튼으로 로그인/비로그인 상태를 변경
 export const WithToggleCookie: StoryFn = Template.bind({});
-WithToggleCookie.args = {
-  hasCookie: false,
-  handleLogout: action('Logged out'),
-};
 WithToggleCookie.parameters = {
   nextjs: {
     navigation: {
@@ -103,9 +116,6 @@ WithToggleCookie.parameters = {
 
 // 5. 로그인 페이지 (/login) 경로
 export const LoginPage: StoryFn = Template.bind({});
-LoginPage.args = {
-  hasCookie: false,
-};
 LoginPage.parameters = {
   nextjs: {
     navigation: {
