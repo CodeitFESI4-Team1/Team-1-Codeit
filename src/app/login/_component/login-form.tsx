@@ -1,25 +1,25 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
+import { UseFormReturn } from 'react-hook-form';
 import { Button } from '@mantine/core';
 import { useDebouncedCallback } from '@mantine/hooks';
 import PasswordInput from '@/src/components/common/input/password-input';
 import TextInput from '@/src/components/common/input/text-input';
 
-interface LoginFormValues {
+export interface LoginFormValues {
   email: string;
   password: string;
 }
 interface LoginFormProps {
   onSubmit: (data: LoginFormValues) => void;
+  formMethods: UseFormReturn<LoginFormValues>;
 }
 
-export default function LoginForm({ onSubmit }: LoginFormProps) {
+export default function LoginForm({ onSubmit, formMethods }: LoginFormProps) {
   const {
     register,
     handleSubmit,
     trigger,
     formState: { errors, isValid },
-  } = useForm<LoginFormValues>({});
+  } = formMethods;
 
   const debouncedTrigger = useDebouncedCallback(async (field: keyof LoginFormValues) => {
     await trigger(field);
