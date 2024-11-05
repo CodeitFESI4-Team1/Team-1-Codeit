@@ -6,11 +6,10 @@ import CrewCard from './crew-card';
 export interface CrewCardListProps {
   data: InfiniteData<CrewCardInformResponse> | undefined;
   isFetchingNextPage: boolean;
-  isWide?: boolean;
 }
 
 function CrewCardList(
-  { data, isFetchingNextPage, isWide = false }: CrewCardListProps,
+  { data, isFetchingNextPage }: CrewCardListProps,
   ref: React.Ref<HTMLDivElement>,
 ) {
   const crewDataList = data?.pages.flatMap((page) => page.data) ?? [];
@@ -18,12 +17,10 @@ function CrewCardList(
   if (!crewDataList) return <p>loading...</p>;
 
   return (
-    <>
-      <ul
-        className={`mx-auto mb-8 flex w-[343px] flex-col gap-8 md:w-[744px] lg:w-[1107px] ${!isWide ? 'lg:grid lg:grid-cols-2 lg:gap-x-4 lg:gap-y-8' : ''}`}
-      >
+    <div className="relative">
+      <ul className="mx-auto grid w-full grid-cols-1 gap-x-4 gap-y-6 lg:grid-cols-2">
         {crewDataList.map((inform) => (
-          <li key={inform.crewId}>
+          <li key={inform.crewId} className="w-full">
             <CrewCard
               id={inform.crewId}
               capacity={inform.capacity}
@@ -31,15 +28,14 @@ function CrewCardList(
               location={inform.location}
               name={inform.name}
               thumbnail={inform.images[0].imagePath}
-              canceledDate={inform.canceledAt}
               participantCount={inform.participantCount}
-              isWide={isWide}
+              gatheringCount={inform.gatheringCount}
             />
           </li>
         ))}
       </ul>
       {isFetchingNextPage ? <p>loading...</p> : <div ref={ref} className="h-[1px]" />}
-    </>
+    </div>
   );
 }
 

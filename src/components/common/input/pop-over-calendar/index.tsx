@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Button, Popover } from '@mantine/core';
 import { useDisclosure, useMediaQuery } from '@mantine/hooks';
-import { theme } from '@/src/app/theme';
 import CalendarFilter from '@/src/components/common/input/calendar-filter';
+import { theme } from '@/src/styles/theme';
 import IconArrow from '@/public/assets/icons/ic-arrow';
 
 export interface PopOverProps {
@@ -39,7 +39,7 @@ export default function PopOverCalendar({ value, onChange }: PopOverProps) {
           onClick={opened ? close : open}
           onFocus={() => setInputTheme('dark')}
           onBlur={() => setInputTheme('white')}
-          className="flex h-11 items-center justify-between rounded-xl border-0 bg-white px-3 py-2.5 font-pretendard text-base font-medium text-gray-800 hover:bg-white hover:text-gray-800 focus:bg-black focus:text-white"
+          className="flex h-11 items-center justify-between rounded-xl border-0 bg-white px-3 py-2.5 text-base font-medium text-gray-800 hover:bg-white hover:text-gray-800 focus:bg-black focus:text-white"
         >
           <span>날짜 전체</span>
           <IconArrow direction="down" color={`${inputTheme === 'dark' ? '#ffffff' : '#D1D5DB'}`} />
