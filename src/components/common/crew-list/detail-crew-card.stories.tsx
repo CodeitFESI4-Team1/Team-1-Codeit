@@ -14,11 +14,12 @@ const meta: Meta = {
   tags: ['autodocs'],
   args: {
     id: 0,
-    name: '같이 물장구칠사람',
-    location: '충청',
-    thumbnail: 'https://i.pinimg.com/564x/f8/8d/c5/f88dc5b857caf6c303ae5ef9dd12e7fb.jpg',
-    gatheringCount: 5, // 기본 값 추가
-    crewList: [
+    title: '같이 물장구칠사람',
+    mainLocation: '대전광역시',
+    subLocation: '유성구',
+    imageUrl: 'https://i.pinimg.com/564x/f8/8d/c5/f88dc5b857caf6c303ae5ef9dd12e7fb.jpg',
+    totalGatheringCount: 5, // 기본 값 추가
+    CrewMemberList: [
       {
         id: 1,
         nickname: 'John',
@@ -38,7 +39,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    capacity: 20,
+    totalCount: 20,
     participantCount: 10,
     isConfirmed: true,
   },
@@ -46,7 +47,7 @@ export const Default: Story = {
 
 export const NotConfirmed: Story = {
   args: {
-    capacity: 10,
+    totalCount: 10,
     participantCount: 1,
     isConfirmed: false,
   },
@@ -54,7 +55,7 @@ export const NotConfirmed: Story = {
 
 export const Fulled: Story = {
   args: {
-    capacity: 5,
+    totalCount: 5,
     participantCount: 5,
     isConfirmed: true,
   },
