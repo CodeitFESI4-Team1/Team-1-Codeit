@@ -36,6 +36,7 @@ const config: Config = {
         7.5: '30px',
         12.5: '50px',
         27.5: '110px',
+        29.5: '118px',
         30: '120px',
       },
       height: {
@@ -46,11 +47,17 @@ const config: Config = {
       },
       padding: {
         7.5: '30px',
+        11.5: '46px',
         12.5: '50px',
+        18: '72px',
       },
       margin: {
         7.5: '30px',
         12.5: '50px',
+        18: '72px',
+      },
+      flexBasis: {
+        57: '228px',
       },
       gap: {
         6.5: '26px',
@@ -65,6 +72,7 @@ const config: Config = {
       },
       fontSize: {
         '4xl': ['2.5rem', { lineHeight: '3.25rem' }],
+        '3.5xl': ['2rem', { lineHeight: '2.75rem' }],
         '3xl': ['1.875rem', { lineHeight: '2.25rem' }],
         '2xl': ['1.5rem', { lineHeight: '2rem' }],
         xl: ['1.25rem', { lineHeight: '1.75rem' }],
@@ -112,6 +120,15 @@ const config: Config = {
         xl: '0 4px 4px 0 rgba(0,0,0,0.25)',
         bg: '0 4px 30px 1px rgba(0,122,255,0.04)',
       },
+      keyframes: {
+        show: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+      },
+      animation: {
+        fade: 'show 0.5s ease-in',
+      },
     },
   },
   plugins: [
@@ -151,6 +168,10 @@ const config: Config = {
               backgroundColor: '#2563EB',
               fontWeight: '600',
             },
+            '&:disabled': {
+              backgroundColor: '#6B7280',
+              opacity: '0.8',
+            },
           },
           '.btn-outlined': {
             border: '1px solid #3B82F6',
@@ -162,12 +183,21 @@ const config: Config = {
               color: '#2563EB',
               fontWeight: '600',
             },
+            '&:disabled': {
+              backgroundColor: '#6B7280',
+              color: '#ffffff',
+              opacity: '0.8',
+            },
           },
           '.btn-disabled': {
             backgroundColor: '#6B7280',
             color: '#ffffff',
             cursor: 'not-allowed',
             opacity: '0.8',
+            '&:disabled': {
+              backgroundColor: '#6B7280',
+              opacity: '0.8',
+            },
           },
         });
       },

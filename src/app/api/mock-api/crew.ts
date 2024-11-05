@@ -23,3 +23,16 @@ export const fetchCrewData = (page: number, limit: number) => {
 //   getNextPageParam: (lastPage, allPages) =>
 //     lastPage.hasNextPage ? allPages.length + 1 : undefined,
 // });
+
+export const getCrewData = async (page: number, limit: number): Promise<CrewCardInformResponse> => {
+  const response = await fetch(`http://localhost:3009/crews?_page=${page + 1}&_limit=${limit}`);
+  const data = await response.json();
+
+  // hasNextPage는 데이터가 limit 개수만큼 채워지지 않은 경우 false로 설정
+  const hasNextPage = data.length === limit;
+
+  return {
+    data,
+    hasNextPage,
+  };
+};

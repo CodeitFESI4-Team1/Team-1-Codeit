@@ -11,7 +11,8 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "prepare": "husky",
-    "chromatic": "chromatic --exit-zero-on-changes"
+    "chromatic": "chromatic --exit-zero-on-changes",
+    "mock": "json-server --port 3009 --watch mock.json"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -33,7 +34,8 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.53.1",
-    "react-intersection-observer": "^9.13.1"
+    "react-intersection-observer": "^9.13.1",
+    "zustand": "^5.0.1"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^1.9.0",
@@ -67,6 +69,7 @@
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-storybook": "^0.9.0",
     "husky": "^9.1.6",
+    "json-server": "^0.17.3",
     "postcss": "^8.4.47",
     "postcss-preset-mantine": "^1.17.0",
     "postcss-simple-vars": "^7.0.1",
