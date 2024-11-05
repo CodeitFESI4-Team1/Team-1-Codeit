@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { usePostSignupQuery } from '@/src/_queries/auth/auth-queries';
 import SignupForm, { SignupFormValues } from './_component/signup-form';
@@ -30,5 +31,15 @@ export default function LoginPage() {
     });
   };
 
-  return <SignupForm formMethods={formMethods} onSubmit={handleSubmit} />;
+  return (
+    <div>
+      <SignupForm formMethods={formMethods} onSubmit={handleSubmit} />
+      <div className="mt-6 flex justify-center space-x-1 text-sm font-medium">
+        <div>이미 회원이신가요?</div>
+        <Link href="/login" className="text-blue-500 underline">
+          로그인
+        </Link>
+      </div>
+    </div>
+  );
 }
