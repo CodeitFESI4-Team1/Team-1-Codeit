@@ -7,7 +7,6 @@ import ProgressBar from '@/src/components/common/progress-bar/index';
 import { CrewMemberList } from '@/src/types/crew-card';
 import Check from '@/public/assets/icons/ic-check.svg';
 import UserIco from '@/public/assets/icons/ic-user.svg';
-import ProfileCardContainer from '../../my-page/profile-card/container';
 import Profiles from './profiles';
 
 interface CrewCardProps {
