@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { MouseEventHandler, ReactNode } from 'react';
 
 /**
  * Button 컴포넌트
@@ -12,7 +12,7 @@ import { ReactNode } from 'react';
 export interface ButtonProps {
   children: ReactNode;
   className?: string;
-  onClick?: () => void;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
   type?: 'button' | 'submit' | 'reset';
 }
 
