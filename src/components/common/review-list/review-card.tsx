@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { Button, Menu } from '@mantine/core';
 import { formatDateWithYear } from '@/src/utils/format-date';
 import { ReviewerType } from '@/src/types/review';
+import { Profile } from '../profile';
 import ReviewHearts from '../review-heart/hearts';
 
 export interface GatheringInform {
@@ -23,7 +24,6 @@ interface ReviewCardProps {
   isMine?: boolean;
 
   crewName?: string;
-  gatheringName?: string;
   crewLocation?: string;
   gatheringLocation?: string;
 
@@ -38,13 +38,12 @@ export default function ReviewCard({
   clickable = false,
   isMine = false,
   crewName,
-  gatheringName,
   crewLocation,
   gatheringLocation,
   reviewer,
 }: ReviewCardProps) {
   const [prefetched, setPrefetched] = useState(new Set());
-  const CREWPAGE = `/detail/${crewId}`;
+  const CREWPAGE = `crew/detail/${crewId}`;
   const router = useRouter();
 
   const handleClick = (e: React.MouseEvent) => {
@@ -91,11 +90,7 @@ export default function ReviewCard({
           <div className={`flex w-fit flex-shrink-0 items-center text-xs ${isMine ? 'mt-4' : ''}`}>
             {!isMine && (
               <>
-                {reviewer && (
-                  <span className="relative h-6 w-6 overflow-hidden rounded-full">
-                    <Image src={reviewer.imageUrl} alt={reviewer.nickname} fill objectFit="cover" />
-                  </span>
-                )}
+                {reviewer && <Profile size="small" />}
                 <span className="relative mr-3 block w-fit px-2 after:absolute after:right-0 after:content-['|']">
                   {reviewer?.nickname}
                 </span>
