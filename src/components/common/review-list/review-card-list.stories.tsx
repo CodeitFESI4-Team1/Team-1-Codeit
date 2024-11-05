@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useInfiniteScroll } from '@/src/hooks/useInfiniteScroll';
-import { fetchCrewReviewData } from '@/src/app/(crew)/api/mock-api/review';
+import { fetchCrewReviewData, fetchMyReviewData } from '@/src/app/(crew)/api/mock-api/review';
 import { ReviewInformResponse } from '@/src/types/review';
 import ClientProvider from '../../client-provider';
 import ReviewCardList from './review-card-list';
