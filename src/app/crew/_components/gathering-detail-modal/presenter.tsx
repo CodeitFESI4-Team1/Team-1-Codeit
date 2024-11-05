@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { Modal, ScrollArea } from '@mantine/core';
 import { formatDate } from '@/src/utils/format-date';
 import isToday from '@/src/utils/is-today';
-import Button from '@/src/components/common/button';
+import Button from '@/src/components/common/input/button';
 import { GatheringDetailType } from '@/src/types/gathering-data';
 import IcoClock from '@/public/assets/icons/ic-clock.svg';
 import IcoUser from '@/public/assets/icons/ic-user.svg';

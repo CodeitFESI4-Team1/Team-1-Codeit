@@ -1,6 +1,6 @@
 'use client';
 
-import GatheringDetailModal from '@/src/components/gathering-detail-modal/presenter';
+import GatheringDetailModal from '@/src/app/crew/_components/gathering-detail-modal/presenter';
 import { GatheringDetailType } from '@/src/types/gathering-data';
 
 export interface GatheringDetailModalContainerProps {

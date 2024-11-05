@@ -21,7 +21,7 @@ export default function CreateCrewPage() {
   };
 
   return (
-    <div className="lg:px-8.5 flex flex-col gap-3 gap-8 px-3 md:gap-4 md:px-8">
+    <div className="lg:px-8.5 flex flex-col gap-3 px-3 md:gap-4 md:px-8 lg:gap-8">
       <div className="flex items-center gap-3">
         <figure className="relative h-16 w-20">
           <Image
