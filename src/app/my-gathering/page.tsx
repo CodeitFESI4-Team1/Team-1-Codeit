@@ -1,16 +1,34 @@
 'use client';
 
 import { useState } from 'react';
-import CalendarFilter from '@/src/components/common/input/calendar-filter';
-
-const toDoDates = [new Date('2024-10-12'), new Date('2024-10-15')];
+import Button from '@/src/components/common/button';
+import CreationList from './_components/creation-list';
+import FavoriteList from './_components/favorite-list';
+import ParticipationList from './_components/participation-list';
 
 export default function MyGatheringPage() {
-  const [date, setDate] = useState<Date>(new Date());
+  const [selectedButton, setSelectedButton] = useState<number>(1);
+
+  const buttonData = [
+    { id: 1, label: '내가 참여한 약속', component: <ParticipationList /> },
+    { id: 2, label: '내가 만든 약속', component: <CreationList /> },
+    { id: 3, label: '찜한 약속', component: <FavoriteList /> },
+  ];
 
   return (
-    <div className="container mx-auto my-0 max-w-pc px-5 lg:px-0">
-      <CalendarFilter value={date} toDoDates={toDoDates} onChange={setDate} />
+    <div className="m-4 mt-[45px] grid grid-cols-3 gap-4 md:mx-[46px]">
+      {buttonData.map(({ id, label }) => (
+        <Button
+          key={id}
+          className={`${id === selectedButton ? 'btn-filled' : 'btn-outlined'} text-lg font-bold`}
+          onClick={() => setSelectedButton(id)}
+        >
+          {label}
+        </Button>
+      ))}
+      <div className="mt-6">
+        {buttonData.find((button) => button.id === selectedButton)?.component}
+      </div>
     </div>
   );
 }
