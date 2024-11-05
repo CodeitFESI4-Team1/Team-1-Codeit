@@ -20,7 +20,7 @@ export default function HeroCrew() {
         </div>
         <Button
           component={Link}
-          href="/create-crew"
+          href="/crew/create"
           className="-translate-y-1 items-center rounded-xl bg-blue-500 py-2 text-sm font-semibold md:h-11 md:text-lg md:font-bold"
         >
           크루 만들기
