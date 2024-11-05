@@ -12,17 +12,20 @@ import { ReactNode } from 'react';
 export interface ButtonProps {
   children: ReactNode;
   className?: string;
+  disabled?: boolean;
   onClick?: () => void;
   onMouseEnter?: () => void;
   type?: 'button' | 'submit' | 'reset';
 }
 
 export default function Button({
-  children,
   className = '',
   onClick,
   onMouseEnter,
   type = 'button',
+  disabled,
+  onClick,
+  children,
 }: ButtonProps) {
   return (
     <button

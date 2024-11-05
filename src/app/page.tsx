@@ -14,6 +14,12 @@ import TextInput from '@/src/components/common/input/text-input';
 import { CrewCardInformResponse } from '@/src/types/crew-card';
 import IcoSearch from '@/public/assets/icons/ic-search.svg';
 
+export interface ValuesType {
+  region: string;
+  date: Date;
+  sort: string;
+}
+
 export default function Home() {
   const [mainCategory, setMainCategory] = useState('cardio_strength');
   const [subCategory, setSubCategory] = useState('running');
@@ -57,8 +63,9 @@ export default function Home() {
           <div className="flex flex-1 justify-between">
             <div className="flex items-center justify-between gap-2">
               <DropDown
+                name="region"
                 variant="default"
-                data={regionData}
+                data={regionData.map((dataItem) => dataItem.main)}
                 placeholder="전체"
                 value={region}
                 className="w-[110px]"
@@ -66,6 +73,7 @@ export default function Home() {
               />
             </div>
             <DropDown
+              name="sort"
               variant="sort"
               data={[
                 { value: 'latest', label: '최신순' },
