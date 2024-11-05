@@ -18,7 +18,7 @@ function WritableGatheringCardList(
 
   return (
     <>
-      <ul>
+      <ul className="flex flex-col">
         {writableGatheringCardList.map((inform) => (
           <li key={inform.id}>
             <WritableGatheringCard

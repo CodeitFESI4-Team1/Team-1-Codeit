@@ -15,7 +15,7 @@ export const WritableGatheringData: { data: WritableGatheringCardInform[] } = {
       location: '한국',
       currentCount: 10,
       totalCount: 20,
-      imageUrl: 'https://i.pinimg.com/564x/05/90/61/059061f7605c496159a8d1157ca9bcb5.jpg',
+      imageUrl: 'https://i.pinimg.com/564x/e6/7e/84/e67e845f0aa7f30ea589664c9a8a9f1a.jpg',
       participants: Participants,
     },
     {
@@ -25,7 +25,7 @@ export const WritableGatheringData: { data: WritableGatheringCardInform[] } = {
       location: '한국2',
       currentCount: 10,
       totalCount: 20,
-      imageUrl: 'https://i.pinimg.com/564x/05/90/61/059061f7605c496159a8d1157ca9bcb5.jpg',
+      imageUrl: 'https://i.pinimg.com/564x/e6/7e/84/e67e845f0aa7f30ea589664c9a8a9f1a.jpg',
       participants: Participants,
     },
     {
@@ -35,7 +35,7 @@ export const WritableGatheringData: { data: WritableGatheringCardInform[] } = {
       location: '한국3',
       currentCount: 10,
       totalCount: 20,
-      imageUrl: 'https://i.pinimg.com/564x/05/90/61/059061f7605c496159a8d1157ca9bcb5.jpg',
+      imageUrl: 'https://i.pinimg.com/564x/e6/7e/84/e67e845f0aa7f30ea589664c9a8a9f1a.jpg',
       participants: Participants,
     },
     {
@@ -45,7 +45,7 @@ export const WritableGatheringData: { data: WritableGatheringCardInform[] } = {
       location: '한국4',
       currentCount: 10,
       totalCount: 20,
-      imageUrl: 'https://i.pinimg.com/564x/05/90/61/059061f7605c496159a8d1157ca9bcb5.jpg',
+      imageUrl: 'https://i.pinimg.com/564x/e6/7e/84/e67e845f0aa7f30ea589664c9a8a9f1a.jpg',
       participants: Participants,
     },
     {
@@ -55,7 +55,7 @@ export const WritableGatheringData: { data: WritableGatheringCardInform[] } = {
       location: '한국5',
       currentCount: 10,
       totalCount: 20,
-      imageUrl: 'https://i.pinimg.com/564x/05/90/61/059061f7605c496159a8d1157ca9bcb5.jpg',
+      imageUrl: 'https://i.pinimg.com/564x/e6/7e/84/e67e845f0aa7f30ea589664c9a8a9f1a.jpg',
       participants: Participants,
     },
     {
@@ -65,7 +65,7 @@ export const WritableGatheringData: { data: WritableGatheringCardInform[] } = {
       location: '한국6',
       currentCount: 10,
       totalCount: 20,
-      imageUrl: 'https://i.pinimg.com/564x/05/90/61/059061f7605c496159a8d1157ca9bcb5.jpg',
+      imageUrl: 'https://i.pinimg.com/564x/e6/7e/84/e67e845f0aa7f30ea589664c9a8a9f1a.jpg',
       participants: Participants,
     },
     {
@@ -75,7 +75,7 @@ export const WritableGatheringData: { data: WritableGatheringCardInform[] } = {
       location: '한국7',
       currentCount: 10,
       totalCount: 20,
-      imageUrl: 'https://i.pinimg.com/564x/05/90/61/059061f7605c496159a8d1157ca9bcb5.jpg',
+      imageUrl: 'https://i.pinimg.com/564x/e6/7e/84/e67e845f0aa7f30ea589664c9a8a9f1a.jpg',
       participants: Participants,
     },
     {
@@ -85,7 +85,7 @@ export const WritableGatheringData: { data: WritableGatheringCardInform[] } = {
       location: '한국8',
       currentCount: 10,
       totalCount: 20,
-      imageUrl: 'https://i.pinimg.com/564x/05/90/61/059061f7605c496159a8d1157ca9bcb5.jpg',
+      imageUrl: 'https://i.pinimg.com/564x/e6/7e/84/e67e845f0aa7f30ea589664c9a8a9f1a.jpg',
       participants: Participants,
     },
     {
@@ -95,7 +95,7 @@ export const WritableGatheringData: { data: WritableGatheringCardInform[] } = {
       location: '한국9',
       currentCount: 10,
       totalCount: 20,
-      imageUrl: 'https://i.pinimg.com/564x/05/90/61/059061f7605c496159a8d1157ca9bcb5.jpg',
+      imageUrl: 'https://i.pinimg.com/564x/e6/7e/84/e67e845f0aa7f30ea589664c9a8a9f1a.jpg',
       participants: Participants,
     },
     {
@@ -105,7 +105,7 @@ export const WritableGatheringData: { data: WritableGatheringCardInform[] } = {
       location: '한국10',
       currentCount: 10,
       totalCount: 20,
-      imageUrl: 'https://i.pinimg.com/564x/05/90/61/059061f7605c496159a8d1157ca9bcb5.jpg',
+      imageUrl: 'https://i.pinimg.com/564x/e6/7e/84/e67e845f0aa7f30ea589664c9a8a9f1a.jpg',
       participants: Participants,
     },
     {
@@ -115,7 +115,7 @@ export const WritableGatheringData: { data: WritableGatheringCardInform[] } = {
       location: '한국11',
       currentCount: 10,
       totalCount: 20,
-      imageUrl: 'https://i.pinimg.com/564x/05/90/61/059061f7605c496159a8d1157ca9bcb5.jpg',
+      imageUrl: 'https://i.pinimg.com/564x/e6/7e/84/e67e845f0aa7f30ea589664c9a8a9f1a.jpg',
       participants: Participants,
     },
     {
@@ -125,7 +125,7 @@ export const WritableGatheringData: { data: WritableGatheringCardInform[] } = {
       location: '한국12',
       currentCount: 10,
       totalCount: 20,
-      imageUrl: 'https://i.pinimg.com/564x/05/90/61/059061f7605c496159a8d1157ca9bcb5.jpg',
+      imageUrl: 'https://i.pinimg.com/564x/e6/7e/84/e67e845f0aa7f30ea589664c9a8a9f1a.jpg',
       participants: Participants,
     },
     {
@@ -135,7 +135,7 @@ export const WritableGatheringData: { data: WritableGatheringCardInform[] } = {
       location: '한국13',
       currentCount: 10,
       totalCount: 20,
-      imageUrl: 'https://i.pinimg.com/564x/05/90/61/059061f7605c496159a8d1157ca9bcb5.jpg',
+      imageUrl: 'https://i.pinimg.com/564x/e6/7e/84/e67e845f0aa7f30ea589664c9a8a9f1a.jpg',
       participants: Participants,
     },
   ],

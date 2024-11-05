@@ -18,7 +18,9 @@ const meta: Meta = {
   decorators: [
     (Story) => (
       <ClientProvider>
-        <Story />
+        <div className="w-[1200px]">
+          <Story />
+        </div>
       </ClientProvider>
     ),
   ],
