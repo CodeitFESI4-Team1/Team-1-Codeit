@@ -36,7 +36,7 @@ export default function DateTimePicker({ fullDate, onChange }: DateTimePickerPro
     <div className="flex flex-col items-center gap-5">
       <div className="rounded-xl border border-gray-200 px-9 pb-4 pt-2.5">
         <DatesProvider
-        settings={{ locale: 'ko', firstDayOfWeek: 0, weekendDays: [0], timezone: 'UTC' }}
+          settings={{ locale: 'ko', firstDayOfWeek: 0, weekendDays: [0], timezone: 'UTC' }}
         >
           <Calendar
             size="xl"
