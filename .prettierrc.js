@@ -20,6 +20,7 @@ module.exports = {
     '^@/src/utils/(.*)$',
     '^@/src/app/(.*)$',
     '^@/src/components/(.*)$',
+    '^@/src/fonts/(.*)$',
     '^@/src/types/(.*)$',
     '^@/src/styles/(.*)$',
     '^@/src/mock/(.*)$',
