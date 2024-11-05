@@ -206,7 +206,7 @@ export default function CreateCrewForm({
             </p>
           )}
         </div>
-        <div className="flex justify-between gap-4 pt-18">
+        <div className="pt-18 flex justify-between gap-4">
           <Button
             type="submit"
             disabled={!isFormValid}

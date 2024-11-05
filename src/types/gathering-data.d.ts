@@ -12,7 +12,7 @@ export interface GatheringType {
 }
 export interface GatheringDetailType extends GatheringType {
   introduce: string;
-  isCaptain: boolean;
+  isGatherCaptain: boolean;
   isParticipant: boolean;
   participants: UserType[];
 }
