@@ -23,13 +23,14 @@ function CrewCardList(
           <li key={inform.crewId} className="w-full">
             <CrewCard
               id={inform.crewId}
-              capacity={inform.capacity}
+              capacity={inform.totalCount}
               isConfirmed={inform.isConfirmed}
-              location={inform.location}
+              mainLocation={inform.mainLocation}
+              subLocation={inform.subLocation}
               name={inform.name}
               thumbnail={inform.images[0].imagePath}
               participantCount={inform.participantCount}
-              gatheringCount={inform.gatheringCount}
+              gatheringCount={inform.totalGatheringCount}
             />
           </li>
         ))}
