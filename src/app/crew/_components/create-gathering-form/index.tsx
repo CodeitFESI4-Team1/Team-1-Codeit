@@ -67,7 +67,14 @@ export default function CreateGatheringForm({
               }),
             }}
             error={errors.title?.message?.toString()}
-            onChange={(e) => setValues((prevValues) => ({ ...prevValues, title: e.target.value }))}
+            onChange={(e) =>
+              setValues((prevValues) => {
+                if (e.target.value.length <= 20) {
+                  return { ...prevValues, title: e.target.value };
+                }
+                return prevValues;
+              })
+            }
             placeholder="약속 이름을 20자 이내로 입력해주세요."
             maxLength={20}
             classNames={{
@@ -111,7 +118,12 @@ export default function CreateGatheringForm({
             }}
             error={errors.location?.message?.toString()}
             onChange={(e) =>
-              setValues((prevValues) => ({ ...prevValues, location: e.target.value }))
+              setValues((prevValues) => {
+                if (e.target.value.length <= 20) {
+                  return { ...prevValues, location: e.target.value };
+                }
+                return prevValues;
+              })
             }
             placeholder="자세한 주소를 입력해주세요."
             maxLength={20}
@@ -198,7 +210,7 @@ export default function CreateGatheringForm({
           <Button
             type="button"
             onClick={onClose}
-            className="btn-outlined h-11 w-29.5 flex-1 text-base font-medium text-blue-500"
+            className="w-29.5 btn-outlined h-11 flex-1 text-base font-medium text-blue-500"
           >
             취소
           </Button>

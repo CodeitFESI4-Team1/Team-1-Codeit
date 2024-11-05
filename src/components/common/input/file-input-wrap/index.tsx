@@ -15,21 +15,21 @@ export default function FileInputWrap({ value, onChange }: FileInputProps) {
   const [isSampleSelected, setIsSampleSelected] = useState(false);
 
   const handleChange = (inputValue: File | null) => {
-    setFileValue(inputValue);
-    onChange(inputValue);
     setIsOtherSelected(false);
     setIsSampleSelected(true);
+    setFileValue(inputValue);
+    onChange(inputValue);
   };
 
   const handleFileInput = (inputValue: File | null) => {
-    setFileValue(inputValue);
-    onChange(inputValue);
     setIsOtherSelected(true);
     setIsSampleSelected(false);
+    setFileValue(inputValue);
+    onChange(inputValue);
   };
 
   return (
-    <div className="container flex max-w-[1200px] gap-3 md:gap-4">
+    <div className="container flex max-w-[1200px] gap-4">
       <FileSample
         imgUrl="https://images.stockcake.com/public/a/7/6/a768d87b-1f99-4b50-9286-f1583af33522_large/team-huddle-celebration-stockcake.jpg"
         onChange={handleChange}
@@ -45,7 +45,7 @@ export default function FileInputWrap({ value, onChange }: FileInputProps) {
         onChange={handleChange}
         isBlur={isOtherSelected}
       />
-      <FileInput value={fileValue || null} onChange={handleFileInput} isBlur={isSampleSelected} />
+      <FileInput value={fileValue} onChange={handleFileInput} isBlur={isSampleSelected} />
     </div>
   );
 }

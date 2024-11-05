@@ -95,7 +95,14 @@ export default function CreateCrewForm({
               }),
             }}
             error={errors.title?.message?.toString()}
-            onChange={(e) => setValues((prevValues) => ({ ...prevValues, title: e.target.value }))}
+            onChange={(e) =>
+              setValues((prevValues) => {
+                if (e.target.value.length <= 20) {
+                  return { ...prevValues, title: e.target.value };
+                }
+                return prevValues;
+              })
+            }
             placeholder="크루명을 20자 이내로 입력해주세요."
             maxLength={20}
             classNames={{

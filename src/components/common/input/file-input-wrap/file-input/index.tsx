@@ -42,9 +42,10 @@ export default function FileInput({ value, isBlur, onChange }: FileInputProps) {
   const debouncedHandleFileLoad = debounce(handleFileLoad, 300);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
+    if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
       onChange(file);
+      e.target.value = '';
 
       // 디바운싱된 파일 로드 실행
       debouncedHandleFileLoad(file);
@@ -76,10 +77,10 @@ export default function FileInput({ value, isBlur, onChange }: FileInputProps) {
   }, [fileReader]);
 
   useEffect(() => {
-    if (value && isBlur) {
+    if (isBlur) {
       setPreview(null); // 블러 상태에서 미리보기 제거
     }
-  }, [value, isBlur]);
+  }, [isBlur]);
 
   return (
     <div className="min-w-1/4 relative flex aspect-square w-1/4 gap-2">
