@@ -12,15 +12,17 @@ import { ReactNode } from 'react';
 export interface ButtonProps {
   children: ReactNode;
   className?: string;
+  disabled?: boolean;
   onClick?: () => void;
   type?: 'button' | 'submit' | 'reset';
 }
 
 export default function Button({
-  children,
   className = '',
-  onClick,
   type = 'button',
+  disabled,
+  onClick,
+  children,
 }: ButtonProps) {
   return (
     <button
@@ -28,6 +30,7 @@ export default function Button({
       type={type}
       className={`typo-lg-semibold flex items-center justify-center rounded-xl py-2 ${className}`}
       onClick={onClick}
+      disabled={disabled}
     >
       {children}
     </button>
