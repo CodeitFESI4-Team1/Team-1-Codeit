@@ -34,11 +34,7 @@ function CrewCardList(
           </li>
         ))}
       </ul>
-      {isFetchingNextPage ? (
-          <p>loading...</p>
-      ) : (
-        <div ref={ref} className="h-[1px]" />
-      )}
+      {isFetchingNextPage ? <p>loading...</p> : <div ref={ref} className="h-[1px]" />}
     </div>
   );
 }
