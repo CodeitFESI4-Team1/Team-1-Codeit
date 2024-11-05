@@ -76,7 +76,10 @@ export default function CreateCrewForm({
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-3">
           <div className="flex justify-between">
-            <label htmlFor="crew-title" className="text-xl font-semibold text-gray-800">
+            <label
+              htmlFor="crew-title"
+              className="text-base font-semibold text-gray-800 md:text-xl"
+            >
               크루명을 입력해주세요.
             </label>
             <span>
@@ -112,7 +115,10 @@ export default function CreateCrewForm({
           />
         </div>
         <div className="flex flex-col gap-3">
-          <label htmlFor="crew-category" className="text-xl font-semibold text-gray-800">
+          <label
+            htmlFor="crew-category"
+            className="text-base font-semibold text-gray-800 md:text-xl"
+          >
             카테고리를 선택해주세요.
           </label>
           <div className="flex justify-between gap-4">
@@ -141,7 +147,7 @@ export default function CreateCrewForm({
           </div>
         </div>
         <div className="flex flex-col gap-3">
-          <label htmlFor="crew-image" className="text-xl font-semibold text-gray-800">
+          <label htmlFor="crew-image" className="text-base font-semibold text-gray-800 md:text-xl">
             대표이미지를 선택하거나 첨부해주세요.
           </label>
           <div className="flex">
@@ -154,7 +160,10 @@ export default function CreateCrewForm({
           </div>
         </div>
         <div className="flex flex-col gap-3">
-          <label htmlFor="crew-category" className="text-xl font-semibold text-gray-800">
+          <label
+            htmlFor="crew-category"
+            className="text-base font-semibold text-gray-800 md:text-xl"
+          >
             지역을 선택해주세요.
           </label>
           <div className="flex justify-between gap-4">
@@ -183,7 +192,10 @@ export default function CreateCrewForm({
           </div>
         </div>
         <div className="flex flex-col gap-3">
-          <label htmlFor="crew-totalCount" className="text-xl font-semibold text-gray-800">
+          <label
+            htmlFor="crew-totalCount"
+            className="text-base font-semibold text-gray-800 md:text-xl"
+          >
             모집 정원을 선택해주세요.
           </label>
           <NumberInput
