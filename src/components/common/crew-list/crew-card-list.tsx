@@ -39,7 +39,7 @@ function CrewCardList(
         ))}
       </ul>
       {isFetchingNextPage ? <p>loading...</p> : <div ref={ref} className="h-[1px]" />}
-    </>
+    </div>
   );
 }
 
