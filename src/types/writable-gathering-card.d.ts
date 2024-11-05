@@ -17,4 +17,5 @@ export type WritableGatheringCardInform = {
 export type ParticipantType = {
   id: number;
   imageUrl: string;
+  nickname: string;
 };

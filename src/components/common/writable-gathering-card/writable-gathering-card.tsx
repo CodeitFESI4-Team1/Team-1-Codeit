@@ -35,6 +35,13 @@ export default function WritableGatheringCard({
   totalCount,
 }: WritableGatheringCardProps) {
   const { year, month, day } = formatDateWithYear(dateTime);
+
+  const profiles = participants.map((participant) => ({
+    id: participant.id,
+    nickname: participant.nickname,
+    imageUrl: participant.imageUrl,
+  }));
+
   return (
     <div className="flex w-full max-w-[1200px] gap-[20px] border-b-[2px] border-b-gray-200 py-[24px]">
       <span className="relative h-[166px] w-[294px] overflow-hidden rounded-[12px]">
@@ -55,7 +62,7 @@ export default function WritableGatheringCard({
                 {currentCount}/{totalCount}
               </span>
               {/* NOTE: participants prop 넘겨줘야함 */}
-              <Profiles id={2} />
+              <Profiles profiles={profiles} />
             </div>
           </div>
           <div className="text-sm font-medium text-gray-700">{`${year}년 ${month}월 ${day}일`}</div>
