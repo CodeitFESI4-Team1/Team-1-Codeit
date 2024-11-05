@@ -1,23 +1,20 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useInfiniteScroll } from '@/src/hooks/useInfiniteScroll';
-import { fetchCrewData } from '@/src/app/api/mock-api/crew';
+import { fetchCrewData } from '@/src/app/(crew)/api/mock-api/crew';
 import { CrewCardInformResponse } from '@/src/types/crew-card';
 import ClientProvider from '../../client-provider';
-import CrewCardList, { CrewCardListProps } from './crew-card-list';
+import CrewCardList from './crew-card-list';
 
 const meta: Meta = {
   title: 'Components/CrewCardList/CrewCardList',
   component: CrewCardList,
   parameters: {
-    layout: 'centered',
+    layout: 'fullscreen',
     nextjs: {
       appDirectory: true,
     },
   },
   tags: ['autodocs'],
-  args: {
-    // CrewCardInforms: crewData,
-  },
   decorators: [
     (Story) => (
       <ClientProvider>
@@ -30,7 +27,7 @@ const meta: Meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-function RenderCrewCardList({ isWide = false }: Pick<CrewCardListProps, 'isWide'>) {
+function RenderCrewCardList() {
   const { data, ref, isFetchingNextPage } = useInfiniteScroll<CrewCardInformResponse>({
     queryKey: ['crew'],
     queryFn: ({ pageParam = 0 }) => {
@@ -40,17 +37,10 @@ function RenderCrewCardList({ isWide = false }: Pick<CrewCardListProps, 'isWide'
       lastPage.hasNextPage ? allPages.length + 1 : undefined,
   });
 
-  return (
-    <CrewCardList data={data} ref={ref} isWide={isWide} isFetchingNextPage={isFetchingNextPage} />
-  );
+  return <CrewCardList data={data} ref={ref} isFetchingNextPage={isFetchingNextPage} />;
 }
 
 export const Default: Story = {
   render: () => <RenderCrewCardList />,
-  args: {},
-};
-
-export const IsWide: Story = {
-  render: () => <RenderCrewCardList isWide />,
   args: {},
 };

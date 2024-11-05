@@ -51,7 +51,7 @@ export function Profile({
           className={`relative h-full w-full rounded-full ${imageUrl ? 'border-2 border-blue-100' : ''}`}
         >
           <Image
-            src={imageUrl || defaultImage}
+            src={imageUrl && imageUrl.trim() ? imageUrl : defaultImage}
             alt="프로필 이미지"
             layout="fill"
             objectFit="cover"
