@@ -27,7 +27,7 @@ export default function RootLayout({
         <ClientProvider>
           <MantineProvider theme={theme}>
             <Header />
-            <div className="container mx-auto flex flex-1 flex-col md:flex-row">
+            <div className="mx-auto flex w-full flex-1 flex-col lg:max-w-[1200px]">
               <main className="flex-1 md:shadow-bg">{children}</main>
             </div>
           </MantineProvider>
