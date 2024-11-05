@@ -130,7 +130,7 @@ export default function GatheringDetailModalPresenter({
                   참여하기
                 </Button>
               )}
-              {data?.isParticipant && !data?.isCaptain && (
+              {data?.isParticipant && !data?.isGatherCaptain && (
                 <Button
                   type="button"
                   onClick={onExit}
@@ -139,7 +139,7 @@ export default function GatheringDetailModalPresenter({
                   탈퇴하기
                 </Button>
               )}
-              {data?.isCaptain && (
+              {data?.isGatherCaptain && (
                 <Button
                   type="button"
                   onClick={onDelete}
