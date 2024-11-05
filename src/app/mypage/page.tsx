@@ -3,10 +3,8 @@
 import { useState } from 'react';
 import { Divider } from '@mantine/core';
 import { useInfiniteScroll } from '@/src/hooks/useInfiniteScroll';
-import Button from '@/src/components/common/button';
 import ReviewCardList from '@/src/components/common/review-list/review-card-list';
 import Tabs from '@/src/components/common/tab';
-import GatheringDetailModalPresenter from '@/src/components/gathering-detail-modal/presenter';
 import ProfileCardContainer from '@/src/components/my-page/profile-card/container';
 import { ReviewInformResponse } from '@/src/types/review';
 import { fetchMyReviewData } from '../api/mock-api/review';
