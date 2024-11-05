@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import '@mantine/core/styles.css';
 import ClientProvider from '@/src/components/client-provider';
-import Header from '@/src/components/common/header/container';
 import { pretendard } from '@/src/fonts/pretendard/pretendard';
 import '@/src/styles/globals.css';
 import { theme } from '@/src/styles/theme';
@@ -22,15 +21,9 @@ export default function RootLayout({
       <head>
         <ColorSchemeScript />
       </head>
-
-      <body className="flex min-h-screen flex-col bg-gray-50">
+      <body>
         <ClientProvider>
-          <MantineProvider theme={theme}>
-            <Header />
-            <main className="md:shadow-b container mx-auto max-w-pc py-10 md:py-16">
-              {children}
-            </main>
-          </MantineProvider>
+          <MantineProvider theme={theme}>{children}</MantineProvider>
         </ClientProvider>
       </body>
     </html>
