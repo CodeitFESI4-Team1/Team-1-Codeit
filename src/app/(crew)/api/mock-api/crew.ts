@@ -1,7 +1,7 @@
 import { CrewCardInformResponse } from '@/src/types/crew-card';
 import { crewData } from '@/src/mock/crew-data';
 
-// NOTE : 임시 API
+// NOTE: 크루 데이터 fetch
 export const fetchCrewData = (page: number, limit: number) => {
   const startIndex = page * limit;
   const endIndex = startIndex + limit;
@@ -17,12 +17,9 @@ export const fetchCrewData = (page: number, limit: number) => {
   });
 };
 
-// NOTE : useInfiniteScroll과 함께 쓰기
 // const { data, ref, isFetchingNextPage } = useInfiniteScroll<CrewCardInformResponse>({
 //   queryKey: ['crew'],
-//   queryFn: ({ pageParam = 0 }) => {
-//     return fetchCrewData(pageParam, 3);
-//   },
+//   queryFn: ({ pageParam = 0 }) => fetchCrewData(pageParam, 3);
 //   getNextPageParam: (lastPage, allPages) =>
 //     lastPage.hasNextPage ? allPages.length + 1 : undefined,
 // });
