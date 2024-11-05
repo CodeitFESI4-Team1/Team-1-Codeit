@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
-import { pretendard } from '@/src/fonts/pretendard/pretendard';
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import '@mantine/core/styles.css';
 import ClientProvider from '@/src/components/client-provider';
+import { pretendard } from '@/src/fonts/pretendard/pretendard';
 import '@/src/styles/globals.css';
 import { theme } from '@/src/styles/theme';
 
