@@ -136,7 +136,7 @@ export default function DetailCrewCard({
 
               {isConfirmed && (
                 <span className="flex items-center gap-[1px] text-blue-600">
-                  <Image src={Check} alt="확인" width={24} height={24} />{' '}
+                  <Image src={Check} alt="확인" width={24} height={24} />
                   <span className="text-sm font-medium"> 개설 확정</span>
                 </span>
               )}
