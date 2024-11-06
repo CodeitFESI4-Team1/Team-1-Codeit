@@ -7,7 +7,7 @@ interface ProfilesProps {
 }
 
 export default function Profiles({ size = 'small', profiles }: ProfilesProps) {
-  const shows = 4;
+  const shows = 4; // 최대 표시할 프로필 수를 고정값으로 설정
   const visibleProfiles = profiles.slice(0, shows);
   const extraCount = profiles.length - shows;
 
