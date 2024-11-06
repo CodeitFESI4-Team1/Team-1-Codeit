@@ -1,4 +1,3 @@
-import GatheringCard from '../components/common/gathering-card/container';
 import { UserType } from './user';
 
 export interface GatheringType {

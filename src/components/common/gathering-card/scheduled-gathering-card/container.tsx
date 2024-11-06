@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useGetGatheringQuery } from '@/src/_queries/gathering/gathering-queries';
-import GatheringDetailModalContainer from '@/src/components/gathering-detail-modal/container';
+import GatheringDetailModalContainer from '@/src/app/(crew)/crew/_components/gathering-detail-modal/container';
 import { GatheringDetailType } from '@/src/types/gathering-data';
 import ScheduledGatheringCardPresenter from './presenter';
 
