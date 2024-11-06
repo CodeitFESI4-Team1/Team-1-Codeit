@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useInfiniteScroll } from '@/src/hooks/useInfiniteScroll';
-import { fetchCrewData } from '@/src/app/(crew)/api/mock-api/crew';
+import { fetchCrewData } from '@/src/app/api/mock-api/crew';
 import CrewCardList from '@/src/components/common/crew-list/crew-card-list';
 import Tabs from '@/src/components/common/tab';
 import { CrewCardInformResponse } from '@/src/types/crew-card';
