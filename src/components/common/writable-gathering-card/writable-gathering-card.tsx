@@ -1,8 +1,8 @@
 import Image from 'next/image';
+import Profiles from '@/src/components/common/crew-list/profiles';
+import Button from '@/src/components/common/input/button';
 import { ParticipantType } from '@/src/types/writable-gathering-card';
 import person from '@/public/assets/icons/person.svg';
-import Button from '../button';
-import Profiles from '../crew-list/profiles';
 
 interface WritableGatheringCardProps {
   id: number;
