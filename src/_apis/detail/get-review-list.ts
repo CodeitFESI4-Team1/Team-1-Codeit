@@ -16,7 +16,7 @@ export interface ReviewListData {
 
 export async function getReviewList(page: number, limit: number): Promise<ReviewListData> {
   const response = await fetch(`/api/mock-api/detail?type=reviews`);
-  const reviewData: CrewReview[] = await response.json(); // 리뷰 데이터를 배열로 바로 받음
+  const reviewData: CrewReview[] = await response.json();
 
   // 데이터가 비어 있는 경우 기본값 반환
   if (!reviewData || reviewData.length === 0) {
@@ -38,8 +38,9 @@ export async function getReviewList(page: number, limit: number): Promise<Review
   const paginatedData = reviewData.slice(startIndex, startIndex + limit);
 
   // 통계 정보 생성
-  const totalRate = reviewData.reduce((sum, review) => sum + review.rate, 0);
-  const averageRate = reviewData.length ? totalRate / reviewData.length : 0;
+  const totalRate = reviewData.length;
+  const averageRate =
+    totalRate > 0 ? reviewData.reduce((sum, review) => sum + review.rate, 0) / totalRate : 0;
 
   const ratingsData = [5, 4, 3, 2, 1].map((score) => ({
     score,
