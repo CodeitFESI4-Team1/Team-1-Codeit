@@ -16,7 +16,7 @@ const data = {
     totalGatheringCount: 5,
     isCaptain: true,
     isCrew: true,
-    CrewMemberList: [
+    CrewMembers: [
       { id: 1, nickname: '이름1' },
       {
         id: 2,

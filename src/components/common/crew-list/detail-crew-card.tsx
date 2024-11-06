@@ -20,7 +20,7 @@ interface DetailCrewCardProps {
   isConfirmed: boolean;
   imageUrl: string;
   totalGatheringCount: number;
-  CrewMember: CrewMemberList[];
+  CrewMembers: CrewMemberList[];
   isCaptain: boolean;
   isCrew: boolean;
 }
@@ -35,7 +35,7 @@ export default function DetailCrewCard({
   isConfirmed,
   imageUrl,
   totalGatheringCount,
-  CrewMember,
+  CrewMembers,
   isCaptain,
   isCrew,
 }: DetailCrewCardProps) {
@@ -130,7 +130,7 @@ export default function DetailCrewCard({
                 <span className="text-sm font-medium">모집 정원</span>
                 <span className="text-sm font-semibold">{participantCount}명</span>
                 <div className="pl-2">
-                  <Profiles profiles={CrewMember} />
+                  <Profiles profiles={CrewMembers} />
                 </div>
               </div>
 
