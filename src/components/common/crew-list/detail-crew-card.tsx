@@ -6,6 +6,7 @@ import { useDisclosure } from '@mantine/hooks';
 import Profiles from '@/src/components/common/crew-list/profiles';
 import ConfirmCancelModal from '@/src/components/common/modal/confirm-cancel-modal';
 import ProgressBar from '@/src/components/common/progress-bar/index';
+import { CrewMemberList } from '@/src/types/crew-card';
 import Check from '@/public/assets/icons/ic-check.svg';
 import KebabIcon from '@/public/assets/icons/kebab-btn.svg';
 
@@ -19,15 +20,9 @@ interface DetailCrewCardProps {
   isConfirmed: boolean;
   imageUrl: string;
   totalGatheringCount: number;
-  CrewMemberList: CrewMember[];
+  CrewMember: CrewMemberList[];
   isCaptain: boolean;
   isCrew: boolean;
-}
-
-interface CrewMember {
-  id: number;
-  nickname: string;
-  profileImageUrl?: string | null;
 }
 
 export default function DetailCrewCard({
@@ -40,7 +35,7 @@ export default function DetailCrewCard({
   isConfirmed,
   imageUrl,
   totalGatheringCount,
-  CrewMemberList,
+  CrewMember,
   isCaptain,
   isCrew,
 }: DetailCrewCardProps) {
@@ -135,7 +130,7 @@ export default function DetailCrewCard({
                 <span className="text-sm font-medium">모집 정원</span>
                 <span className="text-sm font-semibold">{participantCount}명</span>
                 <div className="pl-2">
-                  <Profiles profiles={CrewMemberList} />
+                  <Profiles profiles={CrewMember} />
                 </div>
               </div>
 
