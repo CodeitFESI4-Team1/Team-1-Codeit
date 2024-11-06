@@ -37,7 +37,7 @@ export default function CreationPage() {
       crewMainLocation: '서울시',
       crewSubLocation: '강남구 역삼동',
       title: '가나다라마가나다라마가나다라마가',
-      dateTime: '2024-10-30T00:30',
+      dateTime: '2024-10-31T00:30',
       currentCount: 8,
       totalCount: 12,
       imageUrl:
@@ -47,7 +47,7 @@ export default function CreationPage() {
   ];
 
   return (
-    <div className="m-4">
+    <div>
       <GatheringListWithDate gatheringList={creationGatheringList} />
     </div>
   );
