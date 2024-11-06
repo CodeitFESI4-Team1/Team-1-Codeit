@@ -73,7 +73,7 @@ export default function DetailCrewCard({
             </div>
           </Menu.Target>
           <Menu.Dropdown>
-            <Menu.Item component="a" href="/crew/edit" className="font-pretendard">
+            <Menu.Item component="a" href={`/crew/detail/${id}/edit`} className="font-pretendard">
               크루 수정하기
             </Menu.Item>
             <Menu.Item
