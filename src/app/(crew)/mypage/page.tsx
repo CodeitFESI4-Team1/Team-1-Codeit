@@ -2,10 +2,13 @@
 
 import { useState } from 'react';
 import { Divider } from '@mantine/core';
+import { useInfiniteScroll } from '@/src/hooks/useInfiniteScroll';
 import { Gathering, ReviewList, User } from '@/src/components/common/review-list/review-card';
 import ReviewCardList from '@/src/components/common/review-list/review-card-list';
 import Tabs from '@/src/components/common/tab';
 import ProfileCardContainer from '@/src/components/my-page/profile-card/container';
+import { ReviewInformResponse } from '@/src/types/review';
+import { fetchMyReviewData } from '../../api/mock-api/review';
 
 const mockData = {
   id: 1,
@@ -69,11 +72,26 @@ export default function MyPage() {
   ];
   const [currentTab, setCurrentTab] = useState(myPageTabs[0].id);
 
+  const { data, ref, isFetchingNextPage } = useInfiniteScroll<ReviewInformResponse>({
+    queryKey: ['review'],
+    queryFn: ({ pageParam = 0 }) => fetchMyReviewData(pageParam, 3),
+    getNextPageParam: (lastPage, allPages) =>
+      lastPage.hasNextPage ? allPages.length + 1 : undefined,
+  });
+
   const renderTabContent = () => {
     // TODO : 리턴 값 컴포넌트로 교체
     switch (currentTab) {
       case 'my-review':
-        return <ReviewCardList reviewList={mockReviewData} isMine />;
+        return (
+          <ReviewCardList
+            data={data}
+            ref={ref}
+            isFetchingNextPage={isFetchingNextPage}
+            isMine
+            clickable
+          />
+        );
       default:
         return <div>작성 가능한 리뷰</div>;
     }

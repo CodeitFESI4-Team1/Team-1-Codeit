@@ -22,4 +22,11 @@ export type CrewCardInform = {
   updatedDate: Date;
   isConfirmed: boolean;
   gatheringCount: number;
+  crewMember: CrewMemberList[];
 };
+
+export interface CrewMemberList {
+  id: number;
+  nickname: string;
+  profileImageUrl?: string | null;
+}
