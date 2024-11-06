@@ -8,6 +8,8 @@ import LikeBtn from '@/src/components/common/button/like-btn';
 import IcoPerson from '@/public/assets/icons/person.svg';
 import IcoTimer from '@/public/assets/icons/timer.svg';
 
+// TODO: 스케레톤UI 적용(처음 로딩시 카드가 늘어나는 현상)
+
 export interface GatheringCardPresenterProps {
   id: number;
   imageUrl: string;
