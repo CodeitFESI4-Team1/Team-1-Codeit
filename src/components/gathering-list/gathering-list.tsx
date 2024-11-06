@@ -3,8 +3,8 @@
 import { useState } from 'react';
 import { Pagination } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
+import GatheringCard from '@/src/components/common/gathering-card/container';
 import { GatheringType } from '@/src/types/gathering-data';
-import GatheringCard from '../common/gathering-card/container';
 
 /* eslint-disable react/no-array-index-key */
 
@@ -52,7 +52,7 @@ export default function GatheringList({ gatheringData }: GatheringListProps) {
 
   return (
     <div className="mx-auto max-w-[1200px] px-4">
-      <div className="mx-auto grid grid-cols-1 justify-items-center gap-4 md:max-w-[1016px] md:grid-cols-2 lg:grid-cols-3">
+      <div className="mx-auto grid grid-cols-1 justify-items-center gap-4 md:grid-cols-2 lg:grid-cols-3">
         {currentPageData.map((card, id) => (
           <GatheringCard key={id} {...card} className={cardClassName} />
         ))}
@@ -70,8 +70,26 @@ export default function GatheringList({ gatheringData }: GatheringListProps) {
           total={Math.ceil(pagination.totalCount / limit)}
           value={page}
           onChange={setPage}
-          color="indigo"
-          radius="md"
+          styles={{
+            control: {
+              border: 'none',
+              backgroundColor: 'transparent',
+              '&[data-active]': {
+                backgroundColor: 'transparent',
+                fontWeight: 'var(--pagination-active-font-weight)',
+                color: 'var(--pagination-active-color)',
+                boxShadow: 'none',
+              },
+              '&:hover': {
+                backgroundColor: 'transparent',
+              },
+            },
+            root: {
+              '--pagination-active-color': '#3388FF',
+              '--pagination-active-font-weight': '700',
+            },
+          }}
+          size="sm"
         />
       </div>
     </div>

@@ -24,7 +24,7 @@ interface ProfileProps {
 }
 
 export function Profile({
-  size = 'large',
+  size = 'full',
   imageUrl,
   editable = false,
   onClick,
@@ -47,9 +47,7 @@ export function Profile({
         className={`relative ${sizeClasses[finalSize]} overflow-hidden rounded-full`}
         onClick={onClick}
       >
-        <div
-          className={`relative h-full w-full rounded-full ${imageUrl ? 'border-2 border-blue-100' : ''}`}
-        >
+        <div className="relative h-full w-full rounded-full">
           <Image
             src={imageUrl && imageUrl.trim() ? imageUrl : defaultImage}
             alt="프로필 이미지"

@@ -8,3 +8,13 @@ export function formatDate(dateString: string) {
 
   return { date: `${month} ${day}`, time: `${hours}:${minutes}` };
 }
+
+export function formatDateWithYear(dateString: string) {
+  const date = new Date(dateString);
+
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+
+  return { year, month, day };
+}

@@ -1,7 +1,7 @@
 import { CrewCardInformResponse } from '@/src/types/crew-card';
 import { crewData } from '@/src/mock/crew-data';
 
-// NOTE : 임시 API
+// NOTE: 크루 데이터 fetch
 export const fetchCrewData = (page: number, limit: number) => {
   const startIndex = page * limit;
   const endIndex = startIndex + limit;
@@ -17,12 +17,22 @@ export const fetchCrewData = (page: number, limit: number) => {
   });
 };
 
-// NOTE : useInfiniteScroll과 함께 쓰기
 // const { data, ref, isFetchingNextPage } = useInfiniteScroll<CrewCardInformResponse>({
 //   queryKey: ['crew'],
-//   queryFn: ({ pageParam = 0 }) => {
-//     return fetchCrewData(pageParam, 3);
-//   },
+//   queryFn: ({ pageParam = 0 }) => fetchCrewData(pageParam, 3);
 //   getNextPageParam: (lastPage, allPages) =>
 //     lastPage.hasNextPage ? allPages.length + 1 : undefined,
 // });
+
+export const getCrewData = async (page: number, limit: number): Promise<CrewCardInformResponse> => {
+  const response = await fetch(`http://localhost:3009/crews?_page=${page + 1}&_limit=${limit}`);
+  const data = await response.json();
+
+  // hasNextPage는 데이터가 limit 개수만큼 채워지지 않은 경우 false로 설정
+  const hasNextPage = data.length === limit;
+
+  return {
+    data,
+    hasNextPage,
+  };
+};

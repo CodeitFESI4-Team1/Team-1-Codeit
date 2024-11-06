@@ -96,7 +96,9 @@ export default function FileInput({ value, isBlur, onChange }: FileInputProps) {
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           />
         </figure>
-        <span className="text-xs font-medium text-gray-400 md:text-lg">이미지 등록</span>
+        <span className="text-xs font-medium text-gray-400 md:text-base lg:text-lg">
+          이미지 등록
+        </span>
       </label>
       <input
         type="file"
