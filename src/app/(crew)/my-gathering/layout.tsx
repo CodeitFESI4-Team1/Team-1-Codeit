@@ -6,8 +6,8 @@ import { usePathname } from 'next/navigation';
 import { Button } from '@mantine/core';
 
 const buttonData = [
-  { id: 1, label: '내가 참여한 약속', route: '/my-gathering/participation' },
-  { id: 2, label: '내가 만든 약속', route: '/my-gathering/creation' },
+  { id: 1, label: '참여한 약속', route: '/my-gathering/participation' },
+  { id: 2, label: '만든 약속', route: '/my-gathering/creation' },
   { id: 3, label: '찜한 약속', route: '/my-gathering/favorite' },
 ];
 
@@ -30,16 +30,18 @@ export default function MyGatheringLayout({
   }, [currentPath]);
 
   return (
-    <div className="m-4 mt-[45px] grid grid-cols-3 gap-4 md:mx-[46px]">
-      {buttonData.map(({ id, label, route }) => (
-        <Link key={id} href={route}>
-          <Button
-            className={`${id === selectedButton ? 'btn-filled' : 'btn-outlined'} w-full text-lg font-bold`}
-          >
-            {label}
-          </Button>
-        </Link>
-      ))}
+    <div className="mt-4 md:mx-[46px] md:mt-[45px]">
+      <div className="m-4 grid grid-cols-3 gap-2 md:gap-4">
+        {buttonData.map(({ id, label, route }) => (
+          <Link key={id} href={route}>
+            <Button
+              className={`${id === selectedButton ? 'btn-filled' : 'btn-outlined'} w-full text-sm font-bold md:text-lg`}
+            >
+              {label}
+            </Button>
+          </Link>
+        ))}
+      </div>
       {children}
     </div>
   );
