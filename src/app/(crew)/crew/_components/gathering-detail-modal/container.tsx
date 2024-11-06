@@ -1,7 +1,7 @@
 'use client';
 
-import GatheringDetailModalPresenter from '@/src/components/gathering-detail-modal/presenter';
 import { GatheringDetailType } from '@/src/types/gathering-data';
+import GatheringDetailModalPresenter from './presenter';
 
 export interface GatheringDetailModalContainerProps {
   opened: boolean;

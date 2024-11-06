@@ -1,7 +1,7 @@
 import { getCrewDetail } from '@/src/_apis/detail/get-crew-detail';
 import { getGatheringList } from '@/src/_apis/detail/get-gathering-list';
-import Button from '@/src/components/common/button';
 import DetailCrewCard from '@/src/components/common/crew-list/detail-crew-card';
+import Button from '@/src/components/common/input/button';
 import GatheringCardCarousel from '@/src/components/gathering-list/gathering-card-carousel';
 import CrewReviewSection from './_components/review-section';
 

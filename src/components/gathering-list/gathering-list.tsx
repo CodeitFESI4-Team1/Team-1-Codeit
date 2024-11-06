@@ -3,8 +3,8 @@
 import { useState } from 'react';
 import { Pagination } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
+import GatheringCard from '@/src/components/common/gathering-card/container';
 import { GatheringType } from '@/src/types/gathering-data';
-import GatheringCard from '../common/gathering-card/container';
 
 /* eslint-disable react/no-array-index-key */
 

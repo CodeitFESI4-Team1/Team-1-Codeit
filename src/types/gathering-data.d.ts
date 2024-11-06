@@ -17,7 +17,7 @@ export interface GatheringDetailType extends GatheringType {
   participants: UserType[];
 }
 export interface GatheringData {
-  data: Gathering[];
+  data: GatheringDetailType[];
   pagination: {
     totalCount: number;
     page: number;
