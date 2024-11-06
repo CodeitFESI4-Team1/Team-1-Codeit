@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuthStore } from '@/src/store/use-auth-store';
 import HeaderPresenter from '@/src/components/common/header/presenter';

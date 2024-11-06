@@ -3,8 +3,8 @@ import Image from 'next/image';
 import { Badge } from '@mantine/core';
 import { cn } from '@/src/hooks/cn';
 import { formatDate } from '@/src/utils/format-date';
-import Button from '@/src/components/common/button';
-import LikeBtn from '@/src/components/common/button/like-btn';
+import Button from '@/src/components/common/input/button';
+import LikeBtn from '@/src/components/common/input/button/like-btn';
 import IcoPerson from '@/public/assets/icons/person.svg';
 import IcoTimer from '@/public/assets/icons/timer.svg';
 
