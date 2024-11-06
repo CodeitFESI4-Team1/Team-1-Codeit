@@ -16,7 +16,7 @@ type CrewDetail = {
   isConfirmed: boolean;
   imageUrl: string;
   totalGatheringCount: number;
-  CrewMemberList: CrewMember[];
+  CrewMembers: CrewMember[];
   isCaptain: boolean;
   isCrew: boolean;
 };
