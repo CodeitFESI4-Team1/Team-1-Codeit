@@ -3,7 +3,7 @@ import { fetchApi } from '@/src/utils/api';
 type CrewMember = {
   id: number;
   nickname: string;
-  imageUrl?: string;
+  profileImageUrl?: string;
 };
 
 type CrewDetail = {
@@ -22,7 +22,7 @@ type CrewDetail = {
 };
 
 export async function getCrewDetail(): Promise<CrewDetail> {
-  const response = await fetchApi<CrewDetail>('/api/mock-api/detail?type=crew', {
+  const response = await fetchApi<CrewDetail>('/api/mock-api/detail?type=crewDetail', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

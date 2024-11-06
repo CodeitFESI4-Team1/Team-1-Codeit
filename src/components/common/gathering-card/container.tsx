@@ -30,7 +30,7 @@ const dummyGatheringData: GatheringDetailType = {
     'https://images.unsplash.com/photo-1601758260892-a62c486ace97?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   isLiked: false,
   introduce: '이 모임은 예시 모임입니다. 함께 즐거운 시간을 보낼 수 있는 모임이에요!',
-  isCaptain: true,
+  isGatherCaptain: true,
   isParticipant: true,
   participants: [
     {
