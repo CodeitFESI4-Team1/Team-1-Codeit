@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import { useDisclosure } from '@mantine/hooks';
+import GatheringDetailModalContainer from '@/src/app/(crew)/crew/_components/gathering-detail-modal/container';
 import { GatheringDetailType } from '@/src/types/gathering-data';
-import GatheringDetailModalContainer from '../../gathering-detail-modal/container';
 import GatheringCardPresenter from './presenter';
 
 interface GatheringCardContainerProps {

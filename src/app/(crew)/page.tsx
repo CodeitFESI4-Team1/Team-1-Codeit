@@ -5,20 +5,14 @@ import Image from 'next/image';
 import { Divider } from '@mantine/core';
 import regionData from '@/src/data/region.json';
 import { useInfiniteScroll } from '@/src/hooks/useInfiniteScroll';
+import CategoryContainer from '@/src/app/_components/category/category-container';
+import HeroCrew from '@/src/app/_components/hero/hero-crew';
 import { fetchCrewData } from '@/src/app/api/mock-api/crew';
-import CategoryContainer from '@/src/components/common/category/category-container';
 import CrewCardList from '@/src/components/common/crew-list/crew-card-list';
-import HeroCrew from '@/src/components/common/hero/hero-crew';
 import DropDown from '@/src/components/common/input/drop-down';
 import TextInput from '@/src/components/common/input/text-input';
 import { CrewCardInformResponse } from '@/src/types/crew-card';
 import IcoSearch from '@/public/assets/icons/ic-search.svg';
-
-export interface ValuesType {
-  region: string;
-  date: Date;
-  sort: string;
-}
 
 export default function Home() {
   const [mainCategory, setMainCategory] = useState('cardio_strength');
@@ -37,7 +31,7 @@ export default function Home() {
   });
 
   return (
-    <>
+    <div className="py-8 md:py-12.5">
       <div className="flex flex-col px-3 md:px-8 lg:px-11.5">
         <HeroCrew />
         <CategoryContainer
@@ -90,6 +84,6 @@ export default function Home() {
       <div className="mt-8 px-3 md:px-8 lg:px-11.5">
         <CrewCardList data={data} ref={ref} isFetchingNextPage={isFetchingNextPage} />
       </div>
-    </>
+    </div>
   );
 }

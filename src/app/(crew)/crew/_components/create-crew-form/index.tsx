@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { NumberInput } from '@mantine/core';
 import categoryData from '@/src/data/category.json';
 import regionData from '@/src/data/region.json';
-import Button from '@/src/components/common/button';
+import Button from '@/src/components/common/input/button';
 import DropDown from '@/src/components/common/input/drop-down';
 import FileInputWrap from '@/src/components/common/input/file-input-wrap';
 import TextInput from '@/src/components/common/input/text-input';
