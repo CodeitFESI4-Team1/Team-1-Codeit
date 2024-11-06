@@ -31,7 +31,7 @@ export default function CrewCard({
   gatheringCount,
 }: CrewCardProps) {
   const [prefetched, setPrefetched] = useState(new Set());
-  const CREWPAGE = `/detail/${id}`;
+  const CREWPAGE = `/crew/detail/${id}`;
   const router = useRouter();
 
   const handleCardClick = () => {
