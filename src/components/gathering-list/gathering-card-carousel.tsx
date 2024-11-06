@@ -2,71 +2,130 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { Carousel } from '@mantine/carousel';
-import { useMediaQuery } from '@mantine/hooks';
 import GatheringCard from '@/src/components/common/gathering-card/container';
-import { gatheringData } from '@/src/mock/gathering-data';
 import IcoLeft from '@/public/assets/icons/ic-left.svg';
 import IcoRight from '@/public/assets/icons/ic-right.svg';
 
-/* eslint-disable no-nested-ternary */
-/* eslint-disable react/no-array-index-key */
+interface GatheringDataType {
+  id: number;
+  title: string;
+  dateTime: string;
+  location: string;
+  currentCount: number;
+  totalCount: number;
+  imageUrl: string;
+  isLiked: boolean;
+}
 
-export default function GatheringCardCarousel() {
-  // 반응형 구간 체크
-  const isMobile = useMediaQuery('(max-width: 744px)');
-  const isTablet = useMediaQuery('(min-width: 745px) and (max-width: 1200px)');
+interface GatheringCardCarouselProps {
+  gatheringData: GatheringDataType[];
+}
 
-  // 상태 변수 초기화
-  const [slideSize, setSlideSize] = useState('100%');
-  const [slidesToScroll, setSlidesToScroll] = useState(1);
-  const [maxWidth, setMaxWidth] = useState(340);
+export default function CustomGatheringCardCarousel({ gatheringData }: GatheringCardCarouselProps) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [slidesToShow, setSlidesToShow] = useState(1);
+  const [slideSize, setSlideSize] = useState('w-full');
 
-  // 화면 크기 변화에 따른 캐러셀 설정 업데이트
   useEffect(() => {
-    if (isMobile) {
-      setSlideSize('100%');
-      setSlidesToScroll(1);
-      setMaxWidth(340);
-    } else if (isTablet) {
-      setSlideSize('50%');
-      setSlidesToScroll(2);
-      setMaxWidth(360 * 2 + 16);
-    } else {
-      setSlideSize('33.33%');
-      setSlidesToScroll(3);
-      setMaxWidth(380 * 3 + 32);
-    }
-  }, [isMobile, isTablet]);
+    const handleResize = () => {
+      const screenWidth = window.innerWidth;
+      let newSlidesToShow = 1;
+      let newSlideSize = 'w-full';
 
-  const cardClassName = isMobile ? 'w-[340px]' : isTablet ? 'w-[360px]' : 'w-[380px]';
+      if (screenWidth <= 744) {
+        newSlidesToShow = 1;
+        newSlideSize = 'w-full';
+      } else if (screenWidth <= 1200) {
+        newSlidesToShow = 2;
+        newSlideSize = 'w-[calc(50%-8px)]';
+      } else {
+        newSlidesToShow = 3;
+        newSlideSize = 'w-[calc(33.33%-12px)]';
+      }
+
+      setSlidesToShow(newSlidesToShow);
+      setSlideSize(newSlideSize);
+      setCurrentIndex(0);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [gatheringData.length]);
+
+  const totalSlides = gatheringData.length;
+
+  const handlePrev = () => {
+    setCurrentIndex((prevIndex) => (prevIndex >= slidesToShow ? prevIndex - slidesToShow : 0));
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex + slidesToShow < totalSlides ? prevIndex + slidesToShow : prevIndex,
+    );
+  };
 
   return (
-    <div className="mx-auto" style={{ maxWidth: `${maxWidth}px` }}>
-      <Carousel
-        nextControlIcon={<Image src={IcoRight} alt="right icon" width={8} height={8} />}
-        previousControlIcon={<Image src={IcoLeft} alt="left icon" width={8} height={8} />}
-        withIndicators
-        height="auto"
-        slideGap="16px"
-        slideSize={slideSize}
-        slidesToScroll={slidesToScroll}
-        loop={false}
-        align="start"
-        dragFree
-        classNames={{
-          indicator: 'gathering-carousel-indicator',
-          control: 'gathering-carousel-control',
-        }}
-        controlSize={32}
-        withControls
-      >
-        {gatheringData.data.map((card, index) => (
-          <Carousel.Slide key={index}>
-            <GatheringCard {...card} className={`mb-10 ${cardClassName}`} />
-          </Carousel.Slide>
+    <div className="relative mx-auto max-w-full overflow-hidden">
+      <div className="flex overflow-x-hidden">
+        <div
+          className={`flex min-w-0 transition-transform duration-300 ease-in-out ${
+            slidesToShow > 1 ? 'gap-4' : 'gap-0'
+          }`}
+          style={{
+            transform: `translateX(calc(-${(100 / slidesToShow) * currentIndex}% - ${
+              currentIndex * (slidesToShow > 1 ? 16 / slidesToShow : 0)
+            }px))`,
+            width: `${(100 / slidesToShow) * totalSlides}%`,
+          }}
+        >
+          {gatheringData.map((card) => (
+            <div key={card.id} className={`flex-shrink-0 ${slideSize} mb-10`}>
+              <GatheringCard {...card} className="w-full" />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Left and Right Control Buttons */}
+      {currentIndex > 0 && (
+        <button
+          type="button"
+          onClick={handlePrev}
+          className="absolute left-2 top-1/2 -translate-y-1/2 transform rounded-full bg-white/70 p-1 shadow-lg"
+        >
+          <div className="flex h-8 w-8 items-center justify-center rounded-full">
+            <Image src={IcoLeft} alt="Previous" width={12} height={12} />
+          </div>
+        </button>
+      )}
+      {currentIndex + slidesToShow < totalSlides && (
+        <button
+          type="button"
+          onClick={handleNext}
+          className="absolute right-2 top-1/2 -translate-y-1/2 transform rounded-full bg-white/70 p-1 shadow-lg"
+        >
+          <div className="flex h-8 w-8 items-center justify-center rounded-full">
+            <Image src={IcoRight} alt="Next" width={12} height={12} />
+          </div>
+        </button>
+      )}
+
+      {/* Custom Indicators */}
+      <div className="mt-4 flex justify-center space-x-2">
+        {Array.from({ length: Math.ceil(totalSlides / slidesToShow) }).map((_, i) => (
+          <span
+            // eslint-disable-next-line react/no-array-index-key
+            key={i}
+            className="h-1 rounded-sm transition-all"
+            style={{
+              width: i === Math.floor(currentIndex / slidesToShow) ? '20px' : '6px',
+              backgroundColor:
+                i === Math.floor(currentIndex / slidesToShow) ? '#3b82f6' : '#dbeafe',
+            }}
+          />
         ))}
-      </Carousel>
+      </div>
     </div>
   );
 }

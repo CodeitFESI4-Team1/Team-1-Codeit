@@ -5,7 +5,11 @@ const meta: Meta<typeof GatheringCard> = {
   title: 'Components/GatheringCard',
   component: GatheringCard,
   parameters: {
-    layout: 'centered',
+    layout: 'fullscreen',
+    backgrounds: {
+      default: 'light-gray',
+      values: [{ name: 'light-gray', value: '#F9FAFB' }],
+    },
   },
   tags: ['autodocs'],
   argTypes: {
