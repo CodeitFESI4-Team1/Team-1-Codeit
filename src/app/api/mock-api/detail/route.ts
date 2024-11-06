@@ -1,4 +1,7 @@
 import { NextResponse } from 'next/server';
+import { CrewReviewData } from '@/src/mock/review-data';
+
+// FIX: 데이터 패칭 확인을 위한 목 api 추후 삭제 예정
 
 const data = {
   crewDetail: {
@@ -118,10 +121,6 @@ const data = {
       ],
     },
   ],
-  // reviews: [
-  //   { id: 201, reviewer: 'Reviewer1', rating: 5, comment: 'Great crew!' },
-  //   { id: 202, reviewer: 'Reviewer2', rating: 4, comment: 'Good experience' },
-  // ],
 };
 
 // API 엔드포인트 핸들러
@@ -137,8 +136,8 @@ export async function GET(req: Request) {
       return NextResponse.json(data.gatherings);
     case 'gatheringDetail':
       return NextResponse.json(data.gatheringDetail);
-    // case 'reviews':
-    //   return NextResponse.json(data.reviews);
+    case 'reviews':
+      return NextResponse.json(CrewReviewData.data);
     default:
       return NextResponse.json({ error: 'Invalid type' }, { status: 400 });
   }
