@@ -17,7 +17,7 @@ export default function ProfileCard({ data, onEdit }: ProfileCardProps) {
           <Profile size="full" imageUrl={data?.profileImageUrl ?? ''} />
         </figure>
         <div className="flex flex-col gap-2">
-          <p className="text-2xl font-semibold text-gray-900">{data?.nickname} 님, 안녕하세요</p>
+          <p className="text-2xl font-semibold text-gray-900">{data?.nickname} 님, 안녕하세요🙌</p>
           <dl className="flex text-base font-medium text-gray-700">
             <dt className="flex-shrink-0 flex-grow-0 basis-20">Email</dt>
             <dd className="flex-1">{data?.email}</dd>
