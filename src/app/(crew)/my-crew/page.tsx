@@ -7,7 +7,7 @@ import CrewCardList from '@/src/components/common/crew-list/crew-card-list';
 import Tabs from '@/src/components/common/tab';
 import { CrewCardInformResponse } from '@/src/types/crew-card';
 
-export default function MyCrePage() {
+export default function MyCrewPage() {
   const myPageTabs = [
     { label: '내가 참여한 크루', id: 'joined-crew' },
     { label: '내가 만든 크루', id: 'made-crew' },
