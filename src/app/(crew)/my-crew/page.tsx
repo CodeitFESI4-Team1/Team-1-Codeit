@@ -24,7 +24,7 @@ export default function MyCrePage() {
       lastPage.hasNextPage ? allPages.length + 1 : undefined,
   });
   return (
-    <>
+    <div className="py-8 md:py-12.5">
       <div className="px-3 md:px-8 lg:px-11.5">
         <Tabs
           variant="default"
@@ -43,6 +43,6 @@ export default function MyCrePage() {
           isFetchingNextPage={isFetchingNextPage}
         />
       </div>
-    </>
+    </div>
   );
 }
