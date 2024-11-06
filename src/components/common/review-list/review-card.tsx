@@ -1,9 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { Button, Menu } from '@mantine/core';
+import { Button } from '@mantine/core';
 import { formatDateWithYear } from '@/src/utils/format-date';
 import { ReviewerType } from '@/src/types/review';
 import { Profile } from '../profile';
@@ -22,7 +21,6 @@ interface ReviewCardProps {
   crewId: number;
   clickable?: boolean;
   isMine?: boolean;
-
   crewName?: string;
   gatheringLocation?: string;
   gatheringName?: string;
@@ -78,7 +76,7 @@ export default function ReviewCard({
         role="presentation"
         onClick={handleClick}
         onMouseEnter={handlePrefetch}
-        className={`flex h-full items-end gap-[15px] ${!isMine ? 'border-b-[2px] border-b-[#e6e6e6] py-4' : 'rounded-[12px] p-6 shadow-bg'} bg-white lg:gap-[40px] ${clickable ? 'cursor-pointer' : 'cursor-default'}`}
+        className={`flex h-full items-end gap-[15px] ${!isMine ? 'border-b-[2px] border-b-[#F3F4F6] py-4' : 'rounded-[12px] p-6 shadow-bg'} bg-white lg:gap-[40px] ${clickable ? 'cursor-pointer' : 'cursor-default'}`}
       >
         <div className="flex-start flex w-full flex-col items-start justify-between pr-[20px] lg:pr-[40px]">
           {isMine && (
@@ -91,7 +89,7 @@ export default function ReviewCard({
           <div className={`flex w-fit flex-shrink-0 items-center text-xs ${isMine ? 'mt-4' : ''}`}>
             {!isMine && (
               <>
-                {reviewer && <Profile size="small" />}
+                {reviewer && <Profile size="small" imageUrl={reviewer?.imageUrl} />}
                 <span className="relative mr-3 block w-fit px-2 after:absolute after:right-0 after:content-['|']">
                   {reviewer?.nickname}
                 </span>

@@ -3,6 +3,11 @@ export interface ReviewInformResponse {
   hasNextPage: boolean;
 }
 
+export interface CrewReviewInformResponse {
+  data: CrewReview[] | MyReview[];
+  totalItems: number;
+}
+
 // NOTE: 크루 전체 리뷰
 export interface CrewReview {
   crewId: number;
