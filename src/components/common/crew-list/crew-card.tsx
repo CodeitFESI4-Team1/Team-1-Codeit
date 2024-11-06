@@ -4,32 +4,40 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import ProgressBar from '@/src/components/common/progress-bar/index';
+import { CrewMemberList } from '@/src/types/crew-card';
 import Check from '@/public/assets/icons/ic-check.svg';
 import UserIco from '@/public/assets/icons/ic-user.svg';
+import Profiles from './profiles';
 
 interface CrewCardProps {
   id: number;
   name: string;
   location: string;
+  detailedLocation: string;
   participantCount: number;
   capacity: number;
   isConfirmed: boolean;
   thumbnail: string;
   gatheringCount: number;
+  crewMember?: CrewMemberList[];
+  inWhere?: 'my-crew';
 }
 
 export default function CrewCard({
   id,
   name,
   location,
+  detailedLocation,
   participantCount,
   capacity,
   isConfirmed,
   thumbnail,
   gatheringCount,
+  crewMember,
+  inWhere,
 }: CrewCardProps) {
   const [prefetched, setPrefetched] = useState(new Set());
-  const CREWPAGE = `/detail/${id}`;
+  const CREWPAGE = `/crew/detail/${id}`;
   const router = useRouter();
 
   const handleCardClick = () => {
@@ -50,7 +58,7 @@ export default function CrewCard({
       className="relative mx-auto flex h-[430px] w-full animate-fade cursor-pointer flex-col overflow-hidden rounded-[14px] bg-white shadow-bg md:h-[203px] md:flex-row"
     >
       {/* 썸네일 */}
-      <div className="relative h-[203px] w-full flex-shrink-0 md:w-[230px] lg:w-[200px]">
+      <div className="relative h-[203px] w-full flex-shrink-0 md:w-[230px]">
         <Image fill objectFit="cover" alt={name} src={thumbnail} />
       </div>
 
@@ -60,7 +68,9 @@ export default function CrewCard({
             <span className="max-w-[200px] overflow-hidden text-ellipsis whitespace-nowrap pr-4 text-lg font-semibold">
               {name}
             </span>
-            <span className="text-base font-medium">| {location}</span>
+            <span className="text-base font-medium">
+              | {location} {detailedLocation}
+            </span>
           </div>
           <span className="text-sm font-semibold text-blue-600">
             {`현재 ${gatheringCount}개의 약속이 개설되어 있습니다.`}
@@ -74,6 +84,11 @@ export default function CrewCard({
                 <span className="text-base font-medium">
                   {participantCount}/{capacity}
                 </span>
+                {inWhere === 'my-crew' && (
+                  <span>
+                    <Profiles size="medium" profiles={crewMember ?? []} />
+                  </span>
+                )}
               </div>
               {isConfirmed && (
                 <span className="flex items-center gap-[1px] text-blue-600">

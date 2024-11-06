@@ -1,4 +1,3 @@
-import { action } from '@storybook/addon-actions';
 import type { Meta, StoryFn } from '@storybook/react';
 import { useAuthStore } from '@/src/store/use-auth-store';
 import Header from '@/src/components/common/header/container';

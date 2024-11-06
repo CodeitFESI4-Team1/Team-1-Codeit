@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import { getUsersQuery } from '@/src/_queries/useGetUserQuery';
 import { ApiError } from '@/src/utils/api';
 
-// react-query 예시
+// FIX: react-query로 임시로 작성된 코드입니다. 추후 삭제
 
 export default function TestPage() {
   const { data: users, error, isLoading, isError } = useQuery(getUsersQuery());
