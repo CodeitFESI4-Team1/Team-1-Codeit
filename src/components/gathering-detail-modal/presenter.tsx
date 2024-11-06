@@ -101,12 +101,7 @@ export default function GatheringDetailModalPresenter({
                   {data?.participants.map((participant) => (
                     <li key={participant.id} className="flex items-center gap-2">
                       <figure className="relative h-10 w-10 overflow-hidden rounded-full">
-                        <Image
-                          src={participant?.profileImageUrl}
-                          alt="유저 이미지"
-                          fill
-                          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                        />
+                        <Profile imageUrl={participant?.profileImageUrl} />
                       </figure>
                       <span className="text-base font-medium">{participant?.nickname}</span>
                     </li>

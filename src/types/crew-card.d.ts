@@ -12,11 +12,21 @@ export type CrewCardInform = {
   type: string;
   subType: string;
   name: string;
-  mainLocation: string;
-  subLocation: string;
+  location: string;
+  detailedLocation: string;
   participantCount: number;
-  totalCount: number;
+  capacity: number;
   images: ImageList;
+  createdBy: number;
+  createdDate: Date;
+  updatedDate: Date;
   isConfirmed: boolean;
-  totalGatheringCount: number;
+  gatheringCount: number;
+  crewMember: CrewMemberList[];
 };
+
+export interface CrewMemberList {
+  id: number;
+  nickname: string;
+  profileImageUrl?: string | null;
+}

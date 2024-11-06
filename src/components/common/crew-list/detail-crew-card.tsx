@@ -27,7 +27,7 @@ interface DetailCrewCardProps {
 interface CrewMember {
   id: number;
   nickname: string;
-  imageUrl?: string | null;
+  profileImageUrl?: string | null;
 }
 
 export default function DetailCrewCard({
