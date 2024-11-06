@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import { Divider } from '@mantine/core';
+import { Gathering, ReviewList, User } from '@/src/components/common/review-list/review-card';
+import ReviewCardList from '@/src/components/common/review-list/review-card-list';
 import Tabs from '@/src/components/common/tab';
 import ProfileCardContainer from '@/src/components/my-page/profile-card/container';
 
@@ -11,6 +13,54 @@ const mockData = {
   nickname: '율율',
   email: 'youlyoul@email.com',
 };
+
+const mockUser: User = {
+  id: 1,
+  image: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
+  name: '샘플',
+  teamId: 1,
+};
+
+const mockGathering: Gathering = {
+  dateTime: new Date('2024-10-20'),
+  id: 1,
+  image: 'https://i.pinimg.com/564x/1c/3e/ff/1c3eff0cf58c3f87bc3310ff1528da20.jpg',
+  location: '대전',
+  name: '모여라',
+  teamId: 1,
+  type: '가볍게',
+};
+
+const mockReviewData: ReviewList = [
+  {
+    teamId: 1,
+    id: 1,
+    score: 60,
+    comment: '최고의 모임입니다!?',
+    createdAt: new Date('2024-10-20'),
+    gathering: mockGathering,
+    user: mockUser,
+  },
+  {
+    teamId: 2,
+    id: 2,
+    score: 20,
+    comment: '최악의 모임입니다!!!',
+    createdAt: new Date('2024-10-21'),
+    gathering: mockGathering,
+    user: mockUser,
+  },
+  {
+    teamId: 3,
+    id: 4,
+    score: 60,
+    comment:
+      '긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용긴리뷰내용',
+    createdAt: new Date('2024-10-21'),
+    gathering: mockGathering,
+    user: mockUser,
+  },
+];
 
 export default function MyPage() {
   const myPageTabs = [
@@ -23,9 +73,9 @@ export default function MyPage() {
     // TODO : 리턴 값 컴포넌트로 교체
     switch (currentTab) {
       case 'my-review':
-        return <div>작성한 리뷰 리스트 컴포넌트</div>;
+        return <ReviewCardList reviewList={mockReviewData} isMine />;
       default:
-        return <div>작성 가능한 리뷰 리스트 컴포넌트</div>;
+        return <div>작성 가능한 리뷰</div>;
     }
   };
   return (
