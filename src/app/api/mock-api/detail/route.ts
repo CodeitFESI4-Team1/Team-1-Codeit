@@ -4,7 +4,7 @@ import { CrewReviewData } from '@/src/mock/review-data';
 // FIX: 데이터 패칭 확인을 위한 목 api 추후 삭제 예정
 
 const data = {
-  crewDetail: {
+  crewDetails: {
     id: 1,
     title: '크루 제목 제목 제목',
     mainLocation: '서울특별시',
@@ -130,8 +130,8 @@ export async function GET(req: Request) {
 
   // type에 따라 다른 데이터 반환
   switch (type) {
-    case 'crewDetail':
-      return NextResponse.json(data.crewDetail);
+    case 'crewDetails':
+      return NextResponse.json(data.crewDetails);
     case 'gatherings':
       return NextResponse.json(data.gatherings);
     case 'gatheringDetail':
