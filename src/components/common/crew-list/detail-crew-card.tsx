@@ -73,7 +73,7 @@ export default function DetailCrewCard({
             </div>
           </Menu.Target>
           <Menu.Dropdown>
-            <Menu.Item component="a" href="/crew/edit" className="font-pretendard">
+            <Menu.Item component="a" href={`/crew/detail/${id}/edit`} className="font-pretendard">
               크루 수정하기
             </Menu.Item>
             <Menu.Item
@@ -136,7 +136,7 @@ export default function DetailCrewCard({
 
               {isConfirmed && (
                 <span className="flex items-center gap-[1px] text-blue-600">
-                  <Image src={Check} alt="확인" width={24} height={24} />{' '}
+                  <Image src={Check} alt="확인" width={24} height={24} />
                   <span className="text-sm font-medium"> 개설 확정</span>
                 </span>
               )}

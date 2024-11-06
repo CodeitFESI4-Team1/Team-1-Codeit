@@ -1,8 +1,8 @@
 import { getCrewDetail } from '@/src/_apis/detail/get-crew-detail';
 import { getGatheringList } from '@/src/_apis/detail/get-gathering-list';
 import DetailCrewCard from '@/src/components/common/crew-list/detail-crew-card';
-import Button from '@/src/components/common/input/button';
 import GatheringCardCarousel from '@/src/components/gathering-list/gathering-card-carousel';
+import CreateGathering from './_components/create-gathering';
 import CrewReviewSection from './_components/review-section';
 
 export default async function CrewDetailPage() {
@@ -21,9 +21,7 @@ export default async function CrewDetailPage() {
           <article className="space-y-6">
             <div className="flex items-center justify-between">
               <h2 className="text-2xl font-semibold">크루 약속 잡기</h2>
-              <Button type="button" className="btn-filled px-4">
-                약속 만들기
-              </Button>
+              <CreateGathering />
             </div>
             <div className="flex w-full">
               <GatheringCardCarousel gatheringData={gatheringList} />
