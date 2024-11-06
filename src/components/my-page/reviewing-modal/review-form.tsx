@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useApiMutation } from '@/src/hooks/useApi';
 import Button from '@/src/components/common/button';
 import Textarea from '@/src/components/common/input/textarea';
 import ButtonHearts from './button-hearts';
