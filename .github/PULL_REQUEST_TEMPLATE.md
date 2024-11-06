@@ -2,7 +2,7 @@
 
 <!-- Issue Ticket이 있을 경우, 해당 링크를 연결해주세요 -->
 
-[Ticket](https://yeeunee73.atlassian.net/jira/software/projects/CR/boards/4/timeline)
+[Ticket](https://yeeunee73.atlassian.net/browse/CR-1)
 
 ## :writing_hand: Description
 

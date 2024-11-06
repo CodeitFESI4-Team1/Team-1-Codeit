@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  input,
+  button {
+    font-family: var(--font-pretendard);
+  }
+}
+@layer components {
+  .gathering-carousel-indicator {
+    width: 6px;
+    height: 4px;
+    background-color: #dbeafe;
+    transition: width 250ms ease;
+    &[data-active] {
+      width: 20px;
+      background-color: #3b82f6;
+    }
+  }
+
+  .gathering-carousel-control {
+    background-color: white;
+    &[data-inactive] {
+      visibility: hidden;
+    }
+  }
+
+  .gathering-badge {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+  }
+}
+@layer utilities {
+  .corner-dot {
+    @apply absolute right-[-7px] top-[-6px] rounded-full bg-gray-300;
+    width: 12px;
+    height: 12px;
+  }
+}

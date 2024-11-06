@@ -30,16 +30,23 @@ module.exports = {
   ],
   plugins: ['react', 'react-hooks', '@typescript-eslint', 'jsx-a11y', 'import', 'prettier'],
   rules: {
-    'import/no-extraneous-dependencies': [
+    'import/no-extraneous-dependencies': 'off',
+    'import/order': [
       'error',
       {
-        devDependencies: ['**/*.test.js', '**/*.stories.js', '**/storybook/**'],
+        groups: [
+          ['builtin', 'external'], // React, Next.js 등 외부 라이브러리
+          'internal', // 프로젝트 내부 모듈
+          ['sibling', 'parent'], // 형제 및 부모 모듈
+          'index', // index 파일
+        ],
+        'newlines-between': 'ignore',
       },
     ],
     'prettier/prettier': [
       'error',
       {
-        endOfLine: 'lf',
+        endOfLine: 'auto',
       },
     ],
     'jsx-a11y/label-has-associated-control': [
