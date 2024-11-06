@@ -1,4 +1,8 @@
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { useGetGatheringQuery } from '@/src/_queries/gathering/gathering-queries';
+import GatheringDetailModalContainer from '@/src/components/gathering-detail-modal/container';
+import { GatheringDetailType } from '@/src/types/gathering-data';
 import ScheduledGatheringCardPresenter from './presenter';
 
 interface ScheduledGatheringCardContainerProps {
@@ -19,8 +23,12 @@ interface ScheduledGatheringCardContainerProps {
 export default function ScheduledGatheringCardContainer({
   data,
 }: ScheduledGatheringCardContainerProps) {
+  const [isOpened, setIsOpened] = useState(false);
+  const { data: modalData } = useQuery<GatheringDetailType>(useGetGatheringQuery());
+
   const handleCardClick = useCallback(() => {
-    alert('카드 클릭됨'); // TODO: 모달 열기 로직 구현
+    setIsOpened(true);
+    // TODO: retry or refetch사용해서 useQuery부분 안으로 넣기
   }, []);
 
   const handleLikeToggle = useCallback(() => {
@@ -28,10 +36,21 @@ export default function ScheduledGatheringCardContainer({
   }, []);
 
   return (
-    <ScheduledGatheringCardPresenter
-      data={data}
-      onClick={handleCardClick}
-      onLikeToggle={handleLikeToggle}
-    />
+    <div>
+      <ScheduledGatheringCardPresenter
+        data={data}
+        onClick={handleCardClick}
+        onLikeToggle={handleLikeToggle}
+      />
+      {modalData && (
+        <GatheringDetailModalContainer
+          opened={isOpened}
+          close={() => {
+            setIsOpened(false);
+          }}
+          data={modalData}
+        />
+      )}
+    </div>
   );
 }
