@@ -19,9 +19,8 @@ export default function CrewReviewList({
   onPageChange,
 }: CrewReviewListProps) {
   return (
-    <div className="p-6">
-      <h1 className="mb-4 text-2xl font-bold">Crew Reviews</h1>
-      <div className="mb-6 grid gap-4">
+    <div className="flex flex-col justify-between p-6">
+      <div className="mb-6 grid flex-grow gap-4">
         {reviews.map((review) => (
           <ReviewCard
             key={review.id}
@@ -33,31 +32,33 @@ export default function CrewReviewList({
           />
         ))}
       </div>
-      <Pagination
-        total={totalPages}
-        value={currentPage}
-        onChange={onPageChange}
-        styles={{
-          control: {
-            border: 'none',
-            backgroundColor: 'transparent',
-            '&[data-active]': {
+      <div className="mt-6 flex justify-center">
+        <Pagination
+          total={totalPages}
+          value={currentPage}
+          onChange={onPageChange}
+          styles={{
+            control: {
+              border: 'none',
               backgroundColor: 'transparent',
-              fontWeight: 'var(--pagination-active-font-weight)',
-              color: 'var(--pagination-active-color)',
-              boxShadow: 'none',
+              '&[data-active]': {
+                backgroundColor: 'transparent',
+                fontWeight: 'var(--pagination-active-font-weight)',
+                color: 'var(--pagination-active-color)',
+                boxShadow: 'none',
+              },
+              '&:hover': {
+                backgroundColor: 'transparent',
+              },
             },
-            '&:hover': {
-              backgroundColor: 'transparent',
+            root: {
+              '--pagination-active-color': '#3388FF',
+              '--pagination-active-font-weight': 'bold',
             },
-          },
-          root: {
-            '--pagination-active-color': '#3388FF',
-            '--pagination-active-font-weight': 'bold',
-          },
-        }}
-        size="sm"
-      />
+          }}
+          size="sm"
+        />
+      </div>
     </div>
   );
 }
