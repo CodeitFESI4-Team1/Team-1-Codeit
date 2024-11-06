@@ -4,31 +4,36 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import ProgressBar from '@/src/components/common/progress-bar/index';
+import { CrewMemberList } from '@/src/types/crew-card';
 import Check from '@/public/assets/icons/ic-check.svg';
 import UserIco from '@/public/assets/icons/ic-user.svg';
 
 interface CrewCardProps {
   id: number;
   name: string;
-  mainLocation: string;
-  subLocation: string;
+  location: string;
+  detailedLocation: string;
   participantCount: number;
   capacity: number;
   isConfirmed: boolean;
   thumbnail: string;
   gatheringCount: number;
+  inWhere?: 'my-crew';
+  crewMember?: CrewMemberList[];
 }
 
 export default function CrewCard({
   id,
   name,
-  mainLocation,
-  subLocation,
+  location,
+  detailedLocation,
   participantCount,
   capacity,
   isConfirmed,
   thumbnail,
   gatheringCount,
+  crewMember,
+  inWhere,
 }: CrewCardProps) {
   const [prefetched, setPrefetched] = useState(new Set());
   const CREWPAGE = `/crew/detail/${id}`;
@@ -63,7 +68,7 @@ export default function CrewCard({
               {name}
             </span>
             <span className="text-base font-medium">
-              | {mainLocation} {subLocation}
+              | {location} {detailedLocation}
             </span>
           </div>
           <span className="text-sm font-semibold text-blue-600">
