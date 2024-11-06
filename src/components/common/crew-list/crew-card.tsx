@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import ProgressBar from '@/src/components/common/progress-bar/index';
+import { CrewMemberList } from '@/src/types/crew-card';
 import Check from '@/public/assets/icons/ic-check.svg';
 import UserIco from '@/public/assets/icons/ic-user.svg';
 
@@ -11,25 +12,31 @@ interface CrewCardProps {
   id: number;
   name: string;
   location: string;
+  detailedLocation: string;
   participantCount: number;
   capacity: number;
   isConfirmed: boolean;
   thumbnail: string;
   gatheringCount: number;
+  inWhere?: 'my-crew';
+  crewMember?: CrewMemberList[];
 }
 
 export default function CrewCard({
   id,
   name,
   location,
+  detailedLocation,
   participantCount,
   capacity,
   isConfirmed,
   thumbnail,
   gatheringCount,
+  crewMember,
+  inWhere,
 }: CrewCardProps) {
   const [prefetched, setPrefetched] = useState(new Set());
-  const CREWPAGE = `/detail/${id}`;
+  const CREWPAGE = `/crew/detail/${id}`;
   const router = useRouter();
 
   const handleCardClick = () => {
@@ -60,7 +67,9 @@ export default function CrewCard({
             <span className="max-w-[200px] overflow-hidden text-ellipsis whitespace-nowrap pr-4 text-lg font-semibold">
               {name}
             </span>
-            <span className="text-base font-medium">| {location}</span>
+            <span className="text-base font-medium">
+              | {location} {detailedLocation}
+            </span>
           </div>
           <span className="text-sm font-semibold text-blue-600">
             {`현재 ${gatheringCount}개의 약속이 개설되어 있습니다.`}
