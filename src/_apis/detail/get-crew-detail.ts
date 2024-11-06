@@ -22,7 +22,7 @@ type CrewDetail = {
 };
 
 export async function getCrewDetail(): Promise<CrewDetail> {
-  const response = await fetchApi<CrewDetail>('/api/mock-api/detail?type=crewDetail', {
+  const response = await fetchApi<CrewDetail>('/api/mock-api/detail?type=crewDetails', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
