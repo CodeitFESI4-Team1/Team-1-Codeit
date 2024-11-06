@@ -8,7 +8,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
     {
       crewId: 1,
       id: 1,
-      rate: 3,
+      rate: 5,
       comment:
         '글이 길어질 경우 글이 길어질 경우 확인 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 최고의 모임~',
       createdAt: '2024-10-30T00:30',
@@ -45,7 +45,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
     {
       crewId: 1,
       id: 4,
-      rate: 4,
+      rate: 5,
       comment: '모임계를 뒤집어 엎으셨다',
       createdAt: '2024-10-30T00:52',
       reviewer: {
@@ -93,7 +93,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
     {
       crewId: 1,
       id: 6,
-      rate: 40,
+      rate: 0,
       comment: '솔직히 좀 별로..',
       createdAt: '2024-10-30T00:56',
       reviewer: {
