@@ -20,7 +20,7 @@ export default function Profiles({ size = 'small', profiles }: ProfilesProps) {
     <ul className="flex items-center pl-2.5">
       {visibleProfiles.map((profile) => (
         <li key={profile.id} className={`relative ml-[-10px] ${sizeMap[size]}`}>
-          <Profile size="full" imageUrl={profile.profileImageUrl || undefined} editable={false} />
+          <Profile size="full" imageUrl={profile.profileImageUrl ?? ''} editable={false} />
         </li>
       ))}
       {extraCount > 0 && (

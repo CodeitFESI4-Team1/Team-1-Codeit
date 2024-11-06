@@ -1,114 +1,42 @@
-'use client';
+import { getCrewDetail } from '@/src/_apis/detail/get-crew-detail';
+import { getGatheringList } from '@/src/_apis/detail/get-gathering-list';
+import DetailCrewCard from '@/src/components/common/crew-list/detail-crew-card';
+import Button from '@/src/components/common/input/button';
+import GatheringCardCarousel from '@/src/components/gathering-list/gathering-card-carousel';
+import CrewReviewSection from './_components/review-section';
 
-import { Button } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
-import CreateGatheringModalContainer from '@/src/app/(crew)/crew/_components/create-gathering-modal/container';
-import GatheringDetailModalContainer from '@/src/app/(crew)/crew/_components/gathering-detail-modal/container';
-import { CreateGatheringRequestType } from '@/src/types/gathering-data';
-
-const mockData = {
-  id: 1,
-  title: '아침 타임 에너지 요가',
-  introduce: '공지사항입니다. 다들 이번 약속 잊지 않으셨죠? 꼭 참여 부탁드립니다~',
-  dateTime: '2024-10-30T00:32:12.306Z',
-  location: '서울시 강남구 역삼동 오피스타워 3층',
-  currentCount: 5,
-  totalCount: 10,
-  imageUrl:
-    'https://www.dabur.com/Blogs/Doshas/Importance%20and%20Benefits%20of%20Yoga%201020x450.jpg',
-  isLiked: false,
-  isGatherCaptain: false,
-  isParticipant: true,
-  participants: [
-    {
-      id: 1,
-      profileImageUrl:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUMrcQB5OJ-ETzPc6wHnjxjC-36__MGw3JcA&s',
-      nickname: '럽윈즈올',
-      email: 'user@email.com',
-    },
-    {
-      id: 2,
-      profileImageUrl:
-        'https://imgcdn.stablediffusionweb.com/2024/5/13/c0541236-e690-4dff-a27e-30a0355e5ea0.jpg',
-      nickname: '모닝러너',
-      email: 'user@email.com',
-    },
-    {
-      id: 3,
-      profileImageUrl:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUMrcQB5OJ-ETzPc6wHnjxjC-36__MGw3JcA&s',
-      nickname: '동글동글이',
-      email: 'user@email.com',
-    },
-    {
-      id: 4,
-      profileImageUrl:
-        'https://imgcdn.stablediffusionweb.com/2024/5/13/c0541236-e690-4dff-a27e-30a0355e5ea0.jpg',
-      nickname: '해보자고',
-      email: 'user@email.com',
-    },
-    {
-      id: 5,
-      profileImageUrl:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUMrcQB5OJ-ETzPc6wHnjxjC-36__MGw3JcA&s',
-      nickname: '두잇저스트',
-      email: 'user@email.com',
-    },
-    {
-      id: 6,
-      profileImageUrl:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUMrcQB5OJ-ETzPc6wHnjxjC-36__MGw3JcA&s',
-      nickname: '럽윈즈올',
-      email: 'user@email.com',
-    },
-    {
-      id: 7,
-      profileImageUrl:
-        'https://imgcdn.stablediffusionweb.com/2024/5/13/c0541236-e690-4dff-a27e-30a0355e5ea0.jpg',
-      nickname: '모닝러너',
-      email: 'user@email.com',
-    },
-    {
-      id: 8,
-      profileImageUrl:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUMrcQB5OJ-ETzPc6wHnjxjC-36__MGw3JcA&s',
-      nickname: '동글동글이',
-      email: 'user@email.com',
-    },
-  ],
-};
-
-// TODO : 임시로 작성됨. GatheringCardContainer 안쪽으로 이동 예정
-export default function CrewDetailPage() {
-  const [createModalOpened, { open: openCreateModal, close: closeCreateModal }] =
-    useDisclosure(false);
-  const [detailModalOpened, { open: openDetailModal, close: closeDetailModal }] =
-    useDisclosure(false);
-
-  const initialValue: CreateGatheringRequestType = {
-    title: '',
-    introduce: '',
-    dateTime: '',
-    location: '',
-    totalCount: 0,
-    imageUrl: null,
-  };
+export default async function CrewDetailPage() {
+  const crewDetail = await getCrewDetail();
+  const gatheringList = await getGatheringList();
 
   return (
-    <div className="container mx-auto my-0 max-w-pc px-5 lg:px-0">
-      <Button onClick={openCreateModal}>약속 만들기</Button>
-      <CreateGatheringModalContainer
-        opened={createModalOpened}
-        close={closeCreateModal}
-        data={initialValue}
-      />
-      <Button onClick={openDetailModal}>Open modal</Button>
-      <GatheringDetailModalContainer
-        opened={detailModalOpened}
-        close={closeDetailModal}
-        data={mockData}
-      />
+    <div className="mx-auto min-h-screen w-full max-w-full overflow-x-hidden">
+      <div className="mx-3 my-7 space-y-10 md:mx-7 md:my-11 lg:mx-11 lg:my-16">
+        <section className="w-full">
+          <article>
+            <DetailCrewCard {...crewDetail} />
+          </article>
+        </section>
+        <section className="w-full space-y-6">
+          <article className="space-y-6">
+            <div className="flex items-center justify-between">
+              <h2 className="text-2xl font-semibold">크루 약속 잡기</h2>
+              <Button type="button" className="btn-filled px-4">
+                약속 만들기
+              </Button>
+            </div>
+            <div className="flex w-full">
+              <GatheringCardCarousel gatheringData={gatheringList} />
+            </div>
+          </article>
+        </section>
+        <section className="w-full">
+          <article className="space-y-6">
+            <h2 className="text-2xl font-semibold">크루 리뷰</h2>
+            <CrewReviewSection />
+          </article>
+        </section>
+      </div>
     </div>
   );
 }

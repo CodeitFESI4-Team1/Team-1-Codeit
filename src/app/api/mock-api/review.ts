@@ -1,17 +1,17 @@
-import { ReviewInformResponse } from '@/src/types/review';
+import { CrewReviewInformResponse, ReviewInformResponse } from '@/src/types/review';
 import { CrewReviewData, MyReviewData } from '@/src/mock/review-data';
 
 // NOTE : 크루 리뷰 데이터 fetch
-export const fetchCrewReviewData = (page: number, limit: number) => {
+export const fetchCrewReviewData = (page: number, limit: number = 6) => {
   const startIndex = page * limit;
   const endIndex = startIndex + limit;
   const data = CrewReviewData.data.slice(startIndex, endIndex);
 
-  return new Promise<ReviewInformResponse>((resolve) => {
+  return new Promise<CrewReviewInformResponse>((resolve) => {
     setTimeout(() => {
       resolve({
         data,
-        hasNextPage: endIndex < CrewReviewData.data.length,
+        totalItems: CrewReviewData.data.length,
       });
     });
   });

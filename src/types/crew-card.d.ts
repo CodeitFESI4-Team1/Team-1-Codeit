@@ -28,5 +28,5 @@ export type CrewCardInform = {
 export interface CrewMemberList {
   id: number;
   nickname: string;
-  profileImageUrl: string;
+  profileImageUrl?: string | null;
 }

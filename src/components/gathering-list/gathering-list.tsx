@@ -70,8 +70,26 @@ export default function GatheringList({ gatheringData }: GatheringListProps) {
           total={Math.ceil(pagination.totalCount / limit)}
           value={page}
           onChange={setPage}
-          color="indigo"
-          radius="md"
+          styles={{
+            control: {
+              border: 'none',
+              backgroundColor: 'transparent',
+              '&[data-active]': {
+                backgroundColor: 'transparent',
+                fontWeight: 'var(--pagination-active-font-weight)',
+                color: 'var(--pagination-active-color)',
+                boxShadow: 'none',
+              },
+              '&:hover': {
+                backgroundColor: 'transparent',
+              },
+            },
+            root: {
+              '--pagination-active-color': '#3388FF',
+              '--pagination-active-font-weight': '700',
+            },
+          }}
+          size="sm"
         />
       </div>
     </div>

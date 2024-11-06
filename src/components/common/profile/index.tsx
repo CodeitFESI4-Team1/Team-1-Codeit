@@ -24,7 +24,7 @@ interface ProfileProps {
 }
 
 export function Profile({
-  size = 'large',
+  size = 'full',
   imageUrl,
   editable = false,
   onClick,

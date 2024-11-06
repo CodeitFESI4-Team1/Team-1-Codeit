@@ -35,6 +35,7 @@ function CrewCardList(
               capacity={inform.capacity}
               isConfirmed={inform.isConfirmed}
               location={inform.location}
+              detailedLocation={inform.detailedLocation}
               name={inform.name}
               thumbnail={inform.images[0].imagePath}
               participantCount={inform.participantCount}

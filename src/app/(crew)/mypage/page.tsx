@@ -7,7 +7,7 @@ import ProfileCardContainer from '@/src/app/(crew)/mypage/_components/profile-ca
 import ReviewCardList from '@/src/components/common/review-list/review-card-list';
 import Tabs from '@/src/components/common/tab';
 import { ReviewInformResponse } from '@/src/types/review';
-import { fetchMyReviewData } from '../api/mock-api/review';
+import { fetchMyReviewData } from '../../api/mock-api/review';
 
 const mockData = {
   id: 1,

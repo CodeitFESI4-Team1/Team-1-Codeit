@@ -1,7 +1,7 @@
 import { useAuthStore } from '@/src/store/use-auth-store';
 
 // TODO: 추후 API URL 수정
-const API_BASE_URL = 'http://localhost:3009';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3009';
 
 export class ApiError extends Error {
   constructor(
