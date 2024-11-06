@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useInfiniteScroll } from '@/src/hooks/useInfiniteScroll';
-import { fetchCrewData } from '@/src/app/(crew)/api/mock-api/crew';
+import { fetchCrewData } from '@/src/app/api/mock-api/crew';
 import { CrewCardInformResponse } from '@/src/types/crew-card';
 import ClientProvider from '../../client-provider';
 import CrewCardList from './crew-card-list';

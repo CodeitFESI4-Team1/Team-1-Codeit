@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 
+// FIX: react-query로 임시로 작성된 코드입니다. 추후 삭제
+
 export async function GET() {
   const users = [
     {
