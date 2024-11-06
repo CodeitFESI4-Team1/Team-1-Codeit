@@ -55,17 +55,17 @@ export default function ScheduledGatheringCardPresenter({
         onClick={onClick}
         role="button"
         tabIndex={0}
-        className="relative flex h-44 cursor-pointer items-center space-x-4 rounded-xl bg-white p-4 shadow-xs md:space-x-6 md:p-6 lg:space-x-6 lg:p-6"
+        className="relative flex h-44 cursor-pointer items-center space-x-4 rounded-xl bg-white p-6 shadow-xs md:space-x-6 lg:space-x-6"
       >
         {/* Image Section */}
-        <div className="relative h-32 w-32 overflow-hidden rounded-lg">
+        <div className="relative h-28 w-28 flex-shrink-0 overflow-hidden rounded-lg md:h-32 md:w-32 lg:h-32 lg:w-32">
           <Image src={imageUrl} alt={title} layout="fill" className="object-cover" />
         </div>
 
         {/* Content Section */}
-        <div className="flex h-full flex-grow flex-col justify-between">
+        <div className="flex h-full w-full min-w-0 flex-grow flex-col justify-between">
           <div className="space-y-2">
-            <h3 className="text-ellipsis whitespace-nowrap text-xl font-semibold text-gray-800">
+            <h3 className="w-full overflow-hidden text-ellipsis whitespace-nowrap text-xl font-semibold text-gray-800">
               {title}
             </h3>
             <div className="space-x-2">

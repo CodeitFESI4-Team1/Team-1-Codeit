@@ -1,9 +1,14 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import GatheringListWithDate from '@/src/app/(crew)/my-gathering/_component/gathering-list-with-date';
+import PopOverCalendar from '@/src/components/common/input/pop-over-calendar';
 import { GatheringCardProps } from '@/src/types/gathering-data';
 
 export default function CreationPage() {
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
+  useEffect(() => {}, [selectedDate]);
   const creationGatheringList: GatheringCardProps[] = [
     {
       id: 1,
@@ -48,7 +53,11 @@ export default function CreationPage() {
 
   return (
     <div>
+      <PopOverCalendar value={selectedDate} onChange={(d) => setSelectedDate(d)} />
       <GatheringListWithDate gatheringList={creationGatheringList} />
     </div>
   );
+}
+function setState(arg0: Date) {
+  throw new Error('Function not implemented.');
 }
