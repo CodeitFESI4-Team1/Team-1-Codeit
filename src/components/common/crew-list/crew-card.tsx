@@ -37,7 +37,9 @@ export default function CrewCard({
   inWhere,
 }: CrewCardProps) {
   const [prefetched, setPrefetched] = useState(new Set());
-  const CREWPAGE = `/crew/detail/${id}`;
+  //NOTE: api연결 후 되돌리기
+  // const CREWPAGE = `/crew/detail/${id}`;
+  const CREWPAGE = `/crew/detail/1`;
   const router = useRouter();
 
   const handleCardClick = () => {
