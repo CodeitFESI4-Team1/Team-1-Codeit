@@ -5,7 +5,7 @@ import IcoX from '@/public/assets/icons/ic-x.svg';
 
 export interface FileInputProps {
   value: File | StaticImageData | null;
-  onChange: (value: File | null) => void;
+  onChange: (value: File | StaticImageData | null) => void;
   isBlur: boolean;
 }
 

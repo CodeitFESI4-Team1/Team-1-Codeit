@@ -9,11 +9,11 @@ export default function CreateCrewPage() {
   const initialValue: CreateCrewRequestTypes = {
     title: '',
     mainCategory: '',
-    subCategory: '',
+    subCategory: null,
     imageUrl: null,
     mainLocation: '',
-    subLocation: '',
-    totalCount: 0,
+    subLocation: null,
+    totalCount: 4,
   };
 
   const handleSubmit = () => {

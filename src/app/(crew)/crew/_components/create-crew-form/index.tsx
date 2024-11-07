@@ -38,7 +38,8 @@ export default function CreateCrewForm({
     mode: 'onBlur',
   });
 
-  const isFormValid = Object.keys(errors).length === 0;
+  const isFormValid = Object.keys(errors).length === 0 && Object.values(data).every(Boolean);
+
   const [categoryIndex, setCategoryIndex] = useState(0);
   const [regionIndex, setRegionIndex] = useState(0);
 
