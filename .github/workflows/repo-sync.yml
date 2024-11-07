@@ -1,0 +1,20 @@
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  repo-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: repo-sync
+        uses: repo-sync/github-sync@v2
+        with:
+          source_repo: "CodeitFESI4-Team1/Team-1-Codeit"  # 동기화할 업스트림 리포지토리
+          source_branch: "main"                            # 업스트림의 동기화할 브랜치
+          destination_branch: "main"                       # 현재 리포지토리의 동기화할 브랜치
+          github_token: ${{ secrets.PAT }}
