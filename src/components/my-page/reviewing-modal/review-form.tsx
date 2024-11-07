@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import Button from '@/src/components/common/button';
+import { Button } from '@mantine/core';
 import Textarea from '@/src/components/common/input/textarea';
 import ButtonHearts from './button-hearts';
 

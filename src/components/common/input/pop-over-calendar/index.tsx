@@ -41,7 +41,7 @@ export default function PopOverCalendar({ value, onChange }: PopOverProps) {
           onBlur={() => setInputTheme('white')}
           className="flex h-11 items-center justify-between rounded-xl border-0 bg-white px-3 py-2.5 text-base font-medium text-gray-800 hover:bg-white hover:text-gray-800 focus:bg-black focus:text-white"
         >
-          <span>날짜 전체</span>
+          <span>날짜 선택</span>
           <IconArrow direction="down" color={`${inputTheme === 'dark' ? '#ffffff' : '#D1D5DB'}`} />
         </Button>
       </Popover.Target>

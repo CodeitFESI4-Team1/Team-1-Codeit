@@ -1,4 +1,4 @@
-import { ParticipantType, WritableGatheringCardInform } from '../types/writable-gathering-card';
+import { ParticipantType, WritableGatheringCardInform } from '@/src/types/writable-gathering-card';
 
 export const Participants: ParticipantType[] = [
   {
