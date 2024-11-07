@@ -6,7 +6,7 @@ type CrewMember = {
   profileImageUrl?: string;
 };
 
-type CrewDetail = {
+export type CrewDetail = {
   id: number;
   title: string;
   mainLocation: string;
@@ -21,13 +21,13 @@ type CrewDetail = {
   isCrew: boolean;
 };
 
-export async function getCrewDetail(): Promise<CrewDetail> {
-  const response = await fetchApi<CrewDetail>('/api/mock-api/detail?type=crewDetails', {
+export async function getCrewDetail(): Promise<{ data: CrewDetail }> {
+  const response = await fetchApi<CrewDetail[]>('/crewDetail', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
   });
 
-  return response;
+  return { data: response[0] };
 }

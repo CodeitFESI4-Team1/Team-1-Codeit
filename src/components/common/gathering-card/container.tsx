@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDisclosure } from '@mantine/hooks';
+import { getGathering } from '@/src/_apis/gathering/gathering-apis';
 import GatheringDetailModalContainer from '@/src/app/(crew)/crew/_components/gathering-detail-modal/container';
 import { GatheringDetailType } from '@/src/types/gathering-data';
 import GatheringCardPresenter from './presenter';
@@ -19,41 +20,6 @@ interface GatheringCardContainerProps {
   className?: string;
 }
 
-const dummyGatheringData: GatheringDetailType = {
-  id: 1,
-  title: '모임이름',
-  dateTime: '2024-12-31T10:00:00',
-  location: '경기 과천시 중앙동 관악산',
-  currentCount: 2,
-  totalCount: 10,
-  imageUrl:
-    'https://images.unsplash.com/photo-1601758260892-a62c486ace97?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  isLiked: false,
-  introduce: '이 모임은 예시 모임입니다. 함께 즐거운 시간을 보낼 수 있는 모임이에요!',
-  isGatherCaptain: true,
-  isParticipant: true,
-  participants: [
-    {
-      id: 1,
-      profileImageUrl: 'https://i.pinimg.com/564x/e2/25/bb/e225bb492dc7a20a549f3c0abec28eb8.jpg',
-      nickname: '가나다',
-      email: 'hong@example.com',
-    },
-    {
-      id: 2,
-      profileImageUrl: 'https://i.pinimg.com/564x/9d/b8/86/9db886bb5475cc35a7f450831f4125bc.jpg',
-      nickname: '라마바',
-      email: 'kim@example.com',
-    },
-    {
-      id: 3,
-      profileImageUrl: '',
-      nickname: '가나다',
-      email: 'lee@example.com',
-    },
-  ],
-};
-
 export default function GatheringCard({
   id,
   title,
@@ -66,6 +32,8 @@ export default function GatheringCard({
   className,
 }: GatheringCardContainerProps) {
   const [opened, { open, close }] = useDisclosure(false);
+  const [gatheringData, setGatheringData] = useState<GatheringDetailType | null>(null);
+  const [error, setError] = useState(false);
 
   // 날짜 비교
   const gatheringDate = new Date(dateTime);
@@ -92,6 +60,23 @@ export default function GatheringCard({
     open();
   };
 
+  // Fix: 추후 수정
+  useEffect(() => {
+    const fetchGatheringDetail = async () => {
+      setError(false);
+      try {
+        const data = await getGathering();
+        setGatheringData(data);
+      } catch {
+        setError(true);
+      }
+    };
+
+    if (opened) {
+      fetchGatheringDetail();
+    }
+  }, [opened]);
+
   return (
     <>
       <GatheringCardPresenter
@@ -110,8 +95,8 @@ export default function GatheringCard({
         onClick={openModal}
         className={className}
       />
-      {opened && (
-        <GatheringDetailModalContainer opened={opened} close={close} data={dummyGatheringData} />
+      {opened && gatheringData && (
+        <GatheringDetailModalContainer opened={opened} close={close} data={gatheringData} />
       )}
     </>
   );
