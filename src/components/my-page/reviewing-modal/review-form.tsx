@@ -57,7 +57,7 @@ export default function ReviewForm({ onCancel }: ReviewProps) {
       <div className="font-base flex justify-between gap-[16px] font-semibold">
         <Button
           onClick={onCancel}
-          className="h-[44px] w-[228px] border border-blue-500 text-blue-500"
+          className="h-[44px] w-[228px] border border-blue-500 bg-white text-blue-500"
         >
           취소
         </Button>
