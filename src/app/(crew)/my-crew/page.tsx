@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
+import { useGetCrewQuery } from '@/src/_queries/crew-queries';
 import { useInfiniteScroll } from '@/src/hooks/useInfiniteScroll';
-import { fetchCrewData } from '@/src/app/api/mock-api/crew';
 import CrewCardList from '@/src/components/common/crew-list/crew-card-list';
 import Tabs from '@/src/components/common/tab';
 import { CrewCardInformResponse } from '@/src/types/crew-card';
@@ -15,14 +15,9 @@ export default function MyCrewPage() {
   const [currentTab, setCurrentTab] = useState(myPageTabs[0].id);
 
   // TODO: fetchCrewData 함수를 사용하여 데이터를 불러오기 : 파라미터 수정 필요
-  const { data, ref, isFetchingNextPage } = useInfiniteScroll<CrewCardInformResponse>({
-    queryKey: ['crew'],
-    queryFn: ({ pageParam = 0 }) => {
-      return fetchCrewData(pageParam, 3);
-    },
-    getNextPageParam: (lastPage, allPages) =>
-      lastPage.hasNextPage ? allPages.length + 1 : undefined,
-  });
+  const { data, ref, isFetchingNextPage } =
+    useInfiniteScroll<CrewCardInformResponse>(useGetCrewQuery());
+
   return (
     <div className="py-8 md:py-12.5">
       <div className="px-3 md:px-8 lg:px-11.5">

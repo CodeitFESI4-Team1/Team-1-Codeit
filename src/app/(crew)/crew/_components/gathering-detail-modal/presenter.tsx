@@ -40,7 +40,7 @@ export default function GatheringDetailModalPresenter({
       }}
     >
       <div>
-        <ScrollArea h={640}>
+        <ScrollArea h={760}>
           <figure className="relative aspect-video w-full overflow-hidden">
             <Image
               src={data?.imageUrl}

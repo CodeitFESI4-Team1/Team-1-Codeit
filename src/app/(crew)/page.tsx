@@ -3,11 +3,11 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { Divider } from '@mantine/core';
+import { useGetCrewQuery } from '@/src/_queries/crew-queries';
 import regionData from '@/src/data/region.json';
 import { useInfiniteScroll } from '@/src/hooks/useInfiniteScroll';
 import CategoryContainer from '@/src/app/_components/category/category-container';
 import HeroCrew from '@/src/app/_components/hero/hero-crew';
-import { fetchCrewData } from '@/src/app/api/mock-api/crew';
 import CrewCardList from '@/src/components/common/crew-list/crew-card-list';
 import DropDown from '@/src/components/common/input/drop-down';
 import TextInput from '@/src/components/common/input/text-input';
@@ -21,14 +21,8 @@ export default function Home() {
   const [region, setRegion] = useState<string | null>('all');
   const [search, setSearch] = useState('');
 
-  const { data, ref, isFetchingNextPage } = useInfiniteScroll<CrewCardInformResponse>({
-    queryKey: ['crew'],
-    queryFn: ({ pageParam = 0 }) => {
-      return fetchCrewData(pageParam, 3);
-    },
-    getNextPageParam: (lastPage, allPages) =>
-      lastPage.hasNextPage ? allPages.length + 1 : undefined,
-  });
+  const { data, ref, isFetchingNextPage } =
+    useInfiniteScroll<CrewCardInformResponse>(useGetCrewQuery());
 
   return (
     <div className="py-8 md:py-12.5">
