@@ -9,10 +9,10 @@ export default function HeroCrew() {
   const { isAuth, logout } = useAuthStore();
   const router = useRouter();
 
-  const handleLogout = () => {
-    logout();
-    router.push('/');
-  };
+  // const handleLogout = () => {
+  //   logout();
+  //   router.push('/');
+  // };
 
   return (
     <section className="pb-3 md:pb-4 lg:pb-12.5">
