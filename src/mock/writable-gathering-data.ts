@@ -3,17 +3,17 @@ import { ParticipantType, WritableGatheringCardInform } from '@/src/types/writab
 export const Participants: ParticipantType[] = [
   {
     id: 1,
-    imageUrl: 'https://i.pinimg.com/564x/eb/12/71/eb127155bde0e2826b2b92c25456a622.jpg',
+    profileImageUrl: 'https://i.pinimg.com/564x/eb/12/71/eb127155bde0e2826b2b92c25456a622.jpg',
     nickname: '익명1',
   },
   {
     id: 2,
-    imageUrl: 'https://i.pinimg.com/564x/a5/b7/5a/a5b75a92e49cec6e67d2130179c7d84d.jpg',
+    profileImageUrl: 'https://i.pinimg.com/564x/a5/b7/5a/a5b75a92e49cec6e67d2130179c7d84d.jpg',
     nickname: '익명2',
   },
   {
     id: 3,
-    imageUrl: 'https://i.pinimg.com/736x/13/ad/a1/13ada1a3dbb6c57f8fec1c386ea31546.jpg',
+    profileImageUrl: 'https://i.pinimg.com/736x/13/ad/a1/13ada1a3dbb6c57f8fec1c386ea31546.jpg',
     nickname: '익명3',
   },
 ];
