@@ -11,6 +11,7 @@ import DropDown from '@/src/components/common/input/drop-down';
 import FileInputWrap from '@/src/components/common/input/file-input-wrap';
 import TextInput from '@/src/components/common/input/text-input';
 import { CreateCrewRequestTypes } from '@/src/types/create-crew';
+import ImgCrewSamples from '@/public/assets/images/crew-sample';
 
 export interface CreateCrewFormTypes {
   data: CreateCrewRequestTypes;
@@ -154,7 +155,11 @@ export default function CreateCrewForm({
             control={control}
             rules={{ required: '이미지를 선택해주세요.' }}
             render={({ field }) => (
-              <FileInputWrap {...field} onChange={(newValue) => field.onChange(newValue)} />
+              <FileInputWrap
+                {...field}
+                sample={ImgCrewSamples}
+                onChange={(newValue) => field.onChange(newValue)}
+              />
             )}
           />
           {errors.imageUrl && <p className="text-red-500">{errors.imageUrl.message}</p>}
