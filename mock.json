@@ -38,22 +38,22 @@
     {
       "id": 1,
       "type": "유산소",
-      "subType": "수영",
-      "name": "1엄청긴크루이름엄청긴크루이름엄청긴크루이름엄청긴크루이름",
-      "location": "경기도",
-      "detailedLocation": "어디구 어디로",
-      "participantCount": 20,
-      "capacity": 24,
+      "subType": "달리기",
+      "name": "매일 달릴사람!",
+      "location": "서울특별시",
+      "detailedLocation": "강남구",
+      "participantCount": 5,
+      "capacity": 10,
       "images": [
         {
-          "imagePath": "https://i.pinimg.com/564x/f8/8d/c5/f88dc5b857caf6c303ae5ef9dd12e7fb.jpg"
+          "imagePath": "https://images.unsplash.com/photo-1440549800803-9e2d063c9d00?q=80&w=1176&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         }
       ],
       "createdBy": 1,
       "createdDate": "2024-11-04T00:00:00.000Z",
       "updatedDate": "2024-11-05T00:00:00.000Z",
       "isConfirmed": true,
-      "gatheringCount": 3
+      "gatheringCount": 4
     },
     {
       "id": 2,
@@ -234,106 +234,96 @@
       "updatedDate": "2024-11-05T00:00:00.000Z",
       "isConfirmed": true,
       "gatheringCount": 3
-    },
+    }
+  ],
+  "crewDetail": [
     {
-      "id": 11,
-      "type": "유산소",
-      "subType": "달리기",
-      "name": "11같이 달릴사람 구함",
-      "location": "광주",
-      "detailedLocation": "어디구 어디로",
-      "participantCount": 10,
-      "capacity": 20,
-      "images": [
-        {
-          "imagePath": "https://i.pinimg.com/564x/f8/8d/c5/f88dc5b857caf6c303ae5ef9dd12e7fb.jpg"
-        }
-      ],
-      "createdBy": 1,
-      "createdDate": "2024-11-04T00:00:00.000Z",
-      "updatedDate": "2024-11-05T00:00:00.000Z",
+      "id": 1,
+      "title": "매일 달릴사람!",
+      "mainLocation": "서울특별시",
+      "subLocation": "강남구",
+      "participantCount": 5,
+      "totalCount": 10,
+      "imageUrl": "https://images.unsplash.com/photo-1440549800803-9e2d063c9d00?q=80&w=1176&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "isConfirmed": true,
-      "gatheringCount": 3
+      "totalGatheringCount": 5,
+      "isCaptain": true,
+      "isCrew": true,
+      "CrewMembers": [
+        { "id": 1, "nickname": "이름1" },
+        {
+          "id": 2,
+          "nickname": "이름2",
+          "profileImageUrl": "https://i.pinimg.com/564x/9d/b8/86/9db886bb5475cc35a7f450831f4125bc.jpg"
+        },
+        {
+          "id": 3,
+          "nickname": "User3",
+          "profileImageUrl": "https://i.pinimg.com/564x/41/56/d8/4156d8253b6d76e5455d28b44bd1a1e0.jpg"
+        },
+        {
+          "id": 4,
+          "nickname": "User4",
+          "profileImageUrl": "https://i.pinimg.com/564x/e2/e6/47/e2e64732424094c4e9e2643aaaf4389e.jpg"
+        },
+        {
+          "id": 5,
+          "nickname": "User5",
+          "profileImageUrl": "https://i.pinimg.com/564x/17/06/45/170645a5f7b8a76f04c15b226b22cf90.jpg"
+        }
+      ]
+    }
+  ],
+  "gatherings": [
+    {
+      "id": 101,
+      "title": "신나는 운동...즐거운..코딩..",
+      "dateTime": "2024-11-29T00:32:12.306Z",
+      "location": "서울시 강남구 역삼동 오피스타워 3층",
+      "currentCount": 3,
+      "totalCount": 10,
+      "imageUrl": "https://www.dabur.com/Blogs/Doshas/Importance%20and%20Benefits%20of%20Yoga%201020x450.jpg",
+      "isLiked": false
     },
     {
-      "id": 12,
-      "type": "유산소",
-      "subType": "달리기",
-      "name": "12같이 달릴사람 구함",
-      "location": "부산",
-      "detailedLocation": "어디구 어디로",
-      "participantCount": 1,
-      "capacity": 5,
-      "images": [
-        {
-          "imagePath": "https://i.pinimg.com/564x/f8/8d/c5/f88dc5b857caf6c303ae5ef9dd12e7fb.jpg"
-        }
-      ],
-      "createdBy": 2,
-      "createdDate": "2024-11-04T00:00:00.000Z",
-      "updatedDate": "2024-11-05T00:00:00.000Z",
-      "isConfirmed": false,
-      "gatheringCount": 3
+      "id": 102,
+      "title": "등산 모임",
+      "dateTime": "2024-11-12T09:00",
+      "location": "서울 강남구 개포동 대모산",
+      "currentCount": 5,
+      "totalCount": 10,
+      "imageUrl": "https://images.unsplash.com/photo-1516978101789-720eacb59e79?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjV8fGNhdHxlbnwwfHwwfHx8Mg%3D%3D",
+      "isLiked": false
     },
     {
-      "id": 13,
-      "type": "유산소",
-      "subType": "달리기",
-      "name": "13같이 달릴사람 구함",
-      "location": "부산",
-      "detailedLocation": "어디구 어디로",
-      "participantCount": 1,
-      "capacity": 20,
-      "images": [
-        {
-          "imagePath": "https://i.pinimg.com/564x/f8/8d/c5/f88dc5b857caf6c303ae5ef9dd12e7fb.jpg"
-        }
-      ],
-      "createdBy": 2,
-      "createdDate": "2024-11-04T00:00:00.000Z",
-      "updatedDate": "2024-11-05T00:00:00.000Z",
-      "isConfirmed": false,
-      "gatheringCount": 3
+      "id": 103,
+      "title": "등산 모임",
+      "dateTime": "2024-11-15T09:00",
+      "location": "경기 과천시 중앙동 관악산",
+      "currentCount": 10,
+      "totalCount": 10,
+      "imageUrl": "https://images.unsplash.com/photo-1516978101789-720eacb59e79?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjV8fGNhdHxlbnwwfHwwfHx8Mg%3D%3D",
+      "isLiked": true
     },
     {
-      "id": 14,
-      "type": "유산소",
-      "subType": "달리기",
-      "name": "14같이 달릴사람 구함",
-      "location": "부산",
-      "detailedLocation": "어디구 어디로",
-      "participantCount": 1,
-      "capacity": 20,
-      "images": [
-        {
-          "imagePath": "https://i.pinimg.com/564x/f8/8d/c5/f88dc5b857caf6c303ae5ef9dd12e7fb.jpg"
-        }
-      ],
-      "createdBy": 2,
-      "createdDate": "2024-11-04T00:00:00.000Z",
-      "updatedDate": "2024-11-05T00:00:00.000Z",
-      "isConfirmed": false,
-      "gatheringCount": 5
+      "id": 104,
+      "title": "등산 모임",
+      "dateTime": "2024-11-12T09:00",
+      "location": "아차산",
+      "currentCount": 2,
+      "totalCount": 4,
+      "imageUrl": "https://images.unsplash.com/photo-1516978101789-720eacb59e79?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjV8fGNhdHxlbnwwfHwwfHx8Mg%3D%3D",
+      "isLiked": false
     },
     {
-      "id": 15,
-      "type": "유산소",
-      "subType": "달리기",
-      "name": "15같이 달릴사람 구함",
-      "location": "광주",
-      "detailedLocation": "어디구 어디로",
-      "participantCount": 10,
-      "capacity": 20,
-      "images": [
-        {
-          "imagePath": "https://i.pinimg.com/564x/f8/8d/c5/f88dc5b857caf6c303ae5ef9dd12e7fb.jpg"
-        }
-      ],
-      "createdBy": 1,
-      "createdDate": "2024-11-04T00:00:00.000Z",
-      "updatedDate": "2024-11-05T00:00:00.000Z",
-      "isConfirmed": true,
-      "gatheringCount": 5
+      "id": 105,
+      "title": "러닝",
+      "dateTime": "2024-11-12T09:00",
+      "location": "서울 영등포구 여의동로 330 한강사업본부 여의도안내센터",
+      "currentCount": 0,
+      "totalCount": 20,
+      "imageUrl": "https://images.unsplash.com/photo-1516978101789-720eacb59e79?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjV8fGNhdHxlbnwwfHwwfHx8Mg%3D%3D",
+      "isLiked": true
     }
   ],
   "gatheringDetail": [
@@ -369,6 +359,92 @@
           "email": "youl@email.com"
         }
       ]
+    }
+  ],
+  "crewReviews": [
+    {
+      "crewId": 1,
+      "id": 1,
+      "rate": 5,
+      "comment": "글이 길어질 경우 글이 길어질 경우 확인 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 최고의 모임~",
+      "createdAt": "2024-10-30T00:30",
+      "reviewer": {
+        "id": 1,
+        "nickname": "샘플1",
+        "imageUrl": "https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg"
+      }
+    },
+    {
+      "crewId": 1,
+      "id": 2,
+      "rate": 2,
+      "comment": "솔직히 좀 별로..",
+      "createdAt": "2024-10-30T00:34",
+      "reviewer": {
+        "id": 2,
+        "nickname": "샘플2",
+        "imageUrl": "https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg"
+      }
+    },
+    {
+      "crewId": 1,
+      "id": 3,
+      "rate": 5,
+      "comment": "진짜 좋은 모임이었다.. 굿",
+      "createdAt": "2024-10-30T00:50",
+      "reviewer": {
+        "id": 3,
+        "nickname": "샘플3",
+        "imageUrl": "https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg"
+      }
+    },
+    {
+      "crewId": 1,
+      "id": 4,
+      "rate": 5,
+      "comment": "모임계를 뒤집어 엎으셨다",
+      "createdAt": "2024-10-30T00:52",
+      "reviewer": {
+        "id": 4,
+        "nickname": "샘플4",
+        "imageUrl": "https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg"
+      }
+    },
+    {
+      "crewId": 1,
+      "id": 5,
+      "rate": 4,
+      "comment": "좋아용",
+      "createdAt": "2024-10-31T00:52",
+      "reviewer": {
+        "id": 5,
+        "nickname": "샘플5",
+        "imageUrl": "https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg"
+      }
+    },
+    {
+      "crewId": 1,
+      "id": 5,
+      "rate": 1,
+      "comment": "별로였음",
+      "createdAt": "2024-10-31T00:52",
+      "reviewer": {
+        "id": 6,
+        "nickname": "샘플6",
+        "imageUrl": "https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg"
+      }
+    },
+    {
+      "crewId": 1,
+      "id": 5,
+      "rate": 4,
+      "comment": "나만 좋았냐",
+      "createdAt": "2024-10-31T00:54",
+      "reviewer": {
+        "id": 7,
+        "nickname": "샘플7",
+        "imageUrl": "https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg"
+      }
     }
   ]
 }
