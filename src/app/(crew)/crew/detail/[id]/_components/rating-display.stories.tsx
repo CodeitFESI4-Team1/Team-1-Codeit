@@ -7,29 +7,29 @@ export default {
   component: RatingDisplay,
   tags: ['autodocs'],
   argTypes: {
-    totalRate: { control: 'number', description: '총 평가 개수' },
+    totalReviewCount: { control: 'number', description: '총 평가 개수' },
     averageRate: { control: 'number', description: '평균 평점' },
     ratingsData: { control: 'object', description: '각 점수별 평가 개수' },
   },
 } as Meta<typeof RatingDisplay>;
 
 interface RatingDisplayStoryProps {
-  totalRate: number;
+  totalReviewCount: number;
   averageRate: number;
   ratingsData: { score: number; count: number }[];
 }
 
 // Template을 함수 선언으로 변경하고 StoryFn 타입을 사용
 const Template: StoryFn<RatingDisplayStoryProps> = function Template(args) {
-  const { totalRate, averageRate, ratingsData } = args;
-  const reviewRateInfo: ReviewRateInfo = { totalRate, averageRate, ratingsData };
+  const { totalReviewCount, averageRate, ratingsData } = args;
+  const reviewRateInfo: ReviewRateInfo = { totalReviewCount, averageRate, ratingsData };
   return <RatingDisplay reviewRateInfo={reviewRateInfo} />;
 };
 
 // 스토리 정의
 export const Default = Template.bind({});
 Default.args = {
-  totalRate: 24,
+  totalReviewCount: 24,
   averageRate: 3.5,
   ratingsData: [
     { score: 5, count: 6 },
@@ -42,7 +42,7 @@ Default.args = {
 
 export const HighRating = Template.bind({});
 HighRating.args = {
-  totalRate: 15,
+  totalReviewCount: 15,
   averageRate: 4.7,
   ratingsData: [
     { score: 5, count: 10 },
@@ -55,7 +55,7 @@ HighRating.args = {
 
 export const LowRating = Template.bind({});
 LowRating.args = {
-  totalRate: 20,
+  totalReviewCount: 20,
   averageRate: 1.8,
   ratingsData: [
     { score: 5, count: 1 },

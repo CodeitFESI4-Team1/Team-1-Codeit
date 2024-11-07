@@ -6,7 +6,7 @@ import CreateGathering from './_components/create-gathering';
 import CrewReviewSection from './_components/review-section';
 
 export default async function CrewDetailPage() {
-  const crewDetail = await getCrewDetail();
+  const { data: crewDetail } = await getCrewDetail();
   const gatheringList = await getGatheringList();
 
   return (

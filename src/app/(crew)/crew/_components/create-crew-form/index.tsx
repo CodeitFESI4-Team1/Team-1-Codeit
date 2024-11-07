@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm, useWatch } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import { NumberInput } from '@mantine/core';
 import categoryData from '@/src/data/category.json';
@@ -27,49 +27,40 @@ export default function CreateCrewForm({
 }: CreateCrewFormTypes) {
   const router = useRouter();
   const {
-    register,
+    control,
     handleSubmit,
+    setValue,
+    clearErrors,
     formState: { errors },
-    trigger,
-  } = useForm<CreateCrewRequestTypes>();
-  const [values, setValues] = useState<CreateCrewRequestTypes>(data);
+  } = useForm<CreateCrewRequestTypes>({
+    defaultValues: data,
+    mode: 'onBlur',
+  });
+
+  const isFormValid = Object.keys(errors).length === 0;
   const [categoryIndex, setCategoryIndex] = useState(0);
   const [regionIndex, setRegionIndex] = useState(0);
-  const requiredFields: (keyof CreateCrewRequestTypes)[] = [
-    'title',
-    'imageUrl',
-    'mainCategory',
-    'subCategory',
-    'mainLocation',
-    'subLocation',
-    'totalCount',
-  ];
-  const isFormValid =
-    requiredFields.every((field) => values[field as keyof CreateCrewRequestTypes]) &&
-    Object.keys(errors).length === 0;
+
+  // mainCategory와 mainLocation 값의 변화를 감지하여 인덱스를 설정
+  const mainCategory = useWatch({ control, name: 'mainCategory' });
+  const mainLocation = useWatch({ control, name: 'mainLocation' });
 
   const handleMainCategoryChange = (newValue: string | null) => {
-    setValues((prevValues) => ({
-      ...prevValues,
-      mainCategory: newValue,
-      subCategory: null,
-    }));
+    setValue('mainCategory', newValue);
+    setValue('subCategory', null);
+    clearErrors('subCategory');
   };
 
   const handleMainLocationChange = (newValue: string | null) => {
-    setValues((prevValues) => ({
-      ...prevValues,
-      mainLocation: newValue,
-      subLocation: null,
-    }));
+    setValue('mainLocation', newValue);
+    setValue('subLocation', null);
+    clearErrors('subLocation');
   };
 
   useEffect(() => {
-    setCategoryIndex(
-      categoryData.findIndex((category) => category.title.value === values.mainCategory),
-    );
-    setRegionIndex(regionData.findIndex((region) => region.main.value === values.mainLocation));
-  }, [values]);
+    setCategoryIndex(categoryData.findIndex((category) => category.title.value === mainCategory));
+    setRegionIndex(regionData.findIndex((region) => region.main.value === mainLocation));
+  }, [mainCategory, mainLocation]);
 
   return (
     <form onSubmit={isEdit ? handleSubmit(onEdit) : handleSubmit(onSubmit)}>
@@ -83,37 +74,32 @@ export default function CreateCrewForm({
               크루명을 입력해주세요.
             </label>
             <span>
-              <span className="text-blue-500">{values.title.length}</span>/20
+              <span className="text-blue-500">{data.title.length}</span>/20
             </span>
           </div>
-          <TextInput
-            id="crew-title"
-            variant="filled"
-            value={values.title}
-            register={{
-              ...register('title', {
-                required: '필수 입력사항입니다.',
-                pattern: /^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣|a-z|A-Z|0-9| ]{1,20}$/,
-                onBlur: () => trigger('title'),
-              }),
+          <Controller
+            name="title"
+            control={control}
+            rules={{
+              required: '필수 입력사항입니다.',
             }}
-            error={errors.title?.message?.toString()}
-            onChange={(e) =>
-              setValues((prevValues) => {
-                if (e.target.value.length <= 20) {
-                  return { ...prevValues, title: e.target.value };
-                }
-                return prevValues;
-              })
-            }
-            placeholder="크루명을 20자 이내로 입력해주세요."
-            maxLength={20}
-            classNames={{
-              input:
-                'h-11 py-2.5 px-4 bg-gray-100 placeholder:text-gray-400 font-pretendard text-base font-medium rounded-xl aria-[invalid=true]:border-none',
-            }}
+            render={({ field }) => (
+              <TextInput
+                {...field}
+                id="crew-title"
+                variant="filled"
+                error={errors.title?.message}
+                placeholder="크루명을 20자 이내로 입력해주세요."
+                maxLength={20}
+                classNames={{
+                  input:
+                    'h-11 py-2.5 px-4 bg-gray-100 placeholder:text-gray-400 font-pretendard text-base font-medium rounded-xl aria-[invalid=true]:border-none',
+                }}
+              />
+            )}
           />
         </div>
+
         <div className="flex flex-col gap-3">
           <label
             htmlFor="crew-category"
@@ -122,43 +108,58 @@ export default function CreateCrewForm({
             카테고리를 선택해주세요.
           </label>
           <div className="flex justify-between gap-4">
-            <DropDown
-              variant="default"
-              inWhere="form"
-              placeholder="메인 카테고리"
+            <Controller
               name="mainCategory"
-              value={values.mainCategory}
-              onChange={(newValue) => handleMainCategoryChange(newValue)}
-              data={categoryData.map((category) => category.title)}
-              className="flex-1"
+              control={control}
+              rules={{ required: '메인 카테고리를 선택해주세요.' }}
+              render={({ field }) => (
+                <DropDown
+                  {...field}
+                  variant="default"
+                  inWhere="form"
+                  placeholder="메인 카테고리"
+                  data={categoryData.map((category) => category.title)}
+                  className="flex-1"
+                  onChange={(value) => {
+                    field.onChange(value);
+                    handleMainCategoryChange(value);
+                  }}
+                />
+              )}
             />
-            <DropDown
-              variant="default"
-              inWhere="form"
-              placeholder="세부 카테고리"
+            <Controller
               name="subCategory"
-              value={values.subCategory}
-              onChange={(newValue) =>
-                setValues((prevValues) => ({ ...prevValues, subCategory: newValue }))
-              }
-              data={categoryData[categoryIndex]?.items}
-              className="flex-1"
+              control={control}
+              render={({ field }) => (
+                <DropDown
+                  {...field}
+                  variant="default"
+                  inWhere="form"
+                  placeholder="세부 카테고리"
+                  data={categoryData[categoryIndex]?.items || []}
+                  className="flex-1"
+                />
+              )}
             />
           </div>
+          {errors.mainCategory && <p className="text-red-500">{errors.mainCategory.message}</p>}
         </div>
+
         <div className="flex flex-col gap-3">
           <label htmlFor="crew-image" className="text-base font-semibold text-gray-800 md:text-xl">
             대표이미지를 선택하거나 첨부해주세요.
           </label>
-          <div className="flex">
-            <FileInputWrap
-              value={values.imageUrl}
-              onChange={(newValue) =>
-                setValues((prevValues) => ({ ...prevValues, imageUrl: newValue }))
-              }
-            />
-          </div>
+          <Controller
+            name="imageUrl"
+            control={control}
+            rules={{ required: '이미지를 선택해주세요.' }}
+            render={({ field }) => (
+              <FileInputWrap {...field} onChange={(newValue) => field.onChange(newValue)} />
+            )}
+          />
+          {errors.imageUrl && <p className="text-red-500">{errors.imageUrl.message}</p>}
         </div>
+
         <div className="flex flex-col gap-3">
           <label
             htmlFor="crew-category"
@@ -167,30 +168,43 @@ export default function CreateCrewForm({
             지역을 선택해주세요.
           </label>
           <div className="flex justify-between gap-4">
-            <DropDown
-              variant="default"
-              inWhere="form"
-              placeholder="특별시/도"
+            <Controller
               name="mainLocation"
-              value={values.mainLocation}
-              onChange={(newValue) => handleMainLocationChange(newValue)}
-              data={regionData.map((region) => region.main)}
-              className="flex-1"
+              control={control}
+              rules={{ required: '특별시/도를 선택해주세요.' }}
+              render={({ field }) => (
+                <DropDown
+                  {...field}
+                  variant="default"
+                  inWhere="form"
+                  placeholder="특별시/도"
+                  data={regionData.map((region) => region.main)}
+                  className="flex-1"
+                  onChange={(value) => {
+                    field.onChange(value);
+                    handleMainLocationChange(value);
+                  }}
+                />
+              )}
             />
-            <DropDown
-              variant="default"
-              inWhere="form"
-              placeholder="시/군/구"
+            <Controller
               name="subLocation"
-              value={values.subLocation}
-              onChange={(newValue) =>
-                setValues((prevValues) => ({ ...prevValues, subLocation: newValue }))
-              }
-              data={regionData[regionIndex]?.areas}
-              className="flex-1"
+              control={control}
+              render={({ field }) => (
+                <DropDown
+                  {...field}
+                  variant="default"
+                  inWhere="form"
+                  placeholder="시/군/구"
+                  data={regionData[regionIndex]?.areas || []}
+                  className="flex-1"
+                />
+              )}
             />
           </div>
+          {errors.mainLocation && <p className="text-red-500">{errors.mainLocation.message}</p>}
         </div>
+
         <div className="flex flex-col gap-3">
           <label
             htmlFor="crew-totalCount"
@@ -198,33 +212,30 @@ export default function CreateCrewForm({
           >
             모집 정원을 선택해주세요.
           </label>
-          <NumberInput
-            id="crew-totalCount"
-            variant="filled"
-            value={values.totalCount}
-            {...register('totalCount', {
-              min: 4,
-              max: 20,
-              onBlur: () => trigger('totalCount'),
-            })}
+          <Controller
             name="totalCount"
-            onChange={(newValue) =>
-              setValues((prevValues) => ({ ...prevValues, totalCount: Number(newValue) }))
-            }
-            placeholder="자세한 모집 정원을 입력해주세요."
-            min={4}
-            max={20}
-            classNames={{
-              input:
-                'h-11 py-2.5 px-4 bg-gray-100 placeholder:text-gray-400 font-pretendard text-base font-medium rounded-xl',
+            control={control}
+            rules={{
+              required: '모집 정원을 입력해주세요.',
             }}
+            render={({ field }) => (
+              <NumberInput
+                {...field}
+                id="crew-totalCount"
+                variant="filled"
+                min={4}
+                max={20}
+                classNames={{
+                  input:
+                    'h-11 py-2.5 px-4 bg-gray-100 placeholder:text-gray-400 font-pretendard text-base font-medium rounded-xl',
+                }}
+                placeholder="자세한 모집 정원을 입력해주세요."
+              />
+            )}
           />
-          {errors.totalCount && (
-            <p className="m_8f816625 mantine-InputWrapper-error mantine-TextInput-error">
-              4명 이상 20명 이하로 입력해주세요.
-            </p>
-          )}
+          {errors.totalCount && <p className="text-red-500">{errors.totalCount.message}</p>}
         </div>
+
         <div className="flex justify-between gap-4 pt-18">
           <Button
             type="submit"
