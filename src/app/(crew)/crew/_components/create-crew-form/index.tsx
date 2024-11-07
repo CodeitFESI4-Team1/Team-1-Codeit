@@ -48,17 +48,16 @@ export default function CreateCrewForm({
   const mainLocation = useWatch({ control, name: 'mainLocation' });
 
   const handleMainCategoryChange = (newValue: string | null) => {
-    setValue('mainCategory', newValue);
-    setValue('subCategory', null);
+    setValue('mainCategory' as const, newValue as CreateCrewRequestTypes['mainCategory']);
+    setValue('subCategory' as const, null as CreateCrewRequestTypes['subCategory']);
     clearErrors('subCategory');
   };
 
   const handleMainLocationChange = (newValue: string | null) => {
-    setValue('mainLocation', newValue);
-    setValue('subLocation', null);
+    setValue('mainLocation' as const, newValue as CreateCrewRequestTypes['mainLocation']);
+    setValue('subLocation' as const, null as CreateCrewRequestTypes['subLocation']);
     clearErrors('subLocation');
   };
-
   useEffect(() => {
     setCategoryIndex(categoryData.findIndex((category) => category.title.value === mainCategory));
     setRegionIndex(regionData.findIndex((region) => region.main.value === mainLocation));
