@@ -1,3 +1,4 @@
+import { StaticImageData } from 'next/image';
 import { UserType } from './user';
 
 export interface GatheringType {
@@ -31,7 +32,7 @@ export interface CreateGatheringRequestType {
   dateTime: string;
   location: string;
   totalCount: number;
-  imageUrl: File | null; // NOTE : 임시로 File로 설정
+  imageUrl: File | StaticImageData | null; // NOTE : 임시로 File로 설정
 }
 
 export interface GatheringCardProps {

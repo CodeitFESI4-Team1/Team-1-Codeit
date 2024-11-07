@@ -1,9 +1,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@mantine/core';
+import { useAuthStore } from '@/src/store/use-auth-store';
 import ImgHeroCrew from '@/public/assets/icons/ic-dumbbell.svg';
 
 export default function HeroCrew() {
+  const { isAuth } = useAuthStore();
+
   return (
     <section className="pb-3 md:pb-4 lg:pb-12.5">
       <div className="flex items-end justify-between">
@@ -20,7 +23,7 @@ export default function HeroCrew() {
         </div>
         <Button
           component={Link}
-          href="/crew/create"
+          href={isAuth ? '/crew/create' : '/login'}
           className="-translate-y-1 items-center rounded-xl bg-blue-500 py-2 text-sm font-semibold md:h-11 md:text-lg md:font-bold"
         >
           크루 만들기

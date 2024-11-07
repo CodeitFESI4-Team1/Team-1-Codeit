@@ -1,13 +1,15 @@
 import { useState } from 'react';
+import { StaticImageData } from 'next/image';
 import { action } from '@storybook/addon-actions';
 import { Meta, StoryFn } from '@storybook/react';
+import ImgCrewSamples from '@/public/assets/images/crew-sample';
 import FileSample, { FileSampleProps } from '.';
 
 const meta: Meta = {
   title: 'Components/input/file-sample',
   component: FileSample,
   argTypes: {
-    imgUrl: {
+    image: {
       control: 'text',
       description: '샘플 이미지 URL',
     },
@@ -24,13 +26,11 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: StoryFn<FileSampleProps> = function FileInputStory(
-  args: FileSampleProps = { isBlur: false, imgUrl: '', onChange: () => {} },
-) {
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+const Template: StoryFn<FileSampleProps> = function FileInputStory(args: FileSampleProps) {
+  const [selectedFile, setSelectedFile] = useState<File | StaticImageData | null>(null);
   const [isBlur, setIsBlur] = useState(false);
 
-  const handleFileChange = (file: File | null) => {
+  const handleFileChange = (file: File | StaticImageData | null) => {
     setSelectedFile(file);
     setIsBlur(false); // 파일 선택 시 블러 해제
   };
@@ -47,14 +47,12 @@ const Template: StoryFn<FileSampleProps> = function FileInputStory(
       >
         블러 토글
       </button>
-      {!isBlur && <p>{selectedFile?.name}</p>}
     </div>
   );
 };
 export const FileSample01 = Template.bind({});
 FileSample01.args = {
-  imgUrl:
-    'https://images.stockcake.com/public/a/7/6/a768d87b-1f99-4b50-9286-f1583af33522_large/team-huddle-celebration-stockcake.jpg',
+  image: ImgCrewSamples[0],
   isBlur: false,
   onChange: () => {
     action('onChange');
