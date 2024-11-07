@@ -3,7 +3,9 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
 import { formatDateWithYear } from '@/src/utils/format-date';
+import ConfirmCancelModal from '@/src/components/common/modal/confirm-cancel-modal';
 import { ReviewerType } from '@/src/types/review';
 import { Profile } from '../profile';
 import ReviewHearts from '../review-heart/hearts';
@@ -41,6 +43,11 @@ export default function ReviewCard({
   gatheringLocation,
   reviewer,
 }: ReviewCardProps) {
+  const [
+    confirmDeleteModalOpened,
+    { open: openConfirmDeleteModal, close: closeConfirmDeleteModal },
+  ] = useDisclosure(false);
+
   const [prefetched, setPrefetched] = useState(new Set());
   const CREWPAGE = `crew/detail/${crewId}`;
   const router = useRouter();
@@ -55,8 +62,9 @@ export default function ReviewCard({
     setPrefetched(new Set(prefetched).add(CREWPAGE));
   };
 
-  const handleDelete = (e: React.MouseEvent) => {
-    e.stopPropagation();
+  const handleDelete = () => {
+    // TODO: 삭제 로직
+    closeConfirmDeleteModal();
   };
 
   const { year, month, day } = formatDateWithYear(createdAt);
@@ -102,12 +110,24 @@ export default function ReviewCard({
           <Button
             variant="outline"
             className="flex-shrink-0 p-[6px_14px] text-base font-semibold"
-            onClick={handleDelete}
+            onClick={(e) => {
+              e.stopPropagation();
+              openConfirmDeleteModal();
+            }}
           >
             리뷰 삭제하기
           </Button>
         )}
       </div>
+
+      {/* 삭제 확인 모달 */}
+      <ConfirmCancelModal
+        opened={confirmDeleteModalOpened}
+        onClose={closeConfirmDeleteModal}
+        onConfirm={handleDelete}
+      >
+        리뷰를 삭제하시겠습니까?
+      </ConfirmCancelModal>
     </div>
   );
 }

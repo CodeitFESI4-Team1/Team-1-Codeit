@@ -17,7 +17,7 @@ export interface GatheringDetailType extends GatheringType {
   participants: UserType[];
 }
 export interface GatheringData {
-  data: Gathering[];
+  data: GatheringDetailType[];
   pagination: {
     totalCount: number;
     page: number;
@@ -32,4 +32,17 @@ export interface CreateGatheringRequestType {
   location: string;
   totalCount: number;
   imageUrl: File | null; // NOTE : 임시로 File로 설정
+}
+
+export interface GatheringCardProps {
+  id: number;
+  crewTitle: string;
+  crewMainLocation: string;
+  crewSubLocation: string;
+  title: string;
+  dateTime: string;
+  currentCount: number;
+  totalCount: number;
+  imageUrl: string;
+  isLiked: boolean;
 }
