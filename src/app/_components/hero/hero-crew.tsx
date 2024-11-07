@@ -1,18 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { Button } from '@mantine/core';
 import { useAuthStore } from '@/src/store/use-auth-store';
 import ImgHeroCrew from '@/public/assets/icons/ic-dumbbell.svg';
 
 export default function HeroCrew() {
-  const { isAuth, logout } = useAuthStore();
-  const router = useRouter();
-
-  // const handleLogout = () => {
-  //   logout();
-  //   router.push('/');
-  // };
+  const { isAuth } = useAuthStore();
 
   return (
     <section className="pb-3 md:pb-4 lg:pb-12.5">
