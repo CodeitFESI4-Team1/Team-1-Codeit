@@ -1,5 +1,5 @@
-import { getCrewData } from '@/src/app/api/mock-api/crew';
 import { CrewCardInform } from '@/src/types/crew-card';
+import { getCrewList } from '../_apis/crew/get-crew-list';
 
 // Crew data 변환 로직을 간소화한 helper 함수
 const mapCrewData = (crew: CrewCardInform) => ({
@@ -31,7 +31,7 @@ export function useGetCrewQuery() {
 
   return {
     queryKey: ['crew'],
-    queryFn: ({ pageParam = 0 }: QueryParams) => getCrewData(pageParam, 3),
+    queryFn: ({ pageParam = 0 }: QueryParams) => getCrewList(pageParam, 3),
     getNextPageParam: (lastPage: Page, allPages: Page[]) =>
       lastPage.hasNextPage ? allPages.length + 1 : undefined,
     select: (data: CrewCardInform[]) => data.map(mapCrewData),
