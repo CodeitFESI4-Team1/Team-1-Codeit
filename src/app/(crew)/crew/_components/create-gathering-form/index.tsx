@@ -9,6 +9,7 @@ import FileInputWrap from '@/src/components/common/input/file-input-wrap';
 import TextInput from '@/src/components/common/input/text-input';
 import Textarea from '@/src/components/common/input/textarea';
 import { CreateGatheringRequestType } from '@/src/types/gathering-data';
+import ImgGatheringSamples from '@/public/assets/images/gathering-sample';
 
 export interface CreateGatheringFormTypes {
   data: CreateGatheringRequestType;
@@ -89,6 +90,7 @@ export default function CreateGatheringForm({
           </label>
           <div className="flex">
             <FileInputWrap
+              sample={ImgGatheringSamples}
               value={values.imageUrl}
               onChange={(newValue) =>
                 setValues((prevValues) => ({ ...prevValues, imageUrl: newValue }))
