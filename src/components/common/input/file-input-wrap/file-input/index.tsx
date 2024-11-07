@@ -1,10 +1,10 @@
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import IcoPlus from '@/public/assets/icons/ic-plus.svg';
 import IcoX from '@/public/assets/icons/ic-x.svg';
 
 export interface FileInputProps {
-  value: File | null;
+  value: File | StaticImageData | null;
   onChange: (value: File | null) => void;
   isBlur: boolean;
 }
