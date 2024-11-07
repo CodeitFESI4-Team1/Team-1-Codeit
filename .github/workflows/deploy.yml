@@ -19,6 +19,5 @@ jobs:
           git remote add upstream https://github.com/CodeitFESI4-Team1/Team-1-Codeit.git
           git fetch upstream
           git checkout main
-          git pull origin main
           git merge -X theirs upstream/main --allow-unrelated-histories || echo "Merge conflicts occurred"
-          git push origin main
+          git push origin main --force
