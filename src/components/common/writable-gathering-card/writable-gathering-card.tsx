@@ -80,7 +80,7 @@ export default function WritableGatheringCard({
       <ReviewingModal
         opened={isModalOpened}
         close={() => {
-          setIsModalOpened((prev) => !prev);
+          setIsModalOpened(false);
         }}
       />
     </div>
