@@ -1,13 +1,13 @@
 import { useEffect, useRef } from 'react';
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 
 export interface FileSampleProps {
-  imgUrl: string;
+  image: StaticImageData;
   isBlur: boolean;
-  onChange: (inputValue: File | null) => void;
+  onChange: (inputValue: StaticImageData) => void;
 }
 
-export default function FileSample({ imgUrl, isBlur, onChange }: FileSampleProps) {
+export default function FileSample({ image, isBlur, onChange }: FileSampleProps) {
   const radioInput = useRef<HTMLInputElement>(null);
 
   const convertUrlToFile = async (
@@ -21,8 +21,7 @@ export default function FileSample({ imgUrl, isBlur, onChange }: FileSampleProps
   };
 
   const handleClick = async () => {
-    const file = await convertUrlToFile(imgUrl, 'crew-01.webp', 'image/webp');
-    onChange(file);
+    onChange(image);
   };
 
   useEffect(() => {
@@ -41,7 +40,7 @@ export default function FileSample({ imgUrl, isBlur, onChange }: FileSampleProps
         className="absolute inset-0 hidden"
       />
       <Image
-        src={imgUrl}
+        src={image}
         width={282}
         height={282}
         alt="샘플 이미지 1"
