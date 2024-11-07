@@ -16,7 +16,7 @@ const nextConfig = {
           { key: 'Access-Control-Allow-Credentials', value: 'true' },
           {
             key: 'Access-Control-Allow-Origin',
-            value: 'https://json-server-vercel-crewcrew.vercel.app',
+            value: process.env.NEXT_PUBLIC_API_BASE_URL,
           },
           { key: 'Access-Control-Allow-Methods', value: 'GET,OPTIONS,PATCH,DELETE,POST,PUT' },
           {
