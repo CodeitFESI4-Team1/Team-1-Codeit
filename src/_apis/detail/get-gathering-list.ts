@@ -1,6 +1,6 @@
 import { fetchApi } from '@/src/utils/api';
 
-type GatheringList = {
+export type GatheringList = {
   id: number;
   title: string;
   dateTime: string;
@@ -12,18 +12,10 @@ type GatheringList = {
 };
 
 export async function getGatheringList(): Promise<GatheringList[]> {
-  const response = await fetchApi<GatheringList[]>('/api/mock-api/detail?type=gatherings', {
+  return fetchApi<GatheringList[]>('/gatherings', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
   });
-
-  return response.map((item) => ({
-    ...item,
-    dateTime: item.dateTime,
-    currentCount: item.currentCount,
-    totalCount: item.totalCount,
-    isLiked: item.isLiked ?? false,
-  }));
 }
