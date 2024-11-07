@@ -1,7 +1,7 @@
 import { CrewCardInformResponse } from '@/src/types/crew-card';
 import { crewData } from '@/src/mock/crew-data';
 
-const MOCK_DB_BASE_URL = process.env.NEXT_PUBLIC_JSON_SERVER_BASE_URL;
+const MOCK_DB_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 // NOTE: 크루 데이터 fetch
 export const fetchCrewData = (page: number, limit: number) => {
