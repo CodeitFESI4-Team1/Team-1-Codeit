@@ -6,7 +6,7 @@ import FileInput from './file-input';
 import FileSample from './file-sample';
 
 export interface FileInputProps {
-  value: File | null;
+  value: File | StaticImageData | null;
   sample: StaticImageData[];
   onChange: (newValue: File | StaticImageData | null) => void;
 }
@@ -23,7 +23,7 @@ export default function FileInputWrap({ value, sample, onChange }: FileInputProp
     onChange(inputValue);
   };
 
-  const handleFileInput = (inputValue: File | null) => {
+  const handleFileInput = (inputValue: File | StaticImageData | null) => {
     setIsOtherSelected(true);
     setIsSampleSelected(false);
     setFileValue(inputValue);
