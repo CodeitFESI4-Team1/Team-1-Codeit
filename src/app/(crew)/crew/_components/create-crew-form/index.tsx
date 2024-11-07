@@ -11,6 +11,7 @@ import DropDown from '@/src/components/common/input/drop-down';
 import FileInputWrap from '@/src/components/common/input/file-input-wrap';
 import TextInput from '@/src/components/common/input/text-input';
 import { CreateCrewRequestTypes } from '@/src/types/create-crew';
+import ImgCrewSamples from '@/public/assets/images/crew-sample';
 
 export interface CreateCrewFormTypes {
   data: CreateCrewRequestTypes;
@@ -37,7 +38,8 @@ export default function CreateCrewForm({
     mode: 'onBlur',
   });
 
-  const isFormValid = Object.keys(errors).length === 0;
+  const isFormValid = Object.keys(errors).length === 0 && Object.values(data).every(Boolean);
+
   const [categoryIndex, setCategoryIndex] = useState(0);
   const [regionIndex, setRegionIndex] = useState(0);
 
@@ -46,17 +48,16 @@ export default function CreateCrewForm({
   const mainLocation = useWatch({ control, name: 'mainLocation' });
 
   const handleMainCategoryChange = (newValue: string | null) => {
-    setValue('mainCategory', newValue);
-    setValue('subCategory', null);
+    setValue('mainCategory' as const, newValue as CreateCrewRequestTypes['mainCategory']);
+    setValue('subCategory' as const, null as CreateCrewRequestTypes['subCategory']);
     clearErrors('subCategory');
   };
 
   const handleMainLocationChange = (newValue: string | null) => {
-    setValue('mainLocation', newValue);
-    setValue('subLocation', null);
+    setValue('mainLocation' as const, newValue as CreateCrewRequestTypes['mainLocation']);
+    setValue('subLocation' as const, null as CreateCrewRequestTypes['subLocation']);
     clearErrors('subLocation');
   };
-
   useEffect(() => {
     setCategoryIndex(categoryData.findIndex((category) => category.title.value === mainCategory));
     setRegionIndex(regionData.findIndex((region) => region.main.value === mainLocation));
@@ -154,7 +155,11 @@ export default function CreateCrewForm({
             control={control}
             rules={{ required: '이미지를 선택해주세요.' }}
             render={({ field }) => (
-              <FileInputWrap {...field} onChange={(newValue) => field.onChange(newValue)} />
+              <FileInputWrap
+                {...field}
+                sample={ImgCrewSamples}
+                onChange={(newValue) => field.onChange(newValue)}
+              />
             )}
           />
           {errors.imageUrl && <p className="text-red-500">{errors.imageUrl.message}</p>}
