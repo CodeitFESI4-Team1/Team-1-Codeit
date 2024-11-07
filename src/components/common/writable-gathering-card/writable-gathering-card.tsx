@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import Image from 'next/image';
 import Profiles from '@/src/components/common/crew-list/profiles';
 import Button from '@/src/components/common/input/button';
 import { ParticipantType } from '@/src/types/writable-gathering-card';
 import person from '@/public/assets/icons/person.svg';
+import ReviewingModal from '../../my-page/reviewing-modal/reviewing-modal';
 
 interface WritableGatheringCardProps {
   id: number;
@@ -34,12 +36,13 @@ export default function WritableGatheringCard({
   participants,
   totalCount,
 }: WritableGatheringCardProps) {
+  const [isModalOpened, setIsModalOpened] = useState(false);
   const { year, month, day } = formatDateWithYear(dateTime);
 
   const profiles = participants.map((participant) => ({
     id: participant.id,
     nickname: participant.nickname,
-    profileImageUrl: participant.imageUrl,
+    imageUrl: participant.profileImageUrl,
   }));
 
   return (
@@ -67,10 +70,19 @@ export default function WritableGatheringCard({
           </div>
           <div className="text-sm font-medium text-gray-700">{`${year}년 ${month}월 ${day}일`}</div>
         </div>
-        <Button className="bg-blue-500 p-[6px_14px] text-base font-semibold text-white">
+        <Button
+          className="bg-blue-500 p-[6px_14px] text-base font-semibold text-white"
+          onClick={() => setIsModalOpened(true)}
+        >
           리뷰 작성하기
         </Button>
       </div>
+      <ReviewingModal
+        opened={isModalOpened}
+        close={() => {
+          setIsModalOpened(false);
+        }}
+      />
     </div>
   );
 }
