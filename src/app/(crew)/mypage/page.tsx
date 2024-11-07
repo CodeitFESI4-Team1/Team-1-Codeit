@@ -6,8 +6,11 @@ import { useInfiniteScroll } from '@/src/hooks/useInfiniteScroll';
 import ProfileCardContainer from '@/src/app/(crew)/mypage/_components/profile-card/container';
 import ReviewCardList from '@/src/components/common/review-list/review-card-list';
 import Tabs from '@/src/components/common/tab';
+import WritableGatheringCardList from '@/src/components/common/writable-gathering-card/writable-gathering-card-list';
 import { ReviewInformResponse } from '@/src/types/review';
+import { WritableGatheringCardInformResponse } from '@/src/types/writable-gathering-card';
 import { fetchMyReviewData } from '../../api/mock-api/review';
+import { fetchWritableGatheringData } from '../api/mock-api/writable-gathering';
 
 const mockData = {
   id: 1,
@@ -23,9 +26,26 @@ export default function MyPage() {
   ];
   const [currentTab, setCurrentTab] = useState(myPageTabs[0].id);
 
-  const { data, ref, isFetchingNextPage } = useInfiniteScroll<ReviewInformResponse>({
+  const {
+    data: reviewData,
+    ref: reviewRef,
+    isFetchingNextPage: isFetchingReviewNextPage,
+  } = useInfiniteScroll<ReviewInformResponse>({
     queryKey: ['review'],
     queryFn: ({ pageParam = 0 }) => fetchMyReviewData(pageParam, 3),
+    getNextPageParam: (lastPage, allPages) =>
+      lastPage.hasNextPage ? allPages.length + 1 : undefined,
+  });
+
+  const {
+    data: gatheringData,
+    ref: gatheringRef,
+    isFetchingNextPage: isFetchingGatheringNextPage,
+  } = useInfiniteScroll<WritableGatheringCardInformResponse>({
+    queryKey: ['crew'],
+    queryFn: ({ pageParam = 0 }) => {
+      return fetchWritableGatheringData(pageParam, 3);
+    },
     getNextPageParam: (lastPage, allPages) =>
       lastPage.hasNextPage ? allPages.length + 1 : undefined,
   });
@@ -36,19 +56,25 @@ export default function MyPage() {
       case 'my-review':
         return (
           <ReviewCardList
-            data={data}
-            ref={ref}
-            isFetchingNextPage={isFetchingNextPage}
+            data={reviewData}
+            ref={reviewRef}
+            isFetchingNextPage={isFetchingReviewNextPage}
             isMine
             clickable
           />
         );
       default:
-        return <div>작성 가능한 리뷰 리스트 컴포넌트</div>;
+        return (
+          <WritableGatheringCardList
+            data={gatheringData}
+            isFetchingNextPage={isFetchingGatheringNextPage}
+            ref={gatheringRef}
+          />
+        );
     }
   };
   return (
-    <div className="container mx-auto my-0 min-h-screen max-w-pc bg-gray-50 px-3 py-11 shadow-bg md:px-8 lg:px-11">
+    <div className="container mx-auto my-0 min-h-screen max-w-pc bg-gray-50 px-3 py-11 md:px-8 lg:px-11">
       <div className="lg:gap-4.5 flex flex-col gap-3 md:gap-4">
         <ProfileCardContainer data={mockData} />
       </div>
