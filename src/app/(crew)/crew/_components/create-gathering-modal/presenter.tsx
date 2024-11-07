@@ -25,7 +25,10 @@ export default function CreateGatheringModalPresenter({
       title="약속 잡기"
       styles={{
         root: { '--modal-size': '520px' },
-        content: { boxShadow: '0 25px 50px -12px rgba(0,0,0,0.1)', borderRadius: '12px' },
+        content: {
+          boxShadow: '0 25px 50px -12px rgba(0,0,0,0.1)',
+          borderRadius: '12px',
+        },
       }}
       classNames={{
         body: 'p-0',
@@ -33,7 +36,7 @@ export default function CreateGatheringModalPresenter({
       }}
     >
       <div>
-        <ScrollArea h={640}>
+        <ScrollArea h={760}>
           <div className="flex flex-col gap-8 p-6">
             <CreateGatheringForm
               data={data}
