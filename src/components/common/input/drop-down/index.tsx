@@ -1,5 +1,5 @@
 import { LegacyRef, useEffect, useMemo, useRef, useState } from 'react';
-import { ComboboxData, Select, SelectProps } from '@mantine/core';
+import { ComboboxData, Select } from '@mantine/core';
 import IconArrow from '@/public/assets/icons/ic-arrow';
 
 export interface DropDownProps {

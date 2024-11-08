@@ -27,7 +27,7 @@ const meta: Meta = {
 export default meta;
 
 const Template: StoryFn<FileSampleProps> = function FileInputStory(args: FileSampleProps) {
-  const [selectedFile, setSelectedFile] = useState<File | StaticImageData | null>(null);
+  const [setSelectedFile] = useState<File | StaticImageData | null>(null);
   const [isBlur, setIsBlur] = useState(false);
 
   const handleFileChange = (file: File | StaticImageData | null) => {

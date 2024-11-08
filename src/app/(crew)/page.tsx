@@ -46,7 +46,7 @@ export default function Home() {
               leftSection={
                 <Image src={IcoSearch} alt="search" width={21} height={21} className="-mr-4" />
               }
-              placeholder="검색어를 입력하세요"
+              placeholder="크루 이름, 위치를 검색하세요."
               inputClassNames="w-full h-11 pl-12 placeholder:text-gray-500 font-pretendard text-base font-medium text-gray-800 rounded-xl"
             />
           </div>

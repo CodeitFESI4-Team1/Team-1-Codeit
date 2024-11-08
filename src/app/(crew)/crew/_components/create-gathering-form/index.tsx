@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import { Controller, useForm, useWatch } from 'react-hook-form';
 import { NumberInput } from '@mantine/core';
 import Button from '@/src/components/common/input/button';
