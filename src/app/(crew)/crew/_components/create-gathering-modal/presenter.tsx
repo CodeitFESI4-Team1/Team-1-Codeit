@@ -22,7 +22,7 @@ export default function CreateGatheringModalPresenter({
       opened={opened}
       onClose={onClose}
       centered
-      title="약속 잡기"
+      title="약속 만들기"
       styles={{
         root: { '--modal-size': '520px' },
         content: {

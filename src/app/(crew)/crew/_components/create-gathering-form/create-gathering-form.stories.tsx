@@ -41,7 +41,7 @@ const Template: StoryFn<CreateGatheringRequestType> = function CreateCrewPageSto
         opened={createModalOpened}
         onClose={closeCreateModal}
         centered
-        title="약속 잡기"
+        title="약속 만들기"
         styles={{
           root: { '--modal-size': '520px' },
           content: { boxShadow: '0 25px 50px -12px rgba(0,0,0,0.1)', borderRadius: '12px' },
