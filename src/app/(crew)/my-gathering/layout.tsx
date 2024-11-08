@@ -8,7 +8,6 @@ import { Button } from '@mantine/core';
 const buttonData = [
   { id: 1, label: '참여한 약속', route: '/my-gathering/participation' },
   { id: 2, label: '만든 약속', route: '/my-gathering/creation' },
-  { id: 3, label: '찜한 약속', route: '/my-gathering/favorite' },
 ];
 
 const getSelectedButtonIndex = (currentPath: string) => {
@@ -31,7 +30,7 @@ export default function MyGatheringLayout({
 
   return (
     <div className="mt-4 md:mx-[46px] md:mt-[45px]">
-      <div className="m-4 grid grid-cols-3 gap-2 md:gap-4">
+      <div className="m-4 grid grid-cols-2 gap-2 md:gap-4">
         {buttonData.map(({ id, label, route }) => (
           <Link key={id} href={route}>
             <Button
