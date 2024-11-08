@@ -20,4 +20,6 @@ jobs:
           git fetch upstream
           git checkout main
           git merge -X theirs upstream/main --allow-unrelated-histories || echo "Merge conflicts occurred"
+          git fetch origin
+          git merge origin/main -X theirs --allow-unrelated-histories || echo "Merge conflicts with origin"
           git push origin main
