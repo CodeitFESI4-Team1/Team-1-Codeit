@@ -13,7 +13,7 @@ export default function CreateCrewPage() {
     imageUrl: null,
     mainLocation: '',
     subLocation: null,
-    totalCount: 4,
+    totalCount: 2,
   };
 
   const handleSubmit = () => {
