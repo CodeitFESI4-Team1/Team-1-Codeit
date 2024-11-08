@@ -20,21 +20,23 @@ export default function GatheringListWithDate({ gatheringList }: GatheringListWi
   }, [gatheringList]);
 
   return (
-    <div className="m-4 md:mt-[32.5px]">
+    <div className="m-4 md:mt-8">
       {gatheringListWithDateInfo.map((gathering) => (
         <div key={gathering.id} className="md:flex">
-          <div className="relative w-1/6 md:border-r-2 md:border-gray-200">
+          <div className="w-1/6">
             {gathering.isNewDate && (
-              <div>
-                <div className="md:corner-dot" />
-                <div className="hidden flex-nowrap md:block">
-                  <div className="text-lg font-semibold">{formatDate(gathering.dateTime).date}</div>
-                  <div className="text-base font-medium text-gray-500">월요일</div>
-                </div>
+              <div className="hidden flex-nowrap md:block">
+                <div className="text-lg font-semibold">{formatDate(gathering.dateTime).date}</div>
+                <div className="text-base font-medium text-gray-500">월요일</div>
               </div>
             )}
           </div>
-          <div className={`${gathering.isNewDate ? 'pb-' : 'p-'} flex-1 pb-6 md:pl-8`}>
+          <div
+            className={`${gathering.isNewDate ? 'mt-3.5' : '-mb-3.5'} relative w-0.5 bg-gray-200`}
+          >
+            {gathering.isNewDate && <div className="md:corner-dot" />}
+          </div>
+          <div className="flex-1 pb-6 md:pl-8">
             <ScheduledGatheringCard key={gathering.id} data={gathering} />
           </div>
         </div>
