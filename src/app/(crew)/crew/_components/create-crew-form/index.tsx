@@ -31,6 +31,7 @@ export default function CreateCrewForm({
     control,
     handleSubmit,
     setValue,
+    getValues,
     clearErrors,
     formState: { errors, isValid },
   } = useForm<CreateCrewRequestTypes>({
