@@ -32,17 +32,16 @@ export default function CreateCrewForm({
     handleSubmit,
     setValue,
     clearErrors,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<CreateCrewRequestTypes>({
     defaultValues: data,
     mode: 'onBlur',
   });
 
-  const isFormValid = Object.keys(errors).length === 0 && Object.values(data).every(Boolean);
-
   const [categoryIndex, setCategoryIndex] = useState(0);
   const [regionIndex, setRegionIndex] = useState(0);
 
+  const title = useWatch({ control, name: 'title' });
   // mainCategory와 mainLocation 값의 변화를 감지하여 인덱스를 설정
   const mainCategory = useWatch({ control, name: 'mainCategory' });
   const mainLocation = useWatch({ control, name: 'mainLocation' });
@@ -75,7 +74,7 @@ export default function CreateCrewForm({
               크루명을 입력해주세요.
             </label>
             <span>
-              <span className="text-blue-500">{data.title.length}</span>/20
+              <span className="text-blue-500">{title.length}</span>/20
             </span>
           </div>
           <Controller
@@ -244,7 +243,7 @@ export default function CreateCrewForm({
         <div className="flex justify-between gap-4 pt-18">
           <Button
             type="submit"
-            disabled={!isFormValid}
+            disabled={!isValid}
             className="btn-filled h-11 flex-1 text-base font-medium disabled:bg-gray-200"
           >
             {isEdit ? '수정' : '확인'}
