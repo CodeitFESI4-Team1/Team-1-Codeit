@@ -50,14 +50,14 @@ export default function Home() {
               inputClassNames="w-full h-11 pl-12 placeholder:text-gray-500 font-pretendard text-base font-medium text-gray-800 rounded-xl"
             />
           </div>
-          <div className="flex-0 flex justify-between gap-2 md:basis-57 md:gap-4">
+          <div className="flex-0 flex justify-between gap-2 md:basis-67 md:gap-4">
             <DropDown
               name="region"
               variant="default"
               data={regionData.map((dataItem) => dataItem.main)}
               placeholder="전체"
               value={region}
-              className="w-[110px]"
+              className="w-[130px]"
               onChange={setRegion}
             />
             <DropDown
@@ -69,7 +69,7 @@ export default function Home() {
               ]}
               placeholder="최신순"
               value={sort}
-              className="w-[110px]"
+              className="w-[130px]"
               onChange={setSort}
             />
           </div>
