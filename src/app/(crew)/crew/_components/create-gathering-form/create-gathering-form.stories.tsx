@@ -9,7 +9,7 @@ const initialValue: CreateGatheringRequestType = {
   introduce: '',
   dateTime: '',
   location: '',
-  totalCount: 0,
+  totalCount: 2,
   imageUrl: null,
 };
 

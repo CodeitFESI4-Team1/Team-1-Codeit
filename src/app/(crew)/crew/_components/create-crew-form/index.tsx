@@ -31,6 +31,7 @@ export default function CreateCrewForm({
     control,
     handleSubmit,
     setValue,
+    trigger,
     clearErrors,
     formState: { errors, isValid },
   } = useForm<CreateCrewRequestTypes>({
@@ -82,12 +83,22 @@ export default function CreateCrewForm({
             control={control}
             rules={{
               required: '필수 입력사항입니다.',
+              validate: (value) => {
+                if (value && value.trim().length > 0) {
+                  return true; // 입력이 있을 경우 에러 해제
+                }
+                return '필수 입력사항입니다.'; // 입력이 비어있을 경우 에러 메시지 표시
+              },
             }}
             render={({ field }) => (
               <TextInput
                 {...field}
                 id="crew-title"
                 variant="filled"
+                onChange={(e) => {
+                  field.onChange(e);
+                  if (errors.title) trigger('title'); // 입력 중일 때 유효성 검사 트리거
+                }}
                 error={errors.title?.message}
                 placeholder="크루명을 20자 이내로 입력해주세요."
                 maxLength={20}
