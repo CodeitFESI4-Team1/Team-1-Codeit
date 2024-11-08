@@ -163,6 +163,7 @@ export default function CreateGatheringForm({
                 onChange={(date) => {
                   const formattedDate = date.toLocaleString();
                   onChange(formattedDate);
+                  trigger('imageUrl'); // 유효성 검사 실행
                 }}
               />
             )}
