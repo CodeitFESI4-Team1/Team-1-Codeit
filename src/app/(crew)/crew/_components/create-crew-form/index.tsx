@@ -31,7 +31,6 @@ export default function CreateCrewForm({
     control,
     handleSubmit,
     setValue,
-    getValues,
     clearErrors,
     formState: { errors, isValid },
   } = useForm<CreateCrewRequestTypes>({
@@ -125,6 +124,7 @@ export default function CreateCrewForm({
                     field.onChange(value);
                     handleMainCategoryChange(value);
                   }}
+                  error={errors.mainCategory?.message}
                 />
               )}
             />
@@ -139,11 +139,11 @@ export default function CreateCrewForm({
                   placeholder="세부 카테고리"
                   data={categoryData[categoryIndex]?.items || []}
                   className="flex-1"
+                  error={errors.subCategory?.message}
                 />
               )}
             />
           </div>
-          {errors.mainCategory && <p className="text-red-500">{errors.mainCategory.message}</p>}
         </div>
 
         <div className="flex flex-col gap-3">
@@ -189,12 +189,14 @@ export default function CreateCrewForm({
                     field.onChange(value);
                     handleMainLocationChange(value);
                   }}
+                  error={errors.mainLocation?.message}
                 />
               )}
             />
             <Controller
               name="subLocation"
               control={control}
+              rules={{ required: '시/군/구를 선택해주세요.' }}
               render={({ field }) => (
                 <DropDown
                   {...field}
@@ -203,6 +205,7 @@ export default function CreateCrewForm({
                   placeholder="시/군/구"
                   data={regionData[regionIndex]?.areas || []}
                   className="flex-1"
+                  error={errors.subLocation?.message}
                 />
               )}
             />

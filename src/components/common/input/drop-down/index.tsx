@@ -11,6 +11,7 @@ export interface DropDownProps {
   onChange: (newValue: string | null) => void;
   className?: string;
   inWhere?: string;
+  error?: string | null;
   ref?: LegacyRef<HTMLInputElement>;
 }
 
@@ -23,42 +24,20 @@ export default function DropDown({
   onChange,
   placeholder,
   className,
+  error,
   ...rest
 }: DropDownProps) {
   const [isFocused, setIsFocused] = useState(false);
-  const [error, setError] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleBlur = () => {
-    setIsFocused(false);
-    if (inWhere === 'form' && !value) {
-      setError('필수 입력사항입니다.');
-    } else {
-      setError(null);
-    }
-  };
-
-  const handleChange = (newValue: string | null) => {
-    onChange(newValue);
-    setIsFocused(false);
-    inputRef.current?.blur();
-
-    if (inWhere === 'form' && !newValue) {
-      setError(newValue ? null : '필수 입력사항입니다.');
-    }
-  };
+  const formStyle =
+    inWhere === 'form' ? 'bg-gray-100 placeholder-gray-400' : 'bg-white placeholder-gray-800';
 
   const getColor = useMemo(() => {
     if (isFocused) return '#ffffff';
     if (inWhere === 'form') return '#1F2937';
     return '#D1D5DB';
   }, [isFocused, inWhere]);
-
-  useEffect(() => {
-    if (value === null) {
-      onChange(null);
-    }
-  }, [value, onChange]);
 
   const getFocusStyle = () => {
     if (variant === 'default') {
@@ -71,8 +50,18 @@ export default function DropDown({
       ? 'focus:bg-black focus:text-white focus:placeholder:text-white sort-bg-on pl-10'
       : 'bg-white text-gray-800 placeholder-gray-800 sort-bg pl-10';
   };
-  const formStyle =
-    inWhere === 'form' ? 'bg-gray-100 placeholder-gray-400' : 'bg-white placeholder-gray-800';
+
+  const handleChange = (newValue: string | null) => {
+    onChange(newValue);
+    setIsFocused(false);
+    inputRef.current?.blur();
+  };
+
+  useEffect(() => {
+    if (value === null) {
+      onChange(null);
+    }
+  }, [value, onChange]);
 
   return (
     <Select
@@ -83,7 +72,7 @@ export default function DropDown({
       name={name}
       dropdownOpened={isFocused}
       onFocus={() => setIsFocused(true)}
-      onBlur={handleBlur}
+      onBlur={() => setIsFocused(false)}
       onChange={handleChange}
       color={getColor}
       leftSection=""
