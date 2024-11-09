@@ -61,7 +61,7 @@ export default function DropDown({
     if (value === null) {
       onChange(null);
     }
-  }, [value, onChange]);
+  }, [value]);
 
   return (
     <Select
@@ -70,7 +70,6 @@ export default function DropDown({
       data={data}
       value={value}
       name={name}
-      dropdownOpened={isFocused}
       onFocus={() => setIsFocused(true)}
       onBlur={() => setIsFocused(false)}
       onChange={handleChange}

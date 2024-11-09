@@ -29,7 +29,7 @@ export default function CreateGatheringForm({
     control,
     handleSubmit,
     trigger,
-    formState: { errors, isValid },
+    formState: { errors, isValid, isSubmitting },
   } = useForm<CreateGatheringRequestType>({
     defaultValues: data,
     mode: 'onBlur',
@@ -55,12 +55,6 @@ export default function CreateGatheringForm({
             control={control}
             rules={{
               required: '필수 입력사항입니다.',
-              validate: (value) => {
-                if (value && value.trim().length > 0) {
-                  return true; // 입력이 있을 경우 에러 해제
-                }
-                return '필수 입력사항입니다.'; // 입력이 비어있을 경우 에러 메시지 표시
-              },
             }}
             render={({ field }) => (
               <TextInput
@@ -90,7 +84,9 @@ export default function CreateGatheringForm({
             <Controller
               name="imageUrl"
               control={control}
-              rules={{ required: '이미지를 선택해주세요.' }}
+              rules={{
+                required: '이미지를 선택해주세요.',
+              }}
               render={({ field }) => (
                 <FileInputWrap
                   {...field}
@@ -118,12 +114,6 @@ export default function CreateGatheringForm({
             control={control}
             rules={{
               required: '필수 입력사항입니다.',
-              validate: (value) => {
-                if (value && value.trim().length > 0) {
-                  return true; // 입력이 있을 경우 에러 해제
-                }
-                return '필수 입력사항입니다.'; // 입력이 비어있을 경우 에러 메시지 표시
-              },
             }}
             render={({ field }) => (
               <TextInput
@@ -132,7 +122,7 @@ export default function CreateGatheringForm({
                 variant="filled"
                 onChange={(e) => {
                   field.onChange(e);
-                  if (errors.location) trigger('title'); // 입력 중일 때 유효성 검사 트리거
+                  if (errors.location) trigger('location'); // 입력 중일 때 유효성 검사 트리거
                 }}
                 error={errors.location?.message}
                 placeholder="약속명을 20자 이내로 입력해주세요."
@@ -162,7 +152,7 @@ export default function CreateGatheringForm({
                 onChange={(date) => {
                   const formattedDate = date.toLocaleString();
                   onChange(formattedDate);
-                  trigger('imageUrl'); // 유효성 검사 실행
+                  trigger('dateTime'); // 유효성 검사 실행
                 }}
               />
             )}
@@ -185,6 +175,7 @@ export default function CreateGatheringForm({
                 variant="filled"
                 min={4}
                 max={20}
+                error={errors.totalCount?.message}
                 classNames={{
                   input:
                     'h-11 py-2.5 px-4 bg-gray-100 placeholder:text-gray-400 font-pretendard text-base font-medium rounded-xl',
@@ -219,7 +210,7 @@ export default function CreateGatheringForm({
         <div className="flex justify-between gap-4 pt-10">
           <Button
             type="submit"
-            disabled={!isValid}
+            disabled={!isValid || isSubmitting}
             className="btn-filled h-11 flex-1 text-base font-medium disabled:bg-gray-200"
           >
             {isEdit ? '수정' : '확인'}

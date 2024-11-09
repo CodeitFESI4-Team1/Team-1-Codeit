@@ -33,7 +33,7 @@ export default function CreateCrewForm({
     setValue,
     trigger,
     clearErrors,
-    formState: { errors, isValid },
+    formState: { errors, isValid, isSubmitting },
   } = useForm<CreateCrewRequestTypes>({
     defaultValues: data,
     mode: 'onBlur',
@@ -83,12 +83,6 @@ export default function CreateCrewForm({
             control={control}
             rules={{
               required: '필수 입력사항입니다.',
-              validate: (value) => {
-                if (value && value.trim().length > 0) {
-                  return true; // 입력이 있을 경우 에러 해제
-                }
-                return '필수 입력사항입니다.'; // 입력이 비어있을 경우 에러 메시지 표시
-              },
             }}
             render={({ field }) => (
               <TextInput
@@ -164,7 +158,9 @@ export default function CreateCrewForm({
           <Controller
             name="imageUrl"
             control={control}
-            rules={{ required: '이미지를 선택해주세요.' }}
+            rules={{
+              required: '이미지를 선택해주세요.',
+            }}
             render={({ field }) => (
               <FileInputWrap
                 {...field}
@@ -221,7 +217,6 @@ export default function CreateCrewForm({
               )}
             />
           </div>
-          {errors.mainLocation && <p className="text-red-500">{errors.mainLocation.message}</p>}
         </div>
 
         <div className="flex flex-col gap-3">
@@ -244,6 +239,7 @@ export default function CreateCrewForm({
                 variant="filled"
                 min={4}
                 max={20}
+                error={errors.totalCount?.message}
                 classNames={{
                   input:
                     'h-11 py-2.5 px-4 bg-gray-100 placeholder:text-gray-400 font-pretendard text-base font-medium rounded-xl',
@@ -252,13 +248,12 @@ export default function CreateCrewForm({
               />
             )}
           />
-          {errors.totalCount && <p className="text-red-500">{errors.totalCount.message}</p>}
         </div>
 
         <div className="flex justify-between gap-4 pt-18">
           <Button
             type="submit"
-            disabled={!isValid}
+            disabled={!isValid || isSubmitting}
             className="btn-filled h-11 flex-1 text-base font-medium disabled:bg-gray-200"
           >
             {isEdit ? '수정' : '확인'}
