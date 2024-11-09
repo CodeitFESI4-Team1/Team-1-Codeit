@@ -51,7 +51,10 @@ export default function GatheringDetailModalPresenter({
           {isToday(data?.dateTime) && (
             <strong className="absolute right-0 top-0 flex items-center gap-2 bg-blue-600 px-4 py-2 text-base font-medium text-white">
               <Image src={IcoClock} width={15} height={13} alt="아이콘" />
-              <span>오늘 {new Date(data?.dateTime).getHours()}시 마감</span>
+              <span>
+                오늘 {formatDate(data?.dateTime).time.split(':')[0]}시{' '}
+                {formatDate(data?.dateTime).time.split(':')[1]}분 마감
+              </span>
             </strong>
           )}
         </figure>
