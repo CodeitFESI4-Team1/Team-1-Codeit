@@ -253,7 +253,7 @@ export const MyReviewData: { data: MyReview[] } = {
       id: 6,
       rate: 5,
       comment: '복식호흡을 할 수 있게 됐어요 감사합니다',
-      createdAt: '2024-10-31T00:56',
+      createdAt: '2024-10-31T10:09:12.306+09:006',
       gatheringLocation: '어느동',
     },
     {
