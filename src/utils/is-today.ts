@@ -11,7 +11,6 @@ export default function isToday(dateString: string): boolean {
     date.getDate() === koreaNow.getDate() &&
     date.getMonth() === koreaNow.getMonth() &&
     date.getFullYear() === koreaNow.getFullYear() &&
-    date.getHours() >= koreaNow.getHours() &&
-    date.getMinutes() >= koreaNow.getMinutes()
+    date.getTime() >= koreaNow.getTime()
   );
 }
