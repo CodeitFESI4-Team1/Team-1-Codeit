@@ -65,8 +65,8 @@ export default function CreationPage() {
   ];
 
   return (
-    <div className="">
-      <div className="pl-4 md:pt-2">
+    <div>
+      <div className="py-4 md:py-6">
         <PopOverCalendar value={selectedDate} onChange={(d) => setSelectedDate(d)} />
       </div>
       <GatheringListWithDate gatheringList={creationGatheringList} />

@@ -29,7 +29,7 @@ export default function MyGatheringLayout({
   };
 
   return (
-    <div className="mt-4 md:mx-[46px] md:mt-[45px]">
+    <div className="px-3 py-8 md:px-8 md:py-12.5 lg:px-11.5">
       <Tabs
         variant="default"
         tabs={myGatheringTabs}
