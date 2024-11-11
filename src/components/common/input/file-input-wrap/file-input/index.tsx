@@ -77,7 +77,7 @@ export default function FileInput({ value, isBlur, onChange }: FileInputProps) {
   }, [fileReader]);
 
   useEffect(() => {
-    if (isBlur) {
+    if (isBlur && value) {
       setPreview(null); // 블러 상태에서 미리보기 제거
     }
   }, [isBlur]);
