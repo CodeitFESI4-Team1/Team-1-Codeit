@@ -1,4 +1,4 @@
-import { CrewCardInform } from '@/src/types/crew-card';
+import { ConditionTypes, CrewCardInform, PageableTypes } from '@/src/types/crew-card';
 import { getCrewList } from '../_apis/crew/get-crew-list';
 
 // Crew data 변환 로직을 간소화한 helper 함수
@@ -20,20 +20,21 @@ const mapCrewData = (crew: CrewCardInform) => ({
   crewMember: crew.crewMember,
 });
 
-export function useGetCrewQuery() {
+export function useGetCrewQuery(condition: ConditionTypes) {
   interface QueryParams {
     pageParam?: number;
   }
 
   interface Page {
-    hasNextPage: boolean;
+    hasNext: boolean;
   }
 
   return {
     queryKey: ['crew'],
-    queryFn: ({ pageParam = 0 }: QueryParams) => getCrewList(pageParam, 3),
+    queryFn: ({ pageParam = 0 }: QueryParams) =>
+      getCrewList(condition, { page: pageParam, size: 6, sort: ['string'] }),
     getNextPageParam: (lastPage: Page, allPages: Page[]) =>
-      lastPage.hasNextPage ? allPages.length + 1 : undefined,
+      lastPage.hasNext ? allPages.length : undefined,
     select: (data: CrewCardInform[]) => data.map(mapCrewData),
   };
 }

@@ -15,14 +15,21 @@ import { CrewCardInformResponse } from '@/src/types/crew-card';
 import IcoSearch from '@/public/assets/icons/ic-search.svg';
 
 export default function Home() {
-  const [mainCategory, setMainCategory] = useState('cardio_strength');
-  const [subCategory, setSubCategory] = useState('running');
+  const [mainCategory, setMainCategory] = useState('유산소/근력');
+  const [subCategory, setSubCategory] = useState('러닝');
   const [sort, setSort] = useState<string | null>('latest');
-  const [region, setRegion] = useState<string | null>('all');
+  const [region, setRegion] = useState<string>('서울특별시');
   const [search, setSearch] = useState('');
 
-  const { data, ref, isFetchingNextPage } =
-    useInfiniteScroll<CrewCardInformResponse>(useGetCrewQuery());
+  const { data, ref, isFetchingNextPage } = useInfiniteScroll(
+    useGetCrewQuery({
+      keyword: search,
+      mainLocation: region,
+      mainCategory,
+      subCategory,
+      sortType: sort === 'latest' ? 'LATEST' : 'POPULAR',
+    }),
+  );
 
   return (
     <div className="py-8 md:py-12.5">
@@ -55,10 +62,10 @@ export default function Home() {
               name="region"
               variant="default"
               data={regionData.map((dataItem) => dataItem.main)}
-              placeholder="전체"
+              placeholder="서울특별시"
               value={region}
               className="w-[130px]"
-              onChange={setRegion}
+              onChange={(newValue) => setRegion(newValue ?? '')}
             />
             <DropDown
               name="sort"

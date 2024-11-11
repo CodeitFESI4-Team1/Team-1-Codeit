@@ -2,9 +2,23 @@ export type ImageList = {
   imagePath: string;
 }[];
 
+export interface ConditionTypes {
+  keyword: string;
+  mainLocation: string;
+  mainCategory: string;
+  subCategory: string;
+  sortType: 'LATEST' | 'POPULAR';
+}
+
+export interface PageableTypes {
+  page: number;
+  size: number;
+  sort: string[];
+}
+
 export type CrewCardInformResponse = {
   data: CrewCardInform[];
-  hasNextPage: boolean;
+  hasNext: boolean;
 };
 
 export type CrewCardInform = {

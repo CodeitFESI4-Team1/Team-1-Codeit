@@ -21,14 +21,14 @@ export default function CategoryContainer({
   const [categoryIndex, setCategoryIndex] = useState(0);
 
   useEffect(() => {
-    if (subCategory !== category[categoryIndex].items[0].value) {
-      setSubCategory(category[categoryIndex].items[0].value);
+    if (subCategory !== category[categoryIndex].items[0].label) {
+      setSubCategory(category[categoryIndex].items[0].label);
     }
   }, [mainCategory, categoryIndex]);
 
   useEffect(() => {
-    if (mainCategory !== category[categoryIndex].title.value) {
-      setMainCategory(category[categoryIndex].title.value);
+    if (mainCategory !== category[categoryIndex].title.label) {
+      setMainCategory(category[categoryIndex].title.label);
     }
   }, [subCategory]);
 
