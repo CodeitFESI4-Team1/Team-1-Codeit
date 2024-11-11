@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Divider } from '@mantine/core';
 import { useGetCrewQuery } from '@/src/_queries/crew-queries';
@@ -11,17 +11,16 @@ import HeroCrew from '@/src/app/_components/hero/hero-crew';
 import CrewCardList from '@/src/components/common/crew-list/crew-card-list';
 import DropDown from '@/src/components/common/input/drop-down';
 import TextInput from '@/src/components/common/input/text-input';
-import { CrewCardInformResponse } from '@/src/types/crew-card';
 import IcoSearch from '@/public/assets/icons/ic-search.svg';
 
 export default function Home() {
-  const [mainCategory, setMainCategory] = useState('유산소/근력');
-  const [subCategory, setSubCategory] = useState('러닝');
+  const [mainCategory, setMainCategory] = useState('');
+  const [subCategory, setSubCategory] = useState('');
   const [sort, setSort] = useState<string | null>('latest');
-  const [region, setRegion] = useState<string>('서울특별시');
+  const [region, setRegion] = useState<string>('');
   const [search, setSearch] = useState('');
 
-  const { data, ref, isFetchingNextPage } = useInfiniteScroll(
+  const { data, ref, isFetchingNextPage, refetch } = useInfiniteScroll(
     useGetCrewQuery({
       keyword: search,
       mainLocation: region,
@@ -30,6 +29,10 @@ export default function Home() {
       sortType: sort === 'latest' ? 'LATEST' : 'POPULAR',
     }),
   );
+
+  useEffect(() => {
+    refetch();
+  }, [mainCategory, subCategory, sort, region, search]);
 
   return (
     <div className="py-8 md:py-12.5">

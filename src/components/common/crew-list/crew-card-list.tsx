@@ -14,7 +14,7 @@ function CrewCardList(
   { data, isFetchingNextPage, inWhere }: CrewCardListProps,
   ref: React.Ref<HTMLDivElement>,
 ) {
-  const crewDataList = data?.pages.flatMap((page) => page.data) ?? [];
+  const crewDataList = data?.pages.flatMap((page) => page.content);
   const gridColsStyle = inWhere === 'my-crew' ? '' : 'lg:grid-cols-2';
 
   if (!crewDataList)
@@ -28,18 +28,18 @@ function CrewCardList(
     <>
       <ul className={`mx-auto grid w-full grid-cols-1 gap-x-2 gap-y-2 ${gridColsStyle}`}>
         {crewDataList.map((inform) => (
-          <li key={inform.crewId} className="w-full">
+          <li key={inform.id} className="w-full">
             <CrewCard
               inWhere={inWhere}
-              id={inform.crewId}
-              capacity={inform.capacity}
+              id={inform.id}
+              totalCount={inform.totalCount}
               isConfirmed={inform.isConfirmed}
-              location={inform.location}
-              detailedLocation={inform.detailedLocation}
-              name={inform.name}
-              thumbnail={inform.images[0].imagePath}
+              mainLocation={inform.mainLocation}
+              subLocation={inform.subLocation}
+              title={inform.title}
+              imageUrl={inform.imageUrl}
               participantCount={inform.participantCount}
-              gatheringCount={inform.gatheringCount}
+              totalGatheringCount={inform.totalGatheringCount}
               crewMember={inform.crewMember}
             />
           </li>

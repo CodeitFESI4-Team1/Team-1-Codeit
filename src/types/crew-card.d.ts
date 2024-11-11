@@ -17,9 +17,24 @@ export interface PageableTypes {
 }
 
 export type CrewCardInformResponse = {
-  data: CrewCardInform[];
+  content: CrewCardListTypes[];
   hasNext: boolean;
 };
+
+export interface CrewCardListTypes {
+  id: number;
+  mainCategory?: string;
+  subCategory?: string;
+  title: string;
+  mainLocation: string;
+  subLocation: string;
+  participantCount: number;
+  totalCount: number;
+  imageUrl: string;
+  isConfirmed: boolean;
+  totalGatheringCount: number;
+  crewMember?: CrewMemberList[];
+}
 
 export type CrewCardInform = {
   crewId: number;
