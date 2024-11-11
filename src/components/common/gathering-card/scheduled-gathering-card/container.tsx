@@ -13,7 +13,7 @@ interface ScheduledGatheringCardContainerProps {
     currentCount: number;
     totalCount: number;
     imageUrl: string;
-    isLiked: boolean;
+    liked: boolean;
   };
 }
 
@@ -33,7 +33,7 @@ export default function ScheduledGatheringCardContainer({
     totalCount: 10,
     imageUrl:
       'https://www.dabur.com/Blogs/Doshas/Importance%20and%20Benefits%20of%20Yoga%201020x450.jpg',
-    isLiked: false,
+    liked: false,
     isGatherCaptain: false,
     isParticipant: false,
     participants: [
