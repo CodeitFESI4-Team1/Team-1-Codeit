@@ -11,7 +11,7 @@ import HeroCrew from '@/src/app/_components/hero/hero-crew';
 import CrewCardList from '@/src/components/common/crew-list/crew-card-list';
 import DropDown from '@/src/components/common/input/drop-down';
 import TextInput from '@/src/components/common/input/text-input';
-import { CrewCardInformResponse } from '@/src/types/crew-card';
+import { MainCrewListResponse } from '@/src/types/crew-card';
 import IcoSearch from '@/public/assets/icons/ic-search.svg';
 
 export default function Home() {
@@ -22,7 +22,7 @@ export default function Home() {
   const [search, setSearch] = useState('');
 
   const { data, ref, isFetchingNextPage } =
-    useInfiniteScroll<CrewCardInformResponse>(useGetCrewQuery());
+    useInfiniteScroll<MainCrewListResponse>(useGetCrewQuery());
 
   return (
     <div className="py-8 md:py-12.5">

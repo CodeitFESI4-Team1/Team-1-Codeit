@@ -1,40 +1,40 @@
-'use client';
+// 'use client';
 
-import Image from 'next/image';
-import { useQuery } from '@tanstack/react-query';
-import { getUsersQuery } from '@/src/_queries/useGetUserQuery';
-import { ApiError } from '@/src/utils/api';
+// import Image from 'next/image';
+// import { useQuery } from '@tanstack/react-query';
+// import { getUsersQuery } from '@/src/_queries/useGetUserQuery';
+// import { ApiError } from '@/src/utils/api';
 
-// FIX: react-query로 임시로 작성된 코드입니다. 추후 삭제
+// // FIX: react-query로 임시로 작성된 코드입니다. 추후 삭제
 
-export default function TestPage() {
-  const { data: users, error, isLoading, isError } = useQuery(getUsersQuery());
+// export default function TestPage() {
+//   const { data: users, error, isLoading, isError } = useQuery(getUsersQuery());
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+//   if (isLoading) {
+//     return <div>Loading...</div>;
+//   }
 
-  if (isError && error instanceof ApiError) {
-    return (
-      <div>
-        Error {error.status}: {error.message}
-      </div>
-    );
-  }
-  return (
-    <div>
-      <h1>Users</h1>
-      <ul>
-        {users?.map((user) => (
-          <li key={user.id}>
-            <h2>{user.name}</h2>
-            <Image src={user.profileUrl} alt={`${user.name}'s profile`} width={50} height={50} />
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
+//   if (isError && error instanceof ApiError) {
+//     return (
+//       <div>
+//         Error {error.status}: {error.message}
+//       </div>
+//     );
+//   }
+//   return (
+//     <div>
+//       <h1>Users</h1>
+//       <ul>
+//         {users?.map((user) => (
+//           <li key={user.id}>
+//             <h2>{user.name}</h2>
+//             <Image src={user.profileUrl} alt={`${user.name}'s profile`} width={50} height={50} />
+//           </li>
+//         ))}
+//       </ul>
+//     </div>
+//   );
+// }
 
 // SSR
 
