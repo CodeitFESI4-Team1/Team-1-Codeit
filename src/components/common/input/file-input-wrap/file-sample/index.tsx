@@ -10,16 +10,6 @@ export interface FileSampleProps {
 export default function FileSample({ image, isBlur, onChange }: FileSampleProps) {
   const radioInput = useRef<HTMLInputElement>(null);
 
-  const convertUrlToFile = async (
-    url: string | undefined,
-    fileName: string,
-    mimeType: string,
-  ): Promise<File> => {
-    const res = await fetch(url?.toString() ?? '');
-    const blob = await res.blob();
-    return new File([blob], fileName, { type: mimeType });
-  };
-
   const handleClick = async () => {
     onChange(image);
   };

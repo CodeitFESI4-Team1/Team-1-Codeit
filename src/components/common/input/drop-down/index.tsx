@@ -1,5 +1,5 @@
-import { LegacyRef, useEffect, useMemo, useState } from 'react';
-import { ComboboxData, Select, SelectProps } from '@mantine/core';
+import { LegacyRef, useEffect, useMemo, useRef, useState } from 'react';
+import { ComboboxData, Select } from '@mantine/core';
 import IconArrow from '@/public/assets/icons/ic-arrow';
 
 export interface DropDownProps {
@@ -11,6 +11,7 @@ export interface DropDownProps {
   onChange: (newValue: string | null) => void;
   className?: string;
   inWhere?: string;
+  error?: string | null;
   ref?: LegacyRef<HTMLInputElement>;
 }
 
@@ -23,28 +24,14 @@ export default function DropDown({
   onChange,
   placeholder,
   className,
-  ref,
+  error,
   ...rest
 }: DropDownProps) {
   const [isFocused, setIsFocused] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleBlur = () => {
-    setIsFocused(false);
-    if (inWhere === 'form' && !value) {
-      setError('필수 입력사항입니다.');
-    } else {
-      setError(null);
-    }
-  };
-
-  const handleChange = (newValue: string | null) => {
-    onChange(newValue);
-    setIsFocused(false);
-    if (inWhere === 'form' && !newValue) {
-      setError(newValue ? null : '필수 입력사항입니다.');
-    }
-  };
+  const formStyle =
+    inWhere === 'form' ? 'bg-gray-100 placeholder-gray-400' : 'bg-white placeholder-gray-800';
 
   const getColor = useMemo(() => {
     if (isFocused) return '#ffffff';
@@ -52,15 +39,29 @@ export default function DropDown({
     return '#D1D5DB';
   }, [isFocused, inWhere]);
 
-  const renderSelectOption: SelectProps['renderOption'] = ({ option }) => (
-    <div data-testid="dropDownOption">{option.label}</div>
-  );
+  const getFocusStyle = () => {
+    if (variant === 'default') {
+      return isFocused
+        ? 'focus:bg-black focus:text-white focus:placeholder:text-white'
+        : 'bg-white text-gray-800 placeholder-gray-800';
+    }
+
+    return isFocused
+      ? 'focus:bg-black focus:text-white focus:placeholder:text-white sort-bg-on pl-10'
+      : 'bg-white text-gray-800 placeholder-gray-800 sort-bg pl-10';
+  };
+
+  const handleChange = (newValue: string | null) => {
+    onChange(newValue);
+    setIsFocused(false);
+    inputRef.current?.blur();
+  };
 
   useEffect(() => {
     if (value === null) {
       onChange(null);
     }
-  }, [value, onChange]);
+  }, [value]);
 
   return (
     <Select
@@ -69,9 +70,8 @@ export default function DropDown({
       data={data}
       value={value}
       name={name}
-      dropdownOpened={isFocused}
       onFocus={() => setIsFocused(true)}
-      onBlur={handleBlur}
+      onBlur={() => setIsFocused(false)}
       onChange={handleChange}
       color={getColor}
       leftSection=""
@@ -79,9 +79,7 @@ export default function DropDown({
       placeholder={placeholder}
       classNames={{
         root: `${className}`,
-        input: `${variant === 'sort' && (isFocused ? 'sort-bg-on pl-10' : 'sort-bg pl-10')} ${
-          inWhere === 'form' ? 'bg-gray-100 placeholder-gray-400' : 'bg-white placeholder-gray-800'
-        } font-pretendard h-10 md:h-11 focus:bg-black focus:placeholder:text-white focus:text-white text-base font-medium rounded-xl border-0 py-2.5 px-3`,
+        input: `${getFocusStyle()} ${formStyle} font-pretendard h-10 md:h-11 text-base font-medium rounded-xl border-0 py-2.5 px-3`,
         section: `end-1 ${variant === 'sort' && 'data-[position=right]:hidden start-1'}`,
         dropdown: 'rounded-xl shadow-xl p-0 border-0 mt-2',
         option: `py-1 m-1 px-2 mr-0 rounded-xl font-pretendard text-gray-800 text-base font-medium hover:bg-blue-100 ${
@@ -96,8 +94,8 @@ export default function DropDown({
         middlewares: { flip: false, shift: false },
         offset: 0,
       }}
-      renderOption={renderSelectOption}
-      ref={ref as LegacyRef<HTMLInputElement>}
+      withCheckIcon={false}
+      ref={inputRef}
       {...rest}
     />
   );

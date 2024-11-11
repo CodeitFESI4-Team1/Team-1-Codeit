@@ -1,7 +1,6 @@
 'use client';
 
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm, useWatch } from 'react-hook-form';
 import { NumberInput } from '@mantine/core';
 import Button from '@/src/components/common/input/button';
 import DateTimePicker from '@/src/components/common/input/date-time-picker';
@@ -27,22 +26,17 @@ export default function CreateGatheringForm({
   data,
 }: CreateGatheringFormTypes) {
   const {
-    register,
+    control,
     handleSubmit,
-    formState: { errors },
     trigger,
-  } = useForm<CreateGatheringRequestType>();
-  const [values, setValues] = useState<CreateGatheringRequestType>(data);
-  const requiredFields: (keyof CreateGatheringRequestType)[] = [
-    'title',
-    'imageUrl',
-    'location',
-    'dateTime',
-    'totalCount',
-  ];
-  const isFormValid =
-    requiredFields.every((field) => values[field as keyof CreateGatheringRequestType]) &&
-    Object.keys(errors).length === 0;
+    formState: { errors, isValid, isSubmitting },
+  } = useForm<CreateGatheringRequestType>({
+    defaultValues: data,
+    mode: 'onBlur',
+  });
+  const title = useWatch({ control, name: 'title' });
+  const location = useWatch({ control, name: 'location' });
+  const introduce = useWatch({ control, name: 'introduce' });
 
   return (
     <form onSubmit={isEdit ? handleSubmit(onEdit) : handleSubmit(onSubmit)}>
@@ -53,35 +47,33 @@ export default function CreateGatheringForm({
               약속 이름
             </label>
             <span>
-              <span className="text-blue-500">{values.title.length}</span>/20
+              <span className="text-blue-500">{title.length}</span>/20
             </span>
           </div>
-          <TextInput
-            id="gathering-title"
-            variant="filled"
-            value={values.title}
-            register={{
-              ...register('title', {
-                required: '필수 입력사항입니다.',
-                pattern: /^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣|a-z|A-Z|0-9| ]{1,20}$/,
-                onBlur: () => trigger('title'),
-              }),
+          <Controller
+            name="title"
+            control={control}
+            rules={{
+              required: '필수 입력사항입니다.',
             }}
-            error={errors.title?.message?.toString()}
-            onChange={(e) =>
-              setValues((prevValues) => {
-                if (e.target.value.length <= 20) {
-                  return { ...prevValues, title: e.target.value };
-                }
-                return prevValues;
-              })
-            }
-            placeholder="약속 이름을 20자 이내로 입력해주세요."
-            maxLength={20}
-            classNames={{
-              input:
-                'h-11 py-2.5 px-4 bg-gray-100 placeholder:text-gray-400 font-pretendard text-base font-medium rounded-xl aria-[invalid=true]:border-none',
-            }}
+            render={({ field }) => (
+              <TextInput
+                {...field}
+                id="gathering-title"
+                variant="filled"
+                onChange={(e) => {
+                  field.onChange(e);
+                  if (errors.title) trigger('title'); // 입력 중일 때 유효성 검사 트리거
+                }}
+                error={errors.title?.message}
+                placeholder="약속명을 20자 이내로 입력해주세요."
+                maxLength={20}
+                classNames={{
+                  input:
+                    'h-11 py-2.5 px-4 bg-gray-100 placeholder:text-gray-400 font-pretendard text-base font-medium rounded-xl aria-[invalid=true]:border-none',
+                }}
+              />
+            )}
           />
         </div>
         <div className="flex flex-col gap-3">
@@ -89,12 +81,22 @@ export default function CreateGatheringForm({
             이미지 선택/첨부
           </label>
           <div className="flex">
-            <FileInputWrap
-              sample={ImgGatheringSamples}
-              value={values.imageUrl}
-              onChange={(newValue) =>
-                setValues((prevValues) => ({ ...prevValues, imageUrl: newValue }))
-              }
+            <Controller
+              name="imageUrl"
+              control={control}
+              rules={{
+                required: '이미지를 선택해주세요.',
+              }}
+              render={({ field }) => (
+                <FileInputWrap
+                  {...field}
+                  sample={ImgGatheringSamples}
+                  onChange={(e) => {
+                    field.onChange(e);
+                    trigger('imageUrl'); // 유효성 검사 실행
+                  }}
+                />
+              )}
             />
           </div>
         </div>
@@ -104,35 +106,33 @@ export default function CreateGatheringForm({
               장소
             </label>
             <span>
-              <span className="text-blue-500">{values.location.length}</span>/20
+              <span className="text-blue-500">{location.length}</span>/20
             </span>
           </div>
-          <TextInput
-            id="gathering-location"
-            variant="filled"
-            value={values.location}
-            register={{
-              ...register('location', {
-                required: '필수 입력사항입니다.',
-                pattern: /^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣|a-z|A-Z|0-9| ]{1,20}$/,
-                onBlur: () => trigger('location'),
-              }),
+          <Controller
+            name="location"
+            control={control}
+            rules={{
+              required: '필수 입력사항입니다.',
             }}
-            error={errors.location?.message?.toString()}
-            onChange={(e) =>
-              setValues((prevValues) => {
-                if (e.target.value.length <= 20) {
-                  return { ...prevValues, location: e.target.value };
-                }
-                return prevValues;
-              })
-            }
-            placeholder="자세한 주소를 입력해주세요."
-            maxLength={20}
-            classNames={{
-              input:
-                'h-11 py-2.5 px-4 bg-gray-100 placeholder:text-gray-400 font-pretendard text-base font-medium rounded-xl aria-[invalid=true]:border-none',
-            }}
+            render={({ field }) => (
+              <TextInput
+                {...field}
+                id="gathering-location"
+                variant="filled"
+                onChange={(e) => {
+                  field.onChange(e);
+                  if (errors.location) trigger('location'); // 입력 중일 때 유효성 검사 트리거
+                }}
+                error={errors.location?.message}
+                placeholder="약속명을 20자 이내로 입력해주세요."
+                maxLength={20}
+                classNames={{
+                  input:
+                    'h-11 py-2.5 px-4 bg-gray-100 placeholder:text-gray-400 font-pretendard text-base font-medium rounded-xl aria-[invalid=true]:border-none',
+                }}
+              />
+            )}
           />
         </div>
         <div className="flex flex-col gap-3">
@@ -141,46 +141,49 @@ export default function CreateGatheringForm({
               날짜
             </label>
           </div>
-          <DateTimePicker
-            fullDate={new Date()}
-            onChange={(date: Date) =>
-              setValues((prevValues) => ({
-                ...prevValues,
-                dateTime: date.toLocaleString(),
-              }))
-            }
+          <Controller
+            name="dateTime"
+            control={control}
+            rules={{ required: '날짜와 시간을 선택해주세요.' }}
+            render={({ field: { onChange, ...field } }) => (
+              <DateTimePicker
+                {...field}
+                fullDate={new Date()}
+                onChange={(date) => {
+                  const formattedDate = date.toLocaleString();
+                  onChange(formattedDate);
+                  trigger('dateTime'); // 유효성 검사 실행
+                }}
+              />
+            )}
           />
         </div>
         <div className="flex flex-col gap-3">
           <label htmlFor="gathering-totalCount" className="text-base font-semibold text-gray-800">
             모집 정원
           </label>
-          <NumberInput
-            id="gathering-totalCount"
-            variant="filled"
-            value={values.totalCount}
-            {...register('totalCount', {
-              min: 4,
-              max: 20,
-              onBlur: () => trigger('totalCount'),
-            })}
+          <Controller
             name="totalCount"
-            onChange={(newValue) =>
-              setValues((prevValues) => ({ ...prevValues, totalCount: Number(newValue) }))
-            }
-            placeholder="자세한 모집 정원을 입력해주세요."
-            min={4}
-            max={20}
-            classNames={{
-              input:
-                'h-11 py-2.5 px-4 bg-gray-100 placeholder:text-gray-400 font-pretendard text-base font-medium rounded-xl',
+            control={control}
+            rules={{
+              required: '모집 정원을 입력해주세요.',
             }}
+            render={({ field }) => (
+              <NumberInput
+                {...field}
+                id="gathering-totalCount"
+                variant="filled"
+                min={4}
+                max={20}
+                error={errors.totalCount?.message}
+                classNames={{
+                  input:
+                    'h-11 py-2.5 px-4 bg-gray-100 placeholder:text-gray-400 font-pretendard text-base font-medium rounded-xl',
+                }}
+                placeholder="자세한 모집 정원을 입력해주세요."
+              />
+            )}
           />
-          {errors.totalCount && (
-            <p className="m_8f816625 mantine-InputWrapper-error mantine-TextInput-error">
-              4명 이상 20명 이하로 입력해주세요.
-            </p>
-          )}
         </div>
         <div className="flex flex-col gap-3">
           <div className="flex justify-between">
@@ -188,23 +191,26 @@ export default function CreateGatheringForm({
               모집 설명/공지
             </label>
             <span>
-              <span className="text-blue-500">{values.introduce.length}</span>/100
+              <span className="text-blue-500">{introduce.length}</span>/100
             </span>
           </div>
-          <Textarea
-            placeholder="모집 설명/공지를 100자 이내로 입력해주세요."
-            value={values.introduce}
-            onChange={(e) =>
-              setValues((prevValues) => ({ ...prevValues, introduce: e.target.value }))
-            }
-            maxLength={100}
-            inputClassNames="h-40 py-2.5 px-4 bg-gray-100 placeholder:text-gray-400 font-pretendard text-base font-medium rounded-xl"
+          <Controller
+            name="introduce"
+            control={control}
+            render={({ field }) => (
+              <Textarea
+                {...field}
+                placeholder="모집 설명/공지를 100자 이내로 입력해주세요."
+                maxLength={100}
+                inputClassNames="h-40 py-2.5 px-4 bg-gray-100 placeholder:text-gray-400 font-pretendard text-base font-medium rounded-xl"
+              />
+            )}
           />
         </div>
         <div className="flex justify-between gap-4 pt-10">
           <Button
             type="submit"
-            disabled={!isFormValid}
+            disabled={!isValid || isSubmitting}
             className="btn-filled h-11 flex-1 text-base font-medium disabled:bg-gray-200"
           >
             {isEdit ? '수정' : '확인'}

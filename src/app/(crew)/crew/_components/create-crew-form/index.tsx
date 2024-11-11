@@ -31,9 +31,9 @@ export default function CreateCrewForm({
     control,
     handleSubmit,
     setValue,
-    getValues,
+    trigger,
     clearErrors,
-    formState: { errors, isValid },
+    formState: { errors, isValid, isSubmitting },
   } = useForm<CreateCrewRequestTypes>({
     defaultValues: data,
     mode: 'onBlur',
@@ -89,6 +89,10 @@ export default function CreateCrewForm({
                 {...field}
                 id="crew-title"
                 variant="filled"
+                onChange={(e) => {
+                  field.onChange(e);
+                  if (errors.title) trigger('title'); // 입력 중일 때 유효성 검사 트리거
+                }}
                 error={errors.title?.message}
                 placeholder="크루명을 20자 이내로 입력해주세요."
                 maxLength={20}
@@ -125,6 +129,7 @@ export default function CreateCrewForm({
                     field.onChange(value);
                     handleMainCategoryChange(value);
                   }}
+                  error={errors.mainCategory?.message}
                 />
               )}
             />
@@ -139,11 +144,11 @@ export default function CreateCrewForm({
                   placeholder="세부 카테고리"
                   data={categoryData[categoryIndex]?.items || []}
                   className="flex-1"
+                  error={errors.subCategory?.message}
                 />
               )}
             />
           </div>
-          {errors.mainCategory && <p className="text-red-500">{errors.mainCategory.message}</p>}
         </div>
 
         <div className="flex flex-col gap-3">
@@ -153,7 +158,9 @@ export default function CreateCrewForm({
           <Controller
             name="imageUrl"
             control={control}
-            rules={{ required: '이미지를 선택해주세요.' }}
+            rules={{
+              required: '이미지를 선택해주세요.',
+            }}
             render={({ field }) => (
               <FileInputWrap
                 {...field}
@@ -189,12 +196,14 @@ export default function CreateCrewForm({
                     field.onChange(value);
                     handleMainLocationChange(value);
                   }}
+                  error={errors.mainLocation?.message}
                 />
               )}
             />
             <Controller
               name="subLocation"
               control={control}
+              rules={{ required: '시/군/구를 선택해주세요.' }}
               render={({ field }) => (
                 <DropDown
                   {...field}
@@ -203,11 +212,11 @@ export default function CreateCrewForm({
                   placeholder="시/군/구"
                   data={regionData[regionIndex]?.areas || []}
                   className="flex-1"
+                  error={errors.subLocation?.message}
                 />
               )}
             />
           </div>
-          {errors.mainLocation && <p className="text-red-500">{errors.mainLocation.message}</p>}
         </div>
 
         <div className="flex flex-col gap-3">
@@ -230,6 +239,7 @@ export default function CreateCrewForm({
                 variant="filled"
                 min={4}
                 max={20}
+                error={errors.totalCount?.message}
                 classNames={{
                   input:
                     'h-11 py-2.5 px-4 bg-gray-100 placeholder:text-gray-400 font-pretendard text-base font-medium rounded-xl',
@@ -238,13 +248,12 @@ export default function CreateCrewForm({
               />
             )}
           />
-          {errors.totalCount && <p className="text-red-500">{errors.totalCount.message}</p>}
         </div>
 
         <div className="flex justify-between gap-4 pt-18">
           <Button
             type="submit"
-            disabled={!isValid}
+            disabled={!isValid || isSubmitting}
             className="btn-filled h-11 flex-1 text-base font-medium disabled:bg-gray-200"
           >
             {isEdit ? '수정' : '확인'}

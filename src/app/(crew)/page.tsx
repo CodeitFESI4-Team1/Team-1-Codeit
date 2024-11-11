@@ -46,18 +46,18 @@ export default function Home() {
               leftSection={
                 <Image src={IcoSearch} alt="search" width={21} height={21} className="-mr-4" />
               }
-              placeholder="검색어를 입력하세요"
+              placeholder="크루 이름, 위치를 검색하세요."
               inputClassNames="w-full h-11 pl-12 placeholder:text-gray-500 font-pretendard text-base font-medium text-gray-800 rounded-xl"
             />
           </div>
-          <div className="flex-0 flex justify-between gap-2 md:basis-57 md:gap-4">
+          <div className="flex-0 flex justify-between gap-2 md:basis-67 md:gap-4">
             <DropDown
               name="region"
               variant="default"
               data={regionData.map((dataItem) => dataItem.main)}
               placeholder="전체"
               value={region}
-              className="w-[110px]"
+              className="w-[130px]"
               onChange={setRegion}
             />
             <DropDown
@@ -69,7 +69,7 @@ export default function Home() {
               ]}
               placeholder="최신순"
               value={sort}
-              className="w-[110px]"
+              className="w-[130px]"
               onChange={setSort}
             />
           </div>
