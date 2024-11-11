@@ -1,7 +1,7 @@
 interface Tab {
   label: string;
   id: string;
-  route: string;
+  route?: string;
 }
 
 export interface TabsProps {
