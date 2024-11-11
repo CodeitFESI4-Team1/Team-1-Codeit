@@ -22,30 +22,23 @@ export default function CreateGatheringModalPresenter({
       opened={opened}
       onClose={onClose}
       centered
-      title="약속 잡기"
+      title="약속 만들기"
       styles={{
         root: { '--modal-size': '520px' },
         content: {
           boxShadow: '0 25px 50px -12px rgba(0,0,0,0.1)',
           borderRadius: '12px',
+          overflow: 'hidden',
         },
       }}
       classNames={{
         body: 'p-0',
         title: 'text-xl font-semibold text-gray-900',
       }}
+      scrollAreaComponent={ScrollArea.Autosize}
     >
-      <div>
-        <ScrollArea h={760}>
-          <div className="flex flex-col gap-8 p-6">
-            <CreateGatheringForm
-              data={data}
-              onSubmit={onSubmit}
-              onEdit={onEdit}
-              onClose={onClose}
-            />
-          </div>
-        </ScrollArea>
+      <div className="flex flex-col gap-8 p-6">
+        <CreateGatheringForm data={data} onSubmit={onSubmit} onEdit={onEdit} onClose={onClose} />
       </div>
     </Modal>
   );
