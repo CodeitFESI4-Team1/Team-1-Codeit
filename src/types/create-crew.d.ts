@@ -5,8 +5,8 @@ export interface CreateCrewRequestTypes {
   title: string;
   mainCategory: string;
   subCategory: string | null;
-  imageUrl: File | StaticImageData | null;
   mainLocation: string;
   subLocation: string | null;
   totalCount: number;
+  imageUrl: File | StaticImageData | null;
 }

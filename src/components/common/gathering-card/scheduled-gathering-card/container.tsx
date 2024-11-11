@@ -34,8 +34,8 @@ export default function ScheduledGatheringCardContainer({
     imageUrl:
       'https://www.dabur.com/Blogs/Doshas/Importance%20and%20Benefits%20of%20Yoga%201020x450.jpg',
     liked: false,
-    isGatherCaptain: false,
-    isParticipant: false,
+    gatheringCaptain: false,
+    participant: false,
     participants: [
       {
         id: 1,

@@ -6,7 +6,7 @@ import { useDisclosure } from '@mantine/hooks';
 import Profiles from '@/src/components/common/crew-list/profiles';
 import ConfirmCancelModal from '@/src/components/common/modal/confirm-cancel-modal';
 import ProgressBar from '@/src/components/common/progress-bar/index';
-import { CrewMemberList } from '@/src/types/crew-card';
+import { CrewMember } from '@/src/types/crew-card';
 import Check from '@/public/assets/icons/ic-check.svg';
 import KebabIcon from '@/public/assets/icons/kebab-btn.svg';
 
@@ -20,9 +20,7 @@ interface DetailCrewCardProps {
   isConfirmed: boolean;
   imageUrl: string;
   totalGatheringCount: number;
-  CrewMembers: CrewMemberList[];
-  isCaptain: boolean;
-  isCrew: boolean;
+  CrewMembers: CrewMember[];
 }
 
 export default function DetailCrewCard({
@@ -36,8 +34,6 @@ export default function DetailCrewCard({
   imageUrl,
   totalGatheringCount,
   CrewMembers,
-  isCaptain,
-  isCrew,
 }: DetailCrewCardProps) {
   const [confirmCancelOpened, { open: openConfirmCancel, close: closeConfirmCancel }] =
     useDisclosure();
@@ -65,7 +61,8 @@ export default function DetailCrewCard({
   return (
     <div className="relative flex h-[508px] max-w-full flex-col overflow-hidden rounded-[14px] bg-white shadow-bg md:h-[270px] md:flex-row lg:h-[270px] lg:w-[1180px]">
       {/* eslint-disable-next-line no-nested-ternary */}
-      {isCaptain ? (
+      {/* //TODO: captin, crew인 경우 로직 수정 */}
+      {/* {isCaptain ? (
         <Menu trigger="click" position="bottom-end" openDelay={100} closeDelay={400}>
           <Menu.Target>
             <div className="top-68 absolute right-6 top-[286px] cursor-pointer md:top-6 lg:top-6">
@@ -98,7 +95,7 @@ export default function DetailCrewCard({
             </Menu.Item>
           </Menu.Dropdown>
         </Menu>
-      ) : null}
+      ) : null} */}
 
       {/* 썸네일 */}
       <div className="relative h-[270px] w-full md:w-[385px] lg:w-[540px]">

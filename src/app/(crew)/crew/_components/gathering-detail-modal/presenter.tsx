@@ -117,7 +117,7 @@ export default function GatheringDetailModalPresenter({
               >
                 닫기
               </Button>
-              {!data?.isParticipant && (
+              {!data?.participant && (
                 <Button
                   type="button"
                   onClick={onJoin}
@@ -126,7 +126,7 @@ export default function GatheringDetailModalPresenter({
                   참여하기
                 </Button>
               )}
-              {data?.isParticipant && !data?.isGatherCaptain && (
+              {data?.participant && !data?.gatheringCaptain && (
                 <Button
                   type="button"
                   onClick={onExit}
@@ -135,7 +135,7 @@ export default function GatheringDetailModalPresenter({
                   탈퇴하기
                 </Button>
               )}
-              {data?.isGatherCaptain && (
+              {data?.gatheringCaptain && (
                 <Button
                   type="button"
                   onClick={onDelete}
