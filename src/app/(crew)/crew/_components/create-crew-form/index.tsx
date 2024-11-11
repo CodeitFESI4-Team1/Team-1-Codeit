@@ -160,12 +160,27 @@ export default function CreateCrewForm({
             control={control}
             rules={{
               required: '이미지를 선택해주세요.',
+              validate: {
+                fileSize: (file) =>
+                  file && file instanceof File && file.size <= 5242880
+                    ? true
+                    : '파일 크기는 5MB 이하여야 합니다.',
+                fileType: (file) =>
+                  file &&
+                  file instanceof File &&
+                  ['image/jpeg', 'image/jpg', 'image/png'].includes(file.type)
+                    ? true
+                    : 'JPG, PNG 파일만 업로드 가능합니다.',
+              },
             }}
             render={({ field }) => (
               <FileInputWrap
                 {...field}
                 sample={ImgCrewSamples}
-                onChange={(newValue) => field.onChange(newValue)}
+                onChange={(newValue) => {
+                  field.onChange(newValue);
+                  if (newValue instanceof File) trigger('imageUrl');
+                }}
               />
             )}
           />
