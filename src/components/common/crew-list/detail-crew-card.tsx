@@ -20,7 +20,7 @@ interface DetailCrewCardProps {
   isConfirmed: boolean;
   imageUrl: string;
   totalGatheringCount: number;
-  CrewMembers: CrewMember[];
+  crewMembers: CrewMember[];
 }
 
 export default function DetailCrewCard({
@@ -33,7 +33,7 @@ export default function DetailCrewCard({
   isConfirmed,
   imageUrl,
   totalGatheringCount,
-  CrewMembers,
+  crewMembers,
 }: DetailCrewCardProps) {
   const [confirmCancelOpened, { open: openConfirmCancel, close: closeConfirmCancel }] =
     useDisclosure();
@@ -127,7 +127,7 @@ export default function DetailCrewCard({
                 <span className="text-sm font-medium">모집 정원</span>
                 <span className="text-sm font-semibold">{participantCount}명</span>
                 <div className="pl-2">
-                  <Profiles profiles={CrewMembers} />
+                  <Profiles profiles={crewMembers} />
                 </div>
               </div>
 
