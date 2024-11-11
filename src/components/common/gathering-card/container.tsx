@@ -4,19 +4,10 @@ import { useEffect, useState } from 'react';
 import { useDisclosure } from '@mantine/hooks';
 import { getGathering } from '@/src/_apis/gathering/gathering-apis';
 import GatheringDetailModalContainer from '@/src/app/(crew)/crew/_components/gathering-detail-modal/container';
-import { GatheringDetailType } from '@/src/types/gathering-data';
+import { GatheringDetailType, GatheringType } from '@/src/types/gathering-data';
 import GatheringCardPresenter from './presenter';
 
-interface GatheringCardContainerProps {
-  id: number;
-  title: string;
-  dateTime: string;
-  location: string;
-  currentCount: number;
-  totalCount: number;
-  imageUrl: string;
-  isLiked: boolean;
-  // onLikeToggle: () => void;
+interface GatheringCardContainerProps extends GatheringType {
   className?: string;
 }
 
@@ -28,7 +19,7 @@ export default function GatheringCard({
   currentCount,
   totalCount,
   imageUrl,
-  isLiked: initialIsLiked,
+  liked: initialIsLiked,
   className,
 }: GatheringCardContainerProps) {
   const [opened, { open, close }] = useDisclosure(false);
