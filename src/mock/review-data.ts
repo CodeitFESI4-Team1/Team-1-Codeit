@@ -11,7 +11,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       rate: 5,
       comment:
         '글이 길어질 경우 글이 길어질 경우 확인 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 글이 길어질 경우 최고의 모임~',
-      createdAt: '2024-10-30T00:30',
+      createdAt: '2024-10-30T10:09:12.306+09:00',
       reviewer: {
         id: 1,
         nickname: '샘플1',
@@ -23,7 +23,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       id: 2,
       rate: 2,
       comment: '솔직히 좀 별로..',
-      createdAt: '2024-10-30T00:34',
+      createdAt: '2024-10-30T10:09:12.306+09:00',
       reviewer: {
         id: 2,
         nickname: '샘플2',
@@ -35,7 +35,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       id: 3,
       rate: 5,
       comment: '진짜 좋은 모임이었다.. 굿',
-      createdAt: '2024-10-30T00:50',
+      createdAt: '2024-10-30T10:09:12.306+09:00',
       reviewer: {
         id: 3,
         nickname: '샘플3',
@@ -47,7 +47,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       id: 4,
       rate: 5,
       comment: '모임계를 뒤집어 엎으셨다',
-      createdAt: '2024-10-30T00:52',
+      createdAt: '2024-10-30T10:09:12.306+09:00',
       reviewer: {
         id: 4,
         nickname: '샘플4',
@@ -59,7 +59,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       id: 5,
       rate: 4,
       comment: '좋아용',
-      createdAt: '2024-10-31T00:52',
+      createdAt: '2024-10-31T10:09:12.306+09:00',
       reviewer: {
         id: 5,
         nickname: '샘플5',
@@ -71,7 +71,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       id: 5,
       rate: 1,
       comment: '별로였음',
-      createdAt: '2024-10-31T00:52',
+      createdAt: '2024-10-31T10:09:12.306+09:00',
       reviewer: {
         id: 6,
         nickname: '샘플6',
@@ -83,7 +83,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       id: 5,
       rate: 4,
       comment: '나만 좋았냐',
-      createdAt: '2024-10-31T00:54',
+      createdAt: '2024-10-31T10:09:12.306+09:00',
       reviewer: {
         id: 7,
         nickname: '샘플7',
@@ -95,7 +95,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       id: 6,
       rate: 0,
       comment: '솔직히 좀 별로..',
-      createdAt: '2024-10-30T00:56',
+      createdAt: '2024-10-30T10:09:12.306+09:00',
       reviewer: {
         id: 2,
         nickname: '샘플2',
@@ -107,7 +107,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       id: 7,
       rate: 5,
       comment: '진짜 좋은 모임이었다.. 굿',
-      createdAt: '2024-10-30T00:56',
+      createdAt: '2024-10-30T10:09:12.306+09:00',
       reviewer: {
         id: 3,
         nickname: '샘플3',
@@ -119,7 +119,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       id: 8,
       rate: 4,
       comment: '모임계를 뒤집어 엎으셨다',
-      createdAt: '2024-10-30T00:56',
+      createdAt: '2024-10-30T10:09:12.306+09:00',
       reviewer: {
         id: 4,
         nickname: '샘플4',
@@ -131,7 +131,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       id: 9,
       rate: 5,
       comment: '좋아용',
-      createdAt: '2024-10-31T00:56',
+      createdAt: '2024-10-31T10:09:12.306+09:00',
       reviewer: {
         id: 5,
         nickname: '샘플5',
@@ -143,7 +143,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       id: 10,
       rate: 2,
       comment: '별로였음',
-      createdAt: '2024-10-31T00:56',
+      createdAt: '2024-10-31T10:09:12.306+09:00',
       reviewer: {
         id: 6,
         nickname: '샘플6',
@@ -155,7 +155,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       id: 11,
       rate: 5,
       comment: '나만 좋았냐',
-      createdAt: '2024-10-31T00:56',
+      createdAt: '2024-10-31T10:09:12.306+09:00',
       reviewer: {
         id: 7,
         nickname: '샘플7',
@@ -167,7 +167,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       id: 12,
       rate: 4,
       comment: '모임계를 뒤집어 엎으셨다',
-      createdAt: '2024-10-30T00:56',
+      createdAt: '2024-10-30T10:09:12.306+09:00',
       reviewer: {
         id: 4,
         nickname: '샘플4',
@@ -179,7 +179,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       id: 13,
       rate: 5,
       comment: '좋아용',
-      createdAt: '2024-10-31T00:56',
+      createdAt: '2024-10-31T10:09:12.306+09:00',
       reviewer: {
         id: 5,
         nickname: '샘플5',
@@ -191,7 +191,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       id: 14,
       rate: 1,
       comment: '별로였음',
-      createdAt: '2024-10-31T00:56',
+      createdAt: '2024-10-31T10:09:12.306+09:00',
       reviewer: {
         id: 6,
         nickname: '샘플6',
@@ -203,7 +203,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       id: 15,
       rate: 4,
       comment: '나만 좋았냐',
-      createdAt: '2024-10-31T00:56',
+      createdAt: '2024-10-31T10:09:12.306+09:00',
       reviewer: {
         id: 7,
         nickname: '샘플7',
@@ -223,7 +223,7 @@ export const MyReviewData: { data: MyReview[] } = {
       id: 3,
       rate: 3,
       comment: '리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰',
-      createdAt: '2024-10-31T00:56',
+      createdAt: '2024-11-09T10:09:12.306+09:00',
       gatheringLocation: '어느동',
     },
     {
@@ -233,7 +233,7 @@ export const MyReviewData: { data: MyReview[] } = {
       id: 4,
       rate: 4,
       comment: '다시는 안 간다',
-      createdAt: '2024-10-31T00:56',
+      createdAt: '2024-10-31T10:09:12.306+09:00',
       gatheringLocation: '어느동',
     },
     {
@@ -243,7 +243,7 @@ export const MyReviewData: { data: MyReview[] } = {
       id: 5,
       rate: 2,
       comment: '펭귄이랑 친구하고싶어요',
-      createdAt: '2024-10-31T00:56',
+      createdAt: '2024-10-31T10:09:12.306+09:00',
       gatheringLocation: '어느동',
     },
     {
@@ -253,7 +253,7 @@ export const MyReviewData: { data: MyReview[] } = {
       id: 6,
       rate: 5,
       comment: '복식호흡을 할 수 있게 됐어요 감사합니다',
-      createdAt: '2024-10-31T00:56',
+      createdAt: '2024-10-31T10:09:12.306+09:006',
       gatheringLocation: '어느동',
     },
     {
@@ -273,7 +273,7 @@ export const MyReviewData: { data: MyReview[] } = {
       id: 8,
       rate: 4,
       comment: '다시는 안 간다',
-      createdAt: '2024-10-31T00:56',
+      createdAt: '2024-10-31T10:09:12.306+09:00',
       gatheringLocation: '어느동',
     },
     {
@@ -283,7 +283,7 @@ export const MyReviewData: { data: MyReview[] } = {
       id: 9,
       rate: 3,
       comment: '펭귄이랑 친구하고싶어요',
-      createdAt: '2024-10-31T00:56',
+      createdAt: '2024-10-31T10:09:12.306+09:00',
       gatheringLocation: '어느동',
     },
     {
@@ -293,7 +293,7 @@ export const MyReviewData: { data: MyReview[] } = {
       id: 10,
       rate: 5,
       comment: '복식호흡을 할 수 있게 됐어요 감사합니다',
-      createdAt: '2024-10-31T00:56',
+      createdAt: '2024-10-31T10:09:12.306+09:00',
       gatheringLocation: '어느동',
     },
     {
@@ -303,7 +303,7 @@ export const MyReviewData: { data: MyReview[] } = {
       id: 11,
       rate: 4,
       comment: '리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰',
-      createdAt: '2024-10-31T00:56',
+      createdAt: '2024-10-31T10:09:12.306+09:00',
       gatheringLocation: '어느동',
     },
     {
@@ -313,7 +313,7 @@ export const MyReviewData: { data: MyReview[] } = {
       id: 12,
       rate: 3,
       comment: '다시는 안 간다',
-      createdAt: '2024-10-31T00:56',
+      createdAt: '2024-10-31T10:09:12.306+09:00',
       gatheringLocation: '어느동',
     },
     {
@@ -323,7 +323,7 @@ export const MyReviewData: { data: MyReview[] } = {
       id: 13,
       rate: 2,
       comment: '펭귄이랑 친구하고싶어요',
-      createdAt: '2024-10-31T00:56',
+      createdAt: '2024-10-31T10:09:12.306+09:00',
       gatheringLocation: '어느동',
     },
     {
@@ -333,7 +333,7 @@ export const MyReviewData: { data: MyReview[] } = {
       id: 14,
       rate: 5,
       comment: '복식호흡을 할 수 있게 됐어요 감사합니다',
-      createdAt: '2024-10-31T00:56',
+      createdAt: '2024-10-31T10:09:12.306+09:00',
       gatheringLocation: '어느동',
     },
   ],

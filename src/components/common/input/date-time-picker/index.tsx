@@ -55,6 +55,7 @@ export default function DateTimePicker({ fullDate, onChange }: DateTimePickerPro
                 'w-[calc(33.333vw-13.333px)] h-[10vw] md:w-[200px] md:h-[80px] text-gray-800',
             }}
             weekendDays={[0]}
+            excludeDate={(date) => dayjs(date).isBefore(dayjs().startOf('day'))}
             previousIcon={<IconArrow direction="left" color="#1F2937" />}
             nextIcon={<IconArrow direction="right" color="#1F2937" />}
             styles={{
