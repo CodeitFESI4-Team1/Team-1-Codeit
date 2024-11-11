@@ -1,11 +1,13 @@
 'use client';
 
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import CreateCrewForm from '@/src/app/(crew)/crew/_components/create-crew-form';
 import { CreateCrewRequestTypes } from '@/src/types/create-crew';
 import IcoCreateCrew from '@/public/assets/icons/ic-create-crew.svg';
 
 export default function CreateCrewPage() {
+  const router = useRouter();
   const initialValue: CreateCrewRequestTypes = {
     title: '',
     mainCategory: '',
@@ -18,6 +20,8 @@ export default function CreateCrewPage() {
 
   const handleSubmit = () => {
     // TODO : POST API 연결
+    const response = { id: 1 };
+    router.push(`/crew/detail/${response?.id}`);
   };
 
   return (
