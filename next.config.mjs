@@ -18,7 +18,6 @@ const nextConfig = {
             key: 'Access-Control-Allow-Origin',
             value:
               process.env.NEXT_PUBLIC_API_URL || 'https://foggy-sideways-saltasaurus.glitch.me/',
-
           },
           { key: 'Access-Control-Allow-Methods', value: 'GET,OPTIONS,PATCH,DELETE,POST,PUT' },
           {
