@@ -57,7 +57,7 @@ const config: Config = {
         18: '72px',
       },
       flexBasis: {
-        57: '228px',
+        67: '268px',
       },
       gap: {
         6.5: '26px',

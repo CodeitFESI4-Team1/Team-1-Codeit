@@ -21,7 +21,7 @@ export default async function CrewDetailPage() {
         <section className="w-full space-y-6">
           <article className="space-y-6">
             <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-semibold">크루 약속 잡기</h2>
+              <h2 className="text-2xl font-semibold">크루 약속</h2>
               <CreateGathering />
             </div>
             <div className="flex w-full">
