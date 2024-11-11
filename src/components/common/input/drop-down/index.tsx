@@ -41,7 +41,9 @@ export default function DropDown({
   const handleChange = (newValue: string | null) => {
     onChange(newValue);
     setIsFocused(false);
-    setError(newValue ? null : '필수 입력사항입니다.');
+    if (inWhere === 'form' && !newValue) {
+      setError(newValue ? null : '필수 입력사항입니다.');
+    }
   };
 
   const getColor = useMemo(() => {
