@@ -12,7 +12,7 @@ const mockGatheringData = [
     totalCount: 12,
     imageUrl:
       'https://images.unsplash.com/photo-1601758260892-a62c486ace97?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    isLiked: true,
+    liked: true,
   },
   {
     id: 2,
@@ -23,7 +23,7 @@ const mockGatheringData = [
     totalCount: 10,
     imageUrl:
       'https://images.unsplash.com/photo-1516978101789-720eacb59e79?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjV8fGNhdHxlbnwwfHwwfHx8Mg%3D%3D',
-    isLiked: false,
+    liked: false,
   },
   {
     id: 3,
@@ -34,7 +34,7 @@ const mockGatheringData = [
     totalCount: 20,
     imageUrl:
       'https://images.unsplash.com/photo-1516978101789-720eacb59e79?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjV8fGNhdHxlbnwwfHwwfHx8Mg%3D%3D',
-    isLiked: true,
+    liked: true,
   },
 ];
 

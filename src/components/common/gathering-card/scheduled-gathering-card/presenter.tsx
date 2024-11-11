@@ -15,7 +15,7 @@ interface ScheduledGatheringCardPresenterProps {
     currentCount: number;
     totalCount: number;
     imageUrl: string;
-    isLiked: boolean;
+    liked: boolean;
   };
   onClick: () => void;
   onLikeToggle: () => void;
@@ -36,7 +36,7 @@ export default function ScheduledGatheringCardPresenter({
     currentCount,
     totalCount,
     imageUrl,
-    isLiked,
+    liked,
   } = data;
 
   const { date, time } = formatDate(dateTime);
@@ -97,7 +97,7 @@ export default function ScheduledGatheringCardPresenter({
           </p>
         </div>
         <div className="absolute bottom-6 right-6">
-          <LikeBtn id={id} isLiked={isLiked} onLikeToggle={onLikeToggle} size={40} />
+          <LikeBtn id={id} isLiked={liked} onLikeToggle={onLikeToggle} size={40} />
         </div>
       </div>
     </div>

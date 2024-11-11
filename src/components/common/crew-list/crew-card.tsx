@@ -4,36 +4,36 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import ProgressBar from '@/src/components/common/progress-bar/index';
-import { CrewMemberList } from '@/src/types/crew-card';
+import { CrewMember } from '@/src/types/crew-card';
 import Check from '@/public/assets/icons/ic-check.svg';
 import UserIco from '@/public/assets/icons/ic-user.svg';
 import Profiles from './profiles';
 
 interface CrewCardProps {
   id: number;
-  name: string;
-  location: string;
-  detailedLocation: string;
+  title: string;
+  mainLocation: string;
+  subLocation: string;
   participantCount: number;
-  capacity: number;
-  isConfirmed: boolean;
-  thumbnail: string;
-  gatheringCount: number;
-  crewMember?: CrewMemberList[];
+  totalCount: number;
+  isConfirmed?: boolean;
+  imageUrl: string;
+  totalGatheringCount: number;
+  crewMembers?: CrewMember[];
   inWhere?: 'my-crew';
 }
 
 export default function CrewCard({
   id,
-  name,
-  location,
-  detailedLocation,
+  title,
+  mainLocation,
+  subLocation,
   participantCount,
-  capacity,
+  totalCount,
+  imageUrl,
   isConfirmed,
-  thumbnail,
-  gatheringCount,
-  crewMember,
+  totalGatheringCount,
+  crewMembers,
   inWhere,
 }: CrewCardProps) {
   const [prefetched, setPrefetched] = useState(new Set());
@@ -61,21 +61,21 @@ export default function CrewCard({
     >
       {/* 썸네일 */}
       <div className="relative h-[203px] w-full flex-shrink-0 md:w-[230px]">
-        <Image fill objectFit="cover" alt={name} src={thumbnail} />
+        <Image fill objectFit="cover" alt={title} src={imageUrl} />
       </div>
 
       <div className="flex w-full flex-col justify-between p-6 sm:h-[238px] sm:px-4 sm:pt-4 md:h-[203px]">
         <div>
           <div className="flex flex-col gap-1">
             <span className="max-w-[200px] overflow-hidden text-ellipsis whitespace-nowrap pr-4 text-lg font-semibold">
-              {name}
+              {title}
             </span>
             <span className="text-base font-medium">
-              | {location} {detailedLocation}
+              | {mainLocation} {subLocation}
             </span>
           </div>
           <span className="text-sm font-semibold text-blue-600">
-            {`현재 ${gatheringCount}개의 약속이 개설되어 있습니다.`}
+            {`현재 ${totalGatheringCount}개의 약속이 개설되어 있습니다.`}
           </span>
         </div>
         <div className="flex w-full gap-8 pt-[31px]">
@@ -84,11 +84,11 @@ export default function CrewCard({
               <div className="flex items-center space-x-2">
                 <Image src={UserIco} alt="user icon" width={20} height={20} />
                 <span className="text-base font-medium">
-                  {participantCount}/{capacity}
+                  {participantCount}/{totalCount}
                 </span>
                 {inWhere === 'my-crew' && (
                   <span>
-                    <Profiles size="medium" profiles={crewMember ?? []} />
+                    <Profiles size="medium" profiles={crewMembers ?? []} />
                   </span>
                 )}
               </div>
@@ -99,7 +99,7 @@ export default function CrewCard({
                 </span>
               )}
             </div>
-            <ProgressBar total={capacity} current={participantCount} />
+            <ProgressBar total={totalCount} current={participantCount} />
           </div>
         </div>
       </div>
