@@ -19,7 +19,7 @@ const meta: Meta = {
     subLocation: '유성구',
     imageUrl: 'https://i.pinimg.com/564x/f8/8d/c5/f88dc5b857caf6c303ae5ef9dd12e7fb.jpg',
     totalGatheringCount: 5, // 기본 값 추가
-    CrewMembers: [
+    crewMembers: [
       {
         id: 1,
         nickname: 'John',
