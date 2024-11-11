@@ -1,8 +1,8 @@
 import { Profile } from '@/src/components/common/profile';
-import { CrewMemberList } from '@/src/types/crew-card';
+import { CrewMember } from '@/src/types/crew-card';
 
 interface ProfilesProps {
-  profiles: CrewMemberList[];
+  profiles: CrewMember[];
   size?: 'small' | 'medium';
 }
 

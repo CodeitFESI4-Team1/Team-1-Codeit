@@ -64,9 +64,9 @@ ModalWithUser.args = {
     totalCount: 10,
     imageUrl:
       'https://www.dabur.com/Blogs/Doshas/Importance%20and%20Benefits%20of%20Yoga%201020x450.jpg',
-    isLiked: false,
-    isGatherCaptain: false,
-    isParticipant: false,
+    liked: false,
+    gatheringCaptain: false,
+    participant: false,
     participants: [
       {
         id: 1,
@@ -106,9 +106,9 @@ ModalWithCaptain.args = {
     totalCount: 10,
     imageUrl:
       'https://www.dabur.com/Blogs/Doshas/Importance%20and%20Benefits%20of%20Yoga%201020x450.jpg',
-    isLiked: false,
-    isGatherCaptain: true,
-    isParticipant: true,
+    liked: false,
+    gatheringCaptain: true,
+    participant: true,
     participants: [
       {
         id: 1,
@@ -148,9 +148,9 @@ ModalWithCrew.args = {
     totalCount: 10,
     imageUrl:
       'https://www.dabur.com/Blogs/Doshas/Importance%20and%20Benefits%20of%20Yoga%201020x450.jpg',
-    isLiked: false,
-    isGatherCaptain: false,
-    isParticipant: true,
+    liked: false,
+    gatheringCaptain: false,
+    participant: true,
     participants: [
       {
         id: 1,

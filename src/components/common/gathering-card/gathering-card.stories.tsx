@@ -19,7 +19,7 @@ const meta: Meta<typeof GatheringCard> = {
     currentCount: { control: 'number' },
     totalCount: { control: 'number' },
     imageUrl: { control: 'text' },
-    isLiked: { control: 'boolean' },
+    liked: { control: 'boolean' },
     className: { control: false },
   },
 } satisfies Meta<typeof GatheringCard>;
@@ -37,7 +37,7 @@ export const Default: Story = {
     totalCount: 12,
     imageUrl:
       'https://images.unsplash.com/photo-1601758260892-a62c486ace97?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    isLiked: true,
+    liked: true,
   },
 };
 
@@ -51,7 +51,7 @@ export const NotLiked: Story = {
     totalCount: 10,
     imageUrl:
       'https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    isLiked: false,
+    liked: false,
   },
 };
 
@@ -65,7 +65,7 @@ export const PastEvent: Story = {
     totalCount: 12,
     imageUrl:
       'https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    isLiked: false,
+    liked: false,
   },
 };
 
@@ -79,6 +79,6 @@ export const LikedEvent: Story = {
     totalCount: 12,
     imageUrl:
       'https://images.unsplash.com/photo-1601758260892-a62c486ace97?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    isLiked: true,
+    liked: true,
   },
 };
