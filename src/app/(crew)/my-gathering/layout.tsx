@@ -1,46 +1,41 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { Button } from '@mantine/core';
+import { usePathname, useRouter } from 'next/navigation';
+import Tabs from '@/src/components/common/tab';
 
-const buttonData = [
-  { id: 1, label: '참여한 약속', route: '/my-gathering/participation' },
-  { id: 2, label: '만든 약속', route: '/my-gathering/creation' },
+const myGatheringTabs = [
+  { id: 'my-gathering-participation', label: '참여한 약속', route: '/my-gathering/participation' },
+  { id: 'my-gathering-creation', label: '만든 약속', route: '/my-gathering/creation' },
 ];
-
-const getSelectedButtonIndex = (currentPath: string) => {
-  return buttonData.findIndex(({ route }) => currentPath.endsWith(route.split('/').pop()!)) + 1;
-};
 
 export default function MyGatheringLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const router = useRouter();
   const currentPath = usePathname();
-
-  const [selectedButton, setSelectedButton] = useState(getSelectedButtonIndex(currentPath));
+  const [currentTab, setCurrentTab] = useState('');
 
   useEffect(() => {
-    const newIdx = getSelectedButtonIndex(currentPath);
-    setSelectedButton(newIdx);
+    const activeTabId = myGatheringTabs.find((tab) => tab.route === currentPath)?.id;
+    if (activeTabId) setCurrentTab(activeTabId);
   }, [currentPath]);
+
+  const handleTabClick = (id: string) => {
+    const targetRoute = myGatheringTabs.find((tab) => tab.id === id)?.route;
+    if (targetRoute) router.push(targetRoute);
+  };
 
   return (
     <div className="mt-4 md:mx-[46px] md:mt-[45px]">
-      <div className="m-4 grid grid-cols-2 gap-2 md:gap-4">
-        {buttonData.map(({ id, label, route }) => (
-          <Link key={id} href={route}>
-            <Button
-              className={`${id === selectedButton ? 'btn-filled' : 'btn-outlined'} w-full text-sm font-bold md:text-lg`}
-            >
-              {label}
-            </Button>
-          </Link>
-        ))}
-      </div>
+      <Tabs
+        variant="default"
+        tabs={myGatheringTabs}
+        activeTab={currentTab}
+        onTabClick={(id) => handleTabClick(id)}
+      />
       {children}
     </div>
   );
