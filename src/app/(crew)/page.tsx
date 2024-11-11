@@ -50,7 +50,7 @@ export default function Home() {
               inputClassNames="w-full h-11 pl-12 placeholder:text-gray-500 font-pretendard text-base font-medium text-gray-800 rounded-xl"
             />
           </div>
-          <div className="flex-0 md:basis-67 flex justify-between gap-2 md:gap-4">
+          <div className="flex-0 flex justify-between gap-2 md:basis-67 md:gap-4">
             <DropDown
               name="region"
               variant="default"
