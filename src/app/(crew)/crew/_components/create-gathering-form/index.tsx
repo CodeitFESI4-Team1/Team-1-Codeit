@@ -86,19 +86,32 @@ export default function CreateGatheringForm({
               control={control}
               rules={{
                 required: '이미지를 선택해주세요.',
+                validate: {
+                  fileSize: (file) =>
+                    file && file instanceof File && file.size <= 5242880
+                      ? true
+                      : '파일 크기는 5MB 이하여야 합니다.',
+                  fileType: (file) =>
+                    file &&
+                    file instanceof File &&
+                    ['image/jpeg', 'image/jpg', 'image/png'].includes(file.type)
+                      ? true
+                      : 'JPG, PNG 파일만 업로드 가능합니다.',
+                },
               }}
               render={({ field }) => (
                 <FileInputWrap
                   {...field}
                   sample={ImgGatheringSamples}
-                  onChange={(e) => {
-                    field.onChange(e);
-                    trigger('imageUrl'); // 유효성 검사 실행
+                  onChange={(newValue) => {
+                    field.onChange(newValue);
+                    if (newValue instanceof File) trigger('imageUrl');
                   }}
                 />
               )}
             />
           </div>
+          {errors.imageUrl && <p className="text-sm text-red-500">{errors.imageUrl.message}</p>}
         </div>
         <div className="flex flex-col gap-3">
           <div className="flex justify-between">
