@@ -14,7 +14,8 @@ export default async function CrewDetailPage() {
       <div className="mx-3 my-7 space-y-10 md:mx-7 md:my-11 lg:mx-11 lg:my-16">
         <section className="w-full">
           <article>
-            <DetailCrewCard {...crewDetail} />
+            {/* //TODO: 추후 confirmed부분 수정 */}
+            <DetailCrewCard isConfirmed={false} {...crewDetail} />
           </article>
         </section>
         <section className="w-full space-y-6">
