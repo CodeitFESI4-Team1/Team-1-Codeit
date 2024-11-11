@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { useInfiniteScroll } from '@/src/hooks/useInfiniteScroll';
+import { useInfiniteScroll } from '@/src/hooks/use-infinite-scroll';
 import { fetchWritableGatheringData } from '@/src/app/(crew)/api/mock-api/writable-gathering';
 import ClientProvider from '@/src/components/client-provider';
 import { WritableGatheringCardInformResponse } from '@/src/types/writable-gathering-card';
