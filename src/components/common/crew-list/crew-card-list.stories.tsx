@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useGetCrewQuery } from '@/src/_queries/crew-queries';
-import { useInfiniteScroll } from '@/src/hooks/useInfiniteScroll';
+import { useInfiniteScroll } from '@/src/hooks/use-infinite-scroll';
 import ClientProvider from '@/src/components/client-provider';
 import { MainCrewListResponse } from '@/src/types/crew-card';
 import CrewCardList from './crew-card-list';

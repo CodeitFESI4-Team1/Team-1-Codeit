@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { useInfiniteScroll } from '@/src/hooks/useInfiniteScroll';
+import { useInfiniteScroll } from '@/src/hooks/use-infinite-scroll';
 import { fetchMyReviewData } from '@/src/app/api/mock-api/review';
 import { ReviewInformResponse } from '@/src/types/review';
 import ClientProvider from '../../client-provider';

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useGetCrewQuery } from '@/src/_queries/crew-queries';
-import { useInfiniteScroll } from '@/src/hooks/useInfiniteScroll';
+import { useInfiniteScroll } from '@/src/hooks/use-infinite-scroll';
 import CrewCardList from '@/src/components/common/crew-list/crew-card-list';
 import Tabs from '@/src/components/common/tab';
 import { MyCrewListResponse } from '@/src/types/crew-card';
