@@ -18,16 +18,16 @@ export default function CategoryContainer({
   setMainCategory,
   setSubCategory,
 }: CategoryContainerProps) {
-  const [categoryIndex, setCategoryIndex] = useState(0);
+  const [categoryIndex, setCategoryIndex] = useState<number | null>(null);
 
   useEffect(() => {
-    if (subCategory !== category[categoryIndex].items[0].label) {
+    if (categoryIndex !== null && subCategory !== category[categoryIndex].items[0].label) {
       setSubCategory(category[categoryIndex].items[0].label);
     }
   }, [mainCategory, categoryIndex]);
 
   useEffect(() => {
-    if (mainCategory !== category[categoryIndex].title.label) {
+    if (categoryIndex !== null && mainCategory !== category[categoryIndex].title.label) {
       setMainCategory(category[categoryIndex].title.label);
     }
   }, [subCategory]);
@@ -42,7 +42,7 @@ export default function CategoryContainer({
       />
       <InternalCategory
         value={subCategory}
-        category={category[categoryIndex].items}
+        category={category[categoryIndex ?? 0].items}
         onChange={setSubCategory}
       />
     </div>

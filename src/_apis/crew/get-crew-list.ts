@@ -1,10 +1,5 @@
 import { fetchApi } from '@/src/utils/api';
-import {
-  ConditionTypes,
-  CrewCardInform,
-  CrewCardInformResponse,
-  PageableTypes,
-} from '@/src/types/crew-card';
+import { ConditionTypes, CrewCardInformResponse, PageableTypes } from '@/src/types/crew-card';
 
 export async function getCrewList(
   condition: ConditionTypes,

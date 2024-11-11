@@ -1,9 +1,9 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import { Divider } from '@mantine/core';
-import { useGetCrewQuery } from '@/src/_queries/crew-queries';
+import { useGetCrewListQuery } from '@/src/_queries/crew-queries';
 import regionData from '@/src/data/region.json';
 import { useInfiniteScroll } from '@/src/hooks/useInfiniteScroll';
 import CategoryContainer from '@/src/app/_components/category/category-container';
@@ -20,8 +20,8 @@ export default function Home() {
   const [region, setRegion] = useState<string>('');
   const [search, setSearch] = useState('');
 
-  const { data, ref, isFetchingNextPage, refetch } = useInfiniteScroll(
-    useGetCrewQuery({
+  const { data, ref, isFetchingNextPage } = useInfiniteScroll(
+    useGetCrewListQuery({
       keyword: search,
       mainLocation: region,
       mainCategory,
@@ -29,10 +29,6 @@ export default function Home() {
       sortType: sort === 'latest' ? 'LATEST' : 'POPULAR',
     }),
   );
-
-  useEffect(() => {
-    refetch();
-  }, [mainCategory, subCategory, sort, region, search]);
 
   return (
     <div className="py-8 md:py-12.5">
