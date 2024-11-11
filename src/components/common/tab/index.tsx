@@ -1,6 +1,7 @@
 interface Tab {
   label: string;
   id: string;
+  route: string;
 }
 
 export interface TabsProps {
@@ -13,7 +14,7 @@ export interface TabsProps {
 /**
  * Tabs
  *
- * @param tabs - 탭 목록 데이터 배열로, 각 탭은 label과 id로 구성
+ * @param tabs - 탭 목록 데이터 배열로, 각 탭은 label, id, route로 구성
  * @param activeTab - 현재 활성화된 탭의 ID
  * @param onTabClick - 탭 클릭 시 호출되는 함수, 탭 ID를 매개변수로 받음
  * @param variant - 탭 스타일 유형, 기본 값은 'default'이며 'review'로 전환 가능
