@@ -46,6 +46,8 @@ function CrewCardList(
     <>
       <ul className={`mx-auto grid w-full grid-cols-1 gap-x-2 gap-y-2 ${gridColsStyle}`}>
         {crewDataList.map((inform) => (
+          // NOTE: 데이터 이름 변경이 많은 곳이라 dev로 보면 아마 undefined로 나오지만(목데이터도 변경이 필요함..)
+          // NOTE: 추후 백앤드 api를 fetch 하면 정상적으로 확인할 수 있습니다.
           <li key={inform.id} className="w-full">
             <CrewCard
               inWhere={inWhere}
