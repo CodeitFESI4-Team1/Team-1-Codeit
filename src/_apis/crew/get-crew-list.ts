@@ -23,6 +23,6 @@ export async function getCrewList(
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error(error);
-    return undefined as unknown as MainCrewListResponse;
+    return { content: [], hasNext: false };
   }
 }

@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { Divider, TextInput } from '@mantine/core';
-import { useDebouncedCallback } from '@mantine/hooks';
 import { InfiniteData } from '@tanstack/react-query';
 import { useGetCrewListQuery } from '@/src/_queries/crew-queries';
 import regionData from '@/src/data/region.json';
@@ -88,6 +87,9 @@ export default function FindCrew({ initialData }: FindCrewProps) {
             <TextInput
               ref={searchRef}
               leftSectionPointerEvents="none"
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') handleSearch();
+              }}
               rightSection={
                 <button type="button" className="flex h-5 w-5" onClick={handleSearch}>
                   <Image src={IcoSearch} alt="search" width={20} height={20} className="-ml-1" />

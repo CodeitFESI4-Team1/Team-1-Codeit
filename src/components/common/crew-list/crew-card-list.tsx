@@ -38,7 +38,7 @@ function CrewCardList(
   if (!crewDataList.length)
     return (
       <div className="flex justify-center py-10">
-        <Loader size="sm" />
+        <p>데이터가 없습니다.</p>
       </div>
     );
 
