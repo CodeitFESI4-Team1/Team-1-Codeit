@@ -1,3 +1,17 @@
+export interface ConditionTypes {
+  keyword: string;
+  mainLocation: string;
+  mainCategory: string;
+  subCategory: string;
+  sortType: 'LATEST' | 'POPULAR';
+}
+
+export interface PageableTypes {
+  page: number;
+  size: number;
+  sort: string[];
+}
+
 export interface MainCrewListResponse {
   data: MainCrewList[];
   hasNext: boolean;
