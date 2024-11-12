@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Divider } from '@mantine/core';
-import { useInfiniteScroll } from '@/src/hooks/useInfiniteScroll';
+import { useInfiniteScroll } from '@/src/hooks/use-infinite-scroll';
 import ProfileCardContainer from '@/src/app/(crew)/mypage/_components/profile-card/container';
 import ReviewCardList from '@/src/components/common/review-list/review-card-list';
 import Tabs from '@/src/components/common/tab';

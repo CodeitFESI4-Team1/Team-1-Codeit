@@ -1,18 +1,8 @@
 import { fetchApi } from '@/src/utils/api';
+import { GatheringType } from '@/src/types/gathering-data';
 
-export type GatheringList = {
-  id: number;
-  title: string;
-  dateTime: string;
-  location: string;
-  currentCount: number;
-  totalCount: number;
-  imageUrl: string;
-  isLiked: boolean;
-};
-
-export async function getGatheringList(): Promise<GatheringList[]> {
-  return fetchApi<GatheringList[]>('/gatherings', {
+export async function getGatheringList(): Promise<GatheringType[]> {
+  return fetchApi<GatheringType[]>('/gatherings', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

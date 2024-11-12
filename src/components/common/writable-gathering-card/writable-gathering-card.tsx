@@ -42,7 +42,7 @@ export default function WritableGatheringCard({
   const profiles = participants.map((participant) => ({
     id: participant.id,
     nickname: participant.nickname,
-    imageUrl: participant.profileImageUrl,
+    profileImageUrl: participant.profileImageUrl,
   }));
 
   return (
