@@ -9,7 +9,7 @@ export interface SignupRequest {
 }
 
 export interface LoginResponse {
-  token: string;
+  token: string | null;
 }
 
 export interface LoginRequest {

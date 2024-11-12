@@ -1,7 +1,7 @@
+import { headers } from 'next/headers';
 import { useAuthStore } from '@/src/store/use-auth-store';
 
 // TODO: 추후 API URL 수정
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3009';
 
 export class ApiError extends Error {
   constructor(
@@ -23,7 +23,6 @@ export async function fetchApi<T>(
   const { signal } = controller;
   const id = setTimeout(() => controller.abort(), timeout);
   const { token } = useAuthStore.getState();
-
   const fetchOptions: RequestInit = {
     ...options,
     signal,
@@ -35,7 +34,7 @@ export async function fetchApi<T>(
   };
 
   try {
-    const response = await fetch(`${API_BASE_URL}${url}`, fetchOptions); // API 요청 실행
+    const response = await fetch(`${url}`, fetchOptions); // API 요청 실행
     if (!response.ok) {
       let errorMessage;
       try {
@@ -48,8 +47,8 @@ export async function fetchApi<T>(
       throw new ApiError(response.status, errorMessage);
     }
 
-    // 응답 데이터를 JSON 형태로 반환
-    return (await response.json()) as T;
+    const data = await response.json();
+    return { ...data, headers: response.headers } as T;
   } catch (error) {
     if (error instanceof Error) {
       if (error.name === 'AbortError') throw new ApiError(408, 'Request timeout');

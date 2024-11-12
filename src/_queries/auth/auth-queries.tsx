@@ -22,15 +22,16 @@ export function usePostSignupQuery() {
 
 export function usePostLoginQuery() {
   const queryClient = useQueryClient();
-  const { login } = useAuthStore();
+  const { login, setUser } = useAuthStore();
 
   return useMutation<{ data: LoginResponse }, ApiError, LoginRequest>({
     mutationFn: loginUser,
     onSuccess: async (response) => {
-      // TODO: token값으로 수정, const { token } = response.data;
-      const token = 'dummyToken123';
+      const token = response.data.token?.replace(/^Bearer\s/, '');
+      if (token) await login(token);
+
       const user: User = await queryClient.fetchQuery(getUserQuery());
-      login(user, token);
+      setUser(user);
     },
   });
 }
