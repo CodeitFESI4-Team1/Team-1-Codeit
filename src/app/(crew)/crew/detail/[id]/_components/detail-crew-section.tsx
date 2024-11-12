@@ -10,6 +10,7 @@ interface DetailCrewSectionProps {
 
 export default function DetailCrewSection({ id }: DetailCrewSectionProps) {
   const { data, isLoading, error } = useGetCrewDetailQuery(id);
+
   // TODO: 추후 에러 처리 수정
   if (isLoading) return <p>Loading...</p>;
 

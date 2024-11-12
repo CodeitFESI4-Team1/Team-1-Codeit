@@ -14,9 +14,7 @@ export default function GatheringListSection({ id }: GatheringListSectionProps) 
 
   if (error) return <p>데이터를 불러오는 데 실패했습니다: {error.message}</p>;
 
-  const data = gatheringList ? Object.values(gatheringList) : [];
+  if (!gatheringList || gatheringList.length === 0) return <p>데이터가 없습니다.</p>;
 
-  if (data.length === 0) return <p>데이터가 없습니다.</p>;
-
-  return <GatheringCardCarousel gatheringData={data} />;
+  return <GatheringCardCarousel gatheringData={gatheringList} />;
 }
