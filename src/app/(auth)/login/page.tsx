@@ -20,12 +20,13 @@ export default function LoginPage() {
       },
       onError: (error) => {
         if (error.status === 401) {
-          const { validationErrors } = error.detail;
-          Object.keys(validationErrors).forEach((key) => {
-            setError(key as 'email' | 'password', {
-              type: 'manual',
-              message: validationErrors[key],
-            });
+          setError('email', {
+            type: 'manual',
+            message: '이메일 또는 비밀번호가 일치하지 않습니다.',
+          });
+          setError('password', {
+            type: 'manual',
+            message: '이메일 또는 비밀번호가 일치하지 않습니다.',
           });
         }
       },
