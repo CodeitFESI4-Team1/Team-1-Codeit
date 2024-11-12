@@ -1,8 +1,9 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import { Divider } from '@mantine/core';
+import { Divider, TextInput } from '@mantine/core';
+import { useDebouncedCallback } from '@mantine/hooks';
 import { InfiniteData } from '@tanstack/react-query';
 import { useGetCrewListQuery } from '@/src/_queries/crew-queries';
 import regionData from '@/src/data/region.json';
@@ -11,7 +12,6 @@ import CategoryContainer from '@/src/app/_components/category/category-container
 import HeroCrew from '@/src/app/_components/hero/hero-crew';
 import CrewCardList from '@/src/components/common/crew-list/crew-card-list';
 import DropDown from '@/src/components/common/input/drop-down';
-import TextInput from '@/src/components/common/input/text-input';
 import { MainCrewListResponse } from '@/src/types/crew-card';
 import IcoSearch from '@/public/assets/icons/ic-search.svg';
 
@@ -26,11 +26,18 @@ export default function FindCrew({ initialData }: FindCrewProps) {
   const [sort, setSort] = useState<string | null>('latest');
   const [region, setRegion] = useState<string>('');
   const [search, setSearch] = useState('');
+  const searchRef = useRef<HTMLInputElement>(null);
 
   const handleRegionChange = (newValue: string) => {
     const selectedRegion = regionData.find((dataItem) => dataItem.main.value === newValue);
     if (selectedRegion?.main.label === '지역 전체') return '';
     return selectedRegion ? selectedRegion.main.label : '';
+  };
+
+  const handleSearch = (): void => {
+    if (searchRef.current) {
+      setSearch(searchRef.current.value);
+    }
   };
 
   const {
@@ -69,14 +76,18 @@ export default function FindCrew({ initialData }: FindCrewProps) {
         <div className="flex flex-col justify-between gap-2 md:flex-row md:gap-4">
           <div className="flex-1">
             <TextInput
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
+              ref={searchRef}
               leftSectionPointerEvents="none"
-              leftSection={
-                <Image src={IcoSearch} alt="search" width={21} height={21} className="-mr-4" />
+              rightSection={
+                <button type="button" className="flex h-5 w-5" onClick={handleSearch}>
+                  <Image src={IcoSearch} alt="search" width={20} height={20} className="-ml-1" />
+                </button>
               }
               placeholder="크루 이름, 위치를 검색하세요."
-              inputClassNames="w-full h-11 pl-12 placeholder:text-gray-500 font-pretendard text-base font-medium text-gray-800 rounded-xl"
+              classNames={{
+                input:
+                  'h-11 w-full rounded-xl border-0 pr-10 font-pretendard text-base font-medium text-gray-800 placeholder:text-gray-500',
+              }}
             />
           </div>
           <div className="flex-0 flex justify-between gap-2 md:basis-67 md:gap-4">

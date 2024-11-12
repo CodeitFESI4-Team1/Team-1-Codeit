@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { RefObject } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 import {
   TextInput as MantineTextInput,
