@@ -34,15 +34,8 @@ export async function fetchApi<T>(
     credentials: 'include',
   };
 
-  // 로그 추가: 요청 URL, 헤더, 옵션 등을 확인
-  // console.log('API 요청 URL:', url); // 요청 URL 로그
-  // console.log('사용 중인 토큰:', token); // 토큰 로그
-  // console.log('API 요청 옵션:', fetchOptions); // 요청 옵션 로그
-
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}${url}`, fetchOptions); // API 요청 실행
-
-    // console.log('응답 상태 코드:', response.status); // 응답 상태 코드 로그
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}${url}`, fetchOptions);
 
     if (!response.ok) {
       let errorDetail;
@@ -53,8 +46,6 @@ export async function fetchApi<T>(
         errorDetail = detail;
       } catch {
         errorMessage = `HTTP error! status: ${response.status}`;
-
-        // console.log('JSON 파싱 실패, 에러 메시지:', errorMessage); // JSON 파싱 실패 로그
       }
 
       throw new ApiError(response.status, errorMessage, errorDetail);
