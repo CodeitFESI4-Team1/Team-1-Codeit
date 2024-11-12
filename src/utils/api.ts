@@ -1,15 +1,16 @@
-import { headers } from 'next/headers';
 import { useAuthStore } from '@/src/store/use-auth-store';
 
-// TODO: 추후 API URL 수정
-
 export class ApiError extends Error {
+  detail: { validationErrors: Record<string, string> } = { validationErrors: {} };
+
   constructor(
     public status: number,
     message: string,
+    detail?: { validationErrors: Record<string, string> }, // 타입을 맞춤
   ) {
     super(message);
     this.name = 'ApiError';
+    if (detail) this.detail = detail;
   }
 }
 
@@ -36,15 +37,17 @@ export async function fetchApi<T>(
   try {
     const response = await fetch(`${url}`, fetchOptions); // API 요청 실행
     if (!response.ok) {
+      let errorDetail;
       let errorMessage;
       try {
-        const errorData = await response.json();
-        errorMessage = errorData.message || `HTTP error! status: ${response.status}`;
+        const { status, message, ...detail } = await response.json();
+        errorMessage = message || `HTTP error! status: ${response.status}`;
+        errorDetail = detail;
       } catch {
         errorMessage = `HTTP error! status: ${response.status}`;
       }
 
-      throw new ApiError(response.status, errorMessage);
+      throw new ApiError(response.status, errorMessage, errorDetail);
     }
 
     const data = await response.json();
