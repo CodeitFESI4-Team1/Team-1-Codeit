@@ -20,10 +20,16 @@ export default function Home() {
   const [region, setRegion] = useState<string>('');
   const [search, setSearch] = useState('');
 
+  const handleRegionChange = (newValue: string) => {
+    const selectedRegion = regionData.find((dataItem) => dataItem.main.value === newValue);
+    if (selectedRegion?.main.label === '지역 전체') return '';
+    return selectedRegion ? selectedRegion.main.label : '';
+  };
+
   const { data, ref, isFetchingNextPage } = useInfiniteScroll(
     useGetCrewListQuery({
       keyword: search,
-      mainLocation: regionData.find((dataItem) => dataItem.main.value === region)?.main.label ?? '',
+      mainLocation: handleRegionChange(region),
       mainCategory,
       subCategory,
       sortType: sort === 'latest' ? 'LATEST' : 'POPULAR',
