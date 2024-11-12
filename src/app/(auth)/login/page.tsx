@@ -19,15 +19,13 @@ export default function LoginPage() {
         router.push('/');
       },
       onError: (error) => {
-        if (error.status === 404) {
-          setError('email', {
-            type: 'manual',
-            message: '존재하지 않는 이메일입니다!',
-          });
-        } else if (error.status === 401) {
-          setError('password', {
-            type: 'manual',
-            message: '비밀번호가 일치하지 않습니다!',
+        if (error.status === 401) {
+          const { validationErrors } = error.detail;
+          Object.keys(validationErrors).forEach((key) => {
+            setError(key as 'email' | 'password', {
+              type: 'manual',
+              message: validationErrors[key],
+            });
           });
         }
       },
