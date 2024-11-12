@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useGetCrewQuery } from '@/src/_queries/crew-queries';
-import { useInfiniteScroll } from '@/src/hooks/useInfiniteScroll';
+import { useInfiniteScroll } from '@/src/hooks/use-infinite-scroll';
 import ClientProvider from '@/src/components/client-provider';
-import { CrewCardInformResponse } from '@/src/types/crew-card';
+import { MainCrewListResponse } from '@/src/types/crew-card';
 import CrewCardList from './crew-card-list';
 
 const meta: Meta = {
@@ -29,7 +29,7 @@ type Story = StoryObj<typeof meta>;
 
 function RenderCrewCardList() {
   const { data, ref, isFetchingNextPage } =
-    useInfiniteScroll<CrewCardInformResponse>(useGetCrewQuery());
+    useInfiniteScroll<MainCrewListResponse>(useGetCrewQuery());
 
   return <CrewCardList data={data} ref={ref} isFetchingNextPage={isFetchingNextPage} />;
 }

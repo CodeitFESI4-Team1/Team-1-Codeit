@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { Divider } from '@mantine/core';
 import { useGetCrewListQuery } from '@/src/_queries/crew-queries';
 import regionData from '@/src/data/region.json';
-import { useInfiniteScroll } from '@/src/hooks/useInfiniteScroll';
+import { useInfiniteScroll } from '@/src/hooks/use-infinite-scroll';
 import CategoryContainer from '@/src/app/_components/category/category-container';
 import HeroCrew from '@/src/app/_components/hero/hero-crew';
 import CrewCardList from '@/src/components/common/crew-list/crew-card-list';

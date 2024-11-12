@@ -4,13 +4,13 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import ProgressBar from '@/src/components/common/progress-bar/index';
-import { CrewCardListTypes, CrewMemberList } from '@/src/types/crew-card';
+import { MainCrewList } from '@/src/types/crew-card';
 import Check from '@/public/assets/icons/ic-check.svg';
 import UserIco from '@/public/assets/icons/ic-user.svg';
 import ImgDefault from '@/public/assets/images/img-default.jpg';
 import Profiles from './profiles';
 
-interface CrewCardProps extends CrewCardListTypes {
+interface CrewCardProps extends MainCrewList {
   inWhere?: 'my-crew';
 }
 
@@ -21,10 +21,10 @@ export default function CrewCard({
   subLocation,
   participantCount,
   totalCount,
-  isConfirmed,
   imageUrl,
+  isConfirmed,
   totalGatheringCount,
-  crewMember,
+  crewMembers,
   inWhere,
 }: CrewCardProps) {
   const [prefetched, setPrefetched] = useState(new Set());
@@ -84,7 +84,7 @@ export default function CrewCard({
                 </span>
                 {inWhere === 'my-crew' && (
                   <span>
-                    <Profiles size="medium" profiles={crewMember ?? []} />
+                    <Profiles size="medium" profiles={crewMembers ?? []} />
                   </span>
                 )}
               </div>

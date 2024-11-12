@@ -3,22 +3,12 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import GatheringCard from '@/src/components/common/gathering-card/container';
+import { GatheringType } from '@/src/types/gathering-data';
 import IcoLeft from '@/public/assets/icons/ic-left.svg';
 import IcoRight from '@/public/assets/icons/ic-right.svg';
 
-interface GatheringDataType {
-  id: number;
-  title: string;
-  dateTime: string;
-  location: string;
-  currentCount: number;
-  totalCount: number;
-  imageUrl: string;
-  isLiked: boolean;
-}
-
 interface GatheringCardCarouselProps {
-  gatheringData: GatheringDataType[];
+  gatheringData: GatheringType[];
 }
 
 export default function CustomGatheringCardCarousel({ gatheringData }: GatheringCardCarouselProps) {

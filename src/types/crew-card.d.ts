@@ -1,7 +1,3 @@
-export type ImageList = {
-  imagePath: string;
-}[];
-
 export interface ConditionTypes {
   keyword: string;
   mainLocation: string;
@@ -16,12 +12,12 @@ export interface PageableTypes {
   sort: string[];
 }
 
-export type CrewCardInformResponse = {
+export type MainCrewListResponse = {
   content: CrewCardListTypes[];
   hasNext: boolean;
 };
 
-export interface CrewCardListTypes {
+export interface MainCrewList {
   id: number;
   mainCategory?: string;
   subCategory?: string;
@@ -33,29 +29,42 @@ export interface CrewCardListTypes {
   imageUrl: string;
   isConfirmed: boolean;
   totalGatheringCount: number;
-  crewMember?: CrewMemberList[];
+  crewMembers?: CrewMemberList[];
 }
 
-export type CrewCardInform = {
-  crewId: number;
-  type: string;
-  subType: string;
-  name: string;
-  location: string;
-  detailedLocation: string;
-  participantCount: number;
-  capacity: number;
-  images: ImageList;
-  createdBy: number;
-  createdDate: Date;
-  updatedDate: Date;
-  isConfirmed: boolean;
-  gatheringCount: number;
-  crewMember: CrewMemberList[];
-};
-
-export interface CrewMemberList {
+export interface CrewMember {
   id: number;
   nickname: string;
-  profileImageUrl?: string | null;
+  profileImageUrl?: string;
+  captain?: boolean;
+}
+
+export interface CrewDetail {
+  id: number;
+  title: string;
+  mainLocation: string;
+  subLocation: string;
+  participantCount: number;
+  totalCount: number;
+  imageUrl: string;
+  totalGatheringCount: number;
+  crewMembers: CrewMember[];
+  confirmed: boolean;
+}
+
+export interface MyCrewList {
+  id: number;
+  title: string;
+  mainLocation: string;
+  subLocation: string;
+  currentCount: number;
+  totalCount: number;
+  imageUrl: string;
+  totalGathering: number;
+  crewMembers: CrewMember[];
+}
+
+export interface MyCrewListResponse {
+  data: MyCrewList[];
+  hasNext: boolean;
 }
