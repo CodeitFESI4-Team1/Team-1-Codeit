@@ -1,15 +1,15 @@
 import { fetchApi } from '@/src/utils/api';
-import { ConditionTypes, CrewCardInformResponse, PageableTypes } from '@/src/types/crew-card';
+import { ConditionTypes, MainCrewListResponse, PageableTypes } from '@/src/types/crew-card';
 
 export async function getCrewList(
   condition: ConditionTypes,
   pageable: PageableTypes,
-): Promise<CrewCardInformResponse> {
+): Promise<MainCrewListResponse> {
   const { keyword, mainLocation, mainCategory, subCategory, sortType } = condition;
   const { page, size, sort = ['string'] } = pageable;
 
   try {
-    const response = await fetchApi<CrewCardInformResponse>(
+    const response = await fetchApi<MainCrewListResponse>(
       `/crews/search?keyword=${keyword}&mainLocation=${mainLocation}&mainCategory=${mainCategory}&subCategory=${subCategory}&sortType=${sortType}&page=${page}&size=${size}&sort=${sort}`,
       {
         method: 'GET',

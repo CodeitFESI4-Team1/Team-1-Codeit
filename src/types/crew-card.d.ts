@@ -13,7 +13,7 @@ export interface PageableTypes {
 }
 
 export type MainCrewListResponse = {
-  content: CrewCardListTypes[];
+  content: MainCrewList[];
   hasNext: boolean;
 };
 

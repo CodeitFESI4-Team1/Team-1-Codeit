@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { useGetCrewQuery } from '@/src/_queries/crew-queries';
+import { useGetCrewListQuery } from '@/src/_queries/crew-queries';
 import { useInfiniteScroll } from '@/src/hooks/use-infinite-scroll';
 import ClientProvider from '@/src/components/client-provider';
 import { MainCrewListResponse } from '@/src/types/crew-card';
@@ -28,9 +28,15 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 function RenderCrewCardList() {
-  const { data, ref, isFetchingNextPage } =
-    useInfiniteScroll<MainCrewListResponse>(useGetCrewQuery());
-
+  const { data, ref, isFetchingNextPage } = useInfiniteScroll(
+    useGetCrewListQuery({
+      keyword: '',
+      mainLocation: '',
+      mainCategory: '',
+      subCategory: '',
+      sortType: 'LATEST',
+    }),
+  );
   return <CrewCardList data={data} ref={ref} isFetchingNextPage={isFetchingNextPage} />;
 }
 
