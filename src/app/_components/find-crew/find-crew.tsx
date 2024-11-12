@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Divider } from '@mantine/core';
 import { InfiniteData } from '@tanstack/react-query';
@@ -27,8 +27,6 @@ export default function FindCrew({ initialData }: FindCrewProps) {
   const [region, setRegion] = useState<string>('');
   const [search, setSearch] = useState('');
 
-  const previousDataRef = useRef<InfiniteData<MainCrewListResponse> | undefined>(initialData);
-
   const handleRegionChange = (newValue: string) => {
     const selectedRegion = regionData.find((dataItem) => dataItem.main.value === newValue);
     if (selectedRegion?.main.label === '지역 전체') return '';
@@ -51,18 +49,7 @@ export default function FindCrew({ initialData }: FindCrewProps) {
 
   useEffect(() => {
     if (CrewCardListData) {
-      const previousData = previousDataRef.current;
-      if (previousData) {
-        const newPages = CrewCardListData.pages.slice(previousData.pages.length);
-        setData((prevData) => ({
-          ...prevData,
-          pages: [...(prevData?.pages || []), ...newPages],
-          pageParams: [...(prevData?.pageParams || []), ...CrewCardListData.pageParams],
-        }));
-      } else {
-        setData(CrewCardListData);
-      }
-      previousDataRef.current = CrewCardListData;
+      setData(CrewCardListData);
     }
   }, [CrewCardListData]);
 
