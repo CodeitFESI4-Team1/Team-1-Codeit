@@ -17,8 +17,8 @@ const nextConfig = {
           {
             key: 'Access-Control-Allow-Origin',
             value:
-              process.env.NEXT_PUBLIC_API_BASE_URL || 'https://foggy-sideways-saltasaurus.glitch.me/',
-
+              process.env.NEXT_PUBLIC_API_BASE_URL ||
+              'https://foggy-sideways-saltasaurus.glitch.me/',
           },
           { key: 'Access-Control-Allow-Methods', value: 'GET,OPTIONS,PATCH,DELETE,POST,PUT' },
           {
@@ -27,6 +27,14 @@ const nextConfig = {
               'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
           },
         ],
+      },
+    ];
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/:path*',
+        destination: `${process.env.NEXT_PUBLIC_API_BASE_URL}/:path*`,
       },
     ];
   },
