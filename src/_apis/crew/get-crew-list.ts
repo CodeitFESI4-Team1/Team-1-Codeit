@@ -10,7 +10,7 @@ export async function getCrewList(
 
   try {
     const response = await fetchApi<MainCrewListResponse>(
-      `/crews/search?keyword=${keyword}&mainLocation=${mainLocation}&mainCategory=${mainCategory}&subCategory=${subCategory}&sortType=${sortType}&page=${page}&size=${size}&sort=${sort}`,
+      `/api/crews/search?keyword=${keyword}&mainLocation=${mainLocation}&mainCategory=${mainCategory}&subCategory=${subCategory}&sortType=${sortType}&page=${page}&size=${size}&sort=${sort}`,
       {
         method: 'GET',
         headers: {
