@@ -1,7 +1,7 @@
 import { getGatheringList } from '@/src/_apis/detail/get-gathering-list';
-import GatheringCardCarousel from '@/src/components/gathering-list/gathering-card-carousel';
 import CreateGathering from './_components/create-gathering';
 import DetailCrewSection from './_components/detail-crew-section';
+import GatheringListSection from './_components/gathering-list-section';
 import CrewReviewSection from './_components/review-section';
 
 interface CrewDetailPageProps {
@@ -26,7 +26,7 @@ export default async function CrewDetailPage({ params }: CrewDetailPageProps) {
               {/* <CreateGathering /> */}
             </div>
             <div className="flex w-full">
-              {/* <GatheringCardCarousel gatheringData={gatheringList} /> */}
+              <GatheringListSection id={id} />
             </div>
           </article>
         </section>

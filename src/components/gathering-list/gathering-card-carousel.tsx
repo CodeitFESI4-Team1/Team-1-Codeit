@@ -102,7 +102,7 @@ export default function CustomGatheringCardCarousel({ gatheringData }: Gathering
       )}
 
       {/* Custom Indicators */}
-      <div className="mt-4 flex justify-center space-x-2">
+      <div className="mt-2 flex justify-center space-x-2">
         {Array.from({ length: Math.ceil(totalSlides / slidesToShow) }).map((_, i) => (
           <span
             // eslint-disable-next-line react/no-array-index-key
