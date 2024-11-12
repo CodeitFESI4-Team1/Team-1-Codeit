@@ -34,8 +34,8 @@ export default function FindCrew({ initialData }: FindCrewProps) {
     return selectedRegion ? selectedRegion.main.label : '';
   };
 
-  const handleSearch = (): void => {
-    if (searchRef.current) {
+  const handleSearch = (e: KeyboardEvent) => {
+    if (searchRef.current && e.key === 'Enter') {
       setMainCategory('');
       setSubCategory('');
       setSearch(searchRef.current.value);
@@ -71,13 +71,13 @@ export default function FindCrew({ initialData }: FindCrewProps) {
           subCategory={subCategory}
           setMainCategory={(newValue) => {
             setMainCategory(newValue);
-            setSearch('');
             if (searchRef.current) searchRef.current.value = '';
+            if (search !== '') setSearch('');
           }}
           setSubCategory={(newValue) => {
             setSubCategory(newValue);
-            setSearch('');
             if (searchRef.current) searchRef.current.value = '';
+            if (search !== '') setSearch('');
           }}
         />
       </div>
@@ -87,16 +87,15 @@ export default function FindCrew({ initialData }: FindCrewProps) {
           <div className="flex-1">
             <TextInput
               ref={searchRef}
+              onKeyDown={handleSearch}
               leftSectionPointerEvents="none"
-              rightSection={
-                <button type="button" className="flex h-5 w-5" onClick={handleSearch}>
-                  <Image src={IcoSearch} alt="search" width={20} height={20} className="-ml-1" />
-                </button>
+              leftSection={
+                <Image src={IcoSearch} alt="search" width={20} height={20} className="-mr-1" />
               }
               placeholder="크루 이름, 위치를 검색하세요."
               classNames={{
                 input:
-                  'h-11 w-full rounded-xl border-0 pr-10 font-pretendard text-base font-medium text-gray-800 placeholder:text-gray-500',
+                  'h-11 w-full rounded-xl border-0 pl-10 font-pretendard text-base font-medium text-gray-800 placeholder:text-gray-500',
               }}
             />
           </div>
