@@ -36,6 +36,8 @@ export default function FindCrew({ initialData }: FindCrewProps) {
 
   const handleSearch = (): void => {
     if (searchRef.current) {
+      setMainCategory('');
+      setSubCategory('');
       setSearch(searchRef.current.value);
     }
   };
@@ -67,8 +69,16 @@ export default function FindCrew({ initialData }: FindCrewProps) {
         <CategoryContainer
           mainCategory={mainCategory}
           subCategory={subCategory}
-          setMainCategory={setMainCategory}
-          setSubCategory={setSubCategory}
+          setMainCategory={(newValue) => {
+            setMainCategory(newValue);
+            setSearch('');
+            if (searchRef.current) searchRef.current.value = '';
+          }}
+          setSubCategory={(newValue) => {
+            setSubCategory(newValue);
+            setSearch('');
+            if (searchRef.current) searchRef.current.value = '';
+          }}
         />
       </div>
       <Divider mx={{ base: 0, md: 32, lg: 34 }} my={24} size={2} color="#E5E7EB" />
