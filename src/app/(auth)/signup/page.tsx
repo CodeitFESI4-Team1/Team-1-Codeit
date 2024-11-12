@@ -14,18 +14,21 @@ export default function LoginPage() {
   const { mutate: postSignup } = usePostSignupQuery();
 
   const handleSubmit = async (data: SignupFormValues) => {
-    postSignup(data, {
+    const { confirmPassword, ...requestData } = data;
+
+    postSignup(requestData, {
       onSuccess: () => {
         router.push('/');
       },
       onError: (error) => {
-        if (error.statusCode === 400) {
-          // TODO: parameter 처리 후 message 처리 확인
-          //   const { parameter } = error.parameter;
-          //   setError(parameter, {
-          //     type: 'manual',
-          //     message: error.message,
-          //   });
+        if (error.status === 400) {
+          const { validationErrors } = error.detail;
+          Object.keys(validationErrors).forEach((key) => {
+            setError(key as 'email', {
+              type: 'manual',
+              message: validationErrors[key],
+            });
+          });
         }
       },
     });

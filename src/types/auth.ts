@@ -1,5 +1,5 @@
 export interface SignupResponse {
-  token: string;
+  token: string | null;
 }
 
 export interface SignupRequest {
