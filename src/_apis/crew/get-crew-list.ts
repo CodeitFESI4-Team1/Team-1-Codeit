@@ -21,6 +21,8 @@ export async function getCrewList(
     );
     return response;
   } catch (error) {
-    throw new Error('크루 리스트를 불러오는데 실패했습니다.');
+    // eslint-disable-next-line no-console
+    console.error(error);
+    return undefined as unknown as MainCrewListResponse;
   }
 }
