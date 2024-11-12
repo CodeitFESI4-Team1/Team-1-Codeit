@@ -32,7 +32,7 @@ function CrewCardList(
   const crewDataList =
     (inWhere === 'my-crew'
       ? data?.pages.flatMap((page) => page.data as MyCrewList[])
-      : data?.pages.flatMap((page) => page.content as MainCrewList[])) ?? [];
+      : data?.pages?.flatMap((page) => page.content as MainCrewList[])) ?? [];
   const gridColsStyle = inWhere === 'my-crew' ? '' : 'lg:grid-cols-2';
 
   if (!crewDataList.length)
