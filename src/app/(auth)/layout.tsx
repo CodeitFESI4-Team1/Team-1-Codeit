@@ -22,7 +22,7 @@ export default function AuthLayout({
         <div className="hidden h-full items-center md:flex md:w-1/2">
           <Image src={Auth} alt="auth" />
         </div>
-        <div className="md:p-8lg:p-20 flex h-full w-full flex-col items-center bg-white p-6 md:w-1/2 md:justify-center">
+        <div className="flex h-full w-full flex-col items-center bg-white p-6 md:w-1/2 md:justify-center md:p-8 lg:p-20">
           <div className="text-xl font-semibold md:text-2xl lg:text-3xl">Welcome,</div>
           <div className="text-center text-xl font-semibold md:text-2xl lg:text-3xl">
             크루에 오신 것을 환영합니다 🙌

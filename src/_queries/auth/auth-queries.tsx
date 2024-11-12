@@ -6,33 +6,23 @@ import { transformKeysToCamel } from '@/src/utils/transform-keys';
 import { LoginRequest, LoginResponse, SignupRequest, SignupResponse, User } from '@/src/types/auth';
 
 export function usePostSignupQuery() {
-  const queryClient = useQueryClient();
-  const { login, setUser } = useAuthStore();
+  const handleAuthSuccess = useHandleAuthSuccess();
 
   return useMutation<{ data: SignupResponse }, ApiError, SignupRequest>({
     mutationFn: signupUser,
     onSuccess: async (response) => {
-      const token = response.data.token?.replace(/^Bearer\s/, '');
-      if (token) await login(token);
-
-      const user: User = await queryClient.fetchQuery(getUserQuery());
-      setUser(user);
+      await handleAuthSuccess(response.data.token);
     },
   });
 }
 
 export function usePostLoginQuery() {
-  const queryClient = useQueryClient();
-  const { login, setUser } = useAuthStore();
+  const handleAuthSuccess = useHandleAuthSuccess();
 
   return useMutation<{ data: LoginResponse }, ApiError, LoginRequest>({
     mutationFn: loginUser,
     onSuccess: async (response) => {
-      const token = response.data.token?.replace(/^Bearer\s/, '');
-      if (token) await login(token);
-
-      const user: User = await queryClient.fetchQuery(getUserQuery());
-      setUser(user);
+      await handleAuthSuccess(response.data.token);
     },
   });
 }
@@ -42,5 +32,25 @@ export function getUserQuery() {
     queryKey: ['user'],
     queryFn: getUser,
     select: (data: User) => transformKeysToCamel(data),
+  };
+}
+
+function useHandleAuthSuccess() {
+  const queryClient = useQueryClient();
+  const { login, setUser } = useAuthStore();
+
+  return async function handleAuthSuccess(token: string | null) {
+    if (!token) {
+      throw new Error('토큰이 없습니다');
+    }
+
+    try {
+      const accessToken = token.replace(/^Bearer\s/, '');
+      login(accessToken);
+      const user: User = await queryClient.fetchQuery(getUserQuery());
+      setUser(user);
+    } catch (error) {
+      throw new Error('사용자 상태 업데이트 실패');
+    }
   };
 }
