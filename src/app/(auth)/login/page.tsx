@@ -19,7 +19,6 @@ export default function LoginPage() {
         router.push('/');
       },
       onError: (error) => {
-        console.log('detail', error.status);
         if (error.status === 404) {
           setError('email', {
             type: 'manual',
