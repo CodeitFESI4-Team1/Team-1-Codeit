@@ -6,8 +6,9 @@ interface AuthState {
   isAuth: boolean;
   user: User | null;
   token: string | null;
-  login: (userData: User, token: string) => void;
+  login: (token: string) => void;
   logout: () => void;
+  setUser: (user: User) => void;
 }
 
 export const useAuthStore = create<AuthState>()(
@@ -16,10 +17,9 @@ export const useAuthStore = create<AuthState>()(
       isAuth: false,
       user: null,
       token: null,
-      login: (userData, token) =>
+      login: (token) =>
         set({
           isAuth: true,
-          user: userData,
           token,
         }),
       logout: () =>
@@ -28,6 +28,7 @@ export const useAuthStore = create<AuthState>()(
           user: null,
           token: null,
         }),
+      setUser: (user: User) => set((state) => ({ ...state, user })),
     }),
     {
       name: 'auth-storage',
