@@ -27,7 +27,7 @@ export default function CustomGatheringCardCarousel({ gatheringData }: Gathering
         newSlideSize = 'w-full';
       } else if (screenWidth <= 1200) {
         newSlidesToShow = 2;
-        newSlideSize = 'w-[calc(50%-8px)]';
+        newSlideSize = 'w-[calc(50%-8px)]'; // 두 개일 경우
       } else {
         newSlidesToShow = 3;
         newSlideSize = 'w-[calc(33.33%-12px)]';
@@ -56,7 +56,7 @@ export default function CustomGatheringCardCarousel({ gatheringData }: Gathering
   };
 
   return (
-    <div className="relative mx-auto max-w-full overflow-hidden">
+    <div className="relative w-full">
       <div className="flex overflow-x-hidden">
         <div
           className={`flex min-w-0 transition-transform duration-300 ease-in-out ${
@@ -70,7 +70,7 @@ export default function CustomGatheringCardCarousel({ gatheringData }: Gathering
           }}
         >
           {gatheringData.map((card) => (
-            <div key={card.id} className={`flex-shrink-0 ${slideSize} mb-10`}>
+            <div key={card.id} className={`flex-shrink-0 ${slideSize} mb-5 lg:min-w-[362px]`}>
               <GatheringCard {...card} className="w-full" />
             </div>
           ))}
