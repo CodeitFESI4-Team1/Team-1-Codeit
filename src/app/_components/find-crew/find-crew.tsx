@@ -33,7 +33,7 @@ export default function FindCrew({ initialData }: FindCrewProps) {
     return selectedRegion ? selectedRegion.main.label : '';
   };
 
-  const handleSearch = (): void => {
+  const handleSearch = () => {
     if (searchRef.current) {
       setMainCategory('');
       setSubCategory('');
@@ -70,13 +70,13 @@ export default function FindCrew({ initialData }: FindCrewProps) {
           subCategory={subCategory}
           setMainCategory={(newValue) => {
             setMainCategory(newValue);
-            setSearch('');
             if (searchRef.current) searchRef.current.value = '';
+            if (search !== '') setSearch('');
           }}
           setSubCategory={(newValue) => {
             setSubCategory(newValue);
-            setSearch('');
             if (searchRef.current) searchRef.current.value = '';
+            if (search !== '') setSearch('');
           }}
         />
       </div>
@@ -98,7 +98,7 @@ export default function FindCrew({ initialData }: FindCrewProps) {
               placeholder="크루 이름, 위치를 검색하세요."
               classNames={{
                 input:
-                  'h-11 w-full rounded-xl border-0 pr-10 font-pretendard text-base font-medium text-gray-800 placeholder:text-gray-500',
+                  'h-11 w-full rounded-xl border-0 pl-10 font-pretendard text-base font-medium text-gray-800 placeholder:text-gray-500',
               }}
             />
           </div>
