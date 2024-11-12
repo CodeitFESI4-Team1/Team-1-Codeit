@@ -19,15 +19,14 @@ export default function LoginPage() {
         router.push('/');
       },
       onError: (error) => {
-        if (error.statusCode === 404) {
+        if (error.status === 401) {
           setError('email', {
             type: 'manual',
-            message: '이메일 계정이 존재하지 않습니다',
+            message: '이메일 또는 비밀번호가 일치하지 않습니다.',
           });
-        } else if (error.statusCode === 401) {
           setError('password', {
             type: 'manual',
-            message: '잘못된 비밀번호입니다',
+            message: '이메일 또는 비밀번호가 일치하지 않습니다.',
           });
         }
       },
