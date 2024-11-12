@@ -21,7 +21,7 @@ const meta: Meta = {
 
 export default meta;
 function Template() {
-  const { isAuth, login, logout } = useAuthStore();
+  const { isAuth, login, logout, setUser } = useAuthStore();
   const testToken = 'test token';
   const testUser = {
     id: 1,
@@ -34,7 +34,8 @@ function Template() {
     if (isAuth) {
       logout();
     } else {
-      login(testUser, testToken);
+      login(testToken);
+      setUser(testUser);
     }
   };
 
