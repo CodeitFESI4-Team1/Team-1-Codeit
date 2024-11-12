@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import { useSlider } from '@/src/hooks/useSlider';
+import { useSlider } from '@/src/hooks/use-slider';
 import Button from '@/src/components/common/input/button';
 import { CategoryItem } from '@/src/types/category';
 

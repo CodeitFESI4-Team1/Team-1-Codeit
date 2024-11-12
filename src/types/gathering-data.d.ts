@@ -9,12 +9,12 @@ export interface GatheringType {
   currentCount: number;
   totalCount: number;
   imageUrl: string;
-  isLiked: boolean;
+  liked: boolean;
 }
 export interface GatheringDetailType extends GatheringType {
   introduce: string;
-  isGatherCaptain: boolean;
-  isParticipant: boolean;
+  gatheringCaptain: boolean;
+  participant: boolean;
   participants: UserType[];
 }
 export interface GatheringData {
@@ -45,5 +45,5 @@ export interface GatheringCardProps {
   currentCount: number;
   totalCount: number;
   imageUrl: string;
-  isLiked: boolean;
+  liked: boolean;
 }
