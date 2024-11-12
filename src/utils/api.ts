@@ -52,7 +52,7 @@ export async function fetchApi<T>(
     }
 
     const data = await response.json();
-    return { ...data, headers: response.headers } as T;
+    return { data, headers: response.headers } as T;
   } catch (error) {
     if (error instanceof Error) {
       if (error.name === 'AbortError') throw new ApiError(408, 'Request timeout');
