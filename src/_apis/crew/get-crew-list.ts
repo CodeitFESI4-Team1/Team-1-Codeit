@@ -4,7 +4,8 @@ import { MainCrewList, MainCrewListResponse } from '@/src/types/crew-card';
 export async function getCrewList(page: number, limit: number): Promise<MainCrewListResponse> {
   try {
     const response = await fetchApi<MainCrewListResponse>(
-      `/crews?_page=${page + 1}&_limit=${limit}`,
+      // `/api/crews?_page=${page + 1}&_limit=${limit}`,
+      `/api/crews/search?page=0&limit=6`,
       {
         method: 'GET',
         headers: {

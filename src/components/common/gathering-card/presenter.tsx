@@ -1,7 +1,7 @@
 import { MouseEvent } from 'react';
 import Image from 'next/image';
 import { Badge } from '@mantine/core';
-import { cn } from '@/src/hooks/cn';
+import { cn } from '@/src/utils/cn';
 import { formatDate } from '@/src/utils/format-date';
 import Button from '@/src/components/common/input/button';
 import LikeBtn from '@/src/components/common/input/button/like-btn';
