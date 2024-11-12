@@ -19,15 +19,16 @@ export default function LoginPage() {
         router.push('/');
       },
       onError: (error) => {
-        if (error.statusCode === 404) {
+        console.log('detail', error.status);
+        if (error.status === 404) {
           setError('email', {
             type: 'manual',
-            message: '이메일 계정이 존재하지 않습니다',
+            message: '존재하지 않는 이메일입니다!',
           });
-        } else if (error.statusCode === 401) {
+        } else if (error.status === 401) {
           setError('password', {
             type: 'manual',
-            message: '잘못된 비밀번호입니다',
+            message: '비밀번호가 일치하지 않습니다!',
           });
         }
       },
