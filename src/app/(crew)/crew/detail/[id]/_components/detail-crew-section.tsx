@@ -10,7 +10,7 @@ interface DetailCrewSectionProps {
 
 export default function DetailCrewSection({ id }: DetailCrewSectionProps) {
   const { data, isLoading, error } = useGetCrewDetailQuery(id);
-  // TODO: 추후 에러 처리
+  // TODO: 추후 에러 처리 수정
   if (isLoading) return <p>Loading...</p>;
 
   if (error) {
@@ -27,8 +27,6 @@ export default function DetailCrewSection({ id }: DetailCrewSectionProps) {
     }
     return <p>데이터 통신에 실패했습니다.</p>;
   }
-
-  // console.log('crew detail data:', data);
 
   // data가 있을 때만 DetailCrewCard를 렌더링
   return data ? <DetailCrewCard data={data} /> : null;
