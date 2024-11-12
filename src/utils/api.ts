@@ -1,12 +1,16 @@
 import { useAuthStore } from '@/src/store/use-auth-store';
 
 export class ApiError extends Error {
+  detail: { validationErrors: Record<string, string> } = { validationErrors: {} };
+
   constructor(
     public status: number,
     message: string,
+    detail?: { validationErrors: Record<string, string> }, // 타입을 맞춤
   ) {
     super(message);
     this.name = 'ApiError';
+    if (detail) this.detail = detail;
   }
 }
 
@@ -20,7 +24,6 @@ export async function fetchApi<T>(
   const { signal } = controller;
   const id = setTimeout(() => controller.abort(), timeout);
   const { token } = useAuthStore.getState();
-
   const fetchOptions: RequestInit = {
     ...options,
     signal,
@@ -42,23 +45,23 @@ export async function fetchApi<T>(
     // console.log('응답 상태 코드:', response.status); // 응답 상태 코드 로그
 
     if (!response.ok) {
+      let errorDetail;
       let errorMessage;
       try {
-        const errorData = await response.json();
-        errorMessage = errorData.message || `HTTP error! status: ${response.status}`;
-
-        // console.log('에러 메시지:', errorMessage); // 에러 메시지 로그
+        const { status, message, ...detail } = await response.json();
+        errorMessage = message || `HTTP error! status: ${response.status}`;
+        errorDetail = detail;
       } catch {
         errorMessage = `HTTP error! status: ${response.status}`;
 
         // console.log('JSON 파싱 실패, 에러 메시지:', errorMessage); // JSON 파싱 실패 로그
       }
 
-      throw new ApiError(response.status, errorMessage);
+      throw new ApiError(response.status, errorMessage, errorDetail);
     }
 
-    // 응답 데이터를 JSON 형태로 반환
-    return (await response.json()) as T;
+    const data = await response.json();
+    return { ...data, headers: response.headers } as T;
   } catch (error) {
     if (error instanceof Error) {
       if (error.name === 'AbortError') throw new ApiError(408, 'Request timeout');

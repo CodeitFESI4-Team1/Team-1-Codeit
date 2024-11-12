@@ -1,5 +1,5 @@
 export interface SignupResponse {
-  token: string;
+  token: string | null;
 }
 
 export interface SignupRequest {
@@ -9,7 +9,7 @@ export interface SignupRequest {
 }
 
 export interface LoginResponse {
-  token: string;
+  token: string | null;
 }
 
 export interface LoginRequest {
