@@ -23,7 +23,7 @@ export default function Home() {
   const { data, ref, isFetchingNextPage } = useInfiniteScroll(
     useGetCrewListQuery({
       keyword: search,
-      mainLocation: region,
+      mainLocation: regionData.find((dataItem) => dataItem.main.value === region)?.main.label ?? '',
       mainCategory,
       subCategory,
       sortType: sort === 'latest' ? 'LATEST' : 'POPULAR',
@@ -61,10 +61,12 @@ export default function Home() {
               name="region"
               variant="default"
               data={regionData.map((dataItem) => dataItem.main)}
-              placeholder="서울특별시"
+              placeholder="지역 전체"
               value={region}
               className="w-[130px]"
-              onChange={(newValue) => setRegion(newValue ?? '')}
+              onChange={(newValue) => {
+                setRegion(newValue as string);
+              }}
             />
             <DropDown
               name="sort"
@@ -76,7 +78,9 @@ export default function Home() {
               placeholder="최신순"
               value={sort}
               className="w-[130px]"
-              onChange={setSort}
+              onChange={(newValue) => {
+                setSort(newValue as string);
+              }}
             />
           </div>
         </div>
