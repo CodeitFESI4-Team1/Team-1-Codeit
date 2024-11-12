@@ -3,7 +3,7 @@ import { gatheringData } from '@/src/mock/gathering-data';
 
 export default function FavoritePage() {
   return (
-    <div className="md:mt-[45px]">
+    <div className="mt-4 md:mt-10">
       <GatheringList gatheringData={gatheringData} />
     </div>
   );
