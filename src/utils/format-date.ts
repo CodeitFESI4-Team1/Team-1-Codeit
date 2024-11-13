@@ -19,6 +19,14 @@ export function formatDateWithYear(dateString: string) {
   return { year, month, day };
 }
 
+export function getDayOfWeek(dateString: string) {
+  const daysInKorean = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
+  const date = new Date(dateString);
+  const dayIndex = date.getDay();
+
+  return daysInKorean[dayIndex];
+}
+
 export function formatDateToRequest(date: Date) {
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');
