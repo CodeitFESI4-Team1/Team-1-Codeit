@@ -3,7 +3,7 @@
 import { useRef, useState } from 'react';
 import Image from 'next/image';
 import { Divider, TextInput } from '@mantine/core';
-import { useGetCrewListQuery } from '@/src/_queries/crew-queries';
+import { useGetCrewListQuery } from '@/src/_queries/crew/get-crew-list-queries';
 import regionData from '@/src/data/region.json';
 import { useInfiniteScroll } from '@/src/hooks/use-infinite-scroll';
 import CategoryContainer from '@/src/app/_components/category/category-container';

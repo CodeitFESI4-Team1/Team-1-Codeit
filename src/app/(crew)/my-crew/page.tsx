@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useGetCrewListQuery } from '@/src/_queries/crew-queries';
+import { useGetCrewListQuery } from '@/src/_queries/crew/get-crew-list-queries';
 import { useInfiniteScroll } from '@/src/hooks/use-infinite-scroll';
 import CrewCardList from '@/src/components/common/crew-list/crew-card-list';
 import Tabs from '@/src/components/common/tab';
