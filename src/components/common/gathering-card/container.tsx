@@ -57,11 +57,9 @@ export default function GatheringCard({
 
           if (errorData.status === 'NOT_FOUND') {
             Toast({ message: '모임 정보를 찾을 수 없습니다.', type: 'error' });
-            return;
           }
         } catch {
           Toast({ message: `Error ${error.status}: ${error.message}`, type: 'error' });
-          return;
         }
       } else {
         Toast({ message: '데이터 통신에 실패했습니다.', type: 'error' });
