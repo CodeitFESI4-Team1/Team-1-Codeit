@@ -12,6 +12,7 @@ export interface GatheringType {
   liked: boolean;
 }
 export interface GatheringDetailType extends GatheringType {
+  crewId: number;
   introduce: string;
   gatheringCaptain: boolean;
   participant: boolean;
