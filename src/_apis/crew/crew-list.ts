@@ -5,7 +5,7 @@ export async function getCrewList(condition: ConditionTypes, pageable: PageableT
   const { keyword, mainLocation, mainCategory, subCategory, sortType } = condition;
   const { page, size, sort = ['string'] } = pageable;
 
-  const response = await fetchApi<MainCrewListResponse>(
+  const response: { data: MainCrewListResponse } = await fetchApi(
     `/api/crews/search?keyword=${keyword}&mainLocation=${mainLocation}&mainCategory=${mainCategory}&subCategory=${subCategory}&sortType=${sortType}&page=${page}&size=${size}&sort=${sort}`,
     {
       method: 'GET',
@@ -16,5 +16,5 @@ export async function getCrewList(condition: ConditionTypes, pageable: PageableT
     },
   );
 
-  return response;
+  return response?.data;
 }
