@@ -1,11 +1,21 @@
-import { getGathering } from '@/src/_apis/gathering/gathering-apis';
-import { transformKeysToCamel } from '@/src/utils/transform-keys';
-import { GatheringDetailType } from '@/src/types/gathering-data';
+import {
+  getHostedGatheringList,
+  getJoinedGatheringList,
+} from '@/src/_apis/gathering/gathering-apis';
+import { GatheringCardProps } from '@/src/types/gathering-data';
 
-export function useGetGatheringQuery() {
+export function useGetJoinedGatheringListQuery() {
   return {
     queryKey: ['gatheringDetail'],
-    queryFn: getGathering,
-    select: (data: GatheringDetailType) => transformKeysToCamel(data),
+    queryFn: getJoinedGatheringList,
+    select: (data: GatheringCardProps[]) => data,
+  };
+}
+
+export function useGetHostedGatheringListQuery() {
+  return {
+    queryKey: ['gatheringDetail'],
+    queryFn: getHostedGatheringList,
+    select: (data: GatheringCardProps[]) => data,
   };
 }
