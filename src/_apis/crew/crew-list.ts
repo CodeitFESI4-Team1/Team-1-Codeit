@@ -5,21 +5,16 @@ export async function getCrewList(condition: ConditionTypes, pageable: PageableT
   const { keyword, mainLocation, mainCategory, subCategory, sortType } = condition;
   const { page, size, sort = ['string'] } = pageable;
 
-  try {
-    const response = await fetchApi<MainCrewListResponse>(
-      `/api/crews/search?keyword=${keyword}&mainLocation=${mainLocation}&mainCategory=${mainCategory}&subCategory=${subCategory}&sortType=${sortType}&page=${page}&size=${size}&sort=${sort}`,
-      {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include', // 인증 정보를 요청에 포함
+  const response = await fetchApi<MainCrewListResponse>(
+    `/api/crews/search?keyword=${keyword}&mainLocation=${mainLocation}&mainCategory=${mainCategory}&subCategory=${subCategory}&sortType=${sortType}&page=${page}&size=${size}&sort=${sort}`,
+    {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
       },
-    );
-    return response;
-  } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error(error);
-    return undefined;
-  }
+      credentials: 'include', // 인증 정보를 요청에 포함
+    },
+  );
+
+  return response;
 }
