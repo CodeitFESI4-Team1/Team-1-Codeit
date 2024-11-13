@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { InfiniteData } from '@tanstack/react-query';
-import { useGetCrewListQuery } from '@/src/_queries/crew/get-crew-list-queries';
+import { useGetCrewListQuery } from '@/src/_queries/crew/crew-list-queries';
 import { useInfiniteScroll } from '@/src/hooks/use-infinite-scroll';
 import ClientProvider from '@/src/components/client-provider';
 import { MainCrewListResponse } from '@/src/types/crew-card';
