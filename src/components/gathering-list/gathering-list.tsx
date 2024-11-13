@@ -6,6 +6,8 @@ import { useMediaQuery } from '@mantine/hooks';
 import GatheringCard from '@/src/components/common/gathering-card/container';
 import { GatheringType } from '@/src/types/gathering-data';
 
+// TODO: 수정이 많이 들어갈 예정이라 다른 브랜치에서 수정예정
+
 /* eslint-disable react/no-array-index-key */
 
 interface GatheringListProps {
@@ -53,9 +55,9 @@ export default function GatheringList({ gatheringData }: GatheringListProps) {
   return (
     <div className="mx-auto max-w-[1200px] px-4">
       <div className="mx-auto grid grid-cols-1 justify-items-center gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {currentPageData.map((card, id) => (
+        {/* {currentPageData.map((card, id) => (
           <GatheringCard key={id} {...card} className={cardClassName} />
-        ))}
+        ))} */}
 
         {/* 빈 카드를 추가하여 페이지네이션 위치를 고정 */}
         {isDesktop && totalCards < 4 && renderEmptyCards(4 - totalCards, 'w-[380px]')}

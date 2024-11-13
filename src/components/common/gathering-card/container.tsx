@@ -2,13 +2,16 @@
 
 import { useEffect, useState } from 'react';
 import { useDisclosure } from '@mantine/hooks';
-import { getGathering } from '@/src/_apis/gathering/gathering-apis';
+import { useGetGatheringDetailQuery } from '@/src/_queries/detail/gathering-detail-queries';
+import { ApiError } from '@/src/utils/api';
 import GatheringDetailModalContainer from '@/src/app/(crew)/crew/_components/gathering-detail-modal/container';
-import { GatheringDetailType, GatheringType } from '@/src/types/gathering-data';
+import Toast from '@/src/components/common/toast';
+import { GatheringType } from '@/src/types/gathering-data';
 import GatheringCardPresenter from './presenter';
 
 interface GatheringCardContainerProps extends GatheringType {
   className?: string;
+  crewId: number;
 }
 
 export default function GatheringCard({
@@ -21,10 +24,11 @@ export default function GatheringCard({
   imageUrl,
   liked: initialIsLiked,
   className,
+  crewId,
 }: GatheringCardContainerProps) {
   const [opened, { open, close }] = useDisclosure(false);
-  const [gatheringData, setGatheringData] = useState<GatheringDetailType | null>(null);
-  const [error, setError] = useState(false);
+  // 임시 찜하기
+  const [isLiked, setIsLiked] = useState(initialIsLiked);
 
   // 날짜 비교
   const gatheringDate = new Date(dateTime);
@@ -38,35 +42,34 @@ export default function GatheringCard({
   // 마감 시간 문자열 생성
   const deadlineMessage = `오늘 ${gatheringDate.getHours()}시 마감`;
 
-  // 임시 찜하기
-  const [isLiked, setIsLiked] = useState(initialIsLiked);
-
   // 추후 찜하기 컴포넌트 작성되면 수정
   const handleLikeToggle = () => {
     setIsLiked((prev) => !prev);
   };
 
+  const { data: gatheringData, error } = useGetGatheringDetailQuery(crewId, id);
+
+  useEffect(() => {
+    if (error) {
+      if (error instanceof ApiError) {
+        try {
+          const errorData = JSON.parse(error.message);
+
+          if (errorData.status === 'NOT_FOUND') {
+            Toast({ message: '모임 정보를 찾을 수 없습니다.', type: 'error' });
+          }
+        } catch {
+          Toast({ message: `Error ${error.status}: ${error.message}`, type: 'error' });
+        }
+      } else {
+        Toast({ message: '데이터 통신에 실패했습니다.', type: 'error' });
+      }
+    }
+  }, [error]);
+
   const openModal = () => {
-    // TODO: 모임 상세보기 API 연결
     open();
   };
-
-  // Fix: 추후 수정
-  useEffect(() => {
-    const fetchGatheringDetail = async () => {
-      setError(false);
-      try {
-        const data = await getGathering();
-        setGatheringData(data);
-      } catch {
-        setError(true);
-      }
-    };
-
-    if (opened) {
-      fetchGatheringDetail();
-    }
-  }, [opened]);
 
   return (
     <>
