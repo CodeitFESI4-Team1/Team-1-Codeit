@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { useGetJoinedGatheringListQuery } from '@/src/_queries/gathering/gathering-queries';
+import { useGetJoinedGatheringListQuery } from '@/src/_queries/my-gathering/joined-gathering-list-queries';
 import { formatDateToRequest } from '@/src/utils/format-date';
 import GatheringListWithDate from '@/src/app/(crew)/my-gathering/_component/gathering-list-with-date';
 import PopOverCalendar from '@/src/components/common/input/pop-over-calendar';

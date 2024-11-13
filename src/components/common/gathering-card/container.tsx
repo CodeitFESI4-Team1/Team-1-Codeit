@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useDisclosure } from '@mantine/hooks';
-import { getGathering } from '@/src/_apis/gathering/gathering-apis';
+// import { getGathering } from '@/src/_apis/my-gathering/gathering-apis';
 import GatheringDetailModalContainer from '@/src/app/(crew)/crew/_components/gathering-detail-modal/container';
 import { GatheringDetailType, GatheringType } from '@/src/types/gathering-data';
 import GatheringCardPresenter from './presenter';
@@ -56,8 +56,8 @@ export default function GatheringCard({
     const fetchGatheringDetail = async () => {
       setError(false);
       try {
-        const data = await getGathering();
-        setGatheringData(data);
+        // const data = await getGathering();
+        // setGatheringData(data);
       } catch {
         setError(true);
       }
