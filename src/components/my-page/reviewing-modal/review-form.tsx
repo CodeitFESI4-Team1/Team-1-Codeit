@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Button } from '@mantine/core';
 import { useMutation } from '@tanstack/react-query';
-import { PostReviewParams, postReview } from '@/src/_apis/review/post-review';
+import { PostReviewParams, postReview } from '@/src/_apis/review/review-apis';
 import { ApiError } from '@/src/utils/api';
 import Textarea from '@/src/components/common/input/textarea';
 import ButtonHearts from './button-hearts';
