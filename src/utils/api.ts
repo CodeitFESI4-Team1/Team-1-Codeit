@@ -35,7 +35,8 @@ export async function fetchApi<T>(
   };
 
   try {
-    const response = await fetch(`${url}`, fetchOptions); // API 요청 실행
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}${url}`, fetchOptions);
+
     if (!response.ok) {
       let errorDetail;
       let errorMessage;
@@ -50,8 +51,7 @@ export async function fetchApi<T>(
       throw new ApiError(response.status, errorMessage, errorDetail);
     }
 
-    const data = await response.json();
-    return { ...data, headers: response.headers } as T;
+    return { data: await response.json() } as T;
   } catch (error) {
     if (error instanceof Error) {
       if (error.name === 'AbortError') throw new ApiError(408, 'Request timeout');
