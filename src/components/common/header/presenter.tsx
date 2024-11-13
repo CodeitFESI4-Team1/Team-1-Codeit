@@ -13,6 +13,12 @@ export interface HeaderPresenterProps {
   handleLogout: () => void;
 }
 
+const links = [
+  { href: '/my-crew', label: '나의 크루' },
+  { href: '/my-gathering', label: '나의 약속' },
+  { href: '/my-favorite', label: '찜한 약속' },
+];
+
 export default function HeaderPresenter({
   isAuth,
   profileImageUrl,
@@ -34,32 +40,17 @@ export default function HeaderPresenter({
             >
               크루 찾기
             </Link>
-
-            {isAuth ? (
-              <>
-                <Link
-                  href="/my-crew"
-                  className={`${pathname === '/my-crew' ? 'text-white' : 'text-blue-300'} ml-4 text-sm font-semibold md:text-lg`}
-                >
-                  나의 크루
-                </Link>
-                <Link
-                  href="/my-gathering"
-                  className={`${pathname === '/my-gathering' ? 'text-white' : 'text-blue-300'} ml-4 text-sm font-semibold md:text-lg`}
-                >
-                  나의 약속
-                </Link>
-              </>
-            ) : (
-              <>
-                <Link href="/login" className="ml-4 text-sm font-semibold text-blue-300 md:text-lg">
-                  나의 크루
-                </Link>
-                <Link href="/login" className="ml-4 text-sm font-semibold text-blue-300 md:text-lg">
-                  나의 약속
-                </Link>
-              </>
-            )}
+            {links.map(({ href, label }) => (
+              <Link
+                key={href}
+                href={isAuth ? href : '/login'}
+                className={`${
+                  pathname.startsWith(href) ? 'text-white' : 'text-blue-300'
+                } ml-4 text-sm font-semibold md:text-lg`}
+              >
+                {label}
+              </Link>
+            ))}
           </nav>
         </div>
 
