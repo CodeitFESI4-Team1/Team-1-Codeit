@@ -5,22 +5,21 @@ export interface ConditionTypes {
   subCategory: string;
   sortType: 'LATEST' | 'POPULAR';
 }
-
 export interface PageableTypes {
   page: number;
   size: number;
   sort: string[];
 }
 
-export interface MainCrewListResponse {
-  data: MainCrewList[];
+export type MainCrewListResponse = {
+  content: MainCrewList[] | undefined;
   hasNext: boolean;
-}
+};
 
 export interface MainCrewList {
   id: number;
-  mainCategory: string;
-  subCategory: string;
+  mainCategory?: string;
+  subCategory?: string;
   title: string;
   mainLocation: string;
   subLocation: string;
@@ -29,6 +28,7 @@ export interface MainCrewList {
   imageUrl: string;
   isConfirmed: boolean;
   totalGatheringCount: number;
+  crewMembers?: CrewMember[];
 }
 
 export interface CrewMember {

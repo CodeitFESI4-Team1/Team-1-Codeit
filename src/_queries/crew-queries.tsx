@@ -1,4 +1,5 @@
-import { MainCrewList } from '@/src/types/crew-card';
+import { UseInfiniteQueryOptions } from '@tanstack/react-query';
+import { ConditionTypes, MainCrewListResponse, PageableTypes } from '@/src/types/crew-card';
 import { getCrewList } from '../_apis/crew/get-crew-list';
 import { getMyCrewParticipationList } from '../_apis/crew/get-my-crew-participation-list';
 
@@ -10,13 +11,26 @@ interface Page {
   hasNext: boolean;
 }
 
-export function useGetCrewQuery() {
+export function useGetCrewListQuery(condition: ConditionTypes) {
   return {
-    queryKey: ['crew'],
-    queryFn: ({ pageParam = 0 }: QueryParams) => getCrewList(pageParam, 3),
-    getNextPageParam: (lastPage: Page, allPages: Page[]) =>
-      lastPage.hasNext ? allPages.length + 1 : undefined,
-    select: (data: MainCrewList[]) => data, // 그대로 반환
+    queryKey: [
+      condition.keyword,
+      condition.mainLocation,
+      condition.mainCategory,
+      condition.subCategory,
+      condition.sortType,
+    ],
+    queryFn: ({ pageParam = 0 }) =>
+      getCrewList(condition, { page: pageParam, size: 6, sort: [condition.sortType] }).then(
+        (response) => {
+          if (response === undefined) {
+            throw new Error('Response is null');
+          }
+          return response;
+        },
+      ),
+    getNextPageParam: (lastPage: MainCrewListResponse, allPages: MainCrewListResponse[]) =>
+      lastPage.hasNext ? allPages.length : undefined,
   };
 }
 

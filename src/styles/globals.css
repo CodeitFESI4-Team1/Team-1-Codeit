@@ -36,7 +36,7 @@
 }
 @layer utilities {
   .corner-dot {
-    @apply absolute right-[-7px] top-[-6px] rounded-full bg-gray-300;
+    @apply absolute right-[-5px] top-[-6px] rounded-full bg-gray-300;
     width: 12px;
     height: 12px;
   }

@@ -30,8 +30,8 @@ export default function InternalCategory({ value, category, onChange }: Internal
         <li key={item.label} className="snap-align-start flex">
           <Button
             type="button"
-            onClick={() => onChange(item.value)}
-            className={`${pathname?.includes(item.value ?? value) && 'bg-gray-900 text-white'} h-10 min-w-28 items-center justify-center text-nowrap rounded-xl bg-gray-100 px-5 py-2 text-center text-sm font-bold text-gray-400 transition-colors hover:bg-gray-900 hover:text-white md:h-11 md:text-lg`}
+            onClick={() => onChange(item.label)}
+            className={`${pathname?.includes(item.label ?? value) && 'bg-gray-900 text-white'} h-10 min-w-28 items-center justify-center text-nowrap rounded-xl bg-gray-100 px-5 py-2 text-center text-sm font-bold text-gray-400 transition-colors hover:bg-gray-900 hover:text-white md:h-11 md:text-lg`}
           >
             {item.label}
           </Button>
