@@ -2,26 +2,36 @@ import { fetchApi } from '@/src/utils/api';
 import { LoginRequest, LoginResponse, SignupRequest, SignupResponse, User } from '@/src/types/auth';
 
 export function signupUser(data: SignupRequest): Promise<{ data: SignupResponse }> {
-  return fetchApi<{ data: SignupResponse; headers: Headers }>('/auths/signup', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
+  return fetchApi<{ data: SignupResponse; headers: Headers }>(
+    '/auths/signup',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
     },
-    body: JSON.stringify(data),
-  }).then((response) => {
+    5000,
+    true,
+  ).then((response) => {
     const token = response.headers.get('Authorization');
     return { data: { token } };
   });
 }
 
 export function loginUser(data: LoginRequest): Promise<{ data: LoginResponse }> {
-  return fetchApi<{ data: LoginResponse; headers: Headers }>('/auths/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
+  return fetchApi<{ data: LoginResponse; headers: Headers }>(
+    '/auths/login',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
     },
-    body: JSON.stringify(data),
-  }).then((response) => {
+    5000,
+    true,
+  ).then((response) => {
     const token = response.headers.get('Authorization');
     return { data: { token } };
   });
