@@ -1,10 +1,7 @@
 import { fetchApi } from '@/src/utils/api';
 import { ConditionTypes, MainCrewListResponse, PageableTypes } from '@/src/types/crew-card';
 
-export async function getCrewList(
-  condition: ConditionTypes,
-  pageable: PageableTypes,
-): Promise<MainCrewListResponse> {
+export async function getCrewList(condition: ConditionTypes, pageable: PageableTypes) {
   const { keyword, mainLocation, mainCategory, subCategory, sortType } = condition;
   const { page, size, sort = ['string'] } = pageable;
 
@@ -23,6 +20,6 @@ export async function getCrewList(
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error(error);
-    return { content: [], hasNext: false };
+    return null;
   }
 }

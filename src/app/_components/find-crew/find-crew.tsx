@@ -15,11 +15,11 @@ import { MainCrewListResponse } from '@/src/types/crew-card';
 import IcoSearch from '@/public/assets/icons/ic-search.svg';
 
 interface FindCrewProps {
-  initialData: InfiniteData<MainCrewListResponse> | undefined;
+  initialData: InfiniteData<MainCrewListResponse>;
 }
 
 export default function FindCrew({ initialData }: FindCrewProps) {
-  const [data, setData] = useState<InfiniteData<MainCrewListResponse> | undefined>(initialData);
+  const [data, setData] = useState<InfiniteData<MainCrewListResponse>>(initialData);
   const [mainCategory, setMainCategory] = useState('');
   const [subCategory, setSubCategory] = useState('');
   const [sort, setSort] = useState<string | null>('latest');
