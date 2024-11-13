@@ -1,4 +1,6 @@
+import { useEffect, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { InfiniteData } from '@tanstack/react-query';
 import { useGetCrewListQuery } from '@/src/_queries/crew-queries';
 import { useInfiniteScroll } from '@/src/hooks/use-infinite-scroll';
 import ClientProvider from '@/src/components/client-provider';
@@ -27,8 +29,17 @@ const meta: Meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-function RenderCrewCardList() {
-  const { data, ref, isFetchingNextPage } = useInfiniteScroll(
+function RenderCrewCardList({
+  initialData,
+}: {
+  initialData: InfiniteData<MainCrewListResponse | null>;
+}) {
+  const [data, setData] = useState<InfiniteData<MainCrewListResponse | null>>(initialData);
+  const {
+    data: CrewCardListData,
+    ref,
+    isFetchingNextPage,
+  } = useInfiniteScroll(
     useGetCrewListQuery({
       keyword: '',
       mainLocation: '',
@@ -37,10 +48,17 @@ function RenderCrewCardList() {
       sortType: 'LATEST',
     }),
   );
+
+  useEffect(() => {
+    if (CrewCardListData) {
+      setData(CrewCardListData);
+    }
+  }, [CrewCardListData]);
+
   return <CrewCardList data={data} ref={ref} isFetchingNextPage={isFetchingNextPage} />;
 }
 
 export const Default: Story = {
-  render: () => <RenderCrewCardList />,
+  render: () => <RenderCrewCardList initialData={{ pages: [], pageParams: [] }} />,
   args: {},
 };
