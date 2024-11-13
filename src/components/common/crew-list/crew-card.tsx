@@ -7,7 +7,6 @@ import ProgressBar from '@/src/components/common/progress-bar/index';
 import { MainCrewList } from '@/src/types/crew-card';
 import Check from '@/public/assets/icons/ic-check.svg';
 import IcoUser from '@/public/assets/icons/ic-user.svg';
-import ImgDefault from '@/public/assets/images/img-default.jpg';
 import Profiles from './profiles';
 
 interface CrewCardProps extends MainCrewList {
@@ -52,12 +51,7 @@ export default function CrewCard({
     >
       {/* 썸네일 */}
       <div className="relative h-[203px] w-full flex-shrink-0 md:w-[230px]">
-        <Image
-          fill
-          objectFit="cover"
-          alt={title}
-          src={imageUrl === 'string' ? ImgDefault : imageUrl}
-        />
+        <Image fill objectFit="cover" alt={title} src={imageUrl} />
       </div>
 
       <div className="flex w-full flex-col justify-between p-6 sm:h-[238px] sm:px-4 sm:pt-4 md:h-[203px]">
