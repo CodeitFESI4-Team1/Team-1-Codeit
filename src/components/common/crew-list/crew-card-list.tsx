@@ -11,7 +11,7 @@ import CrewCard from './crew-card';
 
 // CrewCardListProps 타입을 구분하여 정의
 interface CrewCardListProps {
-  data: InfiniteData<MainCrewListResponse | MyCrewListResponse | undefined>;
+  data: InfiniteData<MainCrewListResponse | MyCrewListResponse>;
   isFetchingNextPage: boolean;
   inWhere?: 'my-crew' | 'main-crew';
 }
