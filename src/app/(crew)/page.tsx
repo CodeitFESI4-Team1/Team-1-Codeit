@@ -76,7 +76,14 @@ export default function HomePage() {
               }}
               rightSection={
                 <button type="button" className="flex h-5 w-5" onClick={handleSearch}>
-                  <Image src={IcoSearch} alt="search" width={20} height={20} className="-ml-1" />
+                  <Image
+                    src={IcoSearch}
+                    alt="search"
+                    width={20}
+                    height={20}
+                    className="-ml-1"
+                    aria-label="검색하기"
+                  />
                 </button>
               }
               placeholder="크루 이름, 위치를 검색하세요."
