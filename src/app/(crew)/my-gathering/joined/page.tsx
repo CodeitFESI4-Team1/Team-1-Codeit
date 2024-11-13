@@ -2,19 +2,19 @@
 
 import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { useGetHostedGatheringListQuery } from '@/src/_queries/gathering/gathering-queries';
+import { useGetJoinedGatheringListQuery } from '@/src/_queries/gathering/gathering-queries';
 import GatheringListWithDate from '@/src/app/(crew)/my-gathering/_component/gathering-list-with-date';
 import PopOverCalendar from '@/src/components/common/input/pop-over-calendar';
 import { GatheringCardProps } from '@/src/types/gathering-data';
 
-export default function CreationPage() {
+export default function MyGatheringJoinedPage() {
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [hostedGatheringList, setHostedGatheringList] = useState<GatheringCardProps[]>();
+  const [joinedGatheringList, setJoinedGatheringList] = useState<GatheringCardProps[]>();
 
-  const { data, isLoading, refetch } = useQuery(useGetHostedGatheringListQuery());
+  const { data, isLoading, refetch } = useQuery(useGetJoinedGatheringListQuery());
 
   useEffect(() => {
-    setHostedGatheringList(data);
+    setJoinedGatheringList(data);
   }, [data]);
 
   useEffect(() => {
@@ -26,7 +26,7 @@ export default function CreationPage() {
       <div className="py-4 md:py-6">
         <PopOverCalendar value={selectedDate} onChange={(d) => setSelectedDate(d)} />
       </div>
-      {hostedGatheringList && <GatheringListWithDate gatheringList={hostedGatheringList} />}
+      {joinedGatheringList && <GatheringListWithDate gatheringList={joinedGatheringList} />}
     </div>
   );
 }
