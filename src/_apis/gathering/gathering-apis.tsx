@@ -1,8 +1,9 @@
 import { fetchApi } from '@/src/utils/api';
 import { GatheringCardProps, GatheringDetailType } from '@/src/types/gathering-data';
 
-export function getJoinedGatheringList(): Promise<GatheringCardProps[]> {
-  return fetchApi<{ data: GatheringCardProps[] }>('/api/gatherings/joined', {
+export function getJoinedGatheringList(startDate: string): Promise<GatheringCardProps[]> {
+  const url = `/api/gatherings/joined?startDate=${startDate}`;
+  return fetchApi<{ data: GatheringCardProps[] }>(url, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -10,8 +11,9 @@ export function getJoinedGatheringList(): Promise<GatheringCardProps[]> {
   }).then((response) => response.data);
 }
 
-export function getHostedGatheringList(): Promise<GatheringCardProps[]> {
-  return fetchApi<{ data: GatheringCardProps[] }>('/api/gatherings/hosted', {
+export function getHostedGatheringList(startDate: string): Promise<GatheringCardProps[]> {
+  const url = `/api/gatherings/hosted?startDate=${startDate}`;
+  return fetchApi<{ data: GatheringCardProps[] }>(url, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
