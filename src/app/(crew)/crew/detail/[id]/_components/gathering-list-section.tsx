@@ -1,6 +1,6 @@
 'use client';
 
-import { useGetGatheringListQuery } from '@/src/_queries/detail/gathering-list-queries';
+import { useGetGatheringListQuery } from '@/src/_queries/crew/gathering-list-queries';
 import GatheringCardCarousel from '@/src/components/gathering-list/gathering-card-carousel';
 
 interface GatheringListSectionProps {

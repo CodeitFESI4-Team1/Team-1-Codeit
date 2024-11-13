@@ -1,6 +1,6 @@
 'use client';
 
-import { useGetCrewDetailQuery } from '@/src/_queries/detail/crew-detail-queries';
+import { useGetCrewDetailQuery } from '@/src/_queries/crew/crew-detail-queries';
 import { ApiError } from '@/src/utils/api';
 import DetailCrewCard from '@/src/components/common/crew-list/detail-crew-card';
 
