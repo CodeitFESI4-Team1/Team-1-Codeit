@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useGetCrewQuery } from '@/src/_queries/crew-queries';
+import { useGetCrewListQuery } from '@/src/_queries/crew-queries';
 import { useInfiniteScroll } from '@/src/hooks/use-infinite-scroll';
 import CrewCardList from '@/src/components/common/crew-list/crew-card-list';
 import Tabs from '@/src/components/common/tab';
@@ -17,7 +17,7 @@ export default function MyCrewPage() {
   // TODO: fetchCrewData 함수를 사용하여 데이터를 불러오기 : 파라미터 수정 필요
   // TODO: 리스트와는 다른 데이터를 사용해야해서 우선 주석처리 했습니다.
   // const { data, ref, isFetchingNextPage } =
-  //   useInfiniteScroll<MyCrewListResponse>(useGetCrewQuery());
+  //   useInfiniteScroll<MyCrewListResponse>(useGetCrewListQuery());
 
   return (
     <div className="py-8 md:py-12.5">

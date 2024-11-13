@@ -1,6 +1,4 @@
-'use client';
-
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import category from '@/src/data/category.json';
 import InternalCategory from '@/src/app/_components/category/internal-category';
 import MainCategory from '@/src/app/_components/category/main-category';
@@ -18,32 +16,26 @@ export default function CategoryContainer({
   setMainCategory,
   setSubCategory,
 }: CategoryContainerProps) {
-  const [categoryIndex, setCategoryIndex] = useState(0);
-
-  useEffect(() => {
-    if (subCategory !== category[categoryIndex].items[0].value) {
-      setSubCategory(category[categoryIndex].items[0].value);
-    }
-  }, [mainCategory, categoryIndex]);
-
-  useEffect(() => {
-    if (mainCategory !== category[categoryIndex].title.value) {
-      setMainCategory(category[categoryIndex].title.value);
-    }
-  }, [subCategory]);
+  const [categoryIndex, setCategoryIndex] = useState<number | null>(null);
 
   return (
     <div className="flex flex-col gap-2 md:gap-4">
       <MainCategory
         value={mainCategory}
         category={category}
-        onChange={setMainCategory}
+        onChange={(newValue) => {
+          setMainCategory(newValue);
+          setSubCategory('');
+        }}
         onHover={setCategoryIndex}
       />
       <InternalCategory
         value={subCategory}
-        category={category[categoryIndex].items}
-        onChange={setSubCategory}
+        category={category[categoryIndex ?? 0].items}
+        onChange={(newValue) => {
+          setSubCategory(newValue);
+          setMainCategory(category[categoryIndex ?? 0].title.label);
+        }}
       />
     </div>
   );

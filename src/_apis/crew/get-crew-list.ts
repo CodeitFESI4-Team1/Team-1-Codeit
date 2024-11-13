@@ -1,25 +1,25 @@
 import { fetchApi } from '@/src/utils/api';
-import { MainCrewList, MainCrewListResponse } from '@/src/types/crew-card';
+import { ConditionTypes, MainCrewListResponse, PageableTypes } from '@/src/types/crew-card';
 
-export async function getCrewList(page: number, limit: number): Promise<MainCrewListResponse> {
+export async function getCrewList(condition: ConditionTypes, pageable: PageableTypes) {
+  const { keyword, mainLocation, mainCategory, subCategory, sortType } = condition;
+  const { page, size, sort = ['string'] } = pageable;
+
   try {
     const response = await fetchApi<MainCrewListResponse>(
-      `/crews?_page=${page + 1}&_limit=${limit}`,
+      `/api/crews/search?keyword=${keyword}&mainLocation=${mainLocation}&mainCategory=${mainCategory}&subCategory=${subCategory}&sortType=${sortType}&page=${page}&size=${size}&sort=${sort}`,
       {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include', // 인증 정보를 요청에 포함
       },
     );
-    if (!Array.isArray(response)) {
-      throw new Error('서버 응답이 올바른 형식이 아닙니다.');
-    }
-    const data = response as MainCrewList[];
-    const hasNext = data.length === limit;
-
-    return { data, hasNext };
+    return response;
   } catch (error) {
-    throw new Error('크루 리스트를 불러오는데 실패했습니다.');
+    // eslint-disable-next-line no-console
+    console.error(error);
+    return undefined;
   }
 }

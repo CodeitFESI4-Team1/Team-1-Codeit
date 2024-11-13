@@ -1,5 +1,9 @@
 [
   {
+    "main": { "label": "지역 전체", "value": "" },
+    "areas": []
+  },
+  {
     "main": { "label": "서울특별시", "value": "seoul" },
     "areas": [
       { "label": "강남구", "value": "gangnam" },
