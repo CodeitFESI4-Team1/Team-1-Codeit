@@ -9,9 +9,13 @@ import IcoRight from '@/public/assets/icons/ic-right.svg';
 
 interface GatheringCardCarouselProps {
   gatheringData: GatheringType[];
+  crewId: number;
 }
 
-export default function CustomGatheringCardCarousel({ gatheringData }: GatheringCardCarouselProps) {
+export default function CustomGatheringCardCarousel({
+  gatheringData,
+  crewId,
+}: GatheringCardCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [slidesToShow, setSlidesToShow] = useState(1);
   const [slideSize, setSlideSize] = useState('w-full');
@@ -71,7 +75,7 @@ export default function CustomGatheringCardCarousel({ gatheringData }: Gathering
         >
           {gatheringData.map((card) => (
             <div key={card.id} className={`flex-shrink-0 ${slideSize} mb-5 lg:min-w-[362px]`}>
-              <GatheringCard {...card} className="w-full" />
+              <GatheringCard crewId={crewId} {...card} className="w-full" />
             </div>
           ))}
         </div>

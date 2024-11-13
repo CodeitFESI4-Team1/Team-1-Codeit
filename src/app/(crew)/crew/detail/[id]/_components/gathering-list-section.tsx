@@ -16,5 +16,5 @@ export default function GatheringListSection({ id }: GatheringListSectionProps) 
 
   if (!gatheringList || gatheringList.length === 0) return <p>데이터가 없습니다.</p>;
 
-  return <GatheringCardCarousel gatheringData={gatheringList} />;
+  return <GatheringCardCarousel gatheringData={gatheringList} crewId={id} />;
 }
