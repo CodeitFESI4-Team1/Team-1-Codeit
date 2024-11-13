@@ -14,7 +14,7 @@ export function useGetCrewListQuery(condition: ConditionTypes) {
     queryFn: ({ pageParam = 0 }) =>
       getCrewList(condition, { page: pageParam, size: 6, sort: [condition.sortType] }).then(
         (response) => {
-          if (response === null) {
+          if (response === undefined) {
             throw new Error('Response is null');
           }
           return response;

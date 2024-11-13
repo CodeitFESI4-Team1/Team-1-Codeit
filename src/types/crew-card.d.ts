@@ -13,7 +13,7 @@ export interface PageableTypes {
 }
 
 export type MainCrewListResponse = {
-  content: MainCrewList[] | null;
+  content: MainCrewList[] | undefined;
   hasNext: boolean;
 };
 
@@ -29,7 +29,7 @@ export interface MainCrewList {
   imageUrl: string;
   isConfirmed: boolean;
   totalGatheringCount: number;
-  crewMembers?: CrewMemberList[];
+  crewMembers?: CrewMember[];
 }
 
 export interface CrewMember {

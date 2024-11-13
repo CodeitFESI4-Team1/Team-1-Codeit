@@ -32,9 +32,9 @@ type Story = StoryObj<typeof meta>;
 function RenderCrewCardList({
   initialData,
 }: {
-  initialData: InfiniteData<MainCrewListResponse | null>;
+  initialData: InfiniteData<MainCrewListResponse | undefined>;
 }) {
-  const [data, setData] = useState<InfiniteData<MainCrewListResponse | null>>(initialData);
+  const [data, setData] = useState<InfiniteData<MainCrewListResponse | undefined>>(initialData);
   const {
     data: CrewCardListData,
     ref,

@@ -20,6 +20,6 @@ export async function getCrewList(condition: ConditionTypes, pageable: PageableT
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error(error);
-    return null;
+    return undefined;
   }
 }

@@ -11,7 +11,7 @@ import CrewCard from './crew-card';
 
 // CrewCardListProps 타입을 구분하여 정의
 interface MainCrewCardListProps {
-  data: InfiniteData<MainCrewListResponse | null>;
+  data: InfiniteData<MainCrewListResponse | undefined>;
   isFetchingNextPage: boolean;
   inWhere?: undefined;
 }
@@ -35,7 +35,7 @@ function CrewCardList(
       : data?.pages?.flatMap((page) => page?.content as MainCrewList[])) ?? [];
   const gridColsStyle = inWhere === 'my-crew' ? '' : 'lg:grid-cols-2';
 
-  if (data?.pages[0] === null)
+  if (data?.pages[0] === undefined)
     // 초기 로딩시 데이터 없을때
     return (
       <div className="flex justify-center py-10">
