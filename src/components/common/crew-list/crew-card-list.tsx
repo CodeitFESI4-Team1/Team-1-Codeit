@@ -10,20 +10,11 @@ import {
 import CrewCard from './crew-card';
 
 // CrewCardListProps 타입을 구분하여 정의
-interface MainCrewCardListProps {
-  data: InfiniteData<MainCrewListResponse | undefined>;
+interface CrewCardListProps {
+  data: InfiniteData<MainCrewListResponse | MyCrewListResponse | undefined>;
   isFetchingNextPage: boolean;
-  inWhere?: undefined;
+  inWhere?: 'my-crew' | 'main-crew';
 }
-
-interface MyCrewCardListProps {
-  data: InfiniteData<MyCrewListResponse>;
-  isFetchingNextPage: boolean;
-  inWhere: 'my-crew';
-}
-
-// 유니온 타입으로 정의
-type CrewCardListProps = MainCrewCardListProps | MyCrewCardListProps;
 
 function CrewCardList(
   { data, isFetchingNextPage, inWhere }: CrewCardListProps,
@@ -31,8 +22,9 @@ function CrewCardList(
 ) {
   const crewDataList =
     (inWhere === 'my-crew'
-      ? data?.pages.flatMap((page) => page?.data as MyCrewList[])
+      ? data?.pages.flatMap((page) => page?.content as MyCrewList[])
       : data?.pages?.flatMap((page) => page?.content as MainCrewList[])) ?? [];
+
   const gridColsStyle = inWhere === 'my-crew' ? '' : 'lg:grid-cols-2';
 
   if (data?.pages[0] === undefined)

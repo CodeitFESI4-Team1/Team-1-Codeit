@@ -64,6 +64,6 @@ export interface MyCrewList {
 }
 
 export interface MyCrewListResponse {
-  data: MyCrewList[];
+  content: MyCrewList[] | undefined;
   hasNext: boolean;
 }

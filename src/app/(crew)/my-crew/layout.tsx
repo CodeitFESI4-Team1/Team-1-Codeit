@@ -1,24 +1,37 @@
 'use client';
 
-import { ReactNode, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
 import Tabs from '@/src/components/common/tab';
 
 export default function MyCrewLayout({ children }: { children: ReactNode }) {
-  const myPageTabs = [
-    { label: '내가 참여한 크루', id: 'joined-crew' },
-    { label: '내가 만든 크루', id: 'made-crew' },
+  const router = useRouter();
+  const currentPath = usePathname();
+  const myCrewTabs = [
+    { label: '내가 참여한 크루', id: 'joined-crew', route: '/my-crew/participation' },
+    { label: '내가 만든 크루', id: 'made-crew', route: '/my-crew/creation' },
   ];
-  const [currentTab, setCurrentTab] = useState(myPageTabs[0].id);
+  const [currentTab, setCurrentTab] = useState(myCrewTabs[0].id);
+
+  const handleTabClick = (id: string) => {
+    const targetRoute = myCrewTabs.find((tab) => tab.id === id)?.route;
+    if (targetRoute) router.push(targetRoute);
+  };
+
+  useEffect(() => {
+    const activeTabId = myCrewTabs.find((tab) => tab.route === currentPath)?.id;
+    if (activeTabId) setCurrentTab(activeTabId);
+  }, [currentPath]);
 
   return (
     <div className="py-8 md:py-12.5">
       <div className="px-3 md:px-8 lg:px-11.5">
         <Tabs
           variant="default"
-          tabs={myPageTabs}
+          tabs={myCrewTabs}
           activeTab={currentTab}
           onTabClick={(id) => {
-            setCurrentTab(id);
+            handleTabClick(id);
           }}
         />
       </div>

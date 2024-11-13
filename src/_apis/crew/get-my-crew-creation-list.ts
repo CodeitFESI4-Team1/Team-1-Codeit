@@ -1,12 +1,12 @@
 import { fetchApi } from '@/src/utils/api';
 import { MyCrewListResponse, PageableTypes } from '@/src/types/crew-card';
 
-export async function getMyCrewParticipationList(pageable: PageableTypes) {
+export async function getMyCrewCreationList(pageable: PageableTypes) {
   const { page, size, sort = ['string'] } = pageable;
 
   try {
     const response = await fetchApi<MyCrewListResponse>(
-      `/api/crews/joined?page=${page}&size=${size}&sort=${sort}`,
+      `/api/crews/hosted?page=${page}&size=${size}&sort=${sort}`,
       {
         method: 'GET',
         headers: {
