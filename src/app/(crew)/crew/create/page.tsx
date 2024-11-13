@@ -2,13 +2,15 @@
 
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { createCrew } from '@/src/_apis/crew/create-crew';
+import { getImageUrl } from '@/src/_apis/image/get-image-url';
 import CreateCrewForm from '@/src/app/(crew)/crew/_components/create-crew-form';
-import { CreateCrewRequestTypes } from '@/src/types/create-crew';
+import { CreateCrewFormTypes, CreateCrewRequestTypes } from '@/src/types/create-crew';
 import IcoCreateCrew from '@/public/assets/icons/ic-create-crew.svg';
 
 export default function CreateCrewPage() {
   const router = useRouter();
-  const initialValue: CreateCrewRequestTypes = {
+  const initialValue: CreateCrewFormTypes = {
     title: '',
     mainCategory: '',
     subCategory: null,
@@ -18,10 +20,21 @@ export default function CreateCrewPage() {
     totalCount: 4,
   };
 
-  const handleSubmit = () => {
-    // TODO : POST API 연결
-    const response = { id: 1 };
-    router.push(`/crew/detail/${response?.id}`);
+  const handleSubmit = async (data: CreateCrewFormTypes) => {
+    const imgResponse = await getImageUrl(data.imageUrl, 'CREW');
+    const imageUrl = (await imgResponse?.imageUrl) ?? '';
+    const newData: CreateCrewRequestTypes = {
+      title: data.title,
+      mainCategory: data.mainCategory,
+      subCategory: data.subCategory ?? '',
+      imageUrl: data.imageUrl instanceof File ? imageUrl : (data?.imageUrl ?? ''),
+      mainLocation: data.mainLocation,
+      subLocation: data.subLocation ?? '',
+      totalCount: data.totalCount,
+    };
+    const submitResponseWithSample = await createCrew(newData);
+
+    // router.push(`/crew/detail/${submitResponse?.id}`);
   };
 
   return (

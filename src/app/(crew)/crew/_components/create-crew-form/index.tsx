@@ -10,14 +10,14 @@ import Button from '@/src/components/common/input/button';
 import DropDown from '@/src/components/common/input/drop-down';
 import FileInputWrap from '@/src/components/common/input/file-input-wrap';
 import TextInput from '@/src/components/common/input/text-input';
-import { CreateCrewRequestTypes } from '@/src/types/create-crew';
+import { CreateCrewFormTypes, CreateCrewRequestTypes } from '@/src/types/create-crew';
 import ImgCrewSamples from '@/public/assets/images/crew-sample';
 
-export interface CreateCrewFormTypes {
-  data: CreateCrewRequestTypes;
+export interface CreateCrewFormProps {
+  data: CreateCrewFormTypes;
   isEdit?: boolean;
-  onEdit?: (data: CreateCrewRequestTypes) => void;
-  onSubmit?: (data: CreateCrewRequestTypes) => void;
+  onEdit?: (data: CreateCrewFormTypes) => void;
+  onSubmit?: (data: CreateCrewFormTypes) => void;
 }
 
 export default function CreateCrewForm({
@@ -25,7 +25,7 @@ export default function CreateCrewForm({
   onEdit = () => {},
   onSubmit = () => {},
   data,
-}: CreateCrewFormTypes) {
+}: CreateCrewFormProps) {
   const router = useRouter();
   const {
     control,
@@ -34,7 +34,7 @@ export default function CreateCrewForm({
     trigger,
     clearErrors,
     formState: { errors, isValid, isSubmitting },
-  } = useForm<CreateCrewRequestTypes>({
+  } = useForm<CreateCrewFormTypes>({
     defaultValues: data,
     mode: 'onBlur',
   });
@@ -47,20 +47,22 @@ export default function CreateCrewForm({
   const mainCategory = useWatch({ control, name: 'mainCategory' });
   const mainLocation = useWatch({ control, name: 'mainLocation' });
 
+  const imageUrl = useWatch({ control, name: 'imageUrl' });
+
   const handleMainCategoryChange = (newValue: string | null) => {
-    setValue('mainCategory' as const, newValue as CreateCrewRequestTypes['mainCategory']);
-    setValue('subCategory' as const, null as CreateCrewRequestTypes['subCategory']);
+    setValue('mainCategory', newValue || '');
+    setValue('subCategory', null);
     clearErrors('subCategory');
   };
 
   const handleMainLocationChange = (newValue: string | null) => {
-    setValue('mainLocation' as const, newValue as CreateCrewRequestTypes['mainLocation']);
-    setValue('subLocation' as const, null as CreateCrewRequestTypes['subLocation']);
+    setValue('mainLocation', newValue || '');
+    setValue('subLocation', null);
     clearErrors('subLocation');
   };
   useEffect(() => {
-    setCategoryIndex(categoryData.findIndex((category) => category.title.value === mainCategory));
-    setRegionIndex(regionData.findIndex((region) => region.main.value === mainLocation));
+    setCategoryIndex(categoryData.findIndex((category) => category.title.label === mainCategory));
+    setRegionIndex(regionData.findIndex((region) => region.main.label === mainLocation));
   }, [mainCategory, mainLocation]);
 
   return (
@@ -162,15 +164,14 @@ export default function CreateCrewForm({
               required: '이미지를 선택해주세요.',
               validate: {
                 fileSize: (file) =>
-                  file && file instanceof File && file.size <= 5242880
-                    ? true
-                    : '파일 크기는 5MB 이하여야 합니다.',
+                  file && file instanceof File
+                    ? file.size <= 5242880 || '파일 크기는 5MB 이하여야 합니다.'
+                    : true, // 문자열인 경우 크기 검사를 건너뜁니다.
                 fileType: (file) =>
-                  file &&
-                  file instanceof File &&
-                  ['image/jpeg', 'image/jpg', 'image/png'].includes(file.type)
-                    ? true
-                    : 'JPG, PNG 파일만 업로드 가능합니다.',
+                  file && file instanceof File
+                    ? ['image/jpeg', 'image/jpg', 'image/png'].includes(file.type) ||
+                      'JPG, PNG 파일만 업로드 가능합니다.'
+                    : true, // 문자열인 경우 파일 타입 검사를 건너뜁니다.
               },
             }}
             render={({ field }) => (
@@ -179,7 +180,7 @@ export default function CreateCrewForm({
                 sample={ImgCrewSamples}
                 onChange={(newValue) => {
                   field.onChange(newValue);
-                  if (newValue instanceof File) trigger('imageUrl');
+                  trigger('imageUrl');
                 }}
               />
             )}

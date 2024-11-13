@@ -4,8 +4,8 @@ import IcoPlus from '@/public/assets/icons/ic-plus.svg';
 import IcoX from '@/public/assets/icons/ic-x.svg';
 
 export interface FileInputProps {
-  value: File | StaticImageData | null;
-  onChange: (value: File | StaticImageData | null) => void;
+  value: File | StaticImageData | string | null;
+  onChange: (value: File | null) => void;
   isBlur: boolean;
 }
 

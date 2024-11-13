@@ -2,9 +2,9 @@ import { useEffect, useRef } from 'react';
 import Image, { StaticImageData } from 'next/image';
 
 export interface FileSampleProps {
-  image: StaticImageData;
+  image: string;
   isBlur: boolean;
-  onChange: (inputValue: StaticImageData) => void;
+  onChange: (inputValue: string) => void;
 }
 
 export default function FileSample({ image, isBlur, onChange }: FileSampleProps) {

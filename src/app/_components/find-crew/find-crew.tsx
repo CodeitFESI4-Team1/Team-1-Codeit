@@ -28,7 +28,7 @@ export default function FindCrew({ initialData }: FindCrewProps) {
   const searchRef = useRef<HTMLInputElement>(null);
 
   const handleRegionChange = (newValue: string) => {
-    const selectedRegion = regionData.find((dataItem) => dataItem.main.value === newValue);
+    const selectedRegion = regionData.find((dataItem) => dataItem.main.label === newValue);
     if (selectedRegion?.main.label === '지역 전체') return '';
     return selectedRegion ? selectedRegion.main.label : '';
   };
