@@ -11,30 +11,33 @@ import Check from '@/public/assets/icons/ic-check.svg';
 import KebabIcon from '@/public/assets/icons/kebab-btn.svg';
 
 interface DetailCrewCardProps {
-  id: number;
-  title: string;
-  mainLocation: string;
-  subLocation: string;
-  participantCount: number;
-  totalCount: number;
-  isConfirmed: boolean;
-  imageUrl: string;
-  totalGatheringCount: number;
-  crewMembers: CrewMember[];
+  data: {
+    id: number;
+    title: string;
+    mainLocation: string;
+    subLocation: string;
+    participantCount: number;
+    totalCount: number;
+    confirmed: boolean;
+    imageUrl: string;
+    totalGatheringCount: number;
+    crewMembers: CrewMember[];
+  };
 }
 
-export default function DetailCrewCard({
-  id,
-  title,
-  mainLocation,
-  subLocation,
-  participantCount,
-  totalCount,
-  isConfirmed,
-  imageUrl,
-  totalGatheringCount,
-  crewMembers,
-}: DetailCrewCardProps) {
+export default function DetailCrewCard({ data }: DetailCrewCardProps) {
+  const {
+    id,
+    title,
+    mainLocation,
+    subLocation,
+    participantCount,
+    totalCount,
+    confirmed,
+    imageUrl,
+    totalGatheringCount,
+    crewMembers,
+  } = data;
   const [confirmCancelOpened, { open: openConfirmCancel, close: closeConfirmCancel }] =
     useDisclosure();
   const [leaveCrewModalOpened, { open: openLeaveCrewModal, close: closeLeaveCrewModal }] =
@@ -131,7 +134,7 @@ export default function DetailCrewCard({
                 </div>
               </div>
 
-              {isConfirmed && (
+              {confirmed && (
                 <span className="flex items-center gap-[1px] text-blue-600">
                   <Image src={Check} alt="확인" width={24} height={24} />
                   <span className="text-sm font-medium"> 개설 확정</span>

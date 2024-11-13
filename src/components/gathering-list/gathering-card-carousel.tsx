@@ -9,9 +9,13 @@ import IcoRight from '@/public/assets/icons/ic-right.svg';
 
 interface GatheringCardCarouselProps {
   gatheringData: GatheringType[];
+  crewId: number;
 }
 
-export default function CustomGatheringCardCarousel({ gatheringData }: GatheringCardCarouselProps) {
+export default function CustomGatheringCardCarousel({
+  gatheringData,
+  crewId,
+}: GatheringCardCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [slidesToShow, setSlidesToShow] = useState(1);
   const [slideSize, setSlideSize] = useState('w-full');
@@ -27,7 +31,7 @@ export default function CustomGatheringCardCarousel({ gatheringData }: Gathering
         newSlideSize = 'w-full';
       } else if (screenWidth <= 1200) {
         newSlidesToShow = 2;
-        newSlideSize = 'w-[calc(50%-8px)]';
+        newSlideSize = 'w-[calc(50%-8px)]'; // 두 개일 경우
       } else {
         newSlidesToShow = 3;
         newSlideSize = 'w-[calc(33.33%-12px)]';
@@ -56,7 +60,7 @@ export default function CustomGatheringCardCarousel({ gatheringData }: Gathering
   };
 
   return (
-    <div className="relative mx-auto max-w-full overflow-hidden">
+    <div className="relative w-full">
       <div className="flex overflow-x-hidden">
         <div
           className={`flex min-w-0 transition-transform duration-300 ease-in-out ${
@@ -70,8 +74,8 @@ export default function CustomGatheringCardCarousel({ gatheringData }: Gathering
           }}
         >
           {gatheringData.map((card) => (
-            <div key={card.id} className={`flex-shrink-0 ${slideSize} mb-10`}>
-              <GatheringCard {...card} className="w-full" />
+            <div key={card.id} className={`flex-shrink-0 ${slideSize} mb-5 lg:min-w-[362px]`}>
+              <GatheringCard crewId={crewId} {...card} className="w-full" />
             </div>
           ))}
         </div>
@@ -102,7 +106,7 @@ export default function CustomGatheringCardCarousel({ gatheringData }: Gathering
       )}
 
       {/* Custom Indicators */}
-      <div className="mt-4 flex justify-center space-x-2">
+      <div className="mt-2 flex justify-center space-x-2">
         {Array.from({ length: Math.ceil(totalSlides / slidesToShow) }).map((_, i) => (
           <span
             // eslint-disable-next-line react/no-array-index-key
