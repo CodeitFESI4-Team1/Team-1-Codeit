@@ -52,7 +52,6 @@ export async function fetchApi<T>(
       throw new ApiError(response.status, errorMessage, errorDetail);
     }
     return { data: await response.json() } as T;
-
   } catch (error) {
     if (error instanceof Error) {
       if (error.name === 'AbortError') throw new ApiError(408, 'Request timeout');
