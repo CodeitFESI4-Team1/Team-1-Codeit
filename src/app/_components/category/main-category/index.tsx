@@ -62,8 +62,8 @@ export default function MainCategory({ value, category, onHover, onChange }: Mai
           >
             <Button
               onMouseEnter={() => handleHover(index)}
-              onClick={() => onChange(item.title.value)}
-              className={`${pathname?.includes(item.title.value ?? value) ? 'bg-blue-500' : ''} ${activeIndex === index ? 'text-blue-500' : 'text-gray-600'} flex flex-col items-center text-base font-semibold md:flex-row md:text-lg lg:text-xl lg:font-semibold`}
+              onClick={() => onChange(item.title.label)}
+              className={`${pathname?.includes(item.title.label ?? value) ? 'bg-blue-500' : ''} ${activeIndex === index ? 'text-blue-500' : 'text-gray-600'} flex flex-col items-center text-base font-semibold md:flex-row md:text-lg lg:text-xl lg:font-semibold`}
             >
               <h3 className="flex items-center gap-1 lg:gap-2">
                 <span className="flex">{item.title.label}</span>

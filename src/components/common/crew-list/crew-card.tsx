@@ -4,22 +4,12 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import ProgressBar from '@/src/components/common/progress-bar/index';
-import { CrewMember } from '@/src/types/crew-card';
+import { MainCrewList } from '@/src/types/crew-card';
 import Check from '@/public/assets/icons/ic-check.svg';
-import UserIco from '@/public/assets/icons/ic-user.svg';
+import IcoUser from '@/public/assets/icons/ic-user.svg';
 import Profiles from './profiles';
 
-interface CrewCardProps {
-  id: number;
-  title: string;
-  mainLocation: string;
-  subLocation: string;
-  participantCount: number;
-  totalCount: number;
-  isConfirmed?: boolean;
-  imageUrl: string;
-  totalGatheringCount: number;
-  crewMembers?: CrewMember[];
+interface CrewCardProps extends MainCrewList {
   inWhere?: 'my-crew';
 }
 
@@ -82,7 +72,7 @@ export default function CrewCard({
           <div className="flex flex-grow flex-col items-start gap-2">
             <div className="flex w-full items-center justify-between">
               <div className="flex items-center space-x-2">
-                <Image src={UserIco} alt="user icon" width={20} height={20} />
+                <Image src={IcoUser} alt="모집 인원 중 참여 인원" width={20} height={20} />
                 <span className="text-base font-medium">
                   {participantCount}/{totalCount}
                 </span>
@@ -94,7 +84,7 @@ export default function CrewCard({
               </div>
               {isConfirmed && (
                 <span className="flex items-center gap-[1px] text-blue-600">
-                  <Image src={Check} alt="확인" width={24} height={24} />
+                  <Image src={Check} alt="아이콘" width={24} height={24} aria-hidden="true" />
                   <span className="text-sm font-medium"> 개설 확정</span>
                 </span>
               )}
