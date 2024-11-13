@@ -1,6 +1,6 @@
 'use client';
 
-import { useGetMyCrewParticipationQuery } from '@/src/_queries/crew-queries';
+import { useGetMyCrewParticipationQuery } from '@/src/_queries/crew/my-crew-participation-list-query';
 import { useInfiniteScroll } from '@/src/hooks/use-infinite-scroll';
 import CrewCardList from '@/src/components/common/crew-list/crew-card-list';
 

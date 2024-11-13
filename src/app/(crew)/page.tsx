@@ -1,4 +1,4 @@
-import { getCrewList } from '@/src/_apis/crew/get-crew-list';
+import { getCrewList } from '@/src/_apis/crew/crew-list';
 import FindCrew from '../_components/find-crew/find-crew';
 
 export default async function HomePage() {

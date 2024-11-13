@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { Divider, TextInput } from '@mantine/core';
 import { InfiniteData } from '@tanstack/react-query';
-import { useGetCrewListQuery } from '@/src/_queries/crew-queries';
+import { useGetCrewListQuery } from '@/src/_queries/crew/crew-list-queries';
 import regionData from '@/src/data/region.json';
 import { useInfiniteScroll } from '@/src/hooks/use-infinite-scroll';
 import CategoryContainer from '@/src/app/_components/category/category-container';
