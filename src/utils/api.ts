@@ -19,6 +19,7 @@ export async function fetchApi<T>(
   url: string,
   options: RequestInit = {},
   timeout = 5000,
+  isAuth = false,
 ): Promise<T> {
   const controller = new AbortController();
   const { signal } = controller;
@@ -49,8 +50,9 @@ export async function fetchApi<T>(
 
       throw new ApiError(response.status, errorMessage, errorDetail);
     }
-
-    return { data: await response.json() } as T;
+    const data = await response.json();
+    if (isAuth) return { data, headers: response.headers } as T;
+    return { data } as T;
   } catch (error) {
     if (error instanceof Error) {
       if (error.name === 'AbortError') throw new ApiError(408, 'Request timeout');
