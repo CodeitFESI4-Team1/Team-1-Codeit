@@ -2,93 +2,54 @@
 
 import { useState } from 'react';
 import { Pagination } from '@mantine/core';
-import { useMediaQuery } from '@mantine/hooks';
+import { cn } from '@/src/utils/cn';
 import GatheringCard from '@/src/components/common/gathering-card/container';
-import { GatheringType } from '@/src/types/gathering-data';
-
-// TODO: 수정이 많이 들어갈 예정이라 다른 브랜치에서 수정예정
-
-/* eslint-disable react/no-array-index-key */
+import { GatheringResponseType } from '@/src/types/gathering-data';
 
 interface GatheringListProps {
-  gatheringData: {
-    data: GatheringType[];
-    pagination: {
-      totalCount: number;
-      page: number;
-      limit: number;
-    };
-  };
+  gatheringData: GatheringResponseType;
 }
 
 export default function GatheringList({ gatheringData }: GatheringListProps) {
   const [page, setPage] = useState(1);
-  const isMobile = useMediaQuery('(max-width: 744px)');
-  const isTablet = useMediaQuery('(min-width: 745px) and (max-width: 1200px)');
-  const isDesktop = useMediaQuery('(min-width: 1201px)');
-
-  // 카드 크기 설정
-  let cardClassName = '';
-  if (isMobile) {
-    cardClassName = 'w-[340px] max-w-[400px]';
-  } else if (isTablet) {
-    cardClassName = 'w-[360px] max-w-[500px]';
-  } else {
-    cardClassName = 'w-[380px]';
-  }
 
   // 데이터 추출
-  const { data, pagination } = gatheringData;
-  const limit = pagination?.limit ?? 6;
-  const currentPageData = data.slice((page - 1) * limit, page * limit);
-
-  // 페이지네이션을 위한 동적 여백 설정
-  const totalCards = currentPageData.length;
-
-  // 빈 카드를 추가하여 페이지네이션 위치 고정
-  const renderEmptyCards = (numEmptyCards: number, width: string) => {
-    return Array.from({ length: numEmptyCards }).map((_, index) => (
-      <div key={index} className={`h-[280px] ${width} bg-transparent`} />
-    ));
-  };
+  const { content, pageSize, totalElements } = gatheringData;
+  const limit = pageSize ?? 6;
+  const currentPageData = content.slice((page - 1) * limit, page * limit);
 
   return (
     <div className="mx-auto max-w-[1200px] px-4">
-      <div className="mx-auto grid grid-cols-1 justify-items-center gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {/* {currentPageData.map((card, id) => (
-          <GatheringCard key={id} {...card} className={cardClassName} />
-        ))} */}
-
-        {/* 빈 카드를 추가하여 페이지네이션 위치를 고정 */}
-        {isDesktop && totalCards < 4 && renderEmptyCards(4 - totalCards, 'w-[380px]')}
-        {isTablet && totalCards < 3 && renderEmptyCards(3 - totalCards, 'w-[360px]')}
-        {isTablet &&
-          totalCards >= 3 &&
-          totalCards < 5 &&
-          renderEmptyCards(5 - totalCards, 'w-[360px]')}
+      <div
+        className={cn(
+          'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
+          'mx-auto justify-items-center gap-4',
+          'md:min-h-[962px] lg:min-h-[636px]',
+        )}
+      >
+        {currentPageData.map((card) => (
+          <GatheringCard {...card} key={card.id} liked={true} />
+        ))}
       </div>
       <div className="mt-8 flex justify-center">
         <Pagination
-          total={Math.ceil(pagination.totalCount / limit)}
+          total={Math.ceil(totalElements / limit)}
           value={page}
           onChange={setPage}
+          classNames={{
+            control: cn(
+              'data-[active="true"]:text-blue-500 data-[active="true"]:font-bold',
+              'border-none bg-transparent hover:bg-transparent',
+            ),
+          }}
           styles={{
             control: {
-              border: 'none',
-              backgroundColor: 'transparent',
               '&[data-active]': {
                 backgroundColor: 'transparent',
                 fontWeight: 'var(--pagination-active-font-weight)',
                 color: 'var(--pagination-active-color)',
                 boxShadow: 'none',
               },
-              '&:hover': {
-                backgroundColor: 'transparent',
-              },
-            },
-            root: {
-              '--pagination-active-color': '#3388FF',
-              '--pagination-active-font-weight': '700',
             },
           }}
           size="sm"
