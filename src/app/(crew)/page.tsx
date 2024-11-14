@@ -16,7 +16,7 @@ import IcoSearch from '@/public/assets/icons/ic-search.svg';
 export default function HomePage() {
   const [mainCategory, setMainCategory] = useState('');
   const [subCategory, setSubCategory] = useState('');
-  const [sort, setSort] = useState<string | null>('latest');
+  const [sort, setSort] = useState<string | null>('최신순');
   const [region, setRegion] = useState<string>('');
   const [search, setSearch] = useState('');
   const searchRef = useRef<HTMLInputElement>(null);
@@ -41,7 +41,7 @@ export default function HomePage() {
       mainLocation: handleRegionChange(region),
       mainCategory,
       subCategory,
-      sortType: sort === 'latest' ? 'LATEST' : 'POPULAR',
+      sortType: sort === '최신순' ? 'LATEST' : 'POPULAR',
     }),
   );
 
