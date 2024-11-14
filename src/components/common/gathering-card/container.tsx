@@ -12,6 +12,8 @@ import GatheringCardPresenter from './presenter';
 interface GatheringCardContainerProps extends GatheringType {
   className?: string;
   crewId: number;
+  onLike: (gatheringId: number) => Promise<void>;
+  onUnlike: (gatheringId: number) => Promise<void>;
 }
 
 export default function GatheringCard({
@@ -25,9 +27,10 @@ export default function GatheringCard({
   liked: initialIsLiked,
   className,
   crewId,
+  onLike,
+  onUnlike,
 }: GatheringCardContainerProps) {
   const [opened, { open, close }] = useDisclosure(false);
-  // 임시 찜하기
   const [isLiked, setIsLiked] = useState(initialIsLiked);
 
   // 날짜 비교
@@ -42,9 +45,19 @@ export default function GatheringCard({
   // 마감 시간 문자열 생성
   const deadlineMessage = `오늘 ${gatheringDate.getHours()}시 마감`;
 
-  // 추후 찜하기 컴포넌트 작성되면 수정
-  const handleLikeToggle = () => {
-    setIsLiked((prev) => !prev);
+  // 찜하기 상태 업데이트
+  const handleLikeToggle = async () => {
+    try {
+      if (isLiked) {
+        await onUnlike(id);
+        setIsLiked(false);
+      } else {
+        await onLike(id);
+        setIsLiked(true);
+      }
+    } catch (error) {
+      Toast({ message: '찜 상태를 업데이트하는 데 실패했습니다.', type: 'error' });
+    }
   };
 
   const { data: gatheringData, error } = useGetGatheringDetailQuery(crewId, id);
