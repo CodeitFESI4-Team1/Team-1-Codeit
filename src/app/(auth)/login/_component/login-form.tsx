@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { UseFormReturn, useWatch } from 'react-hook-form';
-import { Button } from '@mantine/core';
 import { useDebouncedValue } from '@mantine/hooks';
+import Button from '@/src/components/common/input/button';
 import PasswordInput from '@/src/components/common/input/password-input';
 import TextInput from '@/src/components/common/input/text-input';
 
@@ -78,8 +78,11 @@ export default function LoginForm({ onSubmit, formMethods }: LoginFormProps) {
       />
 
       <div className="mt-10">
-        {/* TODO: Button 바꾸기 */}
-        <Button disabled={!isValid} type="submit" fullWidth>
+        <Button
+          disabled={!isValid}
+          type="submit"
+          className={`w-full font-semibold ${isValid ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-300'}`}
+        >
           로그인
         </Button>
       </div>
