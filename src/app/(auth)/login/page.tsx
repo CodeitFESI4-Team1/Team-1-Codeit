@@ -4,7 +4,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { usePostLoginQuery } from '@/src/_queries/auth/auth-queries';
+import { usePostLoginQuery } from '@/src/_queries/auth/login-queries';
 import LoginForm, { LoginFormValues } from './_component/login-form';
 
 export default function LoginPage() {
