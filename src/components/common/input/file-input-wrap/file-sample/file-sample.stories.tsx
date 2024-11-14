@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import { Meta, StoryFn } from '@storybook/react';
-import ImgCrewSamples from '@/public/assets/images/crew-sample';
+import ImgCrewSampleUrls from '@/public/assets/images/crew-sample';
 import FileSample, { FileSampleProps } from '.';
 
 const meta: Meta = {
@@ -51,7 +51,7 @@ const Template: StoryFn<FileSampleProps> = function FileInputStory(args: FileSam
 };
 export const FileSample01 = Template.bind({});
 FileSample01.args = {
-  image: ImgCrewSamples[0],
+  image: ImgCrewSampleUrls[0],
   isBlur: false,
   onChange: () => {
     action('onChange');

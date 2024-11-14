@@ -17,7 +17,7 @@ export function useGetCrewListQuery(condition: ConditionTypes) {
           if (response === undefined) {
             throw new Error('Response is null');
           }
-          return response;
+          return response as MainCrewListResponse;
         },
       ),
     getNextPageParam: (lastPage: MainCrewListResponse, allPages: MainCrewListResponse[]) =>

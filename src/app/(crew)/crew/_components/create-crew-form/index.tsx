@@ -10,7 +10,7 @@ import Button from '@/src/components/common/input/button';
 import DropDown from '@/src/components/common/input/drop-down';
 import FileInputWrap from '@/src/components/common/input/file-input-wrap';
 import TextInput from '@/src/components/common/input/text-input';
-import { CreateCrewFormTypes, CreateCrewRequestTypes } from '@/src/types/create-crew';
+import { CreateCrewFormTypes } from '@/src/types/create-crew';
 import ImgCrewSampleUrls from '@/public/assets/images/crew-sample';
 
 export interface CreateCrewFormProps {
@@ -46,8 +46,6 @@ export default function CreateCrewForm({
   // mainCategory와 mainLocation 값의 변화를 감지하여 인덱스를 설정
   const mainCategory = useWatch({ control, name: 'mainCategory' });
   const mainLocation = useWatch({ control, name: 'mainLocation' });
-
-  const imageUrl = useWatch({ control, name: 'imageUrl' });
 
   const handleMainCategoryChange = (newValue: string | null) => {
     setValue('mainCategory', newValue || '');

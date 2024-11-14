@@ -20,10 +20,10 @@ export default function FileSample({ isEdit, value, image, isBlur, onChange }: F
     if (isBlur && radioInput.current) {
       radioInput.current.checked = false;
     }
-    if (isEdit && value === image && radioInput.current) {
+    if (!isBlur && isEdit && value === image && radioInput.current) {
       radioInput.current.checked = true;
     }
-  }, [isBlur, value]);
+  }, [isBlur, value, isEdit]);
 
   return (
     <label className="min-w-1/4 relative aspect-square w-1/4 overflow-hidden rounded-xl">
