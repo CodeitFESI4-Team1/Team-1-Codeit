@@ -1,7 +1,9 @@
 'use client';
 
+import { toast } from 'react-toastify';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { useMutation } from '@tanstack/react-query';
 import { createCrew } from '@/src/_apis/crew/crew-list';
 import { getImageUrl } from '@/src/_apis/image/get-image-url';
 import CreateCrewForm from '@/src/app/(crew)/crew/_components/create-crew-form';
@@ -19,6 +21,15 @@ export default function CreateCrewPage() {
     subLocation: null,
     totalCount: 4,
   };
+  const createCrewMutation = useMutation({
+    mutationFn: (data: CreateCrewRequestTypes) => createCrew(data),
+    onSuccess: (response) => {
+      router.push(`/crew/detail/${response?.id}`);
+    },
+    onError: (error) => {
+      toast.error(error.message);
+    },
+  });
 
   const handleSubmit = async (data: CreateCrewFormTypes) => {
     const imgResponse = await getImageUrl(data.imageUrl, 'CREW');
@@ -32,11 +43,8 @@ export default function CreateCrewPage() {
       subLocation: data.subLocation ?? '',
       totalCount: data.totalCount,
     };
-    const submitResponse = await createCrew(newData);
 
-    if (submitResponse) {
-      router.push(`/crew/detail/${submitResponse?.id}`);
-    }
+    createCrewMutation.mutate(newData);
   };
 
   return (
