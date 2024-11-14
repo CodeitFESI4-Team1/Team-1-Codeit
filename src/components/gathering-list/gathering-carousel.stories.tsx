@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import GatheringCardCarousel from './gathering-card-carousel';
 
 // 더미 데이터 정의
@@ -38,6 +39,8 @@ const mockGatheringData = [
   },
 ];
 
+const queryClient = new QueryClient();
+
 const meta: Meta<typeof GatheringCardCarousel> = {
   title: 'Components/GatheringCardCarousel',
   component: GatheringCardCarousel,
@@ -45,6 +48,13 @@ const meta: Meta<typeof GatheringCardCarousel> = {
     layout: 'fullscreen',
   },
   tags: ['autodocs'],
+  decorators: [
+    (Story) => (
+      <QueryClientProvider client={queryClient}>
+        <Story />
+      </QueryClientProvider>
+    ),
+  ],
 } satisfies Meta<typeof GatheringCardCarousel>;
 
 export default meta;
@@ -54,5 +64,6 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     gatheringData: mockGatheringData,
+    crewId: 1, // crewId를 기본값으로 설정
   },
 };
