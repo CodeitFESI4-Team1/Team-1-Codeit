@@ -1,13 +1,14 @@
 import { getMyCrewHostedList } from '@/src/_apis/crew/my-crew-hosted-list';
-import { MyCrewListResponse } from '@/src/types/crew-card';
+import { MyCrewListResponse, PageableTypes } from '@/src/types/crew-card';
 
-export function useGetMyCrewHostedQuery() {
+export function useGetMyCrewHostedQuery({ pageable }: { pageable: PageableTypes }) {
+  const { size, sort = ['string'] } = pageable;
   return {
-    queryKey: ['my-crew-creation'],
+    queryKey: ['myCrewHosted'],
     queryFn: ({ pageParam = 0 }) =>
-      getMyCrewHostedList({ page: pageParam, size: 6, sort: ['string'] }).then((response) => {
+      getMyCrewHostedList({ page: pageParam, size, sort }).then((response) => {
         if (response === undefined) {
-          throw new Error('Response is undefined');
+          throw new Error('크루 목록을 불러오는데 실패했습니다.');
         }
         return response;
       }),

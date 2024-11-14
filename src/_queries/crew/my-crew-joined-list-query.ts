@@ -1,13 +1,14 @@
 import { getMyCrewJoinedList } from '@/src/_apis/crew/my-crew-joined-list';
-import { MyCrewListResponse } from '@/src/types/crew-card';
+import { MyCrewListResponse, PageableTypes } from '@/src/types/crew-card';
 
-export function useGetMyCrewJoinedQuery() {
+export function useGetMyCrewJoinedQuery({ pageable }: { pageable: PageableTypes }) {
+  const { size, sort = ['string'] } = pageable;
   return {
-    queryKey: ['my-crew-participation'],
+    queryKey: ['myCrewJoined'],
     queryFn: ({ pageParam = 0 }) =>
-      getMyCrewJoinedList({ page: pageParam, size: 6, sort: ['string'] }).then((response) => {
+      getMyCrewJoinedList({ page: pageParam, size, sort }).then((response) => {
         if (response === undefined) {
-          throw new Error('Response is undefined');
+          throw new Error('크루 목록을 불러오는데 실패했습니다.');
         }
         return response;
       }),

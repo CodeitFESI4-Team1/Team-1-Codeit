@@ -37,11 +37,14 @@ export default function HomePage() {
 
   const { data, ref, isFetchingNextPage } = useInfiniteScroll(
     useGetCrewListQuery({
-      keyword: search,
-      mainLocation: handleRegionChange(region),
-      mainCategory,
-      subCategory,
-      sortType: sort === 'latest' ? 'LATEST' : 'POPULAR',
+      condition: {
+        keyword: search,
+        mainLocation: handleRegionChange(region),
+        mainCategory,
+        subCategory,
+        sortType: sort === 'latest' ? 'LATEST' : 'POPULAR',
+      },
+      pageable: { page: 0, size: 6, sort: ['createdAt,desc'] },
     }),
   );
 

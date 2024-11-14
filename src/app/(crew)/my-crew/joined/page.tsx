@@ -5,7 +5,11 @@ import { useInfiniteScroll } from '@/src/hooks/use-infinite-scroll';
 import CrewCardList from '@/src/components/common/crew-list/crew-card-list';
 
 export default function MyCrewParticipationPage() {
-  const { data, ref, isFetchingNextPage } = useInfiniteScroll(useGetMyCrewJoinedQuery());
+  const { data, ref, isFetchingNextPage } = useInfiniteScroll(
+    useGetMyCrewJoinedQuery({
+      pageable: { page: 0, size: 6, sort: ['createdAt,desc'] },
+    }),
+  );
   return (
     <div>
       <CrewCardList
