@@ -8,8 +8,8 @@ export default function MyCrewLayout({ children }: { children: ReactNode }) {
   const router = useRouter();
   const currentPath = usePathname();
   const myCrewTabs = [
-    { label: '내가 참여한 크루', id: 'joined-crew', route: '/my-crew/participation' },
-    { label: '내가 만든 크루', id: 'made-crew', route: '/my-crew/creation' },
+    { label: '내가 참여한 크루', id: 'joined-crew', route: '/my-crew/joined' },
+    { label: '내가 만든 크루', id: 'hosted-crew', route: '/my-crew/hosted' },
   ];
   const [currentTab, setCurrentTab] = useState(myCrewTabs[0].id);
 
