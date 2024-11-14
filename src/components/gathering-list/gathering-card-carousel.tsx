@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { useAuthStore } from '@/src/store/use-auth-store';
 import GatheringCard from '@/src/components/common/gathering-card/container';
 import { GatheringType } from '@/src/types/gathering-data';
 import IcoLeft from '@/public/assets/icons/ic-left.svg';
@@ -10,15 +11,25 @@ import IcoRight from '@/public/assets/icons/ic-right.svg';
 interface GatheringCardCarouselProps {
   gatheringData: GatheringType[];
   crewId: number;
+  onLike: (gatheringId: number) => Promise<void>;
+  onUnlike: (gatheringId: number) => Promise<void>;
+  onShowLoginModal: () => void;
 }
 
 export default function CustomGatheringCardCarousel({
   gatheringData,
   crewId,
+  onLike,
+  onUnlike,
+  onShowLoginModal,
 }: GatheringCardCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [slidesToShow, setSlidesToShow] = useState(1);
   const [slideSize, setSlideSize] = useState('w-full');
+
+  // 로그인 여부 확인
+  const token = useAuthStore((state) => state.token);
+  const isLoggedIn = !!token;
 
   useEffect(() => {
     const handleResize = () => {
@@ -75,7 +86,25 @@ export default function CustomGatheringCardCarousel({
         >
           {gatheringData.map((card) => (
             <div key={card.id} className={`flex-shrink-0 ${slideSize} mb-5 lg:min-w-[362px]`}>
-              <GatheringCard crewId={crewId} {...card} className="w-full" />
+              <GatheringCard
+                crewId={crewId}
+                {...card}
+                className="w-full"
+                onLike={() => {
+                  if (isLoggedIn) {
+                    return onLike(card.id);
+                  }
+                  onShowLoginModal(); // 로그인이 안 되어 있으면 모달 표시
+                  return Promise.resolve();
+                }}
+                onUnlike={() => {
+                  if (isLoggedIn) {
+                    return onUnlike(card.id);
+                  }
+                  onShowLoginModal(); // 로그인이 안 되어 있으면 모달 표시
+                  return Promise.resolve();
+                }}
+              />
             </div>
           ))}
         </div>
