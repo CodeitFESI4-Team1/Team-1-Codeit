@@ -1,7 +1,14 @@
+import { getCrewList } from '@/src/_apis/crew/crew-list';
 import { ConditionTypes, MainCrewListResponse, PageableTypes } from '@/src/types/crew-card';
-import { getCrewList } from '../../_apis/crew/crew-list';
 
-export function useGetCrewListQuery(condition: ConditionTypes) {
+export function useGetCrewListQuery({
+  condition,
+  pageable,
+}: {
+  condition: ConditionTypes;
+  pageable: PageableTypes;
+}) {
+  const { size, sort = ['string'] } = pageable;
   return {
     queryKey: [
       condition.keyword,
@@ -11,14 +18,16 @@ export function useGetCrewListQuery(condition: ConditionTypes) {
       condition.sortType,
     ],
     queryFn: ({ pageParam = 0 }) =>
-      getCrewList(condition, { page: pageParam, size: 6, sort: [condition.sortType] }).then(
-        (response) => {
-          if (response === undefined) {
-            throw new Error('Response is null');
-          }
-          return response;
-        },
-      ),
+      getCrewList(condition, {
+        page: pageParam,
+        size,
+        sort,
+      }).then((response) => {
+        if (response === undefined || response === null) {
+          throw new Error('Response is undefined');
+        }
+        return response;
+      }),
     getNextPageParam: (lastPage: MainCrewListResponse, allPages: MainCrewListResponse[]) =>
       lastPage.hasNext ? allPages.length : undefined,
   };

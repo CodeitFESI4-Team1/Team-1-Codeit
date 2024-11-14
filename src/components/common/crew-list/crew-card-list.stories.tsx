@@ -1,10 +1,7 @@
-import { useEffect, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { InfiniteData } from '@tanstack/react-query';
 import { useGetCrewListQuery } from '@/src/_queries/crew/crew-list-queries';
 import { useInfiniteScroll } from '@/src/hooks/use-infinite-scroll';
 import ClientProvider from '@/src/components/client-provider';
-import { MainCrewListResponse } from '@/src/types/crew-card';
 import CrewCardList from './crew-card-list';
 
 const meta: Meta = {
@@ -32,11 +29,14 @@ type Story = StoryObj<typeof meta>;
 function RenderCrewCardList() {
   const { data, ref, isFetchingNextPage } = useInfiniteScroll(
     useGetCrewListQuery({
-      keyword: '',
-      mainLocation: '',
-      mainCategory: '',
-      subCategory: '',
-      sortType: 'LATEST',
+      condition: {
+        keyword: '',
+        mainLocation: '',
+        mainCategory: '',
+        subCategory: '',
+        sortType: 'LATEST',
+      },
+      pageable: { page: 0, size: 6, sort: ['createdAt,desc'] },
     }),
   );
 
