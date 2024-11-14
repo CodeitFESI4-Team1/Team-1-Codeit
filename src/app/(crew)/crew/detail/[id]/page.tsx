@@ -1,4 +1,4 @@
-import { getGatheringList } from '@/src/_apis/detail/get-gathering-list';
+import { getGatheringList } from '@/src/_apis/crew/crew-gathering-list-apis';
 import CreateGathering from './_components/create-gathering';
 import DetailCrewSection from './_components/detail-crew-section';
 import GatheringListSection from './_components/gathering-list-section';

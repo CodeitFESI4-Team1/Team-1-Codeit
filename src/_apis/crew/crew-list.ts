@@ -19,11 +19,10 @@ export async function getCrewList(condition: ConditionTypes, pageable: PageableT
     if (!response.data) {
       throw new Error('Failed to get crew list: No data received');
     }
-
     return response.data;
   } catch (error) {
     // eslint-disable-next-line no-console
-    console.error(error);
+    console.error(`크루 목록 조회 실패`);
+    return null;
   }
-  return null;
 }

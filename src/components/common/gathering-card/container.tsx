@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useDisclosure } from '@mantine/hooks';
-import { useGetGatheringDetailQuery } from '@/src/_queries/detail/gathering-detail-queries';
+import { useGetGatheringDetailQuery } from '@/src/_queries/gathering/gathering-detail-queries';
 import { ApiError } from '@/src/utils/api';
 import GatheringDetailModalContainer from '@/src/app/(crew)/crew/_components/gathering-detail-modal/container';
 import Toast from '@/src/components/common/toast';

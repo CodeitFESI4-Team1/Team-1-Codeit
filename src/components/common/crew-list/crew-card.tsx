@@ -10,7 +10,7 @@ import IcoUser from '@/public/assets/icons/ic-user.svg';
 import Profiles from './profiles';
 
 interface CrewCardProps extends MainCrewList {
-  inWhere?: 'my-crew';
+  inWhere?: 'my-crew' | 'main-crew';
 }
 
 export default function CrewCard({

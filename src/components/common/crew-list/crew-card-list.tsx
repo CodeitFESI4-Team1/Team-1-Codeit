@@ -10,38 +10,22 @@ import {
 import CrewCard from './crew-card';
 
 // CrewCardListProps 타입을 구분하여 정의
-interface MainCrewCardListProps {
-  data: InfiniteData<MainCrewListResponse>;
+interface CrewCardListProps {
+  data: InfiniteData<MyCrewListResponse | MainCrewListResponse, unknown>;
   isFetchingNextPage: boolean;
-  inWhere?: undefined;
+  inWhere?: 'my-crew' | 'main-crew';
 }
 
-interface MyCrewCardListProps {
-  data: InfiniteData<MyCrewListResponse>;
-  isFetchingNextPage: boolean;
-  inWhere: 'my-crew';
-}
-
-// 유니온 타입으로 정의
-type CrewCardListProps = MainCrewCardListProps | MyCrewCardListProps;
-
-function CrewCardList(
-  { data, isFetchingNextPage, inWhere }: CrewCardListProps,
-  ref: React.Ref<HTMLDivElement>,
-) {
+function CrewCardList({ data, isFetchingNextPage, inWhere }: CrewCardListProps) {
   const crewDataList =
-    (inWhere === 'my-crew'
-      ? data?.pages.flatMap((page) => page?.content)
-      : data?.pages?.flatMap((page) => page?.content)) ?? [];
+    inWhere === 'my-crew'
+      ? data.pages.flatMap((page) => page.content as MyCrewList[])
+      : data.pages.flatMap((page) => page.content as MainCrewList[]);
+
   const gridColsStyle = inWhere === 'my-crew' ? '' : 'lg:grid-cols-2';
 
-  if (data?.pages[0] === undefined)
-    // 초기 로딩시 데이터 없을때
-    return (
-      <div className="flex justify-center py-10">
-        <Loader size="sm" />
-      </div>
-    );
+  // 초기 로딩시 데이터 없을때
+  if (!data.pages.length) return null;
 
   if (!crewDataList.length)
     return (
@@ -85,12 +69,10 @@ function CrewCardList(
           </li>
         ))}
       </ul>
-      {isFetchingNextPage ? (
+      {isFetchingNextPage && (
         <div className="flex justify-center py-10">
           <Loader size="sm" />
         </div>
-      ) : (
-        <div ref={ref} className="h-[1px]" />
       )}
     </>
   );

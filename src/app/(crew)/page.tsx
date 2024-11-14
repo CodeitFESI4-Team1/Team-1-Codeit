@@ -2,7 +2,7 @@
 
 import { useRef, useState } from 'react';
 import Image from 'next/image';
-import { Divider, TextInput } from '@mantine/core';
+import { Divider, Loader, TextInput } from '@mantine/core';
 import { useGetCrewListQuery } from '@/src/_queries/crew/crew-list-queries';
 import regionData from '@/src/data/region.json';
 import { useInfiniteScroll } from '@/src/hooks/use-infinite-scroll';
@@ -10,7 +10,6 @@ import CategoryContainer from '@/src/app/_components/category/category-container
 import HeroCrew from '@/src/app/_components/hero/hero-crew';
 import CrewCardList from '@/src/components/common/crew-list/crew-card-list';
 import DropDown from '@/src/components/common/input/drop-down';
-import { MainCrewListResponse } from '@/src/types/crew-card';
 import IcoSearch from '@/public/assets/icons/ic-search.svg';
 
 export default function HomePage() {
@@ -35,13 +34,16 @@ export default function HomePage() {
     }
   };
 
-  const { data, ref, isFetchingNextPage } = useInfiniteScroll(
+  const { data, status, isFetchingNextPage, ref } = useInfiniteScroll(
     useGetCrewListQuery({
-      keyword: search,
-      mainLocation: handleRegionChange(region),
-      mainCategory,
-      subCategory,
-      sortType: sort === '최신순' ? 'LATEST' : 'POPULAR',
+      condition: {
+        keyword: search,
+        mainLocation: handleRegionChange(region),
+        mainCategory,
+        subCategory,
+        sortType: sort === 'latest' ? 'LATEST' : 'POPULAR',
+      },
+      pageable: { page: 0, size: 6, sort: ['createdAt,desc'] },
     }),
   );
 
@@ -124,6 +126,14 @@ export default function HomePage() {
       </div>
       <div className="mt-8 px-3 md:px-8 lg:px-11.5">
         {data && <CrewCardList data={data} ref={ref} isFetchingNextPage={isFetchingNextPage} />}
+        {status === 'pending' ? (
+          <div className="flex justify-center py-10">
+            <Loader size="sm" />
+          </div>
+        ) : (
+          <div ref={ref} className="h-[1px]" />
+        )}
+        {status === 'error' && <p className="py-10 text-center">에러가 발생했습니다.</p>}
       </div>
     </div>
   );

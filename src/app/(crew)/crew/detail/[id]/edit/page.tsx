@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
-import { useGetCrewDetailQuery } from '@/src/_queries/detail/crew-detail-queries';
+import { useGetCrewDetailQuery } from '@/src/_queries/crew/crew-detail-queries';
 import CreateCrewForm from '@/src/app/(crew)/crew/_components/create-crew-form';
 import { CreateCrewFormTypes } from '@/src/types/create-crew';
 import IcoCreateCrew from '@/public/assets/icons/ic-create-crew.svg';

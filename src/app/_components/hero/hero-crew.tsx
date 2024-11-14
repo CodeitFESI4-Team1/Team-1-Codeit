@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useAuthStore } from '@/src/store/use-auth-store';
-import Button from '@/src/components/common/input/button';
 import ImgHeroCrew from '@/public/assets/icons/ic-dumbbell.svg';
 
 export default function HeroCrew() {
