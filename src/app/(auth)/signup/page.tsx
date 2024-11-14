@@ -4,7 +4,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { usePostSignupQuery } from '@/src/_queries/auth/auth-queries';
+import { usePostSignupQuery } from '@/src/_queries/auth/signup-queries';
 import SignupForm, { SignupFormValues } from './_component/signup-form';
 
 export default function LoginPage() {
