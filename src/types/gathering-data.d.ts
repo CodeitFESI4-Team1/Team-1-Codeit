@@ -32,7 +32,7 @@ export interface CreateGatheringFormTypes {
   dateTime: string;
   location: string;
   totalCount: number;
-  imageUrl: File | StaticImageData | null;
+  imageUrl: File | string | null;
 }
 
 export interface CreateGatheringRequestTypes {

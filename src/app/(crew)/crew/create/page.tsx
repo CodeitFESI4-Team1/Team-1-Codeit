@@ -34,13 +34,16 @@ export default function CreateCrewPage() {
   });
 
   const handleSubmit = async (data: CreateCrewFormTypes) => {
-    const imgResponse = await getImageUrl(data.imageUrl, 'CREW');
-    const imageUrl = (await imgResponse?.imageUrl) ?? '';
+    let newImageUrl = data.imageUrl as string;
+    if (data.imageUrl instanceof File) {
+      const imgResponse = await getImageUrl(data.imageUrl, 'CREW');
+      newImageUrl = imgResponse?.imageUrl as string;
+    }
     const newData: CreateCrewRequestTypes = {
       title: data.title,
       mainCategory: data.mainCategory,
       subCategory: data.subCategory ?? '',
-      imageUrl: data.imageUrl instanceof File ? imageUrl : (data?.imageUrl ?? ''),
+      imageUrl: newImageUrl ?? '',
       mainLocation: data.mainLocation,
       subLocation: data.subLocation ?? '',
       totalCount: data.totalCount,

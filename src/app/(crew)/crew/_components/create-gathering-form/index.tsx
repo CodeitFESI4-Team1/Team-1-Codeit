@@ -7,7 +7,7 @@ import DateTimePicker from '@/src/components/common/input/date-time-picker';
 import FileInputWrap from '@/src/components/common/input/file-input-wrap';
 import TextInput from '@/src/components/common/input/text-input';
 import Textarea from '@/src/components/common/input/textarea';
-import { CreateGatheringFormTypes, CreateGatheringRequestTypes } from '@/src/types/gathering-data';
+import { CreateGatheringFormTypes } from '@/src/types/gathering-data';
 import ImgGatheringSampleUrls from '@/public/assets/images/gathering-sample';
 
 export interface CreateGatheringFormProps {

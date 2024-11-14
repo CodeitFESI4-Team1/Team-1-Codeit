@@ -45,7 +45,6 @@ export default function FileInput({ value, isBlur, onChange }: FileInputProps) {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
       onChange(file);
-      e.target.value = '';
 
       // 디바운싱된 파일 로드 실행
       debouncedHandleFileLoad(file);
