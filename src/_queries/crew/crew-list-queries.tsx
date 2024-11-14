@@ -1,5 +1,5 @@
+import { getCrewList } from '@/src/_apis/crew/crew-list';
 import { ConditionTypes, MainCrewListResponse, PageableTypes } from '@/src/types/crew-card';
-import { getCrewList } from '../../_apis/crew/crew-list';
 
 export function useGetCrewListQuery(condition: ConditionTypes) {
   return {
