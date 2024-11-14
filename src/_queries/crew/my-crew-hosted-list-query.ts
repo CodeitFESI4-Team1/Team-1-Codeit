@@ -1,11 +1,11 @@
-import { getMyCrewCreationList } from '@/src/_apis/crew/my-crew-creation-list';
+import { getMyCrewHostedList } from '@/src/_apis/crew/my-crew-hosted-list';
 import { MyCrewListResponse } from '@/src/types/crew-card';
 
-export function useGetMyCrewCreationQuery() {
+export function useGetMyCrewHostedQuery() {
   return {
     queryKey: ['my-crew-creation'],
     queryFn: ({ pageParam = 0 }) =>
-      getMyCrewCreationList({ page: pageParam, size: 6, sort: ['string'] }).then((response) => {
+      getMyCrewHostedList({ page: pageParam, size: 6, sort: ['string'] }).then((response) => {
         if (response === undefined) {
           throw new Error('Response is undefined');
         }

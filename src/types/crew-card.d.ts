@@ -5,6 +5,7 @@ export interface ConditionTypes {
   subCategory: string;
   sortType: 'LATEST' | 'POPULAR';
 }
+
 export interface PageableTypes {
   page: number;
   size: number;
@@ -64,6 +65,6 @@ export interface MyCrewList {
 }
 
 export interface MyCrewListResponse {
-  content: MyCrewList[] | undefined;
+  content: MyCrewList[];
   hasNext: boolean;
 }

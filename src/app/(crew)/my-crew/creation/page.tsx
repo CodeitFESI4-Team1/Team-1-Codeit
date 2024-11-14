@@ -1,11 +1,11 @@
 'use client';
 
-import { useGetMyCrewCreationQuery } from '@/src/_queries/crew/my-crew-creation-list-query';
+import { useGetMyCrewHostedQuery } from '@/src/_queries/crew/my-crew-hosted-list-query';
 import { useInfiniteScroll } from '@/src/hooks/use-infinite-scroll';
 import CrewCardList from '@/src/components/common/crew-list/crew-card-list';
 
 export default function MyCrewParticipationPage() {
-  const { data, ref, isFetchingNextPage } = useInfiniteScroll(useGetMyCrewCreationQuery());
+  const { data, ref, isFetchingNextPage } = useInfiniteScroll(useGetMyCrewHostedQuery());
   return (
     <div>
       <CrewCardList
