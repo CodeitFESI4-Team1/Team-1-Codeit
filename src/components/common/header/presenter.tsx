@@ -72,7 +72,7 @@ export default function HeaderPresenter({
                 </div>
               </Menu.Target>
               <Menu.Dropdown>
-                <Menu.Item component="a" href="/mypage">
+                <Menu.Item component="a" href="/my-page">
                   마이페이지
                 </Menu.Item>
                 <Menu.Item type="button" onClick={handleLogout} className="block">

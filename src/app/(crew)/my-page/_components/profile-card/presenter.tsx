@@ -9,7 +9,7 @@ export interface ProfileCardProps {
   onEdit: () => void;
 }
 
-export default function ProfileCard({ data, onEdit }: ProfileCardProps) {
+export default function ProfileCardPresenter({ data, onEdit }: ProfileCardProps) {
   return (
     <div className="flex items-end justify-between">
       <div className="flex items-center gap-6.5">
