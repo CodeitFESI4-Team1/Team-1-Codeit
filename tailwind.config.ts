@@ -42,6 +42,7 @@ const config: Config = {
       height: {
         7.5: '30px',
         12.5: '50px',
+        13: '52px',
         27.5: '110px',
         30: '120px',
       },

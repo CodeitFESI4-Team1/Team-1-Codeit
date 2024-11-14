@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { getCrewDetail } from '@/src/_apis/detail/get-crew-detail';
+import { getCrewDetail } from '@/src/_apis/crew/crew-detail-apis';
 
 export function useGetCrewDetailQuery(id: number) {
   return useQuery({

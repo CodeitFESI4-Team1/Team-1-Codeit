@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo } from 'react';
-import { formatDate } from '@/src/utils/format-date';
+import { formatDate, getDayOfWeek } from '@/src/utils/format-date';
 import ScheduledGatheringCard from '@/src/components/common/gathering-card/scheduled-gathering-card/container';
 import { GatheringCardProps } from '@/src/types/gathering-data';
 
@@ -27,7 +27,9 @@ export default function GatheringListWithDate({ gatheringList }: GatheringListWi
             {gathering.isNewDate && (
               <div className="hidden flex-nowrap md:block">
                 <div className="text-lg font-semibold">{formatDate(gathering.dateTime).date}</div>
-                <div className="text-base font-medium text-gray-500">월요일</div>
+                <div className="text-base font-medium text-gray-500">
+                  {getDayOfWeek(gathering.dateTime)}
+                </div>
               </div>
             )}
           </div>
