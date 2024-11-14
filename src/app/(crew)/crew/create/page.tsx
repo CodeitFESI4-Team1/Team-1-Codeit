@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { Loader } from '@mantine/core';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { createCrew } from '@/src/_apis/crew/crew';
 import { getImageUrl } from '@/src/_apis/image/get-image-url';
@@ -22,7 +23,7 @@ export default function CreateCrewPage() {
     totalCount: 4,
   };
   const queryClient = useQueryClient();
-  const createCrewMutation = useMutation({
+  const { isPending, mutate } = useMutation({
     mutationFn: (data: CreateCrewRequestTypes) => createCrew(data),
     onSuccess: (response) => {
       queryClient.invalidateQueries({ queryKey: ['crewLists', 'crewDetail'] });
@@ -51,8 +52,15 @@ export default function CreateCrewPage() {
       totalCount: data.totalCount,
     };
 
-    createCrewMutation.mutate(newData);
+    mutate(newData);
   };
+
+  if (isPending)
+    return (
+      <div className="fixed inset-0 z-10 flex items-center justify-center">
+        <Loader size="sm" />
+      </div>
+    );
 
   return (
     <div className="lg:px-8.5 flex flex-col gap-3 px-3 py-8 md:gap-4 md:px-8 md:py-12.5 lg:gap-8">
