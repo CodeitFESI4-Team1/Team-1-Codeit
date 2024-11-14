@@ -1,6 +1,7 @@
-import { UseFormReturn } from 'react-hook-form';
+import { useEffect } from 'react';
+import { UseFormReturn, useWatch } from 'react-hook-form';
 import { Button } from '@mantine/core';
-import { useDebouncedCallback } from '@mantine/hooks';
+import { useDebouncedValue } from '@mantine/hooks';
 import PasswordInput from '@/src/components/common/input/password-input';
 import TextInput from '@/src/components/common/input/text-input';
 
@@ -18,15 +19,29 @@ export default function LoginForm({ onSubmit, formMethods }: LoginFormProps) {
     register,
     handleSubmit,
     trigger,
+    control,
     formState: { errors, isValid },
   } = formMethods;
 
-  const debouncedTrigger = useDebouncedCallback(async (field: keyof LoginFormValues) => {
-    await trigger(field);
-  }, 1000);
+  const email = useWatch({ control, name: 'email' });
+  const password = useWatch({ control, name: 'password' });
+
+  const [debouncedEmail, cancelDebouncedEmail] = useDebouncedValue(email, 1000);
+  const [debouncedPassword, cancelDebouncedPassword] = useDebouncedValue(password, 1000);
+
+  useEffect(() => {
+    if (debouncedEmail) trigger('email');
+    if (debouncedPassword) trigger('password');
+  }, [debouncedEmail, debouncedPassword, trigger]);
+
+  const handleFormSubmit = handleSubmit(async (data) => {
+    onSubmit(data);
+    cancelDebouncedEmail();
+    cancelDebouncedPassword();
+  });
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleFormSubmit}>
       <TextInput
         label="아이디"
         placeholder="이메일을 입력해주세요"
@@ -38,7 +53,6 @@ export default function LoginForm({ onSubmit, formMethods }: LoginFormProps) {
               message: '이메일 형식으로 입력해주세요',
             },
             onBlur: () => trigger('email'),
-            onChange: async () => debouncedTrigger('email'),
           }),
         }}
         error={errors.email?.message}
@@ -56,7 +70,6 @@ export default function LoginForm({ onSubmit, formMethods }: LoginFormProps) {
               message: '비밀번호가 8자 이상이 되도록 해주세요.',
             },
             onBlur: () => trigger('password'),
-            onChange: async () => debouncedTrigger('password'),
           }),
         }}
         error={errors.password?.message}
