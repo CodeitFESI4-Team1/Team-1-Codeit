@@ -5,8 +5,8 @@ import { usePathname, useRouter } from 'next/navigation';
 import Tabs from '@/src/components/common/tab';
 
 const myGatheringTabs = [
-  { id: 'my-gathering-participation', label: '참여한 약속', route: '/my-gathering/participation' },
-  { id: 'my-gathering-creation', label: '만든 약속', route: '/my-gathering/creation' },
+  { id: 'my-gathering-joined', label: '참여한 약속', route: '/my-gathering/joined' },
+  { id: 'my-gathering-hosted', label: '만든 약속', route: '/my-gathering/hosted' },
 ];
 
 export default function MyGatheringLayout({

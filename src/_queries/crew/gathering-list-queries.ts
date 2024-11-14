@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { getGatheringList } from '@/src/_apis/detail/get-gathering-list';
+import { getGatheringList } from '@/src/_apis/crew/crew-gathering-list-apis';
 import { GatheringType } from '@/src/types/gathering-data';
 
 export function useGetGatheringListQuery(id: number) {
