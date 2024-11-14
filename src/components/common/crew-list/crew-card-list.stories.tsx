@@ -32,11 +32,14 @@ type Story = StoryObj<typeof meta>;
 function RenderCrewCardList() {
   const { data, ref, isFetchingNextPage } = useInfiniteScroll(
     useGetCrewListQuery({
-      keyword: '',
-      mainLocation: '',
-      mainCategory: '',
-      subCategory: '',
-      sortType: 'LATEST',
+      condition: {
+        keyword: '',
+        mainLocation: '',
+        mainCategory: '',
+        subCategory: '',
+        sortType: 'LATEST',
+      },
+      pageable: { page: 0, size: 6, sort: ['createdAt,desc'] },
     }),
   );
 
