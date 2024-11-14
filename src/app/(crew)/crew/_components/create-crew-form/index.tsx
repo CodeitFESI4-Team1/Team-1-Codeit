@@ -177,6 +177,7 @@ export default function CreateCrewForm({
             render={({ field }) => (
               <FileInputWrap
                 {...field}
+                isEdit={isEdit}
                 sample={ImgCrewSampleUrls}
                 onChange={(newValue) => {
                   field.onChange(newValue);

@@ -2,12 +2,14 @@ import { useEffect, useRef } from 'react';
 import Image, { StaticImageData } from 'next/image';
 
 export interface FileSampleProps {
+  isEdit?: boolean;
+  value?: string;
   image: string;
   isBlur: boolean;
   onChange: (inputValue: string) => void;
 }
 
-export default function FileSample({ image, isBlur, onChange }: FileSampleProps) {
+export default function FileSample({ isEdit, value, image, isBlur, onChange }: FileSampleProps) {
   const radioInput = useRef<HTMLInputElement>(null);
 
   const handleClick = async () => {
@@ -18,7 +20,10 @@ export default function FileSample({ image, isBlur, onChange }: FileSampleProps)
     if (isBlur && radioInput.current) {
       radioInput.current.checked = false;
     }
-  }, [isBlur]);
+    if (isEdit && value === image && radioInput.current) {
+      radioInput.current.checked = true;
+    }
+  }, [isBlur, value]);
 
   return (
     <label className="min-w-1/4 relative aspect-square w-1/4 overflow-hidden rounded-xl">

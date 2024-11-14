@@ -10,7 +10,7 @@ export interface FileInputProps {
 }
 
 export default function FileInput({ value, isBlur, onChange }: FileInputProps) {
-  const [preview, setPreview] = useState<string | null>(null);
+  const [preview, setPreview] = useState<string | null>(typeof value === 'string' ? value : null);
   const [fileReader, setFileReader] = useState<FileReader | null>(null);
   const fileInput = useRef<HTMLInputElement>(null);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
@@ -79,7 +79,7 @@ export default function FileInput({ value, isBlur, onChange }: FileInputProps) {
     if (isBlur && value) {
       setPreview(null); // 블러 상태에서 미리보기 제거
     }
-  }, [isBlur]);
+  }, [isBlur, value]);
 
   return (
     <div className="min-w-1/4 relative flex aspect-square w-1/4 gap-2">
