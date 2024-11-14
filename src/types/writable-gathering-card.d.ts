@@ -19,3 +19,8 @@ export type ParticipantType = {
   profileImageUrl?: string;
   nickname: string;
 };
+
+export type WritableGatheringCardList = {
+  content: WritableGatheringCardInform[];
+  hasNext: boolean;
+};
