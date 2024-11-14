@@ -26,13 +26,22 @@ export interface GatheringData {
   };
 }
 
-export interface CreateGatheringRequestType {
+export interface CreateGatheringFormTypes {
   title: string; // 20자 이내
   introduce: string; // 소개글 100자 이내
   dateTime: string;
   location: string;
   totalCount: number;
-  imageUrl: File | StaticImageData | null; // NOTE : 임시로 File로 설정
+  imageUrl: File | StaticImageData | null;
+}
+
+export interface CreateGatheringRequestTypes {
+  title: string; // 20자 이내
+  introduce: string; // 소개글 100자 이내
+  dateTime: string;
+  location: string;
+  totalCount: number;
+  imageUrl: string;
 }
 
 export interface GatheringCardProps {

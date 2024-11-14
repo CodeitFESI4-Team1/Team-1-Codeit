@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { StaticImageData } from 'next/image';
 import FileInput from './file-input';
 import FileSample from './file-sample';
 
@@ -12,7 +11,7 @@ export interface FileInputProps {
 }
 
 export default function FileInputWrap({ value, sample, onChange }: FileInputProps) {
-  const [fileValue, setFileValue] = useState<File | StaticImageData | string | null>(value);
+  const [fileValue, setFileValue] = useState<File | string | null>(value);
   const [isOtherSelected, setIsOtherSelected] = useState(false);
   const [isSampleSelected, setIsSampleSelected] = useState(false);
 
