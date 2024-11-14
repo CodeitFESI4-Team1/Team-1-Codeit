@@ -7,7 +7,7 @@ export function useGetMyCrewHostedQuery({ pageable }: { pageable: PageableTypes 
     queryKey: ['myCrewHosted'],
     queryFn: ({ pageParam = 0 }) =>
       getMyCrewHostedList({ page: pageParam, size, sort }).then((response) => {
-        if (response === undefined) {
+        if (response === undefined || response === null) {
           throw new Error('크루 목록을 불러오는데 실패했습니다.');
         }
         return response;

@@ -23,7 +23,7 @@ export function useGetCrewListQuery({
         size,
         sort,
       }).then((response) => {
-        if (response === undefined) {
+        if (response === undefined || response === null) {
           throw new Error('Response is undefined');
         }
         return response;

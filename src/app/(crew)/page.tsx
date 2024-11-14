@@ -2,7 +2,8 @@
 
 import { useRef, useState } from 'react';
 import Image from 'next/image';
-import { Divider, TextInput } from '@mantine/core';
+import { Divider, Loader, TextInput } from '@mantine/core';
+import { isErrored } from 'stream';
 import { useGetCrewListQuery } from '@/src/_queries/crew/crew-list-queries';
 import regionData from '@/src/data/region.json';
 import { useInfiniteScroll } from '@/src/hooks/use-infinite-scroll';
@@ -35,7 +36,7 @@ export default function HomePage() {
     }
   };
 
-  const { data, ref, isFetchingNextPage } = useInfiniteScroll(
+  const { data, status, isFetchingNextPage, ref } = useInfiniteScroll(
     useGetCrewListQuery({
       condition: {
         keyword: search,
@@ -127,6 +128,14 @@ export default function HomePage() {
       </div>
       <div className="mt-8 px-3 md:px-8 lg:px-11.5">
         {data && <CrewCardList data={data} ref={ref} isFetchingNextPage={isFetchingNextPage} />}
+        {status === 'pending' ? (
+          <div className="flex justify-center py-10">
+            <Loader size="sm" />
+          </div>
+        ) : (
+          <div ref={ref} className="h-[1px]" />
+        )}
+        {status === 'error' && <p className="py-10 text-center">에러가 발생했습니다.</p>}
       </div>
     </div>
   );
