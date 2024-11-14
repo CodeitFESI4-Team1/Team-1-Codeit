@@ -1,12 +1,12 @@
 'use client';
 
-import { toast } from 'react-toastify';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { createCrew } from '@/src/_apis/crew/crew';
 import { getImageUrl } from '@/src/_apis/image/get-image-url';
 import CreateCrewForm from '@/src/app/(crew)/crew/_components/create-crew-form';
+import Toast from '@/src/components/common/toast';
 import { CreateCrewFormTypes, CreateCrewRequestTypes } from '@/src/types/create-crew';
 import IcoCreateCrew from '@/public/assets/icons/ic-create-crew.svg';
 
@@ -29,7 +29,9 @@ export default function CreateCrewPage() {
       router.push(`/crew/detail/${response?.crewId}`);
     },
     onError: (error) => {
-      toast.error(error.message);
+      // eslint-disable-next-line no-console
+      console.error(error);
+      Toast({ message: '크루 생성하기에 실패했습니다.', type: 'error' });
     },
   });
 
