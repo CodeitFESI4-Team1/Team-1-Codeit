@@ -2,12 +2,12 @@
 
 import Image from 'next/image';
 import CreateCrewForm from '@/src/app/(crew)/crew/_components/create-crew-form';
-import { CreateCrewRequestTypes } from '@/src/types/create-crew';
+import { CreateCrewFormTypes } from '@/src/types/create-crew';
 import IcoCreateCrew from '@/public/assets/icons/ic-create-crew.svg';
 
 export default function EditCrewPage() {
   // NOTE : 임시 데이터 -> API 연결
-  const initialValue: CreateCrewRequestTypes = {
+  const initialValue: CreateCrewFormTypes = {
     title: '',
     mainCategory: '',
     subCategory: null,

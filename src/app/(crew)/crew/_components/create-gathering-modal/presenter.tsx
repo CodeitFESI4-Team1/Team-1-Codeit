@@ -1,13 +1,13 @@
 import { Modal, ScrollArea } from '@mantine/core';
 import CreateGatheringForm from '@/src/app/(crew)/crew/_components/create-gathering-form';
-import { CreateGatheringRequestTypes } from '@/src/types/gathering-data';
+import { CreateGatheringFormTypes } from '@/src/types/gathering-data';
 
 export interface GatheringDetailModalProps {
   opened: boolean;
   onClose: () => void;
   onSubmit: () => void;
   onEdit: () => void;
-  data: CreateGatheringRequestTypes;
+  data: CreateGatheringFormTypes;
 }
 
 export default function CreateGatheringModalPresenter({

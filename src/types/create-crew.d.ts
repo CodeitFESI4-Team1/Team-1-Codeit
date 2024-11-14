@@ -22,7 +22,7 @@ export interface CreateCrewRequestTypes {
 }
 
 export interface CreateCrewResponseTypes {
-  id: number;
+  crewId: number;
 }
 
 export interface GetImageUrlResponseTypes {

@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { createCrew } from '@/src/_apis/crew/crew-list';
+import { createCrew } from '@/src/_apis/crew/crew';
 import { getImageUrl } from '@/src/_apis/image/get-image-url';
 import CreateCrewForm from '@/src/app/(crew)/crew/_components/create-crew-form';
 import { CreateCrewFormTypes, CreateCrewRequestTypes } from '@/src/types/create-crew';
@@ -26,7 +26,7 @@ export default function CreateCrewPage() {
     mutationFn: (data: CreateCrewRequestTypes) => createCrew(data),
     onSuccess: (response) => {
       queryClient.invalidateQueries({ queryKey: ['crewLists', 'crewDetail'] });
-      router.push(`/crew/detail/${response?.id}`);
+      router.push(`/crew/detail/${response?.crewId}`);
     },
     onError: (error) => {
       toast.error(error.message);
