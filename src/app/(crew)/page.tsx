@@ -3,7 +3,6 @@
 import { useRef, useState } from 'react';
 import Image from 'next/image';
 import { Divider, Loader, TextInput } from '@mantine/core';
-import { isErrored } from 'stream';
 import { useGetCrewListQuery } from '@/src/_queries/crew/crew-list-queries';
 import regionData from '@/src/data/region.json';
 import { useInfiniteScroll } from '@/src/hooks/use-infinite-scroll';
@@ -11,7 +10,6 @@ import CategoryContainer from '@/src/app/_components/category/category-container
 import HeroCrew from '@/src/app/_components/hero/hero-crew';
 import CrewCardList from '@/src/components/common/crew-list/crew-card-list';
 import DropDown from '@/src/components/common/input/drop-down';
-import { MainCrewListResponse } from '@/src/types/crew-card';
 import IcoSearch from '@/public/assets/icons/ic-search.svg';
 
 export default function HomePage() {

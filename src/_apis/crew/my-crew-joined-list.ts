@@ -21,7 +21,7 @@ export async function getMyCrewJoinedList(pageable: PageableTypes) {
     return response.data;
   } catch (error) {
     // eslint-disable-next-line no-console
-    console.error(error);
+    console.error(`내가 가입한 크루 목록 조회 실패`);
+    return null;
   }
-  return null;
 }
