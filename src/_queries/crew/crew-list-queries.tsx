@@ -4,6 +4,7 @@ import { ConditionTypes, MainCrewListResponse, PageableTypes } from '@/src/types
 export function useGetCrewListQuery(condition: ConditionTypes) {
   return {
     queryKey: [
+      'crewLists',
       condition.keyword,
       condition.mainLocation,
       condition.mainCategory,
