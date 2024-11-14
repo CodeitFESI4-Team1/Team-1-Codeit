@@ -4,15 +4,24 @@ import { MyCrewListResponse, PageableTypes } from '@/src/types/crew-card';
 export async function getMyCrewJoinedList(pageable: PageableTypes) {
   const { page, size, sort = ['string'] } = pageable;
 
-  const response: { data: MyCrewListResponse } = await fetchApi(
-    `/api/crews/joined?page=${page}&size=${size}&sort=${sort}`,
-    {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
+  try {
+    const response: { data: MyCrewListResponse } = await fetchApi(
+      `/api/crews/joined?page=${page}&size=${size}&sort=${sort}`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include', // 인증 정보를 요청에 포함
       },
-      credentials: 'include', // 인증 정보를 요청에 포함
-    },
-  );
-  return response.data;
+    );
+    if (!response.data) {
+      throw new Error('Failed to get my crew joined list');
+    }
+    return response.data;
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error(error);
+  }
+  return null;
 }
