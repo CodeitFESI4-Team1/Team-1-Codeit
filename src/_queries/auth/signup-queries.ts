@@ -7,10 +7,10 @@ import { useHandleAuthSuccess } from './use-handle-auth-success';
 export function usePostSignupQuery() {
   const handleAuthSuccess = useHandleAuthSuccess();
 
-  return useMutation<{ data: SignupResponse }, ApiError, SignupRequest>({
+  return useMutation<SignupResponse, ApiError, SignupRequest>({
     mutationFn: signup,
     onSuccess: async (response) => {
-      await handleAuthSuccess(response.data.token);
+      await handleAuthSuccess(response.token, response.refreshToken);
     },
   });
 }

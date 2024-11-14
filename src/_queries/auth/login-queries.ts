@@ -7,10 +7,10 @@ import { useHandleAuthSuccess } from './use-handle-auth-success';
 export function usePostLoginQuery() {
   const handleAuthSuccess = useHandleAuthSuccess();
 
-  return useMutation<{ data: LoginResponse }, ApiError, LoginRequest>({
+  return useMutation<LoginResponse, ApiError, LoginRequest>({
     mutationFn: login,
     onSuccess: async (response) => {
-      await handleAuthSuccess(response.data.token);
+      await handleAuthSuccess(response.token, response.refreshToken);
     },
   });
 }

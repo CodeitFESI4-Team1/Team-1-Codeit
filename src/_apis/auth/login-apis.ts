@@ -1,8 +1,8 @@
 import { fetchApi } from '@/src/utils/api';
 import { LoginRequest, LoginResponse } from '@/src/types/auth';
 
-export function login(data: LoginRequest): Promise<{ data: LoginResponse }> {
-  return fetchApi<{ data: LoginResponse; headers: Headers }>(
+export function login(data: LoginRequest): Promise<LoginResponse> {
+  return fetchApi<{ data: { body: { refreshToken: string } }; headers: Headers }>(
     '/auths/login',
     {
       method: 'POST',
@@ -15,6 +15,7 @@ export function login(data: LoginRequest): Promise<{ data: LoginResponse }> {
     true,
   ).then((response) => {
     const token = response.headers.get('Authorization');
-    return { data: { token } };
+    const { refreshToken } = response.data.body;
+    return { token, refreshToken };
   });
 }

@@ -1,5 +1,6 @@
 export interface SignupResponse {
   token: string | null;
+  refreshToken: string | null;
 }
 
 export interface SignupRequest {
@@ -10,11 +11,16 @@ export interface SignupRequest {
 
 export interface LoginResponse {
   token: string | null;
+  refreshToken: string | null;
 }
 
 export interface LoginRequest {
   email: string;
   password: string;
+}
+
+export interface LogoutRequest {
+  refreshToken: string | null;
 }
 
 export interface User {
