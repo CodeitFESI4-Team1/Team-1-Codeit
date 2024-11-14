@@ -1,13 +1,14 @@
+import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { GatheringResponseType } from '@/src/types/gathering-data';
-import GatheringList from './gathering-list';
+import LikedListPresenter from './liked-list-presenter';
 
 const queryClient = new QueryClient();
 
-const meta: Meta<typeof GatheringList> = {
-  title: 'Components/GatheringList',
-  component: GatheringList,
+const meta: Meta<typeof LikedListPresenter> = {
+  title: 'Components/LikedListPresenter',
+  component: LikedListPresenter,
   parameters: {
     layout: 'fullscreen',
   },
@@ -19,10 +20,14 @@ const meta: Meta<typeof GatheringList> = {
       </QueryClientProvider>
     ),
   ],
-} satisfies Meta<typeof GatheringList>;
+} satisfies Meta<typeof LikedListPresenter>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
+
+const onLike = action('onLike');
+const onUnlike = action('onUnlike');
+const onPageChange = action('onPageChange');
 
 // 임시 데이터 갯수별
 const dataWithOneItem: GatheringResponseType = {
@@ -224,23 +229,39 @@ const dataWithSevenItems: GatheringResponseType = {
 export const OneItem: Story = {
   args: {
     gatheringData: dataWithOneItem,
+    onPageChange,
+    onLike,
+    onUnlike,
+    page: 1,
   },
 };
 
 export const ThreeItems: Story = {
   args: {
     gatheringData: dataWithThreeItems,
+    onPageChange,
+    onLike,
+    onUnlike,
+    page: 1,
   },
 };
 
 export const FiveItems: Story = {
   args: {
     gatheringData: dataWithFiveItems,
+    onPageChange,
+    onLike,
+    onUnlike,
+    page: 1,
   },
 };
 
 export const SevenItems: Story = {
   args: {
     gatheringData: dataWithSevenItems,
+    onPageChange,
+    onLike,
+    onUnlike,
+    page: 1,
   },
 };

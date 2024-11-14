@@ -1,21 +1,24 @@
-'use client';
-
-import { useState } from 'react';
 import { Pagination } from '@mantine/core';
 import { cn } from '@/src/utils/cn';
 import GatheringCard from '@/src/components/common/gathering-card/container';
 import { GatheringResponseType } from '@/src/types/gathering-data';
 
-interface GatheringListProps {
+interface LikedListPresenterProps {
   gatheringData: GatheringResponseType;
+  onPageChange: (page: number) => void;
+  onLike: (gatheringId: number) => void;
+  onUnlike: (gatheringId: number) => void;
+  page: number;
 }
 
-export default function GatheringList({ gatheringData }: GatheringListProps) {
-  const [page, setPage] = useState(1);
-
-  const { content, pageSize, totalElements } = gatheringData;
-  const limit = pageSize ?? 6;
-  const currentPageData = content.slice((page - 1) * limit, page * limit);
+export default function LikedListPresenter({
+  gatheringData,
+  onPageChange,
+  onLike,
+  onUnlike,
+  page,
+}: LikedListPresenterProps) {
+  const { content, pageSize, totalPages } = gatheringData;
 
   return (
     <div className="mx-auto max-w-[1200px] px-4">
@@ -26,15 +29,21 @@ export default function GatheringList({ gatheringData }: GatheringListProps) {
           'md:min-h-[962px] lg:min-h-[636px]',
         )}
       >
-        {currentPageData.map((card) => (
-          <GatheringCard {...card} key={card.id} liked />
+        {content.map((card) => (
+          <GatheringCard
+            {...card}
+            key={card.id}
+            liked
+            onLike={() => onLike(card.id)}
+            onUnlike={() => onUnlike(card.id)}
+          />
         ))}
       </div>
       <div className="mt-8 flex justify-center">
         <Pagination
-          total={Math.ceil(totalElements / limit)}
+          total={totalPages}
           value={page}
-          onChange={setPage}
+          onChange={onPageChange}
           classNames={{
             control: cn(
               'data-[active="true"]:text-blue-500 data-[active="true"]:font-bold',
