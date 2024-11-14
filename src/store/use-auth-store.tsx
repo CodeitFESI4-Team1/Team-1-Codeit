@@ -8,7 +8,7 @@ interface AuthState {
   token: string | null;
   login: (token: string) => void;
   logout: () => void;
-  setUser: (user: User) => void;
+  setUser: (user: User | { data: User }) => void;
 }
 
 export const useAuthStore = create<AuthState>()(
@@ -28,7 +28,11 @@ export const useAuthStore = create<AuthState>()(
           user: null,
           token: null,
         }),
-      setUser: (user: User) => set((state) => ({ ...state, user })),
+      setUser: (user: User | { data: User }) => {
+        // user가 { data: User } 형태로 오는 경우 처리
+        const userData = 'data' in user ? user.data : user;
+        set({ user: userData });
+      },
     }),
     {
       name: 'auth-storage',
