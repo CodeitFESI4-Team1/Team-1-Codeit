@@ -12,6 +12,7 @@ export interface GatheringType {
   liked: boolean;
 }
 export interface GatheringDetailType extends GatheringType {
+  crewId: number;
   introduce: string;
   gatheringCaptain: boolean;
   participant: boolean;
@@ -46,4 +47,23 @@ export interface GatheringCardProps {
   totalCount: number;
   imageUrl: string;
   liked: boolean;
+}
+
+// 찜한 목록 조회
+interface LikeGatheringType {
+  id: number;
+  title: string;
+  dateTime: string;
+  location: string;
+  currentCount: number;
+  totalCount: number;
+  imageUrl: string;
+}
+
+export interface GatheringResponseType {
+  content: GatheringContentType[];
+  pageNumber: number;
+  pageSize: number;
+  totalElements: number;
+  totalPages: number;
 }
