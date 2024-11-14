@@ -28,7 +28,7 @@ export default function GatheringList({ gatheringData }: GatheringListProps) {
         )}
       >
         {currentPageData.map((card) => (
-          <GatheringCard {...card} key={card.id} liked={true} />
+          <GatheringCard {...card} key={card.id} liked />
         ))}
       </div>
       <div className="mt-8 flex justify-center">
