@@ -13,7 +13,6 @@ interface GatheringListProps {
 export default function GatheringList({ gatheringData }: GatheringListProps) {
   const [page, setPage] = useState(1);
 
-  // 데이터 추출
   const { content, pageSize, totalElements } = gatheringData;
   const limit = pageSize ?? 6;
   const currentPageData = content.slice((page - 1) * limit, page * limit);
