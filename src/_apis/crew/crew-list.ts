@@ -1,4 +1,5 @@
 import { fetchApi } from '@/src/utils/api';
+import { CreateCrewRequestTypes, CreateCrewResponseTypes } from '@/src/types/create-crew';
 import { ConditionTypes, MainCrewListResponse, PageableTypes } from '@/src/types/crew-card';
 
 export async function getCrewList(condition: ConditionTypes, pageable: PageableTypes) {
@@ -17,4 +18,16 @@ export async function getCrewList(condition: ConditionTypes, pageable: PageableT
   );
 
   return response?.data;
+}
+
+export async function createCrew(data: CreateCrewRequestTypes) {
+  const response = await fetchApi<CreateCrewResponseTypes>(`/api/crews`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    credentials: 'include', // 인증 정보를 요청에 포함
+    body: JSON.stringify(data),
+  });
+  return response;
 }

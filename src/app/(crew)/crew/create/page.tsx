@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { createCrew } from '@/src/_apis/crew/create-crew';
+import { createCrew } from '@/src/_apis/crew/crew-list';
 import { getImageUrl } from '@/src/_apis/image/get-image-url';
 import CreateCrewForm from '@/src/app/(crew)/crew/_components/create-crew-form';
 import { CreateCrewFormTypes, CreateCrewRequestTypes } from '@/src/types/create-crew';
@@ -32,9 +32,11 @@ export default function CreateCrewPage() {
       subLocation: data.subLocation ?? '',
       totalCount: data.totalCount,
     };
-    const submitResponseWithSample = await createCrew(newData);
+    const submitResponse = await createCrew(newData);
 
-    // router.push(`/crew/detail/${submitResponse?.id}`);
+    if (submitResponse) {
+      router.push(`/crew/detail/${submitResponse?.id}`);
+    }
   };
 
   return (

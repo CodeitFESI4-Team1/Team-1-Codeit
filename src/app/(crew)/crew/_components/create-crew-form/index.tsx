@@ -11,7 +11,7 @@ import DropDown from '@/src/components/common/input/drop-down';
 import FileInputWrap from '@/src/components/common/input/file-input-wrap';
 import TextInput from '@/src/components/common/input/text-input';
 import { CreateCrewFormTypes, CreateCrewRequestTypes } from '@/src/types/create-crew';
-import ImgCrewSamples from '@/public/assets/images/crew-sample';
+import ImgCrewSampleUrls from '@/public/assets/images/crew-sample';
 
 export interface CreateCrewFormProps {
   data: CreateCrewFormTypes;
@@ -177,7 +177,7 @@ export default function CreateCrewForm({
             render={({ field }) => (
               <FileInputWrap
                 {...field}
-                sample={ImgCrewSamples}
+                sample={ImgCrewSampleUrls}
                 onChange={(newValue) => {
                   field.onChange(newValue);
                   trigger('imageUrl');
