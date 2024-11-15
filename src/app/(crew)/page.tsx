@@ -132,8 +132,8 @@ export default function HomePage() {
         </div>
       </div>
       <div className="mt-8 px-3 md:px-8 lg:px-11.5">
-        {data && <CrewCardList data={data} ref={ref} isFetchingNextPage={isFetchingNextPage} />}
-        {status === 'pending' ? (
+        {data && <CrewCardList data={data} />}
+        {status === 'pending' || isFetchingNextPage ? (
           <div className="flex justify-center py-10">
             <Loader size="sm" />
           </div>
