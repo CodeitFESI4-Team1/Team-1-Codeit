@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { createCrew, editCrew } from '@/src/_apis/crew/crew';
 import { getCrewDetail } from '@/src/_apis/crew/crew-detail-apis';
-import { CreateCrewRequestTypes } from '@/src/types/create-crew';
+import { CreateCrewRequestTypes, EditCrewRequestTypes } from '@/src/types/create-crew';
 
 export function useGetCrewDetailQuery(id: number) {
   return useQuery({
@@ -23,6 +23,7 @@ export function useCreateCrewQuery() {
         return;
       }
       queryClient.invalidateQueries({ queryKey: ['crewLists', 'crewDetail'] });
+      toast.success('크루가 생성되었습니다.');
       router.push(`/crew/detail/${data.crewId}`);
     },
     onError: (error) => {
@@ -36,11 +37,12 @@ export function useEditCrewQuery(id: number) {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (data: CreateCrewRequestTypes) => editCrew(id, data),
+    mutationFn: (data: EditCrewRequestTypes) => editCrew(id, data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['crewDetail'] });
+      toast.success('크루 정보가 수정되었습니다.');
       if (router) {
-        router.back();
+        router.push(`/crew/detail/${id}`);
       }
     },
     onError: (error) => {

@@ -8,17 +8,14 @@ import {
 
 export async function createCrew(data: CreateCrewRequestTypes) {
   try {
-    const response: { data: CreateCrewResponseTypes; status: number } = await fetchApi(
-      `/api/crews`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include', // Include authentication credentials
-        body: JSON.stringify(data),
+    const response: { data: CreateCrewResponseTypes } = await fetchApi(`/api/crews`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
       },
-    );
+      credentials: 'include', // Include authentication credentials
+      body: JSON.stringify(data),
+    });
     if (!response.data) {
       throw new Error('Failed to create crew: No data received');
     }
