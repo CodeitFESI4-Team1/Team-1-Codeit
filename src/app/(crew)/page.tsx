@@ -35,7 +35,7 @@ export default function HomePage() {
     }
   };
 
-  const { data, status, isFetchingNextPage, ref } = useInfiniteScroll(
+  const { data, isLoading, error, isFetchingNextPage, ref } = useInfiniteScroll(
     useGetCrewListQuery({
       condition: {
         keyword: search,
@@ -133,14 +133,14 @@ export default function HomePage() {
       </div>
       <div className="mt-8 px-3 md:px-8 lg:px-11.5">
         {data && <CrewCardList data={data} />}
-        {status === 'pending' || isFetchingNextPage ? (
+        {isLoading || isFetchingNextPage ? (
           <div className="flex justify-center py-10">
             <Loader size="sm" />
           </div>
         ) : (
           <div ref={ref} className="h-[1px]" />
         )}
-        {status === 'error' && <p className="py-10 text-center">에러가 발생했습니다.</p>}
+        {error && <p className="py-10 text-center">에러가 발생했습니다.</p>}
       </div>
     </div>
   );

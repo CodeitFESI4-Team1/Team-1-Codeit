@@ -6,7 +6,7 @@ import { useInfiniteScroll } from '@/src/hooks/use-infinite-scroll';
 import CrewCardList from '@/src/components/common/crew-list/crew-card-list';
 
 export default function MyCrewJoinedPage() {
-  const { data, status, ref, isFetchingNextPage } = useInfiniteScroll(
+  const { data, isLoading, error, ref, isFetchingNextPage } = useInfiniteScroll(
     useGetMyCrewJoinedQuery({
       pageable: { page: 0, size: 6, sort: ['createdAt,desc'] },
     }),
@@ -14,14 +14,14 @@ export default function MyCrewJoinedPage() {
   return (
     <div>
       <CrewCardList inWhere="my-crew" data={data ?? { pages: [], pageParams: [] }} />
-      {status === 'pending' || isFetchingNextPage ? (
+      {isLoading || isFetchingNextPage ? (
         <div className="flex justify-center py-10">
           <Loader size="sm" />
         </div>
       ) : (
         <div ref={ref} className="h-[1px]" />
       )}
-      {status === 'error' && <p className="py-10 text-center">에러가 발생했습니다.</p>}
+      {error && <p className="py-10 text-center">에러가 발생했습니다.</p>}
     </div>
   );
 }
