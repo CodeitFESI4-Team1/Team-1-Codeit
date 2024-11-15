@@ -1,6 +1,6 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useDisclosure } from '@mantine/hooks';
 import { useAuthStore } from '@/src/store/use-auth-store';
 import CreateGatheringModalContainer from '@/src/app/(crew)/crew/_components/create-gathering-modal/container';
@@ -8,6 +8,7 @@ import Button from '@/src/components/common/input/button';
 import { CreateGatheringRequestType } from '@/src/types/gathering-data';
 
 export default function CreateGathering() {
+  const currentPath = usePathname();
   const { isAuth } = useAuthStore();
   const router = useRouter();
   const [opened, { open, close }] = useDisclosure(false);
@@ -16,7 +17,7 @@ export default function CreateGathering() {
     if (isAuth) {
       open(); // 로그인 상태일 경우 모달 열기
     } else {
-      router.push('/login'); // 비로그인 상태일 경우 로그인 페이지로 이동
+      router.push(`/login?redirect=${currentPath}`); // 비로그인 상태일 경우 로그인 페이지로 이동
     }
   };
 
