@@ -1,5 +1,6 @@
 'use client';
 
+import { ToastContainer, toast } from 'react-toastify';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { Loader } from '@mantine/core';
@@ -8,7 +9,11 @@ import { createCrew } from '@/src/_apis/crew/crew';
 import { getImageUrl } from '@/src/_apis/image/get-image-url';
 import CreateCrewForm from '@/src/app/(crew)/crew/_components/create-crew-form';
 import Toast from '@/src/components/common/toast';
-import { CreateCrewFormTypes, CreateCrewRequestTypes } from '@/src/types/create-crew';
+import {
+  CreateCrewFormTypes,
+  CreateCrewRequestTypes,
+  CreateCrewResponseTypes,
+} from '@/src/types/create-crew';
 import IcoCreateCrew from '@/public/assets/icons/ic-create-crew.svg';
 
 export default function CreateCrewPage() {
@@ -24,16 +29,14 @@ export default function CreateCrewPage() {
     introduce: '',
   };
   const queryClient = useQueryClient();
-  const { isPending, mutate } = useMutation({
+  const { isPending, error, mutate } = useMutation({
     mutationFn: (data: CreateCrewRequestTypes) => createCrew(data),
-    onSuccess: (response) => {
+    onSuccess: (data) => {
+      if (data === null || data === undefined) {
+        return;
+      }
       queryClient.invalidateQueries({ queryKey: ['crewLists', 'crewDetail'] });
-      router.push(`/crew/detail/${response?.crewId}`);
-    },
-    onError: (error) => {
-      // eslint-disable-next-line no-console
-      console.error(error);
-      Toast({ message: '크루 생성하기에 실패했습니다.', type: 'error' });
+      router.push(`/crew/detail/${data.crewId}`);
     },
   });
 

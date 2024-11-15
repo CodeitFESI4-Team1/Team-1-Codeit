@@ -14,7 +14,9 @@ export async function createCrew(data: CreateCrewRequestTypes) {
         body: JSON.stringify(data),
       },
     );
-
+    if (response.status !== 200) {
+      throw new Error('Failed to create crew: Invalid status code');
+    }
     if (!response.data) {
       throw new Error('Failed to create crew: No data received');
     }
