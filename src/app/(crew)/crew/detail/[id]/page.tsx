@@ -23,7 +23,7 @@ export default async function CrewDetailPage({ params }: CrewDetailPageProps) {
           <article className="space-y-6">
             <div className="flex items-center justify-between">
               <h2 className="text-2xl font-semibold">크루 약속</h2>
-              {/* <CreateGathering /> */}
+              <CreateGathering />
             </div>
             <div className="flex w-full">
               <GatheringListSection id={id} />
