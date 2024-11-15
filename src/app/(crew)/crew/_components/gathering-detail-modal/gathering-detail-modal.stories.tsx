@@ -55,6 +55,7 @@ export const ModalWithUser = Template.bind({});
 ModalWithUser.args = {
   opened: false,
   data: {
+    crewId: 1,
     id: 1,
     title: '신나는 운동...즐거운..코딩..',
     introduce: '공지사항입니다. 다들 이번 약속 잊지 않으셨죠? 꼭 참여 부탁드립니다~',
@@ -97,6 +98,7 @@ export const ModalWithCaptain = Template.bind({});
 ModalWithCaptain.args = {
   opened: false,
   data: {
+    crewId: 1,
     id: 2,
     title: '신나는 운동...즐거운..코딩..',
     introduce: '공지사항입니다. 다들 이번 약속 잊지 않으셨죠? 꼭 참여 부탁드립니다~',
@@ -139,6 +141,7 @@ export const ModalWithCrew = Template.bind({});
 ModalWithCrew.args = {
   opened: false,
   data: {
+    crewId: 1,
     id: 3,
     title: '아침 타임 에너지 요가',
     introduce: '공지사항입니다. 다들 이번 약속 잊지 않으셨죠? 꼭 참여 부탁드립니다~',

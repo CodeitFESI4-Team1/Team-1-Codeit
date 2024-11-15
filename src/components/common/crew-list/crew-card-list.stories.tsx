@@ -1,10 +1,8 @@
-import { useEffect, useState } from 'react';
+import { Loader } from '@mantine/core';
 import type { Meta, StoryObj } from '@storybook/react';
-import { InfiniteData } from '@tanstack/react-query';
 import { useGetCrewListQuery } from '@/src/_queries/crew/crew-list-queries';
 import { useInfiniteScroll } from '@/src/hooks/use-infinite-scroll';
 import ClientProvider from '@/src/components/client-provider';
-import { MainCrewListResponse } from '@/src/types/crew-card';
 import CrewCardList from './crew-card-list';
 
 const meta: Meta = {
@@ -30,18 +28,33 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 function RenderCrewCardList() {
-  const { data, ref, isFetchingNextPage } = useInfiniteScroll(
+  const { data, status, isFetchingNextPage, ref } = useInfiniteScroll(
     useGetCrewListQuery({
-      keyword: '',
-      mainLocation: '',
-      mainCategory: '',
-      subCategory: '',
-      sortType: 'LATEST',
+      condition: {
+        keyword: '',
+        mainLocation: '',
+        mainCategory: '',
+        subCategory: '',
+        sortType: 'POPULAR',
+      },
+      pageable: { page: 0, size: 6, sort: ['createdAt,desc'] },
     }),
   );
 
   if (!data) return null;
-  return <CrewCardList data={data} ref={ref} isFetchingNextPage={isFetchingNextPage} />;
+  return (
+    <div>
+      {data && <CrewCardList data={data} />}
+      {status === 'pending' || isFetchingNextPage ? (
+        <div className="flex justify-center py-10">
+          <Loader size="sm" />
+        </div>
+      ) : (
+        <div ref={ref} className="h-[1px]" />
+      )}
+      {status === 'error' && <p className="py-10 text-center">에러가 발생했습니다.</p>}
+    </div>
+  );
 }
 
 export const Default: Story = {

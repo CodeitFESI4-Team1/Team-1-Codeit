@@ -5,7 +5,7 @@ import { useDisclosure } from '@mantine/hooks';
 import { useAuthStore } from '@/src/store/use-auth-store';
 import CreateGatheringModalContainer from '@/src/app/(crew)/crew/_components/create-gathering-modal/container';
 import Button from '@/src/components/common/input/button';
-import { CreateGatheringRequestType } from '@/src/types/gathering-data';
+import { CreateGatheringFormTypes } from '@/src/types/gathering-data';
 
 export default function CreateGathering() {
   const currentPath = usePathname();
@@ -21,7 +21,7 @@ export default function CreateGathering() {
     }
   };
 
-  const initialValue: CreateGatheringRequestType = {
+  const initialValue: CreateGatheringFormTypes = {
     title: '',
     introduce: '',
     dateTime: '',

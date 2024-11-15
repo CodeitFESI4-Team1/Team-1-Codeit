@@ -27,6 +27,7 @@ export default function DropDown({
   error,
   ...rest
 }: DropDownProps) {
+  const [currentValue, setCurrentValue] = useState<string | null>(null);
   const [isFocused, setIsFocused] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -51,15 +52,22 @@ export default function DropDown({
       : 'bg-white text-gray-800 placeholder-gray-800 sort-bg pl-10';
   };
 
-  const handleChange = (newValue: string | null) => {
-    onChange(newValue);
+  const handleChange = (newValue: string | null, option: { value: string; label: string }) => {
+    if (newValue === null) {
+      setCurrentValue(null);
+      onChange(null);
+      return;
+    }
+    setCurrentValue(newValue);
+    onChange(option.label);
     setIsFocused(false);
     inputRef.current?.blur();
   };
 
   useEffect(() => {
     if (value === null) {
-      onChange(null);
+      onChange('');
+      setCurrentValue(null);
     }
   }, [value]);
 
@@ -68,11 +76,11 @@ export default function DropDown({
       error={error}
       mt="md"
       data={data}
-      value={value}
+      value={currentValue}
       name={name}
       onFocus={() => setIsFocused(true)}
       onBlur={() => setIsFocused(false)}
-      onChange={handleChange}
+      onChange={(_value, option) => handleChange(_value, option)}
       color={getColor}
       leftSection=""
       rightSection={variant !== 'sort' && <IconArrow direction="down" color={getColor} />}
