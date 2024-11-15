@@ -1,12 +1,12 @@
 'use client';
 
+import { toast } from 'react-toastify';
 import {
   CancelGathering,
   JoinGathering,
   LeaveGathering,
 } from '@/src/_apis/gathering/gathering-detail-apis';
 import { ApiError } from '@/src/utils/api';
-import Toast from '@/src/components/common/toast';
 import { GatheringDetailType } from '@/src/types/gathering-data';
 import GatheringDetailModalPresenter from './presenter';
 
@@ -24,7 +24,7 @@ export default function GatheringDetailModalContainer({
   data,
 }: GatheringDetailModalContainerProps) {
   const showToast = (message: string, type: 'success' | 'error' | 'warning') => {
-    Toast({ message, type });
+    toast(message, { type });
   };
 
   const handleJoin = async () => {

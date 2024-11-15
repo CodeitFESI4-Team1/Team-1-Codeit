@@ -48,3 +48,22 @@ export interface GatheringCardProps {
   imageUrl: string;
   liked: boolean;
 }
+
+// 찜한 목록 조회
+interface LikeGatheringType {
+  id: number;
+  title: string;
+  dateTime: string;
+  location: string;
+  currentCount: number;
+  totalCount: number;
+  imageUrl: string;
+}
+
+export interface GatheringResponseType {
+  content: GatheringContentType[];
+  pageNumber: number;
+  pageSize: number;
+  totalElements: number;
+  totalPages: number;
+}
