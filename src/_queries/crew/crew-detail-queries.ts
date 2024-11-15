@@ -43,5 +43,9 @@ export function useEditCrewQuery(id: number) {
         router.back();
       }
     },
+    onError: (error) => {
+      toast.error(error.message);
+    },
+    retry: false,
   });
 }

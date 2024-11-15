@@ -31,22 +31,14 @@ export async function createCrew(data: CreateCrewRequestTypes) {
 
 export async function editCrew(id: number, data: EditCrewRequestTypes) {
   try {
-    const response: { data: EditCrewResponseTypes; status: number } = await fetchApi(
-      `/api/crews/${id}`,
-      {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include', // Include authentication credentials
-        body: JSON.stringify(data),
+    await fetchApi(`/api/crews/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
       },
-    );
-    if (!response.data) {
-      throw new Error('Failed to create crew: No data received');
-    }
-
-    return response.data;
+      credentials: 'include', // Include authentication credentials
+      body: JSON.stringify(data),
+    });
   } catch (error) {
     throw error;
   }
