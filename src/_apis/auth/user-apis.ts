@@ -9,3 +9,16 @@ export function getUser(): Promise<{ data: User }> {
     },
   });
 }
+
+// 회원정보 수정
+export async function updateUserProfile(file: File): Promise<void> {
+  const url = `/auths/user`;
+
+  const formData = new FormData();
+  formData.append('file', file);
+
+  await fetchApi(url, {
+    method: 'PUT',
+    body: formData,
+  });
+}
