@@ -39,7 +39,7 @@ export default function GatheringListSection({ id }: GatheringListSectionProps) 
   };
 
   const handleLoginRedirect = () => {
-    const currentPath = window.location.href;
+    const currentPath = window.location.pathname || '/';
     router.push(`/login?redirect=${encodeURIComponent(currentPath)}`);
   };
 
