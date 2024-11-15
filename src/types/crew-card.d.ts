@@ -42,6 +42,9 @@ export interface CrewMember {
 export interface CrewDetail {
   id: number;
   title: string;
+  introduce: string;
+  mainCategory: string;
+  subCategory: string;
   mainLocation: string;
   subLocation: string;
   participantCount: number;
