@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import { StaticImageData } from 'next/image';
 import { action } from '@storybook/addon-actions';
 import { Meta, StoryFn } from '@storybook/react';
-import ImgCrewSamples from '@/public/assets/images/crew-sample';
+import ImgCrewSampleUrls from '@/public/assets/images/crew-sample';
 import FileSample, { FileSampleProps } from '.';
 
 const meta: Meta = {
@@ -27,10 +26,10 @@ const meta: Meta = {
 export default meta;
 
 const Template: StoryFn<FileSampleProps> = function FileInputStory(args: FileSampleProps) {
-  const [selectedFile, setSelectedFile] = useState<File | StaticImageData | null>(null);
+  const [selectedFile, setSelectedFile] = useState<string | null>(null);
   const [isBlur, setIsBlur] = useState(false);
 
-  const handleFileChange = (file: File | StaticImageData | null) => {
+  const handleFileChange = (file: string | null) => {
     setSelectedFile(file);
     setIsBlur(false); // 파일 선택 시 블러 해제
   };
@@ -52,7 +51,7 @@ const Template: StoryFn<FileSampleProps> = function FileInputStory(args: FileSam
 };
 export const FileSample01 = Template.bind({});
 FileSample01.args = {
-  image: ImgCrewSamples[0],
+  image: ImgCrewSampleUrls[0],
   isBlur: false,
   onChange: () => {
     action('onChange');

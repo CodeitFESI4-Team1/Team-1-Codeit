@@ -1,29 +1,29 @@
 'use client';
 
 import { useState } from 'react';
-import { StaticImageData } from 'next/image';
 import FileInput from './file-input';
 import FileSample from './file-sample';
 
 export interface FileInputProps {
-  value: File | StaticImageData | null;
-  sample: StaticImageData[];
-  onChange: (newValue: File | StaticImageData | null) => void;
+  isEdit?: boolean;
+  value: File | string | null;
+  sample: string[];
+  onChange: (newValue: File | string | null) => void;
 }
 
-export default function FileInputWrap({ value, sample, onChange }: FileInputProps) {
-  const [fileValue, setFileValue] = useState<File | StaticImageData | null>(value);
+export default function FileInputWrap({ isEdit, value, sample, onChange }: FileInputProps) {
+  const [fileValue, setFileValue] = useState<File | string | null>(value);
   const [isOtherSelected, setIsOtherSelected] = useState(false);
   const [isSampleSelected, setIsSampleSelected] = useState(false);
 
-  const handleChange = (inputValue: StaticImageData) => {
+  const handleChange = (inputValue: string) => {
     setIsOtherSelected(false);
     setIsSampleSelected(true);
     setFileValue(inputValue);
     onChange(inputValue);
   };
 
-  const handleFileInput = (inputValue: File | StaticImageData | null) => {
+  const handleFileInput = (inputValue: File | null) => {
     setIsOtherSelected(true);
     setIsSampleSelected(false);
     setFileValue(inputValue);
@@ -32,9 +32,27 @@ export default function FileInputWrap({ value, sample, onChange }: FileInputProp
 
   return (
     <div className="container flex max-w-[1200px] gap-4">
-      <FileSample image={sample[0]} onChange={handleChange} isBlur={isOtherSelected} />
-      <FileSample image={sample[1]} onChange={handleChange} isBlur={isOtherSelected} />
-      <FileSample image={sample[2]} onChange={handleChange} isBlur={isOtherSelected} />
+      <FileSample
+        isEdit={isEdit}
+        value={isEdit ? (value as string) : sample[0]}
+        image={sample[0]}
+        onChange={handleChange}
+        isBlur={isOtherSelected}
+      />
+      <FileSample
+        isEdit={isEdit}
+        value={isEdit ? (value as string) : sample[0]}
+        image={sample[1]}
+        onChange={handleChange}
+        isBlur={isOtherSelected}
+      />
+      <FileSample
+        isEdit={isEdit}
+        value={isEdit ? (value as string) : sample[0]}
+        image={sample[2]}
+        onChange={handleChange}
+        isBlur={isOtherSelected}
+      />
       <FileInput value={fileValue} onChange={handleFileInput} isBlur={isSampleSelected} />
     </div>
   );

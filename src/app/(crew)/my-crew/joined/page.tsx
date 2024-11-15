@@ -13,12 +13,8 @@ export default function MyCrewJoinedPage() {
   );
   return (
     <div>
-      <CrewCardList
-        inWhere="my-crew"
-        data={data ?? { pages: [], pageParams: [] }}
-        isFetchingNextPage={isFetchingNextPage}
-      />
-      {status === 'pending' ? (
+      <CrewCardList inWhere="my-crew" data={data ?? { pages: [], pageParams: [] }} />
+      {status === 'pending' || isFetchingNextPage ? (
         <div className="flex justify-center py-10">
           <Loader size="sm" />
         </div>

@@ -27,13 +27,22 @@ export interface GatheringData {
   };
 }
 
-export interface CreateGatheringRequestType {
+export interface CreateGatheringFormTypes {
   title: string; // 20자 이내
   introduce: string; // 소개글 100자 이내
   dateTime: string;
   location: string;
   totalCount: number;
-  imageUrl: File | StaticImageData | null; // NOTE : 임시로 File로 설정
+  imageUrl: File | string | null;
+}
+
+export interface CreateGatheringRequestTypes {
+  title: string; // 20자 이내
+  introduce: string; // 소개글 100자 이내
+  dateTime: string;
+  location: string;
+  totalCount: number;
+  imageUrl: string;
 }
 
 export interface GatheringCardProps {
@@ -47,4 +56,23 @@ export interface GatheringCardProps {
   totalCount: number;
   imageUrl: string;
   liked: boolean;
+}
+
+// 찜한 목록 조회
+interface LikeGatheringType {
+  id: number;
+  title: string;
+  dateTime: string;
+  location: string;
+  currentCount: number;
+  totalCount: number;
+  imageUrl: string;
+}
+
+export interface GatheringResponseType {
+  content: GatheringContentType[];
+  pageNumber: number;
+  pageSize: number;
+  totalElements: number;
+  totalPages: number;
 }

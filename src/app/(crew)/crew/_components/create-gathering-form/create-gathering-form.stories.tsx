@@ -1,10 +1,10 @@
 import { Button, Modal, ScrollArea } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { Meta, StoryFn } from '@storybook/react';
-import { CreateGatheringRequestType } from '@/src/types/gathering-data';
+import { CreateGatheringFormTypes } from '@/src/types/gathering-data';
 import CreateGatheringForm from '.';
 
-const initialValue: CreateGatheringRequestType = {
+const initialValue: CreateGatheringFormTypes = {
   title: '',
   introduce: '',
   dateTime: '',
@@ -30,7 +30,7 @@ export default {
   },
 } as Meta<typeof CreateGatheringForm>;
 
-const Template: StoryFn<CreateGatheringRequestType> = function CreateCrewPageStory() {
+const Template: StoryFn<CreateGatheringFormTypes> = function CreateCrewPageStory() {
   const [createModalOpened, { open: openCreateModal, close: closeCreateModal }] =
     useDisclosure(false);
 
