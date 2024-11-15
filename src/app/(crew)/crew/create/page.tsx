@@ -21,6 +21,7 @@ export default function CreateCrewPage() {
     mainLocation: '',
     subLocation: null,
     totalCount: 4,
+    introduce: '',
   };
   const queryClient = useQueryClient();
   const { isPending, mutate } = useMutation({
@@ -50,6 +51,7 @@ export default function CreateCrewPage() {
       mainLocation: data.mainLocation,
       subLocation: data.subLocation ?? '',
       totalCount: data.totalCount,
+      introduce: data.introduce,
     };
 
     mutate(newData);

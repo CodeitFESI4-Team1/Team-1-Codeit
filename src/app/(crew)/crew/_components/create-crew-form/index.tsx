@@ -10,6 +10,7 @@ import Button from '@/src/components/common/input/button';
 import DropDown from '@/src/components/common/input/drop-down';
 import FileInputWrap from '@/src/components/common/input/file-input-wrap';
 import TextInput from '@/src/components/common/input/text-input';
+import Textarea from '@/src/components/common/input/textarea';
 import { CreateCrewFormTypes } from '@/src/types/create-crew';
 import ImgCrewSampleUrls from '@/public/assets/images/crew-sample';
 
@@ -43,9 +44,9 @@ export default function CreateCrewForm({
   const [regionIndex, setRegionIndex] = useState(0);
 
   const title = useWatch({ control, name: 'title' });
-  // mainCategory와 mainLocation 값의 변화를 감지하여 인덱스를 설정
   const mainCategory = useWatch({ control, name: 'mainCategory' });
   const mainLocation = useWatch({ control, name: 'mainLocation' });
+  const introduce = useWatch({ control, name: 'introduce' });
 
   const handleMainCategoryChange = (newValue: string | null) => {
     setValue('mainCategory', newValue || '');
@@ -264,7 +265,28 @@ export default function CreateCrewForm({
             )}
           />
         </div>
-
+        <div className="flex flex-col gap-3">
+          <div className="flex justify-between">
+            <label htmlFor="gathering-introduce" className="text-base font-semibold text-gray-800">
+              크루 소개
+            </label>
+            <span>
+              <span className="text-blue-500">{introduce.length}</span>/100
+            </span>
+          </div>
+          <Controller
+            name="introduce"
+            control={control}
+            render={({ field }) => (
+              <Textarea
+                {...field}
+                placeholder="크루 소개글을 100자 이내로 입력해주세요."
+                maxLength={100}
+                inputClassNames="h-40 py-2.5 px-4 bg-gray-100 placeholder:text-gray-400 font-pretendard text-base font-medium rounded-xl"
+              />
+            )}
+          />
+        </div>
         <div className="flex justify-between gap-4 pt-18">
           <Button
             type="submit"

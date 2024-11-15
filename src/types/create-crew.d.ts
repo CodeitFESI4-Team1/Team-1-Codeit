@@ -1,4 +1,5 @@
 import { StaticImageData } from 'next/image';
+import { interpolate } from 'framer-motion';
 
 // NOTE : imageURL 임시로 File로 지정
 export interface CreateCrewFormTypes {
@@ -8,6 +9,7 @@ export interface CreateCrewFormTypes {
   mainLocation: string;
   subLocation: string | null;
   totalCount: number;
+  introduce: string;
   imageUrl: File | string | null;
 }
 
@@ -18,6 +20,7 @@ export interface CreateCrewRequestTypes {
   mainLocation: string;
   subLocation: string;
   totalCount: number;
+  introduce: string;
   imageUrl: string;
 }
 
