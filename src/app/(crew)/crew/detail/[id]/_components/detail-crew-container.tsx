@@ -2,9 +2,14 @@
 
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+import { useRouter } from 'next/navigation';
+import { useDisclosure } from '@mantine/hooks';
+import { cancelCrew, joinCrew, leaveCrew } from '@/src/_apis/crew/crew-detail-apis';
 import { useGetCrewDetailQuery } from '@/src/_queries/crew/crew-detail-queries';
 import { useAuthStore } from '@/src/store/use-auth-store';
 import { ApiError } from '@/src/utils/api';
+import ConfirmCancelModal from '@/src/components/common/modal/confirm-cancel-modal';
+import { User } from '@/src/types/auth';
 import DetailCrewPresenter from './detail-crew-presenter';
 
 interface DetailCrewContainerProps {
@@ -12,13 +17,22 @@ interface DetailCrewContainerProps {
 }
 
 export default function DetailCrew({ id }: DetailCrewContainerProps) {
-  const { user } = useAuthStore();
-  const currentUserId = user?.id;
-
   const [isCaptain, setIsCaptain] = useState(false);
   const [isMember, setIsMember] = useState(false);
+  const [isJoining, setIsJoining] = useState(false);
+  const [confirmCancelOpened, { open: openConfirmCancel, close: closeConfirmCancel }] =
+    useDisclosure();
+  const router = useRouter();
 
-  const { data, isLoading, error } = useGetCrewDetailQuery(id);
+  const { user } = useAuthStore();
+
+  const isDataWrappedUser = (value: unknown): value is { data: User } => {
+    return typeof value === 'object' && value !== null && 'data' in value;
+  };
+
+  const currentUserId = isDataWrappedUser(user) ? user.data.id : user?.id;
+
+  const { data, isLoading, error: fetchError, refetch } = useGetCrewDetailQuery(id);
 
   useEffect(() => {
     if (currentUserId && data) {
@@ -30,16 +44,52 @@ export default function DetailCrew({ id }: DetailCrewContainerProps) {
     }
   }, [currentUserId, data]);
 
-  const handleJoinClick = () => {
-    // TODO: 참여 버튼 클릭 시 API 호출
+  const handleJoinClick = async () => {
+    if (isJoining) return;
+
+    setIsJoining(true);
+    try {
+      await joinCrew(id);
+      toast.success('크루에 참여하였습니다 🙌');
+      setIsMember(true);
+      await refetch();
+    } catch (joinError) {
+      if (joinError instanceof ApiError) {
+        toast.error(joinError.message);
+      } else {
+        toast.error('🚫 크루 참여 중 에러가 발생했습니다.');
+      }
+    } finally {
+      setIsJoining(false);
+    }
   };
 
-  const handleLeaveCrew = () => {
-    // TODO: 크루 탈퇴 API 호출
+  const handleLeaveCrew = async () => {
+    try {
+      await leaveCrew(id);
+      toast.success('크루를 탈퇴하였습니다👋');
+      await refetch();
+    } catch (leaveError) {
+      if (leaveError instanceof ApiError) {
+        toast.error(leaveError.message);
+      } else {
+        toast.error('🚫 크루 탈퇴 중 에러가 발생했습니다.');
+      }
+    }
   };
 
   const handleDelete = () => {
-    // TODO: 크루 삭제 API 호출
+    openConfirmCancel();
+  };
+
+  const handleConfirmCancel = async () => {
+    try {
+      await cancelCrew(id);
+      toast.success('크루가 성공적으로 삭제되었습니다.');
+      router.push('/');
+    } catch (deleteError) {
+      toast.error('크루 삭제 중 에러가 발생했습니다.');
+    }
   };
 
   const onShareClick = () => {
@@ -47,10 +97,10 @@ export default function DetailCrew({ id }: DetailCrewContainerProps) {
     navigator.clipboard
       .writeText(url)
       .then(() => {
-        toast.success('URL이 복사되었습니다! 📋');
+        toast.success('URL이 복사되었습니다!');
       })
       .catch(() => {
-        toast.error('URL 복사에 실패했습니다. 다시 시도해주세요.');
+        toast.error('🚫 URL 복사에 실패했습니다. 다시 시도해주세요.');
       });
   };
 
@@ -59,16 +109,16 @@ export default function DetailCrew({ id }: DetailCrewContainerProps) {
     return <p>Loading...</p>;
   }
 
-  if (error) {
-    if (error instanceof ApiError) {
+  if (fetchError) {
+    if (fetchError instanceof ApiError) {
       try {
-        const errorData = JSON.parse(error.message);
+        const errorData = JSON.parse(fetchError.message);
 
         if (errorData.status === 'NOT_FOUND') {
           return <p>크루 정보를 찾을 수 없습니다</p>;
         }
-      } catch {
-        return <p>{`Error ${error.status}: ${error.message}`}</p>;
+      } catch (parseError) {
+        return <p>{`Error ${fetchError.status}: ${fetchError.message}`}</p>;
       }
     }
     return <p>데이터 통신에 실패했습니다.</p>;
@@ -79,14 +129,25 @@ export default function DetailCrew({ id }: DetailCrewContainerProps) {
   }
 
   return (
-    <DetailCrewPresenter
-      data={data}
-      isCaptain={isCaptain}
-      isMember={isMember}
-      handleJoinClick={handleJoinClick}
-      handleLeaveCrew={handleLeaveCrew}
-      handleDelete={handleDelete}
-      onShareClick={onShareClick}
-    />
+    <>
+      <DetailCrewPresenter
+        data={data}
+        isCaptain={isCaptain}
+        isMember={isMember}
+        isJoining={isJoining}
+        handleJoinClick={handleJoinClick}
+        handleLeaveCrew={handleLeaveCrew}
+        handleDelete={handleDelete}
+        onShareClick={onShareClick}
+      />
+
+      <ConfirmCancelModal
+        opened={confirmCancelOpened}
+        onClose={closeConfirmCancel}
+        onConfirm={handleConfirmCancel}
+      >
+        정말 삭제하시겠습니까?
+      </ConfirmCancelModal>
+    </>
   );
 }

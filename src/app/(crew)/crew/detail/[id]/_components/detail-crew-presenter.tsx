@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { Menu } from '@mantine/core';
+import { cn } from '@/src/utils/cn';
 import Button from '@/src/components/common/input/button';
 import { Profile } from '@/src/components/common/profile';
 import ProgressBar from '@/src/components/common/progress-bar';
@@ -14,6 +15,7 @@ interface DetailCrewPresenterProps {
   data: CrewDetail;
   isCaptain: boolean;
   isMember: boolean;
+  isJoining: boolean;
   handleJoinClick: () => void;
   handleLeaveCrew: () => void;
   handleDelete: () => void;
@@ -28,6 +30,7 @@ export default function DetailCrewPresenter({
   handleLeaveCrew,
   handleDelete,
   onShareClick,
+  isJoining,
 }: DetailCrewPresenterProps) {
   const {
     id,
@@ -46,6 +49,12 @@ export default function DetailCrewPresenter({
   const captain = crewMembers.find((member) => member.captain) as CrewDetailMember;
   const members = crewMembers.filter((member) => !member.captain);
 
+  const getJoinButtonText = () => {
+    if (isMember) return '참여 완료';
+    if (isJoining) return '참여 중...';
+    return '크루 참여하기';
+  };
+
   return (
     <div className="mx-auto flex max-w-[1200px] flex-col gap-6">
       {/* 상단 이미지와 정보 영역 */}
@@ -60,11 +69,11 @@ export default function DetailCrewPresenter({
             {mainLocation} {subLocation}
           </p>
           <Button
-            className={`${isMember ? 'btn-disabled' : 'btn-filled'} px-4 py-2`}
+            className={cn('px-4 py-2', isMember ? 'btn-disabled' : 'btn-filled')}
             onClick={handleJoinClick}
-            disabled={isMember}
+            disabled={isMember || isJoining}
           >
-            {isMember ? '참여 완료' : '크루 참여하기'}
+            {getJoinButtonText()}
           </Button>
         </div>
 
