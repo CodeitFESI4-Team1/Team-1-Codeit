@@ -1,6 +1,6 @@
 'use client';
 
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { Loader } from '@mantine/core';
@@ -8,12 +8,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { createCrew } from '@/src/_apis/crew/crew';
 import { getImageUrl } from '@/src/_apis/image/get-image-url';
 import CreateCrewForm from '@/src/app/(crew)/crew/_components/create-crew-form';
-import Toast from '@/src/components/common/toast';
-import {
-  CreateCrewFormTypes,
-  CreateCrewRequestTypes,
-  CreateCrewResponseTypes,
-} from '@/src/types/create-crew';
+import { CreateCrewFormTypes, CreateCrewRequestTypes } from '@/src/types/create-crew';
 import IcoCreateCrew from '@/public/assets/icons/ic-create-crew.svg';
 
 export default function CreateCrewPage() {
@@ -29,7 +24,7 @@ export default function CreateCrewPage() {
     introduce: '',
   };
   const queryClient = useQueryClient();
-  const { isPending, error, mutate } = useMutation({
+  const { isPending, mutate } = useMutation({
     mutationFn: (data: CreateCrewRequestTypes) => createCrew(data),
     onSuccess: (data) => {
       if (data === null || data === undefined) {
@@ -37,6 +32,9 @@ export default function CreateCrewPage() {
       }
       queryClient.invalidateQueries({ queryKey: ['crewLists', 'crewDetail'] });
       router.push(`/crew/detail/${data.crewId}`);
+    },
+    onError: (error) => {
+      toast.error(error.message);
     },
   });
 

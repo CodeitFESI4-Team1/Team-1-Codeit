@@ -10,7 +10,7 @@ export async function getImageUrl(
   const formData = new FormData();
   if (file instanceof File) {
     try {
-      if (validateFile(file)) {
+      if (!validateFile(file)) {
         throw new Error('Invalid file');
       }
       formData.append('file', file);
@@ -29,7 +29,7 @@ export async function getImageUrl(
       return response.data;
     } catch (error) {
       // eslint-disable-next-line no-console
-      console.error(error);
+      throw error;
     }
   }
   return null;
