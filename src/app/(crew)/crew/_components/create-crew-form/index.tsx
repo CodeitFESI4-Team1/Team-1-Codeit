@@ -11,11 +11,11 @@ import DropDown from '@/src/components/common/input/drop-down';
 import FileInputWrap from '@/src/components/common/input/file-input-wrap';
 import TextInput from '@/src/components/common/input/text-input';
 import Textarea from '@/src/components/common/input/textarea';
-import { CreateCrewFormTypes } from '@/src/types/create-crew';
+import { CreateCrewFormTypes, EditCrewResponseTypes } from '@/src/types/create-crew';
 import ImgCrewSampleUrls from '@/public/assets/images/crew-sample';
 
 export interface CreateCrewFormProps {
-  data: CreateCrewFormTypes;
+  data: CreateCrewFormTypes | EditCrewResponseTypes;
   isEdit?: boolean;
   onEdit?: (data: CreateCrewFormTypes) => void;
   onSubmit?: (data: CreateCrewFormTypes) => void;
@@ -105,7 +105,6 @@ export default function CreateCrewForm({
             )}
           />
         </div>
-
         <div className="flex flex-col gap-3">
           <label
             htmlFor="crew-category"
@@ -123,7 +122,7 @@ export default function CreateCrewForm({
                   {...field}
                   variant="default"
                   inWhere="form"
-                  placeholder="메인 카테고리"
+                  placeholder={isEdit ? field.value : '메인 카테고리'}
                   data={categoryData.map((category) => category.title)}
                   className="flex-1"
                   onChange={(value) => {
@@ -142,7 +141,7 @@ export default function CreateCrewForm({
                   {...field}
                   variant="default"
                   inWhere="form"
-                  placeholder="세부 카테고리"
+                  placeholder={isEdit && field.value ? field.value : '세부 카테고리'}
                   data={categoryData[categoryIndex]?.items || []}
                   className="flex-1"
                   error={errors.subCategory?.message}
@@ -205,7 +204,7 @@ export default function CreateCrewForm({
                   {...field}
                   variant="default"
                   inWhere="form"
-                  placeholder="특별시/도"
+                  placeholder={isEdit ? field.value : '특별시/도'}
                   data={regionData.map((region) => region.main)}
                   className="flex-1"
                   onChange={(value) => {
@@ -225,7 +224,7 @@ export default function CreateCrewForm({
                   {...field}
                   variant="default"
                   inWhere="form"
-                  placeholder="시/군/구"
+                  placeholder={isEdit && field.value ? field.value : '시/군/구'}
                   data={regionData[regionIndex]?.areas || []}
                   className="flex-1"
                   error={errors.subLocation?.message}
@@ -271,7 +270,7 @@ export default function CreateCrewForm({
               크루 소개
             </label>
             <span>
-              <span className="text-blue-500">{introduce.length}</span>/100
+              <span className="text-blue-500">{introduce?.length}</span>/100
             </span>
           </div>
           <Controller

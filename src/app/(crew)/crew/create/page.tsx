@@ -1,18 +1,14 @@
 'use client';
 
-import { toast } from 'react-toastify';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 import { Loader } from '@mantine/core';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { createCrew } from '@/src/_apis/crew/crew';
 import { getImageUrl } from '@/src/_apis/image/get-image-url';
+import { useCreateCrewQuery } from '@/src/_queries/crew/crew-detail-queries';
 import CreateCrewForm from '@/src/app/(crew)/crew/_components/create-crew-form';
 import { CreateCrewFormTypes, CreateCrewRequestTypes } from '@/src/types/create-crew';
 import IcoCreateCrew from '@/public/assets/icons/ic-create-crew.svg';
 
 export default function CreateCrewPage() {
-  const router = useRouter();
   const initialValue: CreateCrewFormTypes = {
     title: '',
     mainCategory: '',
@@ -23,36 +19,24 @@ export default function CreateCrewPage() {
     totalCount: 4,
     introduce: '',
   };
-  const queryClient = useQueryClient();
-  const { isPending, mutate } = useMutation({
-    mutationFn: (data: CreateCrewRequestTypes) => createCrew(data),
-    onSuccess: (data) => {
-      if (data === null || data === undefined) {
-        return;
-      }
-      queryClient.invalidateQueries({ queryKey: ['crewLists', 'crewDetail'] });
-      router.push(`/crew/detail/${data.crewId}`);
-    },
-    onError: (error) => {
-      toast.error(error.message);
-    },
-  });
 
-  const handleSubmit = async (data: CreateCrewFormTypes) => {
-    let newImageUrl = data.imageUrl as string;
-    if (data.imageUrl instanceof File) {
-      const imgResponse = await getImageUrl(data.imageUrl, 'CREW');
+  const { isPending, mutate } = useCreateCrewQuery();
+
+  const handleSubmit = async (createdData: CreateCrewFormTypes) => {
+    let newImageUrl = createdData.imageUrl as string;
+    if (createdData.imageUrl instanceof File) {
+      const imgResponse = await getImageUrl(createdData.imageUrl, 'CREW');
       newImageUrl = imgResponse?.imageUrl as string;
     }
     const newData: CreateCrewRequestTypes = {
-      title: data.title,
-      mainCategory: data.mainCategory,
-      subCategory: data.subCategory ?? '',
+      title: createdData.title,
+      mainCategory: createdData.mainCategory,
+      subCategory: createdData.subCategory ?? '',
       imageUrl: newImageUrl ?? '',
-      mainLocation: data.mainLocation,
-      subLocation: data.subLocation ?? '',
-      totalCount: data.totalCount,
-      introduce: data.introduce,
+      mainLocation: createdData.mainLocation,
+      subLocation: createdData.subLocation ?? '',
+      totalCount: createdData.totalCount,
+      introduce: createdData.introduce,
     };
 
     mutate(newData);
