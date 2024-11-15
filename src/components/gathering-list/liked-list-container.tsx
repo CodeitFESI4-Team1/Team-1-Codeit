@@ -1,10 +1,10 @@
 'use client';
 
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 import { addLike, removeLike } from '@/src/_apis/liked/liked-apis';
 import { useGetLikedListQuery } from '@/src/_queries/liked/liked-queries';
 import { ApiError } from '@/src/utils/api';
-import Toast from '@/src/components/common/toast';
 import LikedListPresenter from './liked-list-presenter';
 
 export default function LikedList() {
@@ -17,7 +17,7 @@ export default function LikedList() {
       refetch();
     } catch (apiError) {
       if (apiError instanceof ApiError) {
-        Toast({ message: `Error: ${apiError.message}`, type: 'error' });
+        toast.error(`Error: ${apiError.message}`);
       }
     }
   };
@@ -28,7 +28,7 @@ export default function LikedList() {
       refetch();
     } catch (apiError) {
       if (apiError instanceof ApiError) {
-        Toast({ message: `Error: ${apiError.message}`, type: 'error' });
+        toast.error(`Error: ${apiError.message}`);
       }
     }
   };
@@ -41,7 +41,7 @@ export default function LikedList() {
 
   // 에러 처리: error 또는 gatheringData가 undefined일 경우
   if (error || gatheringData === undefined) {
-    Toast({ message: '좋아요 목록 가져오기 실패', type: 'error' });
+    toast.error('좋아요 목록 가져오기 실패');
     return <div>좋아요 목록 가져오기 실패</div>;
   }
 

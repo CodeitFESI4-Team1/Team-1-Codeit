@@ -1,11 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import { useDisclosure } from '@mantine/hooks';
 import { useGetGatheringDetailQuery } from '@/src/_queries/gathering/gathering-detail-queries';
 import { ApiError } from '@/src/utils/api';
 import GatheringDetailModalContainer from '@/src/app/(crew)/crew/_components/gathering-detail-modal/container';
-import Toast from '@/src/components/common/toast';
 import { GatheringType } from '@/src/types/gathering-data';
 import GatheringCardPresenter from './presenter';
 
@@ -56,7 +56,7 @@ export default function GatheringCard({
         setIsLiked(true);
       }
     } catch (error) {
-      Toast({ message: '찜 상태를 업데이트하는 데 실패했습니다.', type: 'error' });
+      toast.error('찜 상태를 업데이트하는 데 실패했습니다.');
     }
   };
 
@@ -69,13 +69,13 @@ export default function GatheringCard({
           const errorData = JSON.parse(error.message);
 
           if (errorData.status === 'NOT_FOUND') {
-            Toast({ message: '모임 정보를 찾을 수 없습니다.', type: 'error' });
+            toast.error('모임 정보를 찾을 수 없습니다.');
           }
         } catch {
-          Toast({ message: `Error ${error.status}: ${error.message}`, type: 'error' });
+          toast.error(`Error ${error.status}: ${error.message}`);
         }
       } else {
-        Toast({ message: '데이터 통신에 실패했습니다.', type: 'error' });
+        toast.error('데이터 통신에 실패했습니다.');
       }
     }
   }, [error]);

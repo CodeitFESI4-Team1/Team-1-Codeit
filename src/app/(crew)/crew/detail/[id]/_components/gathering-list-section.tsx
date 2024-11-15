@@ -1,12 +1,12 @@
 'use client';
 
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import { addLike, removeLike } from '@/src/_apis/liked/liked-apis';
 import { useGetGatheringListQuery } from '@/src/_queries/crew/gathering-list-queries';
 import { ApiError } from '@/src/utils/api';
 import ConfirmModal from '@/src/components/common/modal/confirm-modal';
-import Toast from '@/src/components/common/toast';
 import GatheringCardCarousel from '@/src/components/gathering-list/gathering-card-carousel';
 
 interface GatheringListSectionProps {
@@ -23,7 +23,7 @@ export default function GatheringListSection({ id }: GatheringListSectionProps) 
       await addLike(gatheringId);
     } catch (apiError) {
       if (apiError instanceof ApiError) {
-        Toast({ message: `찜하기에 실패했습니다: ${apiError.message}`, type: 'error' });
+        toast.error(`찜하기에 실패했습니다: ${apiError.message}`);
       }
     }
   };
@@ -33,7 +33,7 @@ export default function GatheringListSection({ id }: GatheringListSectionProps) 
       await removeLike(gatheringId);
     } catch (apiError) {
       if (apiError instanceof ApiError) {
-        Toast({ message: `찜하기 해제에 실패했습니다: ${apiError.message}`, type: 'error' });
+        toast.error(`찜하기 해제에 실패했습니다: ${apiError.message}`);
       }
     }
   };
