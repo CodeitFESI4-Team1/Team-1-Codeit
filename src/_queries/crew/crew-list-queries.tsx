@@ -11,6 +11,7 @@ export function useGetCrewListQuery({
   const { size, sort = ['string'] } = pageable;
   return {
     queryKey: [
+      'crewLists',
       condition.keyword,
       condition.mainLocation,
       condition.mainCategory,

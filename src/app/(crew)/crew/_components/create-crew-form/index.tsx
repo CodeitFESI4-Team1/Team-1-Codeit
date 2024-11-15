@@ -10,14 +10,15 @@ import Button from '@/src/components/common/input/button';
 import DropDown from '@/src/components/common/input/drop-down';
 import FileInputWrap from '@/src/components/common/input/file-input-wrap';
 import TextInput from '@/src/components/common/input/text-input';
-import { CreateCrewRequestTypes } from '@/src/types/create-crew';
-import ImgCrewSamples from '@/public/assets/images/crew-sample';
+import Textarea from '@/src/components/common/input/textarea';
+import { CreateCrewFormTypes } from '@/src/types/create-crew';
+import ImgCrewSampleUrls from '@/public/assets/images/crew-sample';
 
-export interface CreateCrewFormTypes {
-  data: CreateCrewRequestTypes;
+export interface CreateCrewFormProps {
+  data: CreateCrewFormTypes;
   isEdit?: boolean;
-  onEdit?: (data: CreateCrewRequestTypes) => void;
-  onSubmit?: (data: CreateCrewRequestTypes) => void;
+  onEdit?: (data: CreateCrewFormTypes) => void;
+  onSubmit?: (data: CreateCrewFormTypes) => void;
 }
 
 export default function CreateCrewForm({
@@ -25,7 +26,7 @@ export default function CreateCrewForm({
   onEdit = () => {},
   onSubmit = () => {},
   data,
-}: CreateCrewFormTypes) {
+}: CreateCrewFormProps) {
   const router = useRouter();
   const {
     control,
@@ -34,7 +35,7 @@ export default function CreateCrewForm({
     trigger,
     clearErrors,
     formState: { errors, isValid, isSubmitting },
-  } = useForm<CreateCrewRequestTypes>({
+  } = useForm<CreateCrewFormTypes>({
     defaultValues: data,
     mode: 'onBlur',
   });
@@ -43,24 +44,24 @@ export default function CreateCrewForm({
   const [regionIndex, setRegionIndex] = useState(0);
 
   const title = useWatch({ control, name: 'title' });
-  // mainCategory와 mainLocation 값의 변화를 감지하여 인덱스를 설정
   const mainCategory = useWatch({ control, name: 'mainCategory' });
   const mainLocation = useWatch({ control, name: 'mainLocation' });
+  const introduce = useWatch({ control, name: 'introduce' });
 
   const handleMainCategoryChange = (newValue: string | null) => {
-    setValue('mainCategory' as const, newValue as CreateCrewRequestTypes['mainCategory']);
-    setValue('subCategory' as const, null as CreateCrewRequestTypes['subCategory']);
+    setValue('mainCategory', newValue || '');
+    setValue('subCategory', null);
     clearErrors('subCategory');
   };
 
   const handleMainLocationChange = (newValue: string | null) => {
-    setValue('mainLocation' as const, newValue as CreateCrewRequestTypes['mainLocation']);
-    setValue('subLocation' as const, null as CreateCrewRequestTypes['subLocation']);
+    setValue('mainLocation', newValue || '');
+    setValue('subLocation', null);
     clearErrors('subLocation');
   };
   useEffect(() => {
-    setCategoryIndex(categoryData.findIndex((category) => category.title.value === mainCategory));
-    setRegionIndex(regionData.findIndex((region) => region.main.value === mainLocation));
+    setCategoryIndex(categoryData.findIndex((category) => category.title.label === mainCategory));
+    setRegionIndex(regionData.findIndex((region) => region.main.label === mainLocation));
   }, [mainCategory, mainLocation]);
 
   return (
@@ -162,24 +163,24 @@ export default function CreateCrewForm({
               required: '이미지를 선택해주세요.',
               validate: {
                 fileSize: (file) =>
-                  file && file instanceof File && file.size <= 5242880
-                    ? true
-                    : '파일 크기는 5MB 이하여야 합니다.',
+                  file && file instanceof File
+                    ? file.size <= 5242880 || '파일 크기는 5MB 이하여야 합니다.'
+                    : true, // 문자열인 경우 크기 검사를 건너뜁니다.
                 fileType: (file) =>
-                  file &&
-                  file instanceof File &&
-                  ['image/jpeg', 'image/jpg', 'image/png'].includes(file.type)
-                    ? true
-                    : 'JPG, PNG 파일만 업로드 가능합니다.',
+                  file && file instanceof File
+                    ? ['image/jpeg', 'image/jpg', 'image/png'].includes(file.type) ||
+                      'JPG, PNG 파일만 업로드 가능합니다.'
+                    : true, // 문자열인 경우 파일 타입 검사를 건너뜁니다.
               },
             }}
             render={({ field }) => (
               <FileInputWrap
                 {...field}
-                sample={ImgCrewSamples}
+                isEdit={isEdit}
+                sample={ImgCrewSampleUrls}
                 onChange={(newValue) => {
                   field.onChange(newValue);
-                  if (newValue instanceof File) trigger('imageUrl');
+                  trigger('imageUrl');
                 }}
               />
             )}
@@ -264,7 +265,28 @@ export default function CreateCrewForm({
             )}
           />
         </div>
-
+        <div className="flex flex-col gap-3">
+          <div className="flex justify-between">
+            <label htmlFor="gathering-introduce" className="text-base font-semibold text-gray-800">
+              크루 소개
+            </label>
+            <span>
+              <span className="text-blue-500">{introduce.length}</span>/100
+            </span>
+          </div>
+          <Controller
+            name="introduce"
+            control={control}
+            render={({ field }) => (
+              <Textarea
+                {...field}
+                placeholder="크루 소개글을 100자 이내로 입력해주세요."
+                maxLength={100}
+                inputClassNames="h-40 py-2.5 px-4 bg-gray-100 placeholder:text-gray-400 font-pretendard text-base font-medium rounded-xl"
+              />
+            )}
+          />
+        </div>
         <div className="flex justify-between gap-4 pt-18">
           <Button
             type="submit"
