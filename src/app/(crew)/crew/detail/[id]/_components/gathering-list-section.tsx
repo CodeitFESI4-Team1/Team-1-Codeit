@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { addLike, removeLike } from '@/src/_apis/liked/liked-apis';
-import { useGetGatheringListQuery } from '@/src/_queries/detail/gathering-list-queries';
+import { useGetGatheringListQuery } from '@/src/_queries/crew/gathering-list-queries';
 import { ApiError } from '@/src/utils/api';
 import ConfirmModal from '@/src/components/common/modal/confirm-modal';
 import Toast from '@/src/components/common/toast';
