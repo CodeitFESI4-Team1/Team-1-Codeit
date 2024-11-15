@@ -23,6 +23,7 @@ export default function EditCrewPage() {
     mainLocation: '',
     subLocation: '',
     totalCount: 4,
+    introduce: '',
   };
 
   const handleEdit = () => {

@@ -10,6 +10,7 @@ const initialValue: CreateCrewRequestTypes = {
   mainLocation: '',
   subLocation: '',
   totalCount: 0,
+  introduce: '',
 };
 
 export default {
