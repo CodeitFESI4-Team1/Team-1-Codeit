@@ -70,6 +70,14 @@ export default function CustomGatheringCardCarousel({
     );
   };
 
+  const handleLikeAction = (actionType: 'like' | 'unlike', gatheringId: number) => {
+    if (isLoggedIn) {
+      return actionType === 'like' ? onLike(gatheringId) : onUnlike(gatheringId);
+    }
+    onShowLoginModal();
+    return Promise.resolve();
+  };
+
   return (
     <div className="relative w-full">
       <div className="flex overflow-x-hidden">
@@ -90,20 +98,8 @@ export default function CustomGatheringCardCarousel({
                 crewId={crewId}
                 {...card}
                 className="w-full"
-                onLike={() => {
-                  if (isLoggedIn) {
-                    return onLike(card.id);
-                  }
-                  onShowLoginModal(); // 로그인이 안 되어 있으면 모달 표시
-                  return Promise.resolve();
-                }}
-                onUnlike={() => {
-                  if (isLoggedIn) {
-                    return onUnlike(card.id);
-                  }
-                  onShowLoginModal(); // 로그인이 안 되어 있으면 모달 표시
-                  return Promise.resolve();
-                }}
+                onLike={() => handleLikeAction('like', card.id)}
+                onUnlike={() => handleLikeAction('unlike', card.id)}
               />
             </div>
           ))}
