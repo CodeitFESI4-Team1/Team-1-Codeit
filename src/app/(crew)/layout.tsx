@@ -1,4 +1,5 @@
 import { Bounce, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import '@mantine/core/styles.css';
 import Header from '@/src/components/common/header/container';
 import '@/src/styles/globals.css';
