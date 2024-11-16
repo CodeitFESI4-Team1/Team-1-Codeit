@@ -1,5 +1,5 @@
 import { fetchApi } from '@/src/utils/api';
-import { GatheringDetailType } from '@/src/types/gathering-data';
+import { CreateGatheringRequestTypes, GatheringDetailType } from '@/src/types/gathering-data';
 
 // NOTE: 약속 디테일 불러오기
 export async function GetGatheringDetail(
@@ -51,4 +51,19 @@ export async function LeaveGathering(crewId: number, gatheringId: number): Promi
       'Content-Type': 'application/json',
     },
   });
+}
+
+export async function createGathering(id: number, data: CreateGatheringRequestTypes) {
+  try {
+    await fetchApi(`/api/crews/${id}/gatherings`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include', // Include authentication credentials
+      body: JSON.stringify(data),
+    });
+  } catch (error) {
+    throw error;
+  }
 }

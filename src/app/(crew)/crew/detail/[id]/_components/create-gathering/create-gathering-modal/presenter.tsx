@@ -5,7 +5,7 @@ import { CreateGatheringFormTypes } from '@/src/types/gathering-data';
 export interface GatheringDetailModalProps {
   opened: boolean;
   onClose: () => void;
-  onSubmit: () => void;
+  onSubmit: (data: CreateGatheringFormTypes) => void;
   onEdit: () => void;
   data: CreateGatheringFormTypes;
 }

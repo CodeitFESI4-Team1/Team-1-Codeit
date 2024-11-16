@@ -162,8 +162,7 @@ export default function CreateGatheringForm({
                 {...field}
                 fullDate={new Date()}
                 onChange={(date) => {
-                  const formattedDate = date.toLocaleString();
-                  onChange(formattedDate);
+                  onChange(date);
                   trigger('dateTime'); // 유효성 검사 실행
                 }}
               />
