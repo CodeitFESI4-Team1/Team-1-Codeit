@@ -34,7 +34,7 @@ export default function CreateCrewPage() {
       subCategory: createdData.subCategory ?? '',
       imageUrl: newImageUrl ?? '',
       mainLocation: createdData.mainLocation,
-      subLocation: createdData.subLocation ?? '',
+      subLocation: createdData.subLocation === '전체' ? '' : (createdData.subLocation ?? ''),
       totalCount: createdData.totalCount,
       introduce: createdData.introduce,
     };

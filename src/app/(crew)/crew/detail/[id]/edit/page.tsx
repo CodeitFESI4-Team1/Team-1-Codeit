@@ -12,7 +12,7 @@ import IcoCreateCrew from '@/public/assets/icons/ic-create-crew.svg';
 export default function EditCrewPage() {
   const { id } = useParams();
   const { data, isLoading, error } = useGetCrewDetailQuery(Number(id));
-  const { isPending, isSuccess, mutate } = useEditCrewQuery(Number(id));
+  const { isPending, mutate } = useEditCrewQuery(Number(id));
   if (data === undefined) return null;
 
   const handleEdit = async (editedData: CreateCrewFormTypes) => {
@@ -28,7 +28,7 @@ export default function EditCrewPage() {
       subCategory: editedData.subCategory ?? '',
       imageUrl: newImageUrl ?? '',
       mainLocation: editedData.mainLocation,
-      subLocation: editedData.subLocation ?? '',
+      subLocation: editedData.subLocation === '전체' ? '' : (editedData.subLocation ?? ''),
       totalCount: editedData.totalCount,
       introduce: editedData.introduce,
     };
