@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import category from '@/src/data/category.json';
-import InternalCategory from '@/src/app/_components/category/internal-category';
-import MainCategory from '@/src/app/_components/category/main-category';
+import InternalCategory from '@/src/app/(crew)/_components/category/internal-category';
+import MainCategory from '@/src/app/(crew)/_components/category/main-category';
 
 export interface CategoryContainerProps {
   mainCategory: string;

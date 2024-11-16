@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import { useDisclosure } from '@mantine/hooks';
 import { useGetGatheringDetailQuery } from '@/src/_queries/gathering/gathering-detail-queries';
 import { ApiError } from '@/src/utils/api';
-import GatheringDetailModalContainer from '@/src/app/(crew)/crew/_components/gathering-detail-modal/container';
+import GatheringDetailModalContainer from '@/src/app/(crew)/crew/detail/[id]/_components/gathering-detail-modal/container';
 import { GatheringType } from '@/src/types/gathering-data';
 import GatheringCardPresenter from './presenter';
 

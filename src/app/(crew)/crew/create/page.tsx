@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { Loader } from '@mantine/core';
 import { getImageUrl } from '@/src/_apis/image/get-image-url';
 import { useCreateCrewQuery } from '@/src/_queries/crew/crew-detail-queries';
-import CreateCrewForm from '@/src/app/(crew)/crew/_components/create-crew-form';
+import CreateCrewForm from '@/src/app/(crew)/crew/create/_components/create-crew-form';
 import { CreateCrewFormTypes, CreateCrewRequestTypes } from '@/src/types/create-crew';
 import IcoCreateCrew from '@/public/assets/icons/ic-create-crew.svg';
 
