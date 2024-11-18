@@ -2,13 +2,13 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { useAuthStore } from '@/src/store/use-auth-store';
+import { useSlider } from '@/src/hooks/use-slider';
 import GatheringCard from '@/src/components/common/gathering-card/container';
 import { GatheringType } from '@/src/types/gathering-data';
 import IcoLeft from '@/public/assets/icons/ic-left.svg';
 import IcoRight from '@/public/assets/icons/ic-right.svg';
 
-interface GatheringCardCarouselProps {
+interface ResponsiveCarouselProps {
   gatheringData: GatheringType[];
   crewId: number;
   onLike: (gatheringId: number) => Promise<void>;
@@ -16,135 +16,116 @@ interface GatheringCardCarouselProps {
   onShowLoginModal: () => void;
 }
 
-export default function CustomGatheringCardCarousel({
+export default function ResponsiveCarousel({
   gatheringData,
   crewId,
   onLike,
   onUnlike,
   onShowLoginModal,
-}: GatheringCardCarouselProps) {
+}: ResponsiveCarouselProps) {
+  const { sliderRef, handleMouseDown, handleMouseLeave, handleMouseUp, handleMouseMove } =
+    useSlider();
+  const [isDesktop, setIsDesktop] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [slidesToShow, setSlidesToShow] = useState(1);
-  const [slideSize, setSlideSize] = useState('w-full');
-
-  // 로그인 여부 확인
-  const token = useAuthStore((state) => state.token);
-  const isLoggedIn = !!token;
-
-  useEffect(() => {
-    const handleResize = () => {
-      const screenWidth = window.innerWidth;
-      let newSlidesToShow = 1;
-      let newSlideSize = 'w-full';
-
-      if (screenWidth <= 744) {
-        newSlidesToShow = 1;
-        newSlideSize = 'w-full';
-      } else if (screenWidth <= 1200) {
-        newSlidesToShow = 2;
-        newSlideSize = 'w-[calc(50%-8px)]'; // 두 개일 경우
-      } else {
-        newSlidesToShow = 3;
-        newSlideSize = 'w-[calc(33.33%-12px)]';
-      }
-
-      setSlidesToShow(newSlidesToShow);
-      setSlideSize(newSlideSize);
-      setCurrentIndex(0);
-    };
-
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [gatheringData.length]);
-
+  const cardWidthLg = 357; // LG 기준 카드 너비
+  const cardGapLg = 16; // 카드 간 간격
   const totalSlides = gatheringData.length;
 
+  useEffect(() => {
+    const updateView = () => setIsDesktop(window.innerWidth >= 1024);
+    updateView();
+    window.addEventListener('resize', updateView);
+    return () => window.removeEventListener('resize', updateView);
+  }, []);
+
   const handlePrev = () => {
-    setCurrentIndex((prevIndex) => (prevIndex >= slidesToShow ? prevIndex - slidesToShow : 0));
+    setCurrentIndex((prevIndex) => (prevIndex > 3 ? prevIndex - 3 : 0));
   };
 
   const handleNext = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex + slidesToShow < totalSlides ? prevIndex + slidesToShow : prevIndex,
-    );
+    setCurrentIndex((prevIndex) => (prevIndex + 3 < totalSlides ? prevIndex + 3 : prevIndex));
   };
 
   const handleLikeAction = (actionType: 'like' | 'unlike', gatheringId: number) => {
-    if (isLoggedIn) {
+    if (crewId) {
       return actionType === 'like' ? onLike(gatheringId) : onUnlike(gatheringId);
     }
     onShowLoginModal();
     return Promise.resolve();
   };
 
-  return (
-    <div className="relative w-full">
-      <div className="flex overflow-x-hidden">
-        <div
-          className={`flex min-w-0 transition-transform duration-300 ease-in-out ${
-            slidesToShow > 1 ? 'gap-4' : 'gap-0'
-          }`}
-          style={{
-            transform: `translateX(calc(-${(100 / slidesToShow) * currentIndex}% - ${
-              currentIndex * (slidesToShow > 1 ? 16 / slidesToShow : 0)
-            }px))`,
-            width: `${(100 / slidesToShow) * totalSlides}%`,
-          }}
-        >
-          {gatheringData.map((card) => (
-            <div key={card.id} className={`flex-shrink-0 ${slideSize} mb-5 lg:min-w-[362px]`}>
-              <GatheringCard
-                crewId={crewId}
-                {...card}
-                className="w-full"
-                onLike={() => handleLikeAction('like', card.id)}
-                onUnlike={() => handleLikeAction('unlike', card.id)}
-              />
+  if (isDesktop) {
+    return (
+      <div className="relative mx-auto w-full max-w-[1112px]">
+        <div className="relative flex justify-center">
+          {/* 카드 컨테이너 */}
+          <div className="relative flex w-[1112px] overflow-hidden">
+            <div
+              className="flex gap-4 transition-transform duration-300 ease-in-out"
+              style={{
+                transform: `translateX(-${currentIndex * (cardWidthLg + cardGapLg)}px)`,
+              }}
+            >
+              {gatheringData.map((card) => (
+                <div key={card.id} className="w-[357px] flex-shrink-0">
+                  <GatheringCard
+                    crewId={crewId}
+                    {...card}
+                    className="w-full"
+                    onLike={() => handleLikeAction('like', card.id)}
+                    onUnlike={() => handleLikeAction('unlike', card.id)}
+                  />
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+
+          {/* 화살표 버튼 */}
+          {currentIndex > 0 && (
+            <button
+              type="button"
+              onClick={handlePrev}
+              className="absolute left-[-24px] top-1/2 z-10 -translate-y-1/2 transform"
+            >
+              <Image src={IcoLeft} alt="Previous" width={12} height={12} />
+            </button>
+          )}
+          {currentIndex + 3 < totalSlides && (
+            <button
+              type="button"
+              onClick={handleNext}
+              className="absolute right-[-16px] top-1/2 z-10 -translate-y-1/2 transform"
+            >
+              <Image src={IcoRight} alt="Next" width={12} height={12} />
+            </button>
+          )}
         </div>
       </div>
+    );
+  }
 
-      {/* Left and Right Control Buttons */}
-      {currentIndex > 0 && (
-        <button
-          type="button"
-          onClick={handlePrev}
-          className="absolute left-2 top-1/2 -translate-y-1/2 transform rounded-full bg-white/70 p-1 shadow-lg"
-        >
-          <div className="flex h-8 w-8 items-center justify-center rounded-full">
-            <Image src={IcoLeft} alt="Previous" width={12} height={12} />
-          </div>
-        </button>
-      )}
-      {currentIndex + slidesToShow < totalSlides && (
-        <button
-          type="button"
-          onClick={handleNext}
-          className="absolute right-2 top-1/2 -translate-y-1/2 transform rounded-full bg-white/70 p-1 shadow-lg"
-        >
-          <div className="flex h-8 w-8 items-center justify-center rounded-full">
-            <Image src={IcoRight} alt="Next" width={12} height={12} />
-          </div>
-        </button>
-      )}
-
-      {/* Custom Indicators */}
-      <div className="mt-2 flex justify-center space-x-2">
-        {Array.from({ length: Math.ceil(totalSlides / slidesToShow) }).map((_, i) => (
-          <span
-            // eslint-disable-next-line react/no-array-index-key
-            key={i}
-            className="h-1 rounded-sm transition-all"
-            style={{
-              width: i === Math.floor(currentIndex / slidesToShow) ? '20px' : '6px',
-              backgroundColor:
-                i === Math.floor(currentIndex / slidesToShow) ? '#3b82f6' : '#dbeafe',
-            }}
+  // 모바일 및 태블릿
+  return (
+    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
+    <ul
+      ref={sliderRef}
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="scrollbar-hide flex w-full cursor-grab snap-x gap-4 overflow-x-scroll scroll-smooth active:cursor-grabbing"
+    >
+      {gatheringData.map((card) => (
+        <li key={card.id} className="w-[300px] flex-shrink-0 snap-start">
+          <GatheringCard
+            crewId={crewId}
+            {...card}
+            className="w-full"
+            onLike={() => handleLikeAction('like', card.id)}
+            onUnlike={() => handleLikeAction('unlike', card.id)}
           />
-        ))}
-      </div>
-    </div>
+        </li>
+      ))}
+    </ul>
   );
 }
