@@ -23,7 +23,6 @@ export default meta;
 function Template() {
   const { isAuth, login, logout, setUser } = useAuthStore();
   const testToken = 'test token';
-  const testRefreshToken = 'test refresh token';
   const testUser = {
     id: 1,
     nickname: '크루크루',
@@ -35,7 +34,7 @@ function Template() {
     if (isAuth) {
       logout();
     } else {
-      login(testToken, testRefreshToken);
+      login(testToken);
       setUser(testUser);
     }
   };
