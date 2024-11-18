@@ -27,7 +27,7 @@ export default function DropDown({
   error,
   ...rest
 }: DropDownProps) {
-  const [currentValue, setCurrentValue] = useState<string | null>(null);
+  const [currentValue, setCurrentValue] = useState<string | null>(value);
   const [isFocused, setIsFocused] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 

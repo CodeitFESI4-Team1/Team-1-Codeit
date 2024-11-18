@@ -39,20 +39,17 @@ export default function CreateCrewForm({
     trigger,
     clearErrors,
     watch,
-    formState: { errors, isValid, isSubmitting },
+    formState: { errors, isValid, isSubmitting, isSubmitSuccessful },
   } = useForm<CreateCrewFormTypes>({
     defaultValues: data,
     mode: 'onBlur',
   });
 
-  if (typeof window !== 'undefined') {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    useFormPersist('createCrew', {
-      watch,
-      setValue,
-      storage: window.localStorage,
-    });
-  }
+  useFormPersist('createCrew', {
+    watch,
+    setValue,
+    storage: typeof window !== 'undefined' ? window.localStorage : undefined,
+  });
 
   const [categoryIndex, setCategoryIndex] = useState(0);
   const [regionIndex, setRegionIndex] = useState(0);
@@ -62,6 +59,18 @@ export default function CreateCrewForm({
   const mainLocation = useWatch({ control, name: 'mainLocation' });
   const subLocation = useWatch({ control, name: 'subLocation' });
   const introduce = useWatch({ control, name: 'introduce' });
+
+  const setInitialValues = () => {
+    setValue('title', '');
+    setValue('mainCategory', '');
+    setValue('subCategory', '');
+    setValue('imageUrl', '');
+    setValue('mainLocation', '');
+    setValue('subLocation', '');
+    setValue('totalCount', 4);
+    setValue('introduce', '');
+    localStorage.removeItem('createCrew');
+  };
 
   const handleMainCategoryChange = (newValue: string | null) => {
     setValue('mainCategory', newValue || '');
@@ -86,25 +95,25 @@ export default function CreateCrewForm({
   };
 
   const handleClear = () => {
-    setValue('title', '');
-    setValue('mainCategory', '');
-    setValue('subCategory', '');
-    setValue('imageUrl', '');
-    setValue('mainLocation', '');
-    setValue('subLocation', '');
-    setValue('totalCount', 4);
-    setValue('introduce', '');
-    localStorage.removeItem('createCrew');
+    setInitialValues();
     router.back();
   };
 
+  useEffect(() => {}, []);
+
   useEffect(() => {
+    if (mainCategory === '') setCategoryIndex(0);
     setCategoryIndex(categoryData.findIndex((category) => category.title.label === mainCategory));
+
+    if (mainLocation === '') setRegionIndex(0);
     setRegionIndex(regionData.findIndex((region) => region.main.label === mainLocation));
     if (isEdit && subLocation === '') {
       setValue('subLocation', '전체');
     }
-  }, [mainCategory, mainLocation]);
+    if (!isEdit && isSubmitSuccessful) {
+      setInitialValues();
+    }
+  }, [mainCategory, mainLocation, isSubmitSuccessful]);
 
   return (
     <form onSubmit={type === 'edit' ? handleSubmit(onEdit) : handleSubmit(onSubmit)}>
