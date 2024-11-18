@@ -22,3 +22,19 @@ export async function updateUserProfile(file: File): Promise<void> {
     body: formData,
   });
 }
+
+export async function fetchUpdatedUser() {
+  return fetchApi<{ data: User }>('/auths/user', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Cache-Control': 'no-cache',
+    },
+  })
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      throw error;
+    });
+}
