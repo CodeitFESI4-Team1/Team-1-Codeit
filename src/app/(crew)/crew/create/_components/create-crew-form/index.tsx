@@ -16,6 +16,7 @@ import { CreateCrewFormTypes, EditCrewResponseTypes } from '@/src/types/create-c
 import ImgCrewSampleUrls from '@/public/assets/images/crew-sample';
 
 export interface CreateCrewFormProps {
+  type: 'create' | 'edit';
   data: CreateCrewFormTypes | EditCrewResponseTypes;
   isEdit?: boolean;
   onEdit?: (data: CreateCrewFormTypes) => void;
@@ -23,7 +24,7 @@ export interface CreateCrewFormProps {
 }
 
 export default function CreateCrewForm({
-  isEdit = false,
+  type,
   onEdit = () => {},
   onSubmit = () => {},
   data,
@@ -54,6 +55,7 @@ export default function CreateCrewForm({
   const title = useWatch({ control, name: 'title' });
   const mainCategory = useWatch({ control, name: 'mainCategory' });
   const mainLocation = useWatch({ control, name: 'mainLocation' });
+  const subLocation = useWatch({ control, name: 'subLocation' });
   const introduce = useWatch({ control, name: 'introduce' });
 
   const handleMainCategoryChange = (newValue: string | null) => {
@@ -70,10 +72,13 @@ export default function CreateCrewForm({
   useEffect(() => {
     setCategoryIndex(categoryData.findIndex((category) => category.title.label === mainCategory));
     setRegionIndex(regionData.findIndex((region) => region.main.label === mainLocation));
+    if (subLocation === '') {
+      setValue('subLocation', '전체');
+    }
   }, [mainCategory, mainLocation]);
 
   return (
-    <form onSubmit={isEdit ? handleSubmit(onEdit) : handleSubmit(onSubmit)}>
+    <form onSubmit={type === 'edit' ? handleSubmit(onEdit) : handleSubmit(onSubmit)}>
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-3">
           <div className="flex justify-between">
@@ -130,7 +135,7 @@ export default function CreateCrewForm({
                   {...field}
                   variant="default"
                   inWhere="form"
-                  placeholder={isEdit ? field.value : '메인 카테고리'}
+                  placeholder={type === 'edit' ? field.value : '메인 카테고리'}
                   data={categoryData.map((category) => category.title)}
                   className="flex-1"
                   onChange={(value) => {
@@ -149,7 +154,7 @@ export default function CreateCrewForm({
                   {...field}
                   variant="default"
                   inWhere="form"
-                  placeholder={isEdit && field.value ? field.value : '세부 카테고리'}
+                  placeholder={type === 'edit' && field.value ? field.value : '세부 카테고리'}
                   data={categoryData[categoryIndex]?.items || []}
                   className="flex-1"
                   error={errors.subCategory?.message}
@@ -183,7 +188,7 @@ export default function CreateCrewForm({
             render={({ field }) => (
               <FileInputWrap
                 {...field}
-                isEdit={isEdit}
+                isEdit={type === 'edit'}
                 sample={ImgCrewSampleUrls}
                 onChange={(newValue) => {
                   field.onChange(newValue);
@@ -212,7 +217,7 @@ export default function CreateCrewForm({
                   {...field}
                   variant="default"
                   inWhere="form"
-                  placeholder={isEdit ? field.value : '특별시/도'}
+                  placeholder={type === 'edit' ? field.value : '특별시/도'}
                   data={regionData.map((region) => region.main)}
                   className="flex-1"
                   onChange={(value) => {
@@ -232,7 +237,7 @@ export default function CreateCrewForm({
                   {...field}
                   variant="default"
                   inWhere="form"
-                  placeholder={isEdit && field.value ? field.value : '시/군/구'}
+                  placeholder={type === 'edit' && field.value ? field.value : '시/군/구'}
                   data={regionData[regionIndex]?.areas || []}
                   className="flex-1"
                   error={errors.subLocation?.message}
@@ -300,7 +305,7 @@ export default function CreateCrewForm({
             disabled={!isValid || isSubmitting}
             className="btn-filled h-11 flex-1 text-base font-medium disabled:bg-gray-200"
           >
-            {isEdit ? '수정' : '확인'}
+            {type === 'create' ? '만들기' : '수정'}
           </Button>
           <Button
             type="button"

@@ -63,7 +63,7 @@ export default function CreateCrewPage() {
         </figure>
         <h2 className="text-2xl font-bold text-gray-900 md:text-3.5xl">크루 만들기</h2>
       </div>
-      <CreateCrewForm data={initialValue} onSubmit={handleSubmit} isEdit={savedInfo !== ''} />
+      <CreateCrewForm data={initialValue} onSubmit={handleSubmit} type="create" />
     </div>
   );
 }
