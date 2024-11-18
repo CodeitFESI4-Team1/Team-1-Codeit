@@ -9,17 +9,11 @@ import { CreateCrewFormTypes, CreateCrewRequestTypes } from '@/src/types/create-
 import IcoCreateCrew from '@/public/assets/icons/ic-create-crew.svg';
 
 export default function CreateCrewPage() {
-  const savedInfo = JSON.parse(localStorage.getItem('createCrew') ?? '');
-  const initialValue: CreateCrewFormTypes = {
-    title: savedInfo?.title,
-    mainCategory: savedInfo?.mainCategory,
-    subCategory: savedInfo?.subCategory,
-    imageUrl: savedInfo?.imageUrl,
-    mainLocation: savedInfo?.mainLocation,
-    subLocation: savedInfo?.subLocation,
-    totalCount: savedInfo?.totalCount,
-    introduce: savedInfo?.introduce,
-  };
+  let savedInfo;
+  if (typeof window !== 'undefined') {
+    savedInfo = JSON.parse(localStorage.getItem('createCrew') ?? '');
+  }
+  const initialValue = { ...savedInfo };
 
   const { isPending, mutate } = useCreateCrewQuery();
 
@@ -63,7 +57,12 @@ export default function CreateCrewPage() {
         </figure>
         <h2 className="text-2xl font-bold text-gray-900 md:text-3.5xl">크루 만들기</h2>
       </div>
-      <CreateCrewForm data={initialValue} onSubmit={handleSubmit} type="create" />
+      <CreateCrewForm
+        data={initialValue}
+        onSubmit={handleSubmit}
+        type="create"
+        isEdit={savedInfo}
+      />
     </div>
   );
 }

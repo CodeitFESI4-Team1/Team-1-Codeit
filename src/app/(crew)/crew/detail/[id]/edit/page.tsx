@@ -55,7 +55,7 @@ export default function EditCrewPage() {
         </figure>
         <h2 className="text-2xl font-bold text-gray-900 md:text-3.5xl">크루 수정하기</h2>
       </div>
-      <CreateCrewForm type="edit" data={data as EditCrewRequestTypes} onEdit={handleEdit} />
+      <CreateCrewForm type="edit" isEdit data={data as EditCrewRequestTypes} onEdit={handleEdit} />
     </div>
   );
 }
