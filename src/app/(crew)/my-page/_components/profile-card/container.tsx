@@ -10,36 +10,42 @@ import ProfileCardPresenter from './presenter';
 
 export default function ProfileCard() {
   const router = useRouter();
-  const { isAuth, setUser } = useAuthStore();
+  const { isAuth, rehydrated, setUser } = useAuthStore();
   const [user, setLocalUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [profileImageUrl, setProfileImageUrl] = useState<string>('');
 
   useEffect(() => {
-    const timer = setTimeout(async () => {
+    const checkAuthAndLoadUser = async () => {
+      if (!rehydrated) return; // 상태 복원이 완료되지 않았으면 대기
+
       if (!isAuth) {
-        router.push('/login');
-      } else {
-        try {
-          const updatedUser = await fetchUpdatedUser();
-          setLocalUser(updatedUser);
-          setUser(updatedUser);
-          setProfileImageUrl(updatedUser.profileImageUrl);
-          setIsLoading(false);
-        } catch (error) {
-          toast.error('유저 정보를 가져오는 데 실패했습니다.');
-        }
+        router.push('/login'); // 인증되지 않은 경우 리디렉션
+        return;
       }
-    }, 500);
 
-    return () => clearTimeout(timer);
-  }, [isAuth, router, setUser]);
+      setIsLoading(true);
 
+      try {
+        const updatedUser = await fetchUpdatedUser();
+        setLocalUser(updatedUser);
+        setUser(updatedUser);
+        setProfileImageUrl(updatedUser.profileImageUrl);
+      } catch {
+        toast.error('유저 정보를 가져오는 데 실패했습니다.');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    checkAuthAndLoadUser();
+  }, [isAuth, rehydrated, router, setUser]);
+
+  if (!rehydrated) return null;
+  if (!isAuth) return null;
   if (isLoading) return <div>로딩 중...</div>;
-
   if (!user) return <div>유저 정보를 불러오지 못했습니다.</div>;
 
-  // 파일 선택 핸들러
   const handleEdit = () => {
     const input = document.createElement('input');
     input.type = 'file';
@@ -59,7 +65,6 @@ export default function ProfileCard() {
           setProfileImageUrl(tempUrl);
 
           const updatedUser = await fetchUpdatedUser();
-
           const newProfileImageUrl = `${updatedUser.profileImageUrl}?timestamp=${new Date().getTime()}`;
           setProfileImageUrl(newProfileImageUrl);
           setUser({ ...updatedUser, profileImageUrl: newProfileImageUrl });
