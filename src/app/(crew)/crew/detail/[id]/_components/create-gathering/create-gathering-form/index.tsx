@@ -2,6 +2,7 @@
 
 import { Controller, useForm, useWatch } from 'react-hook-form';
 import { NumberInput } from '@mantine/core';
+import { getImageUrl } from '@/src/_apis/image/get-image-url';
 import Button from '@/src/components/common/input/button';
 import DateTimePicker from '@/src/components/common/input/date-time-picker';
 import FileInputWrap from '@/src/components/common/input/file-input-wrap';
@@ -37,6 +38,16 @@ export default function CreateGatheringForm({
   const title = useWatch({ control, name: 'title' });
   const location = useWatch({ control, name: 'location' });
   const introduce = useWatch({ control, name: 'introduce' });
+
+  const handleFileChange = async (
+    file: File | string | null,
+    onChange: (value: string | File) => void,
+  ) => {
+    if (file instanceof File) {
+      const imgResponse = await getImageUrl(file, 'CREW');
+      onChange(imgResponse?.imageUrl || '');
+    }
+  };
 
   return (
     <form onSubmit={isEdit ? handleSubmit(onEdit) : handleSubmit(onSubmit)}>
@@ -103,6 +114,7 @@ export default function CreateGatheringForm({
                   {...field}
                   sample={ImgGatheringSampleUrls}
                   onChange={(newValue) => {
+                    handleFileChange(newValue, field.onChange);
                     field.onChange(newValue);
                     trigger('imageUrl');
                   }}

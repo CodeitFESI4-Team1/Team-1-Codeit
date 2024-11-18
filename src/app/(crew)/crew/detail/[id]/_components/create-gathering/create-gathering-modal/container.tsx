@@ -1,7 +1,6 @@
 'use client';
 
 import { Loader } from '@mantine/core';
-import { getImageUrl } from '@/src/_apis/image/get-image-url';
 import { useCreateGatheringQuery } from '@/src/_queries/gathering/gathering-detail-queries';
 import { CreateGatheringFormTypes, CreateGatheringRequestTypes } from '@/src/types/gathering-data';
 import CreateGatheringModalPresenter from './presenter';
@@ -22,14 +21,9 @@ export default function CreateGatheringModalContainer({
   const { isPending, mutate } = useCreateGatheringQuery(crewId);
 
   const handleSubmit = async (createdData: CreateGatheringFormTypes) => {
-    let newImageUrl = createdData.imageUrl as string;
-    if (createdData.imageUrl instanceof File) {
-      const imgResponse = await getImageUrl(createdData.imageUrl, 'CREW');
-      newImageUrl = imgResponse?.imageUrl as string;
-    }
     const newData: CreateGatheringRequestTypes = {
       title: createdData.title,
-      imageUrl: newImageUrl ?? '',
+      imageUrl: (createdData.imageUrl as string) ?? '',
       dateTime: createdData.dateTime,
       location: createdData.location,
       totalCount: createdData.totalCount,
