@@ -1,7 +1,7 @@
 import { useQueryClient } from '@tanstack/react-query';
 import { useAuthStore } from '@/src/store/use-auth-store';
 import { User } from '@/src/types/auth';
-import { getUserQuery } from './user-apis';
+import { getUserQuery } from '../_queries/auth/user-apis';
 
 export function useHandleAuthSuccess() {
   const queryClient = useQueryClient();

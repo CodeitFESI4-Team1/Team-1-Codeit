@@ -6,6 +6,5 @@ export function getUserQuery() {
   return {
     queryKey: ['user'],
     queryFn: getUser,
-    select: (data: User) => transformKeysToCamel(data),
   };
 }
