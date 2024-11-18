@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { Controller, useForm, useWatch } from 'react-hook-form';
+import useFormPersist from 'react-hook-form-persist';
 import { useRouter } from 'next/navigation';
 import { NumberInput } from '@mantine/core';
 import categoryData from '@/src/data/category.json';
@@ -34,10 +35,17 @@ export default function CreateCrewForm({
     setValue,
     trigger,
     clearErrors,
+    watch,
     formState: { errors, isValid, isSubmitting },
   } = useForm<CreateCrewFormTypes>({
     defaultValues: data,
     mode: 'onBlur',
+  });
+
+  useFormPersist('createCrew', {
+    watch,
+    setValue,
+    storage: window.localStorage,
   });
 
   const [categoryIndex, setCategoryIndex] = useState(0);
