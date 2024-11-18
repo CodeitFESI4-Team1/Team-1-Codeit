@@ -1,8 +1,8 @@
 import { fetchApi } from '@/src/utils/api';
 import { SignupRequest, SignupResponse } from '@/src/types/auth';
 
-export function signup(data: SignupRequest): Promise<SignupResponse> {
-  return fetchApi<{ data: { refreshToken: string }; headers: Headers }>(
+export function signup(data: SignupRequest): Promise<{ data: SignupResponse }> {
+  return fetchApi<{ data: SignupResponse; headers: Headers }>(
     '/auths/signup',
     {
       method: 'POST',
@@ -15,7 +15,6 @@ export function signup(data: SignupRequest): Promise<SignupResponse> {
     true,
   ).then((response) => {
     const token = response.headers.get('Authorization');
-    const { refreshToken } = response.data;
-    return { token, refreshToken };
+    return { data: { token } };
   });
 }

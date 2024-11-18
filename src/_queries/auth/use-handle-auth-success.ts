@@ -7,14 +7,14 @@ export function useHandleAuthSuccess() {
   const queryClient = useQueryClient();
   const { login, setUser } = useAuthStore();
 
-  return async function handleAuthSuccess(token: string | null, refreshToken: string | null) {
-    if (!token || !refreshToken) {
+  return async function handleAuthSuccess(token: string | null) {
+    if (!token) {
       throw new Error('토큰이 없습니다');
     }
 
     try {
       const accessToken = token.replace(/^Bearer\s/, '');
-      login(accessToken, refreshToken);
+      login(accessToken);
       const user: User = await queryClient.fetchQuery(getUserQuery());
       setUser(user);
     } catch (error) {

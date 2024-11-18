@@ -15,14 +15,12 @@ import HeaderPresenter from '@/src/components/common/header/presenter';
 
 export default function Header() {
   const { mutate: postLogout } = usePostLogoutQuery();
-  const { isAuth, refreshToken, logout } = useAuthStore();
+  const { isAuth, logout } = useAuthStore();
   const router = useRouter();
   const handleLogout = () => {
-    if (refreshToken) {
-      logout();
-      postLogout({ refreshToken });
-      router.push('/');
-    }
+    logout();
+    postLogout();
+    router.push('/');
   };
 
   return (
