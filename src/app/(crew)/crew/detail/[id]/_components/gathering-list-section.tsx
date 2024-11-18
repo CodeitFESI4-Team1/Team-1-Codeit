@@ -7,7 +7,7 @@ import { addLike, removeLike } from '@/src/_apis/liked/liked-apis';
 import { useGetGatheringListQuery } from '@/src/_queries/crew/gathering-list-queries';
 import { ApiError } from '@/src/utils/api';
 import ConfirmModal from '@/src/components/common/modal/confirm-modal';
-import GatheringCardCarousel from '@/src/components/gathering-list/gathering-card-carousel';
+import CrewGatheringList from '@/src/components/gathering-list/crew-gathering-list';
 
 interface GatheringListSectionProps {
   id: number;
@@ -50,7 +50,7 @@ export default function GatheringListSection({ id }: GatheringListSectionProps) 
 
   return (
     <>
-      <GatheringCardCarousel
+      <CrewGatheringList
         gatheringData={gatheringList}
         crewId={id}
         onLike={handleLike}
