@@ -99,14 +99,10 @@ export default function CreateCrewForm({
     router.back();
   };
 
-  useEffect(() => {}, []);
-
   useEffect(() => {
-    if (mainCategory === '') setCategoryIndex(0);
     setCategoryIndex(categoryData.findIndex((category) => category.title.label === mainCategory));
-
-    if (mainLocation === '') setRegionIndex(0);
     setRegionIndex(regionData.findIndex((region) => region.main.label === mainLocation));
+
     if (isEdit && subLocation === '') {
       setValue('subLocation', '전체');
     }
@@ -173,7 +169,7 @@ export default function CreateCrewForm({
                   {...field}
                   variant="default"
                   inWhere="form"
-                  placeholder={isEdit ? field.value : '메인 카테고리'}
+                  placeholder={isEdit && field.value ? field.value : '메인 카테고리'}
                   data={categoryData.map((category) => category.title)}
                   className="flex-1"
                   onChange={(value) => {
@@ -256,7 +252,7 @@ export default function CreateCrewForm({
                   {...field}
                   variant="default"
                   inWhere="form"
-                  placeholder={isEdit ? field.value : '특별시/도'}
+                  placeholder={isEdit && field.value ? field.value : '특별시/도'}
                   data={regionData.map((region) => region.main)}
                   className="flex-1"
                   onChange={(value) => {
