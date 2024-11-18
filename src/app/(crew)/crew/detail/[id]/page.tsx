@@ -13,31 +13,35 @@ export default async function CrewDetailPage({ params }: CrewDetailPageProps) {
 
   return (
     <div className="mx-auto min-h-screen w-full max-w-full overflow-x-hidden">
-      <div className="mx-3 my-7 space-y-10 md:mx-7 md:my-11 lg:mx-11 lg:my-16">
-        <section className="w-full">
-          <article>
-            <DetailCrewSection id={id} />
-          </article>
-        </section>
-        <section className="w-full space-y-6">
-          <article className="space-y-6">
-            <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-semibold">크루 약속</h2>
-              {/* <CreateGathering /> */}
-            </div>
-            <div className="flex w-full">
+      {/* Detail Section */}
+      <section className="mx-3 my-7 md:mx-7 md:my-11 lg:mx-11 lg:my-16">
+        <article>
+          <DetailCrewSection id={id} />
+        </article>
+      </section>
+
+      {/* Gathering Section */}
+      <section className="w-full space-y-6">
+        <article className="space-y-6">
+          <div className="flex items-center justify-between px-3 md:px-7 lg:px-11">
+            <h2 className="text-2xl font-semibold">크루 약속</h2>
+            {/* <CreateGathering /> */}
+          </div>
+          <div className="flex w-full overflow-hidden px-3 md:px-7 lg:px-0">
+            <div className="relative -mx-3 w-[calc(100%+1.5rem)] px-3 md:-mx-7 md:w-[calc(100%+3.5rem)] md:px-7 lg:-mx-6 lg:w-[calc(100%+3rem)] lg:px-0">
               <GatheringListSection id={id} />
             </div>
-          </article>
-        </section>
-        {/* // TODO: 리뷰 완성되면 수정 */}
-        {/* <section className="w-full">
-          <article className="space-y-6">
-            <h2 className="text-2xl font-semibold">크루 리뷰</h2>
-            <CrewReviewSection />
-          </article>
-        </section> */}
-      </div>
+          </div>
+        </article>
+      </section>
+
+      {/* Crew Review Section */}
+      {/* <section className="w-full mx-3 md:mx-7 lg:mx-11 space-y-6">
+        <article className="space-y-6">
+          <h2 className="text-2xl font-semibold">크루 리뷰</h2>
+          <CrewReviewSection />
+        </article>
+      </section> */}
     </div>
   );
 }
