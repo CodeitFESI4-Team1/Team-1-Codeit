@@ -31,8 +31,8 @@ function CrewCardList(
 ) {
   const crewDataList =
     (inWhere === 'my-crew'
-      ? data?.pages.flatMap((page) => page?.data as MyCrewList[])
-      : data?.pages?.flatMap((page) => page?.content as MainCrewList[])) ?? [];
+      ? data?.pages.flatMap((page) => page?.content)
+      : data?.pages?.flatMap((page) => page?.content)) ?? [];
   const gridColsStyle = inWhere === 'my-crew' ? '' : 'lg:grid-cols-2';
 
   if (data?.pages[0] === undefined)
@@ -63,7 +63,11 @@ function CrewCardList(
               title={inform?.title}
               mainLocation={inform?.mainLocation}
               subLocation={inform?.subLocation}
-              imageUrl={inform?.imageUrl}
+              imageUrl={
+                inform?.imageUrl === 'string'
+                  ? 'https://media.istockphoto.com/id/1396814518/vector/image-coming-soon-no-photo-no-thumbnail-image-available-vector-illustration.jpg?s=612x612&w=0&k=20&c=hnh2OZgQGhf0b46-J2z7aHbIWwq8HNlSDaNp2wn_iko='
+                  : inform?.imageUrl
+              }
               totalCount={inform?.totalCount}
               participantCount={
                 inWhere === 'my-crew'

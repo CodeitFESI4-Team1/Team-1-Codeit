@@ -3,11 +3,11 @@ import { useInfiniteScroll } from '@/src/hooks/use-infinite-scroll';
 import { fetchWritableGatheringData } from '@/src/app/(crew)/api/mock-api/writable-gathering';
 import ClientProvider from '@/src/components/client-provider';
 import { WritableGatheringCardInformResponse } from '@/src/types/writable-gathering-card';
-import WritableGatheringCardList from './writable-gathering-card-list';
+import ReviewableGatheringList from './writable-gathering-card-list';
 
 const meta: Meta = {
-  title: 'Components/WritableGatheringCardList',
-  component: WritableGatheringCardList,
+  title: 'Components/ReviewableGatheringList',
+  component: ReviewableGatheringList,
   parameters: {
     layout: 'centered',
     nextjs: {
@@ -24,9 +24,9 @@ const meta: Meta = {
       </ClientProvider>
     ),
   ],
-} satisfies Meta<typeof WritableGatheringCardList>;
+} satisfies Meta<typeof ReviewableGatheringList>;
 
-function RenderWritableGatheringCardList() {
+function RenderReviewableGatheringList() {
   const { data, ref, isFetchingNextPage } = useInfiniteScroll<WritableGatheringCardInformResponse>({
     queryKey: ['crew'],
     queryFn: ({ pageParam = 0 }) => {
@@ -35,15 +35,13 @@ function RenderWritableGatheringCardList() {
     getNextPageParam: (lastPage, allPages) =>
       lastPage.hasNextPage ? allPages.length + 1 : undefined,
   });
-  return (
-    <WritableGatheringCardList data={data} isFetchingNextPage={isFetchingNextPage} ref={ref} />
-  );
+  return <ReviewableGatheringList data={data} isFetchingNextPage={isFetchingNextPage} ref={ref} />;
 }
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: () => <RenderWritableGatheringCardList />,
+  render: () => <RenderReviewableGatheringList />,
   args: {},
 };

@@ -6,7 +6,7 @@ import { useInfiniteScroll } from '@/src/hooks/use-infinite-scroll';
 import ProfileCardContainer from '@/src/app/(crew)/mypage/_components/profile-card/container';
 import ReviewCardList from '@/src/components/common/review-list/review-card-list';
 import Tabs from '@/src/components/common/tab';
-import WritableGatheringCardList from '@/src/components/common/writable-gathering-card/writable-gathering-card-list';
+import ReviewableGatheringList from '@/src/components/common/writable-gathering-card/writable-gathering-card-list';
 import { ReviewInformResponse } from '@/src/types/review';
 import { WritableGatheringCardInformResponse } from '@/src/types/writable-gathering-card';
 import { fetchMyReviewData } from '../../api/mock-api/review';
@@ -64,13 +64,7 @@ export default function MyPage() {
           />
         );
       default:
-        return (
-          <WritableGatheringCardList
-            data={gatheringData}
-            isFetchingNextPage={isFetchingGatheringNextPage}
-            ref={gatheringRef}
-          />
-        );
+        return <ReviewableGatheringList />;
     }
   };
   return (

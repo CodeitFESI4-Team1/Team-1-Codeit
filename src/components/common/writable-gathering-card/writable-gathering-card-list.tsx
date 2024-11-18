@@ -1,41 +1,36 @@
-import { forwardRef } from 'react';
-import { InfiniteData } from '@tanstack/react-query';
+import { useGetReviewableQuery } from '@/src/_queries/gathering/gathering-queries';
+import { useInfiniteScroll } from '@/src/hooks/use-infinite-scroll';
 import { WritableGatheringCardInformResponse } from '@/src/types/writable-gathering-card';
 import WritableGatheringCard from './writable-gathering-card';
 
-interface WritableGatheringCardListProps {
-  data: InfiniteData<WritableGatheringCardInformResponse> | undefined;
-  isFetchingNextPage: boolean;
-}
+export default function ReviewableGatheringCardList() {
+  const { queryKey, queryFn } = useGetReviewableQuery();
 
-function WritableGatheringCardList(
-  { data, isFetchingNextPage }: WritableGatheringCardListProps,
-  ref: React.Ref<HTMLDivElement>,
-) {
-  const writableGatheringCardList = data?.pages.flatMap((page) => page.data) ?? [];
-
-  if (!writableGatheringCardList) return <p>loading...</p>;
+  const { data, ref, isFetchingNextPage } = useInfiniteScroll<WritableGatheringCardInformResponse>({
+    queryKey,
+    queryFn,
+    getNextPageParam: (lastPage) => (lastPage.hasNext ? lastPage.data.length : undefined),
+  });
 
   return (
-    <>
-      <ul className="flex flex-col">
-        {writableGatheringCardList.map((inform) => (
-          <li key={inform.id}>
-            <WritableGatheringCard
-              currentCount={inform.currentCount}
-              dateTime={inform.dateTime}
-              gatheringName={inform.title}
-              id={inform.id}
-              imageUrl={inform.imageUrl}
-              participants={inform.participants}
-              totalCount={inform.totalCount}
-            />
-          </li>
-        ))}
-      </ul>
-      {isFetchingNextPage ? <p>loading...</p> : <div ref={ref} className="h-[1px]" />}
-    </>
+    <div className="flex flex-col items-center gap-4">
+      {data?.pages.map((page) =>
+        page.data.map((item) => (
+          <WritableGatheringCard
+            key={item.id}
+            id={item.id}
+            gatheringName={item.title}
+            dateTime={item.dateTime}
+            currentCount={item.currentCount}
+            totalCount={item.totalCount}
+            imageUrl={item.imageUrl}
+            participants={item.participants}
+          />
+        )),
+      )}
+      <div ref={ref} className="h-10 w-full text-center text-gray-500">
+        {isFetchingNextPage && '로딩 중...'}
+      </div>
+    </div>
   );
 }
-
-export default forwardRef(WritableGatheringCardList);

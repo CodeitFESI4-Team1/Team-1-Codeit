@@ -1,6 +1,6 @@
 export type WritableGatheringCardInformResponse = {
   data: WritableGatheringCardInform[];
-  hasNextPage: boolean;
+  hasNext: boolean;
 };
 
 export type WritableGatheringCardInform = {
@@ -18,9 +18,4 @@ export type ParticipantType = {
   id: number;
   profileImageUrl?: string;
   nickname: string;
-};
-
-export type WritableGatheringCardList = {
-  content: WritableGatheringCardInform[];
-  hasNext: boolean;
 };
