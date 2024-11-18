@@ -1,11 +1,9 @@
-import { useQueryClient } from '@tanstack/react-query';
+import { useGetUserQuery } from '@/src/_queries/auth/user-queries';
 import { useAuthStore } from '@/src/store/use-auth-store';
-import { User } from '@/src/types/auth';
-import { getUserQuery } from '../_queries/auth/user-apis';
 
 export function useHandleAuthSuccess() {
-  const queryClient = useQueryClient();
-  const { login, setUser } = useAuthStore();
+  const { login } = useAuthStore();
+  const { mutate: getUser } = useGetUserQuery();
 
   return async function handleAuthSuccess(token: string | null) {
     if (!token) {
@@ -15,8 +13,7 @@ export function useHandleAuthSuccess() {
     try {
       const accessToken = token.replace(/^Bearer\s/, '');
       login(accessToken);
-      const user: User = await queryClient.fetchQuery(getUserQuery());
-      setUser(user);
+      getUser();
     } catch (error) {
       throw new Error('사용자 상태 업데이트 실패');
     }
