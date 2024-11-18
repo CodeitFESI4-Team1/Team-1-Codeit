@@ -37,6 +37,17 @@ const mockGatheringData = [
       'https://images.unsplash.com/photo-1516978101789-720eacb59e79?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjV8fGNhdHxlbnwwfHwwfHx8Mg%3D%3D',
     liked: true,
   },
+  {
+    id: 4,
+    title: '러닝 모임',
+    dateTime: '2024-11-15T09:00',
+    location: '서울 영등포구 여의동로 330',
+    currentCount: 10,
+    totalCount: 20,
+    imageUrl:
+      'https://images.unsplash.com/photo-1516978101789-720eacb59e79?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjV8fGNhdHxlbnwwfHwwfHx8Mg%3D%3D',
+    liked: true,
+  },
 ];
 
 const queryClient = new QueryClient();
@@ -45,13 +56,18 @@ const meta: Meta<typeof GatheringCardCarousel> = {
   title: 'Components/GatheringCardCarousel',
   component: GatheringCardCarousel,
   parameters: {
-    layout: 'fullscreen',
+    layout: 'fulled', // layout 변경
   },
   tags: ['autodocs'],
   decorators: [
     (Story) => (
       <QueryClientProvider client={queryClient}>
-        <Story />
+        {/* 부모 컨테이너 추가 */}
+        <div className="flex w-full justify-center bg-gray-100">
+          <div className="relative -mx-6 w-[calc(100%+3rem)]">
+            <Story />
+          </div>
+        </div>
       </QueryClientProvider>
     ),
   ],
