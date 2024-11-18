@@ -1,13 +1,13 @@
 import { fetchApi } from '@/src/utils/api';
 import { User } from '@/src/types/auth';
 
-export function getUser(): Promise<{ data: User }> {
+export function getUser(): Promise<User> {
   return fetchApi<{ data: User }>('/auths/user', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
-  });
+  }).then((response) => response.data);
 }
 
 // 회원정보 수정
