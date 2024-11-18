@@ -16,17 +16,11 @@ export default function EditCrewPage() {
   if (data === undefined) return null;
 
   const handleEdit = async (editedData: CreateCrewFormTypes) => {
-    let newImageUrl = editedData.imageUrl as string;
-
-    if (editedData.imageUrl instanceof File && newImageUrl !== data.imageUrl) {
-      const imgResponse = await getImageUrl(editedData.imageUrl, 'CREW');
-      newImageUrl = imgResponse?.imageUrl as string;
-    }
     const newData: EditCrewRequestTypes = {
       title: editedData.title,
       mainCategory: editedData.mainCategory,
       subCategory: editedData.subCategory ?? '',
-      imageUrl: newImageUrl ?? '',
+      imageUrl: (editedData.imageUrl as string) ?? '',
       mainLocation: editedData.mainLocation,
       subLocation: editedData.subLocation === '전체' ? '' : (editedData.subLocation ?? ''),
       totalCount: editedData.totalCount,
@@ -34,6 +28,7 @@ export default function EditCrewPage() {
     };
 
     mutate(newData);
+    localStorage.removeItem('editCrew');
   };
 
   if (isLoading || isPending)

@@ -45,7 +45,7 @@ export default function CreateCrewForm({
     mode: 'onBlur',
   });
 
-  useFormPersist('createCrew', {
+  useFormPersist(type === 'create' ? 'createCrew' : 'editCrew', {
     watch,
     setValue,
     storage: typeof window !== 'undefined' ? window.localStorage : undefined,
