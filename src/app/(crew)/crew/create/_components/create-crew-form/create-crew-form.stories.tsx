@@ -31,7 +31,7 @@ export default {
 } as Meta<typeof CreateCrewForm>;
 
 const Template: StoryFn<CreateCrewFormTypes> = function CreateCrewPageStory() {
-  return <CreateCrewForm data={initialValue} />;
+  return <CreateCrewForm data={initialValue} type="create" />;
 };
 
 export const Default = Template.bind({});
