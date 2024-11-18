@@ -5,6 +5,7 @@ import { Controller, useForm, useWatch } from 'react-hook-form';
 import useFormPersist from 'react-hook-form-persist';
 import { useRouter } from 'next/navigation';
 import { NumberInput } from '@mantine/core';
+import { getImageUrl } from '@/src/_apis/image/get-image-url';
 import categoryData from '@/src/data/category.json';
 import regionData from '@/src/data/region.json';
 import Button from '@/src/components/common/input/button';
@@ -44,11 +45,14 @@ export default function CreateCrewForm({
     mode: 'onBlur',
   });
 
-  useFormPersist('createCrew', {
-    watch,
-    setValue,
-    storage: window.localStorage,
-  });
+  if (typeof window !== 'undefined') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    useFormPersist('createCrew', {
+      watch,
+      setValue,
+      storage: window.localStorage,
+    });
+  }
 
   const [categoryIndex, setCategoryIndex] = useState(0);
   const [regionIndex, setRegionIndex] = useState(0);
@@ -70,16 +74,40 @@ export default function CreateCrewForm({
     setValue('subLocation', null);
     clearErrors('subLocation');
   };
+
+  const handleFileChange = async (
+    file: File | string | null,
+    onChange: (value: string | File) => void,
+  ) => {
+    if (file instanceof File) {
+      const imgResponse = await getImageUrl(file, 'CREW');
+      onChange(imgResponse?.imageUrl || '');
+    }
+  };
+
+  const handleClear = () => {
+    setValue('title', '');
+    setValue('mainCategory', '');
+    setValue('subCategory', '');
+    setValue('imageUrl', '');
+    setValue('mainLocation', '');
+    setValue('subLocation', '');
+    setValue('totalCount', 4);
+    setValue('introduce', '');
+    localStorage.removeItem('createCrew');
+    router.back();
+  };
+
   useEffect(() => {
     setCategoryIndex(categoryData.findIndex((category) => category.title.label === mainCategory));
     setRegionIndex(regionData.findIndex((region) => region.main.label === mainLocation));
-    if (subLocation === '') {
+    if (isEdit && subLocation === '') {
       setValue('subLocation', '전체');
     }
   }, [mainCategory, mainLocation]);
 
   return (
-    <form onSubmit={isEdit ? handleSubmit(onEdit) : handleSubmit(onSubmit)}>
+    <form onSubmit={type === 'edit' ? handleSubmit(onEdit) : handleSubmit(onSubmit)}>
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-3">
           <div className="flex justify-between">
@@ -192,6 +220,7 @@ export default function CreateCrewForm({
                 isEdit={isEdit}
                 sample={ImgCrewSampleUrls}
                 onChange={(newValue) => {
+                  handleFileChange(newValue, field.onChange);
                   field.onChange(newValue);
                   trigger('imageUrl');
                 }}
@@ -310,7 +339,7 @@ export default function CreateCrewForm({
           </Button>
           <Button
             type="button"
-            onClick={() => router.back()}
+            onClick={handleClear}
             className="btn-outlined h-11 w-29.5 flex-1 text-base font-medium text-blue-500"
           >
             취소

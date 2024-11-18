@@ -8,26 +8,32 @@ import CreateCrewForm from '@/src/app/(crew)/crew/create/_components/create-crew
 import { CreateCrewFormTypes, CreateCrewRequestTypes } from '@/src/types/create-crew';
 import IcoCreateCrew from '@/public/assets/icons/ic-create-crew.svg';
 
+const initialValue = {
+  title: '',
+  mainCategory: '',
+  subCategory: '',
+  imageUrl: '',
+  mainLocation: '',
+  subLocation: '',
+  totalCount: 4,
+  introduce: '',
+};
+
 export default function CreateCrewPage() {
   let savedInfo;
   if (typeof window !== 'undefined') {
-    savedInfo = JSON.parse(localStorage.getItem('createCrew') ?? '');
+    const storageInfo = localStorage.getItem('createCrew');
+    if (storageInfo) savedInfo = JSON.parse(storageInfo);
   }
-  const initialValue = { ...savedInfo };
 
   const { isPending, mutate } = useCreateCrewQuery();
 
   const handleSubmit = async (createdData: CreateCrewFormTypes) => {
-    let newImageUrl = createdData.imageUrl as string;
-    if (createdData.imageUrl instanceof File) {
-      const imgResponse = await getImageUrl(createdData.imageUrl, 'CREW');
-      newImageUrl = imgResponse?.imageUrl as string;
-    }
     const newData: CreateCrewRequestTypes = {
       title: createdData.title,
       mainCategory: createdData.mainCategory,
       subCategory: createdData.subCategory ?? '',
-      imageUrl: newImageUrl ?? '',
+      imageUrl: (createdData.imageUrl as string) ?? '',
       mainLocation: createdData.mainLocation,
       subLocation: createdData.subLocation === '전체' ? '' : (createdData.subLocation ?? ''),
       totalCount: createdData.totalCount,
@@ -35,6 +41,7 @@ export default function CreateCrewPage() {
     };
 
     mutate(newData);
+    localStorage.removeItem('createCrew');
   };
 
   if (isPending)
@@ -58,10 +65,10 @@ export default function CreateCrewPage() {
         <h2 className="text-2xl font-bold text-gray-900 md:text-3.5xl">크루 만들기</h2>
       </div>
       <CreateCrewForm
-        data={initialValue}
+        data={savedInfo ?? initialValue}
         onSubmit={handleSubmit}
         type="create"
-        isEdit={savedInfo}
+        isEdit={savedInfo !== undefined}
       />
     </div>
   );

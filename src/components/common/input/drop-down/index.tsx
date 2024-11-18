@@ -44,12 +44,12 @@ export default function DropDown({
     if (variant === 'default') {
       return isFocused
         ? 'focus:bg-black focus:text-white focus:placeholder:text-white'
-        : 'bg-white text-gray-800 placeholder-gray-800';
+        : 'text-gray-800 placeholder-gray-800';
     }
 
     return isFocused
       ? 'focus:bg-black focus:text-white focus:placeholder:text-white sort-bg-on pl-10'
-      : 'bg-white text-gray-800 placeholder-gray-800 sort-bg pl-10';
+      : 'text-gray-800 placeholder-gray-800 sort-bg pl-10';
   };
 
   const handleChange = (newValue: string | null, option: { value: string; label: string }) => {
