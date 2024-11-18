@@ -1,15 +1,16 @@
 import { Meta, StoryFn } from '@storybook/react';
-import { CreateCrewRequestTypes } from '@/src/types/create-crew';
-import CreateCrewForm, { CreateCrewFormTypes } from '.';
+import { CreateCrewFormTypes, CreateCrewRequestTypes } from '@/src/types/create-crew';
+import CreateCrewForm from '.';
 
 const initialValue: CreateCrewRequestTypes = {
   title: '',
   mainCategory: '',
   subCategory: '',
-  imageUrl: null,
+  imageUrl: '',
   mainLocation: '',
   subLocation: '',
   totalCount: 0,
+  introduce: '',
 };
 
 export default {

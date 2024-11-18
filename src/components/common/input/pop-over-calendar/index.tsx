@@ -36,9 +36,14 @@ export default function PopOverCalendar({ value, onChange }: PopOverProps) {
       <Popover.Target>
         <Button
           type="button"
-          onClick={opened ? close : open}
-          onFocus={() => setInputTheme('dark')}
-          onBlur={() => setInputTheme('white')}
+          onFocus={() => {
+            setInputTheme('dark');
+            if (!opened) open();
+          }}
+          onBlur={() => {
+            setInputTheme('white');
+            if (opened) close();
+          }}
           className="flex h-11 items-center justify-between rounded-xl border-0 bg-white px-3 py-2.5 text-base font-medium text-gray-800 hover:bg-white hover:text-gray-800 focus:bg-black focus:text-white"
         >
           <span>날짜 선택</span>
