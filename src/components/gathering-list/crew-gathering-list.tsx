@@ -8,7 +8,7 @@ import { GatheringType } from '@/src/types/gathering-data';
 import IcoLeft from '@/public/assets/icons/ic-left.svg';
 import IcoRight from '@/public/assets/icons/ic-right.svg';
 
-interface ResponsiveCarouselProps {
+interface CrewGatheringListProps {
   gatheringData: GatheringType[];
   crewId: number;
   onLike: (gatheringId: number) => Promise<void>;
@@ -16,52 +16,56 @@ interface ResponsiveCarouselProps {
   onShowLoginModal: () => void;
 }
 
-export default function ResponsiveCarousel({
+export default function CrewGatheringList({
   gatheringData,
   crewId,
   onLike,
   onUnlike,
   onShowLoginModal,
-}: ResponsiveCarouselProps) {
+}: CrewGatheringListProps) {
   const { sliderRef, handleMouseDown, handleMouseLeave, handleMouseUp, handleMouseMove } =
     useSlider();
   const [isDesktop, setIsDesktop] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showLeftGradient, setShowLeftGradient] = useState(false);
   const [showRightGradient, setShowRightGradient] = useState(true);
-  const cardWidthLg = 357; // LG 기준 카드 너비
-  const cardGapLg = 16; // 카드 간 간격
-  const cardWidthSm = 300; // 모바일 기준 카드 너비
-  const cardGapSm = 16; // 모바일 간 카드 간격
+  const cardWidthLg = 357;
+  const cardGapLg = 16;
   const totalSlides = gatheringData.length;
 
   useEffect(() => {
-    const updateView = () => setIsDesktop(window.innerWidth >= 1024);
+    const updateView = () => {
+      setIsDesktop(window.innerWidth >= 1200);
+      setCurrentIndex(0);
+      // 그라데이션 업데이트
+      const slider = sliderRef.current;
+      if (slider) {
+        const { scrollLeft, scrollWidth, clientWidth } = slider;
+
+        setShowLeftGradient(scrollLeft > 0);
+        setShowRightGradient(scrollLeft + clientWidth < scrollWidth - 1);
+      }
+    };
     updateView();
     window.addEventListener('resize', updateView);
     return () => window.removeEventListener('resize', updateView);
-  }, []);
+  }, [sliderRef]);
 
-  // 스크롤 상태를 기반으로 그라데이션 표시 여부 결정
   useEffect(() => {
     const slider = sliderRef.current;
-    if (!slider) return undefined; // 항상 값을 반환하도록 undefined 추가
+    if (!slider) return undefined;
 
     const updateGradients = () => {
       const { scrollLeft, scrollWidth, clientWidth } = slider;
-
-      // 왼쪽: 스크롤이 약간이라도 존재하면 보이게
       setShowLeftGradient(scrollLeft > 0);
-
-      // 오른쪽: 스크롤이 끝에 도달하지 않았을 때 보이게
       setShowRightGradient(scrollLeft + clientWidth < scrollWidth - 1);
     };
 
-    updateGradients(); // 초기 상태 업데이트
+    updateGradients();
     slider.addEventListener('scroll', updateGradients);
 
     return () => slider.removeEventListener('scroll', updateGradients);
-  }, [sliderRef]);
+  }, [sliderRef, isDesktop]);
 
   const handlePrev = () => {
     setCurrentIndex((prevIndex) => (prevIndex > 3 ? prevIndex - 3 : 0));
@@ -83,7 +87,6 @@ export default function ResponsiveCarousel({
     return (
       <div className="relative mx-auto w-full max-w-[1112px]">
         <div className="relative flex justify-center">
-          {/* 카드 컨테이너 */}
           <div className="relative flex w-[1112px] overflow-hidden">
             <div
               className="flex gap-4 transition-transform duration-300 ease-in-out"
@@ -142,7 +145,7 @@ export default function ResponsiveCarousel({
         className="scrollbar-hide flex w-full cursor-grab snap-x gap-4 overflow-x-scroll scroll-smooth active:cursor-grabbing"
       >
         {gatheringData.map((card) => (
-          <li key={card.id} className="w-[300px] flex-shrink-0 snap-start">
+          <li key={card.id} className="w-72 flex-shrink-0 snap-start">
             <GatheringCard
               crewId={crewId}
               {...card}

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import GatheringCardCarousel from './gathering-card-carousel';
+import CrewGatheringList from './crew-gathering-list';
 
 // 더미 데이터 정의
 const mockGatheringData = [
@@ -52,9 +52,9 @@ const mockGatheringData = [
 
 const queryClient = new QueryClient();
 
-const meta: Meta<typeof GatheringCardCarousel> = {
-  title: 'Components/GatheringCardCarousel',
-  component: GatheringCardCarousel,
+const meta: Meta<typeof CrewGatheringList> = {
+  title: 'Components/CrewGatheringList',
+  component: CrewGatheringList,
   parameters: {
     layout: 'fulled', // layout 변경
   },
@@ -71,7 +71,7 @@ const meta: Meta<typeof GatheringCardCarousel> = {
       </QueryClientProvider>
     ),
   ],
-} satisfies Meta<typeof GatheringCardCarousel>;
+} satisfies Meta<typeof CrewGatheringList>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
