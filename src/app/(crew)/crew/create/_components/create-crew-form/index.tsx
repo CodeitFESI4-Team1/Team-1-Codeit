@@ -2,8 +2,10 @@
 
 import { useEffect, useState } from 'react';
 import { Controller, useForm, useWatch } from 'react-hook-form';
+import useFormPersist from 'react-hook-form-persist';
 import { useRouter } from 'next/navigation';
 import { NumberInput } from '@mantine/core';
+import { getImageUrl } from '@/src/_apis/image/get-image-url';
 import categoryData from '@/src/data/category.json';
 import regionData from '@/src/data/region.json';
 import Button from '@/src/components/common/input/button';
@@ -11,18 +13,20 @@ import DropDown from '@/src/components/common/input/drop-down';
 import FileInputWrap from '@/src/components/common/input/file-input-wrap';
 import TextInput from '@/src/components/common/input/text-input';
 import Textarea from '@/src/components/common/input/textarea';
-import { CreateCrewFormTypes } from '@/src/types/create-crew';
+import { CreateCrewFormTypes, EditCrewResponseTypes } from '@/src/types/create-crew';
 import ImgCrewSampleUrls from '@/public/assets/images/crew-sample';
 
 export interface CreateCrewFormProps {
-  data: CreateCrewFormTypes;
+  type: 'create' | 'edit';
+  data: CreateCrewFormTypes | EditCrewResponseTypes;
   isEdit?: boolean;
   onEdit?: (data: CreateCrewFormTypes) => void;
   onSubmit?: (data: CreateCrewFormTypes) => void;
 }
 
 export default function CreateCrewForm({
-  isEdit = false,
+  type,
+  isEdit,
   onEdit = () => {},
   onSubmit = () => {},
   data,
@@ -34,10 +38,17 @@ export default function CreateCrewForm({
     setValue,
     trigger,
     clearErrors,
-    formState: { errors, isValid, isSubmitting },
+    watch,
+    formState: { errors, isValid, isSubmitting, isSubmitSuccessful },
   } = useForm<CreateCrewFormTypes>({
     defaultValues: data,
     mode: 'onBlur',
+  });
+
+  useFormPersist(type === 'create' ? 'createCrew' : 'editCrew', {
+    watch,
+    setValue,
+    storage: typeof window !== 'undefined' ? window.localStorage : undefined,
   });
 
   const [categoryIndex, setCategoryIndex] = useState(0);
@@ -46,7 +57,20 @@ export default function CreateCrewForm({
   const title = useWatch({ control, name: 'title' });
   const mainCategory = useWatch({ control, name: 'mainCategory' });
   const mainLocation = useWatch({ control, name: 'mainLocation' });
+  const subLocation = useWatch({ control, name: 'subLocation' });
   const introduce = useWatch({ control, name: 'introduce' });
+
+  const setInitialValues = () => {
+    setValue('title', '');
+    setValue('mainCategory', '');
+    setValue('subCategory', '');
+    setValue('imageUrl', '');
+    setValue('mainLocation', '');
+    setValue('subLocation', '');
+    setValue('totalCount', 4);
+    setValue('introduce', '');
+    localStorage.removeItem('createCrew');
+  };
 
   const handleMainCategoryChange = (newValue: string | null) => {
     setValue('mainCategory', newValue || '');
@@ -59,13 +83,36 @@ export default function CreateCrewForm({
     setValue('subLocation', null);
     clearErrors('subLocation');
   };
+
+  const handleFileChange = async (
+    file: File | string | null,
+    onChange: (value: string | File) => void,
+  ) => {
+    if (file instanceof File) {
+      const imgResponse = await getImageUrl(file, 'CREW');
+      onChange(imgResponse?.imageUrl || '');
+    }
+  };
+
+  const handleClear = () => {
+    setInitialValues();
+    router.back();
+  };
+
   useEffect(() => {
     setCategoryIndex(categoryData.findIndex((category) => category.title.label === mainCategory));
     setRegionIndex(regionData.findIndex((region) => region.main.label === mainLocation));
-  }, [mainCategory, mainLocation]);
+
+    if (isEdit && subLocation === '') {
+      setValue('subLocation', '전체');
+    }
+    if (!isEdit && isSubmitSuccessful) {
+      setInitialValues();
+    }
+  }, [mainCategory, mainLocation, isSubmitSuccessful]);
 
   return (
-    <form onSubmit={isEdit ? handleSubmit(onEdit) : handleSubmit(onSubmit)}>
+    <form onSubmit={type === 'edit' ? handleSubmit(onEdit) : handleSubmit(onSubmit)}>
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-3">
           <div className="flex justify-between">
@@ -105,7 +152,6 @@ export default function CreateCrewForm({
             )}
           />
         </div>
-
         <div className="flex flex-col gap-3">
           <label
             htmlFor="crew-category"
@@ -123,7 +169,7 @@ export default function CreateCrewForm({
                   {...field}
                   variant="default"
                   inWhere="form"
-                  placeholder="메인 카테고리"
+                  placeholder={isEdit && field.value ? field.value : '메인 카테고리'}
                   data={categoryData.map((category) => category.title)}
                   className="flex-1"
                   onChange={(value) => {
@@ -142,7 +188,7 @@ export default function CreateCrewForm({
                   {...field}
                   variant="default"
                   inWhere="form"
-                  placeholder="세부 카테고리"
+                  placeholder={isEdit && field.value ? field.value : '세부 카테고리'}
                   data={categoryData[categoryIndex]?.items || []}
                   className="flex-1"
                   error={errors.subCategory?.message}
@@ -179,6 +225,7 @@ export default function CreateCrewForm({
                 isEdit={isEdit}
                 sample={ImgCrewSampleUrls}
                 onChange={(newValue) => {
+                  handleFileChange(newValue, field.onChange);
                   field.onChange(newValue);
                   trigger('imageUrl');
                 }}
@@ -205,7 +252,7 @@ export default function CreateCrewForm({
                   {...field}
                   variant="default"
                   inWhere="form"
-                  placeholder="특별시/도"
+                  placeholder={isEdit && field.value ? field.value : '특별시/도'}
                   data={regionData.map((region) => region.main)}
                   className="flex-1"
                   onChange={(value) => {
@@ -225,7 +272,7 @@ export default function CreateCrewForm({
                   {...field}
                   variant="default"
                   inWhere="form"
-                  placeholder="시/군/구"
+                  placeholder={isEdit && field.value ? field.value : '시/군/구'}
                   data={regionData[regionIndex]?.areas || []}
                   className="flex-1"
                   error={errors.subLocation?.message}
@@ -271,7 +318,7 @@ export default function CreateCrewForm({
               크루 소개
             </label>
             <span>
-              <span className="text-blue-500">{introduce.length}</span>/100
+              <span className="text-blue-500">{introduce?.length}</span>/100
             </span>
           </div>
           <Controller
@@ -293,11 +340,11 @@ export default function CreateCrewForm({
             disabled={!isValid || isSubmitting}
             className="btn-filled h-11 flex-1 text-base font-medium disabled:bg-gray-200"
           >
-            {isEdit ? '수정' : '확인'}
+            {type === 'create' ? '만들기' : '수정'}
           </Button>
           <Button
             type="button"
-            onClick={() => router.back()}
+            onClick={handleClear}
             className="btn-outlined h-11 w-29.5 flex-1 text-base font-medium text-blue-500"
           >
             취소

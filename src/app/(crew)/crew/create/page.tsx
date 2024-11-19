@@ -1,61 +1,47 @@
 'use client';
 
-import { toast } from 'react-toastify';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 import { Loader } from '@mantine/core';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { createCrew } from '@/src/_apis/crew/crew';
 import { getImageUrl } from '@/src/_apis/image/get-image-url';
-import CreateCrewForm from '@/src/app/(crew)/crew/_components/create-crew-form';
+import { useCreateCrewQuery } from '@/src/_queries/crew/crew-detail-queries';
+import CreateCrewForm from '@/src/app/(crew)/crew/create/_components/create-crew-form';
 import { CreateCrewFormTypes, CreateCrewRequestTypes } from '@/src/types/create-crew';
 import IcoCreateCrew from '@/public/assets/icons/ic-create-crew.svg';
 
-export default function CreateCrewPage() {
-  const router = useRouter();
-  const initialValue: CreateCrewFormTypes = {
-    title: '',
-    mainCategory: '',
-    subCategory: null,
-    imageUrl: null,
-    mainLocation: '',
-    subLocation: null,
-    totalCount: 4,
-    introduce: '',
-  };
-  const queryClient = useQueryClient();
-  const { isPending, mutate } = useMutation({
-    mutationFn: (data: CreateCrewRequestTypes) => createCrew(data),
-    onSuccess: (data) => {
-      if (data === null || data === undefined) {
-        return;
-      }
-      queryClient.invalidateQueries({ queryKey: ['crewLists', 'crewDetail'] });
-      router.push(`/crew/detail/${data.crewId}`);
-    },
-    onError: (error) => {
-      toast.error(error.message);
-    },
-  });
+const initialValue = {
+  title: '',
+  mainCategory: '',
+  subCategory: '',
+  imageUrl: '',
+  mainLocation: '',
+  subLocation: '',
+  totalCount: 4,
+  introduce: '',
+};
 
-  const handleSubmit = async (data: CreateCrewFormTypes) => {
-    let newImageUrl = data.imageUrl as string;
-    if (data.imageUrl instanceof File) {
-      const imgResponse = await getImageUrl(data.imageUrl, 'CREW');
-      newImageUrl = imgResponse?.imageUrl as string;
-    }
+export default function CreateCrewPage() {
+  let savedInfo;
+  if (typeof window !== 'undefined') {
+    const storageInfo = localStorage.getItem('createCrew');
+    if (storageInfo) savedInfo = JSON.parse(storageInfo);
+  }
+
+  const { isPending, mutate } = useCreateCrewQuery();
+
+  const handleSubmit = async (createdData: CreateCrewFormTypes) => {
     const newData: CreateCrewRequestTypes = {
-      title: data.title,
-      mainCategory: data.mainCategory,
-      subCategory: data.subCategory ?? '',
-      imageUrl: newImageUrl ?? '',
-      mainLocation: data.mainLocation,
-      subLocation: data.subLocation ?? '',
-      totalCount: data.totalCount,
-      introduce: data.introduce,
+      title: createdData.title,
+      mainCategory: createdData.mainCategory,
+      subCategory: createdData.subCategory ?? '',
+      imageUrl: (createdData.imageUrl as string) ?? '',
+      mainLocation: createdData.mainLocation,
+      subLocation: createdData.subLocation === '전체' ? '' : (createdData.subLocation ?? ''),
+      totalCount: createdData.totalCount,
+      introduce: createdData.introduce,
     };
 
     mutate(newData);
+    localStorage.removeItem('createCrew');
   };
 
   if (isPending)
@@ -78,7 +64,12 @@ export default function CreateCrewPage() {
         </figure>
         <h2 className="text-2xl font-bold text-gray-900 md:text-3.5xl">크루 만들기</h2>
       </div>
-      <CreateCrewForm data={initialValue} onSubmit={handleSubmit} />
+      <CreateCrewForm
+        data={savedInfo ?? initialValue}
+        onSubmit={handleSubmit}
+        type="create"
+        isEdit={savedInfo !== undefined}
+      />
     </div>
   );
 }

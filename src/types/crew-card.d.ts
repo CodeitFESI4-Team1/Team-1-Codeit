@@ -50,8 +50,8 @@ export interface CrewDetail {
   id: number;
   title: string;
   introduce: string;
-  mainCategory: string;
-  subCategory: string;
+  mainCategory?: string;
+  subCategory?: string;
   mainLocation: string;
   subLocation: string;
   participantCount: number;
@@ -60,6 +60,7 @@ export interface CrewDetail {
   totalGatheringCount: number;
   crewMembers: CrewDetailMember[];
   confirmed: boolean;
+  introduce?: string;
 }
 
 export interface MyCrewList {

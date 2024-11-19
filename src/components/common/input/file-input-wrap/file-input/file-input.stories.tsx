@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { StaticImageData } from 'next/image';
 import { action } from '@storybook/addon-actions';
 import { Meta, StoryFn } from '@storybook/react';
 import FileInput, { FileInputProps } from '.';
@@ -26,7 +25,7 @@ const meta: Meta = {
 export default meta;
 
 const Template: StoryFn<FileInputProps> = function FileInputStory() {
-  const [fileValue, setFileValue] = useState<File | StaticImageData | null>(null);
+  const [fileValue, setFileValue] = useState<File | string | null>(null);
   const [isBlur, setIsBlur] = useState(false);
 
   return (
@@ -55,7 +54,7 @@ export const FileInput01 = Template.bind({});
 FileInput01.args = {
   value: null,
   isBlur: false,
-  onChange: (newValue: File | StaticImageData | null) => {
+  onChange: (newValue: File | string | null) => {
     action('onChange')({ image: newValue });
   },
 };

@@ -10,7 +10,7 @@ export const useInfiniteScroll = <TData>({
   queryFn: ({ pageParam }: { pageParam?: number }) => Promise<TData>;
   getNextPageParam: (lastPage: TData, pages: TData[]) => number | undefined;
 }) => {
-  const { data, status, fetchNextPage, hasNextPage, isFetchingNextPage, refetch } =
+  const { data, isLoading, error, fetchNextPage, hasNextPage, isFetchingNextPage, refetch } =
     useInfiniteQuery({
       queryKey,
       queryFn,
@@ -26,5 +26,5 @@ export const useInfiniteScroll = <TData>({
     fetchNextPage();
   }
 
-  return { data, status, ref, isFetchingNextPage, refetch };
+  return { data, error, isLoading, ref, isFetchingNextPage, refetch };
 };
