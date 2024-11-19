@@ -22,7 +22,6 @@ export default function DateTimePicker({ fullDate, onChange }: DateTimePickerPro
 
     if (isSelected) {
       setSelected(date);
-      onChange(date);
     }
   };
 
