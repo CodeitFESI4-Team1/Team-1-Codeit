@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import GatheringDetailModalContainer from '@/src/app/(crew)/crew/_components/gathering-detail-modal/container';
+import GatheringDetailModalContainer from '@/src/app/(crew)/crew/detail/[id]/_components/gathering-detail-modal/container';
 import ScheduledGatheringCardPresenter from './presenter';
 
 interface ScheduledGatheringCardContainerProps {
