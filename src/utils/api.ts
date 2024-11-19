@@ -50,6 +50,13 @@ export async function fetchApi<T>(
 
       throw new ApiError(response.status, errorMessage, errorDetail);
     }
+
+    // 빈 응답 처리
+    const contentLength = response.headers.get('Content-Length');
+    if (contentLength === '0' || response.status === 204) {
+      return {} as T; // 빈 객체 반환
+    }
+
     const data = await response.json();
     if (isAuth) return { data, headers: response.headers } as T;
     return { data } as T;
@@ -57,8 +64,9 @@ export async function fetchApi<T>(
     if (error instanceof Error) {
       if (error.name === 'AbortError') throw new ApiError(408, 'Request timeout');
       if (error instanceof ApiError) throw error;
+      throw new ApiError(0, error.message || 'An unexpected error occurred');
     }
-    throw new ApiError(0, 'Network error or request failed');
+    throw new ApiError(0, 'Unknown error occurred');
   } finally {
     clearTimeout(id);
   }
