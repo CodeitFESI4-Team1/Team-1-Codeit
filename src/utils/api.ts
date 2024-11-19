@@ -64,8 +64,9 @@ export async function fetchApi<T>(
     if (error instanceof Error) {
       if (error.name === 'AbortError') throw new ApiError(408, 'Request timeout');
       if (error instanceof ApiError) throw error;
+      throw new ApiError(0, error.message || 'An unexpected error occurred');
     }
-    throw new ApiError(0, 'Network error or request failed');
+    throw new ApiError(0, 'Unknown error occurred');
   } finally {
     clearTimeout(id);
   }

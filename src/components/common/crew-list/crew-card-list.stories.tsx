@@ -28,7 +28,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 function RenderCrewCardList() {
-  const { data, status, isFetchingNextPage, ref } = useInfiniteScroll(
+  const { data, isLoading, error, isFetchingNextPage, ref } = useInfiniteScroll(
     useGetCrewListQuery({
       condition: {
         keyword: '',
@@ -45,14 +45,14 @@ function RenderCrewCardList() {
   return (
     <div>
       {data && <CrewCardList data={data} />}
-      {status === 'pending' || isFetchingNextPage ? (
+      {isLoading || isFetchingNextPage ? (
         <div className="flex justify-center py-10">
           <Loader size="sm" />
         </div>
       ) : (
         <div ref={ref} className="h-[1px]" />
       )}
-      {status === 'error' && <p className="py-10 text-center">에러가 발생했습니다.</p>}
+      {error && <p className="py-10 text-center">에러가 발생했습니다.</p>}
     </div>
   );
 }
