@@ -38,3 +38,15 @@ export async function fetchUpdatedUser() {
       throw error;
     });
 }
+
+// 유저 프로필 이미지 초기화
+export async function resetUserProfileImage(): Promise<void> {
+  const url = `/auths/profile-image/reset`;
+
+  await fetchApi(url, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+}
