@@ -1,7 +1,8 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-import { useAuthStore } from '@/src/store/use-auth-store';
+import { useUser } from '@/src/_queries/auth/user-queries';
+import { useAuth } from '@/src/hooks/use-auth';
+import { useLogout } from '@/src/hooks/use-logout';
 import HeaderPresenter from '@/src/components/common/header/presenter';
 
 /**
@@ -12,14 +13,9 @@ import HeaderPresenter from '@/src/components/common/header/presenter';
  */
 
 export default function Header() {
-  const { isAuth, user, logout } = useAuthStore(); // user 정보 가져오기
-
-  const router = useRouter();
-
-  const handleLogout = () => {
-    logout();
-    router.push('/');
-  };
+  const { handleLogout } = useLogout();
+  const { isAuth } = useAuth();
+  const { data: user } = useUser();
 
   return (
     <div>

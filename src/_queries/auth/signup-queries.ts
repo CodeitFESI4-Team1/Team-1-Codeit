@@ -1,8 +1,8 @@
 import { useMutation } from '@tanstack/react-query';
 import { signup } from '@/src/_apis/auth/signup-apis';
+import { useHandleAuthSuccess } from '@/src/hooks/use-handle-auth-success';
 import { ApiError } from '@/src/utils/api';
 import { SignupRequest, SignupResponse } from '@/src/types/auth';
-import { useHandleAuthSuccess } from './use-handle-auth-success';
 
 export function usePostSignupQuery() {
   const handleAuthSuccess = useHandleAuthSuccess();
