@@ -1,4 +1,4 @@
-import { useAuthStore } from '@/src/store/use-auth-store';
+import { authStore } from '@/src/store/use-auth-store';
 
 export class ApiError extends Error {
   detail: { validationErrors: Record<string, string> } = { validationErrors: {} };
@@ -24,7 +24,7 @@ export async function fetchApi<T>(
   const controller = new AbortController();
   const { signal } = controller;
   const id = setTimeout(() => controller.abort(), timeout);
-  const { token } = useAuthStore.getState();
+  const { token } = authStore.getState();
   const fetchOptions: RequestInit = {
     ...options,
     signal,
