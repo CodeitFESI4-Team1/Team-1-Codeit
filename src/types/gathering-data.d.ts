@@ -47,6 +47,7 @@ export interface CreateGatheringRequestTypes {
 
 export interface GatheringCardProps {
   id: number;
+  crewId: number;
   crewTitle: string;
   crewMainLocation: string;
   crewSubLocation: string;

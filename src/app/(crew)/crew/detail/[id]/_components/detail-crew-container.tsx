@@ -5,8 +5,8 @@ import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import { useDisclosure } from '@mantine/hooks';
 import { cancelCrew, joinCrew, leaveCrew } from '@/src/_apis/crew/crew-detail-apis';
+import { useUser } from '@/src/_queries/auth/user-queries';
 import { useGetCrewDetailQuery } from '@/src/_queries/crew/crew-detail-queries';
-import { useAuthStore } from '@/src/store/use-auth-store';
 import { ApiError } from '@/src/utils/api';
 import ConfirmCancelModal from '@/src/components/common/modal/confirm-cancel-modal';
 import { User } from '@/src/types/auth';
@@ -24,7 +24,7 @@ export default function DetailCrew({ id }: DetailCrewContainerProps) {
     useDisclosure();
   const router = useRouter();
 
-  const { user } = useAuthStore();
+  const { data: user } = useUser();
 
   const isDataWrappedUser = (value: unknown): value is { data: User } => {
     return typeof value === 'object' && value !== null && 'data' in value;

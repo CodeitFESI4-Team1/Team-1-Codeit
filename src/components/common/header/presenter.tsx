@@ -43,8 +43,10 @@ export default function HeaderPresenter({
             {links.map(({ href, label }) => (
               <Link
                 key={href}
-                href={isAuth ? href : '/login'}
-                className={`${pathname.startsWith(href) ? 'text-white' : 'text-blue-300'} ml-4`}
+                href={isAuth ? href : `/login?redirect=${href}`}
+                className={`${
+                  pathname.startsWith(href) ? 'text-white' : 'text-blue-300'
+                } ml-4 text-sm font-semibold md:text-lg`}
               >
                 {label}
               </Link>
@@ -76,7 +78,6 @@ export default function HeaderPresenter({
           </Link>
         )}
       </div>
-      {/* </div> */}
     </header>
   );
 }

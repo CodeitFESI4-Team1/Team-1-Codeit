@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
-import { useAuthStore } from '@/src/store/use-auth-store';
+import { QueryClient, QueryClientProvider, useQueryClient } from '@tanstack/react-query';
+import { useAuth } from '@/src/hooks/use-auth';
 import Header from '@/src/components/common/header/container';
 
 const meta: Meta = {
@@ -15,32 +17,10 @@ const meta: Meta = {
 
 export default meta;
 function Template() {
-  const { isAuth, login, logout, setUser } = useAuthStore();
-  const testToken = 'test token';
-  const testUser = {
-    id: 1,
-    nickname: '크루크루',
-    email: 'john@example.com',
-    profileImageUrl: 'https://i.pinimg.com/736x/3f/e4/f4/3fe4f4f3aee36ec57aa072cce2e016b3.jpg',
-  };
-
-  const toggleAuth = () => {
-    if (isAuth) {
-      logout();
-    } else {
-      login(testToken);
-      setUser(testUser);
-    }
-  };
-
   return (
-    <div>
+    <QueryClientProvider client={new QueryClient()}>
       <Header />
-      <button type="button" onClick={toggleAuth} className="mb-4 mt-5 bg-blue-500 p-2 text-white">
-        {'테스트용 - '}
-        {isAuth ? '로그아웃하기' : '로그인하기'}
-      </button>
-    </div>
+    </QueryClientProvider>
   );
 }
 

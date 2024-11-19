@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from 'react';
 import Image from 'next/image';
 import Profiles from '@/src/components/common/crew-list/profiles';

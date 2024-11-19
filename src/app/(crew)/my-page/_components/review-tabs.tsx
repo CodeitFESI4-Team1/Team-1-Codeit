@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { Divider } from '@mantine/core';
 import { getReviewableGatherings } from '@/src/_apis/gathering/reviewable-gathering';
 import { useInfiniteScroll } from '@/src/hooks/use-infinite-scroll';
@@ -12,7 +12,7 @@ import ReviewableGatheringCardList from '@/src/components/my-page/reviewable-gat
 import { ReviewInformResponse } from '@/src/types/review';
 import { ReviewableGatheringCardInformResponse } from '@/src/types/reviewable-gathering-card';
 
-export default function ReviewSection() {
+export default function ReviewTabs() {
   const myPageTabs = [
     { label: '작성 가능한 리뷰', id: 'available-review', route: '/my-page/reviewable' },
     { label: '작성한 리뷰', id: 'my-review', route: '/my-page/my-review' },

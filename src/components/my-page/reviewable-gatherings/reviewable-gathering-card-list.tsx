@@ -1,3 +1,5 @@
+'use client';
+
 import { useGetReviewableQuery } from '@/src/_queries/my-gathering/reviewable-gathering-list';
 import { useInfiniteScroll } from '@/src/hooks/use-infinite-scroll';
 import { ReviewableGatheringCardInformResponse } from '@/src/types/reviewable-gathering-card';

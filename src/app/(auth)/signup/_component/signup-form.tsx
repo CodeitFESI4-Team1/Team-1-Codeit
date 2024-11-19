@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { UseFormReturn } from 'react-hook-form';
-import { Button } from '@mantine/core';
-import { useDebouncedCallback } from '@mantine/hooks';
+import { UseFormReturn, useWatch } from 'react-hook-form';
+import { useDebouncedValue } from '@mantine/hooks';
+import Button from '@/src/components/common/input/button';
 import PasswordInput from '@/src/components/common/input/password-input';
 import TextInput from '@/src/components/common/input/text-input';
 
@@ -22,24 +22,52 @@ export default function SignupForm({ formMethods, onSubmit }: SignupFormProps) {
     register,
     handleSubmit,
     trigger,
+    control,
     formState: { errors, isValid },
-    watch,
   } = formMethods;
 
-  const debouncedTrigger = useDebouncedCallback(async (field: keyof SignupFormValues) => {
-    await trigger(field);
-  }, 1000);
+  const [nickname, email, password, confirmPassword] = useWatch({
+    control,
+    name: ['nickname', 'email', 'password', 'confirmPassword'],
+  });
 
-  const password = watch('password');
+  const [debouncedNickname, cancelDebouncedNickname] = useDebouncedValue(nickname, 1000);
+  const [debouncedEmail, cancelDebouncedEmail] = useDebouncedValue(email, 1000);
+  const [debouncedPassword, cancelDebouncedPassword] = useDebouncedValue(password, 1000);
+  const [debouncedConfirmPassword, cancelDebouncedConfirmPassword] = useDebouncedValue(
+    confirmPassword,
+    1000,
+  );
 
   useEffect(() => {
-    if (password) {
+    if (debouncedNickname) trigger('nickname');
+  }, [nickname, trigger]);
+
+  useEffect(() => {
+    if (debouncedEmail) trigger('email');
+  }, [email, trigger]);
+
+  useEffect(() => {
+    if (debouncedPassword) {
+      trigger('password');
       trigger('confirmPassword');
     }
   }, [password, trigger]);
 
+  useEffect(() => {
+    if (debouncedConfirmPassword) trigger('confirmPassword');
+  }, [confirmPassword, trigger]);
+
+  const handleFormSubmit = handleSubmit(async (data) => {
+    onSubmit(data);
+    cancelDebouncedNickname();
+    cancelDebouncedEmail();
+    cancelDebouncedPassword();
+    cancelDebouncedConfirmPassword();
+  });
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleFormSubmit}>
       <TextInput
         label="닉네임"
         placeholder="닉네임을 입력해주세요"
@@ -47,7 +75,6 @@ export default function SignupForm({ formMethods, onSubmit }: SignupFormProps) {
           ...register('nickname', {
             required: '닉네임을 입력해주세요',
             onBlur: () => trigger('nickname'),
-            onChange: async () => debouncedTrigger('nickname'),
           }),
         }}
         error={errors.nickname?.message}
@@ -65,7 +92,6 @@ export default function SignupForm({ formMethods, onSubmit }: SignupFormProps) {
               message: '이메일 형식으로 입력해주세요',
             },
             onBlur: () => trigger('email'),
-            onChange: async () => debouncedTrigger('email'),
           }),
         }}
         error={errors.email?.message}
@@ -84,7 +110,6 @@ export default function SignupForm({ formMethods, onSubmit }: SignupFormProps) {
               message: '비밀번호가 8자 이상이 되도록 해주세요.',
             },
             onBlur: () => trigger('password'),
-            onChange: async () => debouncedTrigger('password'),
           }),
         }}
         error={errors.password?.message}
@@ -100,7 +125,6 @@ export default function SignupForm({ formMethods, onSubmit }: SignupFormProps) {
             required: '비밀번호를 다시 입력해주세요',
             validate: (value) => value === password || '비밀번호가 일치하지 않습니다.',
             onBlur: () => trigger('confirmPassword'),
-            onChange: async () => debouncedTrigger('confirmPassword'),
           }),
         }}
         error={errors.confirmPassword?.message}
@@ -109,8 +133,11 @@ export default function SignupForm({ formMethods, onSubmit }: SignupFormProps) {
       />
 
       <div className="mt-10">
-        {/* TODO: button 바꾸기 */}
-        <Button disabled={!isValid} type="submit" fullWidth>
+        <Button
+          disabled={!isValid}
+          type="submit"
+          className={`w-full font-semibold ${isValid ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-300'}`}
+        >
           회원가입
         </Button>
       </div>
