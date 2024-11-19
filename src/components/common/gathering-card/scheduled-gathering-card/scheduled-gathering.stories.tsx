@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import ClientProvider from '@/src/components/client-provider';
 import ScheduledGatheringCard from './container';
 
 const meta: Meta<typeof ScheduledGatheringCard> = {
@@ -12,6 +13,13 @@ const meta: Meta<typeof ScheduledGatheringCard> = {
     },
   },
   tags: ['autodocs'],
+  decorators: [
+    (Story) => (
+      <ClientProvider>
+        <Story />
+      </ClientProvider>
+    ),
+  ],
   argTypes: {},
 } satisfies Meta<typeof ScheduledGatheringCard>;
 
@@ -23,6 +31,7 @@ export const LikedEvent: Story = {
   args: {
     data: {
       id: 1,
+      crewId: 1,
       crewTitle: '풀 엔 그레이스 스튜디오',
       crewMainLocation: '서울시',
       crewSubLocation: '강남구 역삼동',
@@ -42,6 +51,7 @@ export const NotLikedEvent: Story = {
   args: {
     data: {
       id: 2,
+      crewId: 1,
       crewTitle: '산악회 모임',
       crewMainLocation: '서울시',
       crewSubLocation: '용산구 한강로',
