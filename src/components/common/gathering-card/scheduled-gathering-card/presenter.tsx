@@ -94,7 +94,6 @@ export default function ScheduledGatheringCardPresenter({
             참여인원 {currentCount}/{totalCount}
           </p>
         </div>
-        <div className="absolute bottom-6 right-6"></div>
       </div>
     </div>
   );
