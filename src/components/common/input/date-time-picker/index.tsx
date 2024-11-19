@@ -9,7 +9,7 @@ import IconArrow from '@/public/assets/icons/ic-arrow';
 
 export interface DateTimePickerProps {
   fullDate: Date;
-  onChange: (date: Date) => void;
+  onChange: (date: string) => void;
 }
 
 export default function DateTimePicker({ fullDate, onChange }: DateTimePickerProps) {
@@ -26,9 +26,17 @@ export default function DateTimePicker({ fullDate, onChange }: DateTimePickerPro
   };
 
   const handleTime = () => {
-    const newDate = dayjs(selected).hour(Number(hour)).minute(Number(minute)).toDate();
+    const newDate = new Date(selected);
+
+    newDate.setHours(Number(hour));
+    newDate.setMinutes(Number(minute));
+
+    const kstDate = new Date(newDate.getTime() - newDate.getTimezoneOffset() * 60000).toISOString();
+
     setSelected(newDate);
-    onChange(newDate);
+
+    // KST 기준 ISO 문자열 전달
+    onChange(kstDate);
   };
 
   return (
