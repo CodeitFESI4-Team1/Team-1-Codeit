@@ -12,7 +12,12 @@ export interface CalendarFilterProps {
   onChange: (date: Date) => void;
 }
 
-export default function CalendarFilter({ value, toDoDates, onChange }: CalendarFilterProps) {
+export default function CalendarFilter({
+  value,
+  toDoDates,
+  onChange,
+  ...rest
+}: CalendarFilterProps) {
   const [selected, setSelected] = useState<Date>(value);
 
   const handleSelect = (date: Date) => {
@@ -69,6 +74,7 @@ export default function CalendarFilter({ value, toDoDates, onChange }: CalendarF
             </Indicator>
           );
         }}
+        {...rest}
       />
     </DatesProvider>
   );
