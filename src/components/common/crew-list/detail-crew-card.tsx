@@ -102,7 +102,7 @@ export default function DetailCrewCard({ data }: DetailCrewCardProps) {
 
       {/* 썸네일 */}
       <div className="relative h-[270px] w-full md:w-[385px] lg:w-[540px]">
-        <Image fill objectFit="cover" alt={title} src={imageUrl} />
+        <Image fill style={{ objectFit: 'cover' }} alt={title} src={imageUrl} />
       </div>
 
       <div className="flex w-full flex-col justify-between p-6 sm:h-[238px] sm:px-4 sm:pt-4 md:h-[270px] md:flex-1 lg:h-[270px]">

@@ -1,12 +1,12 @@
 'use client';
 
-import { CreateGatheringRequestType } from '@/src/types/gathering-data';
+import { CreateGatheringFormTypes } from '@/src/types/gathering-data';
 import CreateGatheringModalPresenter from './presenter';
 
 export interface CreateGatheringModalContainerProps {
   opened: boolean;
   close: () => void;
-  data: CreateGatheringRequestType;
+  data: CreateGatheringFormTypes;
 }
 
 export default function CreateGatheringModalContainer({

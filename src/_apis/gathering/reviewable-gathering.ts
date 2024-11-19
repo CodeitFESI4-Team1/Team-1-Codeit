@@ -7,6 +7,6 @@ export async function getReviewableGatherings({
   pageParam?: number;
 }): Promise<WritableGatheringCardInformResponse> {
   return fetchApi<WritableGatheringCardInformResponse>(
-    `/api/gathering/reviewable?page=${pageParam}`,
+    `/api/gatherings/reviewable?page=${pageParam}&size=6`,
   );
 }

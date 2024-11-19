@@ -46,8 +46,7 @@ export default function MyPage() {
     queryFn: ({ pageParam = 0 }) => {
       return fetchWritableGatheringData(pageParam, 3);
     },
-    getNextPageParam: (lastPage, allPages) =>
-      lastPage.hasNextPage ? allPages.length + 1 : undefined,
+    getNextPageParam: (lastPage, allPages) => (lastPage.hasNext ? allPages.length + 1 : undefined),
   });
 
   const renderTabContent = () => {

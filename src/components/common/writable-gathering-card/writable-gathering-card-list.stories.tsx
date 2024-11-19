@@ -32,10 +32,11 @@ function RenderReviewableGatheringList() {
     queryFn: ({ pageParam = 0 }) => {
       return fetchWritableGatheringData(pageParam, 3);
     },
-    getNextPageParam: (lastPage, allPages) =>
-      lastPage.hasNextPage ? allPages.length + 1 : undefined,
+    getNextPageParam: (lastPage, allPages) => (lastPage.hasNext ? allPages.length + 1 : undefined),
   });
-  return <ReviewableGatheringList data={data} isFetchingNextPage={isFetchingNextPage} ref={ref} />;
+  return (
+    <ReviewableGatheringList content={data} isFetchingNextPage={isFetchingNextPage} ref={ref} />
+  );
 }
 
 export default meta;

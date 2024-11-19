@@ -1,20 +1,29 @@
 'use client';
 
 import Image from 'next/image';
+import { useParams } from 'next/navigation';
+import { useGetCrewDetailQuery } from '@/src/_queries/crew/crew-detail-queries';
 import CreateCrewForm from '@/src/app/(crew)/crew/_components/create-crew-form';
-import { CreateCrewRequestTypes } from '@/src/types/create-crew';
+import { CreateCrewFormTypes } from '@/src/types/create-crew';
 import IcoCreateCrew from '@/public/assets/icons/ic-create-crew.svg';
 
 export default function EditCrewPage() {
-  // NOTE : 임시 데이터 -> API 연결
-  const initialValue: CreateCrewRequestTypes = {
+  const { id } = useParams();
+  const { data, isLoading, error } = useGetCrewDetailQuery(Number(id));
+
+  if (data === undefined) return null;
+
+  // TODO : 테스트중
+  const initialValue: CreateCrewFormTypes = {
     title: '',
     mainCategory: '',
-    subCategory: null,
-    imageUrl: null,
+    subCategory: '',
+    imageUrl:
+      'https://crewcrew.s3.ap-northeast-2.amazonaws.com/crew/0e05d971-15a8-4a32-bf03-80d12cae392e',
     mainLocation: '',
-    subLocation: null,
+    subLocation: '',
     totalCount: 4,
+    introduce: '',
   };
 
   const handleEdit = () => {

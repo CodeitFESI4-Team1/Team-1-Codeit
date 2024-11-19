@@ -1,5 +1,5 @@
 export type WritableGatheringCardInformResponse = {
-  data: WritableGatheringCardInform[];
+  content: WritableGatheringCardInform[];
   hasNext: boolean;
 };
 

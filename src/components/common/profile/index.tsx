@@ -51,8 +51,8 @@ export function Profile({
           <Image
             src={imageUrl && imageUrl.trim() ? imageUrl : defaultImage}
             alt="프로필 이미지"
-            layout="fill"
-            objectFit="cover"
+            fill
+            style={{ objectFit: 'cover' }}
             className="rounded-full"
           />
         </div>
