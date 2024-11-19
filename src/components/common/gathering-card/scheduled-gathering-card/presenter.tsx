@@ -16,7 +16,7 @@ export default function ScheduledGatheringCardPresenter({
 }: ScheduledGatheringCardPresenterProps) {
   const { crewTitle, title, dateTime, location, currentCount, totalCount, imageUrl } = data;
 
-  const { date, time } = formatDate(dateTime);
+  const { date, dayOfWeek, time } = formatDate(dateTime);
 
   return (
     <div className="space-y-2">
@@ -34,7 +34,7 @@ export default function ScheduledGatheringCardPresenter({
         <div className="flex h-1/2 w-full min-w-0 flex-grow flex-col justify-between p-4 md:h-full">
           <div className="overflow-hidden text-ellipsis whitespace-nowrap">
             <div className="mb-2 flex items-center space-x-2 text-sm font-semibold text-blue-500 md:text-base">
-              <p>{date}</p>
+              <p>{`${date} ${dayOfWeek}`}</p>
               <div className="h-[18px] w-[1px] bg-gray-300" />
               <p>{time}</p>
             </div>
