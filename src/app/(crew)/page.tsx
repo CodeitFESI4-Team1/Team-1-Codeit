@@ -6,8 +6,8 @@ import { Divider, Loader, TextInput } from '@mantine/core';
 import { useGetCrewListQuery } from '@/src/_queries/crew/crew-list-queries';
 import regionData from '@/src/data/region.json';
 import { useInfiniteScroll } from '@/src/hooks/use-infinite-scroll';
-import CategoryContainer from '@/src/app/_components/category/category-container';
-import HeroCrew from '@/src/app/_components/hero/hero-crew';
+import CategoryContainer from '@/src/app/(crew)/_components/category/category-container';
+import HeroCrew from '@/src/app/(crew)/_components/hero/hero-crew';
 import CrewCardList from '@/src/components/common/crew-list/crew-card-list';
 import Button from '@/src/components/common/input/button';
 import DropDown from '@/src/components/common/input/drop-down';
@@ -23,7 +23,6 @@ export default function HomePage() {
 
   const handleRegionChange = (newValue: string) => {
     const selectedRegion = regionData.find((dataItem) => dataItem.main.label === newValue);
-    if (selectedRegion?.main.label === '지역 전체') return '';
     return selectedRegion ? selectedRegion.main.label : '';
   };
 
@@ -35,7 +34,7 @@ export default function HomePage() {
     }
   };
 
-  const { data, status, isFetchingNextPage, ref } = useInfiniteScroll(
+  const { data, isLoading, error, isFetchingNextPage, ref } = useInfiniteScroll(
     useGetCrewListQuery({
       condition: {
         keyword: search,
@@ -133,14 +132,14 @@ export default function HomePage() {
       </div>
       <div className="mt-8 px-3 md:px-8 lg:px-11.5">
         {data && <CrewCardList data={data} />}
-        {status === 'pending' || isFetchingNextPage ? (
+        {isLoading || isFetchingNextPage ? (
           <div className="flex justify-center py-10">
             <Loader size="sm" />
           </div>
         ) : (
           <div ref={ref} className="h-[1px]" />
         )}
-        {status === 'error' && <p className="py-10 text-center">에러가 발생했습니다.</p>}
+        {error && <p className="py-10 text-center">에러가 발생했습니다.</p>}
       </div>
     </div>
   );

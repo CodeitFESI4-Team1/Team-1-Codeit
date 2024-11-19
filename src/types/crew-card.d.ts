@@ -36,20 +36,31 @@ export interface CrewMember {
   id: number;
   nickname: string;
   profileImageUrl?: string;
-  captain?: boolean;
+}
+
+export interface CrewDetailMember {
+  id: number;
+  nickname: string;
+  email: string;
+  profileImageUrl?: string;
+  captain: boolean;
 }
 
 export interface CrewDetail {
   id: number;
   title: string;
+  introduce: string;
+  mainCategory?: string;
+  subCategory?: string;
   mainLocation: string;
   subLocation: string;
   participantCount: number;
   totalCount: number;
   imageUrl: string;
   totalGatheringCount: number;
-  crewMembers: CrewMember[];
+  crewMembers: CrewDetailMember[];
   confirmed: boolean;
+  introduce?: string;
 }
 
 export interface MyCrewList {
