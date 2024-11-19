@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import ClientProvider from '@/src/components/client-provider';
 import ScheduledGatheringCard from './container';
 
 const meta: Meta<typeof ScheduledGatheringCard> = {
@@ -12,6 +13,13 @@ const meta: Meta<typeof ScheduledGatheringCard> = {
     },
   },
   tags: ['autodocs'],
+  decorators: [
+    (Story) => (
+      <ClientProvider>
+        <Story />
+      </ClientProvider>
+    ),
+  ],
   argTypes: {},
 } satisfies Meta<typeof ScheduledGatheringCard>;
 
