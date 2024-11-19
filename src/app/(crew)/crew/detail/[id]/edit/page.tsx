@@ -3,7 +3,6 @@
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import { Loader } from '@mantine/core';
-import { getImageUrl } from '@/src/_apis/image/get-image-url';
 import { useEditCrewQuery, useGetCrewDetailQuery } from '@/src/_queries/crew/crew-detail-queries';
 import CreateCrewForm from '@/src/app/(crew)/crew/create/_components/create-crew-form';
 import { CreateCrewFormTypes, EditCrewRequestTypes } from '@/src/types/create-crew';
