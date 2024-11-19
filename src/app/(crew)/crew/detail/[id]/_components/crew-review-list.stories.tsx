@@ -6,7 +6,7 @@ import { CrewReviewData } from '@/src/mock/review-data';
 import CrewReviewList from './crew-review-list';
 
 const meta: Meta<typeof CrewReviewList> = {
-  title: 'components/CrewReviewList',
+  title: 'Components/Detail/CrewReviewList',
   component: CrewReviewList,
   parameters: {
     layout: 'fulled',
