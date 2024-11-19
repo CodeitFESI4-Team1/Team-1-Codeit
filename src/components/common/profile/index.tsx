@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { cn } from '@/src/utils/cn';
 import defaultImage from '@/public/assets/icons/default-profile.svg';
 import captainCheck from '@/public/assets/icons/ic-captain-check.svg';
-import editImage from '@/public/assets/icons/profile-edit.svg';
+import editImage from '@/public/assets/icons/ic-edit.svg';
 
 /**
  * Profile 컴포넌트
@@ -15,7 +15,6 @@ import editImage from '@/public/assets/icons/profile-edit.svg';
  * @param {boolean} [props.editable=false] - 프로필 편집시 사용
  * @param {boolean} [props.isCaptain=false] - 캡틴 여부를 판단
  * @param {() => void} [props.onClick] - 프로필을 클릭
- * @param {() => void} [props.onEdit] - 편집 버튼을 클릭시
  */
 
 interface ProfileProps {
@@ -24,7 +23,6 @@ interface ProfileProps {
   editable?: boolean;
   isCaptain?: boolean;
   onClick?: () => void;
-  onEdit?: () => void;
 }
 
 export function Profile({
@@ -33,11 +31,13 @@ export function Profile({
   editable = false,
   isCaptain = false,
   onClick,
-  onEdit,
 }: ProfileProps) {
-  const finalSize = editable || isCaptain ? 'large' : size;
-
-  // 추후 디자인에 따라 수정
+  let finalSize = size;
+  if (editable) {
+    finalSize = 'full';
+  } else if (isCaptain) {
+    finalSize = 'large';
+  }
   const sizeClasses = {
     small: 'w-6 h-6',
     header: 'sm:w-7 sm:h-7 md:w-[40px] md:h-[40px] lg:w-[40px] lg:h-[40px]',
@@ -49,8 +49,9 @@ export function Profile({
   return (
     <div
       className={cn(
-        'relative inline-block',
+        'relative inline-block rounded-full',
         isCaptain ? sizeClasses.captain : sizeClasses[finalSize],
+        editable && 'editable-gradient-border shadow-sm',
       )}
     >
       <button
@@ -58,9 +59,9 @@ export function Profile({
         className={cn(
           'relative overflow-hidden rounded-full',
           isCaptain ? sizeClasses.captain : sizeClasses[finalSize],
-          !editable && 'pointer-events-none',
+          !(editable || size === 'header') && 'pointer-events-none',
         )}
-        onClick={onClick}
+        onClick={editable || size === 'header' ? onClick : undefined}
       >
         <div className="relative h-full w-full rounded-full">
           <Image
@@ -75,13 +76,9 @@ export function Profile({
       {editable && !isCaptain && (
         <button
           type="button"
-          className="absolute -right-1 bottom-2 z-20 h-5 w-5 rounded-full"
-          onClick={(e) => {
-            e.stopPropagation();
-            if (onEdit) onEdit();
-          }}
+          className="absolute -bottom-1 -right-1 z-20 h-8 w-8 cursor-pointer rounded-full md:-right-1 md:bottom-2 lg:-right-1 lg:bottom-2"
         >
-          <Image src={editImage} alt="수정 버튼" width={24} height={24} />
+          <Image src={editImage} alt="수정 버튼" width={30} height={30} />
         </button>
       )}
       {isCaptain && (

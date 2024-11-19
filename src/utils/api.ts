@@ -50,6 +50,13 @@ export async function fetchApi<T>(
 
       throw new ApiError(response.status, errorMessage, errorDetail);
     }
+
+    // 빈 응답 처리
+    const contentLength = response.headers.get('Content-Length');
+    if (contentLength === '0' || response.status === 204) {
+      return {} as T; // 빈 객체 반환
+    }
+
     const data = await response.json();
     if (isAuth) return { data, headers: response.headers } as T;
     return { data } as T;

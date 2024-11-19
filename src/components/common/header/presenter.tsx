@@ -33,7 +33,7 @@ export default function HeaderPresenter({
             <Image src={Logo} alt="crew logo" width={83} height={30} className="hidden md:block" />
             <Image src={Logo} alt="crew logo" width={53} height={28} className="block md:hidden" />
           </Link>
-          <nav className="flex items-center space-x-3 text-base font-semibold md:space-x-6 md:text-lg lg:space-x-6">
+          <nav className="flex items-center space-x-2 text-base font-semibold md:space-x-6 md:text-lg lg:space-x-6">
             <Link
               href="/"
               className={`${pathname === '/' ? 'text-white' : 'text-blue-300'} ml-4 hidden md:block`}
@@ -61,7 +61,7 @@ export default function HeaderPresenter({
                 </div>
               </Menu.Target>
               <Menu.Dropdown>
-                <Menu.Item component="a" href="/mypage">
+                <Menu.Item component="a" href="/my-page">
                   마이페이지
                 </Menu.Item>
                 <Menu.Item type="button" onClick={handleLogout} className="block">
