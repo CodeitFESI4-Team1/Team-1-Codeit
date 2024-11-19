@@ -15,44 +15,31 @@ import ProfileCardPresenter from './presenter';
 export default function ProfileCard() {
   const router = useRouter();
   const { isAuth } = useAuth();
-  const { data: user } = useUser();
-
-  // const { rehydrated, setUser } = useAuthStore();
-  // const [user, setLocalUser] = useState<User | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const { data: user, isLoading: userLoading, refetch: refetchUser } = useUser();
   const [profileImageUrl, setProfileImageUrl] = useState<string>('');
+  const [isAuthChecked, setIsAuthChecked] = useState(false);
 
   useEffect(() => {
-    const checkAuthAndLoadUser = async () => {
-      // if (!rehydrated) return; // 상태 복원이 완료되지 않았으면 대기
+    if (userLoading) return;
 
-      if (!isAuth) {
-        router.push('/login'); // 인증되지 않은 경우 리디렉션
-        return;
-      }
+    if (user) {
+      setIsAuthChecked(true);
+    } else if (!isAuth) {
+      toast.error('로그인이 필요합니다.');
+      router.push('/login');
+    } else {
+      setIsAuthChecked(true);
+    }
+  }, [user, userLoading, isAuth, router]);
 
-      setIsLoading(true);
+  useEffect(() => {
+    if (user?.profileImageUrl) {
+      setProfileImageUrl(user.profileImageUrl);
+    }
+  }, [user]);
 
-      try {
-        const updatedUser = await fetchUpdatedUser();
-        // setLocalUser(updatedUser);
-        // setUser(updatedUser);
-        setProfileImageUrl(updatedUser.profileImageUrl);
-      } catch {
-        toast.error('유저 정보를 가져오는 데 실패했습니다.');
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    checkAuthAndLoadUser();
-    // }, [isAuth, rehydrated, router, setUser]);
-  }, [isAuth, router]);
-
-  // if (!rehydrated) return null;
-  if (!isAuth) return null;
-  if (isLoading) return <div>로딩 중...</div>;
-  if (!user) return <div>유저 정보를 불러오지 못했습니다.</div>;
+  if (userLoading || !isAuthChecked) return <div>로딩 중...</div>;
+  if (!user) return null;
 
   const handleEdit = () => {
     const input = document.createElement('input');
@@ -72,10 +59,8 @@ export default function ProfileCard() {
           const tempUrl = URL.createObjectURL(file);
           setProfileImageUrl(tempUrl);
 
-          const updatedUser = await fetchUpdatedUser();
-          const newProfileImageUrl = `${updatedUser.profileImageUrl}?timestamp=${new Date().getTime()}`;
-          setProfileImageUrl(newProfileImageUrl);
-          // setUser({ ...updatedUser, profileImageUrl: newProfileImageUrl });
+          await refetchUser();
+          toast.success('프로필 이미지가 업데이트되었습니다.');
         } catch (error) {
           toast.error('파일 업로드에 실패했습니다.');
         }
@@ -87,10 +72,8 @@ export default function ProfileCard() {
   const handleDeleteProfile = async () => {
     try {
       await resetUserProfileImage();
-      const updatedUser = await fetchUpdatedUser();
+      await refetchUser();
       setProfileImageUrl(''); // 초기화된 이미지 반영
-      // setLocalUser(updatedUser);
-      // setUser(updatedUser);
       toast.success('프로필 이미지가 초기화되었습니다.');
     } catch (error) {
       toast.error('프로필 이미지 초기화에 실패했습니다.');

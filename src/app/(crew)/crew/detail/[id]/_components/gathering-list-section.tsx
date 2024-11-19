@@ -44,9 +44,26 @@ export default function GatheringListSection({ id }: GatheringListSectionProps) 
   };
 
   // TODO: 추후 에러, 로딩 수정
-  if (isLoading) return <p>로딩 중...</p>;
-  if (error) return <p>데이터를 불러오는 데 실패했습니다</p>;
-  if (!gatheringList || gatheringList.length === 0) return <p>데이터가 없습니다.</p>;
+  if (isLoading)
+    return (
+      <div className="flex items-center justify-center">
+        <p>로딩 중...</p>
+      </div>
+    );
+
+  if (error)
+    return (
+      <div className="flex items-center justify-center">
+        <p>데이터를 불러오는 데 실패했습니다</p>
+      </div>
+    );
+
+  if (!gatheringList || gatheringList.length === 0)
+    return (
+      <div className="flex items-center justify-center">
+        <p>데이터가 없습니다.</p>
+      </div>
+    );
 
   return (
     <>
