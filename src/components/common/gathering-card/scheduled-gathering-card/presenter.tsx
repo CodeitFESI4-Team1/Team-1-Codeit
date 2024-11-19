@@ -1,22 +1,12 @@
 import Image from 'next/image';
 import { Badge } from '@mantine/core';
 import { formatDate } from '@/src/utils/format-date';
-import LikeBtn from '@/src/components/common/input/button/like-btn';
-import IcoPerson from '@/public/assets/icons/person.svg';
+import { GatheringCardProps } from '@/src/types/gathering-data';
+import IcoPerson from '@/public/assets/icons/ic-gathering-person.svg';
+import Button from '../../input/button';
 
 interface ScheduledGatheringCardPresenterProps {
-  data: {
-    id: number;
-    crewTitle: string;
-    crewMainLocation: string;
-    crewSubLocation: string;
-    title: string;
-    dateTime: string;
-    currentCount: number;
-    totalCount: number;
-    imageUrl: string;
-    liked: boolean;
-  };
+  data: GatheringCardProps;
   onClick: () => void;
 }
 
@@ -25,74 +15,60 @@ export default function ScheduledGatheringCardPresenter({
   onClick,
 }: ScheduledGatheringCardPresenterProps) {
   const {
-    id,
     crewTitle,
-    crewMainLocation,
-    crewSubLocation,
     title,
     dateTime,
+    // location,
     currentCount,
     totalCount,
     imageUrl,
-    liked,
   } = data;
 
   const { date, time } = formatDate(dateTime);
 
   return (
     <div className="space-y-2">
-      <div className="ml-2 flex items-center">
-        <span className="text-xl font-semibold text-gray-800">{crewTitle}</span>
-        <div className="ml-2 mr-1 h-[18px] w-[2px] bg-black" />
-        <span className="text-base font-medium text-gray-700">
-          {crewMainLocation} {crewSubLocation}
-        </span>
-      </div>
+      <span className="text-xl font-semibold text-gray-800">{crewTitle}</span>
       {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
+
       <div
         onClick={onClick}
         role="button"
         tabIndex={0}
-        className="relative flex h-44 cursor-pointer items-center space-x-4 rounded-xl bg-white p-6 shadow-xs md:space-x-6 lg:space-x-6"
+        className="h-80 cursor-pointer items-center rounded-xl bg-white shadow-xs md:flex md:h-44"
       >
-        {/* Image Section */}
-        <div className="relative h-28 w-28 flex-shrink-0 overflow-hidden rounded-lg md:h-32 md:w-32 lg:h-32 lg:w-32">
+        <div className="relative h-1/2 w-full flex-shrink-0 overflow-hidden rounded-t-lg md:h-full md:w-1/3 md:rounded-l-lg md:rounded-r-none">
           <Image src={imageUrl} alt={title} layout="fill" className="object-cover" />
         </div>
-
-        {/* Content Section */}
-        <div className="flex h-full w-full min-w-0 flex-grow flex-col justify-between">
-          <div className="space-y-2">
-            <h3 className="w-full overflow-hidden text-ellipsis whitespace-nowrap text-xl font-semibold text-gray-800">
+        <div className="flex h-1/2 w-full min-w-0 flex-grow flex-col justify-between p-4 md:h-full">
+          <div>
+            <div className="flex items-center space-x-2">
+              <p className="overflow-hidden text-ellipsis whitespace-nowrap text-sm font-semibold text-blue-500 md:text-base">
+                {date}
+              </p>
+              <div className="h-[18px] w-[1px] bg-gray-300" />
+              <p className="overflow-hidden text-ellipsis whitespace-nowrap text-sm font-semibold text-blue-500 md:text-base">
+                {time}
+              </p>
+            </div>
+            <h3 className="overflow-hidden text-ellipsis whitespace-nowrap pt-2 text-lg font-semibold text-gray-800 md:text-xl">
               {title}
             </h3>
-            <div className="space-x-2">
-              <Badge
-                size="lg"
-                color="#111827"
-                radius="sm"
-                classNames={{
-                  label: 'font-pretendard, gathering-badge',
-                }}
-              >
-                {date}
-              </Badge>
-              <Badge
-                size="lg"
-                color="#111827"
-                radius="sm"
-                classNames={{
-                  label: 'font-pretendard, gathering-badge',
-                }}
-              >
-                {time}
-              </Badge>
+            <div className="text-xm mb-2 flex items-center space-x-1 font-normal text-gray-700">
+              {/* <p className="overflow-hidden text-ellipsis whitespace-nowrap">{location}</p> */}
             </div>
           </div>
-          <p className="flex items-center text-base font-medium text-gray-700">
-            <Image src={IcoPerson} alt="person icon" width={16} height={16} />
-            참여인원 {currentCount}/{totalCount}
-          </p>
+          <div className="flex justify-between">
+            <div className="flex items-end space-x-1 pb-2 md:pb-0">
+              <Image src={IcoPerson} alt="person icon" width={16} height={16} className="pb-0.5" />
+              <p className="text-sm font-normal text-gray-900">
+                참여인원 <span className="text-blue-500">{currentCount}</span>/{totalCount}
+              </p>
+            </div>
+            <Button className="lg:w-1/ btn-filled w-40 md:w-1/2" onClick={onClick}>
+              약속 자세히 보기
+            </Button>
+          </div>
         </div>
       </div>
     </div>
