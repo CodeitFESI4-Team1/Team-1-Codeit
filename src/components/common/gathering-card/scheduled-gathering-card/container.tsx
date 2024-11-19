@@ -3,27 +3,10 @@ import { toast } from 'react-toastify';
 import { ApiError } from 'next/dist/server/api-utils';
 import { useGetGatheringDetailQuery } from '@/src/_queries/gathering/gathering-detail-queries';
 import GatheringDetailModalContainer from '@/src/app/(crew)/crew/detail/[id]/_components/gathering-detail-modal/container';
+import { GatheringCardProps } from '@/src/types/gathering-data';
 import ScheduledGatheringCardPresenter from './presenter';
 
-interface ScheduledGatheringCardContainerProps {
-  data: {
-    id: number;
-    crewId: number;
-    crewTitle: string;
-    crewMainLocation: string;
-    crewSubLocation: string;
-    title: string;
-    dateTime: string;
-    currentCount: number;
-    totalCount: number;
-    imageUrl: string;
-    liked: boolean;
-  };
-}
-
-export default function ScheduledGatheringCardContainer({
-  data,
-}: ScheduledGatheringCardContainerProps) {
+export default function ScheduledGatheringCardContainer({ data }: { data: GatheringCardProps }) {
   const [isOpened, setIsOpened] = useState(false);
   const { data: gatheringData, error } = useGetGatheringDetailQuery(data.crewId, data.id);
 
