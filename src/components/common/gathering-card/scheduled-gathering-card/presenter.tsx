@@ -14,15 +14,7 @@ export default function ScheduledGatheringCardPresenter({
   data,
   onClick,
 }: ScheduledGatheringCardPresenterProps) {
-  const {
-    crewTitle,
-    title,
-    dateTime,
-    // location,
-    currentCount,
-    totalCount,
-    imageUrl,
-  } = data;
+  const { crewTitle, title, dateTime, location, currentCount, totalCount, imageUrl } = data;
 
   const { date, time } = formatDate(dateTime);
 
@@ -30,7 +22,6 @@ export default function ScheduledGatheringCardPresenter({
     <div className="space-y-2">
       <span className="text-xl font-semibold text-gray-800">{crewTitle}</span>
       {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
-
       <div
         onClick={onClick}
         role="button"
@@ -41,22 +32,14 @@ export default function ScheduledGatheringCardPresenter({
           <Image src={imageUrl} alt={title} layout="fill" className="object-cover" />
         </div>
         <div className="flex h-1/2 w-full min-w-0 flex-grow flex-col justify-between p-4 md:h-full">
-          <div>
-            <div className="flex items-center space-x-2">
-              <p className="overflow-hidden text-ellipsis whitespace-nowrap text-sm font-semibold text-blue-500 md:text-base">
-                {date}
-              </p>
+          <div className="overflow-hidden text-ellipsis whitespace-nowrap">
+            <div className="mb-2 flex items-center space-x-2 text-sm font-semibold text-blue-500 md:text-base">
+              <p>{date}</p>
               <div className="h-[18px] w-[1px] bg-gray-300" />
-              <p className="overflow-hidden text-ellipsis whitespace-nowrap text-sm font-semibold text-blue-500 md:text-base">
-                {time}
-              </p>
+              <p>{time}</p>
             </div>
-            <h3 className="overflow-hidden text-ellipsis whitespace-nowrap pt-2 text-lg font-semibold text-gray-800 md:text-xl">
-              {title}
-            </h3>
-            <div className="text-xm mb-2 flex items-center space-x-1 font-normal text-gray-700">
-              {/* <p className="overflow-hidden text-ellipsis whitespace-nowrap">{location}</p> */}
-            </div>
+            <h3 className="text-lg font-semibold text-gray-800 md:text-xl">{title}</h3>
+            <p className="text-xm mb-2 font-normal text-gray-700">{location}</p>
           </div>
           <div className="flex justify-between">
             <div className="flex items-end space-x-1 pb-2 md:pb-0">
