@@ -3,10 +3,22 @@ export function formatDate(dateString: string) {
 
   const month = `${date.getMonth() + 1}월`;
   const day = `${date.getDate()}일`;
-  const hours = String(date.getHours()).padStart(2, '0');
-  const minutes = String(date.getMinutes()).padStart(2, '0');
 
-  return { date: `${month} ${day}`, time: `${hours}:${minutes}` };
+  // 요일 계산
+  const dayOfWeek = ['일', '월', '화', '수', '목', '금', '토'][date.getDay()];
+
+  // 시간 계산
+  let hours = date.getHours();
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+  const meridian = hours >= 12 ? '오후' : '오전';
+
+  // 12시간제로 변환
+  hours = hours % 12 || 12; // 0을 12로 변환
+
+  return {
+    date: `${month} ${day} ${dayOfWeek}요일`,
+    time: `${meridian} ${String(hours).padStart(2, '0')}:${minutes}`,
+  };
 }
 
 export function formatDateWithYear(dateString: string) {
