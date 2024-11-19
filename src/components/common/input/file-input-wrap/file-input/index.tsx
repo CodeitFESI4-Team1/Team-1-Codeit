@@ -2,15 +2,23 @@ import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import Image, { StaticImageData } from 'next/image';
 import IcoPlus from '@/public/assets/icons/ic-plus.svg';
 import IcoX from '@/public/assets/icons/ic-x.svg';
+import ImgCrewSampleUrls from '@/public/assets/images/crew-sample';
+import ImgGatheringSampleUrls from '@/public/assets/images/gathering-sample';
 
 export interface FileInputProps {
-  value: File | StaticImageData | string | null;
+  value: File | string | null;
   onChange: (value: File | null) => void;
   isBlur: boolean;
 }
 
+const isSample = (value: File | string | null) => {
+  if (typeof value === 'string') {
+    return !!(ImgCrewSampleUrls.includes(value) || ImgGatheringSampleUrls.includes(value));
+  }
+  return false;
+};
 export default function FileInput({ value, isBlur, onChange }: FileInputProps) {
-  const [preview, setPreview] = useState<string | null>(typeof value === 'string' ? value : null);
+  const [preview, setPreview] = useState<string | null>(isSample(value) ? null : (value as string));
   const [fileReader, setFileReader] = useState<FileReader | null>(null);
   const fileInput = useRef<HTMLInputElement>(null);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
