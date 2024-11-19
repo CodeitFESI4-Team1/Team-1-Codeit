@@ -32,8 +32,12 @@ export function Profile({
   isCaptain = false,
   onClick,
 }: ProfileProps) {
-  const finalSize = editable ? 'full' : isCaptain ? 'large' : size;
-
+  let finalSize = size;
+  if (editable) {
+    finalSize = 'full';
+  } else if (isCaptain) {
+    finalSize = 'large';
+  }
   const sizeClasses = {
     small: 'w-6 h-6',
     header: 'sm:w-7 sm:h-7 md:w-[40px] md:h-[40px] lg:w-[40px] lg:h-[40px]',
