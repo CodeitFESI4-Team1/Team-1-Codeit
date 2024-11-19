@@ -1,9 +1,7 @@
-import { useGetUserQuery } from '@/src/_queries/auth/user-queries';
 import { useAuthStore } from '@/src/store/use-auth-store';
 
 export function useHandleAuthSuccess() {
-  const { login } = useAuthStore();
-  const { mutate: getUser } = useGetUserQuery();
+  const setToken = useAuthStore((state) => state.setToken);
 
   return async function handleAuthSuccess(token: string | null) {
     if (!token) {
@@ -12,8 +10,7 @@ export function useHandleAuthSuccess() {
 
     try {
       const accessToken = token.replace(/^Bearer\s/, '');
-      login(accessToken);
-      getUser();
+      setToken(accessToken);
     } catch (error) {
       throw new Error('사용자 상태 업데이트 실패');
     }

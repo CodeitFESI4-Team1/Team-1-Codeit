@@ -8,7 +8,7 @@ import { reissue } from '../_apis/auth/reissue-apis';
 import { useAuthStore } from '../store/use-auth-store';
 
 export default function ClientProvider({ children }: { children: ReactNode }) {
-  const { login } = useAuthStore();
+  const setToken = useAuthStore((state) => state.setToken);
 
   const [queryClient] = useState(
     () =>
@@ -25,12 +25,16 @@ export default function ClientProvider({ children }: { children: ReactNode }) {
             },
           },
         },
+        // accessToken 에러 -> reissue() -> refetch()
         queryCache: new QueryCache({
-          onError: async (error) => {
+          onError: async (error, query) => {
             if (error.message === '토큰이 올바르지 않습니다.') {
               const { token } = await reissue();
-              if (token) login(token.replace(/^Bearer\s/, ''));
-              queryClient.refetchQueries();
+              if (token) setToken(token.replace(/^Bearer\s/, ''));
+              await Promise.all([
+                queryClient.refetchQueries({ queryKey: query.queryKey }),
+                queryClient.refetchQueries({ queryKey: ['user'] }),
+              ]);
             }
           },
         }),

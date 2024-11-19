@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { login } from '@/src/_apis/auth/login-apis';
+import { useHandleAuthSuccess } from '@/src/hooks/use-handle-auth-success';
 import { ApiError } from '@/src/utils/api';
-import { useHandleAuthSuccess } from '@/src/utils/use-handle-auth-success';
 import { LoginRequest, LoginResponse } from '@/src/types/auth';
 
 export function usePostLoginQuery() {

@@ -1,5 +1,6 @@
 import type { Meta, StoryFn } from '@storybook/react';
-import { useAuthStore } from '@/src/store/use-auth-store';
+import { useQueryClient } from '@tanstack/react-query';
+import { useAuth } from '@/src/hooks/use-auth';
 import Header from '@/src/components/common/header/container';
 
 const meta: Meta = {
@@ -21,8 +22,8 @@ const meta: Meta = {
 
 export default meta;
 function Template() {
-  const { isAuth, login, logout, setUser } = useAuthStore();
-  const testToken = 'test token';
+  const queryClient = useQueryClient();
+  const { isAuth } = useAuth();
   const testUser = {
     id: 1,
     nickname: '크루크루',
@@ -32,10 +33,9 @@ function Template() {
 
   const toggleAuth = () => {
     if (isAuth) {
-      logout();
+      queryClient.removeQueries({ queryKey: ['user'] });
     } else {
-      login(testToken);
-      setUser(testUser);
+      queryClient.setQueryData(['user'], testUser);
     }
   };
 

@@ -1,8 +1,7 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-import { usePostLogoutQuery } from '@/src/_queries/auth/logout-queries';
-import { useAuthStore } from '@/src/store/use-auth-store';
+import { useAuth } from '@/src/hooks/use-auth';
+import { useLogout } from '@/src/hooks/use-logout';
 import HeaderPresenter from '@/src/components/common/header/presenter';
 
 /**
@@ -14,14 +13,8 @@ import HeaderPresenter from '@/src/components/common/header/presenter';
  */
 
 export default function Header() {
-  const { mutate: postLogout } = usePostLogoutQuery();
-  const { isAuth, logout } = useAuthStore();
-  const router = useRouter();
-  const handleLogout = () => {
-    logout();
-    postLogout();
-    router.push('/');
-  };
+  const { handleLogout } = useLogout();
+  const { isAuth } = useAuth();
 
   return (
     <div>

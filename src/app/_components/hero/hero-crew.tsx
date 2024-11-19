@@ -1,12 +1,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useAuthStore } from '@/src/store/use-auth-store';
+import { useAuth } from '@/src/hooks/use-auth';
 import ImgHeroCrew from '@/public/assets/icons/ic-dumbbell.svg';
 
 export default function HeroCrew() {
   const currentPath = usePathname();
-  const { isAuth } = useAuthStore();
+  const { isAuth } = useAuth();
 
   return (
     <section className="cursor-default pb-3 md:pb-4 lg:pb-12.5">
