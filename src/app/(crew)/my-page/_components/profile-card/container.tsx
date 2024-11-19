@@ -3,7 +3,11 @@
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
-import { fetchUpdatedUser, updateUserProfile } from '@/src/_apis/auth/user-apis';
+import {
+  fetchUpdatedUser,
+  resetUserProfileImage,
+  updateUserProfile,
+} from '@/src/_apis/auth/user-apis';
 import { useAuthStore } from '@/src/store/use-auth-store';
 import { User } from '@/src/types/auth';
 import ProfileCardPresenter from './presenter';
@@ -76,5 +80,24 @@ export default function ProfileCard() {
     input.click();
   };
 
-  return <ProfileCardPresenter data={{ ...user, profileImageUrl }} onEdit={handleEdit} />;
+  const handleDeleteProfile = async () => {
+    try {
+      await resetUserProfileImage();
+      const updatedUser = await fetchUpdatedUser();
+      setProfileImageUrl(''); // 초기화된 이미지 반영
+      setLocalUser(updatedUser);
+      setUser(updatedUser);
+      toast.success('프로필 이미지가 초기화되었습니다.');
+    } catch (error) {
+      toast.error('프로필 이미지 초기화에 실패했습니다.');
+    }
+  };
+
+  return (
+    <ProfileCardPresenter
+      data={{ ...user, profileImageUrl }}
+      onEdit={handleEdit}
+      onDelete={handleDeleteProfile}
+    />
+  );
 }

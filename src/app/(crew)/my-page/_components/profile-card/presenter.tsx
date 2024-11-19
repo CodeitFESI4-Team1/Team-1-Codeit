@@ -7,9 +7,10 @@ import { UserType } from '@/src/types/user';
 export interface ProfileCardProps {
   data: UserType;
   onEdit: () => void;
+  onDelete: () => void;
 }
 
-export default function ProfileCardPresenter({ data, onEdit }: ProfileCardProps) {
+export default function ProfileCardPresenter({ data, onEdit, onDelete }: ProfileCardProps) {
   return (
     <div className="flex items-end justify-between">
       <div className="flex items-center gap-6.5">
@@ -29,7 +30,7 @@ export default function ProfileCardPresenter({ data, onEdit }: ProfileCardProps)
             </Menu.Target>
             <Menu.Dropdown className="translate-x-16 translate-y-2 transform md:translate-x-24 md:translate-y-0 lg:translate-x-24 lg:translate-y-0">
               <Menu.Item onClick={onEdit}>프로필 이미지 수정하기</Menu.Item>
-              <Menu.Item color="red" onClick={() => alert('Delete Profile')}>
+              <Menu.Item color="red" onClick={onDelete}>
                 기본 프로필로 돌아가기
               </Menu.Item>
             </Menu.Dropdown>
