@@ -3,7 +3,7 @@ import { getUser } from '@/src/_apis/auth/user-apis';
 import { authStore } from '@/src/store/use-auth-store';
 
 export function useUser() {
-  const token = authStore.getState().token;
+  const { token } = authStore.getState();
   return useQuery({
     queryKey: ['user'],
     queryFn: getUser,

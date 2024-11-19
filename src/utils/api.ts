@@ -24,7 +24,7 @@ export async function fetchApi<T>(
   const controller = new AbortController();
   const { signal } = controller;
   const id = setTimeout(() => controller.abort(), timeout);
-  const token = authStore.getState().token;
+  const { token } = authStore.getState();
   const fetchOptions: RequestInit = {
     ...options,
     signal,
