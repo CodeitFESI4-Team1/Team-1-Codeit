@@ -18,13 +18,11 @@ interface ScheduledGatheringCardPresenterProps {
     liked: boolean;
   };
   onClick: () => void;
-  onLikeToggle: () => void;
 }
 
 export default function ScheduledGatheringCardPresenter({
   data,
   onClick,
-  onLikeToggle,
 }: ScheduledGatheringCardPresenterProps) {
   const {
     id,
@@ -96,9 +94,7 @@ export default function ScheduledGatheringCardPresenter({
             참여인원 {currentCount}/{totalCount}
           </p>
         </div>
-        <div className="absolute bottom-6 right-6">
-          <LikeBtn id={id} isLiked={liked} onLikeToggle={onLikeToggle} size={40} />
-        </div>
+        <div className="absolute bottom-6 right-6"></div>
       </div>
     </div>
   );
