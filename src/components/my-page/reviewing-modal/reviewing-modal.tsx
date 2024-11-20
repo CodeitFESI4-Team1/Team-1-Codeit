@@ -5,7 +5,7 @@ import { Modal } from '@mantine/core';
 import ReviewForm from './review-form';
 
 export interface ReviewingModalProps {
-  gatheringId: number;
+  gatheringId?: number;
   opened: boolean;
   close: () => void;
 }
