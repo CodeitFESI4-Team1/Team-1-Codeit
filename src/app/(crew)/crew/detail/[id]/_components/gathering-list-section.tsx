@@ -14,7 +14,7 @@ interface GatheringListSectionProps {
 }
 
 export default function GatheringListSection({ id }: GatheringListSectionProps) {
-  const { data: gatheringList, isLoading, error } = useGetGatheringListQuery(id);
+  const { data: gatheringList, isLoading, error, refetch } = useGetGatheringListQuery(id);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const router = useRouter();
 
@@ -41,6 +41,10 @@ export default function GatheringListSection({ id }: GatheringListSectionProps) 
   const handleLoginRedirect = () => {
     const currentPath = window.location.pathname || '/';
     router.push(`/login?redirect=${encodeURIComponent(currentPath)}`);
+  };
+
+  const handleModalAction = () => {
+    refetch();
   };
 
   // TODO: 추후 에러, 로딩 수정
@@ -73,6 +77,7 @@ export default function GatheringListSection({ id }: GatheringListSectionProps) 
         onLike={handleLike}
         onUnlike={handleUnlike}
         onShowLoginModal={() => setShowLoginModal(true)}
+        onModalAction={handleModalAction}
       />
       {showLoginModal && (
         <ConfirmModal

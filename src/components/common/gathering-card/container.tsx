@@ -14,6 +14,7 @@ interface GatheringCardContainerProps extends GatheringType {
   crewId: number;
   onLike: (gatheringId: number) => Promise<void>;
   onUnlike: (gatheringId: number) => Promise<void>;
+  onModalAction: () => void;
 }
 
 export default function GatheringCard({
@@ -29,6 +30,7 @@ export default function GatheringCard({
   crewId,
   onLike,
   onUnlike,
+  onModalAction,
 }: GatheringCardContainerProps) {
   const [opened, { open, close }] = useDisclosure(false);
   const [isLiked, setIsLiked] = useState(initialIsLiked);
@@ -99,7 +101,12 @@ export default function GatheringCard({
         className={className}
       />
       {opened && gatheringData && (
-        <GatheringDetailModalContainer opened={opened} close={close} data={gatheringData} />
+        <GatheringDetailModalContainer
+          opened={opened}
+          close={close}
+          data={gatheringData}
+          onUpdate={onModalAction}
+        />
       )}
     </>
   );
