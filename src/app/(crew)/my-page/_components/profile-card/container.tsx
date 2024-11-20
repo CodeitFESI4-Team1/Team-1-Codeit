@@ -10,6 +10,7 @@ import {
 } from '@/src/_apis/auth/user-apis';
 import { useUser } from '@/src/_queries/auth/user-queries';
 import { useAuth } from '@/src/hooks/use-auth';
+import ProfileSkeleton from '@/src/components/common/skeleton/profile-skeleton';
 import ProfileCardPresenter from './presenter';
 
 export default function ProfileCard() {
@@ -38,7 +39,7 @@ export default function ProfileCard() {
     }
   }, [user]);
 
-  if (userLoading || !isAuthChecked) return <div>로딩 중...</div>;
+  if (userLoading || !isAuthChecked) return <ProfileSkeleton />;
   if (!user) return null;
 
   const handleEdit = () => {
