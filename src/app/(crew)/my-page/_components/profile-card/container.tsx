@@ -3,11 +3,7 @@
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
-import {
-  fetchUpdatedUser,
-  resetUserProfileImage,
-  updateUserProfile,
-} from '@/src/_apis/auth/user-apis';
+import { resetUserProfileImage, updateUserProfile } from '@/src/_apis/auth/user-apis';
 import { useUser } from '@/src/_queries/auth/user-queries';
 import { useAuth } from '@/src/hooks/use-auth';
 import ProfileSkeleton from '@/src/components/common/skeleton/profile-skeleton';
@@ -50,7 +46,7 @@ export default function ProfileCard() {
       const file = (event.target as HTMLInputElement)?.files?.[0];
       if (file) {
         if (file.size > 5 * 1024 * 1024) {
-          alert('5MB 이하의 파일만 업로드 가능합니다.');
+          toast.error('5MB 이하의 파일만 업로드 가능합니다.');
           return;
         }
 

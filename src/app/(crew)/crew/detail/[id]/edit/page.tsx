@@ -10,7 +10,7 @@ import IcoCreateCrew from '@/public/assets/icons/ic-create-crew.svg';
 
 export default function EditCrewPage() {
   const { id } = useParams();
-  const { data, isLoading, error } = useGetCrewDetailQuery(Number(id));
+  const { data, isLoading } = useGetCrewDetailQuery(Number(id));
   const { isPending, mutate } = useEditCrewQuery(Number(id));
   if (data === undefined) return null;
 

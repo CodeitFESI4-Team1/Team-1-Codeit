@@ -14,7 +14,7 @@ interface ReviewProps {
 }
 
 export default function ReviewForm({ onCancel }: ReviewProps) {
-  const { register, handleSubmit } = useForm<FormValues>();
+  const { register } = useForm<FormValues>();
   const [textReview, setTextReview] = useState<string>('');
   const [point, setPoint] = useState<number>(0);
 

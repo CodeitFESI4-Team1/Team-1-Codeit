@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import ProgressBar from '@/src/components/common/progress-bar/index';
@@ -26,20 +25,8 @@ export default function CrewCard({
   crewMembers,
   inWhere,
 }: CrewCardProps) {
-  const [prefetched, setPrefetched] = useState(new Set());
   const CREWPAGE = `/crew/detail/${id}`;
   const router = useRouter();
-
-  const handleCardClick = () => {
-    router.push(CREWPAGE);
-  };
-
-  const handleCardMouseUp = () => {
-    if (!prefetched.has(CREWPAGE)) {
-      router.prefetch(CREWPAGE);
-      setPrefetched(new Set(prefetched).add(CREWPAGE));
-    }
-  };
 
   return (
     <div

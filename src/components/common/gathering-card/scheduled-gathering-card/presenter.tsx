@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import { Badge } from '@mantine/core';
 import { formatDate } from '@/src/utils/format-date';
-import LikeBtn from '@/src/components/common/input/button/like-btn';
 import IcoPerson from '@/public/assets/icons/person.svg';
 
 interface ScheduledGatheringCardPresenterProps {
@@ -25,7 +24,6 @@ export default function ScheduledGatheringCardPresenter({
   onClick,
 }: ScheduledGatheringCardPresenterProps) {
   const {
-    id,
     crewTitle,
     crewMainLocation,
     crewSubLocation,
@@ -34,7 +32,6 @@ export default function ScheduledGatheringCardPresenter({
     currentCount,
     totalCount,
     imageUrl,
-    liked,
   } = data;
 
   const { date, time } = formatDate(dateTime);

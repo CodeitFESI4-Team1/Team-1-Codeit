@@ -1,6 +1,5 @@
 import { fetchApi } from '@/src/utils/api';
 import validateFile from '@/src/utils/validate-file';
-import Toast from '@/src/components/common/toast';
 import { GetImageUrlResponseTypes } from '@/src/types/create-crew';
 
 export async function getImageUrl(

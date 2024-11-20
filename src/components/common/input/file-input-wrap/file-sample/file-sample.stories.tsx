@@ -26,12 +26,12 @@ const meta: Meta = {
 export default meta;
 
 const Template: StoryFn<FileSampleProps> = function FileInputStory(args: FileSampleProps) {
-  const [selectedFile, setSelectedFile] = useState<string | null>(null);
   const [isBlur, setIsBlur] = useState(false);
 
   const handleFileChange = (file: string | null) => {
-    setSelectedFile(file);
-    setIsBlur(false); // 파일 선택 시 블러 해제
+    if (file) {
+      setIsBlur(false); // 파일 선택 시 블러 해제
+    }
   };
 
   return (
