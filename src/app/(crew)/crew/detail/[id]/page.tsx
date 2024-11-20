@@ -23,10 +23,7 @@ export default async function CrewDetailPage({ params }: CrewDetailPageProps) {
       {/* Gathering Section */}
       <section className="w-full space-y-6">
         <article className="space-y-6">
-          <div className="flex items-center justify-between px-3 md:px-7 lg:px-11">
-            <h2 className="text-2xl font-semibold">크루 약속</h2>
-            <CreateGathering crewId={Number(params.id)} />
-          </div>
+          <CreateGathering crewId={Number(params.id)} />
           <div className="flex w-full overflow-hidden px-3 md:px-7 lg:px-0">
             <div className="relative -mx-3 w-[calc(100%+1.5rem)] px-3 md:-mx-7 md:w-[calc(100%+3.5rem)] md:px-7 lg:-mx-6 lg:w-[calc(100%+3rem)] lg:px-0">
               <GatheringListSection id={id} />

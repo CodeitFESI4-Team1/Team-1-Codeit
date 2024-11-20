@@ -26,7 +26,7 @@ export default function LikedListPresenter({
         className={cn(
           'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
           'mx-auto place-content-start justify-items-center gap-4',
-          'md:min-h-[1064px] lg:min-h-[704px]',
+          'md:min-h-[1172px] lg:min-h-[776px]',
         )}
       >
         {content.map((card) => (

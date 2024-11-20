@@ -43,10 +43,19 @@ const Template: StoryFn<GatheringDetailModalContainerProps> = function Gathering
     setIsOpened(opened);
   }, [opened]);
 
+  const handleUpdate = () => {
+    action('Update action performed')();
+  };
+
   return (
     <>
       <Button onClick={handleOpen}>Open Modal</Button>
-      <GatheringDetailModalContainer opened={isOpened} close={handleClose} data={data} />
+      <GatheringDetailModalContainer
+        opened={isOpened}
+        close={handleClose}
+        data={data}
+        onUpdate={handleUpdate}
+      />
     </>
   );
 };
