@@ -14,7 +14,7 @@ export interface GatheringDetailModalContainerProps {
   opened: boolean;
   close: () => void;
   data: GatheringDetailType;
-  onUpdate: () => void;
+  onUpdate?: () => void;
 }
 
 export default function GatheringDetailModalContainer({
@@ -32,7 +32,7 @@ export default function GatheringDetailModalContainer({
       await JoinGathering(data.crewId, data.id);
       showToast('약속에 참여했습니다.', 'success');
       close();
-      onUpdate();
+      onUpdate?.();
     } catch (error) {
       if (error instanceof ApiError) {
         showToast(`참여 중 에러 발생: ${error.message}`, 'error');
@@ -44,7 +44,7 @@ export default function GatheringDetailModalContainer({
     try {
       await LeaveGathering(data.crewId, data.id);
       close();
-      onUpdate();
+      onUpdate?.();
     } catch (error) {
       if (error instanceof ApiError) {
         showToast(`참여 취소 중 에러 발생: ${error.message}`, 'error');
@@ -57,7 +57,7 @@ export default function GatheringDetailModalContainer({
       await CancelGathering(data.crewId, data.id);
       showToast('약속을 삭제했습니다.', 'success');
       close();
-      onUpdate();
+      onUpdate?.();
     } catch (error) {
       if (error instanceof ApiError) {
         showToast(`약속 삭제 중 에러 발생: ${error.message}`, 'error');
