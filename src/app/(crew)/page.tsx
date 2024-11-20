@@ -2,7 +2,7 @@
 
 import { useRef, useState } from 'react';
 import Image from 'next/image';
-import { Divider, Loader, TextInput } from '@mantine/core';
+import { Divider, Loader, Skeleton, TextInput } from '@mantine/core';
 import { useGetCrewListQuery } from '@/src/_queries/crew/crew-list-queries';
 import regionData from '@/src/data/region.json';
 import { useInfiniteScroll } from '@/src/hooks/use-infinite-scroll';
@@ -11,6 +11,7 @@ import HeroCrew from '@/src/app/(crew)/_components/hero/hero-crew';
 import CrewCardList from '@/src/components/common/crew-list/crew-card-list';
 import Button from '@/src/components/common/input/button';
 import DropDown from '@/src/components/common/input/drop-down';
+import CrewSkeletonList from '@/src/components/common/skeleton/crew-skeleton-list';
 import IcoSearch from '@/public/assets/icons/ic-search.svg';
 
 export default function HomePage() {
@@ -133,9 +134,7 @@ export default function HomePage() {
       <div className="mt-8 px-3 md:px-8 lg:px-11.5">
         {data && <CrewCardList data={data} />}
         {isLoading || isFetchingNextPage ? (
-          <div className="flex justify-center py-10">
-            <Loader size="sm" />
-          </div>
+          <CrewSkeletonList num={6} />
         ) : (
           <div ref={ref} className="h-[1px]" />
         )}
