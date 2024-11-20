@@ -41,7 +41,7 @@ export default function GatheringCardPresenter({
   deadlineMessage,
   className,
 }: GatheringCardPresenterProps) {
-  const { date, time } = formatDate(dateTime);
+  const { date, dayOfWeek, time } = formatDate(dateTime);
 
   const handleLikeClick = (e: MouseEvent) => {
     e.stopPropagation();
@@ -76,7 +76,7 @@ export default function GatheringCardPresenter({
         <div>
           <div className="flex items-center space-x-2">
             <p className="overflow-hidden text-ellipsis whitespace-nowrap text-base font-semibold text-blue-500">
-              {date}
+              {`${date} ${dayOfWeek}`}
             </p>
             <div className="h-[18px] w-[1px] bg-gray-300" />
             <p className="overflow-hidden text-ellipsis whitespace-nowrap text-base font-semibold text-blue-500">

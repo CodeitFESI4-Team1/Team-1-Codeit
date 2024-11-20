@@ -21,7 +21,7 @@ export default function LikedListPresenter({
   const { content, pageSize, totalPages } = gatheringData;
 
   return (
-    <div className="mx-auto max-w-[1200px] px-4">
+    <div className="mx-auto max-w-[1200px]">
       <div
         className={cn(
           'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
