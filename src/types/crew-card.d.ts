@@ -59,7 +59,6 @@ export interface CrewDetail {
   imageUrl: string;
   totalGatheringCount: number;
   crewMembers: CrewDetailMember[];
-  confirmed: boolean;
   introduce?: string;
 }
 

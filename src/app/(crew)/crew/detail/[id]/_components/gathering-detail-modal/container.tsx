@@ -14,14 +14,14 @@ export interface GatheringDetailModalContainerProps {
   opened: boolean;
   close: () => void;
   data: GatheringDetailType;
+  onUpdate?: () => void;
 }
-
-// NOTE: 테스트는 로그인 후 토큰이 안담겨서 추후 진행하겠습니다!
 
 export default function GatheringDetailModalContainer({
   opened,
   close,
   data,
+  onUpdate,
 }: GatheringDetailModalContainerProps) {
   const showToast = (message: string, type: 'success' | 'error' | 'warning') => {
     toast(message, { type });
@@ -32,6 +32,7 @@ export default function GatheringDetailModalContainer({
       await JoinGathering(data.crewId, data.id);
       showToast('약속에 참여했습니다.', 'success');
       close();
+      onUpdate?.();
     } catch (error) {
       if (error instanceof ApiError) {
         showToast(`참여 중 에러 발생: ${error.message}`, 'error');
@@ -43,6 +44,7 @@ export default function GatheringDetailModalContainer({
     try {
       await LeaveGathering(data.crewId, data.id);
       close();
+      onUpdate?.();
     } catch (error) {
       if (error instanceof ApiError) {
         showToast(`참여 취소 중 에러 발생: ${error.message}`, 'error');
@@ -55,6 +57,7 @@ export default function GatheringDetailModalContainer({
       await CancelGathering(data.crewId, data.id);
       showToast('약속을 삭제했습니다.', 'success');
       close();
+      onUpdate?.();
     } catch (error) {
       if (error instanceof ApiError) {
         showToast(`약속 삭제 중 에러 발생: ${error.message}`, 'error');

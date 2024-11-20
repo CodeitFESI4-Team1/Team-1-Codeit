@@ -82,6 +82,7 @@ const config: Config = {
         base: ['1rem', { lineHeight: '1.5rem' }],
         sm: ['0.875rem', { lineHeight: '1.25rem' }],
         xs: ['0.75rem', { lineHeight: '1rem' }],
+        404: ['18.75rem', { lineHeight: '18.75rem' }],
       },
       fontWeight: {
         bold: '700',
@@ -129,9 +130,14 @@ const config: Config = {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
         },
+        wave: {
+          '0%': { transform: 'translate(0)' },
+          '100%': { transform: 'translate(-30%)' },
+        },
       },
       animation: {
         fade: 'show 0.5s ease-in',
+        wave: 'wave 0.8s linear infinite',
       },
     },
   },
