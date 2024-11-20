@@ -3,10 +3,15 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { GetGatheringDetail, createGathering } from '@/src/_apis/gathering/gathering-detail-apis';
 import { CreateGatheringRequestTypes } from '@/src/types/gathering-data';
 
-export function useGetGatheringDetailQuery(crewId: number, gatheringId: number) {
+export function useGetGatheringDetailQuery(
+  crewId: number,
+  gatheringId: number,
+  options?: { enabled?: boolean },
+) {
   return useQuery({
     queryKey: ['gatheringDetail', crewId, gatheringId],
     queryFn: () => GetGatheringDetail(crewId, gatheringId),
+    ...options,
   });
 }
 

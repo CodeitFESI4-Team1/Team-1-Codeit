@@ -16,8 +16,6 @@ export interface GatheringDetailModalContainerProps {
   data: GatheringDetailType;
 }
 
-// NOTE: 테스트는 로그인 후 토큰이 안담겨서 추후 진행하겠습니다!
-
 export default function GatheringDetailModalContainer({
   opened,
   close,

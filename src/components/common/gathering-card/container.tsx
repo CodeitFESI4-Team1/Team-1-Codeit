@@ -6,7 +6,7 @@ import { useDisclosure } from '@mantine/hooks';
 import { useGetGatheringDetailQuery } from '@/src/_queries/gathering/gathering-detail-queries';
 import { ApiError } from '@/src/utils/api';
 import GatheringDetailModalContainer from '@/src/app/(crew)/crew/detail/[id]/_components/gathering-detail-modal/container';
-import { GatheringType } from '@/src/types/gathering-data';
+import { GatheringData, GatheringDetailType, GatheringType } from '@/src/types/gathering-data';
 import GatheringCardPresenter from './presenter';
 
 interface GatheringCardContainerProps extends GatheringType {
@@ -32,8 +32,6 @@ export default function GatheringCard({
 }: GatheringCardContainerProps) {
   const [opened, { open, close }] = useDisclosure(false);
   const [isLiked, setIsLiked] = useState(initialIsLiked);
-
-  // 날짜 비교
   const gatheringDate = new Date(dateTime);
   const today = new Date();
   const isPast = gatheringDate < today;
@@ -44,6 +42,21 @@ export default function GatheringCard({
 
   // 마감 시간 문자열 생성
   const deadlineMessage = `오늘 ${gatheringDate.getHours()}시 마감`;
+
+  // API 데이터 가져오기 (모달이 열릴 때만 호출)
+  const {
+    data: gatheringData,
+    error,
+    refetch,
+  } = useGetGatheringDetailQuery(crewId, id, {
+    enabled: false, // 초기에는 비활성화
+  });
+
+  // 모달 열기
+  const openModal = () => {
+    refetch(); // 모달 열릴 때 데이터 가져오기
+    open();
+  };
 
   // 찜하기 상태 업데이트
   const handleLikeToggle = async () => {
@@ -60,29 +73,12 @@ export default function GatheringCard({
     }
   };
 
-  const { data: gatheringData, error } = useGetGatheringDetailQuery(crewId, id);
-
+  // 에러 처리
   useEffect(() => {
     if (error) {
-      if (error instanceof ApiError) {
-        try {
-          const errorData = JSON.parse(error.message);
-
-          if (errorData.status === 'NOT_FOUND') {
-            toast.error('모임 정보를 찾을 수 없습니다.');
-          }
-        } catch {
-          toast.error(`Error ${error.status}: ${error.message}`);
-        }
-      } else {
-        toast.error('데이터 통신에 실패했습니다.');
-      }
+      toast.error('데이터를 가져오는 데 실패했습니다.');
     }
   }, [error]);
-
-  const openModal = () => {
-    open();
-  };
 
   return (
     <>
