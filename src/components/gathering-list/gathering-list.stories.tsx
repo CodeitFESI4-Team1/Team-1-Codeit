@@ -7,7 +7,7 @@ import LikedListPresenter from './liked-list-presenter';
 const queryClient = new QueryClient();
 
 const meta: Meta<typeof LikedListPresenter> = {
-  title: 'Components/LikedListPresenter',
+  title: 'gathering/liked-gathering-card',
   component: LikedListPresenter,
   parameters: {
     layout: 'fullscreen',

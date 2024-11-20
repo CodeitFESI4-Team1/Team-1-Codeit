@@ -6,7 +6,7 @@ import ClientProvider from '@/src/components/client-provider';
 import CrewCardList from './crew-card-list';
 
 const meta: Meta = {
-  title: 'Components/CrewCardList/CrewCardList',
+  title: 'crew/crew-card-list',
   component: CrewCardList,
   parameters: {
     layout: 'fullscreen',

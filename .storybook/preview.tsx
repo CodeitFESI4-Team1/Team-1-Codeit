@@ -24,3 +24,20 @@ export const decorators = [
   (renderStory: any) => <ColorSchemeWrapper>{renderStory()}</ColorSchemeWrapper>,
   (renderStory: any) => <MantineProvider>{renderStory()}</MantineProvider>,
 ];
+
+export const parameters = {
+  options: {
+    storySort: {
+      method: 'alphabetical',
+      order: [
+        'common',
+        ['button', 'calendar', 'image', 'input'],
+        'layout',
+        'auth',
+        'crew',
+        'gathering',
+        'review',
+      ],
+    },
+  },
+};

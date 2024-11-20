@@ -3,7 +3,7 @@ import type { Meta } from '@storybook/react';
 import FloatingButton, { FloatingButtonProps } from './floating-btn';
 
 const meta: Meta<typeof FloatingButton> = {
-  title: 'Components/FloatingButton',
+  title: 'common/button/floating-button',
   component: FloatingButton,
   tags: ['autodocs'],
   argTypes: {

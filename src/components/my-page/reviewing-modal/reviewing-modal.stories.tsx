@@ -5,7 +5,7 @@ import { Meta, StoryFn } from '@storybook/react';
 import ReviewingModal, { ReviewingModalProps } from './reviewing-modal';
 
 const meta: Meta<typeof ReviewingModal> = {
-  title: 'Modal/ReviewingModal',
+  title: 'review/review-modal',
   component: ReviewingModal,
   argTypes: { opened: { control: 'boolean' } },
 };

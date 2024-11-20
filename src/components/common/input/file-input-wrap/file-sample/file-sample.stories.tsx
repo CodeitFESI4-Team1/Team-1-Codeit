@@ -5,7 +5,7 @@ import ImgCrewSampleUrls from '@/public/assets/images/crew-sample';
 import FileSample, { FileSampleProps } from '.';
 
 const meta: Meta = {
-  title: 'Components/input/file-sample',
+  title: 'common/image/image-sample',
   component: FileSample,
   argTypes: {
     image: {

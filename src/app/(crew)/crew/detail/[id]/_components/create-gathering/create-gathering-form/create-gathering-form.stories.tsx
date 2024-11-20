@@ -14,7 +14,7 @@ const initialValue: CreateGatheringFormTypes = {
 };
 
 export default {
-  title: 'forms/create-gathering-form',
+  title: 'gathering/create-gathering-form',
   component: CreateGatheringForm,
   tags: ['autodocs'],
   parameters: {

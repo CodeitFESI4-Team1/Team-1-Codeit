@@ -53,7 +53,7 @@ const mockGatheringData = [
 const queryClient = new QueryClient();
 
 const meta: Meta<typeof CrewGatheringList> = {
-  title: 'Components/CrewGatheringList',
+  title: 'crew/crew-gathering-list',
   component: CrewGatheringList,
   parameters: {
     layout: 'fulled', // layout 변경

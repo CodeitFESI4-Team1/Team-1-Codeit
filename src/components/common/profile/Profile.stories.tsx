@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Profile } from './index';
 
 const meta: Meta<typeof Profile> = {
-  title: 'Components/Profile',
+  title: 'common/profile',
   component: Profile,
   parameters: {
     layout: 'centered',

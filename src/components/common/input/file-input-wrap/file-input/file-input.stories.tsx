@@ -4,7 +4,7 @@ import { Meta, StoryFn } from '@storybook/react';
 import FileInput, { FileInputProps } from '.';
 
 const meta: Meta = {
-  title: 'Components/input/file-input',
+  title: 'common/image/image-input',
   component: FileInput,
   tags: ['autodocs'],
   argTypes: {

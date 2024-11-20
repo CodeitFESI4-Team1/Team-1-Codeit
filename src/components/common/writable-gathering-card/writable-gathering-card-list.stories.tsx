@@ -6,7 +6,7 @@ import { WritableGatheringCardInformResponse } from '@/src/types/writable-gather
 import WritableGatheringCardList from './writable-gathering-card-list';
 
 const meta: Meta = {
-  title: 'Components/WritableGatheringCardList',
+  title: 'gathering/writable-gathering-card-list',
   component: WritableGatheringCardList,
   parameters: {
     layout: 'centered',

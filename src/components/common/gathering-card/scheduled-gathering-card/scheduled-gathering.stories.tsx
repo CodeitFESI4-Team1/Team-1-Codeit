@@ -3,7 +3,7 @@ import ClientProvider from '@/src/components/client-provider';
 import ScheduledGatheringCard from './container';
 
 const meta: Meta<typeof ScheduledGatheringCard> = {
-  title: 'Components/ScheduledGatheringCard',
+  title: 'gathering/scheduled-gathering-card',
   component: ScheduledGatheringCard,
   parameters: {
     layout: 'fullscreen',
