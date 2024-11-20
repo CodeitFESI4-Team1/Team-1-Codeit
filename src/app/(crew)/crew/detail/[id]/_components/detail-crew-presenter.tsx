@@ -78,16 +78,16 @@ export default function DetailCrewPresenter({
         </div>
 
         {/* 오른쪽 하단 공유 및 케밥 버튼 */}
-        <div className="absolute bottom-6 right-6 flex space-x-2">
+        <div className="absolute bottom-6 right-6 flex items-center space-x-2">
           <button type="button" className="bg-transparent" onClick={onShareClick}>
             <Image src={ShareIco} alt="공유하기" className="h-6 w-6" />
           </button>
           {isCaptain || isMember ? (
             <Menu trigger="click" position="bottom-end" openDelay={100} closeDelay={400}>
               <Menu.Target>
-                <div className="cursor-pointer">
+                <button type="button" className="cursor-pointer">
                   <Image src={KebabIcon} alt="더보기" width={20} height={20} />
-                </div>
+                </button>
               </Menu.Target>
               <Menu.Dropdown>
                 {isCaptain ? (

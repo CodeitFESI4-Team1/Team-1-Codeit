@@ -118,7 +118,7 @@ export default function DetailCrew({ id }: DetailCrewContainerProps) {
           return <p>크루 정보를 찾을 수 없습니다</p>;
         }
       } catch (parseError) {
-        return <p>{`Error ${fetchError.status}: ${fetchError.message}`}</p>;
+        return <p>{`Error ${fetchError.message}`}</p>;
       }
     }
     return <p>데이터 통신에 실패했습니다.</p>;
