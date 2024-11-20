@@ -110,7 +110,7 @@ export default function DetailCrew({ id }: DetailCrewContainerProps) {
     return <Loader />;
   }
 
-  //TODO: 추후 404페이지로 이동시키기
+  // TODO: 추후 404페이지로 이동시키기
   if (fetchError) {
     if (fetchError instanceof ApiError) {
       try {
