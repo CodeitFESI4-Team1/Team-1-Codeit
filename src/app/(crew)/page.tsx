@@ -134,7 +134,7 @@ export default function HomePage() {
       <div className="mt-8 px-3 md:px-8 lg:px-11.5">
         {data && <CrewCardList data={data} />}
         {isLoading || isFetchingNextPage ? (
-          <CrewSkeletonList num={6} />
+          <CrewSkeletonList num={6} column={2} />
         ) : (
           <div ref={ref} className="h-[1px]" />
         )}
