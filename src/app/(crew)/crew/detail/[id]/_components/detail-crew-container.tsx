@@ -89,7 +89,7 @@ export default function DetailCrew({ id }: DetailCrewContainerProps) {
       toast.success('크루가 성공적으로 삭제되었습니다.');
       router.push('/');
     } catch (deleteError) {
-      toast.error('크루 삭제 중 에러가 발생했습니다.');
+      toast.error('🚫 크루 삭제 중 에러가 발생했습니다.');
     }
   };
 
@@ -110,6 +110,7 @@ export default function DetailCrew({ id }: DetailCrewContainerProps) {
     return <Loader />;
   }
 
+  //TODO: 추후 404페이지로 이동시키기
   if (fetchError) {
     if (fetchError instanceof ApiError) {
       try {
