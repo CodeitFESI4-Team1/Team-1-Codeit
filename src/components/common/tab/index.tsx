@@ -21,27 +21,11 @@ export interface TabsProps {
  */
 
 export default function Tabs({ tabs, activeTab, onTabClick, variant = 'default' }: TabsProps) {
-  const gap = 8;
-  const tabCount = tabs.length;
-  const buttonWidth = `calc((1200px - ${(tabCount - 1) * gap}px) / ${tabCount})`;
-
-  // 기본 스타일
   const baseStyle =
-    variant === 'review'
-      ? 'flex h-11 w-32 items-center justify-center text-center text-base font-medium'
-      : 'px-4 py-2 font-bold sm:text-base md:text-lg lg:text-lg';
-
-  // 활성화된 탭 스타일
-  const activeStyle = variant === 'review' ? 'bg-black text-white' : 'bg-blue-500 text-white';
-
-  // 비활성화된 탭 스타일
-  const inactiveStyle =
-    variant === 'review' ? 'bg-white text-black' : 'border border-blue-500 bg-white text-blue-500';
-
-  const tabListStyle = variant === 'review' ? 'gap-2' : 'gap-4';
+    'rounded-xl w-full border border-blue-500 px-4 py-2 font-bold sm:text-base md:w-max md:text-lg lg:text-lg ';
 
   return (
-    <div role="tablist" className={`flex ${tabListStyle}`}>
+    <div role="tablist" className={`flex space-x-4`}>
       {tabs.map((tab) => {
         const isActive = activeTab === tab.id;
 
@@ -50,10 +34,9 @@ export default function Tabs({ tabs, activeTab, onTabClick, variant = 'default' 
             key={tab.id}
             role="tab"
             type="button"
-            style={variant === 'default' ? { width: buttonWidth } : undefined}
             aria-selected={isActive}
             onClick={() => onTabClick(tab.id)}
-            className={`rounded-xl ${baseStyle} ${isActive ? activeStyle : inactiveStyle}`}
+            className={`${baseStyle} ${isActive ? 'bg-blue-500 text-white' : 'bg-white text-blue-500'}`}
           >
             {tab.label}
           </button>
