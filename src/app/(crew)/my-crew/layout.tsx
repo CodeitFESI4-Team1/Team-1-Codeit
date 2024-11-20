@@ -24,18 +24,18 @@ export default function MyCrewLayout({ children }: { children: ReactNode }) {
   }, [currentPath]);
 
   return (
-    <div className="py-8 md:py-12.5">
-      <div className="px-3 md:px-8 lg:px-11.5">
-        <Tabs
-          variant="default"
-          tabs={myCrewTabs}
-          activeTab={currentTab}
-          onTabClick={(id) => {
-            handleTabClick(id);
-          }}
-        />
-      </div>
-      <div className="mt-8 px-3 md:px-8 lg:px-11.5">{children}</div>
+    <div className="px-3 py-4 md:px-8 md:py-16 lg:px-11.5">
+      <div className="hidden pb-6 text-3xl font-bold md:block">나의 크루</div>
+      <Tabs
+        variant="default"
+        tabs={myCrewTabs}
+        activeTab={currentTab}
+        onTabClick={(id) => {
+          handleTabClick(id);
+        }}
+      />
+      <div className="mt-10 hidden w-full border-t-2 border-gray-200 md:block" />
+      <div className="mt-10">{children}</div>
     </div>
   );
 }

@@ -1,12 +1,14 @@
+'use client';
+
 import { useState } from 'react';
 import Image from 'next/image';
 import Profiles from '@/src/components/common/crew-list/profiles';
 import Button from '@/src/components/common/input/button';
-import { ParticipantType } from '@/src/types/writable-gathering-card';
+import { ParticipantType } from '@/src/types/reviewable-gathering-card';
 import person from '@/public/assets/icons/person.svg';
-import ReviewingModal from '../../my-page/reviewing-modal/reviewing-modal';
+import ReviewingModal from '../reviewing-modal/reviewing-modal';
 
-interface WritableGatheringCardProps {
+interface ReviewableGatheringCardProps {
   id: number;
   gatheringName: string;
   dateTime: string;
@@ -27,7 +29,7 @@ export function formatDateWithYear(dateString: string) {
   return { year, month, day };
 }
 
-export default function WritableGatheringCard({
+export default function ReviewableGatheringCard({
   id,
   currentCount,
   dateTime,
@@ -35,7 +37,7 @@ export default function WritableGatheringCard({
   imageUrl,
   participants,
   totalCount,
-}: WritableGatheringCardProps) {
+}: ReviewableGatheringCardProps) {
   const [isModalOpened, setIsModalOpened] = useState(false);
   const { year, month, day } = formatDateWithYear(dateTime);
 
@@ -48,23 +50,21 @@ export default function WritableGatheringCard({
   return (
     <div className="flex w-full max-w-[1200px] gap-[20px] border-b-[2px] border-b-gray-200 py-[24px]">
       <span className="relative h-[166px] w-[294px] overflow-hidden rounded-[12px]">
-        <Image src={imageUrl} alt={gatheringName} fill objectFit="cover" />
+        <Image src={imageUrl} alt={gatheringName} fill />
       </span>
       <div className="flex w-full items-end justify-between">
         <div className="flex h-full flex-col items-start justify-between">
           <div>
             <div className="mb-[15px] flex items-center">
-              <span className="text-xl font-semibold text-gray-800">{gatheringName} |</span>
-              <span className="ml-2 text-base font-medium text-gray-700">위치</span>
+              <span className="text-xl font-semibold text-gray-800">{gatheringName}</span>
             </div>
             <div className="flex w-fit items-center">
               <span className="relative inline-block h-[20px] w-[20px]">
-                <Image alt="참여 인원" src={person} fill objectFit="contain" />
+                <Image alt="참여 인원" src={person} fill />
               </span>
               <span className="mr-[22px] text-base font-medium text-gray-700">
                 {currentCount}/{totalCount}
               </span>
-              {/* NOTE: participants prop 넘겨줘야함 */}
               <Profiles profiles={profiles} />
             </div>
           </div>
@@ -78,6 +78,7 @@ export default function WritableGatheringCard({
         </Button>
       </div>
       <ReviewingModal
+        gatheringId={id}
         opened={isModalOpened}
         close={() => {
           setIsModalOpened(false);
