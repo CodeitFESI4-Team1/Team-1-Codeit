@@ -25,7 +25,7 @@ export default function Tabs({ tabs, activeTab, onTabClick, variant = 'default' 
     'rounded-xl w-full border border-blue-500 px-4 py-2 font-bold sm:text-base md:w-max md:text-lg lg:text-lg ';
 
   return (
-    <div role="tablist" className={`flex space-x-4`}>
+    <div role="tablist" className="flex space-x-4">
       {tabs.map((tab) => {
         const isActive = activeTab === tab.id;
 

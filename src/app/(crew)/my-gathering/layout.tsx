@@ -37,7 +37,7 @@ export default function MyGatheringLayout({
         activeTab={currentTab}
         onTabClick={(id) => handleTabClick(id)}
       />
-      <div className="mt-10 hidden w-full border-t-2 border-gray-200 md:block"></div>
+      <div className="mt-10 hidden w-full border-t-2 border-gray-200 md:block" />
       {children}
     </div>
   );
