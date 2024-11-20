@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
+import { Loader } from '@mantine/core';
 import { addLike, removeLike } from '@/src/_apis/liked/liked-apis';
 import { useGetGatheringListQuery } from '@/src/_queries/crew/gathering-list-queries';
 import { ApiError } from '@/src/utils/api';
@@ -51,7 +52,7 @@ export default function GatheringListSection({ id }: GatheringListSectionProps) 
   if (isLoading)
     return (
       <div className="flex items-center justify-center">
-        <p>로딩 중...</p>
+        <Loader />
       </div>
     );
 

@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
+import { Loader } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { cancelCrew, joinCrew, leaveCrew } from '@/src/_apis/crew/crew-detail-apis';
 import { useUser } from '@/src/_queries/auth/user-queries';
@@ -106,7 +107,7 @@ export default function DetailCrew({ id }: DetailCrewContainerProps) {
 
   // TODO: 로딩, 에러처리 추후 개선
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <Loader />;
   }
 
   if (fetchError) {
