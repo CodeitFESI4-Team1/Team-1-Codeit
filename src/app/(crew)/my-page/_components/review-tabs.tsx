@@ -17,7 +17,11 @@ export default function ReviewTabs() {
 
     const selectedTab = myPageTabs.find((tab) => tab.id === id);
     if (selectedTab?.route) {
-      router.push(selectedTab.route);
+      try {
+        router.push(selectedTab.route);
+      } catch (error) {
+        throw error;
+      }
     }
   };
 
