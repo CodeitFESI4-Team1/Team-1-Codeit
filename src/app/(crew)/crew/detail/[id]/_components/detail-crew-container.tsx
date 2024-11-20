@@ -21,6 +21,7 @@ export default function DetailCrew({ id }: DetailCrewContainerProps) {
   const [isCaptain, setIsCaptain] = useState(false);
   const [isMember, setIsMember] = useState(false);
   const [isJoining, setIsJoining] = useState(false);
+  const [isConfirmed, setIsConfirmed] = useState(false);
   const [confirmCancelOpened, { open: openConfirmCancel, close: closeConfirmCancel }] =
     useDisclosure();
   const router = useRouter();
@@ -36,12 +37,20 @@ export default function DetailCrew({ id }: DetailCrewContainerProps) {
   const { data, isLoading, error: fetchError, refetch } = useGetCrewDetailQuery(id);
 
   useEffect(() => {
-    if (currentUserId && data) {
-      const captain = data.crewMembers.find((member) => member.captain);
-      const memberExists = data.crewMembers.some((member) => member.id === currentUserId);
+    if (data) {
+      // confirmed 상태 계산
+      if (data.participantCount !== undefined && data.totalCount !== undefined) {
+        setIsConfirmed(data.participantCount === data.totalCount);
+      }
 
-      setIsCaptain(captain?.id === currentUserId);
-      setIsMember(memberExists);
+      // Captain 및 멤버 여부 확인 (currentUserId 필요)
+      if (currentUserId) {
+        const captain = data.crewMembers.find((member) => member.captain);
+        const memberExists = data.crewMembers.some((member) => member.id === currentUserId);
+
+        setIsCaptain(captain?.id === currentUserId);
+        setIsMember(memberExists);
+      }
     }
   }, [currentUserId, data]);
 
@@ -137,6 +146,7 @@ export default function DetailCrew({ id }: DetailCrewContainerProps) {
         isCaptain={isCaptain}
         isMember={isMember}
         isJoining={isJoining}
+        isConfirmed={isConfirmed}
         handleJoinClick={handleJoinClick}
         handleLeaveCrew={handleLeaveCrew}
         handleDelete={handleDelete}

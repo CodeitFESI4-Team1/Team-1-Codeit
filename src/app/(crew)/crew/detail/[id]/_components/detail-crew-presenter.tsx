@@ -16,6 +16,7 @@ interface DetailCrewPresenterProps {
   isCaptain: boolean;
   isMember: boolean;
   isJoining: boolean;
+  isConfirmed: boolean;
   handleJoinClick: () => void;
   handleLeaveCrew: () => void;
   handleDelete: () => void;
@@ -26,6 +27,7 @@ export default function DetailCrewPresenter({
   data,
   isCaptain,
   isMember,
+  isConfirmed,
   handleJoinClick,
   handleLeaveCrew,
   handleDelete,
@@ -42,7 +44,6 @@ export default function DetailCrewPresenter({
     totalCount,
     imageUrl,
     crewMembers,
-    confirmed,
   } = data;
 
   // captain과 members 분리
@@ -50,6 +51,7 @@ export default function DetailCrewPresenter({
   const members = crewMembers.filter((member) => !member.captain);
 
   const getJoinButtonText = () => {
+    if (isConfirmed) return '모집 완료';
     if (isMember) return '참여 완료';
     if (isJoining) return '참여 중...';
     return '크루 참여하기';
@@ -71,7 +73,7 @@ export default function DetailCrewPresenter({
           <Button
             className={cn('px-4 py-2', isMember ? 'btn-disabled' : 'btn-filled')}
             onClick={handleJoinClick}
-            disabled={isMember || isJoining}
+            disabled={isMember || isJoining || isConfirmed}
           >
             {getJoinButtonText()}
           </Button>
@@ -151,19 +153,20 @@ export default function DetailCrewPresenter({
           <div className="mb-2 flex items-center justify-between">
             <div className="flex items-center">
               <Image src={IcoUser} alt="유저 아이콘" width={20} height={20} />
-              <span className="text-base font-medium text-gray-700">참여인원</span>
+              <span className="text-base font-medium text-gray-700">크루멤버</span>
               <span className="pl-1 text-base font-medium text-blue-500">{participantCount}</span>
               <span className="text-base font-medium text-gray-700">/{totalCount}</span>
             </div>
-            {confirmed && (
+            {isConfirmed && (
               <div className="flex items-center text-blue-600">
-                <Image src={Check} alt="개설 확정" width={24} height={24} />
-                <span className="text-sm font-medium">개설확정</span>
+                <Image src={Check} alt="모집 완료 아이콘" width={24} height={24} />
+                <span className="text-sm font-medium">모집 완료</span>
               </div>
             )}
           </div>
           <div className="w-full">
             <ProgressBar total={totalCount} current={participantCount} />
+            <p className="pt-1 text-sm text-gray-500">크루장을 제외한 멤버 목록입니다.</p>
           </div>
           <div className="mt-4 h-40 space-y-6 overflow-y-auto">
             {members.length > 0 ? (

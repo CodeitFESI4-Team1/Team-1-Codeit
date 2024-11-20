@@ -83,7 +83,7 @@ export default function CrewCard({
               {isConfirmed && (
                 <span className="flex items-center gap-[1px] text-blue-600">
                   <Image src={Check} alt="아이콘" width={24} height={24} aria-hidden="true" />
-                  <span className="text-sm font-medium"> 개설 확정</span>
+                  <span className="text-sm font-medium"> 모집 완료</span>
                 </span>
               )}
             </div>
