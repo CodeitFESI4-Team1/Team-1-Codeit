@@ -121,6 +121,7 @@ const config: Config = {
       boxShadow: {
         xl: '0 4px 4px 0 rgba(0,0,0,0.25)',
         bg: '0 4px 30px 1px rgba(0,122,255,0.04)',
+        card: '0 4px 15px 1px rgba(0,122,255,0.1)',
         xs: '0px 2px 4px 0px rgba(0, 0, 0, 0.02)',
       },
       keyframes: {
