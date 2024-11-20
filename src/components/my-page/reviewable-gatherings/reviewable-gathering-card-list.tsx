@@ -6,15 +6,11 @@ import { ReviewableGatheringCardInformResponse } from '@/src/types/reviewable-ga
 import ReviewableGatheringCard from './reviewable-gathering-card';
 
 export default function ReviewableGatheringCardList() {
-  const { queryKey, queryFn } = useGetReviewableQuery();
-
-  const { data, ref, isFetchingNextPage } =
-    useInfiniteScroll<ReviewableGatheringCardInformResponse>({
-      queryKey,
-      queryFn,
-      getNextPageParam: (lastPage) => (lastPage.hasNext ? lastPage.content.length : undefined),
-    });
-
+  const { data, ref, isFetchingNextPage } = useInfiniteScroll(
+    useGetReviewableQuery({
+      pageable: { page: 0, size: 6, sort: ['dateTime,desc'] },
+    }),
+  );
   // 데이터가 없을 때 표시
   const isDataEmpty =
     !data ||
@@ -22,18 +18,18 @@ export default function ReviewableGatheringCardList() {
     data.pages.every((page) => Array.isArray(page.content) && page.content.length === 0);
 
   return (
-    <div className="flex flex-col items-center gap-4">
+    <ul className="flex flex-col items-center gap-4">
       {/* 데이터가 비었을 때 메시지 */}
       {isDataEmpty ? (
         <div className="text-gray-500">아직 모임이 없습니다.</div>
       ) : (
         // 카드 컴포넌트 배열 렌더링
         data.pages.map((page, pageIndex) => (
-          <div key={`${pageIndex + 1} card`} className="w-full">
+          <li key={`${pageIndex + 1} card`} className="w-full">
             {Array.isArray(page.content) &&
               page.content.map((item) => (
                 <ReviewableGatheringCard
-                  key={item.id}
+                  key={item.id + 1}
                   id={item.id}
                   gatheringName={item.title}
                   dateTime={item.dateTime}
@@ -43,13 +39,13 @@ export default function ReviewableGatheringCardList() {
                   participants={item.participants}
                 />
               ))}
-          </div>
+          </li>
         ))
       )}
       {/* 무한 스크롤 로딩 상태 */}
       <div ref={ref} className="h-10 w-full text-center text-gray-500">
         {isFetchingNextPage && '로딩 중...'}
       </div>
-    </div>
+    </ul>
   );
 }

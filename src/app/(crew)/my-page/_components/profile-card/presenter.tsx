@@ -25,7 +25,7 @@ export default function ProfileCardPresenter({ data, onEdit, onDelete }: Profile
           >
             <Menu.Target>
               <div className="h-full w-full">
-                <Profile editable imageUrl={data?.profileImageUrl ?? ''} />
+                <Profile editable imageUrl={data?.profileImageUrl ?? ''} priority />
               </div>
             </Menu.Target>
             <Menu.Dropdown className="translate-x-16 translate-y-2 transform md:translate-x-24 md:translate-y-0 lg:translate-x-24 lg:translate-y-0">

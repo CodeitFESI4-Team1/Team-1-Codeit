@@ -23,6 +23,7 @@ interface ProfileProps {
   editable?: boolean;
   isCaptain?: boolean;
   onClick?: () => void;
+  priority?: boolean;
 }
 
 export function Profile({
@@ -31,6 +32,7 @@ export function Profile({
   editable = false,
   isCaptain = false,
   onClick,
+  priority = false,
 }: ProfileProps) {
   let finalSize = size;
   if (editable) {
@@ -70,6 +72,7 @@ export function Profile({
             fill
             style={{ objectFit: 'cover' }}
             className="rounded-full"
+            priority={priority}
           />
         </div>
       </button>
