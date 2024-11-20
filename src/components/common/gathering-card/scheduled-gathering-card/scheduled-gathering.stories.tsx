@@ -37,6 +37,7 @@ export const LikedEvent: Story = {
       crewSubLocation: '강남구 역삼동',
       title: '가나다라마가나다라마가나다라마가',
       dateTime: '2024-10-30T00:30',
+      location: '역삼역 1번출구',
       currentCount: 8,
       totalCount: 12,
       imageUrl:
@@ -57,6 +58,7 @@ export const NotLikedEvent: Story = {
       crewSubLocation: '용산구 한강로',
       title: '등산 모임',
       dateTime: '2024-11-12T09:00',
+      location: '한강진역 1번출구',
       currentCount: 5,
       totalCount: 10,
       imageUrl:

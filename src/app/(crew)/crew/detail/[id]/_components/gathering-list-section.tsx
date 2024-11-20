@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
+import { Loader } from '@mantine/core';
 import { addLike, removeLike } from '@/src/_apis/liked/liked-apis';
 import { useGetGatheringListQuery } from '@/src/_queries/crew/gathering-list-queries';
 import { ApiError } from '@/src/utils/api';
@@ -14,7 +15,7 @@ interface GatheringListSectionProps {
 }
 
 export default function GatheringListSection({ id }: GatheringListSectionProps) {
-  const { data: gatheringList, isLoading, error } = useGetGatheringListQuery(id);
+  const { data: gatheringList, isLoading, error, refetch } = useGetGatheringListQuery(id);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const router = useRouter();
 
@@ -43,11 +44,15 @@ export default function GatheringListSection({ id }: GatheringListSectionProps) 
     router.push(`/login?redirect=${encodeURIComponent(currentPath)}`);
   };
 
+  const handleModalAction = () => {
+    refetch();
+  };
+
   // TODO: 추후 에러, 로딩 수정
   if (isLoading)
     return (
       <div className="flex items-center justify-center">
-        <p>로딩 중...</p>
+        <Loader />
       </div>
     );
 
@@ -73,6 +78,7 @@ export default function GatheringListSection({ id }: GatheringListSectionProps) 
         onLike={handleLike}
         onUnlike={handleUnlike}
         onShowLoginModal={() => setShowLoginModal(true)}
+        onModalAction={handleModalAction}
       />
       {showLoginModal && (
         <ConfirmModal

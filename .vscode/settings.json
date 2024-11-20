@@ -74,5 +74,6 @@
   },
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode" // TypeScript에서도 Prettier 사용
-  }
+  },
+  "git.ignoreLimitWarning": true
 }

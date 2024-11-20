@@ -297,13 +297,13 @@ export default function CreateCrewForm({
             htmlFor="crew-totalCount"
             className="text-base font-semibold text-gray-800 md:text-xl"
           >
-            모집 정원을 선택해주세요.
+            크루 최대 인원을 선택해주세요.
           </label>
           <Controller
             name="totalCount"
             control={control}
             rules={{
-              required: '모집 정원을 입력해주세요.',
+              required: '크루 최대 인원을 입력해주세요.',
             }}
             render={({ field }) => (
               <NumberInput

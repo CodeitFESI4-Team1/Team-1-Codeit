@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
+import { Loader } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { cancelCrew, joinCrew, leaveCrew } from '@/src/_apis/crew/crew-detail-apis';
 import { useUser } from '@/src/_queries/auth/user-queries';
@@ -20,6 +21,7 @@ export default function DetailCrew({ id }: DetailCrewContainerProps) {
   const [isCaptain, setIsCaptain] = useState(false);
   const [isMember, setIsMember] = useState(false);
   const [isJoining, setIsJoining] = useState(false);
+  const [isConfirmed, setIsConfirmed] = useState(false);
   const [confirmCancelOpened, { open: openConfirmCancel, close: closeConfirmCancel }] =
     useDisclosure();
   const router = useRouter();
@@ -35,12 +37,20 @@ export default function DetailCrew({ id }: DetailCrewContainerProps) {
   const { data, isLoading, error: fetchError, refetch } = useGetCrewDetailQuery(id);
 
   useEffect(() => {
-    if (currentUserId && data) {
-      const captain = data.crewMembers.find((member) => member.captain);
-      const memberExists = data.crewMembers.some((member) => member.id === currentUserId);
+    if (data) {
+      // confirmed 상태 계산
+      if (data.participantCount !== undefined && data.totalCount !== undefined) {
+        setIsConfirmed(data.participantCount === data.totalCount);
+      }
 
-      setIsCaptain(captain?.id === currentUserId);
-      setIsMember(memberExists);
+      // Captain 및 멤버 여부 확인 (currentUserId 필요)
+      if (currentUserId) {
+        const captain = data.crewMembers.find((member) => member.captain);
+        const memberExists = data.crewMembers.some((member) => member.id === currentUserId);
+
+        setIsCaptain(captain?.id === currentUserId);
+        setIsMember(memberExists);
+      }
     }
   }, [currentUserId, data]);
 
@@ -88,7 +98,7 @@ export default function DetailCrew({ id }: DetailCrewContainerProps) {
       toast.success('크루가 성공적으로 삭제되었습니다.');
       router.push('/');
     } catch (deleteError) {
-      toast.error('크루 삭제 중 에러가 발생했습니다.');
+      toast.error('🚫 크루 삭제 중 에러가 발생했습니다.');
     }
   };
 
@@ -106,9 +116,10 @@ export default function DetailCrew({ id }: DetailCrewContainerProps) {
 
   // TODO: 로딩, 에러처리 추후 개선
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <Loader />;
   }
 
+  // TODO: 추후 404페이지로 이동시키기
   if (fetchError) {
     if (fetchError instanceof ApiError) {
       try {
@@ -118,7 +129,7 @@ export default function DetailCrew({ id }: DetailCrewContainerProps) {
           return <p>크루 정보를 찾을 수 없습니다</p>;
         }
       } catch (parseError) {
-        return <p>{`Error ${fetchError.status}: ${fetchError.message}`}</p>;
+        return <p>{`Error ${fetchError.message}`}</p>;
       }
     }
     return <p>데이터 통신에 실패했습니다.</p>;
@@ -135,6 +146,7 @@ export default function DetailCrew({ id }: DetailCrewContainerProps) {
         isCaptain={isCaptain}
         isMember={isMember}
         isJoining={isJoining}
+        isConfirmed={isConfirmed}
         handleJoinClick={handleJoinClick}
         handleLeaveCrew={handleLeaveCrew}
         handleDelete={handleDelete}

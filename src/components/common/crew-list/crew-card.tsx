@@ -58,7 +58,7 @@ export default function CrewCard({
         />
       </div>
 
-      <div className="flex w-full flex-col justify-between p-6 sm:h-[238px] sm:px-4 sm:pt-4 md:h-[203px]">
+      <div className="flex min-h-[203px] w-full flex-col justify-between p-6 sm:px-4 sm:pt-4">
         <div>
           <div className="flex flex-col gap-1">
             <span className="max-w-[200px] overflow-hidden text-ellipsis whitespace-nowrap pr-4 text-lg font-semibold">
@@ -72,7 +72,7 @@ export default function CrewCard({
             {`현재 ${totalGatheringCount}개의 약속이 개설되어 있습니다.`}
           </span>
         </div>
-        <div className="flex w-full gap-8 pt-[31px]">
+        <div className="flex w-full gap-8 md:pt-[31px]">
           <div className="flex flex-grow flex-col items-start gap-2">
             <div className="flex w-full items-center justify-between">
               <div className="flex items-center space-x-2">
@@ -89,7 +89,7 @@ export default function CrewCard({
               {isConfirmed && (
                 <span className="flex items-center gap-[1px] text-blue-600">
                   <Image src={Check} alt="아이콘" width={24} height={24} aria-hidden="true" />
-                  <span className="text-sm font-medium"> 개설 확정</span>
+                  <span className="text-sm font-medium"> 모집 완료</span>
                 </span>
               )}
             </div>

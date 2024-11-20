@@ -33,7 +33,6 @@ export const Default: Story = {
       subLocation: '유성구',
       participantCount: 8,
       totalCount: 10,
-      confirmed: true,
       imageUrl:
         'https://crewcrew.s3.ap-northeast-2.amazonaws.com/crew/4d0c5851-e6e2-4919-897a-b8d4e88a4f72',
       totalGatheringCount: 5,
@@ -117,7 +116,6 @@ export const IsCaptain: Story = {
       subLocation: '유성구',
       participantCount: 1,
       totalCount: 10,
-      confirmed: true,
       imageUrl:
         'https://crewcrew.s3.ap-northeast-2.amazonaws.com/crew/4d0c5851-e6e2-4919-897a-b8d4e88a4f72',
       totalGatheringCount: 1,
@@ -149,7 +147,6 @@ export const IsMember: Story = {
       subLocation: '유성구',
       participantCount: 2,
       totalCount: 10,
-      confirmed: true,
       imageUrl:
         'https://crewcrew.s3.ap-northeast-2.amazonaws.com/crew/4d0c5851-e6e2-4919-897a-b8d4e88a4f72',
       totalGatheringCount: 1,
