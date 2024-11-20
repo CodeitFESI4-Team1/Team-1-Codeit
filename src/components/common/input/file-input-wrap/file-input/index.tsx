@@ -98,9 +98,10 @@ export default function FileInput({ value, isBlur, onChange }: FileInputProps) {
         <figure className="relative flex h-3.5 w-3.5 md:h-5 md:w-5">
           <Image
             fill
+            sizes="(max-width: 744px) 100vw, (max-width: 1200px) 50vw, 33vw"
             src={IcoPlus}
             alt="이미지 추가"
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            className="h-full w-full object-cover"
           />
         </figure>
         <span className="text-xs font-medium text-gray-400 md:text-base lg:text-lg">
@@ -118,7 +119,13 @@ export default function FileInput({ value, isBlur, onChange }: FileInputProps) {
 
       {preview && (
         <div className="absolute inset-0 overflow-hidden rounded-xl bg-neutral-100">
-          <Image src={preview} fill alt="이미지 미리보기" className="h-full w-full object-cover" />
+          <Image
+            src={preview}
+            fill
+            sizes="(max-width: 744px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            alt="이미지 미리보기"
+            className="h-full w-full object-cover"
+          />
           <button
             type="button"
             onClick={handleClearClick}

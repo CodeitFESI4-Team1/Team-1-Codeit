@@ -46,7 +46,8 @@ export default function GatheringDetailModalPresenter({
             src={data?.imageUrl}
             alt="모임 이미지"
             fill
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            sizes="(max-width: 744px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="h-full w-full object-cover"
           />
           {isToday(data?.dateTime) && (
             <strong className="absolute right-0 top-0 flex items-center gap-2 bg-blue-600 px-4 py-2 text-base font-medium text-white">
@@ -91,8 +92,9 @@ export default function GatheringDetailModalPresenter({
                 <Image
                   src={IcoUser}
                   fill
+                  sizes="(max-width: 744px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   alt="아이콘"
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  className="h-full w-full object-cover"
                 />
               </figure>
               <span>

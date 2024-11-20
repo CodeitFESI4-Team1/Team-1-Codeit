@@ -48,7 +48,13 @@ export default function WritableGatheringCard({
   return (
     <div className="flex w-full max-w-[1200px] gap-[20px] border-b-[2px] border-b-gray-200 py-[24px]">
       <span className="relative h-[166px] w-[294px] overflow-hidden rounded-[12px]">
-        <Image src={imageUrl} alt={gatheringName} fill objectFit="cover" />
+        <Image
+          src={imageUrl}
+          alt={gatheringName}
+          fill
+          sizes="(max-width: 744px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="h-full w-full object-cover"
+        />
       </span>
       <div className="flex w-full items-end justify-between">
         <div className="flex h-full flex-col items-start justify-between">
@@ -59,7 +65,13 @@ export default function WritableGatheringCard({
             </div>
             <div className="flex w-fit items-center">
               <span className="relative inline-block h-[20px] w-[20px]">
-                <Image alt="참여 인원" src={person} fill objectFit="contain" />
+                <Image
+                  alt="참여 인원"
+                  src={person}
+                  fill
+                  sizes="(max-width: 744px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className="h-full w-full object-contain"
+                />
               </span>
               <span className="mr-[22px] text-base font-medium text-gray-700">
                 {currentCount}/{totalCount}

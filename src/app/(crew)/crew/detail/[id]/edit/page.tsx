@@ -43,7 +43,8 @@ export default function EditCrewPage() {
           <Image
             src={IcoCreateCrew}
             fill
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            sizes="(max-width: 744px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="h-full w-full object-cover"
             alt=""
           />
         </figure>
