@@ -88,9 +88,7 @@ export default function CreateGatheringForm({
           />
         </div>
         <div className="flex flex-col gap-3">
-          <label htmlFor="gathering-image" className="text-base font-semibold text-gray-800">
-            이미지 선택/첨부
-          </label>
+          <span className="text-base font-semibold text-gray-800">이미지 선택/첨부</span>
           <div className="flex">
             <Controller
               name="imageUrl"
@@ -161,9 +159,7 @@ export default function CreateGatheringForm({
         </div>
         <div className="flex flex-col gap-3">
           <div className="flex justify-between">
-            <label htmlFor="gathering-dateTime" className="text-base font-semibold text-gray-800">
-              날짜
-            </label>
+            <span className="text-base font-semibold text-gray-800">날짜</span>
           </div>
           <Controller
             name="dateTime"
@@ -223,6 +219,7 @@ export default function CreateGatheringForm({
             render={({ field }) => (
               <Textarea
                 {...field}
+                id="gathering-introduce"
                 placeholder="모집 설명/공지를 100자 이내로 입력해주세요."
                 maxLength={100}
                 inputClassNames="h-40 py-2.5 px-4 bg-gray-100 placeholder:text-gray-400 font-pretendard text-base font-medium rounded-xl"
