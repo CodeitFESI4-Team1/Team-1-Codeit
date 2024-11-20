@@ -154,7 +154,7 @@ export default function CreateCrewForm({
         </div>
         <div className="flex flex-col gap-3">
           <label
-            htmlFor="crew-category"
+            htmlFor="crew-mainCategory"
             className="text-base font-semibold text-gray-800 md:text-xl"
           >
             카테고리를 선택해주세요.
@@ -167,6 +167,7 @@ export default function CreateCrewForm({
               render={({ field }) => (
                 <DropDown
                   {...field}
+                  id="crew-mainCategory"
                   variant="default"
                   inWhere="form"
                   placeholder={isEdit && field.value ? field.value : '메인 카테고리'}
@@ -180,12 +181,16 @@ export default function CreateCrewForm({
                 />
               )}
             />
+            <label htmlFor="crew-subCategory" className="sr-only">
+              세부 카테고리를 선택해주세요.
+            </label>
             <Controller
               name="subCategory"
               control={control}
               render={({ field }) => (
                 <DropDown
                   {...field}
+                  id="crew-subCategory"
                   variant="default"
                   inWhere="form"
                   placeholder={isEdit && field.value ? field.value : '세부 카테고리'}
@@ -199,9 +204,9 @@ export default function CreateCrewForm({
         </div>
 
         <div className="flex flex-col gap-3">
-          <label htmlFor="crew-image" className="text-base font-semibold text-gray-800 md:text-xl">
+          <span className="text-base font-semibold text-gray-800 md:text-xl">
             대표이미지를 선택하거나 첨부해주세요.
-          </label>
+          </span>
           <Controller
             name="imageUrl"
             control={control}
@@ -237,7 +242,7 @@ export default function CreateCrewForm({
 
         <div className="flex flex-col gap-3">
           <label
-            htmlFor="crew-category"
+            htmlFor="crew-mainLocation"
             className="text-base font-semibold text-gray-800 md:text-xl"
           >
             지역을 선택해주세요.
@@ -250,6 +255,7 @@ export default function CreateCrewForm({
               render={({ field }) => (
                 <DropDown
                   {...field}
+                  id="crew-mainLocation"
                   variant="default"
                   inWhere="form"
                   placeholder={isEdit && field.value ? field.value : '특별시/도'}
@@ -263,6 +269,9 @@ export default function CreateCrewForm({
                 />
               )}
             />
+            <label htmlFor="crew-subLocation" className="sr-only">
+              세부 지역을 선택해주세요.
+            </label>
             <Controller
               name="subLocation"
               control={control}
@@ -270,6 +279,7 @@ export default function CreateCrewForm({
               render={({ field }) => (
                 <DropDown
                   {...field}
+                  id="crew-subLocation"
                   variant="default"
                   inWhere="form"
                   placeholder={isEdit && field.value ? field.value : '시/군/구'}
@@ -314,11 +324,14 @@ export default function CreateCrewForm({
         </div>
         <div className="flex flex-col gap-3">
           <div className="flex justify-between">
-            <label htmlFor="gathering-introduce" className="text-base font-semibold text-gray-800">
+            <label
+              htmlFor="crew-introduce"
+              className="text-base font-semibold text-gray-800 md:text-xl"
+            >
               크루 소개
             </label>
             <span>
-              <span className="text-blue-500">{introduce?.length}</span>/100
+              <span className="text-blue-500">{introduce.length}</span>/100
             </span>
           </div>
           <Controller
@@ -327,6 +340,7 @@ export default function CreateCrewForm({
             render={({ field }) => (
               <Textarea
                 {...field}
+                id="crew-introduce"
                 placeholder="크루 소개글을 100자 이내로 입력해주세요."
                 maxLength={100}
                 inputClassNames="h-40 py-2.5 px-4 bg-gray-100 placeholder:text-gray-400 font-pretendard text-base font-medium rounded-xl"
