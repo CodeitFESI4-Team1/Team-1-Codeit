@@ -45,7 +45,7 @@ export default function CrewCard({
     <div
       role="presentation"
       onClick={() => router.push(CREWPAGE)}
-      className="hover:shadow-card relative mx-auto flex h-[430px] w-full animate-fade cursor-pointer flex-col overflow-hidden rounded-[14px] bg-white transition-shadow md:h-[203px] md:flex-row"
+      className="relative mx-auto flex h-[430px] w-full animate-fade cursor-pointer flex-col overflow-hidden rounded-[14px] bg-white transition-shadow hover:shadow-card md:h-[203px] md:flex-row"
     >
       {/* 썸네일 */}
       <div className="relative h-[203px] w-full flex-shrink-0 md:w-[230px]">
