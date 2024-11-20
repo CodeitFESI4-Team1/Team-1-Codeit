@@ -33,7 +33,7 @@ export default function CrewCardList({ data, inWhere }: CrewCardListProps) {
     );
 
   return (
-    <ul className={`mx-auto grid w-full grid-cols-1 gap-x-2 gap-y-2 ${gridColsStyle}`}>
+    <ul className={`mx-auto grid w-full grid-cols-1 gap-x-4 gap-y-6 ${gridColsStyle}`}>
       {crewDataList.map((inform) => (
         <li key={inform?.id} className="w-full">
           <CrewCard
