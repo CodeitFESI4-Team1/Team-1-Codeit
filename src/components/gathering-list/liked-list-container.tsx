@@ -6,6 +6,7 @@ import { Loader } from '@mantine/core';
 import { addLike, removeLike } from '@/src/_apis/liked/liked-apis';
 import { useGetLikedListQuery } from '@/src/_queries/liked/liked-queries';
 import { ApiError } from '@/src/utils/api';
+import GatheringSkeletonList from '../common/skeleton/gathering-skeleton-list';
 import LikedListPresenter from './liked-list-presenter';
 
 export default function LikedList() {
@@ -38,7 +39,12 @@ export default function LikedList() {
     setPage(newPage);
   };
 
-  if (isLoading) return <Loader />;
+  if (isLoading)
+    return (
+      <div className="mx-auto max-w-[1200px] px-4">
+        <GatheringSkeletonList num={6} />
+      </div>
+    );
 
   // 에러 처리: error 또는 gatheringData가 undefined일 경우
   if (error || gatheringData === undefined) {

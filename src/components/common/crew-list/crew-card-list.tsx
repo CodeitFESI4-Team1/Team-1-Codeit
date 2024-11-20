@@ -33,7 +33,7 @@ export default function CrewCardList({ data, inWhere }: CrewCardListProps) {
     );
 
   return (
-    <ul className={`mx-auto grid w-full grid-cols-1 gap-x-2 gap-y-2 ${gridColsStyle}`}>
+    <ul className={`mx-auto grid w-full grid-cols-1 gap-x-4 gap-y-6 ${gridColsStyle}`}>
       {crewDataList.map((inform) => {
         // MainCrewList에서만 isConfirmed 계산
         const isConfirmed =
