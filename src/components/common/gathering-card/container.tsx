@@ -68,7 +68,7 @@ export default function GatheringCard({
         await onLike(id);
         setIsLiked(true);
       }
-    } catch (error) {
+    } catch (likeError) {
       toast.error('찜 상태를 업데이트하는 데 실패했습니다.');
     }
   };
