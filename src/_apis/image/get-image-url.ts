@@ -28,7 +28,6 @@ export async function getImageUrl(
 
       return response.data;
     } catch (error) {
-      // eslint-disable-next-line no-console
       throw error;
     }
   }

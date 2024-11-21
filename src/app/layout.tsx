@@ -1,3 +1,4 @@
+import { Bounce, ToastContainer } from 'react-toastify';
 import type { Metadata } from 'next';
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import '@mantine/core/styles.css';
@@ -30,6 +31,20 @@ export default function RootLayout({
         <ColorSchemeScript />
       </head>
       <body>
+        <ToastContainer
+          position="bottom-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+          transition={Bounce}
+          limit={1}
+        />
         <ClientProvider>
           <MantineProvider theme={theme}>
             {children}

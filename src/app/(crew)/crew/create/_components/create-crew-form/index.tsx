@@ -97,6 +97,7 @@ export default function CreateCrewForm({
         if (imgResponse?.imageUrl) {
           clearErrors('imageUrl'); // 에러 초기화
           onChange(imgResponse.imageUrl); // 이미지 URL 설정
+          alert(1);
         } else {
           throw new Error('이미지 업로드 중 문제가 발생했습니다.');
         }
@@ -104,7 +105,6 @@ export default function CreateCrewForm({
     } catch (error) {
       // API 에러 처리
       setError('imageUrl', { type: 'server', message: errors.imageUrl?.message });
-      toast.error(errors.imageUrl?.message);
     }
   };
 
@@ -133,6 +133,12 @@ export default function CreateCrewForm({
       setInitialValues();
     }
   }, [mainCategory, mainLocation, isSubmitSuccessful]);
+
+  useEffect(() => {
+    if (errors?.imageUrl) {
+      toast.error(errors.imageUrl.message);
+    }
+  }, [errors.imageUrl]);
 
   return (
     <form onSubmit={handleSendForm}>
@@ -267,7 +273,7 @@ export default function CreateCrewForm({
               />
             )}
           />
-          {errors.imageUrl && <p className="text-red-500">{errors.imageUrl.message}</p>}
+          {errors.imageUrl && <p className="text-xs text-red-500">{errors.imageUrl.message}</p>}
         </div>
 
         <div className="flex flex-col gap-3">
