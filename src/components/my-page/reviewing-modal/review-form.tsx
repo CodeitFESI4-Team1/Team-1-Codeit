@@ -1,6 +1,9 @@
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useController, useForm } from 'react-hook-form';
 import { Button } from '@mantine/core';
+import { useMutation } from '@tanstack/react-query';
+import { PostReviewParams, postReview } from '@/src/_apis/review/review-apis';
+import { ApiError } from '@/src/utils/api';
 import Textarea from '@/src/components/common/input/textarea';
 import ButtonHearts from './button-hearts';
 
@@ -9,32 +12,61 @@ type FormValues = {
   score: number;
 };
 
-interface ReviewProps {
+interface ReviewFormProps {
+  gatheringId?: number;
   onCancel: () => void;
 }
 
-export default function ReviewForm({ onCancel }: ReviewProps) {
-  const { register, handleSubmit } = useForm<FormValues>();
+export default function ReviewForm({ gatheringId, onCancel }: ReviewFormProps) {
+  const { register, handleSubmit, control } = useForm<FormValues>();
   const [textReview, setTextReview] = useState<string>('');
-  const [point, setPoint] = useState<number>(0);
 
-  // TODO : 주석 부분(api 연결) 수정
-  // TODO : form에 넣기: onSubmit={handleSubmit(clickSubmit)}
+  const {
+    field: { value: scoreValue, onChange: setScore },
+  } = useController({ name: 'score', control, defaultValue: 0 });
 
   const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setTextReview(e.target.value);
+    if (e.target.value.length <= 300) {
+      setTextReview(e.target.value);
+    }
   };
 
   const handleScoreChange = (newScore: number) => {
-    setPoint(newScore);
+    setScore(newScore);
+  };
+
+  const mutation = useMutation<ResponseType, ApiError, PostReviewParams>({
+    mutationFn: (params: PostReviewParams) =>
+      postReview({
+        gatheringId: params.gatheringId,
+        point: params.point,
+        reviewText: params.reviewText,
+      }),
+
+    onSuccess: () => {
+      onCancel();
+    },
+    onError: (error: ApiError) => {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    },
+  });
+
+  const clickSubmit = (data: FormValues) => {
+    // eslint-disable-next-line no-console
+    console.log(data);
+    mutation.mutate({ gatheringId, point: data.score, reviewText: data.reviewText });
   };
 
   return (
-    <form className="flex h-[308px] w-[472px] flex-col justify-between gap-[24px]">
+    <form
+      onSubmit={handleSubmit(clickSubmit)}
+      className="flex h-auto w-[288px] flex-col justify-between gap-[20px] md:h-[302px] md:w-[472px]"
+    >
       <ButtonHearts onChange={handleScoreChange} />
       <Textarea
         placeholder="남겨주신 리뷰는 프로그램 운영 및 다른 회원 분들께 큰 도움이 됩니다."
-        inputClassNames="w-[471px] h-[120px] bg-gray-50 text-gray-400"
+        inputClassNames="md:w-[472px] md:h-[120px] bg-gray-50 text-gray-900 w-[288px] h-[240px] rounded-[12px]"
         value={textReview}
         onChange={handleTextChange}
         register={register('reviewText')}
@@ -53,15 +85,18 @@ export default function ReviewForm({ onCancel }: ReviewProps) {
           },
         }}
       />
-      <input type="hidden" value={point} {...register('score')} />
-      <div className="font-base flex justify-between gap-[16px] font-semibold">
+      <input type="hidden" value={scoreValue} />
+      <div className="font-base flex w-full justify-between gap-[8px] font-semibold md:gap-[16px]">
         <Button
           onClick={onCancel}
-          className="h-[44px] w-[228px] border border-blue-500 bg-white text-blue-500"
+          className="h-[44px] w-full rounded-[12px] border border-blue-500 bg-white text-blue-500"
         >
           취소
         </Button>
-        <Button type="submit" className="h-[44px] w-[228px] border-none bg-blue-500 text-white">
+        <Button
+          type="submit"
+          className="h-[44px] w-full rounded-[12px] border-none bg-blue-500 text-white"
+        >
           리뷰 등록
         </Button>
       </div>
