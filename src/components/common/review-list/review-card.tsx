@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import { useDisclosure } from '@mantine/hooks';
 import { deleteReview } from '@/src/_apis/review/my-review-apis';
+import { cn } from '@/src/utils/cn';
 import { formatDateWithYear } from '@/src/utils/format-date';
 import Button from '@/src/components/common/input/button';
 import ConfirmCancelModal from '@/src/components/common/modal/confirm-cancel-modal';
@@ -23,7 +24,6 @@ interface ReviewCardProps {
   crewName?: string;
   gatheringName?: string;
   refetch?: () => void;
-
   reviewer?: ReviewerType;
 }
 
@@ -87,7 +87,11 @@ export default function ReviewCard({
       )}
       <div
         role="presentation"
-        className={`flex h-full items-end gap-[15px] ${!isMine ? 'border-b-[2px] border-b-[#F3F4F6] py-4' : 'rounded-[12px] p-6 shadow-bg'} bg-white lg:gap-[40px]`}
+        className={cn(
+          'relative flex h-full items-end',
+          'bg-white lg:gap-[40px]',
+          isMine ? 'rounded-[12px] p-6 shadow-bg' : 'border-b-[2px] border-b-[#F3F4F6] py-4',
+        )}
       >
         <div className="flex-start flex w-full flex-col items-start justify-between pr-[20px] lg:pr-[40px]">
           {isMine && (
@@ -111,9 +115,10 @@ export default function ReviewCard({
             <span className="text-gray-500">{reviewDate}</span>
           </div>
         </div>
+        <div />
         {isMine && (
           <Button
-            className="btn-outlined flex-shrink-0 p-[6px_14px] text-base font-semibold"
+            className="btn-outlined absolute bottom-4 right-4 flex-shrink-0 p-[4px_10px] text-base font-semibold md:bottom-6 md:right-6 md:px-4"
             onClick={(e) => {
               e.stopPropagation();
               openConfirmDeleteModal();
@@ -123,7 +128,6 @@ export default function ReviewCard({
           </Button>
         )}
       </div>
-
       {/* 삭제 확인 모달 */}
       <ConfirmCancelModal
         opened={confirmDeleteModalOpened}
