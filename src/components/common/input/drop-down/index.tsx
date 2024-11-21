@@ -3,6 +3,7 @@ import { ComboboxData, Select } from '@mantine/core';
 import IconArrow from '@/public/assets/icons/ic-arrow';
 
 export interface DropDownProps {
+  id?: string;
   variant: 'default' | 'sort';
   data: ComboboxData;
   name: string;
@@ -16,6 +17,7 @@ export interface DropDownProps {
 }
 
 export default function DropDown({
+  id,
   inWhere = 'default',
   name,
   variant,
@@ -73,6 +75,7 @@ export default function DropDown({
 
   return (
     <Select
+      id={id}
       error={error}
       mt="md"
       data={data}

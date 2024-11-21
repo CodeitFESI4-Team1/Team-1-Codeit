@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { FieldError } from 'react-hook-form';
 import FileInput from './file-input';
 import FileSample from './file-sample';
 
@@ -8,10 +9,11 @@ export interface FileInputProps {
   isEdit?: boolean;
   value: File | string | null;
   sample: string[];
+  error: FieldError | undefined;
   onChange: (newValue: File | string | null) => void;
 }
 
-export default function FileInputWrap({ isEdit, value, sample, onChange }: FileInputProps) {
+export default function FileInputWrap({ isEdit, value, sample, error, onChange }: FileInputProps) {
   const [fileValue, setFileValue] = useState<File | string | null>(value);
   const [isOtherSelected, setIsOtherSelected] = useState(false);
   const [isSampleSelected, setIsSampleSelected] = useState(false);
@@ -53,7 +55,12 @@ export default function FileInputWrap({ isEdit, value, sample, onChange }: FileI
         onChange={handleChange}
         isBlur={isOtherSelected}
       />
-      <FileInput value={fileValue} onChange={handleFileInput} isBlur={isSampleSelected} />
+      <FileInput
+        value={fileValue}
+        onChange={handleFileInput}
+        isBlur={isSampleSelected}
+        error={error}
+      />
     </div>
   );
 }

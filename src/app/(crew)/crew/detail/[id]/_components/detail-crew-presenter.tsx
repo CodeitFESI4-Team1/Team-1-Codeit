@@ -61,7 +61,13 @@ export default function DetailCrewPresenter({
     <div className="mx-auto flex max-w-[1200px] flex-col gap-6">
       {/* 상단 이미지와 정보 영역 */}
       <div className="relative h-96 w-full overflow-hidden rounded-lg p-6 shadow-sm">
-        <Image src={imageUrl} alt={title} layout="fill" objectFit="cover" className="rounded-lg" />
+        <Image
+          src={imageUrl}
+          alt={title}
+          fill
+          sizes="(max-width: 744px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="h-full w-full rounded-lg object-cover"
+        />
         <div className="absolute inset-0 bg-gradient-to-b from-[rgba(0,0,0,0.0)] via-transparent to-[rgba(0,0,0,0.8)]" />
 
         {/* 오버레이 컨테이너 */}
