@@ -7,7 +7,7 @@ interface HeartProps {
 }
 
 export interface ReviewRateInfo {
-  totalReviewCount: number;
+  totalRate: number;
   averageRate: number;
   ratingsData: { score: number; count: number }[];
 }
@@ -40,7 +40,7 @@ function Heart({ fillPercentage }: HeartProps) {
 }
 
 export default function RatingDisplay({ reviewRateInfo }: RatingDisplayProps) {
-  const { totalReviewCount, averageRate, ratingsData } = reviewRateInfo;
+  const { totalRate, averageRate, ratingsData } = reviewRateInfo;
 
   const renderHearts = () => {
     const hearts = [];
@@ -55,7 +55,7 @@ export default function RatingDisplay({ reviewRateInfo }: RatingDisplayProps) {
     <div className="flex w-full min-w-[320px] max-w-[700px] gap-16">
       {/* 왼쪽: 평균 평점 및 하트 표시 */}
       <div className="flex flex-col items-center justify-center space-y-2">
-        <div className="text-sm font-semibold text-gray-700">(총 {totalReviewCount}개의 평가)</div>
+        <div className="text-sm font-semibold text-gray-700">(총 {totalRate}개의 평가)</div>
         <div className="text-2xl font-semibold">
           <span>평점 {averageRate.toFixed(1)}</span>
           <span className="text-gray-500">/5</span>
@@ -69,11 +69,11 @@ export default function RatingDisplay({ reviewRateInfo }: RatingDisplayProps) {
           <div key={score} className="flex items-center gap-2">
             <div className="w-6 text-xs font-medium text-gray-500">{score}점</div>
             <div className="flex-1">
-              <ProgressBar total={totalReviewCount} current={count} />
+              <ProgressBar total={totalRate} current={count} />
             </div>
             <div className="text-xs font-medium text-gray-500">
               <span className="text-blue-500">{count}/</span>
-              {totalReviewCount}
+              {totalRate}
             </div>
           </div>
         ))}
