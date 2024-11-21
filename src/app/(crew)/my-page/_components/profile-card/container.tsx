@@ -10,6 +10,7 @@ import {
 } from '@/src/_apis/auth/user-apis';
 import { useUser } from '@/src/_queries/auth/user-queries';
 import { useAuth } from '@/src/hooks/use-auth';
+import ProfileSkeleton from '@/src/components/common/skeleton/profile-skeleton';
 import ProfileCardPresenter from './presenter';
 
 export default function ProfileCard() {
@@ -38,7 +39,7 @@ export default function ProfileCard() {
     }
   }, [user]);
 
-  if (userLoading || !isAuthChecked) return <div>로딩 중...</div>;
+  if (userLoading || !isAuthChecked) return <ProfileSkeleton />;
   if (!user) return null;
 
   const handleEdit = () => {
@@ -49,7 +50,7 @@ export default function ProfileCard() {
       const file = (event.target as HTMLInputElement)?.files?.[0];
       if (file) {
         if (file.size > 5 * 1024 * 1024) {
-          alert('5MB 이하의 파일만 업로드 가능합니다.');
+          toast.error('5MB 이하의 파일만 업로드 가능합니다.');
           return;
         }
 

@@ -33,36 +33,45 @@ export default function CrewCardList({ data, inWhere }: CrewCardListProps) {
     );
 
   return (
-    <ul className={`mx-auto grid w-full grid-cols-1 gap-x-2 gap-y-2 ${gridColsStyle}`}>
-      {crewDataList.map((inform) => (
-        <li key={inform?.id} className="w-full">
-          <CrewCard
-            inWhere={inWhere}
-            id={inform?.id}
-            title={inform?.title}
-            mainLocation={inform?.mainLocation}
-            subLocation={inform?.subLocation}
-            imageUrl={
-              inform?.imageUrl === 'string'
-                ? 'https://media.istockphoto.com/id/1396814518/vector/image-coming-soon-no-photo-no-thumbnail-image-available-vector-illustration.jpg?s=612x612&w=0&k=20&c=hnh2OZgQGhf0b46-J2z7aHbIWwq8HNlSDaNp2wn_iko='
-                : inform?.imageUrl
-            }
-            totalCount={inform?.totalCount}
-            participantCount={
-              inWhere === 'my-crew'
-                ? (inform as MyCrewList)?.currentCount
-                : (inform as MainCrewList)?.participantCount
-            }
-            totalGatheringCount={
-              inWhere === 'my-crew'
-                ? (inform as MyCrewList)?.totalGathering
-                : (inform as MainCrewList)?.totalGatheringCount
-            }
-            crewMembers={inWhere === 'my-crew' ? (inform as MyCrewList)?.crewMembers : undefined}
-            isConfirmed={inWhere !== 'my-crew' && (inform as MainCrewList)?.isConfirmed}
-          />
-        </li>
-      ))}
+    <ul className={`mx-auto grid w-full grid-cols-1 gap-x-4 gap-y-6 ${gridColsStyle}`}>
+      {crewDataList.map((inform) => {
+        // MainCrewList에서만 isConfirmed 계산
+        const isConfirmed =
+          inWhere !== 'my-crew' &&
+          (inform as MainCrewList).participantCount !== undefined &&
+          (inform as MainCrewList).totalCount !== undefined &&
+          (inform as MainCrewList).participantCount === (inform as MainCrewList).totalCount;
+
+        return (
+          <li key={inform?.id} className="w-full">
+            <CrewCard
+              inWhere={inWhere}
+              id={inform?.id}
+              title={inform?.title}
+              mainLocation={inform?.mainLocation}
+              subLocation={inform?.subLocation}
+              imageUrl={
+                inform?.imageUrl === 'string'
+                  ? 'https://media.istockphoto.com/id/1396814518/vector/image-coming-soon-no-photo-no-thumbnail-image-available-vector-illustration.jpg?s=612x612&w=0&k=20&c=hnh2OZgQGhf0b46-J2z7aHbIWwq8HNlSDaNp2wn_iko='
+                  : inform?.imageUrl
+              }
+              totalCount={inform?.totalCount}
+              participantCount={
+                inWhere === 'my-crew'
+                  ? (inform as MyCrewList)?.currentCount
+                  : (inform as MainCrewList)?.participantCount
+              }
+              totalGatheringCount={
+                inWhere === 'my-crew'
+                  ? (inform as MyCrewList)?.totalGathering
+                  : (inform as MainCrewList)?.totalGatheringCount
+              }
+              crewMembers={inWhere === 'my-crew' ? (inform as MyCrewList)?.crewMembers : undefined}
+              isConfirmed={isConfirmed}
+            />
+          </li>
+        );
+      })}
     </ul>
   );
 }

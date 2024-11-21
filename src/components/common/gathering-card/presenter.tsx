@@ -41,7 +41,7 @@ export default function GatheringCardPresenter({
   deadlineMessage,
   className,
 }: GatheringCardPresenterProps) {
-  const { date, time } = formatDate(dateTime);
+  const { date, dayOfWeek, time } = formatDate(dateTime);
 
   const handleLikeClick = (e: MouseEvent) => {
     e.stopPropagation();
@@ -52,17 +52,16 @@ export default function GatheringCardPresenter({
     <div
       className={cn(
         className,
-        'relative h-[344px] w-full overflow-hidden rounded-lg border-white bg-white shadow-sm',
-        isPast ? 'pointer-events-none cursor-default' : 'cursor-pointer',
+        'relative h-[380px] w-full overflow-hidden rounded-lg border-white bg-white shadow-sm',
       )}
     >
       <div className="relative h-40 w-full">
         <Image
           src={imageUrl}
           alt={title}
-          layout="fill"
-          objectFit="cover"
-          className="rounded-t-lg"
+          fill
+          sizes="(max-width: 744px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="h-full w-full rounded-t-lg object-cover"
         />
       </div>
 
@@ -73,25 +72,25 @@ export default function GatheringCardPresenter({
         </div>
       )}
 
-      <div className="flex min-h-[150px] flex-col justify-between p-4">
+      <div className="flex min-h-[220px] flex-col justify-between p-4">
         <div>
           <div className="flex items-center space-x-2">
             <p className="overflow-hidden text-ellipsis whitespace-nowrap text-base font-semibold text-blue-500">
-              {date}
+              {`${date} ${dayOfWeek}`}
             </p>
             <div className="h-[18px] w-[1px] bg-gray-300" />
             <p className="overflow-hidden text-ellipsis whitespace-nowrap text-base font-semibold text-blue-500">
               {time}
             </p>
           </div>
-          <h3 className="overflow-hidden text-ellipsis whitespace-nowrap text-xl font-semibold text-gray-800">
+          <h3 className="overflow-hidden text-ellipsis whitespace-nowrap pt-1 text-xl font-semibold text-gray-800">
             {title}
           </h3>
           <div className="text-xm mb-2 flex items-center space-x-1 font-normal text-gray-700">
             <p className="overflow-hidden text-ellipsis whitespace-nowrap">{location}</p>
           </div>
         </div>
-        <div className="flex flex-col space-y-2">
+        <div className="flex flex-col space-y-3">
           <div className="flex items-center space-x-1">
             <Image src={IcoPerson} alt="person icon" width={16} height={16} />
             <p className="text-sm font-normal text-gray-900">
@@ -104,7 +103,7 @@ export default function GatheringCardPresenter({
         </div>
       </div>
 
-      <div className="absolute right-4 top-[172px]">
+      <div className="absolute bottom-[68px] right-4">
         <LikeBtn id={id} isLiked={isLiked} onLikeToggle={onLikeToggle} size={32} />
       </div>
 

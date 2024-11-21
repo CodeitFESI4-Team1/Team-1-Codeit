@@ -8,7 +8,9 @@ import { cancelCrew, joinCrew, leaveCrew } from '@/src/_apis/crew/crew-detail-ap
 import { useUser } from '@/src/_queries/auth/user-queries';
 import { useGetCrewDetailQuery } from '@/src/_queries/crew/crew-detail-queries';
 import { ApiError } from '@/src/utils/api';
+import Button from '@/src/components/common/input/button';
 import ConfirmCancelModal from '@/src/components/common/modal/confirm-cancel-modal';
+import CrewDetailSkeleton from '@/src/components/common/skeleton/crew-detail-skeleton';
 import { User } from '@/src/types/auth';
 import DetailCrewPresenter from './detail-crew-presenter';
 
@@ -20,6 +22,7 @@ export default function DetailCrew({ id }: DetailCrewContainerProps) {
   const [isCaptain, setIsCaptain] = useState(false);
   const [isMember, setIsMember] = useState(false);
   const [isJoining, setIsJoining] = useState(false);
+  const [isConfirmed, setIsConfirmed] = useState(false);
   const [confirmCancelOpened, { open: openConfirmCancel, close: closeConfirmCancel }] =
     useDisclosure();
   const router = useRouter();
@@ -35,12 +38,16 @@ export default function DetailCrew({ id }: DetailCrewContainerProps) {
   const { data, isLoading, error: fetchError, refetch } = useGetCrewDetailQuery(id);
 
   useEffect(() => {
-    if (currentUserId && data) {
-      const captain = data.crewMembers.find((member) => member.captain);
-      const memberExists = data.crewMembers.some((member) => member.id === currentUserId);
+    if (data) {
+      setIsConfirmed(data.participantCount === data.totalCount);
 
-      setIsCaptain(captain?.id === currentUserId);
-      setIsMember(memberExists);
+      if (currentUserId) {
+        const captain = data.crewMembers.find((member) => member.captain);
+        const memberExists = data.crewMembers.some((member) => member.id === currentUserId);
+
+        setIsCaptain(captain?.id === currentUserId);
+        setIsMember(memberExists);
+      }
     }
   }, [currentUserId, data]);
 
@@ -88,7 +95,7 @@ export default function DetailCrew({ id }: DetailCrewContainerProps) {
       toast.success('크루가 성공적으로 삭제되었습니다.');
       router.push('/');
     } catch (deleteError) {
-      toast.error('크루 삭제 중 에러가 발생했습니다.');
+      toast.error('🚫 크루 삭제 중 에러가 발생했습니다.');
     }
   };
 
@@ -104,28 +111,35 @@ export default function DetailCrew({ id }: DetailCrewContainerProps) {
       });
   };
 
-  // TODO: 로딩, 에러처리 추후 개선
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <CrewDetailSkeleton />;
   }
 
-  if (fetchError) {
+  const renderErrorState = (message: string, actionLabel: string, action: () => void) => (
+    <div className="flex h-screen flex-col items-center justify-center">
+      <p className="mb-4 text-gray-500">{message} 😞</p>
+      <Button className="btn-filled" onClick={action}>
+        {actionLabel}
+      </Button>
+    </div>
+  );
+
+  if (fetchError || !data) {
     if (fetchError instanceof ApiError) {
-      try {
-        const errorData = JSON.parse(fetchError.message);
-
-        if (errorData.status === 'NOT_FOUND') {
-          return <p>크루 정보를 찾을 수 없습니다</p>;
-        }
-      } catch (parseError) {
-        return <p>{`Error ${fetchError.status}: ${fetchError.message}`}</p>;
+      if (fetchError.status === 404) {
+        router.push('/404');
+        return null;
       }
+      toast.error(fetchError.message || '🚫 에러가 발생했습니다.');
+    } else if (fetchError) {
+      toast.error('🚫 데이터 통신에 실패했습니다.');
     }
-    return <p>데이터 통신에 실패했습니다.</p>;
-  }
 
-  if (!data) {
-    return <p>데이터를 불러올 수 없습니다.</p>;
+    const errorMessage = fetchError
+      ? '데이터를 불러오는 데 실패했습니다.'
+      : '데이터를 불러올 수 없습니다.';
+
+    return renderErrorState(errorMessage, '다시 시도', refetch);
   }
 
   return (
@@ -135,6 +149,7 @@ export default function DetailCrew({ id }: DetailCrewContainerProps) {
         isCaptain={isCaptain}
         isMember={isMember}
         isJoining={isJoining}
+        isConfirmed={isConfirmed}
         handleJoinClick={handleJoinClick}
         handleLeaveCrew={handleLeaveCrew}
         handleDelete={handleDelete}

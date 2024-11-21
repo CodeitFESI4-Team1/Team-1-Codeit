@@ -1,9 +1,9 @@
-export type WritableGatheringCardInformResponse = {
-  data: WritableGatheringCardInform[];
-  hasNextPage: boolean;
+export type ReviewableGatheringCardInformResponse = {
+  content: ReviewableGatheringCardInform[];
+  hasNext: boolean;
 };
 
-export type WritableGatheringCardInform = {
+export type ReviewableGatheringCardInform = {
   id: number; // 약속 ID
   title: string; // 약속 이름
   dateTime: string;

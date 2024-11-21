@@ -45,14 +45,20 @@ export default function CrewCard({
     <div
       role="presentation"
       onClick={() => router.push(CREWPAGE)}
-      className="relative mx-auto flex h-[430px] w-full animate-fade cursor-pointer flex-col overflow-hidden rounded-[14px] bg-white shadow-bg md:h-[203px] md:flex-row"
+      className="relative mx-auto flex w-full animate-fade cursor-pointer flex-col overflow-hidden rounded-[14px] bg-white transition-shadow hover:shadow-card md:h-[203px] md:flex-row"
     >
       {/* 썸네일 */}
       <div className="relative h-[203px] w-full flex-shrink-0 md:w-[230px]">
-        <Image fill objectFit="cover" alt={title} src={imageUrl} />
+        <Image
+          fill
+          sizes="(max-width: 744px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          alt={title}
+          src={imageUrl}
+          className="h-full w-full object-cover"
+        />
       </div>
 
-      <div className="flex w-full flex-col justify-between p-6 sm:h-[238px] sm:px-4 sm:pt-4 md:h-[203px]">
+      <div className="flex min-h-[203px] w-full flex-col justify-between p-6 sm:px-4 sm:pt-4">
         <div>
           <div className="flex flex-col gap-1">
             <span className="max-w-[200px] overflow-hidden text-ellipsis whitespace-nowrap pr-4 text-lg font-semibold">
@@ -66,7 +72,7 @@ export default function CrewCard({
             {`현재 ${totalGatheringCount}개의 약속이 개설되어 있습니다.`}
           </span>
         </div>
-        <div className="flex w-full gap-8 pt-[31px]">
+        <div className="flex w-full gap-8 md:pt-[31px]">
           <div className="flex flex-grow flex-col items-start gap-2">
             <div className="flex w-full items-center justify-between">
               <div className="flex items-center space-x-2">
@@ -83,7 +89,7 @@ export default function CrewCard({
               {isConfirmed && (
                 <span className="flex items-center gap-[1px] text-blue-600">
                   <Image src={Check} alt="아이콘" width={24} height={24} aria-hidden="true" />
-                  <span className="text-sm font-medium"> 개설 확정</span>
+                  <span className="text-sm font-medium"> 모집 완료</span>
                 </span>
               )}
             </div>

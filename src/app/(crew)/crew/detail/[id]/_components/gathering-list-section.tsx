@@ -7,6 +7,7 @@ import { addLike, removeLike } from '@/src/_apis/liked/liked-apis';
 import { useGetGatheringListQuery } from '@/src/_queries/crew/gathering-list-queries';
 import { ApiError } from '@/src/utils/api';
 import ConfirmModal from '@/src/components/common/modal/confirm-modal';
+import GatheringSkeletonList from '@/src/components/common/skeleton/gathering-skeleton-list';
 import CrewGatheringList from '@/src/components/gathering-list/crew-gathering-list';
 
 interface GatheringListSectionProps {
@@ -14,7 +15,7 @@ interface GatheringListSectionProps {
 }
 
 export default function GatheringListSection({ id }: GatheringListSectionProps) {
-  const { data: gatheringList, isLoading, error } = useGetGatheringListQuery(id);
+  const { data: gatheringList, isLoading, error, refetch } = useGetGatheringListQuery(id);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const router = useRouter();
 
@@ -23,7 +24,7 @@ export default function GatheringListSection({ id }: GatheringListSectionProps) 
       await addLike(gatheringId);
     } catch (apiError) {
       if (apiError instanceof ApiError) {
-        toast.error(`찜하기에 실패했습니다: ${apiError.message}`);
+        toast.error(`찜하기에 실패했습니다`);
       }
     }
   };
@@ -33,7 +34,7 @@ export default function GatheringListSection({ id }: GatheringListSectionProps) 
       await removeLike(gatheringId);
     } catch (apiError) {
       if (apiError instanceof ApiError) {
-        toast.error(`찜하기 해제에 실패했습니다: ${apiError.message}`);
+        toast.error(`찜하기 해제에 실패했습니다`);
       }
     }
   };
@@ -43,11 +44,14 @@ export default function GatheringListSection({ id }: GatheringListSectionProps) 
     router.push(`/login?redirect=${encodeURIComponent(currentPath)}`);
   };
 
-  // TODO: 추후 에러, 로딩 수정
+  const handleModalAction = () => {
+    refetch();
+  };
+
   if (isLoading)
     return (
       <div className="flex items-center justify-center">
-        <p>로딩 중...</p>
+        <GatheringSkeletonList num={3} />
       </div>
     );
 
@@ -61,7 +65,10 @@ export default function GatheringListSection({ id }: GatheringListSectionProps) 
   if (!gatheringList || gatheringList.length === 0)
     return (
       <div className="flex items-center justify-center">
-        <p>데이터가 없습니다.</p>
+        <div className="flex h-[380px] flex-col items-center justify-center">
+          <p className="text-xl font-semibold">아직 등록된 약속이 없습니다!</p>
+          <p className="mt-2 text-base font-medium text-blue-400">새로운 약속을 만들어보세요! 🙌</p>
+        </div>
       </div>
     );
 
@@ -73,6 +80,7 @@ export default function GatheringListSection({ id }: GatheringListSectionProps) 
         onLike={handleLike}
         onUnlike={handleUnlike}
         onShowLoginModal={() => setShowLoginModal(true)}
+        onModalAction={handleModalAction}
       />
       {showLoginModal && (
         <ConfirmModal

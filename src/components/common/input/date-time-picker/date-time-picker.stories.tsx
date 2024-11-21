@@ -29,7 +29,7 @@ export default meta;
 const Template: StoryFn<DateTimePickerProps> = function DateTimePickerStory() {
   const [date, setDate] = useState(new Date());
 
-  return <DateTimePicker fullDate={date} onChange={setDate} />;
+  return <DateTimePicker fullDate={date} onChange={(newValue) => setDate(new Date(newValue))} />;
 };
 
 export const DateTimePicker01 = Template.bind({});

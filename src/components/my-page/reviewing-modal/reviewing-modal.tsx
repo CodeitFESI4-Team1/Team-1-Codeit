@@ -5,11 +5,12 @@ import { Modal } from '@mantine/core';
 import ReviewForm from './review-form';
 
 export interface ReviewingModalProps {
+  gatheringId?: number;
   opened: boolean;
   close: () => void;
 }
 
-export default function ReviewingModal({ opened, close }: ReviewingModalProps) {
+export default function ReviewingModal({ gatheringId, opened, close }: ReviewingModalProps) {
   return (
     <Modal
       opened={opened}
@@ -30,7 +31,7 @@ export default function ReviewingModal({ opened, close }: ReviewingModalProps) {
         },
       }}
     >
-      <ReviewForm onCancel={close} />
+      <ReviewForm gatheringId={gatheringId} onCancel={close} />
     </Modal>
   );
 }
