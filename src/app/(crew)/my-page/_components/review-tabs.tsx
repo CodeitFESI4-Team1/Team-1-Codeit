@@ -3,14 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Divider } from '@mantine/core';
-import { getReviewableGatherings } from '@/src/_apis/gathering/reviewable-gathering';
-import { useInfiniteScroll } from '@/src/hooks/use-infinite-scroll';
-import { fetchMyReviewData } from '@/src/app/api/mock-api/review';
-import ReviewCardList from '@/src/components/common/review-list/review-card-list';
 import Tabs from '@/src/components/common/tab';
-import ReviewableGatheringCardList from '@/src/components/my-page/reviewable-gatherings/reviewable-gathering-card-list';
-import { ReviewInformResponse } from '@/src/types/review';
-import { ReviewableGatheringCardInformResponse } from '@/src/types/reviewable-gathering-card';
 
 export default function ReviewTabs() {
   const myPageTabs = [

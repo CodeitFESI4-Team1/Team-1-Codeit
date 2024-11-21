@@ -21,7 +21,7 @@ export default function CrewReviewList({
   return (
     <div className="flex flex-col justify-between p-6">
       <div className="mb-6 grid flex-grow gap-4">
-        {reviews.map((review) => (
+        {/* {reviews.map((review) => (
           <ReviewCard
             key={review.id}
             rate={review.rate}
@@ -30,7 +30,7 @@ export default function CrewReviewList({
             crewId={review.crewId}
             reviewer={review.reviewer}
           />
-        ))}
+        ))} */}
       </div>
       <div className="mt-6 flex justify-center">
         <Pagination
