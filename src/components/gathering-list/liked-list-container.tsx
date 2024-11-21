@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { toast } from 'react-toastify';
+import { Loader } from '@mantine/core';
 import { addLike, removeLike } from '@/src/_apis/liked/liked-apis';
 import { useGetLikedListQuery } from '@/src/_queries/liked/liked-queries';
 import { ApiError } from '@/src/utils/api';

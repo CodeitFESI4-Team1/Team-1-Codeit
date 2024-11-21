@@ -14,6 +14,7 @@ interface CrewGatheringListProps {
   onLike: (gatheringId: number) => Promise<void>;
   onUnlike: (gatheringId: number) => Promise<void>;
   onShowLoginModal: () => void;
+  onModalAction: () => void;
 }
 
 export default function CrewGatheringList({
@@ -22,6 +23,7 @@ export default function CrewGatheringList({
   onLike,
   onUnlike,
   onShowLoginModal,
+  onModalAction,
 }: CrewGatheringListProps) {
   const { sliderRef, handleMouseDown, handleMouseLeave, handleMouseUp, handleMouseMove } =
     useSlider();
@@ -102,6 +104,7 @@ export default function CrewGatheringList({
                     className="w-full"
                     onLike={() => handleLikeAction('like', card.id)}
                     onUnlike={() => handleLikeAction('unlike', card.id)}
+                    onModalAction={onModalAction}
                   />
                 </div>
               ))}
@@ -152,6 +155,7 @@ export default function CrewGatheringList({
               className="w-full"
               onLike={() => handleLikeAction('like', card.id)}
               onUnlike={() => handleLikeAction('unlike', card.id)}
+              onModalAction={onModalAction}
             />
           </li>
         ))}

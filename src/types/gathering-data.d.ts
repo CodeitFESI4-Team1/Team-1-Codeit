@@ -52,6 +52,7 @@ export interface GatheringCardProps {
   crewSubLocation: string;
   title: string;
   dateTime: string;
+  location: string;
   currentCount: number;
   totalCount: number;
   imageUrl: string;
