@@ -1,8 +1,9 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { Controller, useForm, useWatch } from 'react-hook-form';
 import useFormPersist from 'react-hook-form-persist';
+import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import { NumberInput } from '@mantine/core';
 import { getImageUrl } from '@/src/_apis/image/get-image-url';
@@ -39,13 +40,14 @@ export default function CreateCrewForm({
     trigger,
     clearErrors,
     watch,
+    setError,
     formState: { errors, isValid, isSubmitting, isSubmitSuccessful },
   } = useForm<CreateCrewFormTypes>({
     defaultValues: data,
     mode: 'onBlur',
   });
 
-  useFormPersist(type === 'create' ? 'createCrew' : 'editCrew', {
+  useFormPersist(type === 'create' ? 'createCrew' : '', {
     watch,
     setValue,
     storage: typeof window !== 'undefined' ? window.localStorage : undefined,
@@ -88,9 +90,30 @@ export default function CreateCrewForm({
     file: File | string | null,
     onChange: (value: string | File) => void,
   ) => {
-    if (file instanceof File) {
-      const imgResponse = await getImageUrl(file, 'CREW');
-      onChange(imgResponse?.imageUrl || '');
+    try {
+      // 파일 등록 처리
+      if (file instanceof File) {
+        const imgResponse = await getImageUrl(file, 'CREW');
+        if (imgResponse?.imageUrl) {
+          clearErrors('imageUrl'); // 에러 초기화
+          onChange(imgResponse.imageUrl); // 이미지 URL 설정
+        } else {
+          throw new Error('이미지 업로드 중 문제가 발생했습니다.');
+        }
+      }
+    } catch (error) {
+      // API 에러 처리
+      setError('imageUrl', { type: 'server', message: errors.imageUrl?.message });
+      toast.error(errors.imageUrl?.message);
+    }
+  };
+
+  const handleSendForm = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (type === 'create') {
+      handleSubmit(onSubmit)();
+    } else {
+      handleSubmit(onEdit)();
     }
   };
 
@@ -112,7 +135,7 @@ export default function CreateCrewForm({
   }, [mainCategory, mainLocation, isSubmitSuccessful]);
 
   return (
-    <form onSubmit={type === 'edit' ? handleSubmit(onEdit) : handleSubmit(onSubmit)}>
+    <form onSubmit={handleSendForm}>
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-3">
           <div className="flex justify-between">
@@ -213,15 +236,21 @@ export default function CreateCrewForm({
             rules={{
               required: '이미지를 선택해주세요.',
               validate: {
-                fileSize: (file) =>
-                  file && file instanceof File
-                    ? file.size <= 5242880 || '파일 크기는 5MB 이하여야 합니다.'
-                    : true, // 문자열인 경우 크기 검사를 건너뜁니다.
-                fileType: (file) =>
-                  file && file instanceof File
-                    ? ['image/jpeg', 'image/jpg', 'image/png'].includes(file.type) ||
-                      'JPG, PNG 파일만 업로드 가능합니다.'
-                    : true, // 문자열인 경우 파일 타입 검사를 건너뜁니다.
+                fileSize: (file) => {
+                  if (!file || !(file instanceof File)) {
+                    return true;
+                  }
+                  return file.size <= 5242880 || '파일 크기는 5MB 이하여야 합니다.';
+                },
+                fileType: (file) => {
+                  if (!file || !(file instanceof File)) {
+                    return true;
+                  }
+                  return (
+                    ['image/jpeg', 'image/jpg', 'image/png'].includes(file.type) ||
+                    'JPG, PNG 파일만 업로드 가능합니다.'
+                  );
+                },
               },
             }}
             render={({ field }) => (
@@ -229,6 +258,7 @@ export default function CreateCrewForm({
                 {...field}
                 isEdit={isEdit}
                 sample={ImgCrewSampleUrls}
+                error={errors.imageUrl}
                 onChange={(newValue) => {
                   handleFileChange(newValue, field.onChange);
                   field.onChange(newValue);

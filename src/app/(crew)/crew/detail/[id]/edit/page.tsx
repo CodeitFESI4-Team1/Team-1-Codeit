@@ -27,7 +27,6 @@ export default function EditCrewPage() {
     };
 
     mutate(newData);
-    localStorage.removeItem('editCrew');
   };
 
   if (isLoading || isPending)

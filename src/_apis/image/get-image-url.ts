@@ -11,7 +11,7 @@ export async function getImageUrl(
   if (file instanceof File) {
     try {
       if (!validateFile(file)) {
-        throw new Error('Invalid file');
+        throw new Error(validateFile(file) as string);
       }
       formData.append('file', file);
 

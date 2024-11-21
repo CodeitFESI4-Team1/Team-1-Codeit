@@ -1,5 +1,6 @@
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
-import Image, { StaticImageData } from 'next/image';
+import { FieldError } from 'react-hook-form';
+import Image from 'next/image';
 import IcoPlus from '@/public/assets/icons/ic-plus.svg';
 import IcoX from '@/public/assets/icons/ic-x.svg';
 import ImgCrewSampleUrls from '@/public/assets/images/crew-sample';
@@ -8,6 +9,7 @@ import ImgGatheringSampleUrls from '@/public/assets/images/gathering-sample';
 export interface FileInputProps {
   value: File | string | null;
   onChange: (value: File | null) => void;
+  error: FieldError | undefined;
   isBlur: boolean;
 }
 
@@ -17,20 +19,10 @@ const isSample = (value: File | string | null) => {
   }
   return false;
 };
-export default function FileInput({ value, isBlur, onChange }: FileInputProps) {
+export default function FileInput({ value, isBlur, error, onChange }: FileInputProps) {
   const [preview, setPreview] = useState<string | null>(isSample(value) ? null : (value as string));
   const [fileReader, setFileReader] = useState<FileReader | null>(null);
   const fileInput = useRef<HTMLInputElement>(null);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
-
-  // 디바운싱 함수 : 이벤트가 연속해서 발생하는 동안은 함수가 실행되지 않고,
-  // 이벤트가 끝난 후 일정 시간 동안 이벤트가 발생하지 않으면 함수가 실행됩니다.
-  const debounce = (func: (...args: File[]) => void, delay: number) => {
-    return (...args: File[]) => {
-      if (timerRef.current) clearTimeout(timerRef.current);
-      timerRef.current = setTimeout(() => func(...args), delay);
-    };
-  };
 
   const handleFileLoad = (file: File) => {
     // 이전 FileReader가 있을 경우 중단
@@ -42,20 +34,19 @@ export default function FileInput({ value, isBlur, onChange }: FileInputProps) {
     setFileReader(reader);
 
     reader.onloadend = () => {
-      setPreview(reader.result as string);
+      if (reader.result) {
+        setPreview(reader.result as string);
+      }
     };
     reader.readAsDataURL(file);
   };
 
-  const debouncedHandleFileLoad = debounce(handleFileLoad, 300);
-
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
-      onChange(file);
 
-      // 디바운싱된 파일 로드 실행
-      debouncedHandleFileLoad(file);
+      onChange(file);
+      handleFileLoad(file);
     }
   };
 
@@ -70,20 +61,27 @@ export default function FileInput({ value, isBlur, onChange }: FileInputProps) {
   // 클린업을 위한 useEffect
   useEffect(() => {
     return () => {
-      // 컴포넌트 언마운트 시 클린업
-      if (fileReader) {
-        fileReader.abort(); // 진행 중이던 파일 읽기 중단
-      }
       if (preview) {
         URL.revokeObjectURL(preview);
       }
-      if (timerRef.current) {
-        clearTimeout(timerRef.current); // 디바운스 타이머 클리어
-      }
     };
-  }, [fileReader]);
+  }, [fileReader, preview]);
 
   useEffect(() => {
+    if (error) {
+      setPreview(null);
+    }
+  }, [error]);
+
+  useEffect(() => {
+    if (!isBlur && value) {
+      if (typeof value === 'string') {
+        setPreview(value);
+      } else {
+        handleFileLoad(value);
+        onChange(value);
+      }
+    }
     if (isBlur && value) {
       setPreview(null); // 블러 상태에서 미리보기 제거
     }

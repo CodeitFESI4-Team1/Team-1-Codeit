@@ -40,7 +40,6 @@ export default function CreateCrewPage() {
     };
 
     mutate(newData);
-    localStorage.removeItem('createCrew');
   };
 
   if (isPending)

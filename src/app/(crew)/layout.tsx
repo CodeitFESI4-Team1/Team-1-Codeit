@@ -24,6 +24,7 @@ export default function RootLayout({
         pauseOnHover
         theme="light"
         transition={Bounce}
+        limit={1}
       />
       <div className="flex min-h-screen flex-col items-center bg-gray-50">
         <main className="container flex min-h-screen max-w-pc flex-1 flex-col md:shadow-bg">
