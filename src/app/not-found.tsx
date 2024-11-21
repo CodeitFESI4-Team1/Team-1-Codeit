@@ -1,79 +1,69 @@
 'use client';
 
 import Link from 'next/link';
-import { useMediaQuery } from '@mantine/hooks';
+import { useRouter } from 'next/navigation';
+import { Router } from 'next/router';
+import Button from '../components/common/input/button';
 import { theme } from '../styles/theme';
 
 export default function NotFound() {
-  const isMobile = useMediaQuery(`(max-width: ${theme.breakpoints.md})`);
+  const router = useRouter();
 
   return (
-    <div className="h-screen md:flex md:items-center md:justify-center">
-      <div className="flex h-full flex-col items-center justify-center gap-10 md:relative md:h-auto">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          xmlnsXlink="http://www.w3.org/1999/xlink"
-          width="500"
-          height="300"
-          className="w-full"
-          viewBox="0 0 500 300"
+    <div className="fixed inset-0 flex w-screen items-center justify-center">
+      <p className="fixed left-1/2 -translate-x-1/2 text-404-back text-blue-50" aria-hidden="true">
+        404
+      </p>
+      <div className="relative z-10 flex flex-col items-center">
+        <h1 className="text-404 font-semibold text-blue-500">404</h1>
+        <p className="text-2xl font-semibold text-gray-900">
+          &quot;죄송합니다. 페이지를 찾을 수 없습니다. 😢&quot;
+        </p>
+        <Button
+          onClick={() => router.back()}
+          className="btn-filled mt-20 flex h-11 items-center rounded-xl px-16 text-base font-semibold"
         >
-          <defs>
-            <path
-              id="wave"
-              d="m-115,50q38-30 75,0t75,0 75,0 75,0
-    75,0 75,0 75,0 75,0 75,0 75,0 75,0 75,0 75,0 75,0 75,0 75,0 75,0 75,0 75,0 75,0 75,0 75,0
-    v20 h-1540 v-20"
-              className="translate-y-[110px]"
-            />
-            <clipPath id="wave-clip-front">
-              <use className="animate-wave" href="#wave" />
-              <rect x="0" y="0" width="100%" height="180" />
-            </clipPath>
-            <clipPath id="wave-clip-middle">
-              <use className="animate-wave" href="#wave" />
-              <rect x="0" y="180" width="100%" height="150" />
-            </clipPath>
-            <linearGradient id="grad-front" x1="0%" y1="0" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#60A5FA" stopOpacity="1" />
-              <stop offset="100%" stopColor="#3388FF" stopOpacity="1" />
-            </linearGradient>
-            <text
-              id="clipped-wave"
-              x={isMobile ? '50' : '0'}
-              y="260"
-              fontFamily="Helvetica"
-              fontWeight="bold"
-              fontSize={isMobile ? '15rem' : '18.75rem'}
-            >
-              404
-            </text>
-          </defs>
-          <use
-            href="#clipped-wave"
-            clipPath="url(#wave-clip-middle)"
-            fill="url(#grad-front)"
-            fillOpacity="0.88"
-          />
-          <use
-            href="#clipped-wave"
-            clipPath="url(#wave-clip-front)"
-            fill="url(#grad-front)"
-            fillOpacity="0.77"
-          />
-        </svg>
-        <div className="flex w-full flex-col items-center gap-9 pb-10 md:absolute md:-bottom-10 md:translate-y-full">
-          <p className="text-2xl font-semibold text-gray-900">
-            &quot;페이지를 찾을 수 없습니다. 😢&quot;
-          </p>
-          <Link
-            href="/"
-            className="btn-filled flex h-11 items-center rounded-xl px-16 text-base font-semibold"
-          >
-            홈으로 가기
-          </Link>
-        </div>
+          뒤로 가기
+        </Button>
       </div>
+      <svg
+        className="absolute bottom-0 left-0 h-[20vh] w-screen"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlnsXlink="http://www.w3.org/1999/xlink"
+        viewBox="0 24 150 28"
+        preserveAspectRatio="none"
+        shape-rendering="auto"
+      >
+        <defs>
+          <path
+            id="gentle-wave"
+            d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"
+          />
+        </defs>
+        <g className="parallax">
+          <use
+            className="animate-duration-[7s] animate-delay-[2000ms] animate-wave"
+            xlinkHref="#gentle-wave"
+            x="60"
+            y="0"
+            fill="#93C5FD"
+          />
+          <use
+            className="animate-duration-[14s] animate-delay-[4000ms] animate-wave"
+            xlinkHref="#gentle-wave"
+            x="48"
+            y="3"
+            fill="#BFDBFE"
+          />
+          <use
+            className="animate-duration-[20s] animate-delay-[6000ms] animate-wave"
+            xlinkHref="#gentle-wave"
+            x="0"
+            y="5"
+            fill="#DBEAFE"
+          />
+        </g>
+      </svg>
     </div>
   );
 }
