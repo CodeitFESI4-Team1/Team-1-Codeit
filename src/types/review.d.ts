@@ -1,6 +1,11 @@
-export interface ReviewInformResponse {
-  data: CrewReview[] | MyReview[];
-  hasNextPage: boolean;
+export interface MyReviewResponse {
+  content: MyReview[];
+  hasNext: boolean;
+}
+
+// API 응답 타입 정의 (data 감싸는 구조)
+export interface ApiResponse<T> {
+  data: T;
 }
 
 export interface CrewReviewInformResponse {
