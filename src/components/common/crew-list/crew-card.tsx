@@ -50,7 +50,13 @@ export default function CrewCard({
     >
       {/* 썸네일 */}
       <div className="relative h-[203px] w-full flex-shrink-0 md:w-[230px]">
-        <Image fill style={{ objectFit: 'cover' }} alt={title} src={imageUrl} />
+        <Image
+          fill
+          sizes="(max-width: 744px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          alt={title}
+          src={imageUrl}
+          className="h-full w-full object-cover"
+        />
       </div>
 
       <div className="flex min-h-[203px] w-full flex-col justify-between p-6 sm:px-4 sm:pt-4">

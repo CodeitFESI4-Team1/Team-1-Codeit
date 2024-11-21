@@ -28,8 +28,15 @@ export default function ScheduledGatheringCardPresenter({
         tabIndex={0}
         className="h-80 cursor-pointer items-center rounded-xl bg-white shadow-xs md:flex md:h-44"
       >
-        <div className="relative h-1/2 w-full flex-shrink-0 overflow-hidden rounded-t-lg md:h-full md:w-1/3 md:rounded-l-lg md:rounded-r-none">
-          <Image src={imageUrl} alt={title} layout="fill" className="object-cover" />
+        {/* Image Section */}
+        <div className="relative h-28 w-28 flex-shrink-0 overflow-hidden rounded-lg md:h-32 md:w-32 lg:h-32 lg:w-32">
+          <Image
+            src={imageUrl}
+            alt={title}
+            fill
+            sizes="(max-width: 744px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="h-full w-full object-cover"
+          />
         </div>
         <div className="flex h-1/2 w-full min-w-0 flex-grow flex-col justify-between p-4 md:h-full">
           <div className="overflow-hidden text-ellipsis whitespace-nowrap">
