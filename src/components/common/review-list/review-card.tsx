@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import { useDisclosure } from '@mantine/hooks';
