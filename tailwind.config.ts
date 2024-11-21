@@ -30,6 +30,7 @@ const config: Config = {
         ic: 'calc(11.11111% - 7.1111px)',
         7.5: '30px',
         12.5: '50px',
+        21.5: '86px',
         27.5: '110px',
       },
       width: {
@@ -42,6 +43,7 @@ const config: Config = {
       height: {
         7.5: '30px',
         12.5: '50px',
+        13: '52px',
         27.5: '110px',
         30: '120px',
       },
@@ -80,6 +82,7 @@ const config: Config = {
         base: ['1rem', { lineHeight: '1.5rem' }],
         sm: ['0.875rem', { lineHeight: '1.25rem' }],
         xs: ['0.75rem', { lineHeight: '1rem' }],
+        404: ['18.75rem', { lineHeight: '18.75rem' }],
       },
       fontWeight: {
         bold: '700',
@@ -119,6 +122,7 @@ const config: Config = {
       boxShadow: {
         xl: '0 4px 4px 0 rgba(0,0,0,0.25)',
         bg: '0 4px 30px 1px rgba(0,122,255,0.04)',
+        card: '0 4px 15px 1px rgba(0,122,255,0.1)',
         xs: '0px 2px 4px 0px rgba(0, 0, 0, 0.02)',
       },
       keyframes: {
@@ -126,9 +130,14 @@ const config: Config = {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
         },
+        wave: {
+          '0%': { transform: 'translate(0)' },
+          '100%': { transform: 'translate(-30%)' },
+        },
       },
       animation: {
         fade: 'show 0.5s ease-in',
+        wave: 'wave 0.8s linear infinite',
       },
     },
   },

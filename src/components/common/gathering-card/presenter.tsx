@@ -1,14 +1,12 @@
 import { MouseEvent } from 'react';
 import Image from 'next/image';
 import { Badge } from '@mantine/core';
-import { cn } from '@/src/hooks/cn';
+import { cn } from '@/src/utils/cn';
 import { formatDate } from '@/src/utils/format-date';
 import Button from '@/src/components/common/input/button';
 import LikeBtn from '@/src/components/common/input/button/like-btn';
-import IcoPerson from '@/public/assets/icons/person.svg';
+import IcoPerson from '@/public/assets/icons/ic-gathering-person.svg';
 import IcoTimer from '@/public/assets/icons/timer.svg';
-
-// TODO: 스케레톤UI 적용(처음 로딩시 카드가 늘어나는 현상)
 
 export interface GatheringCardPresenterProps {
   id: number;
@@ -43,35 +41,26 @@ export default function GatheringCardPresenter({
   deadlineMessage,
   className,
 }: GatheringCardPresenterProps) {
-  const { date, time } = formatDate(dateTime);
+  const { date, dayOfWeek, time } = formatDate(dateTime);
 
-  const handleClick = (e: MouseEvent) => {
+  const handleLikeClick = (e: MouseEvent) => {
     e.stopPropagation();
     onLikeToggle();
   };
 
   return (
     <div
-      role="button"
-      tabIndex={0}
-      onClick={isPast ? undefined : onClick}
-      onKeyDown={(e) => {
-        if (!isPast && (e.key === 'Enter' || e.key === ' ')) {
-          onClick();
-        }
-      }}
       className={cn(
         className,
-        'relative h-[310px] w-full overflow-hidden rounded-lg border-white bg-white shadow-sm',
-        isPast ? 'pointer-events-none cursor-default' : 'cursor-pointer',
+        'relative h-[380px] w-full overflow-hidden rounded-lg border-white bg-white shadow-sm',
       )}
     >
       <div className="relative h-40 w-full">
         <Image
           src={imageUrl}
           alt={title}
-          layout="fill"
-          objectFit="cover"
+          fill
+          style={{ objectFit: 'cover' }}
           className="rounded-t-lg"
         />
       </div>
@@ -83,55 +72,48 @@ export default function GatheringCardPresenter({
         </div>
       )}
 
-      <div className="flex min-h-[150px] flex-col justify-between p-4">
+      <div className="flex min-h-[220px] flex-col justify-between p-4">
         <div>
-          <h3 className="overflow-hidden text-ellipsis whitespace-nowrap text-xl font-semibold text-gray-800">
+          <div className="flex items-center space-x-2">
+            <p className="overflow-hidden text-ellipsis whitespace-nowrap text-base font-semibold text-blue-500">
+              {`${date} ${dayOfWeek}`}
+            </p>
+            <div className="h-[18px] w-[1px] bg-gray-300" />
+            <p className="overflow-hidden text-ellipsis whitespace-nowrap text-base font-semibold text-blue-500">
+              {time}
+            </p>
+          </div>
+          <h3 className="overflow-hidden text-ellipsis whitespace-nowrap pt-1 text-xl font-semibold text-gray-800">
             {title}
           </h3>
-          <div className="mb-2 flex items-center space-x-1 text-base font-medium text-gray-700">
-            <span className="-translate-y-[2px] leading-none tracking-tighter">|</span>
+          <div className="text-xm mb-2 flex items-center space-x-1 font-normal text-gray-700">
             <p className="overflow-hidden text-ellipsis whitespace-nowrap">{location}</p>
           </div>
-          <div className="space-x-2">
-            <Badge
-              size="lg"
-              color="#111827"
-              radius="sm"
-              classNames={{
-                label: 'font-pretendard, gathering-badge',
-              }}
-            >
-              {date}
-            </Badge>
-            <Badge
-              size="lg"
-              color="#111827"
-              radius="sm"
-              classNames={{
-                label: 'font-pretendard, gathering-badge',
-              }}
-            >
-              {time}
-            </Badge>
-          </div>
         </div>
-        <p className="flex items-center text-base font-medium text-gray-700">
-          <Image src={IcoPerson} alt="person icon" width={16} height={16} />
-          참여인원 {currentCount}/{totalCount}
-        </p>
+        <div className="flex flex-col space-y-3">
+          <div className="flex items-center space-x-1">
+            <Image src={IcoPerson} alt="person icon" width={16} height={16} />
+            <p className="text-sm font-normal text-gray-900">
+              참여인원 <span className="text-blue-500">{currentCount}</span>/{totalCount}
+            </p>
+          </div>
+          <Button className="btn-filled w-full" onClick={onClick}>
+            약속 자세히 보기
+          </Button>
+        </div>
       </div>
 
-      <div className="absolute bottom-4 right-4">
-        <LikeBtn id={id} isLiked={isLiked} onLikeToggle={onLikeToggle} size={40} />
+      <div className="absolute bottom-[68px] right-4">
+        <LikeBtn id={id} isLiked={isLiked} onLikeToggle={onLikeToggle} size={32} />
       </div>
 
       {isPast && (
         <div className="pointer-events-auto absolute inset-0 flex items-center justify-center rounded-md bg-black bg-opacity-70 text-white">
           <div className="text-center">
-            <p className="mb-2 text-lg font-semibold">마감된 모임입니다</p>
+            <p className="mb-2 text-lg font-semibold">마감된 약속입니다</p>
             <p className="mb-4 text-sm">다음 기회에 만나요 🙏</p>
-            <Button type="button" className="btn-filled px-4" onClick={handleClick}>
-              모임 보내주기
+            <Button type="button" className="btn-filled px-4" onClick={handleLikeClick}>
+              약속 보내주기
             </Button>
           </div>
         </div>

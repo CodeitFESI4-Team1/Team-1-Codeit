@@ -1,28 +1,54 @@
 'use client';
 
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import CreateCrewForm from '@/src/app/(crew)/crew/_components/create-crew-form';
-import { CreateCrewRequestTypes } from '@/src/types/create-crew';
+import { Loader } from '@mantine/core';
+import { useCreateCrewQuery } from '@/src/_queries/crew/crew-detail-queries';
+import CreateCrewForm from '@/src/app/(crew)/crew/create/_components/create-crew-form';
+import { CreateCrewFormTypes, CreateCrewRequestTypes } from '@/src/types/create-crew';
 import IcoCreateCrew from '@/public/assets/icons/ic-create-crew.svg';
 
+const initialValue = {
+  title: '',
+  mainCategory: '',
+  subCategory: '',
+  imageUrl: '',
+  mainLocation: '',
+  subLocation: '',
+  totalCount: 4,
+  introduce: '',
+};
+
 export default function CreateCrewPage() {
-  const router = useRouter();
-  const initialValue: CreateCrewRequestTypes = {
-    title: '',
-    mainCategory: '',
-    subCategory: null,
-    imageUrl: null,
-    mainLocation: '',
-    subLocation: null,
-    totalCount: 4,
+  let savedInfo;
+  if (typeof window !== 'undefined') {
+    const storageInfo = localStorage.getItem('createCrew');
+    if (storageInfo) savedInfo = JSON.parse(storageInfo);
+  }
+
+  const { isPending, mutate } = useCreateCrewQuery();
+
+  const handleSubmit = async (createdData: CreateCrewFormTypes) => {
+    const newData: CreateCrewRequestTypes = {
+      title: createdData.title,
+      mainCategory: createdData.mainCategory,
+      subCategory: createdData.subCategory ?? '',
+      imageUrl: (createdData.imageUrl as string) ?? '',
+      mainLocation: createdData.mainLocation,
+      subLocation: createdData.subLocation === '전체' ? '' : (createdData.subLocation ?? ''),
+      totalCount: createdData.totalCount,
+      introduce: createdData.introduce,
+    };
+
+    mutate(newData);
+    localStorage.removeItem('createCrew');
   };
 
-  const handleSubmit = () => {
-    // TODO : POST API 연결
-    const response = { id: 1 };
-    router.push(`/crew/detail/${response?.id}`);
-  };
+  if (isPending)
+    return (
+      <div className="fixed inset-0 z-10 flex items-center justify-center">
+        <Loader size="sm" />
+      </div>
+    );
 
   return (
     <div className="lg:px-8.5 flex flex-col gap-3 px-3 py-8 md:gap-4 md:px-8 md:py-12.5 lg:gap-8">
@@ -37,7 +63,12 @@ export default function CreateCrewPage() {
         </figure>
         <h2 className="text-2xl font-bold text-gray-900 md:text-3.5xl">크루 만들기</h2>
       </div>
-      <CreateCrewForm data={initialValue} onSubmit={handleSubmit} />
+      <CreateCrewForm
+        data={savedInfo ?? initialValue}
+        onSubmit={handleSubmit}
+        type="create"
+        isEdit={savedInfo !== undefined}
+      />
     </div>
   );
 }

@@ -1,43 +1,29 @@
-import { create } from 'zustand';
+import { createStore, useStore } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
-import { User } from '@/src/types/auth';
 
 interface AuthState {
-  isAuth: boolean;
-  user: User | null;
   token: string | null;
-  login: (token: string) => void;
-  logout: () => void;
-  setUser: (user: User) => void;
+  setToken: (token: string) => void;
+  clearToken: () => void;
 }
 
-export const useAuthStore = create<AuthState>()(
+export const authStore = createStore<AuthState>()(
   persist(
     (set) => ({
-      isAuth: false,
-      user: null,
       token: null,
-      login: (token) =>
-        set({
-          isAuth: true,
-          token,
-        }),
-      logout: () =>
-        set({
-          isAuth: false,
-          user: null,
-          token: null,
-        }),
-      setUser: (user: User) => set((state) => ({ ...state, user })),
+      setToken: (token) => set({ token }),
+      clearToken: () => set({ token: null }),
     }),
     {
       name: 'auth-storage',
       storage: createJSONStorage(() => sessionStorage),
       partialize: (state) => ({
-        isAuth: state.isAuth,
         token: state.token,
-        user: state.user,
       }),
     },
   ),
 );
+
+export function useAuthStore<T>(selector: (state: AuthState) => T) {
+  return useStore(authStore, selector);
+}

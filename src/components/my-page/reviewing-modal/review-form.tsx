@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useController, useForm } from 'react-hook-form';
 import { Button } from '@mantine/core';
 import { useMutation } from '@tanstack/react-query';
 import { PostReviewParams, postReview } from '@/src/_apis/review/review-apis';
@@ -13,14 +13,17 @@ type FormValues = {
 };
 
 interface ReviewFormProps {
-  gatheringId: number;
+  gatheringId?: number;
   onCancel: () => void;
 }
 
 export default function ReviewForm({ gatheringId, onCancel }: ReviewFormProps) {
-  const { register, handleSubmit } = useForm<FormValues>();
+  const { register, handleSubmit, control } = useForm<FormValues>();
   const [textReview, setTextReview] = useState<string>('');
-  const [point, setPoint] = useState<number>(0);
+
+  const {
+    field: { value: scoreValue, onChange: setScore },
+  } = useController({ name: 'score', control, defaultValue: 0 });
 
   const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     if (e.target.value.length <= 300) {
@@ -29,16 +32,19 @@ export default function ReviewForm({ gatheringId, onCancel }: ReviewFormProps) {
   };
 
   const handleScoreChange = (newScore: number) => {
-    setPoint(newScore);
+    setScore(newScore);
   };
 
   const mutation = useMutation<ResponseType, ApiError, PostReviewParams>({
     mutationFn: (params: PostReviewParams) =>
-      postReview(params.gatheringId, params.point, params.reviewText),
+      postReview({
+        gatheringId: params.gatheringId,
+        point: params.point,
+        reviewText: params.reviewText,
+      }),
 
-    onSuccess: (data: ResponseType) => {
-      // eslint-disable-next-line no-console
-      console.log(data);
+    onSuccess: () => {
+      onCancel();
     },
     onError: (error: ApiError) => {
       // eslint-disable-next-line no-console
@@ -47,6 +53,8 @@ export default function ReviewForm({ gatheringId, onCancel }: ReviewFormProps) {
   });
 
   const clickSubmit = (data: FormValues) => {
+    // eslint-disable-next-line no-console
+    console.log(data);
     mutation.mutate({ gatheringId, point: data.score, reviewText: data.reviewText });
   };
 
@@ -77,7 +85,7 @@ export default function ReviewForm({ gatheringId, onCancel }: ReviewFormProps) {
           },
         }}
       />
-      <input type="hidden" value={point} {...register('score')} />
+      <input type="hidden" value={scoreValue} />
       <div className="font-base flex w-full justify-between gap-[8px] font-semibold md:gap-[16px]">
         <Button
           onClick={onCancel}

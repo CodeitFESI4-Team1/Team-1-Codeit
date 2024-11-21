@@ -1,10 +1,8 @@
-import { useEffect, useState } from 'react';
+import { Loader } from '@mantine/core';
 import type { Meta, StoryObj } from '@storybook/react';
-import { InfiniteData } from '@tanstack/react-query';
-import { useGetCrewListQuery } from '@/src/_queries/crew-queries';
+import { useGetCrewListQuery } from '@/src/_queries/crew/crew-list-queries';
 import { useInfiniteScroll } from '@/src/hooks/use-infinite-scroll';
 import ClientProvider from '@/src/components/client-provider';
-import { MainCrewListResponse } from '@/src/types/crew-card';
 import CrewCardList from './crew-card-list';
 
 const meta: Meta = {
@@ -29,36 +27,37 @@ const meta: Meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-function RenderCrewCardList({
-  initialData,
-}: {
-  initialData: InfiniteData<MainCrewListResponse | undefined>;
-}) {
-  const [data, setData] = useState<InfiniteData<MainCrewListResponse | undefined>>(initialData);
-  const {
-    data: CrewCardListData,
-    ref,
-    isFetchingNextPage,
-  } = useInfiniteScroll(
+function RenderCrewCardList() {
+  const { data, isLoading, error, isFetchingNextPage, ref } = useInfiniteScroll(
     useGetCrewListQuery({
-      keyword: '',
-      mainLocation: '',
-      mainCategory: '',
-      subCategory: '',
-      sortType: 'LATEST',
+      condition: {
+        keyword: '',
+        mainLocation: '',
+        mainCategory: '',
+        subCategory: '',
+        sortType: 'POPULAR',
+      },
+      pageable: { page: 0, size: 6, sort: ['createdAt,desc'] },
     }),
   );
 
-  useEffect(() => {
-    if (CrewCardListData) {
-      setData(CrewCardListData);
-    }
-  }, [CrewCardListData]);
-
-  return <CrewCardList data={data} ref={ref} isFetchingNextPage={isFetchingNextPage} />;
+  if (!data) return null;
+  return (
+    <div>
+      {data && <CrewCardList data={data} />}
+      {isLoading || isFetchingNextPage ? (
+        <div className="flex justify-center py-10">
+          <Loader size="sm" />
+        </div>
+      ) : (
+        <div ref={ref} className="h-[1px]" />
+      )}
+      {error && <p className="py-10 text-center">에러가 발생했습니다.</p>}
+    </div>
+  );
 }
 
 export const Default: Story = {
-  render: () => <RenderCrewCardList initialData={{ pages: [], pageParams: [] }} />,
+  render: () => <RenderCrewCardList />,
   args: {},
 };

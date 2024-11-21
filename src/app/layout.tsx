@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import '@mantine/core/styles.css';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import ClientProvider from '@/src/components/client-provider';
 import { pretendard } from '@/src/fonts/pretendard/pretendard';
 import '@/src/styles/globals.css';
@@ -23,7 +24,10 @@ export default function RootLayout({
       </head>
       <body>
         <ClientProvider>
-          <MantineProvider theme={theme}>{children}</MantineProvider>
+          <MantineProvider theme={theme}>
+            {children}
+            <SpeedInsights />
+          </MantineProvider>
         </ClientProvider>
       </body>
     </html>

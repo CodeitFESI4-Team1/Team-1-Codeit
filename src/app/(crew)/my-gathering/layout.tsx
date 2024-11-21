@@ -5,8 +5,8 @@ import { usePathname, useRouter } from 'next/navigation';
 import Tabs from '@/src/components/common/tab';
 
 const myGatheringTabs = [
-  { id: 'my-gathering-participation', label: '참여한 약속', route: '/my-gathering/participation' },
-  { id: 'my-gathering-creation', label: '만든 약속', route: '/my-gathering/creation' },
+  { id: 'my-gathering-joined', label: '내가 참여한 약속', route: '/my-gathering/joined' },
+  { id: 'my-gathering-hosted', label: '내가 만든 약속', route: '/my-gathering/hosted' },
 ];
 
 export default function MyGatheringLayout({
@@ -29,13 +29,15 @@ export default function MyGatheringLayout({
   };
 
   return (
-    <div className="px-3 py-8 md:px-8 md:py-12.5 lg:px-11.5">
+    <div className="px-3 py-4 md:px-8 md:py-16 lg:px-11.5">
+      <div className="hidden pb-6 text-3xl font-bold text-gray-900 md:block">나의 약속</div>
       <Tabs
         variant="default"
         tabs={myGatheringTabs}
         activeTab={currentTab}
         onTabClick={(id) => handleTabClick(id)}
       />
+      <div className="mt-10 hidden w-full border-t-2 border-gray-200 md:block" />
       {children}
     </div>
   );

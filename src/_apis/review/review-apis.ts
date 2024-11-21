@@ -1,16 +1,14 @@
 import { fetchApi } from '@/src/utils/api';
 
 export interface PostReviewParams {
-  gatheringId: number;
+  gatheringId?: number;
   point: number;
   reviewText: string;
 }
 
-export async function postReview(
-  gatheringId: number,
-  point: number,
-  reviewText: string,
-): Promise<ResponseType> {
+export async function postReview(params: PostReviewParams): Promise<ResponseType> {
+  const { gatheringId, point, reviewText } = params;
+
   const response = await fetchApi<ResponseType>(`/api/review/${gatheringId}`, {
     method: 'POST',
     headers: {

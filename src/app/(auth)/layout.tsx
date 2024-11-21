@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import '@mantine/core/styles.css';
@@ -30,7 +31,9 @@ export default function AuthLayout({
           <div className="mt-4 text-center text-sm font-semibold lg:text-base">
             함께할 사람이없나요? 지금 크루에 참여해보세요
           </div>
-          <div className="mt-6 w-full md:mt-12 md:w-2/3 lg:w-1/2">{children}</div>
+          <div className="mt-6 w-full md:mt-12 md:w-2/3 lg:w-1/2">
+            <Suspense>{children}</Suspense>
+          </div>
         </div>
       </div>
     </div>

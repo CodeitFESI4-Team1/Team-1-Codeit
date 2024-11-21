@@ -2,15 +2,23 @@ import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import Image, { StaticImageData } from 'next/image';
 import IcoPlus from '@/public/assets/icons/ic-plus.svg';
 import IcoX from '@/public/assets/icons/ic-x.svg';
+import ImgCrewSampleUrls from '@/public/assets/images/crew-sample';
+import ImgGatheringSampleUrls from '@/public/assets/images/gathering-sample';
 
 export interface FileInputProps {
-  value: File | StaticImageData | null;
-  onChange: (value: File | StaticImageData | null) => void;
+  value: File | string | null;
+  onChange: (value: File | null) => void;
   isBlur: boolean;
 }
 
+const isSample = (value: File | string | null) => {
+  if (typeof value === 'string') {
+    return !!(ImgCrewSampleUrls.includes(value) || ImgGatheringSampleUrls.includes(value));
+  }
+  return false;
+};
 export default function FileInput({ value, isBlur, onChange }: FileInputProps) {
-  const [preview, setPreview] = useState<string | null>(null);
+  const [preview, setPreview] = useState<string | null>(isSample(value) ? null : (value as string));
   const [fileReader, setFileReader] = useState<FileReader | null>(null);
   const fileInput = useRef<HTMLInputElement>(null);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
@@ -45,7 +53,6 @@ export default function FileInput({ value, isBlur, onChange }: FileInputProps) {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
       onChange(file);
-      e.target.value = '';
 
       // 디바운싱된 파일 로드 실행
       debouncedHandleFileLoad(file);
@@ -80,7 +87,7 @@ export default function FileInput({ value, isBlur, onChange }: FileInputProps) {
     if (isBlur && value) {
       setPreview(null); // 블러 상태에서 미리보기 제거
     }
-  }, [isBlur]);
+  }, [isBlur, value]);
 
   return (
     <div className="min-w-1/4 relative flex aspect-square w-1/4 gap-2">

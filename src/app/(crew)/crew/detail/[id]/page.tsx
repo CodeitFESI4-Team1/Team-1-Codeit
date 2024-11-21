@@ -1,41 +1,44 @@
-import { getCrewDetail } from '@/src/_apis/detail/get-crew-detail';
-import { getGatheringList } from '@/src/_apis/detail/get-gathering-list';
-import DetailCrewCard from '@/src/components/common/crew-list/detail-crew-card';
-import GatheringCardCarousel from '@/src/components/gathering-list/gathering-card-carousel';
+import { getGatheringList } from '@/src/_apis/crew/crew-gathering-list-apis';
 import CreateGathering from './_components/create-gathering';
+import DetailCrew from './_components/detail-crew-container';
+import GatheringListSection from './_components/gathering-list-section';
 import CrewReviewSection from './_components/review-section';
 
-export default async function CrewDetailPage() {
-  const { data: crewDetail } = await getCrewDetail();
-  const gatheringList = await getGatheringList();
+interface CrewDetailPageProps {
+  params: { id: string };
+}
+
+export default async function CrewDetailPage({ params }: CrewDetailPageProps) {
+  const id = Number(params.id);
 
   return (
     <div className="mx-auto min-h-screen w-full max-w-full overflow-x-hidden">
-      <div className="mx-3 my-7 space-y-10 md:mx-7 md:my-11 lg:mx-11 lg:my-16">
-        <section className="w-full">
-          <article>
-            {/* //TODO: 추후 confirmed부분 수정 */}
-            <DetailCrewCard isConfirmed={false} {...crewDetail} />
-          </article>
-        </section>
-        <section className="w-full space-y-6">
-          <article className="space-y-6">
-            <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-semibold">크루 약속</h2>
-              <CreateGathering />
+      {/* Detail Section */}
+      <section className="mx-3 my-7 md:mx-7 md:my-11 lg:mx-11 lg:my-16">
+        <article>
+          <DetailCrew id={id} />
+        </article>
+      </section>
+
+      {/* Gathering Section */}
+      <section className="w-full space-y-6">
+        <article className="space-y-6">
+          <CreateGathering crewId={Number(params.id)} />
+          <div className="flex w-full overflow-hidden px-3 md:px-7 lg:px-0">
+            <div className="relative -mx-3 w-[calc(100%+1.5rem)] px-3 md:-mx-7 md:w-[calc(100%+3.5rem)] md:px-7 lg:-mx-6 lg:w-[calc(100%+3rem)] lg:px-0">
+              <GatheringListSection id={id} />
             </div>
-            <div className="flex w-full">
-              <GatheringCardCarousel gatheringData={gatheringList} />
-            </div>
-          </article>
-        </section>
-        <section className="w-full">
-          <article className="space-y-6">
-            <h2 className="text-2xl font-semibold">크루 리뷰</h2>
-            <CrewReviewSection />
-          </article>
-        </section>
-      </div>
+          </div>
+        </article>
+      </section>
+
+      {/* Crew Review Section */}
+      {/* <section className="w-full mx-3 md:mx-7 lg:mx-11 space-y-6">
+        <article className="space-y-6">
+          <h2 className="text-2xl font-semibold">크루 리뷰</h2>
+          <CrewReviewSection />
+        </article>
+      </section> */}
     </div>
   );
 }

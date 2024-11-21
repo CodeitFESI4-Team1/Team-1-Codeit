@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Button, Popover } from '@mantine/core';
 import { useDisclosure, useMediaQuery } from '@mantine/hooks';
 import CalendarFilter from '@/src/components/common/input/calendar-filter';
@@ -11,41 +11,62 @@ export interface PopOverProps {
 }
 
 export default function PopOverCalendar({ value, onChange }: PopOverProps) {
-  const [opened, { close, open }] = useDisclosure(false);
-  const [inputTheme, setInputTheme] = useState('white');
+  const [opened, { open, close }] = useDisclosure();
+  const [inputTheme, setInputTheme] = useState(opened ? 'dark' : 'light');
   const [date, setDate] = useState<Date>(value);
   const isMobile = useMediaQuery(`(max-width: ${theme.breakpoints.md})`);
+  const popOver = useRef<HTMLDivElement>(null);
 
-  const handleClear = () => {
+  const handleClear = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
     setDate(new Date());
     onChange(new Date());
     close();
   };
-  const handleSubmit = () => {
+  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
     onChange(date);
     close();
   };
-
+  const handleOutsideClick = (e: MouseEvent) => {
+    if (popOver.current && !popOver.current.contains(e.target as Node)) {
+      close();
+    }
+  };
+  useEffect(() => {
+    document.addEventListener('click', handleOutsideClick);
+    return () => document.removeEventListener('click', handleOutsideClick);
+  }, []);
   return (
     <Popover
+      withinPortal
+      opened={opened}
+      onClose={close}
+      closeOnClickOutside
+      closeOnEscape
+      clickOutsideEvents={['click', 'touchstart']}
       width={110}
       position={isMobile ? 'bottom' : 'bottom-start'}
       shadow="md"
-      opened={opened}
     >
       <Popover.Target>
         <Button
           type="button"
-          onClick={opened ? close : open}
-          onFocus={() => setInputTheme('dark')}
-          onBlur={() => setInputTheme('white')}
+          onClick={open}
           className="flex h-11 items-center justify-between rounded-xl border-0 bg-white px-3 py-2.5 text-base font-medium text-gray-800 hover:bg-white hover:text-gray-800 focus:bg-black focus:text-white"
         >
-          <span>날짜 선택</span>
+          <span>{date ? `${date.getMonth() + 1}월 ${date.getDate()}일` : '날짜 선택'}</span>
           <IconArrow direction="down" color={`${inputTheme === 'dark' ? '#ffffff' : '#D1D5DB'}`} />
         </Button>
       </Popover.Target>
-      <Popover.Dropdown w={336} h={386} px={43} py={24} className="rounded-xl shadow-xl">
+      <Popover.Dropdown
+        w={336}
+        h={386}
+        px={43}
+        py={24}
+        ref={popOver}
+        className="rounded-xl shadow-xl"
+      >
         <div className="flex flex-col gap-4">
           <CalendarFilter value={date} toDoDates={null} onChange={setDate} />
           <div className="flex justify-between gap-3">

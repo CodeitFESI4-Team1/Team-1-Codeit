@@ -1,10 +1,11 @@
-import GatheringList from '@/src/components/gathering-list/gathering-list';
-import { gatheringData } from '@/src/mock/gathering-data';
+import LikedList from '@/src/components/gathering-list/liked-list-container';
 
 export default function FavoritePage() {
   return (
-    <div className="mt-4 md:mt-10">
-      <GatheringList gatheringData={gatheringData} />
+    <div className="px-3 py-4 md:px-8 md:py-16 lg:px-11.5">
+      <div className="hidden pb-10 text-3xl font-bold md:block">찜한 약속</div>
+
+      <LikedList />
     </div>
   );
 }

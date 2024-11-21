@@ -1,24 +1,31 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { usePostSignupQuery } from '@/src/_queries/auth/auth-queries';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { usePostSignupQuery } from '@/src/_queries/auth/signup-queries';
 import SignupForm, { SignupFormValues } from './_component/signup-form';
 
 export default function LoginPage() {
+  const [redirect, setRedirect] = useState('/');
+  const searchParams = useSearchParams();
   const router = useRouter();
   const formMethods = useForm<SignupFormValues>();
   const { setError } = formMethods;
   const { mutate: postSignup } = usePostSignupQuery();
+
+  useEffect(() => {
+    const redirectParam = searchParams.get('redirect');
+    if (redirectParam) setRedirect(redirectParam);
+  }, [searchParams]);
 
   const handleSubmit = async (data: SignupFormValues) => {
     const { confirmPassword, ...requestData } = data;
 
     postSignup(requestData, {
       onSuccess: () => {
-        router.push('/');
+        router.push(redirect);
       },
       onError: (error) => {
         if (error.status === 400) {
@@ -39,7 +46,10 @@ export default function LoginPage() {
       <SignupForm formMethods={formMethods} onSubmit={handleSubmit} />
       <div className="mt-6 flex justify-center space-x-1 text-sm font-medium">
         <div>이미 회원이신가요?</div>
-        <Link href="/login" className="text-blue-500 underline">
+        <Link
+          href={redirect !== '/' ? `/login?redirect=${redirect}` : '/login'}
+          className="text-blue-500 underline"
+        >
           로그인
         </Link>
       </div>

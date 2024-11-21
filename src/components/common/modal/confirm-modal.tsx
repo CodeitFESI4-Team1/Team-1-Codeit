@@ -36,7 +36,7 @@ export default function ConfirmModal({ children, opened, onClose, onConfirm }: C
       opened={opened}
       onClose={onClose}
       centered
-      withCloseButton
+      withCloseButton={false}
       size="xs"
       styles={{
         content: { boxShadow: '0 25px 50px -12px rgba(0,0,0,0.1)', borderRadius: '12px' },
@@ -46,8 +46,8 @@ export default function ConfirmModal({ children, opened, onClose, onConfirm }: C
         blur: 2,
       }}
     >
-      <div className="space-y-8 text-center">
-        {children}
+      <div className="space-y-8 p-4 text-center">
+        <div>{children}</div>
         <div className="flex justify-end">
           <Button className="btn-filled w-full" onClick={handleConfirm}>
             확인

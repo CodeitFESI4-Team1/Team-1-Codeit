@@ -27,7 +27,9 @@ export default function GatheringListWithDate({ gatheringList }: GatheringListWi
             {gathering.isNewDate && (
               <div className="hidden flex-nowrap md:block">
                 <div className="text-lg font-semibold">{formatDate(gathering.dateTime).date}</div>
-                <div className="text-base font-medium text-gray-500">월요일</div>
+                <div className="text-base font-medium text-gray-500">
+                  {formatDate(gathering.dateTime).dayOfWeek}
+                </div>
               </div>
             )}
           </div>

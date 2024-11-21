@@ -9,7 +9,7 @@ import IconArrow from '@/public/assets/icons/ic-arrow';
 
 export interface DateTimePickerProps {
   fullDate: Date;
-  onChange: (date: Date) => void;
+  onChange: (date: string) => void;
 }
 
 export default function DateTimePicker({ fullDate, onChange }: DateTimePickerProps) {
@@ -18,18 +18,33 @@ export default function DateTimePicker({ fullDate, onChange }: DateTimePickerPro
   const [minute, setMinute] = useState<string | null>('분');
 
   const handleSelect = (date: Date) => {
+    const newDate = new Date(selected);
     const isSelected = selected;
 
+    newDate.setFullYear(Number(date.getFullYear()));
+    newDate.setMonth(Number(date.getMonth()));
+    newDate.setDate(Number(date.getDate()));
+
+    const kstDate = new Date(newDate.getTime() - newDate.getTimezoneOffset() * 60000).toISOString();
+
     if (isSelected) {
-      setSelected(date);
-      onChange(date);
+      setSelected(newDate);
+      onChange(kstDate);
     }
   };
 
   const handleTime = () => {
-    const newDate = dayjs(selected).hour(Number(hour)).minute(Number(minute)).toDate();
+    const newDate = new Date(selected);
+
+    newDate.setHours(Number(hour));
+    newDate.setMinutes(Number(minute));
+
+    const kstDate = new Date(newDate.getTime() - newDate.getTimezoneOffset() * 60000).toISOString();
+
     setSelected(newDate);
-    onChange(newDate);
+
+    // KST 기준 ISO 문자열 전달
+    onChange(kstDate);
   };
 
   return (
@@ -46,7 +61,7 @@ export default function DateTimePicker({ fullDate, onChange }: DateTimePickerPro
             })}
             firstDayOfWeek={0}
             classNames={{
-              day: 'w-full aspect-square text-gray-800 data-[selected=true]:text-white flex',
+              day: 'w-full aspect-square text-gray-800 data-[selected=true]:text-white data-[selected=true]:rounded-xl flex',
               monthCell: 'w-[calc(14.285vw-5.714px)] aspect-square md:w-[85px]',
               monthsListCell:
                 'w-[calc(33.333vw-13.333px)] h-[10vw] md:w-[200px] md:h-[80px] text-gray-800',
