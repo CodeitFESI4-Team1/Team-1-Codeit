@@ -27,7 +27,7 @@ export default function MyReviewPage() {
   }
 
   return (
-    <div>
+    <div className="mt-8">
       <ReviewCardList data={data ?? { pages: [], pageParams: [] }} refetch={refetch} />
       {isFetchingNextPage && (
         <div className="mt-4 flex items-center justify-center">
