@@ -1,6 +1,6 @@
 import { Skeleton } from '@mantine/core';
 
-export default function ReviewableReviewSkeleton() {
+export default function ReviewableGatheringSkeleton() {
   return (
     <div className="flex gap-5">
       <Skeleton className="h-[166px] w-[230px] rounded-xl" />

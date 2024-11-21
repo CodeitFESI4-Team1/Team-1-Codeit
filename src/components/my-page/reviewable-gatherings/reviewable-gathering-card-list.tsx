@@ -2,11 +2,12 @@
 
 import { useGetReviewableQuery } from '@/src/_queries/my-gathering/reviewable-gathering-list';
 import { useInfiniteScroll } from '@/src/hooks/use-infinite-scroll';
+import ReviewableGatheringSkeletonList from '@/src/components/common/skeleton/reviewable-gathering-skeleton-list';
 import { ReviewableGatheringCardInformResponse } from '@/src/types/reviewable-gathering-card';
 import ReviewableGatheringCard from './reviewable-gathering-card';
 
 export default function ReviewableGatheringCardList() {
-  const { data, ref, isFetchingNextPage } = useInfiniteScroll(
+  const { data, ref, isLoading, isFetchingNextPage } = useInfiniteScroll(
     useGetReviewableQuery({
       pageable: { page: 0, size: 6, sort: ['dateTime,desc'] },
     }),
@@ -17,6 +18,12 @@ export default function ReviewableGatheringCardList() {
     data.pages.length === 0 ||
     data.pages.every((page) => Array.isArray(page.content) && page.content.length === 0);
 
+  if (isLoading)
+    return (
+      <div className="py-6">
+        <ReviewableGatheringSkeletonList num={6} />
+      </div>
+    );
   return (
     <ul className="flex flex-col items-center gap-4">
       {/* 데이터가 비었을 때 메시지 */}
