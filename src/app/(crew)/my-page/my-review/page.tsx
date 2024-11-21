@@ -16,8 +16,10 @@ export default function MyReviewPage() {
 
   if (isLoading) {
     return (
-      <div className="flex h-full items-center justify-center">
-        <ReviewListSkeleton type="mine" />
+      <div className="mt-8">
+        <div className="w-full">
+          <ReviewListSkeleton type="mine" />
+        </div>
       </div>
     );
   }
