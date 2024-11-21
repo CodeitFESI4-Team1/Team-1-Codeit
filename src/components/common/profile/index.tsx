@@ -70,8 +70,8 @@ export function Profile({
             src={imageUrl && imageUrl.trim() ? imageUrl : defaultImage}
             alt="프로필 이미지"
             fill
-            style={{ objectFit: 'cover' }}
-            className="rounded-full"
+            sizes="(max-width: 744px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="h-full w-full rounded-full object-cover"
             priority={priority}
           />
         </div>
