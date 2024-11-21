@@ -1,4 +1,3 @@
-import { StaticImageData } from 'next/image';
 import { UserType } from './user';
 
 export interface GatheringType {

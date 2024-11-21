@@ -1,6 +1,3 @@
-import { StaticImageData } from 'next/image';
-import { interpolate } from 'framer-motion';
-
 // NOTE : imageURL 임시로 File로 지정
 export interface CreateCrewFormTypes {
   title: string;

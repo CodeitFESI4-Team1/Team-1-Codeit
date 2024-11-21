@@ -2,12 +2,10 @@
 
 import { useRouter } from 'next/navigation';
 import { useDisclosure } from '@mantine/hooks';
-import { useGetCrewDetailQuery } from '@/src/_queries/crew/crew-detail-queries';
 import { useGetGatheringListQuery } from '@/src/_queries/crew/gathering-list-queries';
 import { useAuth } from '@/src/hooks/use-auth';
 import CreateGatheringModalContainer from '@/src/app/(crew)/crew/detail/[id]/_components/create-gathering/create-gathering-modal/container';
 import Button from '@/src/components/common/input/button';
-import { CrewDetail } from '@/src/types/crew-card';
 import { CreateGatheringFormTypes } from '@/src/types/gathering-data';
 
 export default function CreateGathering({ crewId }: { crewId: number }) {
@@ -15,7 +13,7 @@ export default function CreateGathering({ crewId }: { crewId: number }) {
   const router = useRouter();
   const [opened, { open, close }] = useDisclosure(false);
 
-  const { data: gatheringList, isLoading, error, refetch } = useGetGatheringListQuery(crewId);
+  const { data: gatheringList } = useGetGatheringListQuery(crewId);
 
   // totalGatheringCount 추출
   const totalGatheringCount = gatheringList?.length ?? 0;

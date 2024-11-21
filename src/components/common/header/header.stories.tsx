@@ -1,7 +1,5 @@
-import { useState } from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
-import { QueryClient, QueryClientProvider, useQueryClient } from '@tanstack/react-query';
-import { useAuth } from '@/src/hooks/use-auth';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Header from '@/src/components/common/header/container';
 
 const meta: Meta = {

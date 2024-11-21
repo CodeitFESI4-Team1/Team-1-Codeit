@@ -1,8 +1,6 @@
-import { getGatheringList } from '@/src/_apis/crew/crew-gathering-list-apis';
 import CreateGathering from './_components/create-gathering';
 import DetailCrew from './_components/detail-crew-container';
 import GatheringListSection from './_components/gathering-list-section';
-import CrewReviewSection from './_components/review-section';
 
 interface CrewDetailPageProps {
   params: { id: string };
