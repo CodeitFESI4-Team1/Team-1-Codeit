@@ -39,3 +39,17 @@ export function formatDateToRequest(date: Date) {
 
   return `${year}-${month}-${day}`;
 }
+
+export function formatCompactDateTime24H(dateString: string): string {
+  const date = new Date(dateString);
+
+  // 월, 일 계산
+  const month = `${date.getMonth() + 1}`.padStart(2, '0');
+  const day = `${date.getDate()}`.padStart(2, '0');
+
+  // 시간 계산
+  const hours = `${date.getHours()}`.padStart(2, '0');
+  const minutes = `${date.getMinutes()}`.padStart(2, '0');
+
+  return `${month}월 ${day}일・${hours}:${minutes}`;
+}
