@@ -18,7 +18,7 @@ export default function LikedListPresenter({
   onUnlike,
   page,
 }: LikedListPresenterProps) {
-  const { content, pageSize, totalPages } = gatheringData;
+  const { content, totalPages } = gatheringData;
 
   return (
     <div className="mx-auto max-w-[1200px]">
