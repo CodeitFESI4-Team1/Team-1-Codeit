@@ -64,9 +64,9 @@ export default function ReviewCard({
   };
 
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
+    e.stopPropagation(); // 이벤트 전파 중지
     if (clickable && crewId) {
-      e.stopPropagation();
-      router.push(`/detail/crew/${crewId}`);
+      router.push(`/crew/detail/${crewId}`);
     }
   };
 
@@ -81,10 +81,7 @@ export default function ReviewCard({
         <button
           type="button"
           className="mb-3 flex w-fit items-center gap-2 text-xl font-semibold text-gray-800"
-          onClick={(e) => {
-            e.stopPropagation();
-            handleClick(e);
-          }}
+          onClick={handleClick}
         >
           {crewName}
         </button>
