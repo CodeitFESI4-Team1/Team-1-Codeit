@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import { formatCompactDateTime24H } from '@/src/utils/format-date';
 import Profiles from '@/src/components/common/crew-list/profiles';
 import Button from '@/src/components/common/input/button';
 import { ParticipantType } from '@/src/types/reviewable-gathering-card';
@@ -18,17 +19,6 @@ interface ReviewableGatheringCardProps {
   participants: ParticipantType[];
 }
 
-// NOTE: 추후 합치기
-export function formatDateWithYear(dateString: string) {
-  const date = new Date(dateString);
-
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
-
-  return { year, month, day };
-}
-
 export default function ReviewableGatheringCard({
   id,
   currentCount,
@@ -39,7 +29,7 @@ export default function ReviewableGatheringCard({
   totalCount,
 }: ReviewableGatheringCardProps) {
   const [isModalOpened, setIsModalOpened] = useState(false);
-  const { year, month, day } = formatDateWithYear(dateTime);
+  const formatDate = formatCompactDateTime24H(dateTime);
 
   const profiles = participants.map((participant) => ({
     id: participant.id,
@@ -68,7 +58,7 @@ export default function ReviewableGatheringCard({
               <Profiles profiles={profiles} />
             </div>
           </div>
-          <div className="text-sm font-medium text-gray-700">{`${year}년 ${month}월 ${day}일`}</div>
+          <div className="text-sm font-medium text-gray-700">{formatDate}</div>
         </div>
         <Button
           className="bg-blue-500 p-[6px_14px] text-base font-semibold text-white"
