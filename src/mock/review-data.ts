@@ -15,7 +15,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       reviewer: {
         id: 1,
         nickname: '샘플1',
-        imageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
+        profileImageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
       },
     },
     {
@@ -27,7 +27,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       reviewer: {
         id: 2,
         nickname: '샘플2',
-        imageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
+        profileImageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
       },
     },
     {
@@ -39,7 +39,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       reviewer: {
         id: 3,
         nickname: '샘플3',
-        imageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
+        profileImageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
       },
     },
     {
@@ -51,7 +51,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       reviewer: {
         id: 4,
         nickname: '샘플4',
-        imageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
+        profileImageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
       },
     },
     {
@@ -63,7 +63,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       reviewer: {
         id: 5,
         nickname: '샘플5',
-        imageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
+        profileImageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
       },
     },
     {
@@ -75,7 +75,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       reviewer: {
         id: 6,
         nickname: '샘플6',
-        imageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
+        profileImageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
       },
     },
     {
@@ -87,7 +87,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       reviewer: {
         id: 7,
         nickname: '샘플7',
-        imageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
+        profileImageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
       },
     },
     {
@@ -99,7 +99,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       reviewer: {
         id: 2,
         nickname: '샘플2',
-        imageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
+        profileImageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
       },
     },
     {
@@ -111,7 +111,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       reviewer: {
         id: 3,
         nickname: '샘플3',
-        imageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
+        profileImageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
       },
     },
     {
@@ -123,7 +123,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       reviewer: {
         id: 4,
         nickname: '샘플4',
-        imageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
+        profileImageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
       },
     },
     {
@@ -135,7 +135,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       reviewer: {
         id: 5,
         nickname: '샘플5',
-        imageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
+        profileImageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
       },
     },
     {
@@ -147,7 +147,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       reviewer: {
         id: 6,
         nickname: '샘플6',
-        imageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
+        profileImageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
       },
     },
     {
@@ -159,7 +159,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       reviewer: {
         id: 7,
         nickname: '샘플7',
-        imageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
+        profileImageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
       },
     },
     {
@@ -171,7 +171,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       reviewer: {
         id: 4,
         nickname: '샘플4',
-        imageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
+        profileImageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
       },
     },
     {
@@ -183,7 +183,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       reviewer: {
         id: 5,
         nickname: '샘플5',
-        imageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
+        profileImageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
       },
     },
     {
@@ -195,7 +195,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       reviewer: {
         id: 6,
         nickname: '샘플6',
-        imageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
+        profileImageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
       },
     },
     {
@@ -207,7 +207,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       reviewer: {
         id: 7,
         nickname: '샘플7',
-        imageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
+        profileImageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
       },
     },
   ],
