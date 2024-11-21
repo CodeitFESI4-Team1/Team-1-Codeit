@@ -10,7 +10,7 @@ import ImgGatheringSampleUrls from '@/public/assets/images/gathering-sample';
 export interface FileInputProps {
   value: File | string | null;
   onChange: (value: File | null) => void;
-  error: FieldError | undefined;
+  error?: FieldError | undefined;
   isBlur: boolean;
 }
 
