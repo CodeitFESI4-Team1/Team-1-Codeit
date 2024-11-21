@@ -50,7 +50,7 @@ export default function ProfileCard() {
       const file = (event.target as HTMLInputElement)?.files?.[0];
       if (file) {
         if (file.size > 5 * 1024 * 1024) {
-          alert('5MB 이하의 파일만 업로드 가능합니다.');
+          toast.error('5MB 이하의 파일만 업로드 가능합니다.');
           return;
         }
 
