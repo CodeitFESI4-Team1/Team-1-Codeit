@@ -1,5 +1,6 @@
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { FieldError } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import Image from 'next/image';
 import IcoPlus from '@/public/assets/icons/ic-plus.svg';
 import IcoX from '@/public/assets/icons/ic-x.svg';
@@ -44,7 +45,19 @@ export default function FileInput({ value, isBlur, error, onChange }: FileInputP
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
-
+      // // 명시적인 파일 형식 검증 추가
+      const allowedTypes = ['image/jpeg', 'image/png'];
+      if (!allowedTypes.includes(file.type)) {
+        // 허용되지 않은 파일 형식 처리
+        e.target.value = ''; // 입력 필드 초기화
+        toast.error('JPG, PNG 파일만 업로드 가능합니다.');
+        return;
+      }
+      if (file.size > 5 * 1024 * 1024) {
+        e.target.value = ''; // 입력 필드 초기화
+        toast.error('파일 크기는 5MB 이하여야 합니다.');
+        return;
+      }
       onChange(file);
       handleFileLoad(file);
     }

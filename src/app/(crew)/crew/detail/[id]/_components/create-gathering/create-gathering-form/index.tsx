@@ -73,12 +73,6 @@ export default function CreateGatheringForm({
     }
   };
 
-  useEffect(() => {
-    if (errors?.imageUrl) {
-      toast.error(errors.imageUrl.message);
-    }
-  }, [errors.imageUrl]);
-
   return (
     <form onSubmit={handleSendForm}>
       <div className="flex flex-col gap-6">
@@ -125,23 +119,6 @@ export default function CreateGatheringForm({
               control={control}
               rules={{
                 required: '이미지를 선택해주세요.',
-                validate: {
-                  fileSize: (file) => {
-                    if (!file || !(file instanceof File)) {
-                      return true;
-                    }
-                    return file.size <= 5242880 || '파일 크기는 5MB 이하여야 합니다.';
-                  },
-                  fileType: (file) => {
-                    if (!file || !(file instanceof File)) {
-                      return true;
-                    }
-                    return (
-                      ['image/jpeg', 'image/jpg', 'image/png'].includes(file.type) ||
-                      'JPG, PNG 파일만 업로드 가능합니다.'
-                    );
-                  },
-                },
               }}
               render={({ field }) => (
                 <FileInputWrap

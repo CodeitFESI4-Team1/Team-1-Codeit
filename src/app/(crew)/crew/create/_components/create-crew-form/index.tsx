@@ -97,7 +97,6 @@ export default function CreateCrewForm({
         if (imgResponse?.imageUrl) {
           clearErrors('imageUrl'); // 에러 초기화
           onChange(imgResponse.imageUrl); // 이미지 URL 설정
-          alert(1);
         } else {
           throw new Error('이미지 업로드 중 문제가 발생했습니다.');
         }
@@ -105,6 +104,7 @@ export default function CreateCrewForm({
     } catch (error) {
       // API 에러 처리
       setError('imageUrl', { type: 'server', message: errors.imageUrl?.message });
+      setValue('imageUrl', '');
     }
   };
 
@@ -133,12 +133,6 @@ export default function CreateCrewForm({
       setInitialValues();
     }
   }, [mainCategory, mainLocation, isSubmitSuccessful]);
-
-  useEffect(() => {
-    if (errors?.imageUrl) {
-      toast.error(errors.imageUrl.message);
-    }
-  }, [errors.imageUrl]);
 
   return (
     <form onSubmit={handleSendForm}>
@@ -241,23 +235,6 @@ export default function CreateCrewForm({
             control={control}
             rules={{
               required: '이미지를 선택해주세요.',
-              validate: {
-                fileSize: (file) => {
-                  if (!file || !(file instanceof File)) {
-                    return true;
-                  }
-                  return file.size <= 5242880 || '파일 크기는 5MB 이하여야 합니다.';
-                },
-                fileType: (file) => {
-                  if (!file || !(file instanceof File)) {
-                    return true;
-                  }
-                  return (
-                    ['image/jpeg', 'image/jpg', 'image/png'].includes(file.type) ||
-                    'JPG, PNG 파일만 업로드 가능합니다.'
-                  );
-                },
-              },
             }}
             render={({ field }) => (
               <FileInputWrap
