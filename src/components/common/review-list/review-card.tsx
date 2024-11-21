@@ -12,23 +12,17 @@ import { Profile } from '@/src/components/common/profile';
 import ReviewHearts from '@/src/components/common/review-heart/hearts';
 import { ReviewerType } from '@/src/types/review';
 
-export interface GatheringInform {
-  id: number;
-  image: string;
-  name: string;
-}
-
 interface ReviewCardProps {
   rate: number;
   comment: string;
   createdAt: string;
-  id: number;
+  id?: number;
   clickable?: boolean;
   isMine?: boolean;
   crewId?: number;
   crewName?: string;
   gatheringName?: string;
-  refetch: () => void;
+  refetch?: () => void;
 
   reviewer?: ReviewerType;
 }
@@ -53,18 +47,23 @@ export default function ReviewCard({
   const router = useRouter();
 
   const handleDelete = async () => {
+    if (!id) {
+      toast.error('리뷰 ID가 없습니다.');
+      return;
+    }
+
     try {
       await deleteReview(id);
       toast.success('리뷰가 성공적으로 삭제되었습니다.');
       closeConfirmDeleteModal();
-      refetch();
+      refetch?.();
     } catch (error) {
       toast.error('리뷰 삭제에 실패했습니다.');
     }
   };
 
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
-    e.stopPropagation(); // 이벤트 전파 중지
+    e.stopPropagation();
     if (clickable && crewId) {
       router.push(`/crew/detail/${crewId}`);
     }
@@ -103,7 +102,7 @@ export default function ReviewCard({
           <div className={`flex w-fit flex-shrink-0 items-center text-xs ${isMine ? 'mt-4' : ''}`}>
             {!isMine && (
               <>
-                {reviewer && <Profile size="small" imageUrl={reviewer?.imageUrl} />}
+                {reviewer && <Profile size="small" imageUrl={reviewer?.profileImageUrl} />}
                 <span className="relative mr-3 block w-fit px-2 after:absolute after:right-0 after:content-['|']">
                   {reviewer?.nickname}
                 </span>
