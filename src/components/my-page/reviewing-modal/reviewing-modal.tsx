@@ -31,7 +31,7 @@ export default function ReviewingModal({ gatheringId, opened, close }: Reviewing
         },
       }}
     >
-      <ReviewForm onCancel={close} />
+      <ReviewForm gatheringId={gatheringId} onCancel={close} />
     </Modal>
   );
 }
