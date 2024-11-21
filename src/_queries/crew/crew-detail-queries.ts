@@ -24,6 +24,8 @@ export function useCreateCrewQuery() {
       }
       queryClient.invalidateQueries({ queryKey: ['crewLists', 'crewDetail'] });
       toast.success('크루가 생성되었습니다.');
+      localStorage.removeItem('createCrew');
+
       router.push(`/crew/detail/${data.crewId}`);
     },
     onError: (error) => {
