@@ -1,4 +1,3 @@
-import { ReactNode } from 'react';
 import ProfileCardContainer from '@/src/app/(crew)/my-page/_components/profile-card/container';
 import ReviewTabs from './_components/review-tabs';
 
@@ -11,7 +10,6 @@ export default function MyPage({ children }: { children: React.ReactNode }) {
       <ReviewTabs />
       <div>{children}</div>
       <div />
-      <div>{children}</div>
     </div>
   );
 }
