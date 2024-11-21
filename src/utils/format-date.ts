@@ -16,7 +16,8 @@ export function formatDate(dateString: string) {
   hours = hours % 12 || 12; // 0을 12로 변환
 
   return {
-    date: `${month} ${day} ${dayOfWeek}요일`,
+    date: `${month} ${day}`,
+    dayOfWeek: `${dayOfWeek}요일`,
     time: `${meridian} ${String(hours).padStart(2, '0')}:${minutes}`,
   };
 }
@@ -31,18 +32,24 @@ export function formatDateWithYear(dateString: string) {
   return { year, month, day };
 }
 
-export function getDayOfWeek(dateString: string) {
-  const daysInKorean = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
-  const date = new Date(dateString);
-  const dayIndex = date.getDay();
-
-  return daysInKorean[dayIndex];
-}
-
 export function formatDateToRequest(date: Date) {
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');
   const day = String(date.getDate()).padStart(2, '0');
 
   return `${year}-${month}-${day}`;
+}
+
+export function formatCompactDateTime24H(dateString: string): string {
+  const date = new Date(dateString);
+
+  // 월, 일 계산
+  const month = `${date.getMonth() + 1}`.padStart(2, '0');
+  const day = `${date.getDate()}`.padStart(2, '0');
+
+  // 시간 계산
+  const hours = `${date.getHours()}`.padStart(2, '0');
+  const minutes = `${date.getMinutes()}`.padStart(2, '0');
+
+  return `${month}월 ${day}일・${hours}:${minutes}`;
 }
