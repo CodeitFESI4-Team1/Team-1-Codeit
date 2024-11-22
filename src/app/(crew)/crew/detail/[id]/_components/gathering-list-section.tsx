@@ -22,9 +22,12 @@ export default function GatheringListSection({ id }: GatheringListSectionProps) 
   const handleLike = async (gatheringId: number) => {
     try {
       await addLike(gatheringId);
+      toast.success('찜하기가 완료되었습니다!');
     } catch (apiError) {
-      if (apiError instanceof ApiError) {
-        toast.error(`찜하기에 실패했습니다`);
+      if (apiError instanceof ApiError && apiError.status === 401) {
+        toast.error('로그인이 필요합니다.');
+      } else {
+        toast.error('찜하기에 실패했습니다.');
       }
     }
   };
@@ -32,9 +35,12 @@ export default function GatheringListSection({ id }: GatheringListSectionProps) 
   const handleUnlike = async (gatheringId: number) => {
     try {
       await removeLike(gatheringId);
+      toast.success('찜하기 해제가 완료되었습니다!');
     } catch (apiError) {
-      if (apiError instanceof ApiError) {
-        toast.error(`찜하기 해제에 실패했습니다`);
+      if (apiError instanceof ApiError && apiError.status === 401) {
+        toast.error('로그인이 필요합니다.');
+      } else {
+        toast.error('찜하기 해제에 실패했습니다.');
       }
     }
   };
