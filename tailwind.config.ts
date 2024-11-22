@@ -161,13 +161,13 @@ const config: Config = {
             'scroll-snap-align': 'start',
           },
           '.sort-bg': {
-            'background-image': "url('./assets/icons/ic-sort.svg')",
+            'background-image': "url('../../public/assets/icons/ic-sort.svg')",
             'background-repeat': 'no-repeat',
             'background-position': '12px center',
             'background-size': '24px 24px',
           },
           '.sort-bg-on': {
-            'background-image': "url('./assets/icons/ic-sort-on.svg')",
+            'background-image': "url('../../public/assets/icons/ic-sort-on.svg')",
             'background-repeat': 'no-repeat',
             'background-position': '12px center',
             'background-size': '24px 24px',
