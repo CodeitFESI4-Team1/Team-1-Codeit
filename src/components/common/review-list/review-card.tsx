@@ -7,7 +7,7 @@ import { useDisclosure } from '@mantine/hooks';
 import { deleteReview } from '@/src/_apis/review/my-review-apis';
 import { cn } from '@/src/utils/cn';
 import { formatDateWithYear } from '@/src/utils/format-date';
-import Button from '@/src/components/common/input/button';
+import Button from '@/src/components/common/button';
 import ConfirmCancelModal from '@/src/components/common/modal/confirm-cancel-modal';
 import { Profile } from '@/src/components/common/profile';
 import ReviewHearts from '@/src/components/common/review-heart/hearts';

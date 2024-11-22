@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { formatCompactDateTime24H } from '@/src/utils/format-date';
-import Button from '@/src/components/common/input/button';
+import Button from '@/src/components/common/button';
 import Profiles from '@/src/components/common/profile/profiles';
 import { ParticipantType } from '@/src/types/reviewable-gathering-card';
 import person from '@/public/assets/icons/person.svg';

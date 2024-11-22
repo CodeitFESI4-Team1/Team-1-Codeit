@@ -8,7 +8,7 @@ import { cancelCrew, joinCrew, leaveCrew } from '@/src/_apis/crew/crew-detail-ap
 import { useUser } from '@/src/_queries/auth/user-queries';
 import { useGetCrewDetailQuery } from '@/src/_queries/crew/crew-detail-queries';
 import { ApiError } from '@/src/utils/api';
-import Button from '@/src/components/common/input/button';
+import Button from '@/src/components/common/button';
 import ConfirmCancelModal from '@/src/components/common/modal/confirm-cancel-modal';
 import CrewDetailSkeleton from '@/src/components/common/skeleton/crew-detail-skeleton';
 import { User } from '@/src/types/auth';

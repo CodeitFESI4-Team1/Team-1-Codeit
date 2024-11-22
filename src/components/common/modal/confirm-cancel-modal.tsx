@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { Modal } from '@mantine/core';
-import Button from '@/src/components/common/input/button/index';
+import Button from '@/src/components/common/button';
 
 interface ConfirmCancelModalProps {
   children: ReactNode;

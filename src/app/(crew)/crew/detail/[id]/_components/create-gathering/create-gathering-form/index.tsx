@@ -4,7 +4,7 @@ import { FormEvent } from 'react';
 import { Controller, useForm, useWatch } from 'react-hook-form';
 import { NumberInput } from '@mantine/core';
 import { getImageUrl } from '@/src/_apis/image/get-image-url';
-import Button from '@/src/components/common/input/button';
+import Button from '@/src/components/common/button';
 import DateTimePicker from '@/src/components/common/input/date-time-picker';
 import FileInputWrap from '@/src/components/common/input/file-input-wrap';
 import TextInput from '@/src/components/common/input/text-input';
