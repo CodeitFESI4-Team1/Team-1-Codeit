@@ -31,12 +31,7 @@ export default function MyGatheringLayout({
   return (
     <div className="px-3 py-4 md:px-8 md:py-16 lg:px-11.5">
       <div className="hidden pb-6 text-3xl font-bold text-gray-900 md:block">나의 약속</div>
-      <Tabs
-        variant="default"
-        tabs={myGatheringTabs}
-        activeTab={currentTab}
-        onTabClick={(id) => handleTabClick(id)}
-      />
+      <Tabs tabs={myGatheringTabs} activeTab={currentTab} onTabClick={(id) => handleTabClick(id)} />
       <div className="mt-10 hidden w-full border-t-2 border-gray-200 md:block" />
       {children}
     </div>
