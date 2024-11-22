@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { usePostLoginQuery } from '@/src/_queries/auth/login-queries';
-import LoginForm, { LoginFormValues } from './_component/login-form';
+import LoginForm, { LoginFormValues } from './_components/login-form';
 
 export default function LoginPage() {
   const [redirect, setRedirect] = useState('/');

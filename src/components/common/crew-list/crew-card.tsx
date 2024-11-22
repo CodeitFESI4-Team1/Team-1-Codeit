@@ -3,11 +3,11 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import Profiles from '@/src/components/common/profile/profiles';
 import ProgressBar from '@/src/components/common/progress-bar/index';
 import { MainCrewList } from '@/src/types/crew-card';
 import Check from '@/public/assets/icons/ic-check.svg';
 import IcoUser from '@/public/assets/icons/ic-user.svg';
-import Profiles from './profiles';
 
 interface CrewCardProps extends MainCrewList {
   inWhere?: 'my-crew' | 'main-crew';

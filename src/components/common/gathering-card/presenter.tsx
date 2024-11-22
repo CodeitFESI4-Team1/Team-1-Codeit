@@ -2,8 +2,8 @@ import { MouseEvent } from 'react';
 import Image from 'next/image';
 import { cn } from '@/src/utils/cn';
 import { formatDate } from '@/src/utils/format-date';
-import Button from '@/src/components/common/input/button';
-import LikeBtn from '@/src/components/common/input/button/like-btn';
+import Button from '@/src/components/common/button';
+import LikeBtn from '@/src/components/common/button/like-btn';
 import IcoPerson from '@/public/assets/icons/ic-gathering-person.svg';
 import IcoTimer from '@/public/assets/icons/timer.svg';
 

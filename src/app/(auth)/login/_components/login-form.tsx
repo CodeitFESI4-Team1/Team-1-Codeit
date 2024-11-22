@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { UseFormReturn, useWatch } from 'react-hook-form';
 import { useDebouncedValue } from '@mantine/hooks';
-import Button from '@/src/components/common/input/button';
+import Button from '@/src/components/common/button';
 import PasswordInput from '@/src/components/common/input/password-input';
 import TextInput from '@/src/components/common/input/text-input';
 

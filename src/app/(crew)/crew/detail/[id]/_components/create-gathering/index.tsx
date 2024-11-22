@@ -5,7 +5,7 @@ import { useDisclosure } from '@mantine/hooks';
 import { useGetGatheringListQuery } from '@/src/_queries/crew/gathering-list-queries';
 import { useAuth } from '@/src/hooks/use-auth';
 import CreateGatheringModalContainer from '@/src/app/(crew)/crew/detail/[id]/_components/create-gathering/create-gathering-modal/container';
-import Button from '@/src/components/common/input/button';
+import Button from '@/src/components/common/button';
 import { CreateGatheringFormTypes } from '@/src/types/gathering-data';
 
 export default function CreateGathering({ crewId }: { crewId: number }) {

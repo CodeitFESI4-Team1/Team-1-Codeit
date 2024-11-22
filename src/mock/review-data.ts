@@ -1,5 +1,3 @@
-// image: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
-// image: 'https://i.pinimg.com/564x/1c/3e/ff/1c3eff0cf58c3f87bc3310ff1528da20.jpg',
 import { CrewReview } from '../types/review';
 
 // NOTE: 크루 리뷰
