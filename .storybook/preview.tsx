@@ -24,3 +24,9 @@ export const decorators = [
   (renderStory: any) => <ColorSchemeWrapper>{renderStory()}</ColorSchemeWrapper>,
   (renderStory: any) => <MantineProvider>{renderStory()}</MantineProvider>,
 ];
+
+export const parameters = {
+  nextjs: {
+    appDirectory: true,
+  },
+};
