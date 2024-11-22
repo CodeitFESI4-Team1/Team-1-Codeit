@@ -5,6 +5,11 @@ import RatingDisplay, { ReviewRateInfo } from './rating-display';
 export default {
   title: 'crew/crew-rating-display',
   component: RatingDisplay,
+  parameters: {
+    docs: {
+      subtitle: '크루 디테일 페이지에서 크루의 리뷰 정보를 알 수 있는 컴포넌트 입니다.',
+    },
+  },
   tags: ['autodocs'],
   argTypes: {
     totalRate: { control: 'number', description: '총 평가 개수' },

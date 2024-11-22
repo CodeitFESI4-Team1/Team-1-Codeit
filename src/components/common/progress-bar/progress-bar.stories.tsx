@@ -6,6 +6,14 @@ const meta: Meta<typeof ProgressBar> = {
   title: 'common/progress-bar',
   component: ProgressBar,
   tags: ['autodocs'],
+  parameters: {
+    layout: 'fullscreen',
+    docs: {
+      description: {
+        component: '프로그래스바는 특정 기준 대비 현재 상태를 시각적으로 표현할 때 사용됩니다.',
+      },
+    },
+  },
   argTypes: {
     total: {
       description: '총 숫자',

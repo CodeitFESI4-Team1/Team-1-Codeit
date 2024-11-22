@@ -8,23 +8,19 @@ const meta: Meta<typeof GatheringCard> = {
   title: 'gathering/gathering-card',
   component: GatheringCard,
   parameters: {
-    layout: 'fullscreen',
+    docs: {
+      subtitle: '약속을 확인할 수 있는 카드입니다.',
+      description: {
+        component:
+          '약속에 대한 간단한 정보를 알 수 있습니다. 크루 디테일 페이지와 찜한 약속에서 사용합니다.',
+      },
+    },
     backgrounds: {
       default: 'light-gray',
       values: [{ name: 'light-gray', value: '#F9FAFB' }],
     },
   },
   tags: ['autodocs'],
-  argTypes: {
-    title: { control: 'text' },
-    dateTime: { control: 'date' },
-    location: { control: 'text' },
-    currentCount: { control: 'number' },
-    totalCount: { control: 'number' },
-    imageUrl: { control: 'text' },
-    liked: { control: 'boolean' },
-    className: { control: false },
-  },
   decorators: [
     (Story) => (
       <QueryClientProvider client={queryClient}>
@@ -39,27 +35,12 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    title: '가나다라마가나다라마가나다라마가',
-    dateTime: '2024-11-30T00:30',
-    location: '서울, 한강공원',
-    currentCount: 8,
-    totalCount: 12,
-    imageUrl:
-      'https://images.unsplash.com/photo-1601758260892-a62c486ace97?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    liked: true,
-  },
-};
-
-// 좋아요가 눌리지 않은 모임 카드
-export const NotLiked: Story = {
-  args: {
-    title: '등산 모임',
-    dateTime: '2024-12-12T09:00',
-    location: '서울, 한강공원',
-    currentCount: 5,
-    totalCount: 10,
-    imageUrl:
-      'https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    title: '서핑모임',
+    dateTime: '2024-12-10T08:00:00.000',
+    location: '서울 강남구 삼성동',
+    currentCount: 1,
+    totalCount: 5,
+    imageUrl: 'https://i.pinimg.com/736x/00/6d/4b/006d4bb521a737534e37a8af3203a7d3.jpg',
     liked: false,
   },
 };
@@ -67,13 +48,12 @@ export const NotLiked: Story = {
 // 마감된 모임 카드
 export const PastEvent: Story = {
   args: {
-    title: '마감된 모임입니다',
-    dateTime: '2024-10-15T07:30',
-    location: '서울, 한강공원',
-    currentCount: 12,
-    totalCount: 12,
-    imageUrl:
-      'https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    title: '서핑모임',
+    dateTime: '2024-02-10T08:00:00.000',
+    location: '서울 강남구 삼성동',
+    currentCount: 1,
+    totalCount: 5,
+    imageUrl: 'https://i.pinimg.com/736x/00/6d/4b/006d4bb521a737534e37a8af3203a7d3.jpg',
     liked: false,
   },
 };
@@ -81,13 +61,12 @@ export const PastEvent: Story = {
 // 찜한 모임 카드
 export const LikedEvent: Story = {
   args: {
-    title: '조깅 모임',
-    dateTime: '2024-12-15T07:30',
-    location: '서울, 한강공원',
-    currentCount: 8,
-    totalCount: 12,
-    imageUrl:
-      'https://images.unsplash.com/photo-1601758260892-a62c486ace97?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    title: '서핑모임',
+    dateTime: '2024-12-10T08:00:00.000',
+    location: '서울 강남구 삼성동',
+    currentCount: 1,
+    totalCount: 5,
+    imageUrl: 'https://i.pinimg.com/736x/00/6d/4b/006d4bb521a737534e37a8af3203a7d3.jpg',
     liked: true,
   },
 };

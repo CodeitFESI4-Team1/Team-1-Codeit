@@ -7,7 +7,13 @@ const meta: Meta<typeof ReviewableGatheringCard> = {
   component: ReviewableGatheringCard,
   tags: ['autodocs'],
   parameters: {
-    layout: 'fullscreen',
+    docs: {
+      subtitle: '리뷰 가능한 약속 카드입니다.',
+      description: {
+        component:
+          '약속이름, 약속장소, 인원수, 시간 등을 알려주고 리뷰 작성 버튼을 통해 리뷰를 남길 수 있습니다.',
+      },
+    },
   },
   decorators: [
     (Story) => (
@@ -32,16 +38,20 @@ type Story = StoryObj<typeof ReviewableGatheringCard>;
 export const Default: Story = {
   args: {
     id: 1,
-    gatheringName: '모임모임모임모임모임모밈미밈미미미미미미',
-    location: '모임모임모임모임모임모밈미밈미미미미미미',
+    gatheringName: '서핑모임',
+    location: '양양',
     dateTime: '2024-11-21T18:30:00.000Z',
     currentCount: 8,
     totalCount: 12,
-    imageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
+    imageUrl: 'https://i.pinimg.com/736x/00/6d/4b/006d4bb521a737534e37a8af3203a7d3.jpg',
     participants: [
       { id: 1, nickname: '유저1', profileImageUrl: '' },
       { id: 2, nickname: '유저2', profileImageUrl: '' },
-      { id: 3, nickname: '유저3', profileImageUrl: '' },
+      {
+        id: 3,
+        nickname: '유저3',
+        profileImageUrl: 'https://i.pinimg.com/736x/97/5a/3c/975a3c645d344216e8ea346c084fba04.jpg',
+      },
     ],
   },
 };

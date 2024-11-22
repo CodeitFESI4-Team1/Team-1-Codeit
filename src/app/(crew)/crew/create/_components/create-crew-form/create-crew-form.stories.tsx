@@ -19,9 +19,6 @@ export default {
   tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
-    nextjs: {
-      appDirectory: true,
-    },
     docs: {
       description: {
         component: '크루 작성/수정에 사용되는 폼입니다.',
