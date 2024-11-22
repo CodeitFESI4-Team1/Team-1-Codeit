@@ -12,6 +12,13 @@ export interface CalendarFilterProps {
   onChange: (date: Date) => void;
 }
 
+/**
+ * 달력에서 날짜를 선택하면 값을 변경할 수 있는 컴포넌트
+ * @param {Date} value - 선택된 날짜
+ * @param {Date[] | null} toDoDates - 일정이 있는 날짜
+ * @param {(date: Date) => void} onChange - 값이 변경될 때 실행하는 함수
+ */
+
 export default function CalendarFilter({
   value,
   toDoDates,
