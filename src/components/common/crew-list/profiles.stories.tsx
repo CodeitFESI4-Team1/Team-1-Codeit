@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import Profiles from './profiles';
 
 const meta: Meta = {
-  title: 'Components/CrewCardList/Profiles',
+  title: 'crew/crew-profiles',
   component: Profiles,
   parameters: {
     layout: 'centered',

@@ -12,7 +12,7 @@ const mockData = [
 ];
 
 const meta: Meta = {
-  title: 'Components/input/calendar-filter',
+  title: 'common/calendar/calendar-filter',
   component: CalendarFilter,
   tags: ['autodocs'],
   argTypes: {

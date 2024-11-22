@@ -4,7 +4,7 @@ import categoryData from '@/src/data/category.json';
 import InternalCategory, { InternalCategoryProps } from '.';
 
 const meta: Meta = {
-  title: 'Components/category/internal-category',
+  title: 'layout/category',
   component: InternalCategory,
   tags: ['autodocs'],
   argTypes: {

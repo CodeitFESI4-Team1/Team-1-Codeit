@@ -3,13 +3,14 @@
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
-import { Loader } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { cancelCrew, joinCrew, leaveCrew } from '@/src/_apis/crew/crew-detail-apis';
 import { useUser } from '@/src/_queries/auth/user-queries';
 import { useGetCrewDetailQuery } from '@/src/_queries/crew/crew-detail-queries';
 import { ApiError } from '@/src/utils/api';
+import Button from '@/src/components/common/input/button';
 import ConfirmCancelModal from '@/src/components/common/modal/confirm-cancel-modal';
+import CrewDetailSkeleton from '@/src/components/common/skeleton/crew-detail-skeleton';
 import { User } from '@/src/types/auth';
 import DetailCrewPresenter from './detail-crew-presenter';
 
@@ -38,12 +39,8 @@ export default function DetailCrew({ id }: DetailCrewContainerProps) {
 
   useEffect(() => {
     if (data) {
-      // confirmed 상태 계산
-      if (data.participantCount !== undefined && data.totalCount !== undefined) {
-        setIsConfirmed(data.participantCount === data.totalCount);
-      }
+      setIsConfirmed(data.participantCount === data.totalCount);
 
-      // Captain 및 멤버 여부 확인 (currentUserId 필요)
       if (currentUserId) {
         const captain = data.crewMembers.find((member) => member.captain);
         const memberExists = data.crewMembers.some((member) => member.id === currentUserId);
@@ -65,7 +62,11 @@ export default function DetailCrew({ id }: DetailCrewContainerProps) {
       await refetch();
     } catch (joinError) {
       if (joinError instanceof ApiError) {
-        toast.error(joinError.message);
+        if (joinError.status === 401) {
+          router.push(`/login?redirect=${encodeURIComponent(window.location.pathname)}`);
+        } else {
+          toast.error(joinError.message);
+        }
       } else {
         toast.error('🚫 크루 참여 중 에러가 발생했습니다.');
       }
@@ -114,29 +115,35 @@ export default function DetailCrew({ id }: DetailCrewContainerProps) {
       });
   };
 
-  // TODO: 로딩, 에러처리 추후 개선
   if (isLoading) {
-    return <Loader />;
+    return <CrewDetailSkeleton />;
   }
 
-  // TODO: 추후 404페이지로 이동시키기
-  if (fetchError) {
+  const renderErrorState = (message: string, actionLabel: string, action: () => void) => (
+    <div className="flex h-screen flex-col items-center justify-center">
+      <p className="mb-4 text-gray-500">{message} 😞</p>
+      <Button className="btn-filled" onClick={action}>
+        {actionLabel}
+      </Button>
+    </div>
+  );
+
+  if (fetchError || !data) {
     if (fetchError instanceof ApiError) {
-      try {
-        const errorData = JSON.parse(fetchError.message);
-
-        if (errorData.status === 'NOT_FOUND') {
-          return <p>크루 정보를 찾을 수 없습니다</p>;
-        }
-      } catch (parseError) {
-        return <p>{`Error ${fetchError.message}`}</p>;
+      if (fetchError.status === 404) {
+        router.push('/404');
+        return null;
       }
+      toast.error(fetchError.message || '🚫 에러가 발생했습니다.');
+    } else if (fetchError) {
+      toast.error('🚫 데이터 통신에 실패했습니다.');
     }
-    return <p>데이터 통신에 실패했습니다.</p>;
-  }
 
-  if (!data) {
-    return <p>데이터를 불러올 수 없습니다.</p>;
+    const errorMessage = fetchError
+      ? '데이터를 불러오는 데 실패했습니다.'
+      : '데이터를 불러올 수 없습니다.';
+
+    return renderErrorState(errorMessage, '다시 시도', refetch);
   }
 
   return (

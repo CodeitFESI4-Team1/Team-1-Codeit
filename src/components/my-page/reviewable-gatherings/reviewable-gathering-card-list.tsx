@@ -2,11 +2,11 @@
 
 import { useGetReviewableQuery } from '@/src/_queries/my-gathering/reviewable-gathering-list';
 import { useInfiniteScroll } from '@/src/hooks/use-infinite-scroll';
-import { ReviewableGatheringCardInformResponse } from '@/src/types/reviewable-gathering-card';
+import MyReviewSkeletonList from '../../common/skeleton/my-review-skeleton-list/index';
 import ReviewableGatheringCard from './reviewable-gathering-card';
 
 export default function ReviewableGatheringCardList() {
-  const { data, ref, isFetchingNextPage } = useInfiniteScroll(
+  const { data, ref, isFetchingNextPage, isLoading } = useInfiniteScroll(
     useGetReviewableQuery({
       pageable: { page: 0, size: 6, sort: ['dateTime,desc'] },
     }),
@@ -16,6 +16,11 @@ export default function ReviewableGatheringCardList() {
     !data ||
     data.pages.length === 0 ||
     data.pages.every((page) => Array.isArray(page.content) && page.content.length === 0);
+
+  // 로딩 중일 때 스켈레톤 표시
+  if (isLoading) {
+    return <MyReviewSkeletonList />;
+  }
 
   return (
     <ul className="flex flex-col items-center gap-4">
@@ -31,6 +36,7 @@ export default function ReviewableGatheringCardList() {
                 <ReviewableGatheringCard
                   key={item.id + 1}
                   id={item.id}
+                  location={item.location}
                   gatheringName={item.title}
                   dateTime={item.dateTime}
                   currentCount={item.currentCount}

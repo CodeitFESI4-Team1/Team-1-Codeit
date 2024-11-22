@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import DetailCrewPresenter from './detail-crew-presenter';
 
 const meta: Meta<typeof DetailCrewPresenter> = {
-  title: 'Components/Detail/DetailCrewPresenter',
+  title: 'crew/crew-detail',
   component: DetailCrewPresenter,
   parameters: {
     layout: 'fullscreen',

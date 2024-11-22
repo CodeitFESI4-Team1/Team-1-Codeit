@@ -1,16 +1,14 @@
 import MyReviewSkeleton from '../my-review-skeleton';
 
-interface MyReviewSkeletonListProps {
-  num: number;
-}
-
-export default function MyReviewSkeletonList({ num }: MyReviewSkeletonListProps) {
+export default function MyReviewSkeletonList() {
   return (
-    <div className="grid grid-cols-1 gap-6" aria-label="콘텐츠 로딩 중">
-      {[...Array(num)].map((_, index) => (
+    <ul className="flex flex-col items-center gap-4">
+      {Array.from({ length: 3 }).map((_, idx) => (
         // eslint-disable-next-line react/no-array-index-key
-        <MyReviewSkeleton key={index} />
+        <li key={`gathering-card-skeleton-${idx}`} className="w-full">
+          <MyReviewSkeleton />
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }

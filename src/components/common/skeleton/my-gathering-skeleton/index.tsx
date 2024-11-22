@@ -2,15 +2,19 @@ import { Skeleton } from '@mantine/core';
 
 export default function MyGatheringSkeleton() {
   return (
-    <div className="flex gap-6 p-6">
-      <Skeleton className="h-28 w-28 rounded-xl md:h-32 md:w-32" />
-      <div className="relative flex flex-col gap-3">
-        <Skeleton className="h-4 w-40" />
-        <div className="flex gap-2">
-          <Skeleton className="h-4 w-32" />
+    <div className="flex flex-col gap-4">
+      <Skeleton className="h-6 w-40" />
+      <div className="flex w-full flex-col md:flex-row">
+        <Skeleton className="h-40 w-full flex-shrink-0 flex-grow-0 rounded-t-lg md:h-44 md:w-1/3 md:rounded-l-lg md:rounded-r-none" />
+        <div className="relative flex w-full flex-col gap-2 p-4 md:gap-4">
+          <Skeleton className="h-4 w-48" />
+          <Skeleton className="h-6 w-32" />
           <Skeleton className="h-4 w-24" />
+          <div className="flex items-end justify-between">
+            <Skeleton className="h-4 w-24" />
+            <Skeleton className="h-10 w-40 rounded-xl md:w-1/2" />
+          </div>
         </div>
-        <Skeleton className="absolute bottom-0 h-4 w-24" />
       </div>
     </div>
   );

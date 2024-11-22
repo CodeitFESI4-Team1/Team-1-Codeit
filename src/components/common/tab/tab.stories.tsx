@@ -5,7 +5,7 @@ import tabData from '@/src/data/tab.json';
 import Tabs, { TabsProps } from './index';
 
 const meta: Meta = {
-  title: 'Components/Tabs',
+  title: 'layout/tabs',
   component: Tabs,
   tags: ['autodocs'],
   argTypes: {

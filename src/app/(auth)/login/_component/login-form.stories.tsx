@@ -4,7 +4,7 @@ import { Meta, StoryFn } from '@storybook/react';
 import LoginForm, { LoginFormValues } from './login-form';
 
 const meta: Meta = {
-  title: 'Components/auth/LoginForm',
+  title: 'auth/login-form',
   component: LoginForm,
 };
 

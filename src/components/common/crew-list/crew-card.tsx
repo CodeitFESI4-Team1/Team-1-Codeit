@@ -26,7 +26,7 @@ export default function CrewCard({
   crewMembers,
   inWhere,
 }: CrewCardProps) {
-  const [prefetched, setPrefetched] = useState(new Set());
+  const [prefetchedPages, setPrefetchedPages] = useState(new Set());
   const CREWPAGE = `/crew/detail/${id}`;
   const router = useRouter();
 
@@ -34,17 +34,18 @@ export default function CrewCard({
     router.push(CREWPAGE);
   };
 
-  const handleCardMouseUp = () => {
-    if (!prefetched.has(CREWPAGE)) {
-      router.prefetch(CREWPAGE);
-      setPrefetched(new Set(prefetched).add(CREWPAGE));
+  const handleMouseEnter = () => {
+    if (!prefetchedPages.has(CREWPAGE)) {
+      router.prefetch(CREWPAGE); // 페이지 프리패치
+      setPrefetchedPages(new Set(prefetchedPages).add(CREWPAGE));
     }
   };
 
   return (
     <div
       role="presentation"
-      onClick={() => router.push(CREWPAGE)}
+      onClick={handleCardClick}
+      onMouseEnter={handleMouseEnter}
       className="relative mx-auto flex w-full animate-fade cursor-pointer flex-col overflow-hidden rounded-[14px] bg-white transition-shadow hover:shadow-card md:h-[203px] md:flex-row"
     >
       {/* 썸네일 */}

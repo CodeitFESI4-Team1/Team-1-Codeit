@@ -1,6 +1,5 @@
 'use client';
 
-import { Loader } from '@mantine/core';
 import { useGetMyCrewHostedQuery } from '@/src/_queries/crew/my-crew-hosted-list-query';
 import { useInfiniteScroll } from '@/src/hooks/use-infinite-scroll';
 import CrewCardList from '@/src/components/common/crew-list/crew-card-list';

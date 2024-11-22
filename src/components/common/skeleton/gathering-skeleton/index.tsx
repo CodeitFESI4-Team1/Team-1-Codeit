@@ -8,8 +8,11 @@ export default function GatheringSkeleton() {
         <Skeleton className="h-4 w-40" />
         <Skeleton className="h-4 w-32" />
         <Skeleton className="h-4 w-24" />
-        <Skeleton circle className="absolute right-4 top-4 h-8 w-8" />
-        <Skeleton className="absolute bottom-4 left-4 right-4 h-10 w-auto" />
+        <div className="mb-14 mt-4 flex items-end justify-between">
+          <Skeleton className="h-4 w-24" />
+          <Skeleton circle className="h-8 w-8" />
+        </div>
+        <Skeleton className="absolute bottom-4 left-4 right-4 h-10 w-auto rounded-xl" />
       </div>
     </div>
   );

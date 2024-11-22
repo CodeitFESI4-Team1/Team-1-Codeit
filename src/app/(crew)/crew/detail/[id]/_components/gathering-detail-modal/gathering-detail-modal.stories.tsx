@@ -6,7 +6,7 @@ import { Meta, StoryFn } from '@storybook/react';
 import GatheringDetailModalContainer, { GatheringDetailModalContainerProps } from './container';
 
 const meta: Meta = {
-  title: 'components/gathering-detail-modal',
+  title: 'gathering/gathering-detail-modal',
   component: GatheringDetailModalContainer,
   argTypes: {
     opened: { control: 'boolean' },

@@ -5,7 +5,7 @@ import GatheringCard from './container';
 const queryClient = new QueryClient();
 
 const meta: Meta<typeof GatheringCard> = {
-  title: 'Components/GatheringCard',
+  title: 'gathering/gathering-card',
   component: GatheringCard,
   parameters: {
     layout: 'fullscreen',
