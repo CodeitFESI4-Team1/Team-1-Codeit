@@ -14,32 +14,13 @@ import ProfileSkeleton from '@/src/components/common/skeleton/profile-skeleton';
 import ProfileCardPresenter from './presenter';
 
 export default function ProfileCard() {
-  const router = useRouter();
-  const { isAuth } = useAuth();
   const { data: user, isLoading: userLoading, refetch: refetchUser } = useUser();
-  const [profileImageUrl, setProfileImageUrl] = useState<string>('');
-  const [isAuthChecked, setIsAuthChecked] = useState(false);
+  const profileImageUrl = user?.profileImageUrl || '';
 
-  useEffect(() => {
-    if (userLoading) return;
+  // 로딩 중일 때 스켈레톤 표시
+  if (userLoading) return <ProfileSkeleton />;
 
-    if (user) {
-      setIsAuthChecked(true);
-    } else if (!isAuth) {
-      toast.error('로그인이 필요합니다.');
-      router.push('/login');
-    } else {
-      setIsAuthChecked(true);
-    }
-  }, [user, userLoading, isAuth, router]);
-
-  useEffect(() => {
-    if (user?.profileImageUrl) {
-      setProfileImageUrl(user.profileImageUrl);
-    }
-  }, [user]);
-
-  if (userLoading || !isAuthChecked) return <ProfileSkeleton />;
+  // 사용자 데이터가 없는 경우 null 반환
   if (!user) return null;
 
   const handleEdit = () => {
@@ -58,10 +39,9 @@ export default function ProfileCard() {
           await updateUserProfile(file);
 
           const tempUrl = URL.createObjectURL(file);
-          setProfileImageUrl(tempUrl);
-
-          await refetchUser();
+          // 임시 URL을 React Query가 refetch로 갱신될 때까지 보여줌
           toast.success('프로필 이미지가 업데이트되었습니다.');
+          await refetchUser();
         } catch (error) {
           toast.error('파일 업로드에 실패했습니다.');
         }
@@ -74,7 +54,6 @@ export default function ProfileCard() {
     try {
       await resetUserProfileImage();
       await refetchUser();
-      setProfileImageUrl(''); // 초기화된 이미지 반영
       toast.success('프로필 이미지가 초기화되었습니다.');
     } catch (error) {
       toast.error('프로필 이미지 초기화에 실패했습니다.');
