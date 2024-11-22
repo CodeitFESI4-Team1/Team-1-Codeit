@@ -24,7 +24,7 @@ export default function HeroCrew() {
         </div>
         <Link
           href={isAuth ? '/crew/create' : `/login?redirect=${currentPath}`}
-          className="btn-filled -translate-y-1 items-center rounded-xl px-4 py-2 text-sm font-semibold md:h-11 md:text-lg md:font-bold"
+          className="btn-filled h-10 -translate-y-1 items-center rounded-xl px-4 py-2 text-base font-semibold md:h-11 md:text-lg md:font-bold"
         >
           크루 만들기
         </Link>
