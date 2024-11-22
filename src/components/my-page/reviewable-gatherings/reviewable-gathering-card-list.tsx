@@ -2,7 +2,7 @@
 
 import { useGetReviewableQuery } from '@/src/_queries/my-gathering/reviewable-gathering-list';
 import { useInfiniteScroll } from '@/src/hooks/use-infinite-scroll';
-import ReviewableGatheringSkeletonList from '@/src/components/common/skeleton/reviewable-gathering-skeleton-list';
+import MyReviewSkeletonList from '../../common/skeleton/my-review-skeleton-list/index';
 import ReviewableGatheringCard from './reviewable-gathering-card';
 
 export default function ReviewableGatheringCardList() {
@@ -17,12 +17,11 @@ export default function ReviewableGatheringCardList() {
     data.pages.length === 0 ||
     data.pages.every((page) => Array.isArray(page.content) && page.content.length === 0);
 
-  if (isLoading)
-    return (
-      <div className="py-6">
-        <ReviewableGatheringSkeletonList num={6} />
-      </div>
-    );
+  // 로딩 중일 때 스켈레톤 표시
+  if (isLoading) {
+    return <MyReviewSkeletonList />;
+  }
+
   return (
     <ul className="flex flex-col items-center gap-4">
       {/* 데이터가 비었을 때 메시지 */}

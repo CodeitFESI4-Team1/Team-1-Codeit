@@ -5,7 +5,7 @@ import { Loader } from '@mantine/core';
 import { useGetMyReviewsQuery } from '@/src/_queries/review/my-review-queries';
 import { useInfiniteScroll } from '@/src/hooks/use-infinite-scroll';
 import ReviewCardList from '@/src/components/common/review-list/review-card-list';
-import MyReviewSkeletonList from '@/src/components/common/skeleton/my-review-skeleton-list';
+import ReviewListSkeleton from '@/src/components/common/skeleton/review-skeleton';
 
 export default function MyReviewPage() {
   const size = 6;
@@ -17,7 +17,9 @@ export default function MyReviewPage() {
   if (isLoading) {
     return (
       <div className="mt-8">
-        <MyReviewSkeletonList num={size} />
+        <div className="w-full">
+          <ReviewListSkeleton type="mine" />
+        </div>
       </div>
     );
   }
