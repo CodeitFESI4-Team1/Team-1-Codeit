@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import { Badge } from '@mantine/core';
 import { formatDate } from '@/src/utils/format-date';
 import { GatheringCardProps } from '@/src/types/gathering-data';
 import IcoPerson from '@/public/assets/icons/ic-gathering-person.svg';

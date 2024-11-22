@@ -12,7 +12,7 @@ export default function GatheringSkeletonList({ num }: GatheringSkeletonListProp
     >
       {[...Array(num)].map((_, index) => (
         // eslint-disable-next-line react/no-array-index-key
-        <GatheringSkeleton key={index} />
+        <GatheringSkeleton key={`GatheringSkeleton-${index}`} />
       ))}
     </div>
   );
