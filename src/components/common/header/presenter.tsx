@@ -37,7 +37,7 @@ export default function HeaderPresenter({
           <nav className="flex items-center space-x-3 text-base font-semibold md:space-x-6 md:text-lg lg:space-x-6">
             <Link
               href="/"
-              className={`${pathname === '/' ? 'text-white' : 'text-blue-300'} text-sm font-semibold md:text-lg`}
+              className={`${pathname === '/' ? 'text-white' : 'text-blue-300'} hidden text-sm font-semibold md:block md:text-lg`}
             >
               크루 찾기
             </Link>
