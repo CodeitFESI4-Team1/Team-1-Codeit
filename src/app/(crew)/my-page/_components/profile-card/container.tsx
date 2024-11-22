@@ -1,11 +1,8 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import { useRouter } from 'next/navigation';
 import { resetUserProfileImage, updateUserProfile } from '@/src/_apis/auth/user-apis';
 import { useUser } from '@/src/_queries/auth/user-queries';
-import { useAuth } from '@/src/hooks/use-auth';
 import ProfileSkeleton from '@/src/components/common/skeleton/profile-skeleton';
 import ProfileCardPresenter from './presenter';
 

@@ -46,7 +46,7 @@ export default function ReviewTabs() {
     <div className="mt-12 flex flex-col">
       <h3 className="text-2xl font-semibold text-gray-900">나의 리뷰 모아보기</h3>
       <Divider mt={16} mb={24} size={2} />
-      <Tabs variant="review" tabs={myPageTabs} activeTab={currentTab} onTabClick={handleTabClick} />
+      <Tabs tabs={myPageTabs} activeTab={currentTab} onTabClick={handleTabClick} />
     </div>
   );
 }

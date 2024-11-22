@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import Button from '../components/common/input/button';
+import Button from '@/src/components/common/button/index';
 
 export default function NotFound() {
   const router = useRouter();

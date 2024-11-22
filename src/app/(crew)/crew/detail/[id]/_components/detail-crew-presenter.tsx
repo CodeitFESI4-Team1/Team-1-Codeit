@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { Menu } from '@mantine/core';
 import { cn } from '@/src/utils/cn';
-import Button from '@/src/components/common/input/button';
+import Button from '@/src/components/common/button';
 import { Profile } from '@/src/components/common/profile';
 import ProgressBar from '@/src/components/common/progress-bar';
 import { CrewDetail, CrewDetailMember } from '@/src/types/crew-card';

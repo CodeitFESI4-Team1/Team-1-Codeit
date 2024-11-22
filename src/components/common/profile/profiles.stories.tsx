@@ -1,6 +1,6 @@
 // Profiles 스토리북 파일
 import type { Meta, StoryObj } from '@storybook/react';
-import Profiles from './profiles';
+import Profiles from '@/src/components/common/profile/profiles';
 
 const meta: Meta = {
   title: 'crew/crew-profiles',

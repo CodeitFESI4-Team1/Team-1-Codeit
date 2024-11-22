@@ -8,7 +8,6 @@ export interface TabsProps {
   tabs: Tab[];
   activeTab: string;
   onTabClick: (id: string) => void;
-  variant?: 'default' | 'review';
 }
 
 /**
@@ -20,7 +19,7 @@ export interface TabsProps {
  * @param variant - 탭 스타일 유형, 기본 값은 'default'이며 'review'로 전환 가능
  */
 
-export default function Tabs({ tabs, activeTab, onTabClick, variant = 'default' }: TabsProps) {
+export default function Tabs({ tabs, activeTab, onTabClick }: TabsProps) {
   const baseStyle =
     'rounded-xl w-full border border-blue-500 px-4 py-2 font-bold sm:text-base md:w-max md:text-lg lg:text-lg ';
 

@@ -79,7 +79,6 @@ export const ReviewTabs = Template.bind({});
 ReviewTabs.args = {
   tabs: tabData.reviewTabs,
   activeTab: tabData.reviewTabs[0].id,
-  variant: 'review',
 };
 ReviewTabs.parameters = {
   docs: {

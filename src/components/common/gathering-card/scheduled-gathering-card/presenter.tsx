@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import { formatDate } from '@/src/utils/format-date';
+import Button from '@/src/components/common/button';
 import { GatheringCardProps } from '@/src/types/gathering-data';
 import IcoPerson from '@/public/assets/icons/ic-gathering-person.svg';
-import Button from '../../input/button';
 
 interface ScheduledGatheringCardPresenterProps {
   data: GatheringCardProps;

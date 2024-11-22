@@ -8,7 +8,7 @@ import { NumberInput } from '@mantine/core';
 import { getImageUrl } from '@/src/_apis/image/get-image-url';
 import categoryData from '@/src/data/category.json';
 import regionData from '@/src/data/region.json';
-import Button from '@/src/components/common/input/button';
+import Button from '@/src/components/common/button';
 import DropDown from '@/src/components/common/input/drop-down';
 import FileInputWrap from '@/src/components/common/input/file-input-wrap';
 import TextInput from '@/src/components/common/input/text-input';
