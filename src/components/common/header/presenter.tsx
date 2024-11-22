@@ -5,7 +5,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu } from '@mantine/core';
 import { Profile } from '@/src/components/common/profile';
-import Logo from '@/public/assets/images/logo.png';
+import IcoLogo from '@/public/assets/images/logo-icon.svg';
+import Logo from '@/public/assets/images/logo.svg';
 
 export interface HeaderPresenterProps {
   isAuth: boolean;
@@ -26,17 +27,17 @@ export default function HeaderPresenter({
 }: HeaderPresenterProps) {
   const pathname = usePathname();
   return (
-    <header className="sticky top-0 z-10 h-10 w-full bg-blue-500 px-6 md:h-13">
+    <header className="h-header w-full bg-blue-500 px-4 md:px-6">
       <div className="mx-auto flex h-full w-full max-w-[1200px] items-center justify-between">
-        <div className="flex space-x-2 md:space-x-5 lg:ml-2 lg:space-x-5">
-          <Link href="/" className="mt-1">
-            <Image src={Logo} alt="crew logo" width={83} height={30} className="hidden md:block" />
-            <Image src={Logo} alt="crew logo" width={53} height={28} className="block md:hidden" />
+        <div className="flex items-center gap-5 lg:ml-2">
+          <Link href="/" className="it ems-center flex gap-2">
+            <Image src={IcoLogo} alt="crew logo" aria-hidden width={32} height={32} className="" />
+            <Image src={Logo} alt="crew logo" width={83} height={24} className="hidden md:block" />
           </Link>
-          <nav className="flex items-center space-x-2 text-base font-semibold md:space-x-6 md:text-lg lg:space-x-6">
+          <nav className="flex items-center gap-3 text-base font-semibold md:gap-6 md:text-lg">
             <Link
               href="/"
-              className={`${pathname === '/' ? 'text-white' : 'text-blue-300'} ml-4 hidden md:block`}
+              className={`${pathname === '/' ? 'text-white' : 'text-blue-300'} hidden text-base font-semibold md:block md:text-lg`}
             >
               크루 찾기
             </Link>
@@ -46,7 +47,7 @@ export default function HeaderPresenter({
                 href={isAuth ? href : `/login?redirect=${href}`}
                 className={`${
                   pathname.startsWith(href) ? 'text-white' : 'text-blue-300'
-                } ml-4 text-sm font-semibold md:text-lg`}
+                } text-base font-semibold md:text-lg`}
               >
                 {label}
               </Link>
@@ -73,7 +74,7 @@ export default function HeaderPresenter({
             </Menu>
           </div>
         ) : (
-          <Link href="/login" className="text-sm font-semibold text-white md:text-lg">
+          <Link href="/login" className="text-base font-semibold text-white md:text-lg">
             로그인
           </Link>
         )}

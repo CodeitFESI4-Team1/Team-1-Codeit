@@ -35,13 +35,14 @@ const config: Config = {
       },
       width: {
         7.5: '30px',
-        12.5: '50px',
+        12.5: '56px',
         18: '72px',
         27.5: '110px',
         29.5: '118px',
         30: '120px',
       },
       height: {
+        header: '50px',
         7.5: '30px',
         12.5: '50px',
         13: '52px',
@@ -160,13 +161,13 @@ const config: Config = {
             'scroll-snap-align': 'start',
           },
           '.sort-bg': {
-            'background-image': "url('./assets/icons/ic-sort.svg')",
+            'background-image': "url('../../public/assets/icons/ic-sort.svg')",
             'background-repeat': 'no-repeat',
             'background-position': '12px center',
             'background-size': '24px 24px',
           },
           '.sort-bg-on': {
-            'background-image': "url('./assets/icons/ic-sort-on.svg')",
+            'background-image': "url('../../public/assets/icons/ic-sort-on.svg')",
             'background-repeat': 'no-repeat',
             'background-position': '12px center',
             'background-size': '24px 24px',
