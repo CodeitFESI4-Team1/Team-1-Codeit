@@ -45,8 +45,6 @@
     "@chromatic-com/storybook": "^1.9.0",
     "@storybook/addon-essentials": "^8.3.5",
     "@storybook/addon-interactions": "^8.3.5",
-    "@storybook/addon-links": "^8.3.5",
-    "@storybook/addon-onboarding": "^8.3.5",
     "@storybook/addon-styling-webpack": "^1.0.0",
     "@storybook/blocks": "^8.3.5",
     "@storybook/jest": "^0.2.3",
