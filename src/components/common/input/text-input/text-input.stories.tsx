@@ -5,6 +5,15 @@ import TextInput, { TextInputProps } from '.';
 const meta: Meta = {
   title: 'common/input/text-input',
   component: TextInput,
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      subtitle: '텍스트를 입력하는 input 컴포넌트',
+      description: {
+        component: 'label, placeholder, error 설정이 가능한 text-input 컴포넌트입니다.',
+      },
+    },
+  },
 };
 
 export default meta;
@@ -29,7 +38,7 @@ WithLabel.args = {
 
 export const WithError = Template.bind({});
 WithError.args = {
-  error: 'Invalid email format',
+  error: '에러가 발생했습니다',
   type: 'text',
   inputClassNames: 'bg-gray-100',
 };
