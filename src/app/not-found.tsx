@@ -1,10 +1,7 @@
 'use client';
 
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Router } from 'next/router';
 import Button from '../components/common/input/button';
-import { theme } from '../styles/theme';
 
 export default function NotFound() {
   const router = useRouter();
