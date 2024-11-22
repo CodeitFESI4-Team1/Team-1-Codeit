@@ -17,7 +17,13 @@ export default function NotFound() {
           &quot;죄송합니다. 페이지를 찾을 수 없습니다. 😢&quot;
         </p>
         <Button
-          onClick={() => router.back()}
+          onClick={() => {
+            try {
+              router.back();
+            } catch {
+              router.push('/');
+            }
+          }}
           className="btn-filled mt-20 flex h-11 items-center rounded-xl px-16 text-base font-semibold"
         >
           뒤로 가기
