@@ -19,7 +19,11 @@ export default function ReviewableGatheringCardList() {
 
   // 로딩 중일 때 스켈레톤 표시
   if (isLoading) {
-    return <MyReviewSkeletonList />;
+    return (
+      <section className="item-center mt-8 flex flex-col">
+        <MyReviewSkeletonList />
+      </section>
+    );
   }
 
   return (
