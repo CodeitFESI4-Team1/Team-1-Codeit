@@ -28,6 +28,7 @@ export default function RootLayout({
           content="내 크루와 함께 약속하고 만나는 운동 소모임 웹사이트"
         />
         <meta property="og:url" content="https://crewcrew.vercel.app" />
+        <link rel="icon" href="/favicon.ico" />
         <ColorSchemeScript />
       </head>
       <body>
