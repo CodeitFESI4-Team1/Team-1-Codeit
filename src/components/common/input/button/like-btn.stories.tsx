@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import LikeBtn from './like-btn';
 
 const meta: Meta<typeof LikeBtn> = {
-  title: 'Components/LikeBtn',
+  title: 'common/button/like-button',
   component: LikeBtn,
   tags: ['autodocs'],
   argTypes: {

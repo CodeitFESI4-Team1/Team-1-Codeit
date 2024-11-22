@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import Toast from './index';
 
 const meta: Meta<typeof Toast> = {
-  title: 'Components/Toast',
+  title: 'common/toast',
   component: Toast,
   parameters: {
     layout: 'centered',

@@ -4,7 +4,7 @@ import type { Meta, StoryFn } from '@storybook/react';
 import DropDown, { DropDownProps } from '.';
 
 const meta: Meta = {
-  title: 'Components/input/drop-down',
+  title: 'common/drop-down',
   component: DropDown,
   tags: ['autodocs'],
   argTypes: {

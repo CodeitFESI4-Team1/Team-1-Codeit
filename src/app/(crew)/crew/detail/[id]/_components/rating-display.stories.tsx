@@ -3,7 +3,7 @@ import { Meta, StoryFn } from '@storybook/react';
 import RatingDisplay, { ReviewRateInfo } from './rating-display';
 
 export default {
-  title: 'Components/Detail/RatingDisplay',
+  title: 'crew/crew-rating-display',
   component: RatingDisplay,
   tags: ['autodocs'],
   argTypes: {

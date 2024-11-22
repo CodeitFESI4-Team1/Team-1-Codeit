@@ -4,6 +4,8 @@ import Accessibility from './assets/accessibility.png';
 import AddonLibrary from './assets/addon-library.png';
 import Assets from './assets/assets.png';
 import Context from './assets/context.png';
+import Cbd from './assets/development-cbd.png';
+import Pattern from './assets/development-pattern.png';
 import Discord from './assets/discord.svg';
 import Docs from './assets/docs.png';
 import FigmaPlugin from './assets/figma-plugin.png';
@@ -33,73 +35,51 @@ export const RightArrow = () => (
   </svg>
 );
 
-<Meta title="Configure your project" />
+<Meta title="CrewCrew" />
 
 <div className="sb-container">
   <div className='sb-section-title'>
-    # Configure your project
-
-    Because Storybook works separately from your app, you'll need to configure it for your specific stack and setup. Below, explore guides for configuring Storybook with popular frameworks and tools. If you get stuck, learn how you can ask for help from our community.
-
+    # Development
+    Component-Based Development, Container/Presentational Pattern을 활용해 개발했습니다.
   </div>
   <div className="sb-section">
     <div className="sb-section-item">
       <Image
-        src={Styling}
-        alt="A wall of logos representing different styling technologies"
+        src={Cbd}
+        alt="component based development"
         width={0}
         height={0}
-        style={{ width: '100%', height: 'auto' }}
+        style={{ width: '100%', height: '250px', borderRadius: '15px'}}
       />
-      <h4 className="sb-section-item-heading">Add styling and CSS</h4>
-      <p className="sb-section-item-paragraph">Like with web applications, there are many ways to include CSS within Storybook. Learn more about setting up styling within Storybook.</p>
-      <a
-        href="https://storybook.js.org/docs/configure/styling-and-css/?renderer=react"
-        target="_blank"
-      >Learn more<RightArrow /></a>
+      <h4 className="sb-section-item-heading">Component-Based Development</h4>
+      <p className="sb-section-item-paragraph">UI를 독립적이고 재사용 가능한 컴포넌트로 분리하여 유지보수성과 확장성을 높이고, 개발자 간 협업과 코드 재사용을 용이하게 만들었습니다.</p>
+      
     </div>
     <div className="sb-section-item">
       <Image 
         width={0}
         height={0}
-        style={{ width: '100%', height: 'auto' }}
-        src={Context}
+        style={{ width: '100%', height: '250px', borderRadius: '15px'}}
+        src={Pattern}
         alt="An abstraction representing the composition of data for a component"
       />
-      <h4 className="sb-section-item-heading">Provide context and mocking</h4>
-      <p className="sb-section-item-paragraph">Often when a story doesn't render, it's because your component is expecting a specific environment or context (like a theme provider) to be available.</p>
-      <a
-        href="https://storybook.js.org/docs/writing-stories/decorators/?renderer=react#context-for-mocking"
-        target="_blank"
-      >Learn more<RightArrow /></a>
+      <h4 className="sb-section-item-heading">Container/Presentational Pattern</h4>
+      <p className="sb-section-item-paragraph">비즈니스 로직과 UI로 관심사를 명확히 분리하여 코드의 유지보수성과 재사용성을 높이기 위해서 사용했습니다.</p>
+      
     </div>
-    <div className="sb-section-item">
-      <Image 
-        width={0}
-        height={0}
-        style={{ width: '100%', height: 'auto' }} 
-        src={Assets} 
-        alt="A representation of typography and image assets" 
-      />
-      <div>
-        <h4 className="sb-section-item-heading">Load assets and resources</h4>
-        <p className="sb-section-item-paragraph">To link static files (like fonts) to your projects and stories, use the
-        `staticDirs` configuration option to specify folders to load when
-        starting Storybook.</p>
-        <a
-          href="https://storybook.js.org/docs/configure/images-and-assets/?renderer=react"
-          target="_blank"
-        >Learn more<RightArrow /></a>
-      </div>
-    </div>
+    
   </div>
 </div>
 <div className="sb-container">
   <div className='sb-section-title'>
-    # Do more with Storybook
-
-    Now that you know the basics, let's explore other parts of Storybook that will improve your experience. This list is just to get you started. You can customise Storybook in many ways to fit your needs.
-
+    # Crew Crew
+    ### 약속하고 만나는 운동 소모임 웹사이트
+    
+    <p>운동 종목, 지역에 따라 크루를 만들고, 크루 안에서 자유롭게 약속을 만들어 함께 운동을 즐길 수 있는 사이트입니다.</p>
+    <a
+          href="https://crewcrew.vercel.app/"
+          target="_blank"
+        >https://crewcrew.vercel.app/<RightArrow /></a>
   </div>
 
   <div className="sb-section">
@@ -112,13 +92,9 @@ export const RightArrow = () => (
           src={Docs} 
           alt="A screenshot showing the autodocs tag being set, pointing a docs page being generated" 
         />
-        <h4 className="sb-section-item-heading">Autodocs</h4>
-        <p className="sb-section-item-paragraph">Auto-generate living,
-          interactive reference documentation from your components and stories.</p>
-        <a
-          href="https://storybook.js.org/docs/writing-docs/autodocs/?renderer=react"
-          target="_blank"
-        >Learn more<RightArrow /></a>
+        <h4 className="sb-section-item-heading">크루 찾기</h4>
+        <p className="sb-section-item-paragraph">운동 종목별·지역별로 분류하고, 최신·인기순으로 정렬하여 크루를 검색할 수 있습니다.</p>
+       
       </div>
       <div className="sb-grid-item">
         <Image 
@@ -128,12 +104,9 @@ export const RightArrow = () => (
           src={Share} 
           alt="A browser window showing a Storybook being published to a chromatic.com URL" 
         />
-        <h4 className="sb-section-item-heading">Publish to Chromatic</h4>
-        <p className="sb-section-item-paragraph">Publish your Storybook to review and collaborate with your entire team.</p>
-        <a
-          href="https://storybook.js.org/docs/sharing/publish-storybook/?renderer=react#publish-storybook-with-chromatic"
-          target="_blank"
-        >Learn more<RightArrow /></a>
+       <h4 className="sb-section-item-heading">로그인/회원가입</h4>
+        <p className="sb-section-item-paragraph">크루크루 회원가입 후 로그인하면 크루에 참여하고, 활동 가능합니다.</p>
+         
       </div>
       <div className="sb-grid-item">
         <Image 
@@ -143,13 +116,9 @@ export const RightArrow = () => (
           src={FigmaPlugin} 
           alt="Windows showing the Storybook plugin in Figma" 
         />
-        <h4 className="sb-section-item-heading">Figma Plugin</h4>
-        <p className="sb-section-item-paragraph">Embed your stories into Figma to cross-reference the design and live
-          implementation in one place.</p>
-        <a
-          href="https://storybook.js.org/docs/sharing/design-integrations/?renderer=react#embed-storybook-in-figma-with-the-plugin"
-          target="_blank"
-        >Learn more<RightArrow /></a>
+        <h4 className="sb-section-item-heading">크루</h4>
+        <p className="sb-section-item-paragraph">원하는 크루에 참여하거나, 크루를 만들어 직집 운영합니다.</p>
+        
       </div>
       <div className="sb-grid-item">
         <Image 
@@ -159,13 +128,9 @@ export const RightArrow = () => (
           src={Testing} 
           alt="Screenshot of tests passing and failing" 
         />
-        <h4 className="sb-section-item-heading">Testing</h4>
-        <p className="sb-section-item-paragraph">Use stories to test a component in all its variations, no matter how
-          complex.</p>
-        <a
-          href="https://storybook.js.org/docs/writing-tests/?renderer=react"
-          target="_blank"
-        >Learn more<RightArrow /></a>
+        <h4 className="sb-section-item-heading">약속</h4>
+        <p className="sb-section-item-paragraph">크루 참여 후 약속에 참여하거나 약속을 만들어서 사람들과 함께 운동합니다.</p>
+        
       </div>
       <div className="sb-grid-item">
         <Image 
@@ -175,12 +140,9 @@ export const RightArrow = () => (
           src={Accessibility} 
           alt="Screenshot of accessibility tests passing and failing" 
         />
-        <h4 className="sb-section-item-heading">Accessibility</h4>
-        <p className="sb-section-item-paragraph">Automatically test your components for a11y issues as you develop.</p>
-        <a
-          href="https://storybook.js.org/docs/writing-tests/accessibility-testing/?renderer=react"
-          target="_blank"
-        >Learn more<RightArrow /></a>
+        <h4 className="sb-section-item-heading">나의 크루/약속</h4>
+        <p className="sb-section-item-paragraph">내가 만든/참여한 크루, 내가 만든/참여한 약속, 찜한 약속을 탭에서 나의 활동을 확인하고 관리합니다.</p>
+       
       </div>
       <div className="sb-grid-item">
         <Image 
@@ -190,24 +152,21 @@ export const RightArrow = () => (
           src={Theming} 
           alt="Screenshot of Storybook in light and dark mode" 
         />
-        <h4 className="sb-section-item-heading">Theming</h4>
-        <p className="sb-section-item-paragraph">Theme Storybook's UI to personalize it to your project.</p>
-        <a
-          href="https://storybook.js.org/docs/configure/theming/?renderer=react"
-          target="_blank"
-        >Learn more<RightArrow /></a>
+        <h4 className="sb-section-item-heading">마이페이지</h4>
+        <p className="sb-section-item-paragraph">나의 프로필을 확인/수정하고, 약속에 대한 리뷰를 작성 후 확인합니다.</p>
+        
       </div>
     </div>
   </div>
 </div>
 <div className='sb-addon'>
   <div className='sb-addon-text'>
-    <h4>Addons</h4>
-    <p className="sb-section-item-paragraph">Integrate your tools with Storybook to connect workflows.</p>
+    <h4>Crew Crew</h4>
+    <p className="sb-section-item-paragraph">같이 운동하는 '크루'를 찾아보고, '약속'을 잡아보세요!</p>
     <a
-        href="https://storybook.js.org/addons/"
+        href="https://crewcrew.vercel.app/"
         target="_blank"
-      >Discover all addons<RightArrow /></a>
+      >바로가기<RightArrow /></a>
   </div>
   <div className='sb-addon-img'>
     <Image 
@@ -229,30 +188,12 @@ export const RightArrow = () => (
         alt="Github logo" 
         className="sb-explore-image"
       />
-      Join our contributors building the future of UI development.
+      Github Repository
 
       <a
-        href="https://github.com/storybookjs/storybook"
+        href="https://github.com/CodeitFESI4-Team1/Team-1-Codeit"
         target="_blank"
-      >Star on GitHub<RightArrow /></a>
-    </div>
-    <div className="sb-section-item">
-      <Image
-        width={33}
-        height={32}
-        layout="fixed"
-        src={Discord}
-        alt="Discord logo"
-        className="sb-explore-image"
-      />
-      <div>
-        Get support and chat with frontend developers.
-
-        <a
-          href="https://discord.gg/storybook"
-          target="_blank"
-        >Join Discord server<RightArrow /></a>
-      </div>
+      >바로가기<RightArrow /></a>
     </div>
     <div className="sb-section-item">
       <Image
@@ -264,29 +205,13 @@ export const RightArrow = () => (
         className="sb-explore-image"
       />
       <div>
-        Watch tutorials, feature previews and interviews.
+        Demo Video
 
         <a
-          href="https://www.youtube.com/@chromaticui"
+          href="https://www.youtube.com/watch?v=8qhzx36ljDM"
           target="_blank"
-        >Watch on YouTube<RightArrow /></a>
+        >바로가기<RightArrow /></a>
       </div>
-    </div>
-    <div className="sb-section-item">
-      <Image
-        width={33}
-        height={32}
-        layout="fixed"
-        src={Tutorials}
-        alt="A book"
-        className="sb-explore-image"
-      />
-      <p>Follow guided walkthroughs on for key workflows.</p>
-
-      <a
-          href="https://storybook.js.org/tutorials/"
-          target="_blank"
-        >Discover tutorials<RightArrow /></a>
     </div>
 
 </div>
@@ -323,6 +248,7 @@ export const RightArrow = () => (
   }
 
   .sb-section-item-heading {
+    font-weight: bold;
     padding-top: 20px !important;
     padding-bottom: 5px !important;
     margin: 0 !important;
@@ -344,7 +270,7 @@ export const RightArrow = () => (
 
   .sb-socials {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .sb-socials p {

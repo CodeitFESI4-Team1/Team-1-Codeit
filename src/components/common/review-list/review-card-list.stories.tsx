@@ -3,7 +3,7 @@ import { MyReviewData } from '@/src/mock/review-data';
 import ReviewCardList from './review-card-list';
 
 const meta: Meta<typeof ReviewCardList> = {
-  title: 'components/ReviewCardList',
+  title: 'review/review-card-list',
   component: ReviewCardList,
   parameters: {
     layout: 'fullscreen',

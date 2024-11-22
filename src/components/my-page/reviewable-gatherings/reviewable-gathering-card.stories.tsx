@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import ReviewableGatheringCard from './reviewable-gathering-card';
 
 const meta: Meta<typeof ReviewableGatheringCard> = {
-  title: 'Components/ReviewableGatheringCard',
+  title: 'gathering/reviewable-gathering-card',
   component: ReviewableGatheringCard,
   tags: ['autodocs'],
   parameters: {

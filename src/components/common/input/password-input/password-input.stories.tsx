@@ -3,7 +3,7 @@ import type { Meta, StoryFn } from '@storybook/react';
 import PasswordInput, { PasswordInputProps } from '.';
 
 const meta: Meta = {
-  title: 'Components/input/password-input',
+  title: 'common/input/password-input',
   component: PasswordInput,
 };
 

@@ -3,7 +3,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Header from '@/src/components/common/header/container';
 
 const meta: Meta = {
-  title: 'Components/Header',
+  title: 'layout/header',
   component: Header,
   tags: ['autodocs'],
   parameters: {
