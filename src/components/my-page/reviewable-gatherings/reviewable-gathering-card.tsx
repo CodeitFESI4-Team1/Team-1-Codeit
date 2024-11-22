@@ -40,14 +40,9 @@ export default function ReviewableGatheringCard({
   }));
 
   return (
-<<<<<<< HEAD
-    <div className="flex w-full max-w-[1200px] gap-[20px] border-b-[2px] border-b-gray-200 py-[24px]">
-      <span className="relative h-[166px] w-[294px] overflow-hidden rounded-[12px]">
-=======
     <div className="relative flex w-full max-w-[1200px] flex-wrap gap-4 border-b-[2px] border-b-gray-200 py-6">
       {/* 이미지 영역 */}
       <div className="relative h-28 w-28 flex-shrink-0 overflow-hidden rounded-[12px] md:h-[166px] md:w-[294px]">
->>>>>>> develop
         <Image
           src={imageUrl}
           alt={gatheringName}
@@ -55,40 +50,6 @@ export default function ReviewableGatheringCard({
           sizes="(max-width: 744px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="h-full w-full object-cover"
         />
-<<<<<<< HEAD
-      </span>
-      <div className="flex w-full items-end justify-between">
-        <div className="flex h-full flex-col items-start justify-between">
-          <div>
-            <div className="mb-[15px] flex items-center">
-              <span className="text-xl font-semibold text-gray-800">{gatheringName}</span>
-            </div>
-            <div className="flex w-fit items-center">
-              <span className="relative inline-block h-[20px] w-[20px]">
-                <Image
-                  alt="참여 인원"
-                  src={person}
-                  fill
-                  sizes="(max-width: 744px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="h-full w-full object-contain"
-                />
-              </span>
-              <span className="mr-[22px] text-base font-medium text-gray-700">
-                {currentCount}/{totalCount}
-              </span>
-              <Profiles profiles={profiles} />
-            </div>
-          </div>
-          <div className="text-sm font-medium text-gray-700">{`${year}년 ${month}월 ${day}일`}</div>
-        </div>
-        <Button
-          className="bg-blue-500 p-[6px_14px] text-base font-semibold text-white"
-          onClick={() => setIsModalOpened(true)}
-        >
-          리뷰 작성하기
-        </Button>
-=======
->>>>>>> develop
       </div>
       {/* 텍스트 및 버튼 영역 */}
       <div className="flex min-w-0 flex-1 flex-col">
