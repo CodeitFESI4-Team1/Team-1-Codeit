@@ -13,16 +13,25 @@ import DropDown from '@/src/components/common/input/drop-down';
 import FileInputWrap from '@/src/components/common/input/file-input-wrap';
 import TextInput from '@/src/components/common/input/text-input';
 import Textarea from '@/src/components/common/input/textarea';
-import { CreateCrewFormTypes, EditCrewResponseTypes } from '@/src/types/create-crew';
+import { CreateCrewFormTypes } from '@/src/types/create-crew';
 import ImgCrewSampleUrls from '@/public/assets/images/crew-sample';
 
 export interface CreateCrewFormProps {
   type: 'create' | 'edit';
-  data: CreateCrewFormTypes | EditCrewResponseTypes;
+  data: CreateCrewFormTypes;
   isEdit?: boolean;
   onEdit?: (data: CreateCrewFormTypes) => void;
   onSubmit?: (data: CreateCrewFormTypes) => void;
 }
+
+/**
+ * 크루 생성/수정 폼
+ * @param {'create' | 'edit'} type : form 타입
+ * @param {boolean} isEdit : 수정 여부
+ * @param {(data: CreateCrewFormTypes) => void} onEdit
+ * @param {(data: CreateCrewFormTypes) => void} onSubmit
+ * @param {CreateCrewFormTypes} data
+ */
 
 export default function CreateCrewForm({
   type,
@@ -199,7 +208,7 @@ export default function CreateCrewForm({
                     field.onChange(value);
                     handleMainCategoryChange(value);
                   }}
-                  error={errors.mainCategory?.message}
+                  errorMsg={errors.mainCategory?.message}
                 />
               )}
             />
@@ -218,7 +227,7 @@ export default function CreateCrewForm({
                   placeholder={isEdit && field.value ? field.value : '세부 카테고리'}
                   data={categoryData[categoryIndex]?.items || []}
                   className="flex-1"
-                  error={errors.subCategory?.message}
+                  errorMsg={errors.subCategory?.message}
                 />
               )}
             />
@@ -277,7 +286,7 @@ export default function CreateCrewForm({
                     field.onChange(value);
                     handleMainLocationChange(value);
                   }}
-                  error={errors.mainLocation?.message}
+                  errorMsg={errors.mainLocation?.message}
                 />
               )}
             />
@@ -297,7 +306,7 @@ export default function CreateCrewForm({
                   placeholder={isEdit && field.value ? field.value : '시/군/구'}
                   data={regionData[regionIndex]?.areas || []}
                   className="flex-1"
-                  error={errors.subLocation?.message}
+                  errorMsg={errors.subLocation?.message}
                 />
               )}
             />

@@ -17,6 +17,25 @@ export default {
   title: 'crew/create-crew-form',
   component: CreateCrewForm,
   tags: ['autodocs'],
+  argTypes: {
+    type: {
+      control: 'radio',
+      options: ['create', 'edit'],
+      description: '폼 타입',
+      table: { type: { summary: 'create | edit' } },
+    },
+    data: {
+      control: 'object',
+      description: '폼 데이터',
+      table: { type: { summary: 'CreateCrewFormTypes' } },
+    },
+    isEdit: { control: 'boolean', description: '수정 여부' },
+    onSubmit: {
+      action: 'submit',
+      table: { type: { summary: '(data: CreateCrewFormTypes) => void' } },
+    },
+    onEdit: { action: 'edit', table: { type: { summary: '(data: CreateCrewFormTypes) => void' } } },
+  },
   parameters: {
     layout: 'fullscreen',
     docs: {

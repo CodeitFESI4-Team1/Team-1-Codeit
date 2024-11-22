@@ -20,6 +20,15 @@ export interface CreateGatheringFormProps {
   onClose: () => void;
 }
 
+/**
+ * 약속 생성/수정 폼
+ * @param {CreateGatheringFormTypes} data
+ * @param {boolean} isEdit
+ * @param {(data: CreateGatheringFormTypes) => void} onEdit
+ * @param {(data: CreateGatheringFormTypes) => void} onSubmit
+ * @param {() => void} onClose
+ */
+
 export default function CreateGatheringForm({
   isEdit = false,
   onEdit = () => {},

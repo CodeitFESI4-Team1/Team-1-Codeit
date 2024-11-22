@@ -10,17 +10,6 @@ export interface CreateCrewFormTypes {
   imageUrl: File | string | null;
 }
 
-export interface EditCrewResponseTypes {
-  title: string;
-  mainCategory: string;
-  subCategory: string;
-  mainLocation: string;
-  subLocation: string;
-  totalCount: number;
-  introduce: string;
-  imageUrl: string;
-}
-
 export interface CreateCrewRequestTypes {
   title: string;
   mainCategory: string;
