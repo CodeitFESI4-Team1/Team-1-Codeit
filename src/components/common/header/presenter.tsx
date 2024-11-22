@@ -74,7 +74,7 @@ export default function HeaderPresenter({
             </Menu>
           </div>
         ) : (
-          <Link href="/login" className="text-sm font-semibold text-white md:text-lg">
+          <Link href="/login" className="text-base font-semibold text-white md:text-lg">
             로그인
           </Link>
         )}
