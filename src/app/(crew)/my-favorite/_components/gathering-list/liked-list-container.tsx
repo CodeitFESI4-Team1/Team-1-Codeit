@@ -53,7 +53,12 @@ export default function LikedList() {
 
   // 빈 배열 처리(좋아요 목록이 없는 경우)
   if (gatheringData.content.length === 0) {
-    return <div>좋아요 누른 목록이 없습니다</div>;
+    return (
+      <section className="py-16 text-center">
+        <h3 className="text-xl font-bold text-blue-500">찜한 약속이 없습니다</h3>
+        <p className="mt-4 text-gray-600">약속을 찜해보세요🙌</p>
+      </section>
+    );
   }
 
   return (

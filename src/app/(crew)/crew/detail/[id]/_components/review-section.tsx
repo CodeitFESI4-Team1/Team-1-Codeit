@@ -37,8 +37,8 @@ export default function CrewReviewSection({ crewId }: CrewReviewSectionProps) {
   if (data?.reviewList.content.length === 0) {
     return (
       <section className="py-16 text-center">
-        <h3 className="text-xl font-bold text-blue-500">리뷰가 아직 없습니다</h3>
-        <p className="mt-4 text-gray-600">크루의 약속에 참여하고 리뷰를 남겨보세요!</p>
+        <h3 className="text-xl font-bold text-blue-500">리뷰가 아직 없어요</h3>
+        <p className="mt-4 text-gray-600">크루의 약속에 참여하고 리뷰를 남겨보세요🙌</p>
       </section>
     );
   }
