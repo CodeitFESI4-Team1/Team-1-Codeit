@@ -25,6 +25,15 @@ export default function MyGatheringJoinedPage() {
     refetch();
   }, [selectedDate]);
 
+  if (joinedGatheringList?.length === 0) {
+    return (
+      <section className="py-16 text-center">
+        <h3 className="text-xl font-bold text-blue-500">내가 참여한 약속이 아직 없어요</h3>
+        <p className="mt-4 text-gray-600">크루에서 약속에 참여해 보세요 🙌</p>
+      </section>
+    );
+  }
+
   return (
     <div>
       <div className="py-4 md:py-6">
