@@ -27,7 +27,6 @@ export default function MyCrewLayout({ children }: { children: ReactNode }) {
     <div className="px-3 py-4 md:px-8 md:py-16 lg:px-11.5">
       <div className="hidden pb-6 text-3xl font-bold md:block">나의 크루</div>
       <Tabs
-        variant="default"
         tabs={myCrewTabs}
         activeTab={currentTab}
         onTabClick={(id) => {

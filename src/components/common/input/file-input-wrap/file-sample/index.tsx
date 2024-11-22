@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import Image, { StaticImageData } from 'next/image';
+import Image from 'next/image';
 
 export interface FileSampleProps {
   isEdit?: boolean;

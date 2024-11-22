@@ -14,7 +14,7 @@ const initialValue: CreateCrewRequestTypes = {
 };
 
 export default {
-  title: 'forms/create-crew-form',
+  title: 'crew/create-crew-form',
   component: CreateCrewForm,
   tags: ['autodocs'],
   parameters: {

@@ -12,10 +12,10 @@ export interface PopOverProps {
 
 export default function PopOverCalendar({ value, onChange }: PopOverProps) {
   const [opened, { open, close }] = useDisclosure();
-  const [inputTheme, setInputTheme] = useState(opened ? 'dark' : 'light');
   const [date, setDate] = useState<Date>(value);
   const isMobile = useMediaQuery(`(max-width: ${theme.breakpoints.md})`);
   const popOver = useRef<HTMLDivElement>(null);
+  const inputTheme = opened ? 'dark' : 'light';
 
   const handleClear = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();

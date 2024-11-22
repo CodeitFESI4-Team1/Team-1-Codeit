@@ -35,12 +35,14 @@ const config: Config = {
       },
       width: {
         7.5: '30px',
-        12.5: '50px',
+        12.5: '56px',
+        18: '72px',
         27.5: '110px',
         29.5: '118px',
         30: '120px',
       },
       height: {
+        header: '50px',
         7.5: '30px',
         12.5: '50px',
         13: '52px',
@@ -82,7 +84,8 @@ const config: Config = {
         base: ['1rem', { lineHeight: '1.5rem' }],
         sm: ['0.875rem', { lineHeight: '1.25rem' }],
         xs: ['0.75rem', { lineHeight: '1rem' }],
-        404: ['18.75rem', { lineHeight: '18.75rem' }],
+        404: ['26.8vh', { lineHeight: '26.8vh' }],
+        '404-back': ['87.5vh', { lineHeight: '87.5vh' }],
       },
       fontWeight: {
         bold: '700',
@@ -131,13 +134,13 @@ const config: Config = {
           '100%': { opacity: '1' },
         },
         wave: {
-          '0%': { transform: 'translate(0)' },
-          '100%': { transform: 'translate(-30%)' },
+          '0%': { transform: 'translate(-90px)' },
+          '100%': { transform: 'translate(85px)' },
         },
       },
       animation: {
         fade: 'show 0.5s ease-in',
-        wave: 'wave 0.8s linear infinite',
+        wave: 'wave 10s ease infinite',
       },
     },
   },
@@ -158,13 +161,13 @@ const config: Config = {
             'scroll-snap-align': 'start',
           },
           '.sort-bg': {
-            'background-image': "url('./assets/icons/ic-sort.svg')",
+            'background-image': "url('../../public/assets/icons/ic-sort.svg')",
             'background-repeat': 'no-repeat',
             'background-position': '12px center',
             'background-size': '24px 24px',
           },
           '.sort-bg-on': {
-            'background-image': "url('./assets/icons/ic-sort-on.svg')",
+            'background-image': "url('../../public/assets/icons/ic-sort-on.svg')",
             'background-repeat': 'no-repeat',
             'background-position': '12px center',
             'background-size': '24px 24px',
@@ -176,7 +179,6 @@ const config: Config = {
             transition: 'background-color 0.3s ease',
             '&:hover, &:active': {
               backgroundColor: '#2563EB',
-              fontWeight: '600',
             },
             '&:disabled': {
               backgroundColor: '#6B7280',
@@ -191,7 +193,6 @@ const config: Config = {
             '&:hover, &:active': {
               border: '1px solid #2563EB',
               color: '#2563EB',
-              fontWeight: '600',
             },
             '&:disabled': {
               backgroundColor: '#6B7280',

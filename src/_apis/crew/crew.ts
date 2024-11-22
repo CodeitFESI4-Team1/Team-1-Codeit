@@ -3,7 +3,6 @@ import {
   CreateCrewRequestTypes,
   CreateCrewResponseTypes,
   EditCrewRequestTypes,
-  EditCrewResponseTypes,
 } from '@/src/types/create-crew';
 
 export async function createCrew(data: CreateCrewRequestTypes) {

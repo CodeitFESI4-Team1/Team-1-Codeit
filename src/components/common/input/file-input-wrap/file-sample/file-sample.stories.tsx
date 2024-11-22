@@ -5,7 +5,7 @@ import ImgCrewSampleUrls from '@/public/assets/images/crew-sample';
 import FileSample, { FileSampleProps } from '.';
 
 const meta: Meta = {
-  title: 'Components/input/file-sample',
+  title: 'common/image/image-sample',
   component: FileSample,
   argTypes: {
     image: {
@@ -26,12 +26,12 @@ const meta: Meta = {
 export default meta;
 
 const Template: StoryFn<FileSampleProps> = function FileInputStory(args: FileSampleProps) {
-  const [selectedFile, setSelectedFile] = useState<string | null>(null);
   const [isBlur, setIsBlur] = useState(false);
 
   const handleFileChange = (file: string | null) => {
-    setSelectedFile(file);
-    setIsBlur(false); // 파일 선택 시 블러 해제
+    if (file) {
+      setIsBlur(false); // 파일 선택 시 블러 해제
+    }
   };
 
   return (

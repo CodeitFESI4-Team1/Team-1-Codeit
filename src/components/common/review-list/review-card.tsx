@@ -1,70 +1,72 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
+import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
-import { Button } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
+import { deleteReview } from '@/src/_apis/review/my-review-apis';
+import { cn } from '@/src/utils/cn';
 import { formatDateWithYear } from '@/src/utils/format-date';
+import Button from '@/src/components/common/button';
 import ConfirmCancelModal from '@/src/components/common/modal/confirm-cancel-modal';
+import { Profile } from '@/src/components/common/profile';
+import ReviewHearts from '@/src/components/common/review-heart/hearts';
 import { ReviewerType } from '@/src/types/review';
-import { Profile } from '../profile';
-import ReviewHearts from '../review-heart/hearts';
-
-export interface GatheringInform {
-  id: number;
-  image: string;
-  name: string;
-}
 
 interface ReviewCardProps {
   rate: number;
   comment: string;
   createdAt: string;
-  crewId: number;
+  id?: number;
   clickable?: boolean;
   isMine?: boolean;
+  crewId?: number;
   crewName?: string;
-  gatheringLocation?: string;
   gatheringName?: string;
-
+  refetch?: () => void;
   reviewer?: ReviewerType;
 }
 
 export default function ReviewCard({
   rate,
   comment,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   createdAt,
-  crewId,
+  id,
   clickable = false,
   isMine = false,
+  crewId,
   crewName,
   gatheringName,
-  gatheringLocation,
+  refetch,
   reviewer,
 }: ReviewCardProps) {
   const [
     confirmDeleteModalOpened,
     { open: openConfirmDeleteModal, close: closeConfirmDeleteModal },
   ] = useDisclosure(false);
-
-  const [prefetched, setPrefetched] = useState(new Set());
-  const CREWPAGE = `crew/detail/${crewId}`;
   const router = useRouter();
 
-  const handleClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    if (clickable) router.push(CREWPAGE);
+  const handleDelete = async () => {
+    if (!id) {
+      toast.error('리뷰 ID가 없습니다.');
+      return;
+    }
+
+    try {
+      await deleteReview(id);
+      toast.success('리뷰가 성공적으로 삭제되었습니다.');
+      closeConfirmDeleteModal();
+      refetch?.();
+    } catch (error) {
+      toast.error('리뷰 삭제에 실패했습니다.');
+    }
   };
 
-  const handlePrefetch = () => {
-    if (clickable && !prefetched.has(CREWPAGE)) router.prefetch(CREWPAGE);
-    setPrefetched(new Set(prefetched).add(CREWPAGE));
-  };
-
-  const handleDelete = () => {
-    // TODO: 삭제 로직
-    closeConfirmDeleteModal();
+  const handleClick = (e: React.MouseEvent<HTMLElement>) => {
+    e.stopPropagation();
+    if (clickable && crewId) {
+      router.push(`/crew/detail/${crewId}`);
+    }
   };
 
   const { year, month, day } = formatDateWithYear(createdAt);
@@ -75,20 +77,27 @@ export default function ReviewCard({
   return (
     <div className="w-full">
       {isMine && (
-        <div className="mb-3 flex w-fit items-center gap-2">
-          <span className="text-xl font-semibold text-gray-800">{gatheringName} |</span>
-          <span className="text-base font-medium text-gray-700">{gatheringLocation}</span>
-        </div>
+        <button
+          type="button"
+          className="mb-3 flex w-fit items-center gap-2 text-xl font-semibold text-gray-800"
+          onClick={handleClick}
+        >
+          {crewName}
+        </button>
       )}
       <div
         role="presentation"
-        onClick={handleClick}
-        onMouseEnter={handlePrefetch}
-        className={`flex h-full items-end gap-[15px] ${!isMine ? 'border-b-[2px] border-b-[#F3F4F6] py-4' : 'rounded-[12px] p-6 shadow-bg'} bg-white lg:gap-[40px] ${clickable ? 'cursor-pointer' : 'cursor-default'}`}
+        className={cn(
+          'relative flex h-full items-end',
+          'bg-white lg:gap-[40px]',
+          isMine ? 'rounded-[12px] p-6 shadow-bg' : 'border-b-[2px] border-b-[#F3F4F6] py-4',
+        )}
       >
         <div className="flex-start flex w-full flex-col items-start justify-between pr-[20px] lg:pr-[40px]">
           {isMine && (
-            <span className="mb-6 w-full border-b-[2px] border-b-[#E5E7EB] pb-2">{crewName}</span>
+            <span className="mb-6 w-full border-b-[2px] border-b-[#E5E7EB] pb-2">
+              {gatheringName}
+            </span>
           )}
           <div className="flex-start flex flex-col">
             <ReviewHearts score={rate} />
@@ -97,7 +106,7 @@ export default function ReviewCard({
           <div className={`flex w-fit flex-shrink-0 items-center text-xs ${isMine ? 'mt-4' : ''}`}>
             {!isMine && (
               <>
-                {reviewer && <Profile size="small" imageUrl={reviewer?.imageUrl} />}
+                {reviewer && <Profile size="small" imageUrl={reviewer?.profileImageUrl} />}
                 <span className="relative mr-3 block w-fit px-2 after:absolute after:right-0 after:content-['|']">
                   {reviewer?.nickname}
                 </span>
@@ -106,10 +115,10 @@ export default function ReviewCard({
             <span className="text-gray-500">{reviewDate}</span>
           </div>
         </div>
+        <div />
         {isMine && (
           <Button
-            variant="outline"
-            className="flex-shrink-0 p-[6px_14px] text-base font-semibold"
+            className="btn-outlined absolute bottom-4 right-4 flex-shrink-0 p-[4px_10px] text-base font-semibold md:bottom-6 md:right-6 md:px-4"
             onClick={(e) => {
               e.stopPropagation();
               openConfirmDeleteModal();
@@ -119,7 +128,6 @@ export default function ReviewCard({
           </Button>
         )}
       </div>
-
       {/* 삭제 확인 모달 */}
       <ConfirmCancelModal
         opened={confirmDeleteModalOpened}

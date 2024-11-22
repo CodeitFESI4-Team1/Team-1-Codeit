@@ -1,4 +1,4 @@
-import LikedList from '@/src/components/gathering-list/liked-list-container';
+import LikedList from '@/src/app/(crew)/my-favorite/_components/gathering-list/liked-list-container';
 
 export default function FavoritePage() {
   return (

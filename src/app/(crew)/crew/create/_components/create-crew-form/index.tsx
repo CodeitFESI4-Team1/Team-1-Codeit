@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { Controller, useForm, useWatch } from 'react-hook-form';
 import useFormPersist from 'react-hook-form-persist';
 import { useRouter } from 'next/navigation';
@@ -8,7 +8,7 @@ import { NumberInput } from '@mantine/core';
 import { getImageUrl } from '@/src/_apis/image/get-image-url';
 import categoryData from '@/src/data/category.json';
 import regionData from '@/src/data/region.json';
-import Button from '@/src/components/common/input/button';
+import Button from '@/src/components/common/button';
 import DropDown from '@/src/components/common/input/drop-down';
 import FileInputWrap from '@/src/components/common/input/file-input-wrap';
 import TextInput from '@/src/components/common/input/text-input';
@@ -39,13 +39,14 @@ export default function CreateCrewForm({
     trigger,
     clearErrors,
     watch,
+    setError,
     formState: { errors, isValid, isSubmitting, isSubmitSuccessful },
   } = useForm<CreateCrewFormTypes>({
     defaultValues: data,
     mode: 'onBlur',
   });
 
-  useFormPersist(type === 'create' ? 'createCrew' : 'editCrew', {
+  useFormPersist(type === 'create' ? 'createCrew' : '', {
     watch,
     setValue,
     storage: typeof window !== 'undefined' ? window.localStorage : undefined,
@@ -88,9 +89,30 @@ export default function CreateCrewForm({
     file: File | string | null,
     onChange: (value: string | File) => void,
   ) => {
-    if (file instanceof File) {
-      const imgResponse = await getImageUrl(file, 'CREW');
-      onChange(imgResponse?.imageUrl || '');
+    try {
+      // 파일 등록 처리
+      if (file instanceof File) {
+        const imgResponse = await getImageUrl(file, 'CREW');
+        if (imgResponse?.imageUrl) {
+          clearErrors('imageUrl'); // 에러 초기화
+          onChange(imgResponse.imageUrl); // 이미지 URL 설정
+        } else {
+          throw new Error('이미지 업로드 중 문제가 발생했습니다.');
+        }
+      }
+    } catch (error) {
+      // API 에러 처리
+      setError('imageUrl', { type: 'server', message: errors.imageUrl?.message });
+      setValue('imageUrl', '');
+    }
+  };
+
+  const handleSendForm = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (type === 'create') {
+      handleSubmit(onSubmit)();
+    } else {
+      handleSubmit(onEdit)();
     }
   };
 
@@ -112,7 +134,7 @@ export default function CreateCrewForm({
   }, [mainCategory, mainLocation, isSubmitSuccessful]);
 
   return (
-    <form onSubmit={type === 'edit' ? handleSubmit(onEdit) : handleSubmit(onSubmit)}>
+    <form onSubmit={handleSendForm}>
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-3">
           <div className="flex justify-between">
@@ -154,7 +176,7 @@ export default function CreateCrewForm({
         </div>
         <div className="flex flex-col gap-3">
           <label
-            htmlFor="crew-category"
+            htmlFor="crew-mainCategory"
             className="text-base font-semibold text-gray-800 md:text-xl"
           >
             카테고리를 선택해주세요.
@@ -167,6 +189,7 @@ export default function CreateCrewForm({
               render={({ field }) => (
                 <DropDown
                   {...field}
+                  id="crew-mainCategory"
                   variant="default"
                   inWhere="form"
                   placeholder={isEdit && field.value ? field.value : '메인 카테고리'}
@@ -180,12 +203,16 @@ export default function CreateCrewForm({
                 />
               )}
             />
+            <label htmlFor="crew-subCategory" className="sr-only">
+              세부 카테고리를 선택해주세요.
+            </label>
             <Controller
               name="subCategory"
               control={control}
               render={({ field }) => (
                 <DropDown
                   {...field}
+                  id="crew-subCategory"
                   variant="default"
                   inWhere="form"
                   placeholder={isEdit && field.value ? field.value : '세부 카테고리'}
@@ -199,31 +226,21 @@ export default function CreateCrewForm({
         </div>
 
         <div className="flex flex-col gap-3">
-          <label htmlFor="crew-image" className="text-base font-semibold text-gray-800 md:text-xl">
+          <span className="text-base font-semibold text-gray-800 md:text-xl">
             대표이미지를 선택하거나 첨부해주세요.
-          </label>
+          </span>
           <Controller
             name="imageUrl"
             control={control}
             rules={{
               required: '이미지를 선택해주세요.',
-              validate: {
-                fileSize: (file) =>
-                  file && file instanceof File
-                    ? file.size <= 5242880 || '파일 크기는 5MB 이하여야 합니다.'
-                    : true, // 문자열인 경우 크기 검사를 건너뜁니다.
-                fileType: (file) =>
-                  file && file instanceof File
-                    ? ['image/jpeg', 'image/jpg', 'image/png'].includes(file.type) ||
-                      'JPG, PNG 파일만 업로드 가능합니다.'
-                    : true, // 문자열인 경우 파일 타입 검사를 건너뜁니다.
-              },
             }}
             render={({ field }) => (
               <FileInputWrap
                 {...field}
                 isEdit={isEdit}
                 sample={ImgCrewSampleUrls}
+                error={errors.imageUrl}
                 onChange={(newValue) => {
                   handleFileChange(newValue, field.onChange);
                   field.onChange(newValue);
@@ -232,12 +249,12 @@ export default function CreateCrewForm({
               />
             )}
           />
-          {errors.imageUrl && <p className="text-red-500">{errors.imageUrl.message}</p>}
+          {errors.imageUrl && <p className="text-xs text-red-500">{errors.imageUrl.message}</p>}
         </div>
 
         <div className="flex flex-col gap-3">
           <label
-            htmlFor="crew-category"
+            htmlFor="crew-mainLocation"
             className="text-base font-semibold text-gray-800 md:text-xl"
           >
             지역을 선택해주세요.
@@ -250,6 +267,7 @@ export default function CreateCrewForm({
               render={({ field }) => (
                 <DropDown
                   {...field}
+                  id="crew-mainLocation"
                   variant="default"
                   inWhere="form"
                   placeholder={isEdit && field.value ? field.value : '특별시/도'}
@@ -263,6 +281,9 @@ export default function CreateCrewForm({
                 />
               )}
             />
+            <label htmlFor="crew-subLocation" className="sr-only">
+              세부 지역을 선택해주세요.
+            </label>
             <Controller
               name="subLocation"
               control={control}
@@ -270,6 +291,7 @@ export default function CreateCrewForm({
               render={({ field }) => (
                 <DropDown
                   {...field}
+                  id="crew-subLocation"
                   variant="default"
                   inWhere="form"
                   placeholder={isEdit && field.value ? field.value : '시/군/구'}
@@ -314,11 +336,14 @@ export default function CreateCrewForm({
         </div>
         <div className="flex flex-col gap-3">
           <div className="flex justify-between">
-            <label htmlFor="gathering-introduce" className="text-base font-semibold text-gray-800">
+            <label
+              htmlFor="crew-introduce"
+              className="text-base font-semibold text-gray-800 md:text-xl"
+            >
               크루 소개
             </label>
             <span>
-              <span className="text-blue-500">{introduce?.length}</span>/100
+              <span className="text-blue-500">{introduce.length}</span>/100
             </span>
           </div>
           <Controller
@@ -327,6 +352,7 @@ export default function CreateCrewForm({
             render={({ field }) => (
               <Textarea
                 {...field}
+                id="crew-introduce"
                 placeholder="크루 소개글을 100자 이내로 입력해주세요."
                 maxLength={100}
                 inputClassNames="h-40 py-2.5 px-4 bg-gray-100 placeholder:text-gray-400 font-pretendard text-base font-medium rounded-xl"

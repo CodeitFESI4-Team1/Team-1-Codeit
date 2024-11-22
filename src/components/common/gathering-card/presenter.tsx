@@ -1,10 +1,9 @@
 import { MouseEvent } from 'react';
 import Image from 'next/image';
-import { Badge } from '@mantine/core';
 import { cn } from '@/src/utils/cn';
 import { formatDate } from '@/src/utils/format-date';
-import Button from '@/src/components/common/input/button';
-import LikeBtn from '@/src/components/common/input/button/like-btn';
+import Button from '@/src/components/common/button';
+import LikeBtn from '@/src/components/common/button/like-btn';
 import IcoPerson from '@/public/assets/icons/ic-gathering-person.svg';
 import IcoTimer from '@/public/assets/icons/timer.svg';
 
@@ -60,8 +59,8 @@ export default function GatheringCardPresenter({
           src={imageUrl}
           alt={title}
           fill
-          style={{ objectFit: 'cover' }}
-          className="rounded-t-lg"
+          sizes="(max-width: 744px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="h-full w-full rounded-t-lg object-cover"
         />
       </div>
 

@@ -1,9 +1,10 @@
 'use client';
 
+import { FormEvent } from 'react';
 import { Controller, useForm, useWatch } from 'react-hook-form';
 import { NumberInput } from '@mantine/core';
 import { getImageUrl } from '@/src/_apis/image/get-image-url';
-import Button from '@/src/components/common/input/button';
+import Button from '@/src/components/common/button';
 import DateTimePicker from '@/src/components/common/input/date-time-picker';
 import FileInputWrap from '@/src/components/common/input/file-input-wrap';
 import TextInput from '@/src/components/common/input/text-input';
@@ -30,6 +31,8 @@ export default function CreateGatheringForm({
     control,
     handleSubmit,
     trigger,
+    setError,
+    clearErrors,
     formState: { errors, isValid, isSubmitting },
   } = useForm<CreateGatheringFormTypes>({
     defaultValues: data,
@@ -43,14 +46,34 @@ export default function CreateGatheringForm({
     file: File | string | null,
     onChange: (value: string | File) => void,
   ) => {
-    if (file instanceof File) {
-      const imgResponse = await getImageUrl(file, 'CREW');
-      onChange(imgResponse?.imageUrl || '');
+    try {
+      // 파일 등록 처리
+      if (file instanceof File) {
+        const imgResponse = await getImageUrl(file, 'GATHERING');
+        if (imgResponse?.imageUrl) {
+          clearErrors('imageUrl'); // 에러 초기화
+          onChange(imgResponse.imageUrl); // 이미지 URL 설정
+        } else {
+          throw new Error('이미지 업로드 중 문제가 발생했습니다.');
+        }
+      }
+    } catch (error) {
+      // API 에러 처리
+      setError('imageUrl', { type: 'server', message: errors.imageUrl?.message });
+    }
+  };
+
+  const handleSendForm = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!isEdit) {
+      handleSubmit(onSubmit)();
+    } else {
+      handleSubmit(onEdit)();
     }
   };
 
   return (
-    <form onSubmit={isEdit ? handleSubmit(onEdit) : handleSubmit(onSubmit)}>
+    <form onSubmit={handleSendForm}>
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-3">
           <div className="flex justify-between">
@@ -88,30 +111,18 @@ export default function CreateGatheringForm({
           />
         </div>
         <div className="flex flex-col gap-3">
-          <label htmlFor="gathering-image" className="text-base font-semibold text-gray-800">
-            이미지 선택/첨부
-          </label>
+          <span className="text-base font-semibold text-gray-800">이미지 선택/첨부</span>
           <div className="flex">
             <Controller
               name="imageUrl"
               control={control}
               rules={{
                 required: '이미지를 선택해주세요.',
-                validate: {
-                  fileSize: (file) =>
-                    file && file instanceof File
-                      ? file.size <= 5242880 || '파일 크기는 5MB 이하여야 합니다.'
-                      : true, // 문자열인 경우 크기 검사를 건너뜁니다.
-                  fileType: (file) =>
-                    file && file instanceof File
-                      ? ['image/jpeg', 'image/jpg', 'image/png'].includes(file.type) ||
-                        'JPG, PNG 파일만 업로드 가능합니다.'
-                      : true, // 문자열인 경우 파일 타입 검사를 건너뜁니다.
-                },
               }}
               render={({ field }) => (
                 <FileInputWrap
                   {...field}
+                  error={errors.imageUrl}
                   sample={ImgGatheringSampleUrls}
                   onChange={(newValue) => {
                     handleFileChange(newValue, field.onChange);
@@ -149,7 +160,7 @@ export default function CreateGatheringForm({
                   if (errors.location) trigger('location'); // 입력 중일 때 유효성 검사 트리거
                 }}
                 error={errors.location?.message}
-                placeholder="약속명을 20자 이내로 입력해주세요."
+                placeholder="약속 장소를 20자 이내로 입력해주세요."
                 maxLength={20}
                 classNames={{
                   input:
@@ -161,9 +172,7 @@ export default function CreateGatheringForm({
         </div>
         <div className="flex flex-col gap-3">
           <div className="flex justify-between">
-            <label htmlFor="gathering-dateTime" className="text-base font-semibold text-gray-800">
-              날짜
-            </label>
+            <span className="text-base font-semibold text-gray-800">날짜</span>
           </div>
           <Controller
             name="dateTime"
@@ -223,6 +232,7 @@ export default function CreateGatheringForm({
             render={({ field }) => (
               <Textarea
                 {...field}
+                id="gathering-introduce"
                 placeholder="모집 설명/공지를 100자 이내로 입력해주세요."
                 maxLength={100}
                 inputClassNames="h-40 py-2.5 px-4 bg-gray-100 placeholder:text-gray-400 font-pretendard text-base font-medium rounded-xl"

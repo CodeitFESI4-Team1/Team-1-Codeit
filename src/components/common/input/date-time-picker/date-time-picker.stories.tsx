@@ -4,7 +4,7 @@ import type { Meta, StoryFn } from '@storybook/react';
 import DateTimePicker, { DateTimePickerProps } from '.';
 
 const meta: Meta = {
-  title: 'Components/input/date-time-picker',
+  title: 'common/calendar/date-time-picker',
   component: DateTimePicker,
   tags: ['autodocs'],
   argTypes: {

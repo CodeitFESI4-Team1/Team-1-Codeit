@@ -2,14 +2,14 @@
 
 import { useRef, useState } from 'react';
 import Image from 'next/image';
-import { Divider, Loader, Skeleton, TextInput } from '@mantine/core';
+import { Divider, TextInput } from '@mantine/core';
 import { useGetCrewListQuery } from '@/src/_queries/crew/crew-list-queries';
 import regionData from '@/src/data/region.json';
 import { useInfiniteScroll } from '@/src/hooks/use-infinite-scroll';
 import CategoryContainer from '@/src/app/(crew)/_components/category/category-container';
 import HeroCrew from '@/src/app/(crew)/_components/hero/hero-crew';
+import Button from '@/src/components/common/button';
 import CrewCardList from '@/src/components/common/crew-list/crew-card-list';
-import Button from '@/src/components/common/input/button';
 import DropDown from '@/src/components/common/input/drop-down';
 import CrewSkeletonList from '@/src/components/common/skeleton/crew-skeleton-list';
 import IcoSearch from '@/public/assets/icons/ic-search.svg';
@@ -103,7 +103,11 @@ export default function HomePage() {
             </Button>
           </div>
           <div className="flex-0 flex justify-between gap-2 md:gap-4">
+            <label htmlFor="region" className="sr-only">
+              지역 선택
+            </label>
             <DropDown
+              id="region"
               name="region"
               variant="default"
               data={regionData.map((dataItem) => dataItem.main)}
@@ -114,7 +118,11 @@ export default function HomePage() {
                 setRegion(newValue as string);
               }}
             />
+            <label htmlFor="sort" className="sr-only">
+              정렬 선택
+            </label>
             <DropDown
+              id="sort"
               name="sort"
               variant="sort"
               data={[

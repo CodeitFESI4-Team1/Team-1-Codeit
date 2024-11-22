@@ -1,6 +1,11 @@
-export interface ReviewInformResponse {
-  data: CrewReview[] | MyReview[];
-  hasNextPage: boolean;
+export interface MyReviewResponse {
+  content: MyReview[];
+  hasNext: boolean;
+}
+
+// API 응답 타입 정의 (data 감싸는 구조)
+export interface ApiResponse<T> {
+  data: T;
 }
 
 export interface CrewReviewInformResponse {
@@ -21,7 +26,29 @@ export interface CrewReview {
 export interface ReviewerType {
   id: number;
   nickname: string;
-  imageUrl: string;
+  profileImageUrl: string;
+}
+
+export interface ReviewRateInfo {
+  totalRate: number;
+  averageRate: number;
+  ratingsData: Array<{
+    score: number;
+    count: number;
+  }>;
+}
+
+export interface ReviewList {
+  content: ReviewContent[];
+  pageNumber: number;
+  pageSize: number;
+  totalElements: number;
+  totalPages: number;
+}
+
+export interface CrewReviewResponse {
+  reviewRateInfo: ReviewRateInfo;
+  reviewList: ReviewList;
 }
 
 // NOTE: 나의 리뷰

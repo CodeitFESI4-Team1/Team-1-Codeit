@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { Modal, ScrollArea } from '@mantine/core';
 import { formatDate } from '@/src/utils/format-date';
 import isToday from '@/src/utils/is-today';
-import Button from '@/src/components/common/input/button';
+import Button from '@/src/components/common/button';
 import { Profile } from '@/src/components/common/profile';
 import { GatheringDetailType } from '@/src/types/gathering-data';
 import IcoClock from '@/public/assets/icons/ic-clock.svg';
@@ -46,7 +46,8 @@ export default function GatheringDetailModalPresenter({
             src={data?.imageUrl}
             alt="모임 이미지"
             fill
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            sizes="(max-width: 744px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="h-full w-full object-cover"
           />
           {isToday(data?.dateTime) && (
             <strong className="absolute right-0 top-0 flex items-center gap-2 bg-blue-600 px-4 py-2 text-base font-medium text-white">
