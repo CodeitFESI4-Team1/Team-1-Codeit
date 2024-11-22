@@ -27,7 +27,7 @@ export default function HeaderPresenter({
 }: HeaderPresenterProps) {
   const pathname = usePathname();
   return (
-    <header className="sticky top-0 z-10 h-header w-full bg-blue-500 px-4 md:px-6">
+    <header className="h-header w-full bg-blue-500 px-4 md:px-6">
       <div className="mx-auto flex h-full w-full max-w-[1200px] items-center justify-between">
         <div className="flex items-center space-x-3.5 md:space-x-5 lg:ml-2 lg:space-x-5">
           <Link href="/" className="it ems-center flex gap-2">

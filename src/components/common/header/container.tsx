@@ -18,7 +18,7 @@ export default function Header() {
   const { data: user } = useUser();
 
   return (
-    <div className="sticky top-0">
+    <div className="sticky top-0 z-10">
       <HeaderPresenter
         isAuth={isAuth}
         handleLogout={handleLogout}
