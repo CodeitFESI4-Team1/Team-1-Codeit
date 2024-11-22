@@ -30,7 +30,7 @@ export default function MyGatheringJoinedPage() {
       <div className="py-4 md:py-6">
         <PopOverCalendar value={selectedDate} onChange={(d) => setSelectedDate(d)} />
       </div>
-      {isLoading && <MyGatheringSkeletonList num={6} />}
+      {true && <MyGatheringSkeletonList num={6} />}
       {joinedGatheringList && <GatheringListWithDate gatheringList={joinedGatheringList} />}
     </div>
   );
