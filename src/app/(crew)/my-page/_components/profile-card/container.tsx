@@ -37,9 +37,6 @@ export default function ProfileCard() {
 
         try {
           await updateUserProfile(file);
-
-          const tempUrl = URL.createObjectURL(file);
-          // 임시 URL을 React Query가 refetch로 갱신될 때까지 보여줌
           toast.success('프로필 이미지가 업데이트되었습니다.');
           await refetchUser();
         } catch (error) {
