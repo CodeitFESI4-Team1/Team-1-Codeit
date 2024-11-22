@@ -6,6 +6,12 @@ const meta: Meta<typeof Profile> = {
   component: Profile,
   parameters: {
     layout: 'centered',
+    docs: {
+      subtitle: '프로필 이미지를 나타냅니다.',
+      description: {
+        component: '사이즈별 기본 프로필 이미지, 편집가능한 경우가 있습니다.',
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {

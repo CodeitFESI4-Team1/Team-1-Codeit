@@ -11,9 +11,9 @@ const meta: Meta<typeof LikeBtn> = {
       appDirectory: true,
     },
     docs: {
+      subtitle: '찜하기 버튼은 약속 카드에서 약속을 찜할 때 사용됩니다.',
       description: {
-        component: `찜하기 버튼은 약속 카드에서 약속을 찜할 때 사용됩니다. 버튼을 눌러 찜한 상태 / 찜하지 않은 상태를 나타냅니다.
-        `,
+        component: '클릭해 찜한 상태 / 찜하지 않은 상태를 나타냅니다.',
       },
     },
   },
