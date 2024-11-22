@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Logo from '@/public/assets/images/logo.png';
+import Logo from '@/public/assets/images/logo.svg';
 
 export interface FloatingButtonProps {
   onClick: () => void;
