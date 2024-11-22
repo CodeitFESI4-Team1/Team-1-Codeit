@@ -3,7 +3,6 @@
 import { FormEvent, useEffect, useState } from 'react';
 import { Controller, useForm, useWatch } from 'react-hook-form';
 import useFormPersist from 'react-hook-form-persist';
-import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import { NumberInput } from '@mantine/core';
 import { getImageUrl } from '@/src/_apis/image/get-image-url';

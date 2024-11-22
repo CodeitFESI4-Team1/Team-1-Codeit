@@ -2,7 +2,6 @@
 
 import { FormEvent } from 'react';
 import { Controller, useForm, useWatch } from 'react-hook-form';
-import { toast } from 'react-toastify';
 import { NumberInput } from '@mantine/core';
 import { getImageUrl } from '@/src/_apis/image/get-image-url';
 import Button from '@/src/components/common/input/button';
