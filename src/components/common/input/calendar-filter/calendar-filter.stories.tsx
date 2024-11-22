@@ -4,12 +4,7 @@ import type { Meta, StoryFn } from '@storybook/react';
 import { userEvent, within } from '@storybook/test';
 import CalendarFilter, { CalendarFilterProps } from '.';
 
-const mockData = [
-  new Date('2024-10-01'),
-  new Date('2024-10-05'),
-  new Date('2024-10-12'),
-  new Date('2024-10-15'),
-];
+const mockData = [new Date()];
 
 const meta: Meta = {
   title: 'common/calendar/calendar-filter',
@@ -20,7 +15,14 @@ const meta: Meta = {
       type: { name: 'string' },
       description: '선택된 날짜',
     },
-    toDoDates: mockData,
+    toDoDates: {
+      description: '일정이 있는 날짜',
+      table: {
+        type: {
+          summary: 'Date[] | null',
+        },
+      },
+    },
     onChange: action('onChange'),
   },
   parameters: {

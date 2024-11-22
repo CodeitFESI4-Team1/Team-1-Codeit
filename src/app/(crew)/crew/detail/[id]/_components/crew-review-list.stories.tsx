@@ -10,9 +10,6 @@ const meta: Meta<typeof CrewReviewList> = {
   component: CrewReviewList,
   parameters: {
     layout: 'fulled',
-    nextjs: {
-      appDirectory: true,
-    },
   },
   tags: ['autodocs'],
   decorators: [
