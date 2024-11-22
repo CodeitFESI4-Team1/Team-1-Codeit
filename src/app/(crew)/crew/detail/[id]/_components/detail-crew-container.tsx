@@ -62,7 +62,11 @@ export default function DetailCrew({ id }: DetailCrewContainerProps) {
       await refetch();
     } catch (joinError) {
       if (joinError instanceof ApiError) {
-        toast.error(joinError.message);
+        if (joinError.status === 401) {
+          router.push(`/login?redirect=${encodeURIComponent(window.location.pathname)}`);
+        } else {
+          toast.error(joinError.message);
+        }
       } else {
         toast.error('🚫 크루 참여 중 에러가 발생했습니다.');
       }

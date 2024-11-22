@@ -26,7 +26,29 @@ export interface CrewReview {
 export interface ReviewerType {
   id: number;
   nickname: string;
-  imageUrl: string;
+  profileImageUrl: string;
+}
+
+export interface ReviewRateInfo {
+  totalRate: number;
+  averageRate: number;
+  ratingsData: Array<{
+    score: number;
+    count: number;
+  }>;
+}
+
+export interface ReviewList {
+  content: ReviewContent[];
+  pageNumber: number;
+  pageSize: number;
+  totalElements: number;
+  totalPages: number;
+}
+
+export interface CrewReviewResponse {
+  reviewRateInfo: ReviewRateInfo;
+  reviewList: ReviewList;
 }
 
 // NOTE: 나의 리뷰
