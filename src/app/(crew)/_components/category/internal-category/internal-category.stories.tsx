@@ -7,16 +7,24 @@ const meta: Meta = {
   title: 'layout/category',
   component: InternalCategory,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      subtitle: '운동 종목별 카테고리',
+      description: {
+        component: '크루찾기 페이지에서 운동 대종목 선택에 따라, 세부 카테고리를 보여줍니다.',
+      },
+    },
+  },
   argTypes: {
     category: {
-      description: '세부 카테고리 이름 배열',
+      description: '카테고리 이름 배열',
     },
   },
 };
 
 export default meta;
 
-const Template: StoryFn<InternalCategoryProps> = function InternalCategoryStory() {
+const Template: StoryFn = function InternalCategoryStory() {
   const [subCategory, setSubCategory] = useState('running');
 
   return (
@@ -28,12 +36,5 @@ const Template: StoryFn<InternalCategoryProps> = function InternalCategoryStory(
   );
 };
 
-export const Category1 = Template.bind({});
-Category1.args = {
-  category: categoryData[0].items,
-};
-
-export const Category2 = Template.bind({});
-Category2.args = {
-  category: categoryData[1].items,
-};
+export const Default = Template.bind({});
+Default.args = {};
