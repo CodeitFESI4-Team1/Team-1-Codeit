@@ -19,14 +19,21 @@ export default function ReviewableGatheringCardList() {
 
   // 로딩 중일 때 스켈레톤 표시
   if (isLoading) {
-    return <MyReviewSkeletonList />;
+    return (
+      <section className="item-center mt-8 flex flex-col">
+        <MyReviewSkeletonList />
+      </section>
+    );
   }
 
   return (
-    <ul className="flex flex-col items-center gap-4">
+    <ul className="mt-8 flex flex-col items-center gap-4">
       {/* 데이터가 비었을 때 메시지 */}
       {isDataEmpty ? (
-        <div className="text-gray-500">아직 모임이 없습니다.</div>
+        <section className="py-16 text-center">
+          <h3 className="text-xl font-bold text-blue-500">리뷰 가능한 약속이 없어요</h3>
+          <p className="mt-4 text-gray-600">크루의 약속에 참여해보세요🙌</p>
+        </section>
       ) : (
         // 카드 컴포넌트 배열 렌더링
         data.pages.map((page, pageIndex) => (
