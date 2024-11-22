@@ -6,7 +6,7 @@ import CrewGatheringList from './crew-gathering-list';
 const mockGatheringData = [
   {
     id: 1,
-    title: '가나다라마바사 요가 모임',
+    title: '요가 모임',
     dateTime: '2024-12-15T07:30',
     location: '서울, 한강공원',
     currentCount: 8,
@@ -18,7 +18,7 @@ const mockGatheringData = [
   {
     id: 2,
     title: '등산 모임',
-    dateTime: '2024-11-12T09:00',
+    dateTime: '2024-12-12T09:00',
     location: '서울 강남구 개포동 대모산',
     currentCount: 5,
     totalCount: 10,
@@ -29,7 +29,7 @@ const mockGatheringData = [
   {
     id: 3,
     title: '러닝 모임',
-    dateTime: '2024-11-15T09:00',
+    dateTime: '2024-12-15T09:00',
     location: '서울 영등포구 여의동로 330',
     currentCount: 10,
     totalCount: 20,
@@ -40,7 +40,7 @@ const mockGatheringData = [
   {
     id: 4,
     title: '러닝 모임',
-    dateTime: '2024-11-15T09:00',
+    dateTime: '2024-12-15T09:00',
     location: '서울 영등포구 여의동로 330',
     currentCount: 10,
     totalCount: 20,
@@ -56,13 +56,17 @@ const meta: Meta<typeof CrewGatheringList> = {
   title: 'crew/crew-gathering-list',
   component: CrewGatheringList,
   parameters: {
-    layout: 'fulled', // layout 변경
+    docs: {
+      subtitle: '크루 디테일 페이지 에서 볼 수 있는 약속 카드 리스트입니다.',
+      description: {
+        component: ' 데스크탑에서는 캐러셀, 이하의 사이즈에서는 드래그로 이동 가능합니다.',
+      },
+    },
   },
   tags: ['autodocs'],
   decorators: [
     (Story) => (
       <QueryClientProvider client={queryClient}>
-        {/* 부모 컨테이너 추가 */}
         <div className="flex w-full justify-center bg-gray-100">
           <div className="relative -mx-6 w-[calc(100%+3rem)]">
             <Story />
@@ -76,10 +80,9 @@ const meta: Meta<typeof CrewGatheringList> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// 스토리북에서 gatheringData prop을 전달
 export const Default: Story = {
   args: {
     gatheringData: mockGatheringData,
-    crewId: 1, // crewId를 기본값으로 설정
+    crewId: 1,
   },
 };

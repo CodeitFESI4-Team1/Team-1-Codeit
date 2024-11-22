@@ -1,4 +1,4 @@
-import { LegacyRef, useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { ComboboxData, Select } from '@mantine/core';
 import IconArrow from '@/public/assets/icons/ic-arrow';
 
@@ -11,10 +11,23 @@ export interface DropDownProps {
   value: string | null;
   onChange: (newValue: string | null) => void;
   className?: string;
-  inWhere?: string;
-  error?: string | null;
-  ref?: LegacyRef<HTMLInputElement>;
+  inWhere?: 'default' | 'form';
+  errorMsg?: string | null;
 }
+
+/**
+ * 드롭다운 컴포넌트 : 필터, 정렬 등에 사용
+ * @param {string} id - 컴포넌트 id
+ * @param {'default' | 'sort'} variant - 컴포넌트 타입
+ * @param {ComboboxData} data - 옵션 데이터 배열
+ * @param {string} name - 컴포넌트 name
+ * @param {string} placeholder - 선택된 값이 없을 때 표시하는 문자열
+ * @param {string | null} value - 선택된 값
+ * @param {(newValue: string | null) => void} onChange - 값이 변경될 때 실행하는 함수
+ * @param {string} className - 컴포넌트 wrapper에 추가하는 클래스명
+ * @param {'default' | 'form'} inWhere - 컴포넌트 위치
+ * @param {string | null} errorMsg - 에러 메시지
+ */
 
 export default function DropDown({
   id,
@@ -26,7 +39,7 @@ export default function DropDown({
   onChange,
   placeholder,
   className,
-  error,
+  errorMsg,
   ...rest
 }: DropDownProps) {
   const [currentValue, setCurrentValue] = useState<string | null>(value);
@@ -76,7 +89,7 @@ export default function DropDown({
   return (
     <Select
       id={id}
-      error={error}
+      error={errorMsg}
       mt="md"
       data={data}
       value={currentValue}

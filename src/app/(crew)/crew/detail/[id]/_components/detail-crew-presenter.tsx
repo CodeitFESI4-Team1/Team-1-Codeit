@@ -188,8 +188,8 @@ export default function DetailCrewPresenter({
               </div>
             ) : (
               <div className="flex h-full flex-col items-center justify-center text-center text-gray-500">
-                <p className="text-base font-medium">크루장 외에 아직 크루원이 없습니다.</p>
-                <p className="text-sm font-medium text-blue-400">크루에 참여해보세요!🙌</p>
+                <p className="text-base font-medium">크루장 외에 아직 크루원이 없습니다</p>
+                <p className="text-sm font-medium text-blue-400">크루에 참여해보세요🙌</p>
               </div>
             )}
           </div>

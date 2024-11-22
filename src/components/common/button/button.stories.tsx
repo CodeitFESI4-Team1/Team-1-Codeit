@@ -5,24 +5,12 @@ const meta: Meta = {
   title: 'common/button/button',
   tags: ['autodocs'],
   component: Button,
-  argTypes: {
-    className: {
-      description: '클래스네임, 길이 (btn-filled, btn-outlined, btn-disabled)',
-      control: 'text',
-    },
-    children: {
-      description: '버튼 내부에 들어가는 콘텐츠',
-      control: 'text',
-    },
-    onClick: {
-      description: '버튼 클릭 시 실행되는 함수',
-      action: 'clicked',
-    },
-    type: {
-      description: '버튼 타입 ("button", "submit", "reset")',
-      control: {
-        type: 'radio',
-        options: ['button', 'submit', 'reset'],
+  parameters: {
+    layout: 'fullscreen',
+    docs: {
+      subtitle: '기본이 되는 버튼 컴포넌트 입니다.',
+      description: {
+        component: 'filled, outlined, disabled 세가지 스타일이 있습니다.',
       },
     },
   },

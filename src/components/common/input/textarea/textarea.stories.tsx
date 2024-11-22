@@ -5,6 +5,15 @@ import Textarea, { TextareaProps } from '.';
 const meta: Meta = {
   title: 'common/input/textarea',
   component: Textarea,
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      subtitle: '텍스트를 입력하는 textarea 컴포넌트',
+      description: {
+        component: 'label, placeholder, error 설정이 가능한 텍스트 textarea 컴포넌트입니다.',
+      },
+    },
+  },
 };
 
 export default meta;

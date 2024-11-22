@@ -8,6 +8,15 @@ const meta: Meta = {
   title: 'layout/tabs',
   component: Tabs,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      subtitle: '화면 최상단에 위치한 헤더',
+      description: {
+        component:
+          "'로고, 크루찾기, 나의크루, 나의약속, 로그인/마이페이지/로그아웃'으로 구성되어 있으며 해당페이지로 연결됩니다.",
+      },
+    },
+  },
   argTypes: {
     tabs: {
       description: '탭 목록 데이터 배열',
@@ -40,15 +49,41 @@ const Template: StoryFn<TabsProps> = function TabsStory({ activeTab, tabs, ...ar
     />
   );
 };
+export const MyCrewTabs = Template.bind({});
+MyCrewTabs.args = {
+  tabs: tabData.crewTabs,
+  activeTab: tabData.crewTabs[0].id,
+};
+MyCrewTabs.parameters = {
+  docs: {
+    description: {
+      story: "'나의 크루' 페이지에서 사용되는 탭",
+    },
+  },
+};
 
-export const AppointmentTabs = Template.bind({});
-AppointmentTabs.args = {
+export const MyGatheringTabs = Template.bind({});
+MyGatheringTabs.args = {
   tabs: tabData.appointmentTabs,
   activeTab: tabData.appointmentTabs[0].id,
 };
+MyGatheringTabs.parameters = {
+  docs: {
+    description: {
+      story: "'나의 약속' 페이지에서 사용되는 탭",
+    },
+  },
+};
 
-export const CrewTabs = Template.bind({});
-CrewTabs.args = {
-  tabs: tabData.crewTabs,
-  activeTab: tabData.crewTabs[0].id,
+export const ReviewTabs = Template.bind({});
+ReviewTabs.args = {
+  tabs: tabData.reviewTabs,
+  activeTab: tabData.reviewTabs[0].id,
+};
+ReviewTabs.parameters = {
+  docs: {
+    description: {
+      story: "'마이페이지' 페이지의 리뷰에서 사용되는 탭",
+    },
+  },
 };

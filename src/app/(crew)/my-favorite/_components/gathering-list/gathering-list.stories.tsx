@@ -10,7 +10,12 @@ const meta: Meta<typeof LikedListPresenter> = {
   title: 'gathering/liked-gathering-card',
   component: LikedListPresenter,
   parameters: {
-    layout: 'fullscreen',
+    docs: {
+      subtitle: '찜한 약속을 확인하는 컴포넌트 입니다.',
+      description: {
+        component: '페이지네이션을 사용해 한 페이지에 6개씩 확인할 수 있습니다.',
+      },
+    },
   },
   tags: ['autodocs'],
   decorators: [
@@ -34,13 +39,12 @@ const dataWithOneItem: GatheringResponseType = {
   content: [
     {
       id: 1,
-      title: '첫 번째 모임',
+      title: '서핑모임',
       dateTime: '2024-12-10T08:00:00.000',
       location: '서울 강남구 삼성동',
       currentCount: 1,
       totalCount: 5,
-      imageUrl:
-        'https://crewcrew.s3.ap-northeast-2.amazonaws.com/gathering/73db4777-3d00-488c-a016-1e50eaa72b8f',
+      imageUrl: 'https://i.pinimg.com/736x/00/6d/4b/006d4bb521a737534e37a8af3203a7d3.jpg',
     },
   ],
   pageNumber: 0,
@@ -53,33 +57,30 @@ const dataWithThreeItems: GatheringResponseType = {
   content: [
     {
       id: 1,
-      title: '첫 번째 모임',
+      title: '서핑모임',
       dateTime: '2024-12-10T08:00:00.000',
       location: '서울 강남구 삼성동',
       currentCount: 1,
       totalCount: 5,
-      imageUrl:
-        'https://crewcrew.s3.ap-northeast-2.amazonaws.com/gathering/73db4777-3d00-488c-a016-1e50eaa72b8f',
+      imageUrl: 'https://i.pinimg.com/736x/00/6d/4b/006d4bb521a737534e37a8af3203a7d3.jpg',
     },
     {
       id: 2,
-      title: '두 번째 모임',
+      title: '헬스',
       dateTime: '2024-12-15T09:00:00.000',
       location: '서울 종로구 광화문',
       currentCount: 3,
       totalCount: 5,
-      imageUrl:
-        'https://crewcrew.s3.ap-northeast-2.amazonaws.com/gathering/73db4777-3d00-488c-a016-1e50eaa72b8f',
+      imageUrl: 'https://i.pinimg.com/736x/fb/53/e3/fb53e3a4225c01308c30882d92bee467.jpg',
     },
     {
       id: 3,
-      title: '세 번째 모임',
-      dateTime: '2024-12-20T10:00:00.000',
-      location: '서울 서초구 양재천',
-      currentCount: 2,
-      totalCount: 4,
-      imageUrl:
-        'https://crewcrew.s3.ap-northeast-2.amazonaws.com/gathering/73db4777-3d00-488c-a016-1e50eaa72b8f',
+      title: '서핑모임',
+      dateTime: '2024-12-10T08:00:00.000',
+      location: '서울 강남구 삼성동',
+      currentCount: 1,
+      totalCount: 5,
+      imageUrl: 'https://i.pinimg.com/736x/00/6d/4b/006d4bb521a737534e37a8af3203a7d3.jpg',
     },
   ],
   pageNumber: 0,
@@ -92,138 +93,54 @@ const dataWithFiveItems: GatheringResponseType = {
   content: [
     {
       id: 1,
-      title: '첫 번째 모임',
+      title: '서핑모임',
       dateTime: '2024-12-10T08:00:00.000',
       location: '서울 강남구 삼성동',
       currentCount: 1,
       totalCount: 5,
-      imageUrl:
-        'https://crewcrew.s3.ap-northeast-2.amazonaws.com/gathering/73db4777-3d00-488c-a016-1e50eaa72b8f',
+      imageUrl: 'https://i.pinimg.com/736x/00/6d/4b/006d4bb521a737534e37a8af3203a7d3.jpg',
     },
     {
       id: 2,
-      title: '두 번째 모임',
+      title: '헬스',
       dateTime: '2024-12-15T09:00:00.000',
       location: '서울 종로구 광화문',
       currentCount: 3,
       totalCount: 5,
-      imageUrl:
-        'https://crewcrew.s3.ap-northeast-2.amazonaws.com/gathering/73db4777-3d00-488c-a016-1e50eaa72b8f',
+      imageUrl: 'https://i.pinimg.com/736x/fb/53/e3/fb53e3a4225c01308c30882d92bee467.jpg',
     },
     {
       id: 3,
-      title: '세 번째 모임',
-      dateTime: '2024-12-20T10:00:00.000',
-      location: '서울 서초구 양재천',
-      currentCount: 2,
-      totalCount: 4,
-      imageUrl:
-        'https://crewcrew.s3.ap-northeast-2.amazonaws.com/gathering/73db4777-3d00-488c-a016-1e50eaa72b8f',
+      title: '서핑모임',
+      dateTime: '2024-12-10T08:00:00.000',
+      location: '서울 강남구 삼성동',
+      currentCount: 1,
+      totalCount: 5,
+      imageUrl: 'https://i.pinimg.com/736x/00/6d/4b/006d4bb521a737534e37a8af3203a7d3.jpg',
     },
     {
       id: 4,
-      title: '네 번째 모임',
+      title: '러닝 같이 해요',
       dateTime: '2024-12-25T14:00:00.000',
       location: '서울 용산구 한남동',
       currentCount: 5,
       totalCount: 6,
-      imageUrl:
-        'https://crewcrew.s3.ap-northeast-2.amazonaws.com/gathering/73db4777-3d00-488c-a016-1e50eaa72b8f',
+      imageUrl: 'https://i.pinimg.com/736x/72/8e/94/728e94219c8d4570d0901e7df5567282.jpg',
     },
     {
       id: 5,
-      title: '다섯 번째 모임',
+      title: '같이 풋살해요',
       dateTime: '2024-12-30T16:00:00.000',
       location: '서울 송파구 잠실',
       currentCount: 3,
       totalCount: 5,
-      imageUrl:
-        'https://crewcrew.s3.ap-northeast-2.amazonaws.com/gathering/73db4777-3d00-488c-a016-1e50eaa72b8f',
+      imageUrl: 'https://i.pinimg.com/736x/25/64/5c/25645c1cbb29c5b8e8ebe995404b5ab6.jpg',
     },
   ],
   pageNumber: 0,
   pageSize: 6,
   totalElements: 5,
   totalPages: 1,
-};
-
-const dataWithSevenItems: GatheringResponseType = {
-  content: [
-    {
-      id: 1,
-      title: '첫 번째 모임',
-      dateTime: '2024-12-10T08:00:00.000',
-      location: '서울 강남구 삼성동',
-      currentCount: 1,
-      totalCount: 5,
-      imageUrl:
-        'https://crewcrew.s3.ap-northeast-2.amazonaws.com/gathering/73db4777-3d00-488c-a016-1e50eaa72b8f',
-    },
-    {
-      id: 2,
-      title: '두 번째 모임',
-      dateTime: '2024-12-15T09:00:00.000',
-      location: '서울 종로구 광화문',
-      currentCount: 3,
-      totalCount: 5,
-      imageUrl:
-        'https://crewcrew.s3.ap-northeast-2.amazonaws.com/gathering/73db4777-3d00-488c-a016-1e50eaa72b8f',
-    },
-    {
-      id: 3,
-      title: '세 번째 모임',
-      dateTime: '2024-12-20T10:00:00.000',
-      location: '서울 서초구 양재천',
-      currentCount: 2,
-      totalCount: 4,
-      imageUrl:
-        'https://crewcrew.s3.ap-northeast-2.amazonaws.com/gathering/73db4777-3d00-488c-a016-1e50eaa72b8f',
-    },
-    {
-      id: 4,
-      title: '네 번째 모임',
-      dateTime: '2024-12-25T14:00:00.000',
-      location: '서울 용산구 한남동',
-      currentCount: 5,
-      totalCount: 6,
-      imageUrl:
-        'https://crewcrew.s3.ap-northeast-2.amazonaws.com/gathering/73db4777-3d00-488c-a016-1e50eaa72b8f',
-    },
-    {
-      id: 5,
-      title: '다섯 번째 모임',
-      dateTime: '2024-12-30T16:00:00.000',
-      location: '서울 송파구 잠실',
-      currentCount: 3,
-      totalCount: 5,
-      imageUrl:
-        'https://crewcrew.s3.ap-northeast-2.amazonaws.com/gathering/73db4777-3d00-488c-a016-1e50eaa72b8f',
-    },
-    {
-      id: 6,
-      title: '여섯 번째 모임',
-      dateTime: '2025-01-05T18:00:00.000',
-      location: '서울 은평구 불광동',
-      currentCount: 4,
-      totalCount: 4,
-      imageUrl:
-        'https://crewcrew.s3.ap-northeast-2.amazonaws.com/gathering/73db4777-3d00-488c-a016-1e50eaa72b8f',
-    },
-    {
-      id: 7,
-      title: '일곱 번째 모임',
-      dateTime: '2025-01-10T20:00:00.000',
-      location: '서울 노원구 상계동',
-      currentCount: 2,
-      totalCount: 3,
-      imageUrl:
-        'https://crewcrew.s3.ap-northeast-2.amazonaws.com/gathering/73db4777-3d00-488c-a016-1e50eaa72b8f',
-    },
-  ],
-  pageNumber: 0,
-  pageSize: 6,
-  totalElements: 7,
-  totalPages: 2,
 };
 
 export const OneItem: Story = {
@@ -249,16 +166,6 @@ export const ThreeItems: Story = {
 export const FiveItems: Story = {
   args: {
     gatheringData: dataWithFiveItems,
-    onPageChange,
-    onLike,
-    onUnlike,
-    page: 1,
-  },
-};
-
-export const SevenItems: Story = {
-  args: {
-    gatheringData: dataWithSevenItems,
     onPageChange,
     onLike,
     onUnlike,

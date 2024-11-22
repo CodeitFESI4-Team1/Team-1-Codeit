@@ -71,9 +71,9 @@ export default function GatheringListSection({ id }: GatheringListSectionProps) 
   if (!gatheringList || gatheringList.length === 0)
     return (
       <div className="flex items-center justify-center">
-        <div className="flex h-[380px] flex-col items-center justify-center">
-          <p className="text-xl font-semibold">아직 등록된 약속이 없습니다!</p>
-          <p className="mt-2 text-base font-medium text-blue-400">새로운 약속을 만들어보세요! 🙌</p>
+        <div className="items-center justify-center py-16 text-center">
+          <p className="text-xl font-bold text-blue-500">아직 등록된 약속이 없어요</p>
+          <p className="mt-4 text-gray-600">새로운 약속을 만들어보세요🙌</p>
         </div>
       </div>
     );

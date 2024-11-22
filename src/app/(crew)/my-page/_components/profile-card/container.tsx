@@ -12,9 +12,7 @@ export default function ProfileCard() {
 
   // 로딩 중일 때 스켈레톤 표시
   if (userLoading) return <ProfileSkeleton />;
-
-  // 사용자 데이터가 없는 경우 null 반환
-  if (!user) return null;
+  if (!user) return <ProfileSkeleton />;
 
   const handleEdit = () => {
     const input = document.createElement('input');
