@@ -12,6 +12,12 @@ export interface DateTimePickerProps {
   onChange: (date: string) => void;
 }
 
+/**
+ * 달력에서 날짜를 선택하고, 드롭다운으로 시간을 선택하면 날짜/시간 값을 변경할 수 있는 컴포넌트
+ * @param {Date} fullDate - 선택된 날짜
+ * @param {(date: string) => void} onChange - 값이 변경될 때 실행하는 함수
+ */
+
 export default function DateTimePicker({ fullDate, onChange }: DateTimePickerProps) {
   const [selected, setSelected] = useState<Date>(fullDate || new Date());
   const [hour, setHour] = useState<string | null>('시');

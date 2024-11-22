@@ -13,22 +13,57 @@ const meta: Meta = {
     },
     value: {
       description: '선택된 값',
+      table: {
+        type: {
+          summary: 'string | null',
+        },
+      },
     },
     data: {
       description: '옵션 데이터 배열',
     },
     variant: {
-      description: '`default` | `sort`',
+      description: '컴포넌트 타입',
       control: {
         type: 'radio',
         option: ['default', 'sort'],
+      },
+      table: {
+        type: {
+          summary: 'default | sort',
+        },
       },
     },
     placeholder: {
       description: '선택된 값이 없을 때 표시하는 문자열',
     },
-    onChange: {
-      description: '값이 변경될 때 실행하는 함수',
+    onChange: action('onChange'),
+    errorMsg: {
+      description: '에러 메시지',
+      table: {
+        type: {
+          summary: 'string | null',
+        },
+      },
+    },
+    inWhere: {
+      description: '컴포넌트 사용 위치',
+      control: {
+        type: 'radio',
+        option: ['default', 'form'],
+      },
+      table: {
+        type: {
+          summary: 'default | form',
+        },
+      },
+    },
+  },
+  parameters: {
+    docs: {
+      description: {
+        component: '필터/정렬에 사용되는 드롭다운입니다.',
+      },
     },
   },
 };

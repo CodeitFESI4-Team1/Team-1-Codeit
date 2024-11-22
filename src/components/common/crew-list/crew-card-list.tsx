@@ -27,9 +27,10 @@ export default function CrewCardList({ data, inWhere }: CrewCardListProps) {
 
   if (!crewDataList.length)
     return (
-      <div className="flex justify-center py-10">
-        <p>데이터가 없습니다.</p>
-      </div>
+      <section className="py-16 text-center">
+        <h3 className="text-xl font-bold text-blue-500">크루가 아직 없어요</h3>
+        <p className="mt-4 text-gray-600">크루를 만들어서 함께 운동할 사람을 모집해보세요! 🙌</p>
+      </section>
     );
 
   return (

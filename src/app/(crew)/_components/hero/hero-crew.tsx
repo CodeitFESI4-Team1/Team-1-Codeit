@@ -17,7 +17,7 @@ export default function HeroCrew() {
             <strong className="text-sm font-medium text-gray-700 md:text-base">
               함께할 사람이 없나요?
             </strong>
-            <strong className="text-2xl font-semibold text-gray-900 md:text-3.5xl">
+            <strong className="text-xl font-semibold text-gray-900 md:text-3xl">
               지금 크루에 참여해보세요.
             </strong>
           </p>
