@@ -6,7 +6,7 @@ import ReviewableGatheringSkeletonList from '@/src/components/common/skeleton/re
 import ReviewableGatheringCard from './reviewable-gathering-card';
 
 export default function ReviewableGatheringCardList() {
-  const { data, ref, isLoading, isFetchingNextPage } = useInfiniteScroll(
+  const { data, ref, isFetchingNextPage, isLoading } = useInfiniteScroll(
     useGetReviewableQuery({
       pageable: { page: 0, size: 6, sort: ['dateTime,desc'] },
     }),
@@ -37,6 +37,7 @@ export default function ReviewableGatheringCardList() {
                 <ReviewableGatheringCard
                   key={item.id + 1}
                   id={item.id}
+                  location={item.location}
                   gatheringName={item.title}
                   dateTime={item.dateTime}
                   currentCount={item.currentCount}

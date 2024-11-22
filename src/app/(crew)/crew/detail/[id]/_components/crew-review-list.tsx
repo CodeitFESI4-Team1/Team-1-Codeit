@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Pagination } from '@mantine/core';
+import { cn } from '@/src/utils/cn';
 import ReviewCard from '@/src/components/common/review-list/review-card';
 import { CrewReview } from '@/src/types/review';
 
@@ -21,7 +22,7 @@ export default function CrewReviewList({
   return (
     <div className="flex flex-col justify-between p-6">
       <div className="mb-6 grid flex-grow gap-4">
-        {/* {reviews.map((review) => (
+        {reviews.map((review) => (
           <ReviewCard
             key={review.id}
             rate={review.rate}
@@ -30,30 +31,27 @@ export default function CrewReviewList({
             crewId={review.crewId}
             reviewer={review.reviewer}
           />
-        ))} */}
+        ))}
       </div>
       <div className="mt-6 flex justify-center">
         <Pagination
           total={totalPages}
           value={currentPage}
           onChange={onPageChange}
+          classNames={{
+            control: cn(
+              'data-[active="true"]:text-blue-500 data-[active="true"]:font-bold',
+              'border-none bg-transparent hover:bg-transparent',
+            ),
+          }}
           styles={{
             control: {
-              border: 'none',
-              backgroundColor: 'transparent',
               '&[data-active]': {
                 backgroundColor: 'transparent',
                 fontWeight: 'var(--pagination-active-font-weight)',
                 color: 'var(--pagination-active-color)',
                 boxShadow: 'none',
               },
-              '&:hover': {
-                backgroundColor: 'transparent',
-              },
-            },
-            root: {
-              '--pagination-active-color': '#3388FF',
-              '--pagination-active-font-weight': 'bold',
             },
           }}
           size="sm"

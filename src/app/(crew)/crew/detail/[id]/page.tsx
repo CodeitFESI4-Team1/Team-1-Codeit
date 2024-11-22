@@ -1,6 +1,12 @@
-import CreateGathering from './_components/create-gathering';
+import dynamic from 'next/dynamic';
 import DetailCrew from './_components/detail-crew-container';
-import GatheringListSection from './_components/gathering-list-section';
+
+// Lazy Import
+const CreateGathering = dynamic(() => import('./_components/create-gathering'), { ssr: false });
+const GatheringListSection = dynamic(() => import('./_components/gathering-list-section'), {
+  ssr: false,
+});
+const CrewReviewSection = dynamic(() => import('./_components/review-section'), { ssr: false });
 
 interface CrewDetailPageProps {
   params: { id: string };
@@ -31,12 +37,12 @@ export default async function CrewDetailPage({ params }: CrewDetailPageProps) {
       </section>
 
       {/* Crew Review Section */}
-      {/* <section className="w-full mx-3 md:mx-7 lg:mx-11 space-y-6">
+      <section className="mx-3 mt-10 w-full space-y-6 md:mx-7 lg:mx-11">
         <article className="space-y-6">
           <h2 className="text-2xl font-semibold">크루 리뷰</h2>
-          <CrewReviewSection />
+          <CrewReviewSection crewId={id} />
         </article>
-      </section> */}
+      </section>
     </div>
   );
 }

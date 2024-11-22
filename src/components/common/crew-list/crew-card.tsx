@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import ProgressBar from '@/src/components/common/progress-bar/index';
@@ -25,13 +26,26 @@ export default function CrewCard({
   crewMembers,
   inWhere,
 }: CrewCardProps) {
+  const [prefetchedPages, setPrefetchedPages] = useState(new Set());
   const CREWPAGE = `/crew/detail/${id}`;
   const router = useRouter();
+
+  const handleCardClick = () => {
+    router.push(CREWPAGE);
+  };
+
+  const handleMouseEnter = () => {
+    if (!prefetchedPages.has(CREWPAGE)) {
+      router.prefetch(CREWPAGE); // 페이지 프리패치
+      setPrefetchedPages(new Set(prefetchedPages).add(CREWPAGE));
+    }
+  };
 
   return (
     <div
       role="presentation"
-      onClick={() => router.push(CREWPAGE)}
+      onClick={handleCardClick}
+      onMouseEnter={handleMouseEnter}
       className="relative mx-auto flex w-full animate-fade cursor-pointer flex-col overflow-hidden rounded-[14px] bg-white transition-shadow hover:shadow-card md:h-[203px] md:flex-row"
     >
       {/* 썸네일 */}

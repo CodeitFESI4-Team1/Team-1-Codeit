@@ -10,7 +10,7 @@ export default function MyGatheringSkeletonList({ num }: MyGatheringSkeletonList
     <div>
       {[...Array(num)].map((_, index) => (
         // eslint-disable-next-line react/no-array-index-key
-        <div key={index} className="py-4 md:flex md:py-0">
+        <div key={`MyGatheringSkeleton-${index}`} className="py-4 md:flex md:py-0">
           <div className="w-1/6">
             <div className="flex flex-col gap-2">
               <Skeleton className="hidden h-4 w-20 md:block" />

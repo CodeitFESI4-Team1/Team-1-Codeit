@@ -40,7 +40,7 @@ export default function LikedList() {
 
   if (isLoading)
     return (
-      <div className="mx-auto max-w-[1200px] px-4">
+      <div className="mx-auto max-w-[1200px]">
         <GatheringSkeletonList num={6} />
       </div>
     );

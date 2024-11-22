@@ -36,6 +36,7 @@ const config: Config = {
       width: {
         7.5: '30px',
         12.5: '50px',
+        18: '72px',
         27.5: '110px',
         29.5: '118px',
         30: '120px',
