@@ -59,8 +59,8 @@ export default function GatheringCardPresenter({
           src={imageUrl}
           alt={title}
           fill
-          style={{ objectFit: 'cover' }}
-          className="rounded-t-lg"
+          sizes="(max-width: 744px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="h-full w-full rounded-t-lg object-cover"
         />
       </div>
 

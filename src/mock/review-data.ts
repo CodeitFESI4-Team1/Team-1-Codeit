@@ -15,7 +15,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       reviewer: {
         id: 1,
         nickname: '샘플1',
-        imageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
+        profileImageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
       },
     },
     {
@@ -27,7 +27,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       reviewer: {
         id: 2,
         nickname: '샘플2',
-        imageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
+        profileImageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
       },
     },
     {
@@ -39,7 +39,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       reviewer: {
         id: 3,
         nickname: '샘플3',
-        imageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
+        profileImageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
       },
     },
     {
@@ -51,7 +51,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       reviewer: {
         id: 4,
         nickname: '샘플4',
-        imageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
+        profileImageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
       },
     },
     {
@@ -63,7 +63,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       reviewer: {
         id: 5,
         nickname: '샘플5',
-        imageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
+        profileImageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
       },
     },
     {
@@ -75,7 +75,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       reviewer: {
         id: 6,
         nickname: '샘플6',
-        imageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
+        profileImageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
       },
     },
     {
@@ -87,7 +87,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       reviewer: {
         id: 7,
         nickname: '샘플7',
-        imageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
+        profileImageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
       },
     },
     {
@@ -99,7 +99,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       reviewer: {
         id: 2,
         nickname: '샘플2',
-        imageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
+        profileImageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
       },
     },
     {
@@ -111,7 +111,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       reviewer: {
         id: 3,
         nickname: '샘플3',
-        imageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
+        profileImageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
       },
     },
     {
@@ -123,7 +123,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       reviewer: {
         id: 4,
         nickname: '샘플4',
-        imageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
+        profileImageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
       },
     },
     {
@@ -135,7 +135,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       reviewer: {
         id: 5,
         nickname: '샘플5',
-        imageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
+        profileImageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
       },
     },
     {
@@ -147,7 +147,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       reviewer: {
         id: 6,
         nickname: '샘플6',
-        imageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
+        profileImageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
       },
     },
     {
@@ -159,7 +159,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       reviewer: {
         id: 7,
         nickname: '샘플7',
-        imageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
+        profileImageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
       },
     },
     {
@@ -171,7 +171,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       reviewer: {
         id: 4,
         nickname: '샘플4',
-        imageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
+        profileImageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
       },
     },
     {
@@ -183,7 +183,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       reviewer: {
         id: 5,
         nickname: '샘플5',
-        imageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
+        profileImageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
       },
     },
     {
@@ -195,7 +195,7 @@ export const CrewReviewData: { data: CrewReview[] } = {
       reviewer: {
         id: 6,
         nickname: '샘플6',
-        imageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
+        profileImageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
       },
     },
     {
@@ -207,134 +207,90 @@ export const CrewReviewData: { data: CrewReview[] } = {
       reviewer: {
         id: 7,
         nickname: '샘플7',
-        imageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
+        profileImageUrl: 'https://i.pinimg.com/736x/5d/83/ce/5d83cec545201e5ca8f2477070e2eac9.jpg',
       },
     },
   ],
 };
 
-// NOTE: 나의 리뷰
-export const MyReviewData: { data: MyReview[] } = {
-  data: [
+// NOTE: 나의 리뷰 (스토리북  테스트용)
+export const MyReviewData = {
+  pages: [
     {
-      crewId: 1,
-      crewName: '크루크루크루크루크루크루',
-      gatheringName: '모임모임모임약속약속약속',
-      id: 3,
-      rate: 3,
-      comment: '리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰',
-      createdAt: '2024-11-09T10:09:12.306+09:00',
-      gatheringLocation: '어느동',
+      content: [
+        {
+          crewId: 1,
+          crewName: '크루크루크루크루크루크루',
+          gatheringName: '모임모임모임약속약속약속',
+          id: 3,
+          rate: 3,
+          comment: '리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰',
+          createdAt: '2024-11-09T10:09:12.306+09:00',
+          gatheringLocation: '어느동',
+        },
+        {
+          crewId: 2,
+          crewName: '최초의크루이자최후의크루',
+          gatheringName: '천지창조',
+          id: 4,
+          rate: 4,
+          comment: '다시는 안 간다',
+          createdAt: '2024-10-31T10:09:12.306+09:00',
+          gatheringLocation: '어느동',
+        },
+      ],
+      hasNext: true, // 다음 페이지 여부
     },
     {
-      crewId: 2,
-      crewName: '최초의크루이자최후의크루',
-      gatheringName: '천지창조',
-      id: 4,
-      rate: 4,
-      comment: '다시는 안 간다',
-      createdAt: '2024-10-31T10:09:12.306+09:00',
-      gatheringLocation: '어느동',
+      content: [
+        {
+          crewId: 3,
+          crewName: '마지막크루...최종의최종의최종',
+          gatheringName: '친구들아모여라',
+          id: 5,
+          rate: 2,
+          comment: '펭귄이랑 친구하고싶어요',
+          createdAt: '2024-10-31T10:09:12.306+09:00',
+          gatheringLocation: '어느동',
+        },
+        {
+          crewId: 4,
+          crewName: '할일없는사람만들어오세요',
+          gatheringName: '숨쉬기모임',
+          id: 6,
+          rate: 5,
+          comment: '복식호흡을 할 수 있게 됐어요 감사합니다',
+          createdAt: '2024-10-31T10:09:12.306+09:00',
+          gatheringLocation: '어느동',
+        },
+      ],
+      hasNext: true,
     },
     {
-      crewId: 2,
-      crewName: '마지막크루...최종의최종의최종',
-      gatheringName: '친구들아모여라',
-      id: 5,
-      rate: 2,
-      comment: '펭귄이랑 친구하고싶어요',
-      createdAt: '2024-10-31T10:09:12.306+09:00',
-      gatheringLocation: '어느동',
-    },
-    {
-      crewId: 3,
-      crewName: '할일없는사람만들어오세요',
-      gatheringName: '숨쉬기모임',
-      id: 6,
-      rate: 5,
-      comment: '복식호흡을 할 수 있게 됐어요 감사합니다',
-      createdAt: '2024-10-31T10:09:12.306+09:006',
-      gatheringLocation: '어느동',
-    },
-    {
-      crewId: 3,
-      crewName: '크루크루크루크루크루크루',
-      gatheringName: '모임모임모임약속약속약속',
-      id: 7,
-      rate: 3,
-      comment: '리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰',
-      createdAt: '2024-10-31T00:56',
-      gatheringLocation: '어느동',
-    },
-    {
-      crewId: 3,
-      crewName: '최초의크루이자최후의크루',
-      gatheringName: '천지창조',
-      id: 8,
-      rate: 4,
-      comment: '다시는 안 간다',
-      createdAt: '2024-10-31T10:09:12.306+09:00',
-      gatheringLocation: '어느동',
-    },
-    {
-      crewId: 4,
-      crewName: '마지막크루...최종의최종의최종',
-      gatheringName: '친구들아모여라',
-      id: 9,
-      rate: 3,
-      comment: '펭귄이랑 친구하고싶어요',
-      createdAt: '2024-10-31T10:09:12.306+09:00',
-      gatheringLocation: '어느동',
-    },
-    {
-      crewId: 5,
-      crewName: '할일없는사람만들어오세요',
-      gatheringName: '숨쉬기모임',
-      id: 10,
-      rate: 5,
-      comment: '복식호흡을 할 수 있게 됐어요 감사합니다',
-      createdAt: '2024-10-31T10:09:12.306+09:00',
-      gatheringLocation: '어느동',
-    },
-    {
-      crewId: 5,
-      crewName: '크루크루크루크루크루크루',
-      gatheringName: '모임모임모임약속약속약속',
-      id: 11,
-      rate: 4,
-      comment: '리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰',
-      createdAt: '2024-10-31T10:09:12.306+09:00',
-      gatheringLocation: '어느동',
-    },
-    {
-      crewId: 6,
-      crewName: '최초의크루이자최후의크루',
-      gatheringName: '천지창조',
-      id: 12,
-      rate: 3,
-      comment: '다시는 안 간다',
-      createdAt: '2024-10-31T10:09:12.306+09:00',
-      gatheringLocation: '어느동',
-    },
-    {
-      crewId: 6,
-      crewName: '마지막크루...최종의최종의최종',
-      gatheringName: '친구들아모여라',
-      id: 13,
-      rate: 2,
-      comment: '펭귄이랑 친구하고싶어요',
-      createdAt: '2024-10-31T10:09:12.306+09:00',
-      gatheringLocation: '어느동',
-    },
-    {
-      crewId: 6,
-      crewName: '할일없는사람만들어오세요',
-      gatheringName: '숨쉬기모임',
-      id: 14,
-      rate: 5,
-      comment: '복식호흡을 할 수 있게 됐어요 감사합니다',
-      createdAt: '2024-10-31T10:09:12.306+09:00',
-      gatheringLocation: '어느동',
+      content: [
+        {
+          crewId: 5,
+          crewName: '크루크루크루크루크루크루',
+          gatheringName: '모임모임모임약속약속약속',
+          id: 7,
+          rate: 3,
+          comment: '리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰리뷰',
+          createdAt: '2024-10-31T00:56',
+          gatheringLocation: '어느동',
+        },
+        {
+          crewId: 6,
+          crewName: '최초의크루이자최후의크루',
+          gatheringName: '천지창조',
+          id: 8,
+          rate: 4,
+          comment: '다시는 안 간다',
+          createdAt: '2024-10-31T10:09:12.306+09:00',
+          gatheringLocation: '어느동',
+        },
+      ],
+      hasNext: false,
     },
   ],
+  pageParams: [], // 페이지 파라미터
 };

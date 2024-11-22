@@ -25,18 +25,37 @@ export default function CrewCard({
   crewMembers,
   inWhere,
 }: CrewCardProps) {
+  const [prefetchedPages, setPrefetchedPages] = useState(new Set());
   const CREWPAGE = `/crew/detail/${id}`;
   const router = useRouter();
+
+  const handleCardClick = () => {
+    router.push(CREWPAGE);
+  };
+
+  const handleMouseEnter = () => {
+    if (!prefetchedPages.has(CREWPAGE)) {
+      router.prefetch(CREWPAGE); // 페이지 프리패치
+      setPrefetchedPages(new Set(prefetchedPages).add(CREWPAGE));
+    }
+  };
 
   return (
     <div
       role="presentation"
-      onClick={() => router.push(CREWPAGE)}
+      onClick={handleCardClick}
+      onMouseEnter={handleMouseEnter}
       className="relative mx-auto flex w-full animate-fade cursor-pointer flex-col overflow-hidden rounded-[14px] bg-white transition-shadow hover:shadow-card md:h-[203px] md:flex-row"
     >
       {/* 썸네일 */}
       <div className="relative h-[203px] w-full flex-shrink-0 md:w-[230px]">
-        <Image fill style={{ objectFit: 'cover' }} alt={title} src={imageUrl} />
+        <Image
+          fill
+          sizes="(max-width: 744px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          alt={title}
+          src={imageUrl}
+          className="h-full w-full object-cover"
+        />
       </div>
 
       <div className="flex min-h-[203px] w-full flex-col justify-between p-6 sm:px-4 sm:pt-4">

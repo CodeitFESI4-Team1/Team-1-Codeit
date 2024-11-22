@@ -1,6 +1,7 @@
 'use client';
 
 import { toast } from 'react-toastify';
+import { useRouter } from 'next/navigation';
 import {
   CancelGathering,
   JoinGathering,
@@ -26,16 +27,19 @@ export default function GatheringDetailModalContainer({
   const showToast = (message: string, type: 'success' | 'error' | 'warning') => {
     toast(message, { type });
   };
+  const router = useRouter();
 
   const handleJoin = async () => {
     try {
       await JoinGathering(data.crewId, data.id);
-      showToast('약속에 참여했습니다.', 'success');
       close();
       onUpdate?.();
     } catch (error) {
-      if (error instanceof ApiError) {
-        showToast(`참여 중 에러 발생: ${error.message}`, 'error');
+      if (error instanceof ApiError && error.status === 401) {
+        const redirectUrl = `/login?redirect=${encodeURIComponent(window.location.pathname)}`;
+        router.push(redirectUrl);
+      } else {
+        showToast('참여 중 에러가 발생했습니다.', 'error');
       }
     }
   };

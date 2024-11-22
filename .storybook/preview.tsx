@@ -26,6 +26,9 @@ export const decorators = [
 ];
 
 export const parameters = {
+  nextjs: {
+    appDirectory: true,
+  },
   options: {
     storySort: {
       method: 'alphabetical',
