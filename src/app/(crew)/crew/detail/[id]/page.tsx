@@ -37,7 +37,7 @@ export default async function CrewDetailPage({ params }: CrewDetailPageProps) {
       </section>
 
       {/* Crew Review Section */}
-      <section className="mx-3 mt-10 w-full space-y-6 md:mx-7 lg:mx-11">
+      <section className="mx-3 my-7 md:mx-7 md:my-11 lg:mx-11 lg:my-16">
         <article className="space-y-6">
           <h2 className="text-2xl font-semibold">크루 리뷰</h2>
           <CrewReviewSection crewId={id} />
