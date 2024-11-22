@@ -6,9 +6,9 @@ import { useRouter } from 'next/navigation';
 import { addLike, removeLike } from '@/src/_apis/liked/liked-apis';
 import { useGetGatheringListQuery } from '@/src/_queries/crew/gathering-list-queries';
 import { ApiError } from '@/src/utils/api';
+import CrewGatheringList from '@/src/app/(crew)/crew/detail/[id]/_components/crew-gathering-list';
 import ConfirmModal from '@/src/components/common/modal/confirm-modal';
 import GatheringSkeletonList from '@/src/components/common/skeleton/gathering-skeleton-list';
-import CrewGatheringList from '@/src/components/gathering-list/crew-gathering-list';
 
 interface GatheringListSectionProps {
   id: number;

@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import { addLike, removeLike } from '@/src/_apis/liked/liked-apis';
 import { useGetLikedListQuery } from '@/src/_queries/liked/liked-queries';
 import { ApiError } from '@/src/utils/api';
-import GatheringSkeletonList from '../common/skeleton/gathering-skeleton-list';
+import GatheringSkeletonList from '@/src/components/common/skeleton/gathering-skeleton-list';
 import LikedListPresenter from './liked-list-presenter';
 
 export default function LikedList() {

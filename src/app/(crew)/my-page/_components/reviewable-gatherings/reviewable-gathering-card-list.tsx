@@ -2,7 +2,7 @@
 
 import { useGetReviewableQuery } from '@/src/_queries/my-gathering/reviewable-gathering-list';
 import { useInfiniteScroll } from '@/src/hooks/use-infinite-scroll';
-import MyReviewSkeletonList from '../../common/skeleton/my-review-skeleton-list/index';
+import MyReviewSkeletonList from '@/src/components/common/skeleton/my-review-skeleton-list';
 import ReviewableGatheringCard from './reviewable-gathering-card';
 
 export default function ReviewableGatheringCardList() {

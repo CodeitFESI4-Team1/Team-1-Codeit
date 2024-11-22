@@ -5,9 +5,9 @@ import { usePathname, useRouter } from 'next/navigation';
 import { QueryCache, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ReactQueryStreamedHydration } from '@tanstack/react-query-next-experimental';
-import { reissue } from '../_apis/auth/reissue-apis';
-import { useAuthStore } from '../store/use-auth-store';
-import { ApiError } from '../utils/api';
+import { reissue } from '@/src/_apis/auth/reissue-apis';
+import { useAuthStore } from '@/src/store/use-auth-store';
+import { ApiError } from '@/src/utils/api';
 
 export default function ClientProvider({ children }: { children: ReactNode }) {
   const setToken = useAuthStore((state) => state.setToken);

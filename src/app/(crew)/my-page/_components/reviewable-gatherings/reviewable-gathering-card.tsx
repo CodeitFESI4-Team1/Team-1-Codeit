@@ -3,11 +3,11 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { formatCompactDateTime24H } from '@/src/utils/format-date';
+import ReviewingModal from '@/src/app/(crew)/my-page/_components/reviewing-modal/reviewing-modal';
 import Button from '@/src/components/common/button';
 import Profiles from '@/src/components/common/profile/profiles';
 import { ParticipantType } from '@/src/types/reviewable-gathering-card';
 import person from '@/public/assets/icons/person.svg';
-import ReviewingModal from '../reviewing-modal/reviewing-modal';
 
 interface ReviewableGatheringCardProps {
   id: number;
