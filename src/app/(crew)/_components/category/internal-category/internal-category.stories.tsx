@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import type { Meta, StoryFn } from '@storybook/react';
 import categoryData from '@/src/data/category.json';
-import InternalCategory, { InternalCategoryProps } from '.';
+import InternalCategory from '.';
 
 const meta: Meta = {
   title: 'layout/category',
