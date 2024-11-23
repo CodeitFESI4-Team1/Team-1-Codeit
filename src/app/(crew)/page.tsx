@@ -97,7 +97,7 @@ export default function HomePage() {
             <Button
               type="button"
               onClick={handleSearch}
-              className="btn-filled flex h-10 min-w-21.5 px-7 text-base font-semibold md:h-11"
+              className="btn-filled flex h-10 min-w-26 px-7 text-base font-semibold md:h-11 md:text-lg"
             >
               검색
             </Button>
