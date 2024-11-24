@@ -40,6 +40,8 @@ export function Profile({
   } else if (isCaptain) {
     finalSize = 'large';
   }
+
+  // 이런 것들은 component 내부에서 정의하는 것이 아니라, 외부에 정의하는 게 좋습니다.
   const sizeClasses = {
     small: 'w-6 h-6',
     header: 'sm:w-7 sm:h-7 md:w-[40px] md:h-[40px] lg:w-[40px] lg:h-[40px]',

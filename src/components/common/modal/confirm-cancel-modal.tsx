@@ -2,6 +2,11 @@ import { ReactNode } from 'react';
 import { Modal } from '@mantine/core';
 import Button from '@/src/components/common/button';
 
+// TODO: ConfirmModalProps과 ConfirmCancelModalProps이 겹치는 부분이 많은데 extends 해서 사용할 수 있을 것 같습니다.
+// interface ConfirmCancelModalProps extends ConfirmModalProps {
+//   onCancel?: () => void;
+// }
+
 interface ConfirmCancelModalProps {
   children: ReactNode;
   opened: boolean;

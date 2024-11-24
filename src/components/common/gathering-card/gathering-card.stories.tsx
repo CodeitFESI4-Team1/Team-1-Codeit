@@ -17,6 +17,7 @@ const meta: Meta<typeof GatheringCard> = {
     },
     backgrounds: {
       default: 'light-gray',
+      // TODO: #F9FAFB 색상이 지금은 static으로 작성되어 있는데(여기 말고도 몇군데가 더 있습니다.) tailwind theme 50 컬러를 가져와서 사용할 수 없을까요?
       values: [{ name: 'light-gray', value: '#F9FAFB' }],
     },
   },

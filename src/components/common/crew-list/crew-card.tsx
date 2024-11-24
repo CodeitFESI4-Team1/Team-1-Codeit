@@ -27,6 +27,8 @@ export default function CrewCard({
   inWhere,
 }: CrewCardProps) {
   const [prefetchedPages, setPrefetchedPages] = useState(new Set());
+  // TODO: path 파일을 하나 만들어서 한곳에서 관리 하면 좋을 것 같습니다.
+  // ex) import { CREWPAGE } from '@/src/constants/path'; 해서 사용할 수 있게
   const CREWPAGE = `/crew/detail/${id}`;
   const router = useRouter();
 

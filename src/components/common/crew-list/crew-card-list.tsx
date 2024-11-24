@@ -14,6 +14,8 @@ interface CrewCardListProps {
   inWhere?: 'my-crew' | 'main-crew';
 }
 
+// TODO: 페이지 전체에서 inWhere 가 my-crew 인지 main-crew 인지 체크하는 부분이 반복되는데 이를 줄일 수 있는 방법이 없을까요?
+
 export default function CrewCardList({ data, inWhere }: CrewCardListProps) {
   const crewDataList =
     inWhere === 'my-crew'
