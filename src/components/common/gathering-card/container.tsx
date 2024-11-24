@@ -37,9 +37,8 @@ export default function GatheringCard({
   const today = new Date();
   const isPast = gatheringDate < today;
 
-  // 24시간 이내인지 확인
-  const timeDifference = gatheringDate.getTime() - today.getTime();
-  const isWithin24Hours = timeDifference > 0 && timeDifference <= 24 * 60 * 60 * 1000;
+  // 오늘 이낸지 확인
+  const isToday = gatheringDate.toDateString() === today.toDateString();
 
   // 마감 시간 문자열 생성
   const deadlineMessage = `오늘 ${gatheringDate.getHours()}시 마감`;
@@ -87,7 +86,7 @@ export default function GatheringCard({
         id={id}
         isPast={isPast}
         deadlineMessage={deadlineMessage}
-        isWithin24Hours={isWithin24Hours}
+        isToday={isToday}
         title={title}
         dateTime={dateTime}
         location={location}
