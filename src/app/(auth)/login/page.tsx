@@ -44,7 +44,7 @@ export default function LoginPage() {
     <div>
       <LoginForm formMethods={formMethods} onSubmit={handleSubmit} />
       <div className="mt-6 flex justify-center space-x-1 text-sm font-medium">
-        <div>크루가 처음이신가요?</div>
+        <div>크루크루가 처음이신가요?</div>
         <Link
           href={redirect !== '/' ? `/signup?redirect=${redirect}` : '/signup'}
           className="text-blue-500 underline"

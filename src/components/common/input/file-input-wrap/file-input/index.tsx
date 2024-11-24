@@ -26,6 +26,10 @@ export default function FileInput({ value, isBlur, error, onChange }: FileInputP
   const fileInput = useRef<HTMLInputElement>(null);
 
   const handleFileLoad = (file: File) => {
+    if (!file || !(file instanceof Blob)) {
+      return;
+    }
+
     // 이전 FileReader가 있을 경우 중단
     if (fileReader) {
       fileReader.abort();
