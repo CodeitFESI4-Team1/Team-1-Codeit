@@ -19,7 +19,7 @@ export interface GatheringCardPresenterProps {
   onLikeToggle: () => void;
   onClick: () => void;
   isPast: boolean;
-  isWithin24Hours?: boolean;
+  isToday?: boolean;
   deadlineMessage?: string;
   className?: string;
 }
@@ -36,7 +36,7 @@ export default function GatheringCardPresenter({
   onLikeToggle,
   onClick,
   isPast,
-  isWithin24Hours,
+  isToday,
   deadlineMessage,
   className,
 }: GatheringCardPresenterProps) {
@@ -64,7 +64,7 @@ export default function GatheringCardPresenter({
         />
       </div>
 
-      {isWithin24Hours && (
+      {isToday && (
         <div className="absolute right-0 top-0 flex items-center space-x-1 bg-blue-600 px-4 py-2 text-white">
           <Image src={IcoTimer} alt="timer icon" width={16} height={16} />
           <p className="text-base font-medium">{deadlineMessage}</p>
