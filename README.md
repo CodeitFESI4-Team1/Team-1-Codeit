@@ -68,3 +68,13 @@
 | ![팀원6 사진](https://via.placeholder.com/100) | 최수형 | Front |
 | ![팀원7 사진](https://via.placeholder.com/100) | 이우현 | Back |
 | ![팀원8 사진](https://via.placeholder.com/100) | 이정우 | Back |
+
+<!--
+TODO: 처음 본 사람을 위해서 어떻게 프로젝트를 실행할 수 있는지 설명해주세요.
+ex) 
+## 실행 방법
+1. `yarn install`을 통해 필요한 패키지를 설치합니다.
+2. `yarn dev`를 통해 개발 서버를 실행합니다.
+3. `http://localhost:3000`으로 접속하여 프로젝트를 확인합니다.
+
+-->

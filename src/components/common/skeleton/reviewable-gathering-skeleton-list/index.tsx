@@ -16,3 +16,10 @@ export default function ReviewableGatheringSkeletonList({
     </div>
   );
 }
+
+// TODO: `{[...Array(num)].map((_, index) => ())}` 형태가 아래 파일에서 반복되는 데 이 부분을 추상화 할 수는 없을까요?
+// src/components/common/skeleton/crew-skeleton-list/index.tsx
+// src/components/common/skeleton/gathering-skeleton-list/index.tsx
+// src/components/common/skeleton/my-gathering-skeleton-list/index.tsx
+// src/components/common/skeleton/my-review-skeleton-list/index.tsx
+// src/components/common/skeleton/reviewable-gathering-skeleton-list/index.tsx
