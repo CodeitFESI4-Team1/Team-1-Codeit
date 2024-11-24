@@ -10,7 +10,7 @@ import defaultHeart from '@/public/assets/icons/default-heart.svg';
  * @param {number} id - 해당 모임의 고유 id
  * @param {boolean} isLiked - 초기 좋아요 상태 (true이면 좋아요가 활성화된 상태)
  * @param {(id: number, liked: boolean) => void} onLikeToggle - 좋아요 상태 변경 시 호출되는 함수
- * @param {number} [size=64] - 버튼의 크기 (기본값: 64)
+ * @param {number} [size=64] - 버튼의 크기
  */
 interface LikeButtonProps {
   id: number;
