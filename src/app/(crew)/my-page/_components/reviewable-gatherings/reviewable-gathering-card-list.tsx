@@ -6,7 +6,7 @@ import MyReviewSkeletonList from '@/src/components/common/skeleton/my-review-ske
 import ReviewableGatheringCard from './reviewable-gathering-card';
 
 export default function ReviewableGatheringCardList() {
-  const { data, ref, isFetchingNextPage, isLoading } = useInfiniteScroll(
+  const { data, ref, isFetchingNextPage, isLoading, refetch } = useInfiniteScroll(
     useGetReviewableQuery({
       pageable: { page: 0, size: 6, sort: ['dateTime,desc'] },
     }),
@@ -50,6 +50,7 @@ export default function ReviewableGatheringCardList() {
                   totalCount={item.totalCount}
                   imageUrl={item.imageUrl}
                   participants={item.participants}
+                  refetchList={refetch}
                 />
               ))}
           </li>

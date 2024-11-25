@@ -8,9 +8,15 @@ export interface ReviewingModalProps {
   gatheringId?: number;
   opened: boolean;
   close: () => void;
+  onReviewSuccess: () => void;
 }
 
-export default function ReviewingModal({ gatheringId, opened, close }: ReviewingModalProps) {
+export default function ReviewingModal({
+  gatheringId,
+  opened,
+  close,
+  onReviewSuccess,
+}: ReviewingModalProps) {
   return (
     <Modal
       opened={opened}
@@ -31,7 +37,7 @@ export default function ReviewingModal({ gatheringId, opened, close }: Reviewing
         },
       }}
     >
-      <ReviewForm gatheringId={gatheringId} onCancel={close} />
+      <ReviewForm gatheringId={gatheringId} onCancel={close} onReviewSuccess={onReviewSuccess} />
     </Modal>
   );
 }
