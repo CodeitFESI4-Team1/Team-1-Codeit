@@ -15,9 +15,10 @@ type FormValues = {
 interface ReviewFormProps {
   gatheringId?: number;
   onCancel: () => void;
+  onReviewSuccess: () => void;
 }
 
-export default function ReviewForm({ gatheringId, onCancel }: ReviewFormProps) {
+export default function ReviewForm({ gatheringId, onCancel, onReviewSuccess }: ReviewFormProps) {
   const { register, handleSubmit, control } = useForm<FormValues>();
   const [textReview, setTextReview] = useState<string>('');
 
@@ -45,6 +46,7 @@ export default function ReviewForm({ gatheringId, onCancel }: ReviewFormProps) {
 
     onSuccess: () => {
       onCancel();
+      onReviewSuccess();
     },
     onError: (error: ApiError) => {
       // eslint-disable-next-line no-console

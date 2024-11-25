@@ -18,6 +18,7 @@ interface ReviewableGatheringCardProps {
   totalCount: number;
   imageUrl: string;
   participants: ParticipantType[];
+  refetchList: () => void;
 }
 
 export default function ReviewableGatheringCard({
@@ -29,6 +30,7 @@ export default function ReviewableGatheringCard({
   imageUrl,
   participants,
   totalCount,
+  refetchList,
 }: ReviewableGatheringCardProps) {
   const [isModalOpened, setIsModalOpened] = useState(false);
   const formatDate = formatCompactDateTime24H(dateTime);
@@ -93,6 +95,10 @@ export default function ReviewableGatheringCard({
         opened={isModalOpened}
         close={() => {
           setIsModalOpened(false);
+        }}
+        onReviewSuccess={() => {
+          setIsModalOpened(false);
+          refetchList();
         }}
       />
     </div>
