@@ -1,20 +1,14 @@
 import Image from 'next/image';
 import { Meta } from '@storybook/blocks';
-import Accessibility from './assets/accessibility.png';
-import AddonLibrary from './assets/addon-library.png';
-import Assets from './assets/assets.png';
-import Context from './assets/context.png';
+import FindCrew from './assets/1-find-crew.png';
+import Login from './assets/2-login.png';
+import Crew from './assets/3-crew.png';
+import Gathering from './assets/4-gathering.png';
+import MyCrew from './assets/5-my-crew.png';
+import MyPage from './assets/6-my-page.png';
 import Cbd from './assets/development-cbd.png';
 import Pattern from './assets/development-pattern.png';
-import Discord from './assets/discord.svg';
-import Docs from './assets/docs.png';
-import FigmaPlugin from './assets/figma-plugin.png';
 import Github from './assets/github.svg';
-import Share from './assets/share.png';
-import Styling from './assets/styling.png';
-import Testing from './assets/testing.png';
-import Theming from './assets/theming.png';
-import Tutorials from './assets/tutorials.svg';
 import Youtube from './assets/youtube.svg';
 
 export const RightArrow = () => (
@@ -88,8 +82,8 @@ export const RightArrow = () => (
         <Image 
           width={0}
           height={0}
-          style={{ width: '100%', height: 'auto' }} 
-          src={Docs} 
+          style={{ width: '100%', height: '250px', objectPosition: 'top', borderRadius: '5px', borderWidth: '2px', borderColor: '#DBEAFE'}}
+          src={FindCrew} 
           alt="A screenshot showing the autodocs tag being set, pointing a docs page being generated" 
         />
         <h4 className="sb-section-item-heading">크루 찾기</h4>
@@ -100,8 +94,8 @@ export const RightArrow = () => (
         <Image 
           width={0}
           height={0}
-          style={{ width: '100%', height: 'auto' }} 
-          src={Share} 
+          style={{ width: '100%', height: '250px', objectPosition: 'top', borderRadius: '5px', borderWidth: '2px', borderColor: '#DBEAFE'}}
+          src={Login} 
           alt="A browser window showing a Storybook being published to a chromatic.com URL" 
         />
        <h4 className="sb-section-item-heading">로그인/회원가입</h4>
@@ -112,8 +106,8 @@ export const RightArrow = () => (
         <Image 
           width={0}
           height={0}
-          style={{ width: '100%', height: 'auto' }} 
-          src={FigmaPlugin} 
+          style={{ width: '100%', height: '250px', objectPosition: 'top', borderRadius: '5px', borderWidth: '2px', borderColor: '#DBEAFE'}}
+          src={Crew} 
           alt="Windows showing the Storybook plugin in Figma" 
         />
         <h4 className="sb-section-item-heading">크루</h4>
@@ -124,8 +118,8 @@ export const RightArrow = () => (
         <Image 
           width={0}
           height={0}
-          style={{ width: '100%', height: 'auto' }} 
-          src={Testing} 
+          style={{ width: '100%', height: '250px', objectFit: 'contain', borderRadius: '5px', borderWidth: '2px', borderColor: '#DBEAFE'}}
+          src={Gathering} 
           alt="Screenshot of tests passing and failing" 
         />
         <h4 className="sb-section-item-heading">약속</h4>
@@ -136,8 +130,8 @@ export const RightArrow = () => (
         <Image 
           width={0}
           height={0}
-          style={{ width: '100%', height: 'auto' }} 
-          src={Accessibility} 
+          style={{ width: '100%', height: '250px', objectPosition: 'top', borderRadius: '5px', borderWidth: '2px', borderColor: '#DBEAFE'}}
+          src={MyCrew} 
           alt="Screenshot of accessibility tests passing and failing" 
         />
         <h4 className="sb-section-item-heading">나의 크루/약속</h4>
@@ -148,8 +142,8 @@ export const RightArrow = () => (
         <Image 
           width={0}
           height={0}
-          style={{ width: '100%', height: 'auto' }} 
-          src={Theming} 
+          style={{ width: '100%', height: '250px', objectPosition: 'top', borderRadius: '5px', borderWidth: '2px', borderColor: '#DBEAFE'}}
+          src={MyPage} 
           alt="Screenshot of Storybook in light and dark mode" 
         />
         <h4 className="sb-section-item-heading">마이페이지</h4>
@@ -172,9 +166,11 @@ export const RightArrow = () => (
     <Image 
       width={650}
       height={347}
-      src={AddonLibrary} 
+      src={FindCrew} 
       alt="Integrate your tools with Storybook to connect workflows." 
+      style={{ borderRadius: '10px', borderWidth: '2px', borderColor: '#DBEAFE'}}
     />
+
   </div>
 </div>
 
@@ -311,7 +307,6 @@ export const RightArrow = () => (
     top: 0;
     height: 100%;
     width: 200%;
-    overflow: hidden;
   }
 
   .sb-addon-img img {

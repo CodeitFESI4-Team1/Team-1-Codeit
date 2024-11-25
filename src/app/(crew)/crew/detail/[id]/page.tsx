@@ -16,7 +16,7 @@ export default async function CrewDetailPage({ params }: CrewDetailPageProps) {
   const id = Number(params.id);
 
   return (
-    <div className="mx-auto min-h-screen w-full max-w-full overflow-x-hidden">
+    <div className="mx-auto w-full max-w-full overflow-x-hidden">
       {/* Detail Section */}
       <section className="mx-3 my-7 md:mx-7 md:my-11 lg:mx-11 lg:my-16">
         <article>
