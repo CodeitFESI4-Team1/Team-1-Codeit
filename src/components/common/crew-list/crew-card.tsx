@@ -70,7 +70,9 @@ export default function CrewCard({
             </span>
           </div>
           <span className="text-sm font-semibold text-blue-600">
-            {`현재 ${totalGatheringCount}개의 약속이 개설되어 있습니다.`}
+            {inWhere === 'main-crew'
+              ? `현재 ${totalGatheringCount}개의 약속이 개설되어 있습니다.`
+              : `총 ${totalGatheringCount}개의 약속이 만들어졌어요!`}
           </span>
         </div>
         <div className="flex w-full gap-8 md:pt-[31px]">
