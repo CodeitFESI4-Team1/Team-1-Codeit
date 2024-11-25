@@ -35,11 +35,15 @@ export default function GatheringDetailModalContainer({
       close();
       onUpdate?.();
     } catch (error) {
-      if (error instanceof ApiError && error.status === 401) {
-        const redirectUrl = `/login?redirect=${encodeURIComponent(window.location.pathname)}`;
-        router.push(redirectUrl);
-      } else {
-        showToast('참여 중 에러가 발생했습니다.', 'error');
+      if (error instanceof ApiError) {
+        if (error.status === 401) {
+          const redirectUrl = `/login?redirect=${encodeURIComponent(window.location.pathname)}`;
+          router.push(redirectUrl);
+        } else if (error.status === 404 && error.message === '크루 멤버가 아닙니다.') {
+          showToast('크루 멤버가 아닙니다. 크루를 참여해보세요!', 'error');
+        } else {
+          showToast('참여 중 에러가 발생했습니다.', 'error');
+        }
       }
     }
   };

@@ -91,13 +91,13 @@ export default function HomePage() {
               classNames={{
                 root: 'w-full',
                 input:
-                  'h-11 w-full rounded-xl border-0 pl-10 font-pretendard text-base font-medium text-gray-800 placeholder:text-gray-500',
+                  'h-10 md:h-11 w-full rounded-xl border-0 pl-10 font-pretendard text-base font-medium text-gray-800 placeholder:text-gray-500',
               }}
             />
             <Button
               type="button"
               onClick={handleSearch}
-              className="btn-filled flex h-11 min-w-21.5 px-7 text-base font-semibold"
+              className="btn-filled flex h-10 min-w-26 px-7 text-base font-semibold md:h-11 md:text-lg"
             >
               검색
             </Button>
