@@ -30,10 +30,15 @@ const Template: StoryFn<ReviewingModalProps> = function GatheringDetailModalStor
     setIsOpened(opened);
   }, [opened]);
 
+  const onReviewSuccess = () => {
+    action('review success')();
+    setIsOpened(false);
+  };
+
   return (
     <>
       <Button onClick={handleOpen}>Open Modal</Button>
-      <ReviewingModal opened={isOpened} close={handleClose} />
+      <ReviewingModal opened={isOpened} close={handleClose} onReviewSuccess={onReviewSuccess} />
     </>
   );
 };
